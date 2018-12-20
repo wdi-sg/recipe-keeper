@@ -1,6 +1,8 @@
 # recipe-keeper
 Create an online recipie keeper.
 
+![https://media.giphy.com/media/DZQuf6L7aNsaI/giphy.gif](https://media.giphy.com/media/DZQuf6L7aNsaI/giphy.gif)
+
 This will be an express CRUD app.
 
 Users will be able to:
