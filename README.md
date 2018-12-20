@@ -19,7 +19,7 @@ A single page should have at least 3 pieces of information:
 
 1. Title
 2. Ingredients
-3. Directions
+3. Instructions
 
 ```
 Recipie Title: Boiled Chicken
@@ -69,6 +69,12 @@ Then build the form for editing a recipie.
 
 Then build the route that accepts the PUT request to update a recipie.
 
+Next is DELETE
+
+That's it!
+
+---
+
 Don't forget to `npm init`.
 
 Here is a minimal list of the things you will need to install in your app:
@@ -81,13 +87,26 @@ react
 react-dom
 ```
 
-**Hint** It's implied that the ID mentioned in the RESTful routes is the index of the array. This is the simplest way to code the app. If you code the array index to stand in for the ID, don't put the ID in the recipie object as well, or let the user enter the ID as an input in the form.
+**Hint** It's implied that the ID mentioned in the RESTful routes is the index of the recipie array.
+
+This is the simplest way to code the app. If you code the array index to stand in for the ID, don't put the ID in the recipie object as well, or let the user enter the ID as an input in the form.
+
+The recipie object should look something like this:
+
+```
+{
+  "title": "boiled duck",
+  "ingredients" : "1 duck, water",
+  "instructions": "boil duck in water for 20 minutes. take it out. serve."
+}
+```
 
 #### Further
 Link all of the pages of your app together.
 
 #### Further
-Add some CSS, you can also use bootstrap. (don't try to add bootstrap as an NPM library- just include the link tag line in the HTML)
+Add some CSS, you can also use bootstrap.
+(don't try to add bootstrap or any react CSS as an NPM library- just include the link tag line in the HTML, and a static style css file in the public directory)
 
 #### Further
 Add more data to your recipie: add the date when it was created.
