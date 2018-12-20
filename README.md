@@ -1,5 +1,5 @@
 # recipe-keeper
-Create an online recipie keeper.
+Create an online recipe keeper.
 
 ![https://media.giphy.com/media/DZQuf6L7aNsaI/giphy.gif](https://media.giphy.com/media/DZQuf6L7aNsaI/giphy.gif)
 
@@ -7,13 +7,13 @@ This will be an express CRUD app.
 
 Users will be able to:
 
-- Add a new recipie.
+- Add a new recipe.
 
-- See all the recipies that exist.
+- See all the recipes that exist.
 
-- Edit recipies that currently exist.
+- Edit recipes that currently exist.
 
-- Delete recipies.
+- Delete recipes.
 
 A single page should have at least 3 pieces of information:
 
@@ -22,7 +22,7 @@ A single page should have at least 3 pieces of information:
 3. Instructions
 
 ```
-Recipie Title: Boiled Chicken
+Recipe Title: Boiled Chicken
 
 Ingredients:
   1 chicken
@@ -44,30 +44,30 @@ Instructions:
 | **URL** | **HTTP Verb** |  **Action** | **Purpose**  |
 |------------|-------------|------------|------------|
 | /recipes/         | GET       | index    | See all the recipes |
-| /recipes/new      | GET       | new      | Display the form for a single recipie |
-| /recipes          | POST      | create   | Create a new recipie |
-| /recipes/:id      | GET       | show     | See a single recipie |
-| /recipes/:id/edit | GET       | edit     | Display the form for editing a single recipie | 
-| /recipes/:id      | PATCH/PUT | update   | Update a recipie |
-| /recipes/:id      | DELETE    | destroy  | Remove a recipie |
+| /recipes/new      | GET       | new      | Display the form for a single recipe |
+| /recipes          | POST      | create   | Create a new recipe |
+| /recipes/:id      | GET       | show     | See a single recipe |
+| /recipes/:id/edit | GET       | edit     | Display the form for editing a single recipe | 
+| /recipes/:id      | PATCH/PUT | update   | Update a recipe |
+| /recipes/:id      | DELETE    | destroy  | Remove a recipe |
 
 #### How to get started
 Begin building your app with the json file. The starter code inside of data.json should look something like this: 
 ```
 {
-  "recipies":[]
+  "recipes":[]
 }
 ```
 
-Begin with building the ability to render the form to create a recipie.
+Begin with building the ability to render the form to create a recipe.
 
 Then build the route that accepts the POST request that form creates.
 
-Then build the page that will display a single recipie.
+Then build the page that will display a single recipe.
 
-Then build the form for editing a recipie.
+Then build the form for editing a recipe.
 
-Then build the route that accepts the PUT request to update a recipie.
+Then build the route that accepts the PUT request to update a recipe.
 
 Next is DELETE
 
@@ -89,7 +89,7 @@ react-dom
 
 Here's all of the basic bolierplate setup you'll need to do for your app at the top of `index.js`:
 
-```
+```javascript
 const jsonfile = require('jsonfile');
 
 const file = 'data.json';
@@ -120,13 +120,13 @@ app.set('view engine', 'jsx');
 
 ```
 
-**Hint** It's implied that the ID mentioned in the RESTful routes is the index of the recipie array.
+**Hint** It's implied that the ID mentioned in the RESTful routes is the index of the recipe array.
 
-This is the simplest way to code the app. If you code the array index to stand in for the ID, don't put the ID in the recipie object as well, or let the user enter the ID as an input in the form.
+This is the simplest way to code the app. If you code the array index to stand in for the ID, don't put the ID in the recipe object as well, or let the user enter the ID as an input in the form.
 
-The recipie object should look something like this:
+The recipe object should look something like this:
 
-```
+```json
 {
   "title": "boiled duck",
   "ingredients" : "1 duck, water",
@@ -135,31 +135,35 @@ The recipie object should look something like this:
 ```
 
 #### Further
-Link all of the pages of your app together.
+Add a way for users to navigate around the site without typing the explicit routes in the browser URL bar.
 
 #### Further
 Add some CSS, you can also use bootstrap.
 (don't try to add bootstrap or any react CSS as an NPM library- just include the link tag line in the HTML, and a static style css file in the public directory)
 
+```html
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+```
+
 #### Further
-Add more data to your recipie: add the date when it was created.
+Add more data to your recipe: add the date when it was created.
 
 #### Further
 Validate the user's input. Create limits for how long or short any field should be. 
 
 #### Further
-Create a system where the app actually tracks a kind of ID. This ID is unique to each recipie. The easiest implementation of this is simply a system that increments from the highest number. If a recipie is removed then the app ignores that ID.
+Create a system where the app actually tracks a kind of ID. This ID is unique to each recipe. The easiest implementation of this is simply a system that increments from the highest number. If a recipe is removed then the app ignores that ID.
 
 #### Further
-Sort the recipies on the index page. You can choose what dimension to sort them by.
+Sort the recipes on the index page. You can choose what dimension to sort them by.
 
 #### Further
-Add a more complex system of ingredients. For each recipie the ingredients are a variable number of ingredient records. To keep this simple you can start with 1-6 ingredients.
+Add a more complex system of ingredients. For each recipe the ingredients are a variable number of ingredient records. To keep this simple you can start with 1-6 ingredients.
 
 An ingredient record would look like this:
 
-(extracted from the recipie object it is inside)
-```
+(extracted from the recipe object it is inside)
+```json
 "ingredients" :[
   { 
     "name" : "chicken",
@@ -175,10 +179,10 @@ An ingredient record would look like this:
 ```
 
 #### Further
-Add a route `/ingredients` that lists every ingredient used by every recipie. Each one should be a link to the recipie that uses it.
+Add a route `/ingredients` that lists every ingredient used by every recipe. Each one should be a link to the recipe that uses it.
 
 #### Further
-Format the list of ingredients to list the recipies that use that ingredient underneath it.
+Format the list of ingredients to list the recipes that use that ingredient underneath it.
 
 ```
 # Chicken
@@ -190,13 +194,13 @@ Format the list of ingredients to list the recipies that use that ingredient und
 
 
 #### Further
-Create a system that restricts the user from which ingredients they can use when creating a recipie. Incorporate ingredient json data into the `data.json` that you already have:
+Create a system that restricts the user from which ingredients they can use when creating a recipe. Incorporate ingredient json data into the `data.json` that you already have:
 
-```
+```json
 {
   "ingredients" : [...],
-  "recipies":[]
+  "recipes":[]
 }
 ```
 
-When creating a new recipie, let the user pick from those ingredients.
+When creating a new recipe, let the user pick from those ingredients.
