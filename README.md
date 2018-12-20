@@ -87,6 +87,39 @@ react
 react-dom
 ```
 
+Here's all of the basic bolierplate setup you'll need to do for your app at the top of `index.js`:
+
+```
+const jsonfile = require('jsonfile');
+
+const file = 'data.json';
+
+const express = require('express');
+
+const app = express();
+
+app.use(express.static(__dirname+'/public/'));
+
+app.use(express.json());
+
+app.use(express.urlencoded({
+  extended: true
+}));
+
+const methodOverride = require('method-override')
+
+app.use(methodOverride('_method'));
+
+const reactEngine = require('express-react-views').createEngine();
+
+app.engine('jsx', reactEngine);
+
+app.set('views', __dirname + '/views');
+
+app.set('view engine', 'jsx');
+
+```
+
 **Hint** It's implied that the ID mentioned in the RESTful routes is the index of the recipie array.
 
 This is the simplest way to code the app. If you code the array index to stand in for the ID, don't put the ID in the recipie object as well, or let the user enter the ID as an input in the form.
