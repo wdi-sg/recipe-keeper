@@ -134,6 +134,8 @@ The recipie object should look something like this:
 }
 ```
 
+**Note**: you don't have to work on the furthers in the order listed.
+
 #### Further
 Link all of the pages of your app together.
 
