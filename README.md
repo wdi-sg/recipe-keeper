@@ -134,11 +134,15 @@ The recipe object should look something like this:
 }
 ```
 
+**Note**: you don't have to work on the furthers in the order listed.
+
 #### Further
 Add a way for users to navigate around the site without typing the explicit routes in the browser URL bar.
 
 #### Further
-Add some CSS, you can also use bootstrap.
+CSS Part 1:
+
+Add some CSS. Use margin and padding, set basic spacing for all parts of your app. Add some basic colors or styles.
 (don't try to add bootstrap or any react CSS as an NPM library- just include the link tag line in the HTML, and a static style css file in the public directory)
 
 ```html
@@ -146,7 +150,24 @@ Add some CSS, you can also use bootstrap.
 ```
 
 #### Further
-Add more data to your recipe: add the date when it was created.
+CSS Part 2:
+
+Add some layout styles. Add a kind of column layout to each page. You can use bootstrap.
+
+#### Further
+CSS Part 2.5:
+
+Make your layout styles mobile-first and responsive.
+
+#### Further
+CSS Part 3:
+
+Add more layout. Add a header/navbar and footer to every page.
+
+Add special layout and CSS to the landing page `/`
+
+#### Further
+Add more data to your recipie: add the date when it was created.
 
 #### Further
 Validate the user's input. Create limits for how long or short any field should be. 
