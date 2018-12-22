@@ -1,4 +1,1 @@
-{
-  "recipes": [
-  ]
-}
+{"recipes":[{"id":1,"title":"Mac And Cheese","ingredients":"Cheese","instructions":"Bake"},{"id":2,"title":"Char Kway Teow","ingredients":"Kway Teow","instructions":"Stir-Fry"},{"id":3,"title":"beehoon","ingredients":"fish beehoon","instructions":"boil"},{"id":4,"title":"Fishball","ingredients":"Fish","instructions":"Ball"}]}

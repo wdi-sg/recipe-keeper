@@ -15,6 +15,9 @@ class Recipe extends React.Component {
         <form method="GET" action={"/recipes/" + this.props.recipe.id + "/edit"}>
             <input type="submit" value="Edit Recipe"/>
         </form>
+        <form method="POST" action={"/recipes/" + this.props.recipe.id + "?_method=DELETE"}>
+            <input type="submit" value="Delete Recipe"/>
+        </form>
       </DefaultLayout>
     );
   }
