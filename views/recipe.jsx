@@ -6,11 +6,12 @@ class Recipe extends React.Component {
   render() {
 
     return (
-      <DefaultLayout title="This Recipe">
+      <DefaultLayout title="This Recipe" recipeLength={this.props.length}>
         <h1>Individual Recipe</h1>
-        <h2>{this.props.title}</h2>
-        <h2>{this.props.ingredients}</h2>
-        <h2>{this.props.instructions}</h2>
+        <h2>{this.props.recipe.id}</h2>
+        <h2>{this.props.recipe.title}</h2>
+        <h2>{this.props.recipe.ingredients}</h2>
+        <h2>{this.props.recipe.instructions}</h2>
 
       </DefaultLayout>
     );

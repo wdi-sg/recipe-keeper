@@ -6,10 +6,14 @@ class Recipes extends React.Component {
 
     const recipes = this.props.recipes.map( recipe => { return (
             <div className="col">
-                <h3>{recipe.id}</h3>
-                <h3>{recipe.title}</h3>
-                <h3>{recipe.ingredients}</h3>
-                <h3>{recipe.instructions}</h3>
+                <a href={"http://localhost:3000/recipes/" + recipe.id}>
+                    <div className="recipe">
+                        <h3>{recipe.id}</h3>
+                        <h3>{recipe.title}</h3>
+                        <h3>{recipe.ingredients}</h3>
+                        <h3>{recipe.instructions}</h3>
+                    </div>
+                    </a>
             </div>
         );
     });

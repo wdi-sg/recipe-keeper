@@ -39,7 +39,19 @@ app.post("/recipes", (req, res) => {
 
 //Display Individual Recipe
 app.get("/recipes/:id", (req, res) => {
-
+    jsonfile.readFile('recipes.json', (err, obj) => {
+        //Find Recipe
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (obj.recipes[i].id == req.params.id) {
+                let currentRecipe = obj.recipes[i];
+                let recipeAndLength = {
+                    "recipe": currentRecipe,
+                    "length": obj.recipes.length
+                }
+                res.render('recipe', recipeAndLength);
+            }
+        }
+    });
 });
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
