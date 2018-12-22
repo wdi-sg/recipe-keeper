@@ -12,7 +12,10 @@ class DefaultLayout extends React.Component {
         </head>
         <body>
             <div class="container">
-
+                {/* Home Button */}
+                <form method="GET" action={"/recipes"}>
+                    <input type="submit" value="Home"/>
+                </form>
                 {/* Modal New Recipe Form */}
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                   Add New Recipe!
