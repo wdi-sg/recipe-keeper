@@ -78,11 +78,6 @@ function retrieveRecipe(req, res, render, method) {
                         break;
 
                     case 'delete':
-                        // let newRecipes = obj.recipes.filter( (value, index, arr) => {
-                        //     console.log(value.id);
-                        //     console.log(req.params.id);
-                        //     return value.id != req.params.id;
-                        // });
                         obj.recipes.splice(parseInt(req.params.id)-1, 1);
                         let newRecipes = obj.recipes;
                         for (let i = 0; i < newRecipes.length; i++) {
