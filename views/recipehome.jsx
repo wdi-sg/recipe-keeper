@@ -6,6 +6,15 @@ class Recipelist extends React.Component{
             <div>
                 <ul>
                     Title: {this.props.list.name}
+                    <form method="GET" action={"/recipe/" + this.props.list.id + "/details"}>
+                        <input type="submit" value="Details" />
+                    </form>
+                    <form method="GET" action={"/recipe/" + this.props.list.id + "/edit"}>
+                        <input type="submit" value="Edit" />
+                    </form>
+                    <form method="POST" action={"/recipe/" + this.props.list.id + "?_method=delete"}>
+                        <input type="submit" value="Delete" />
+                    </form>
                 </ul>
             </div>
             );

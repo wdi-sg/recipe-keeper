@@ -1,18 +1,17 @@
 var React = require('react');
 
-class Recipeadd extends React.Component{
+class Recipedetails extends React.Component{
     render(){
         return(
             <div>
-                <h3>Create a new recipe </h3>
+                <h3>Recipe Title: {this.props.name}</h3>
                 <br />
-                Recipe Id: {this.props.id}
+                Ingredients: <span> </span>
+                {this.props.ingredients}
                 <br />
-                Recipe Title: {this.props.name}
                 <br />
-                Recipe Ingredients: {this.props.ingredients}
-                <br />
-                Recipe Instructions: {this.props.instructions}
+                Instructions: <span> </span>
+                {this.props.instructions}
                 <br />
                 <br />
                 <form method="GET" action="/recipe">
@@ -23,4 +22,4 @@ class Recipeadd extends React.Component{
     }
 }
 
-module.exports = Recipeadd;
+module.exports = Recipedetails;

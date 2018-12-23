@@ -4,11 +4,16 @@ class Recipenew extends React.Component{
     render(){
         return(
             <div>
-                <form method="POST" action="/recipe/add"><h3>Create a new recipe: </h3><br />
+                <form method="POST" action="/recipe/add">
+                <h3>Create a new recipe: </h3><br />
                 Recipe Id:
                 <input type="text" name="id" placeholder="Auto generated" /><br />
                 Recipe Title:
-                <input type="text" name="name" required="required" minlength="5" pattern="[a-zA-Z]*$" placeholder="No special char and numbers"/><br />
+                <input type="text" name="name" required="required" minlength="5" pattern="[ a-zA-Z ]*$" placeholder="No special char and numbers"/><br />
+                Recipe Ingredients:
+                <input type="text" name="ing" required="required" minlength="5" /><br />
+                Recipe Instructions:
+                <input type="text" name="ins" required="required" minlength="5" /><br />
                 <input type="submit" value="Create" />
                 </form>
                 <br />

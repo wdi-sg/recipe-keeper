@@ -49,12 +49,93 @@ app.post('/recipe/add', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         let newRecipe = {
             id: parseInt(obj.length + 1),
-            name: request.body.name.charAt(0).toUpperCase() + request.body.name.slice(1)
+            name: request.body.name.charAt(0).toUpperCase() + request.body.name.slice(1),
+            ingredients: request.body.ing,
+            instructions: request.body.ins.charAt(0).toUpperCase() + request.body.ins.slice(1)
         }
         obj.push(newRecipe);
-        response.render('recipeadd', newRecipe);
+        response.redirect('/recipe');
         jsonfile.writeFile(file, obj, (err) => {
             console.log(err);
+        });
+    });
+});
+
+app.get('/recipe/:id/details', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let inputId = parseInt(request.params.id);
+        let recipes = {};
+        recipes.name = ' ';
+        recipes.ingredients = ' ';
+        recipes.instructions = ' ';
+        for(let i = 0; i < obj.length; i++){
+            if(inputId === obj[i].id){
+                recipes.name = obj[i].name;
+                recipes.ingredients = obj[i].ingredients;
+                recipes.instructions = obj[i].instructions;
+            }
+        }
+        response.render('recipedetails', recipes);
+    });
+});
+
+app.get('/recipe/:id/edit', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let inputId = parseInt(request.params.id);
+        let recipes = {};
+        recipes.id;
+        recipes.name = ' ';
+        recipes.ingredients = ' ';
+        recipes.instructions = ' ';
+        for(let i = 0; i < obj.length; i++){
+            if(inputId === obj[i].id){
+                recipes.id = obj[i].id;
+                recipes.name = obj[i].name;
+                recipes.ingredients = obj[i].ingredients;
+                recipes.instructions = obj[i].instructions;
+            }
+        }
+        response.render('recipeedit', recipes);
+    });
+});
+
+app.put('/recipe/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let inputId = parseInt(request.params.id);
+        let recipes;
+        for(let i = 0; i < obj.length; i++){
+            if(inputId === obj[i].id){
+                obj[i].name = request.body.name;
+                obj[i].ingredients = request.body.ing;
+                obj[i].instructions = request.body.ins;
+                recipes = obj[i];
+            }
+        }
+        response.redirect('/recipe');
+        jsonfile.writeFile(file, obj, (err) => {
+        });
+    });
+});
+
+app.delete('/recipe/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let inputId = parseInt(request.params.id);
+        let recipes = {};
+        recipes.id;
+        recipes.name;
+        recipes.ingredients;
+        recipes.instructions;
+        for(let i = 0; i < obj.length; i++){
+            if(inputId === obj[i].id){
+                recipes.id = obj[i].id;
+                recipes.name = obj[i].name;
+                recipes.ingredients = obj[i].ingredients;
+                recipes.instructions = obj[i].instructions;
+                obj.splice(parseInt(obj[i].id) - 1, 1)
+            }
+        }
+        response.render('recipedelete', recipes);
+        jsonfile.writeFile(file, obj, (err) => {
         });
     });
 });
