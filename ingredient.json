@@ -3,36 +3,42 @@
     "id": 1,
     "name": "Wine - Rosso Toscano Igt",
     "ingredients": "1 chicken, 10 ml water",
-    "instructions": "Place chicken in water with salt. Simmer for 20 minutes."
+    "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
+    "date_created":"20/12/2018"
   },
   {
     "id": 2,
     "name": "Spaghetti Squash",
     "ingredients": "1 chicken, 10 ml water",
-    "instructions": "Place chicken in water with salt. Simmer for 20 minutes."
+    "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
+    "date_created":"20/12/2018"
   },
   {
     "id": 3,
     "name": "Pepperoni Slices",
     "ingredients": "1 chicken, 10 ml water",
-    "instructions": "Place chicken in water with salt. Simmer for 20 minutes."
+    "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
+    "date_created":"20/12/2018"
   },
   {
     "id": 4,
     "name": "Boiled Chicken",
     "ingredients": "1 chicken, 10 ml water",
-    "instructions": "Place chicken in water with salt. Simmer for 20 minutes."
+    "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
+    "date_created":"22/12/2018"
   },
   {
     "id": 5,
     "name": "Boiled Duck",
     "ingredients": "1 duck, water",
-    "instructions": "Boil duck in water for 20 minutes. take it out. serve."
+    "instructions": "Boil duck in water for 20 minutes. take it out. serve.",
+    "date_created":"22/12/2018"
   },
   {
     "id": 6,
     "name": "Sugar Cookies",
     "ingredients": "½ cup unsalted butter, ¾ cup brown sugar, ¾ cup white sugar, 2 eggs, 1 teaspoon vanilla extract, 12 ounces chocolate chips, 2 ¼ cups plain flour, ½ teaspoon salt, ½ teaspoon baking soda",
-    "instructions": "Preheat oven to 190 C / Gas 5. In a small bowl, stir together flour, bicarbonate of soda and baking powder. ... In a large bowl, cream together the butter and sugar until smooth. Beat in egg and vanilla. ... Bake 8 to 10 minutes in the preheated oven, or until golden."
+    "instructions": "Preheat oven to 190 C / Gas 5. In a small bowl, stir together flour, bicarbonate of soda and baking powder. ... In a large bowl, cream together the butter and sugar until smooth. Beat in egg and vanilla. ... Bake 8 to 10 minutes in the preheated oven, or until golden.",
+    "date_created":"23/12/2018"
   }
 ]

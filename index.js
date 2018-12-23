@@ -30,6 +30,52 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+app.get("/recipe", (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let recipes = {};
+        recipes.list = obj;
+        for(let i = 0; i < obj.length; i++){
+            if(request.query.sortby == "asc"){
+                recipes.list.sort((a, b) => {
+                    if (a.name < b.name){
+                        return -1;
+                    }
+                    if (a.name > b.name){
+                        return 1;
+                    }
+                });
+            }
+            else if(request.query.sortby == "desc"){
+                recipes.list.sort((a, b) => {
+                    if (a.name > b.name){
+                        return -1;
+                    }
+                    if (a.name < b.name){
+                        return 1;
+                    }
+                });
+            }
+            else if(request.query.sortby == "id"){
+                recipes.list.sort((a, b) => {
+                    if (a.id < b.id){
+                        return -1;
+                    }
+                    if (a.id > b.id){
+                        return 1;
+                    }
+                });
+            }
+            else{
+                recipes.list.sort((a, b) => {
+                    return a - b;
+                });
+            }
+        }
+
+        response.render('recipehome', recipes);
+    });
+});
+
 app.get('/recipe', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         let recipes = {};
@@ -47,11 +93,17 @@ app.get('/recipe/new', (request, response) => {
 
 app.post('/recipe/add', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
+        let dateCreated = new Date();
+        let dd = dateCreated.getDate();
+        let mm = dateCreated.getMonth() + 1;
+        let yyyy = dateCreated.getFullYear();
+        dateCreated = dd + '/' + mm + '/' + yyyy;
         let newRecipe = {
             id: parseInt(obj.length + 1),
             name: request.body.name.charAt(0).toUpperCase() + request.body.name.slice(1),
             ingredients: request.body.ing,
-            instructions: request.body.ins.charAt(0).toUpperCase() + request.body.ins.slice(1)
+            instructions: request.body.ins.charAt(0).toUpperCase() + request.body.ins.slice(1),
+            date_created: dateCreated
         }
         obj.push(newRecipe);
         response.redirect('/recipe');
