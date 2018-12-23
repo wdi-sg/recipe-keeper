@@ -4,7 +4,7 @@ class Recipedelete extends React.Component{
     render(){
         return(
             <div>
-                <h3>Successfully deleted recipe, take a look at the details that are deleted </h3>
+                <h3>Successfully deleted recipe, take a look at the details that have been deleted </h3>
                 Recipe ID: <span> </span>
                 {this.props.id}
                 <br />
@@ -13,7 +13,6 @@ class Recipedelete extends React.Component{
                 <br />
                 Ingredients: <span> </span>
                 {this.props.ingredients}
-                <br />
                 <br />
                 Instructions: <span> </span>
                 {this.props.instructions}

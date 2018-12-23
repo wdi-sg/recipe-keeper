@@ -117,14 +117,20 @@ app.get('/recipe/:id/details', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         let inputId = parseInt(request.params.id);
         let recipes = {};
-        recipes.name = ' ';
-        recipes.ingredients = ' ';
-        recipes.instructions = ' ';
+        recipes.id;
+        recipes.name;
+        recipes.ingredients;
+        recipes.instructions;
+        recipes.date_created;
+        recipes.date_edited;
         for(let i = 0; i < obj.length; i++){
             if(inputId === obj[i].id){
+                recipes.id = obj[i].id;
                 recipes.name = obj[i].name;
                 recipes.ingredients = obj[i].ingredients;
                 recipes.instructions = obj[i].instructions;
+                recipes.date_created = obj[i].date_created;
+                recipes.date_edited = obj[i].date_edited;
             }
         }
         response.render('recipedetails', recipes);
@@ -136,9 +142,9 @@ app.get('/recipe/:id/edit', (request, response) => {
         let inputId = parseInt(request.params.id);
         let recipes = {};
         recipes.id;
-        recipes.name = ' ';
-        recipes.ingredients = ' ';
-        recipes.instructions = ' ';
+        recipes.name;
+        recipes.ingredients;
+        recipes.instructions;
         for(let i = 0; i < obj.length; i++){
             if(inputId === obj[i].id){
                 recipes.id = obj[i].id;
@@ -153,6 +159,11 @@ app.get('/recipe/:id/edit', (request, response) => {
 
 app.put('/recipe/:id', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
+        let dateEdited = new Date();
+        let dd = dateEdited.getDate();
+        let mm = dateEdited.getMonth() + 1;
+        let yyyy = dateEdited.getFullYear();
+        dateEdited = dd + '/' + mm + '/' + yyyy;
         let inputId = parseInt(request.params.id);
         let recipes;
         for(let i = 0; i < obj.length; i++){
@@ -160,6 +171,7 @@ app.put('/recipe/:id', (request, response) => {
                 obj[i].name = request.body.name;
                 obj[i].ingredients = request.body.ing;
                 obj[i].instructions = request.body.ins;
+                obj[i].date_edited = dateEdited;
                 recipes = obj[i];
             }
         }
