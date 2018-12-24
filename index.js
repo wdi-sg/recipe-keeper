@@ -30,11 +30,14 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-app.get("/recipe", (request, response) => {
+app.get('/recipe', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         let recipes = {};
-        recipes.list = obj;
-        for(let i = 0; i < obj.length; i++){
+        recipes.list = [];
+        for(let i = 0; i < obj.recipes.length; i++){
+            recipes.list.push(obj.recipes[i]);
+        }
+        for(let i = 0; i < obj.recipes.length; i++){
             if(request.query.sortby == "asc"){
                 recipes.list.sort((a, b) => {
                     if (a.name < b.name){
@@ -71,18 +74,6 @@ app.get("/recipe", (request, response) => {
                 });
             }
         }
-
-        response.render('recipehome', recipes);
-    });
-});
-
-app.get('/recipe', (request, response) => {
-    jsonfile.readFile(file, (err, obj) => {
-        let recipes = {};
-        recipes.list = [];
-        for(let i = 0; i < obj.length; i++){
-            recipes.list.push(obj[i]);
-        }
         response.render('recipehome', recipes);
     });
 });
@@ -99,16 +90,60 @@ app.post('/recipe/add', (request, response) => {
         let yyyy = dateCreated.getFullYear();
         dateCreated = dd + '/' + mm + '/' + yyyy;
         let newRecipe = {
-            id: parseInt(obj.length + 1),
+            id: parseInt(obj.recipes.length + 1),
             name: request.body.name.charAt(0).toUpperCase() + request.body.name.slice(1),
-            ingredients: request.body.ing,
+            ingredients: [],
             instructions: request.body.ins.charAt(0).toUpperCase() + request.body.ins.slice(1),
             date_created: dateCreated
         }
-        obj.push(newRecipe);
+        let recipes = {};
+        recipes.name;
+        recipes.amount;
+        recipes.notes;
+            if(request.body.ingredients == "ing1"){
+                recipes.name = "chicken";
+                recipes.amount = "1";
+                recipes.notes = "de-boned";
+            }
+            else if(request.body.ingredients == "ing2"){
+                recipes.name = "water";
+                recipes.amount = "1";
+                recipes.notes = "isotonic";
+            }
+            else if(request.body.ingredients == "ing3"){
+                recipes.name = "duck";
+                recipes.amount = "1";
+                recipes.notes = "de-boned";
+            }
+            else if(request.body.ingredients == "ing4"){
+                recipes.name = "butter";
+                recipes.amount = "1";
+                recipes.notes = "cup";
+            }
+            else if(request.body.ingredients == "ing5"){
+                recipes.name = "brown sugar";
+                recipes.amount = "3";
+                recipes.notes = "cup";
+            }
+            else if(request.body.ingredients == "ing6"){
+                recipes.name = "egg";
+                recipes.amount = "2";
+                recipes.notes = " ";
+            }
+            else if(request.body.ingredients == "ing7"){
+                recipes.name = "vanilla extract";
+                recipes.amount = "1";
+                recipes.notes = "teaspoon";
+            }
+            else if(request.body.ingredients == "ing8"){
+                recipes.name = "flour";
+                recipes.amount = "2";
+                recipes.notes = "cup";
+            }
+        newRecipe.ingredients.push(recipes);
+        obj.recipes.push(newRecipe);
         response.redirect('/recipe');
         jsonfile.writeFile(file, obj, (err) => {
-            console.log(err);
         });
     });
 });
@@ -119,18 +154,20 @@ app.get('/recipe/:id/details', (request, response) => {
         let recipes = {};
         recipes.id;
         recipes.name;
-        recipes.ingredients;
         recipes.instructions;
         recipes.date_created;
         recipes.date_edited;
-        for(let i = 0; i < obj.length; i++){
-            if(inputId === obj[i].id){
-                recipes.id = obj[i].id;
-                recipes.name = obj[i].name;
-                recipes.ingredients = obj[i].ingredients;
-                recipes.instructions = obj[i].instructions;
-                recipes.date_created = obj[i].date_created;
-                recipes.date_edited = obj[i].date_edited;
+        recipes.ingredients = [];
+        for(let i = 0; i < obj.recipes.length; i++){
+            if(inputId === obj.recipes[i].id){
+                recipes.id = obj.recipes[i].id;
+                recipes.name = obj.recipes[i].name;
+                recipes.instructions = obj.recipes[i].instructions;
+                recipes.date_created = obj.recipes[i].date_created;
+                recipes.date_edited = obj.recipes[i].date_edited;
+                for(j = 0; j < obj.recipes[i].ingredients.length; j++){
+                    recipes.ingredients.push(obj.recipes[i].ingredients[j])
+                }
             }
         }
         response.render('recipedetails', recipes);
@@ -143,14 +180,16 @@ app.get('/recipe/:id/edit', (request, response) => {
         let recipes = {};
         recipes.id;
         recipes.name;
-        recipes.ingredients;
         recipes.instructions;
-        for(let i = 0; i < obj.length; i++){
-            if(inputId === obj[i].id){
-                recipes.id = obj[i].id;
-                recipes.name = obj[i].name;
-                recipes.ingredients = obj[i].ingredients;
-                recipes.instructions = obj[i].instructions;
+        recipes.ingredients = [];
+        for(let i = 0; i < obj.recipes.length; i++){
+            if(inputId === obj.recipes[i].id){
+                recipes.id = obj.recipes[i].id;
+                recipes.name = obj.recipes[i].name;
+                recipes.instructions = obj.recipes[i].instructions;
+                for(j = 0; j < obj.recipes[i].ingredients.length; j++){
+                    recipes.ingredients.push(obj.recipes[i].ingredients[j])
+                }
             }
         }
         response.render('recipeedit', recipes);
@@ -166,12 +205,12 @@ app.put('/recipe/:id', (request, response) => {
         dateEdited = dd + '/' + mm + '/' + yyyy;
         let inputId = parseInt(request.params.id);
         let recipes;
-        for(let i = 0; i < obj.length; i++){
-            if(inputId === obj[i].id){
-                obj[i].name = request.body.name;
-                obj[i].ingredients = request.body.ing;
-                obj[i].instructions = request.body.ins;
-                obj[i].date_edited = dateEdited;
+        for(let i = 0; i < obj.recipes.length; i++){
+            if(inputId === obj.recipes[i].id){
+                obj.recipes[i].name = request.body.name;
+                obj.recipes[i].ingredients = obj.recipes[i].ingredients
+                obj.recipes[i].instructions = request.body.ins;
+                obj.recipes[i].date_edited = dateEdited;
                 recipes = obj[i];
             }
         }
@@ -187,21 +226,107 @@ app.delete('/recipe/:id', (request, response) => {
         let recipes = {};
         recipes.id;
         recipes.name;
-        recipes.ingredients;
         recipes.instructions;
-        for(let i = 0; i < obj.length; i++){
-            if(inputId === obj[i].id){
-                recipes.id = obj[i].id;
-                recipes.name = obj[i].name;
-                recipes.ingredients = obj[i].ingredients;
-                recipes.instructions = obj[i].instructions;
-                obj.splice(parseInt(obj[i].id) - 1, 1)
+        recipes.ingredients = [];
+        for(let i = 0; i < obj.recipes.length; i++){
+            if(inputId === obj.recipes[i].id){
+                recipes.id = obj.recipes[i].id;
+                recipes.name = obj.recipes[i].name;
+                recipes.instructions = obj.recipes[i].instructions;
+                for(j = 0; j < obj.recipes[i].ingredients.length; j++){
+                    recipes.ingredients.push(obj.recipes[i].ingredients[j])
+                }
+                obj.recipes.splice(parseInt(obj.recipes[i].id) - 1, 1)
             }
         }
         response.render('recipedelete', recipes);
         jsonfile.writeFile(file, obj, (err) => {
         });
     });
+});
+
+app.get('/recipe/:id/ingredients', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let inputId = parseInt(request.params.id);
+        let recipes = {};
+        recipes.id;
+        recipes.ingredients = [];
+        for(let i = 0; i < obj.recipes.length; i++){
+            if(inputId === obj.recipes[i].id){
+                recipes.id = obj.recipes[i].id;
+                for(j = 0; j < obj.recipes[i].ingredients.length; j++){
+                    recipes.ingredients.push(obj.recipes[i].ingredients[j])
+                }
+            }
+        }
+        response.render('recipeingredients', recipes);
+    });
+});
+
+app.post('/recipe/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let dateEdited = new Date();
+        let dd = dateEdited.getDate();
+        let mm = dateEdited.getMonth() + 1;
+        let yyyy = dateEdited.getFullYear();
+        dateEdited = dd + '/' + mm + '/' + yyyy;
+        let inputId = parseInt(request.params.id);
+        let recipes = {};
+        recipes.name;
+        recipes.amount;
+        recipes.notes;
+        for(let i = 0; i < obj.recipes.length; i++){
+            if(inputId === obj.recipes[i].id){
+                if(request.body.ingredients == "ing1"){
+                    recipes.name = "chicken";
+                    recipes.amount = "1";
+                    recipes.notes = "de-boned";
+                }
+                else if(request.body.ingredients == "ing2"){
+                    recipes.name = "water";
+                    recipes.amount = "1";
+                    recipes.notes = "isotonic";
+                }
+                else if(request.body.ingredients == "ing3"){
+                    recipes.name = "duck";
+                    recipes.amount = "1";
+                    recipes.notes = "de-boned";
+                }
+                else if(request.body.ingredients == "ing4"){
+                    recipes.name = "butter";
+                    recipes.amount = "1";
+                    recipes.notes = "cup";
+                }
+                else if(request.body.ingredients == "ing5"){
+                    recipes.name = "brown sugar";
+                    recipes.amount = "3";
+                    recipes.notes = "cup";
+                }
+                else if(request.body.ingredients == "ing6"){
+                    recipes.name = "egg";
+                    recipes.amount = "2";
+                    recipes.notes = " ";
+                }
+                else if(request.body.ingredients == "ing7"){
+                    recipes.name = "vanilla extract";
+                    recipes.amount = "1";
+                    recipes.notes = "teaspoon";
+                }
+                else if(request.body.ingredients == "ing8"){
+                    recipes.name = "flour";
+                    recipes.amount = "2";
+                    recipes.notes = "cup";
+                }
+                obj.recipes[i].date_edited = dateEdited;
+            }
+            obj.recipes[i].ingredients.push(recipes);
+        }
+        console.log(recipes)
+        response.redirect('/recipe');
+        jsonfile.writeFile(file, obj, (err) => {
+        });
+    });
+
 });
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));

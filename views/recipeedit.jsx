@@ -1,7 +1,24 @@
 var React = require('react');
 
+class Recipeingredients extends React.Component{
+    render(){
+        return(
+            <div>
+                <ul>
+                    -{this.props.list.name}<span> </span>
+                    {this.props.list.amount}<span> </span>
+                    {this.props.list.notes}<span> </span>
+                </ul>
+            </div>
+            );
+    }
+}
+
 class Recipeedit extends React.Component{
     render(){
+        const recipes = this.props.ingredients.map( recipe => {
+            return <Recipeingredients list={recipe}></Recipeingredients>;
+        });
         return(
             <div>
                 <form method="POST" action={"/recipe/" + this.props.id + "?_method=PUT"}>
@@ -9,10 +26,13 @@ class Recipeedit extends React.Component{
                 Recipe Title:
                 <input type="text" name="name" minlength="5" pattern="[ a-zA-Z ]*$" value={this.props.name}/><br />
                 Recipe Ingredients:
-                <input type="text" name="ing" minlength="5" value={this.props.ingredients}/><br />
+                {recipes}
                 Recipe Instructions:
-                <input type="text" name="ins" minlength="5" value={this.props.instructions}/><br />
-                <input type="submit" value="Edit" />
+                <input type="text" name="ins" minlength="5" value={this.props.instructions}/><br /><br />
+                <input type="submit" value="Edit" /><br />
+                </form>
+                <form method="GET" action={"/recipe/" + this.props.id + "/ingredients"}>
+                    <input type="submit" value="Add ingredients" />
                 </form>
                 <br />
                 <form method="GET" action="/recipe">

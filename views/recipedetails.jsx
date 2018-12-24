@@ -1,7 +1,24 @@
 var React = require('react');
 
+class Recipeingredients extends React.Component{
+    render(){
+        return(
+            <div>
+                <ul>
+                    - {this.props.list.name}<span> </span>
+                    {this.props.list.amount}<span> </span>
+                    {this.props.list.notes}<span> </span>
+                </ul>
+            </div>
+            );
+    }
+}
+
 class Recipedetails extends React.Component{
     render(){
+        const recipes = this.props.ingredients.map( recipe => {
+            return <Recipeingredients list={recipe}></Recipeingredients>;
+        });
         return(
             <div>
                 <h3>Recipe Title: {this.props.name}</h3>
@@ -9,9 +26,8 @@ class Recipedetails extends React.Component{
                 ID: <span> </span>
                 {this.props.id}
                 <br />
-                Ingredients: <span> </span>
-                {this.props.ingredients}
-                <br />
+                Ingredients:<span> </span>
+                {recipes}
                 Instructions: <span> </span>
                 {this.props.instructions}
                 <br />
@@ -30,4 +46,5 @@ class Recipedetails extends React.Component{
     }
 }
 
+module.exports = Recipeingredients;
 module.exports = Recipedetails;
