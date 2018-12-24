@@ -50,11 +50,6 @@
           "name": "water",
           "amount": "1",
           "notes": "isotonic"
-        },
-        {
-          "name": "brown sugar",
-          "amount": "3",
-          "notes": "cup"
         }
       ],
       "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
@@ -74,16 +69,10 @@
           "name": "water",
           "amount": "1",
           "notes": "isotonic"
-        },
-        {
-          "name": "brown sugar",
-          "amount": "3",
-          "notes": "cup"
         }
       ],
       "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
-      "date_created": "20/12/2018",
-      "date_edited": "24/12/2018"
+      "date_created": "20/12/2018"
     },
     {
       "id": 3,
@@ -106,7 +95,8 @@
         }
       ],
       "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
-      "date_created": "20/12/2018"
+      "date_created": "20/12/2018",
+      "date_edited": "24/12/2018"
     },
     {
       "id": 4,
@@ -121,11 +111,6 @@
           "name": "water",
           "amount": "1",
           "notes": "isotonic"
-        },
-        {
-          "name": "brown sugar",
-          "amount": "3",
-          "notes": "cup"
         }
       ],
       "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
@@ -144,11 +129,6 @@
           "name": "water",
           "amount": "1",
           "notes": "isotonic"
-        },
-        {
-          "name": "brown sugar",
-          "amount": "3",
-          "notes": "cup"
         }
       ],
       "instructions": "Boil duck in water for 20 minutes. take it out. serve.",

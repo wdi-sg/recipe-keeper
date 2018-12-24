@@ -318,10 +318,9 @@ app.post('/recipe/:id', (request, response) => {
                     recipes.notes = "cup";
                 }
                 obj.recipes[i].date_edited = dateEdited;
+                obj.recipes[i].ingredients.push(recipes);
             }
-            obj.recipes[i].ingredients.push(recipes);
         }
-        console.log(recipes)
         response.redirect('/recipe');
         jsonfile.writeFile(file, obj, (err) => {
         });
