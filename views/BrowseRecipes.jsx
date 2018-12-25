@@ -9,18 +9,18 @@ class Home extends React.Component {
             <DefaultView>
             <div>
             <h1>Recipes <span className="click-instruction">(Click on the recipe name to see the recipe)</span></h1>
-            <ul>
+            <ol>
             {              
                 this.props.recipes.map (recipe => {
                     return (
-                        <li key="recipeName" className="recipe-title">
+                        <li key="recipeName" className="recipe-list">
                             <a className="recipe-title" href={'/recipes/'+recipe.recipeId}>{recipe.name}</a>
-                            <p>{recipe.summary}</p>
+                            <p className="recipe-summary">{recipe.summary}</p>
                         </li>
                     )
                 })
             }
-            </ul>
+            </ol>
             </div>
             </DefaultView>
         )

@@ -32,12 +32,8 @@ class DefaultView extends React.Component {
                     { this.props.children}
                 </div>
             </div>
-            <div>
-                <footer>
-                Copyright &copy;December 2018  Alan Wan 
-                </footer>
-            </div>
-                <script src="main.js"></script>
+            
+            <script src="main.js"></script>
                
             </body>
             </html>
