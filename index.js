@@ -377,7 +377,6 @@ app.get('/recipe/:name/recipelist', (request, response) => {
                 }
             }
         }
-        console.log(recipes)
         response.render('recipelist', recipes);
     });
 });
