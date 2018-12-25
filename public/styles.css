@@ -1,0 +1,206 @@
+body {
+    margin: auto;
+    width: 80%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    text-align: center;
+    padding: 10px;
+    width: 81vw;
+}
+
+/* Creating Responsive Menu Bar */
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+    width: 80%;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 12px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+/* End of Menu Bar */
+
+.children {
+    margin-top: 15px;
+}
+
+.recipe-title {
+    text-align: left;
+    margin: 5px;
+    font-size: 24px;
+    text-decoration: none;
+    color: black;
+}
+
+.click-instruction {
+    font-size: 16px;
+}
+
+/* Styles for new recipe form */
+
+#newRecipe {
+    width: 80%;
+    margin: auto;
+}
+
+
+
+label {
+    vertical-align: top;
+    font-size: 1.25rem;
+    padding-right: 20px;
+}
+
+.input {
+    margin: 16px;
+}
+
+#name {
+    width: 360px;
+    font-size: 1rem;
+}
+
+#summary {
+    width: 360px;
+    height: 80px;
+    font-size: 1rem;
+    margin-left: 35px;
+    text-align: top;
+}
+
+#instructions {
+    width: 360px;
+    font-size: 1rem;
+    margin-left: 12px;
+}
+
+select {
+    margin-left: 4px;
+    font-size: 1rem;
+    width: 360px;
+    height: 180px;
+    padding-left: 10px;
+}
+
+input[type=submit] {
+    display:inline-block;
+    padding:5px 15px; 
+    background:rgb(31, 31, 232); 
+    border:0 0px;
+    cursor:pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    font-size: 1.25rem;
+    /* margin-left: 25%; */
+    color: white;
+    font-weight:bold;
+    width: 110px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+button {
+    display:inline-block;
+    padding:5px 15px; 
+    background-color:rgb(31, 31, 232); 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    font-size: 1.25rem;
+    margin-top: 20px;
+    margin-right: 20px;
+    color: white;
+    font-weight:bold;
+    width: 100px;
+}
+
+button > a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.content {
+    height: 640px;
+}
+footer {
+    background-color: #333;
+    padding: 10px 10px 15px 10px;
+    text-align: right;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 8px;
+    width: 80%;
+}
+
+/* .deleteButton {
+    display: inline-block;
+    padding:5px 15px; 
+    background:rgb(31, 31, 232); 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    font-size: 1.25rem;
+    color: white;
+    font-weight:bold;
+    width: 80px;
+} */
+/* Style for Display Recipe */
+
+/* .recipeView {
+    width: 80%;
+    margin: auto;
+} */
+
+/* Media Queries */
+
+/* Media Query */
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
