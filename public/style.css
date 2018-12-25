@@ -1,0 +1,17 @@
+body{
+    padding: 50px;
+}
+
+.ingredient-add, .instruction-add{
+    color: white;
+    background-color: green;
+}
+
+.ingredient-remove, .instruction-remove{
+    color: white;
+    background-color: red;
+}
+
+.ingredient-remove-wrapper, .instruction-remove-wrapper{
+    display: none;
+}

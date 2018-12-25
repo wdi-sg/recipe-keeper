@@ -17,7 +17,11 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
 app.get('/recipes', (request, response)=>{
-    response.send('new-recipes');
+  response.render('new-recipe');
+})
+
+app.post('/recipes', (request, response)=>{
+  console.log(request.body);
 })
 
 app.listen(3000);
