@@ -6,6 +6,11 @@
       "notes": "de-boned"
     },
     {
+      "name": "duck",
+      "amount": "1",
+      "notes": "de-boned"
+    },
+    {
       "name": "water",
       "amount": "1",
       "notes": "isotonic"

@@ -41,6 +41,9 @@ class Recipehome extends React.Component{
                 <form method="GET" action="/recipe/new">
                     <input type="submit" value="Create new" />
                 </form>
+                <form method="GET" action="/recipe/ingredients">
+                    <input type="submit" value="Ingredients" />
+                </form>
                 {recipes}
             </div>
             );

@@ -22,7 +22,7 @@ class Recipeedit extends React.Component{
         return(
             <div>
                 <form method="POST" action={"/recipe/" + this.props.id + "?_method=PUT"}>
-                <h3>Edit id {this.props.id} recipe: </h3><br />
+                <h3>Edit ID {this.props.id} recipe: </h3><br />
                 Recipe Title:
                 <input type="text" name="name" minlength="5" pattern="[ a-zA-Z ]*$" value={this.props.name}/><br />
                 Recipe Ingredients:

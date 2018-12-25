@@ -328,4 +328,40 @@ app.post('/recipe/:id', (request, response) => {
 
 });
 
+app.get('/recipe/ingredients', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let recipes = {};
+        recipes.ingredients = [];
+        for(let i = 0; i < obj.ingredients.length; i++){
+            recipes.ingredients.push(obj.ingredients[i]);
+        }
+        response.render('recipeingredientslist', recipes);
+    });
+});
+
+app.get('/recipe/:name/recipelist', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let recipeIng = request.params.name;
+        let recipes = {};
+        recipes.list = [];
+        recipes.ingredients = [];
+        recipes.input = recipeIng
+        for(let i = 0; i < obj.recipes.length; i++){
+            for(j = 0; j < obj.recipes[i].ingredients.length; j++){
+                if(obj.recipes[i].ingredients[j].name == recipeIng){
+                    // recipes.id = obj.recipes[i].id;
+                    // recipes.name = obj.recipes[i].name;
+                    // recipes.instructions = obj.recipes[i].instructions;
+                    // recipes.date_created = obj.recipes[i].date_created;
+                    // recipes.date_edited = obj.recipes[i].date_edited;
+                    recipes.list.push(obj.recipes[i]);
+                    // recipes.ingredients.push(obj.recipes[i].ingredients[j]);
+                }
+            }
+        }
+        console.log(recipes)
+        response.render('recipelist', recipes);
+    });
+});
+
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
