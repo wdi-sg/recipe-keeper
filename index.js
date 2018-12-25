@@ -68,6 +68,30 @@ app.get('/recipe', (request, response) => {
                     }
                 });
             }
+            else if(request.query.sortby == "dc"){
+                recipes.list.sort((a, b) => {
+                    a = a.date_created.split('/').reverse().join('');
+                    b = b.date_created.split('/').reverse().join('');
+                    if (a < b){
+                        return 1;
+                    }
+                    if (a > b){
+                        return -1;
+                    }
+                });
+            }
+            else if(request.query.sortby == "de"){
+                recipes.list.sort((a, b) => {
+                    a = a.date_edited.split('/').reverse().join('');
+                    b = b.date_edited.split('/').reverse().join('');
+                    if (a < b){
+                        return 1;
+                    }
+                    if (a > b){
+                        return -1;
+                    }
+                });
+            }
             else{
                 recipes.list.sort((a, b) => {
                     return a - b;
@@ -94,7 +118,8 @@ app.post('/recipe/add', (request, response) => {
             name: request.body.name.charAt(0).toUpperCase() + request.body.name.slice(1),
             ingredients: [],
             instructions: request.body.ins.charAt(0).toUpperCase() + request.body.ins.slice(1),
-            date_created: dateCreated
+            date_created: dateCreated,
+            date_edited: ""
         }
         let recipes = {};
         recipes.name;
@@ -303,7 +328,7 @@ app.post('/recipe/:id', (request, response) => {
                     recipes.notes = "cup";
                 }
                 else if(request.body.ingredients == "ing6"){
-                    recipes.name = "egg";
+                    recipes.name = "eggs";
                     recipes.amount = "2";
                     recipes.notes = " ";
                 }
@@ -344,18 +369,11 @@ app.get('/recipe/:name/recipelist', (request, response) => {
         let recipeIng = request.params.name;
         let recipes = {};
         recipes.list = [];
-        recipes.ingredients = [];
         recipes.input = recipeIng
         for(let i = 0; i < obj.recipes.length; i++){
             for(j = 0; j < obj.recipes[i].ingredients.length; j++){
                 if(obj.recipes[i].ingredients[j].name == recipeIng){
-                    // recipes.id = obj.recipes[i].id;
-                    // recipes.name = obj.recipes[i].name;
-                    // recipes.instructions = obj.recipes[i].instructions;
-                    // recipes.date_created = obj.recipes[i].date_created;
-                    // recipes.date_edited = obj.recipes[i].date_edited;
                     recipes.list.push(obj.recipes[i]);
-                    // recipes.ingredients.push(obj.recipes[i].ingredients[j]);
                 }
             }
         }

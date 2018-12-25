@@ -59,14 +59,14 @@
       ],
       "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
       "date_created": "20/12/2018",
-      "date_edited": "23/12/2018"
+      "date_edited": ""
     },
     {
       "id": 2,
       "name": "Wine - Rosso Toscano Igt",
       "ingredients": [
         {
-          "name": "chicken",
+          "name": "duck",
           "amount": "1",
           "notes": "de-boned"
         },
@@ -77,7 +77,8 @@
         }
       ],
       "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
-      "date_created": "20/12/2018"
+      "date_created": "31/12/2017",
+      "date_edited": ""
     },
     {
       "id": 3,
@@ -100,8 +101,8 @@
         }
       ],
       "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
-      "date_created": "20/12/2018",
-      "date_edited": "24/12/2018"
+      "date_created": "19/12/2017",
+      "date_edited": "22/12/2018"
     },
     {
       "id": 4,
@@ -119,7 +120,8 @@
         }
       ],
       "instructions": "Place chicken in water with salt. Simmer for 20 minutes.",
-      "date_created": "22/12/2018"
+      "date_created": "22/12/2018",
+      "date_edited": ""
     },
     {
       "id": 5,
@@ -137,7 +139,8 @@
         }
       ],
       "instructions": "Boil duck in water for 20 minutes. take it out. serve.",
-      "date_created": "22/12/2018"
+      "date_created": "12/12/2018",
+      "date_edited": "23/12/2018"
     },
     {
       "id": 6,
@@ -167,15 +170,30 @@
           "name": "flour",
           "amount": "2",
           "notes": "cup"
-        },
-        {
-          "name": "brown sugar",
-          "amount": "3",
-          "notes": "cup"
         }
       ],
       "instructions": "Preheat oven to 190 C / Gas 5. In a small bowl, stir together flour, bicarbonate of soda and baking powder. ... In a large bowl, cream together the butter and sugar until smooth. Beat in egg and vanilla. ... Bake 8 to 10 minutes in the preheated oven, or until golden.",
-      "date_created": "23/12/2018"
+      "date_created": "23/12/2018",
+      "date_edited": ""
+    },
+    {
+      "id": 7,
+      "name": "Chicken Egg sandwich",
+      "ingredients": [
+        {
+          "name": "chicken",
+          "amount": "1",
+          "notes": "de-boned"
+        },
+        {
+          "name": "eggs",
+          "amount": "2",
+          "notes": " "
+        }
+      ],
+      "instructions": "Fried egg plus chicken",
+      "date_created": "24/12/2018",
+      "date_edited": "25/12/2018"
     }
   ]
 }

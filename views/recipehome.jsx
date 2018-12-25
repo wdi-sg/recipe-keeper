@@ -31,9 +31,11 @@ class Recipehome extends React.Component{
                 <h1>Welcome to Seany's recipe list here are the list of recipes currently available</h1>
                 <form method="GET" action="/recipe">
                     <select name="sortby">
-                        <option value="asc">Ascending order</option>
-                        <option value="desc">Descending order</option>
                         <option value="id">ID</option>
+                        <option value="asc">Name ascending order</option>
+                        <option value="desc">Name descending order</option>
+                        <option value="dc">Date created latest</option>
+                        <option value="de">Date edited latest</option>
                     </select>
                     <span> </span>
                     <input type="submit" value="sort" />
