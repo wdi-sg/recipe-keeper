@@ -1,0 +1,35 @@
+body{
+	background-image: url("/img/recipebg.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 900px;
+	font-family: 'ZCOOL KuaiLe', cursive;
+	color: white;
+	text-shadow: 2px 1px black;
+	font-size: 20px;
+}
+
+h1{
+	font-size: 35px;
+}
+
+h3{
+	font-size: 30px;
+}
+
+form{
+	display: inline-block;
+	margin: 0 10px;
+}
+
+.recipemain{
+	margin: 30px 0;
+	text-align: center;
+}
+
+input{
+	display: inline;
+	background-color: rgb(150, 55, 60);
+	font-size: 18px;
+	padding: 0 20px;
+}

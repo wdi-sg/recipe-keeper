@@ -1,4 +1,5 @@
 var React = require('react');
+var DefaultLayout = require('./recipecss');
 
 class Recipeingredients extends React.Component{
     render(){
@@ -20,28 +21,30 @@ class Recipedetails extends React.Component{
             return <Recipeingredients list={recipe}></Recipeingredients>;
         });
         return(
-            <div>
-                <h3>Recipe Title: {this.props.name}</h3>
-                <br />
-                ID: <span> </span>
-                {this.props.id}
-                <br />
-                Ingredients:<span> </span>
-                {recipes}
-                Instructions: <span> </span>
-                {this.props.instructions}
-                <br />
-                Date created: <span> </span>
-                {this.props.date_created}
-                <br />
-                Date edited: <span> </span>
-                {this.props.date_edited}
-                <br />
-                <br />
-                <form method="GET" action="/recipe">
-                    <input type="submit" value="Home" />
-                </form>
-            </div>
+            <DefaultLayout>
+                <div>
+                    <h3>Recipe Title: {this.props.name}</h3>
+                    <br />
+                    ID: <span> </span>
+                    {this.props.id}
+                    <br />
+                    Ingredients:<span> </span>
+                    {recipes}
+                    Instructions: <span> </span>
+                    {this.props.instructions}
+                    <br />
+                    Date created: <span> </span>
+                    {this.props.date_created}
+                    <br />
+                    Date edited: <span> </span>
+                    {this.props.date_edited}
+                    <br />
+                    <br />
+                    <form method="GET" action="/recipe">
+                        <input type="submit" value="Home" />
+                    </form>
+                </div>
+            </DefaultLayout>
             );
     }
 }

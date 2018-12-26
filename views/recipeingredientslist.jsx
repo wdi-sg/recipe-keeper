@@ -1,4 +1,5 @@
 var React = require('react');
+var DefaultLayout = require('./recipecss');
 
 class Recipeingredients extends React.Component{
     render(){
@@ -23,15 +24,17 @@ class Recipedetails extends React.Component{
             return <Recipeingredients list={recipe}></Recipeingredients>;
         });
         return(
-            <div>
-                <h3>Click on any ingredients to check which recipe uses them</h3>
-                Ingredients:<span> </span>
-                {recipes}
-                <br />
-                <form method="GET" action="/recipe">
-                    <input type="submit" value="Home" />
-                </form>
-            </div>
+            <DefaultLayout>
+                <div>
+                    <h3>Click on any ingredients to check which recipe uses them</h3>
+                    Ingredients:<span> </span>
+                    {recipes}
+                    <br />
+                    <form method="GET" action="/recipe">
+                        <input type="submit" value="Home" />
+                    </form>
+                </div>
+            </DefaultLayout>
             );
     }
 }
