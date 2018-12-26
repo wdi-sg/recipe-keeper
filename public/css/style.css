@@ -33,3 +33,15 @@ input{
 	font-size: 18px;
 	padding: 0 20px;
 }
+
+#ing{
+	font-size: 30px;
+}
+
+.container{
+	margin-top: 20px;
+}
+
+.recipetitle{
+	color: red;
+}

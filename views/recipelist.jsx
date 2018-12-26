@@ -21,8 +21,10 @@ class Recipeingredients extends React.Component{
         return(
             <div>
                 <ul>
-                Recipe Title: <span> </span>
-                {this.props.list.name}
+                    <div className="recipetitle">
+                        Recipe Title: <span> </span>
+                        {this.props.list.name}
+                    </div>
                 <br />
                 ID: <span> </span>
                 {this.props.list.id}

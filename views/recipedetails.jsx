@@ -23,7 +23,7 @@ class Recipedetails extends React.Component{
         return(
             <DefaultLayout>
                 <div>
-                    <h3>Recipe Title: {this.props.name}</h3>
+                    <h3 className="recipetitle">Recipe Title: {this.props.name}</h3>
                     <br />
                     ID: <span> </span>
                     {this.props.id}

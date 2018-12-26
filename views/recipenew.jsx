@@ -28,6 +28,7 @@ class Recipenew extends React.Component{
                     <input type="submit" value="Create" />
                     </form>
                     <br />
+                    <br />
                     <form method="GET" action="/recipe">
                         <input type="submit" value="Home" />
                     </form>

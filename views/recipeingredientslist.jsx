@@ -27,8 +27,16 @@ class Recipedetails extends React.Component{
             <DefaultLayout>
                 <div>
                     <h3>Click on any ingredients to check which recipe uses them</h3>
-                    Ingredients:<span> </span>
-                    {recipes}
+                    <div className="container">
+                      <div className="row">
+                        <div id="ing" className="col-12 col-lg-6 d-flex align-self-center">
+                          Ingredients:
+                        </div>
+                        <div className="col-3 col-md-12 col-lg-6">
+                          {recipes}
+                        </div>
+                      </div>
+                    </div>
                     <br />
                     <form method="GET" action="/recipe">
                         <input type="submit" value="Home" />
