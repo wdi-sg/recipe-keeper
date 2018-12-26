@@ -37,7 +37,7 @@ class NewRecipe extends React.Component {
                 </div>
 
                 <label>Ingredients</label>
-                <div className="input-group mb-3 ingredient-wrapper">
+                <div className="input-group mb-3 ingredients-wrapper">
                     <input type="text" name="ingredients" className="form-control" placeholder="Type an ingredient" aria-label="Recipe ingredient" aria-describedby="basic-addon2"/>
                     <div className="input-group-append ingredient-add-wrapper">
                         <button className="btn btn-outline-secondary ingredient-add" type="button">+</button>

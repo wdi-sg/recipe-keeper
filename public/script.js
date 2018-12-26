@@ -1,64 +1,49 @@
-var ingredients = [];
-var instructions = [];
-
 window.onload = () => {   
-    ingredients.push(document.body.querySelectorAll('.ingredient-wrapper')[0]);
-    ingredients[0].childNodes[1].addEventListener('click', addIngredient);
-    instructions.push(document.body.querySelectorAll('.instructions-wrapper')[0]);
-    instructions[0].childNodes[1].addEventListener('click', addInstruction);
-    // document.body.querySelector('.instruction-add').addEventListener('click', addInstruction);
+    let firstIngredient = document.body.querySelectorAll('.ingredients-wrapper')[0]
+    let firstInstruction = document.body.querySelectorAll('.instructions-wrapper')[0];
+    addButtonListeners(firstIngredient);
+    addButtonListeners(firstInstruction);
 }
 
-function addIngredient(){
-    let thisIngredient = this.parentNode;
-    let newIngredient = duplicate(thisIngredient);
+function duplicateThis(){
+    let parentNode = this.parentNode;
+    let clonedNode = clone(parentNode);
+    let clonedNodeType = clonedNode.childNodes[0].name;
 
-    newIngredient.childNodes[1].addEventListener('click', addIngredient);
-    newIngredient.childNodes[2].addEventListener('click', removeIngredient);
+    addButtonListeners(clonedNode);
 
-    ingredients.push(newIngredient);
-    thisIngredient.childNodes[1].style.display = "none";
-    document.body.querySelector('form').insertBefore(newIngredient, document.body.querySelector('#cooking-instructions-label'));
+    if (clonedNodeType === 'instructions'){
+        document.body.querySelector('form').insertBefore(clonedNode, document.body.querySelector('#submit-button'));
+    } else {
+        document.body.querySelector('form').insertBefore(clonedNode, document.body.querySelector('#cooking-instructions-label'));
+    }
+
+    this.style.display = "none";
 }
 
-function addInstruction(){
-    let thisInstruction = this.parentNode;
-    let newInstruction = duplicate(thisInstruction);
-
-    newInstruction.childNodes[1].addEventListener('click', addInstruction);
-    newInstruction.childNodes[2].addEventListener('click', removeInstruction);
-
-    instructions.push(newInstruction);
-    thisInstruction.childNodes[1].style.display = "none";
-    document.body.querySelector('form').insertBefore(newInstruction, document.body.querySelector('#submit-button'));
-}
-
-function duplicate(node){
+function clone(node){
     let clonedNode = node.cloneNode(true);
     clonedNode.childNodes[0].value = "";
     clonedNode.childNodes[2].style.display = "flex";
-
     return clonedNode;
 }
 
-function removeIngredient(){
-    let thisIngredient = this.parentNode;
-    let thisIngredientIndex = ingredients.findIndex(ingredient=>{
-        return ingredient === thisIngredient;
+function addButtonListeners(node){
+    node.childNodes[1].addEventListener('click', duplicateThis);
+    node.childNodes[1].addEventListener('keypress', e => {
+        var key = e.which || e.keyCode;
+        if (key === 13) {
+            e.preventDefault();
+            duplicateThis();
+        }
     });
-    ingredients.splice(thisIngredientIndex,1);
-    thisIngredient.remove();
-    ingredients[ingredients.length - 1].childNodes[1].style.display = "flex";
-    ingredients.length >= 2 ? ingredients[ingredients.length - 1].childNodes[2].style.display = "flex" : 0;
+    node.childNodes[2].addEventListener('click', removeThis);
 }
 
-function removeInstruction(){
-    let thisInstruction = this.parentNode;
-    let thisInstructionIndex = instructions.findIndex(instruction=>{
-        return instruction === thisInstruction;
-    });
-    instructions.splice(thisInstructionIndex,1);
-    thisInstruction.remove();
-    instructions[instructions.length - 1].childNodes[1].style.display = "flex";
-    instructions.length >= 2 ? instructions[instructions.length - 1].childNodes[2].style.display = "flex" : 0;
+function removeThis(){
+    let parentNode = this.parentNode;
+    let nodeType = parentNode.childNodes[0].name;
+    parentNode.remove();
+    let otherSimilarNodes = document.body.querySelectorAll('.' + nodeType + '-wrapper');
+    otherSimilarNodes[otherSimilarNodes.length - 1].childNodes[1].style.display = "flex";
 }
