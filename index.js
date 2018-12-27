@@ -18,19 +18,26 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
-
 // listing all recipes
 app.get ('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) =>{
         console.log("sup");
-        response.render('mainpage', {allFood: obj});
+        response.render('mainTemplate', {allFood: obj});
+    })
+}) 
+
+
+app.get ('/recipes/new', (request, response) => {
+    jsonfile.readFile(file, (err, obj) =>{
+        console.log("sup new");
+        response.render('newRecipe', {allFood: obj}); // TODO: to change 
     })
 }) 
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));``
 
 
-// TODO:
+// TODO     :
 // LAYOUT
 // Nav Bar
 // 1. All Recipes - Index 

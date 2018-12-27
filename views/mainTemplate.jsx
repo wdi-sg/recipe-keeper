@@ -1,5 +1,4 @@
 var React = require('react');
-// var AllFood = require('allFood');
 
 class MainPage extends React.Component{
     render(){
@@ -9,8 +8,9 @@ class MainPage extends React.Component{
             <html>
                 <head>
                     <meta charSet="UTF-8"/>
-                    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster|Pacifico" rel="stylesheet"></link>
-                    <link rel="stylesheet" type="text/css" href="style.css"/>
+                    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster|Pacifico|Gochi+Hand" rel="stylesheet"></link>
+                    <link rel="stylesheet" type="text/css" href="/style.css"/>
+                    <title>{this.props.title}</title>
                 </head>
                 <body>
                     <header>
@@ -19,12 +19,12 @@ class MainPage extends React.Component{
                     <section>
                         <nav>
                             <a href="#"><div className="navs">Home</div></a>
-                            <a href="#"><div className="navs">All Recipes</div></a>
-                            <a href="#"><div className="navs">Add New Recipe</div></a>
+                            <a href="/recipes"><div className="navs">All Recipes</div></a>
+                            <a href="/recipes/new"><div className="navs">Add New Recipe</div></a>
                             
                         </nav>
                         <main>
-                            <p>oioioioi</p>
+                            {this.props.children}
                         </main>
                     </section>
                 </body>
