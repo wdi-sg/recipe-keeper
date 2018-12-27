@@ -14,6 +14,22 @@ class DefaultLayout extends React.Component {
         <header>
 
         </header>
+        <nav>
+            <ul className="nav justify-content-center">
+              <li className="nav-item">
+                <a className="nav-link text-info active" href="#">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link text-info" href="#">Create Recipe</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link text-info" href="#">Ingredients</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>
+              </li>
+            </ul>
+        </nav>
         <body className="container-fluid">
             <div className="container">
               <div className="row">
@@ -22,6 +38,11 @@ class DefaultLayout extends React.Component {
                 </div>
               </div>
             </div>
+        <footer className="sticky-bottom">
+            Copyright 2019 <span> </span>
+            Created with &hearts; by <span>Sean Chan</span><span> </span>
+            Github: @https://github.com/seany94
+        </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossOrigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossOrigin="anonymous"></script>
         </body>

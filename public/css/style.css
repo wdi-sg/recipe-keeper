@@ -58,7 +58,41 @@ input{
 }
 
 .delete{
-	margin-left: 12px;
+	margin-left: 13px;
+}
+
+
+.nav {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.footer2{
+	text-align: center;
+}
+
+.footer3{
+	float: right;
+}
+
+footer{
+	overflow: hidden;
+	border-top: 2px solid #333;
+	padding: 10px 0;
+	text-align: center;
+	position: relative;
+	margin-top: 10px;
+  width: 100%;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 
@@ -82,7 +116,7 @@ input{
 		padding: 0 50px;
 		min-width: 200px;
 	}
-	.recipemain{
-		margin-right: 15px;
+	.homecont{
+		margin-right: 30px;
 	}
 }

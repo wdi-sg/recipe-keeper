@@ -27,16 +27,18 @@ class Recipelist extends React.Component{
                 </div>
               </div>
             </div>
-                <ul>
-                    Title: {this.props.list.name} <br />
-                    <form method="GET" action={"/recipe/" + this.props.list.id + "/details"}>
-                        <input type="submit" className="details" value="Details" />
-                    </form>
-                    <form method="GET" action={"/recipe/" + this.props.list.id + "/edit"}>
-                        <input type="submit" className="edit" value="Edit recipe" />
-                    </form>
-                    <input type="submit" className="delete" value="Delete" data-toggle="modal" data-target="#exampleModal"/>
-                </ul>
+                <div className="homecont">
+                    <ul>
+                        Title: {this.props.list.name} <br />
+                        <form method="GET" action={"/recipe/" + this.props.list.id + "/details"}>
+                            <input type="submit" className="details" value="Details" />
+                        </form>
+                        <form method="GET" action={"/recipe/" + this.props.list.id + "/edit"}>
+                            <input type="submit" className="edit" value="Edit recipe" />
+                        </form>
+                        <input type="submit" className="delete" value="Delete" data-toggle="modal" data-target="#exampleModal"/>
+                    </ul>
+                </div>
             </div>
             );
     }
