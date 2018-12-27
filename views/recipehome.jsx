@@ -16,7 +16,7 @@ class Recipelist extends React.Component{
                     </button>
                   </div>
                   <div className="modal-body text-danger">
-                    You are about to delete a recipe from the database. Click close to return to main menu or click confirm to proceed with the deletion.
+                    You are about to delete a recipe from the database. Click <strong>close</strong> to return to main menu or click <strong>confirm</strong> to proceed with the deletion.
                   </div>
                   <div className="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -30,12 +30,12 @@ class Recipelist extends React.Component{
                 <ul>
                     Title: {this.props.list.name} <br />
                     <form method="GET" action={"/recipe/" + this.props.list.id + "/details"}>
-                        <input type="submit" value="Details" />
+                        <input type="submit" className="details" value="Details" />
                     </form>
                     <form method="GET" action={"/recipe/" + this.props.list.id + "/edit"}>
-                        <input type="submit" value="Edit recipe" />
+                        <input type="submit" className="edit" value="Edit recipe" />
                     </form>
-                    <input type="submit" value="Delete" data-toggle="modal" data-target="#exampleModal"/>
+                    <input type="submit" className="delete" value="Delete" data-toggle="modal" data-target="#exampleModal"/>
                 </ul>
             </div>
             );
@@ -63,10 +63,10 @@ class Recipehome extends React.Component{
                         <input type="submit" value="sort" />
                     </form> <br />
                     <form method="GET" action="/recipe/new">
-                        <input type="submit" value="Create new" />
+                        <input type="submit" className="cn" value="Create new" />
                     </form>
                     <form method="GET" action="/recipe/ingredients">
-                        <input type="submit" value="Ingredients" />
+                        <input type="submit" className="inghm" value="Ingredients" />
                     </form>
                     {recipes}
                 </div>

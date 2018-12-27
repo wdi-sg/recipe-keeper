@@ -24,6 +24,7 @@ class Recipedelete extends React.Component{
             <DefaultLayout>
                 <div>
                     <h3>Successfully deleted recipe, take a look at the details that have been deleted </h3>
+                    <br />
                     Recipe ID: <span> </span>
                     {this.props.id}
                     <br />

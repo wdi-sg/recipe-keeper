@@ -56,3 +56,33 @@ input{
 .modal{
 	text-shadow: none;
 }
+
+.delete{
+	margin-left: 12px;
+}
+
+
+@media only screen and (max-width: 540px) {
+	.cn{
+		visibility: hidden;
+	}
+	.inghm{
+		visibility: hidden;
+	}
+	.details{
+		padding: 0 50px;
+		min-width: 200px;
+	}
+	.edit{
+		padding: 0 50px;
+		min-width: 200px;
+	}
+	.delete{
+		margin: 0;
+		padding: 0 50px;
+		min-width: 200px;
+	}
+	.recipemain{
+		margin-right: 15px;
+	}
+}
