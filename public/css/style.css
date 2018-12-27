@@ -44,5 +44,15 @@ input{
 }
 
 .recipetitle{
+	font-size: 23px;
 	color: red;
+}
+
+.alert.alert-danger {
+  background-color: rgb(150, 55, 60);
+  border-color: #EF5350
+}
+
+.modal{
+	text-shadow: none;
 }

@@ -5,6 +5,28 @@ class Recipelist extends React.Component{
     render(){
         return(
             <div className="recipemain">
+
+            <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title text-danger" id="exampleModalLabel">WARNING!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div className="modal-body text-danger">
+                    You are about to delete a recipe from the database. Click close to return to main menu or click confirm to proceed with the deletion.
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form method="POST" action={"/recipe/" + this.props.list.id + "?_method=delete"}>
+                        <button type="submit" value="Delete" class="btn btn-primary">Confirm</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
                 <ul>
                     Title: {this.props.list.name} <br />
                     <form method="GET" action={"/recipe/" + this.props.list.id + "/details"}>
@@ -13,9 +35,7 @@ class Recipelist extends React.Component{
                     <form method="GET" action={"/recipe/" + this.props.list.id + "/edit"}>
                         <input type="submit" value="Edit recipe" />
                     </form>
-                    <form method="POST" action={"/recipe/" + this.props.list.id + "?_method=delete"}>
-                        <input type="submit" value="Delete" />
-                    </form>
+                    <input type="submit" value="Delete" data-toggle="modal" data-target="#exampleModal"/>
                 </ul>
             </div>
             );

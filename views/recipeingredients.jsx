@@ -23,6 +23,12 @@ class Recipedetails extends React.Component{
         return(
             <DefaultLayout>
                 <div>
+                <div className="alert alert-danger alert-dismissible fade show text-white" role="alert">
+                  <strong>Please Read!</strong><br /> You are only allowed to add 1 ingredient at a time as this is to prevent abuse.<br />If by any chance you have forgetton what recipe you are editting please click the edit recipe button.
+                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
                     Ingredients:<span> </span>
                     {recipes}
                     <form method="POST" action={"/recipe/" + this.props.id}>
