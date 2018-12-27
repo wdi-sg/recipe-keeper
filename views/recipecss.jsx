@@ -15,7 +15,13 @@ class DefaultLayout extends React.Component {
 
         </header>
         <body className="container-fluid">
-            {this.props.children}
+        <div className="container">
+          <div className="row">
+            <div id="recipehome" className="col-12">
+              {this.props.children}
+            </div>
+          </div>
+        </div>
         </body>
       </html>
     );

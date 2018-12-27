@@ -29,10 +29,10 @@ class Recipedetails extends React.Component{
                     <h3>Click on any ingredients to check which recipe uses them</h3>
                     <div className="container">
                       <div className="row">
-                        <div id="ing" className="col-12 col-lg-6 d-flex align-self-center">
+                        <div id="ing" className="col-12 col-sm-6 col-lg-4 d-flex align-self-center">
                           Ingredients:
                         </div>
-                        <div className="col-3 col-md-12 col-lg-6">
+                        <div className="col-3 col-sm-12 col-lg-8">
                           {recipes}
                         </div>
                       </div>
