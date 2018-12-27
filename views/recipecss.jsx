@@ -14,6 +14,7 @@ class DefaultLayout extends React.Component {
         <header>
 
         </header>
+        <body className="container-fluid">
         <nav>
             <ul className="nav justify-content-center">
               <li className="nav-item">
@@ -30,10 +31,9 @@ class DefaultLayout extends React.Component {
               </li>
             </ul>
         </nav>
-        <body className="container-fluid">
             <div className="container">
               <div className="row">
-                <div id="recipehome" className="col-12">
+                <div className="col-12">
                   {this.props.children}
                 </div>
               </div>

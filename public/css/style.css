@@ -40,7 +40,7 @@ input{
 }
 
 .container{
-	margin-top: 20px;
+	margin-top: 50px;
 }
 
 .recipetitle{
@@ -118,5 +118,8 @@ footer{
 	}
 	.homecont{
 		margin-right: 30px;
+	}
+	.container{
+		margin-top: 100px;
 	}
 }
