@@ -15,7 +15,7 @@ function duplicateThis(){
     if (clonedNodeType === 'instructions'){
         document.body.querySelector('form').insertBefore(clonedNode, document.body.querySelector('#submit-button'));
     } else {
-        document.body.querySelector('form').insertBefore(clonedNode, document.body.querySelector('#cooking-instructions-label'));
+        document.body.querySelector('form').insertBefore(clonedNode, document.body.querySelector('#instructions-label'));
     }
 
     this.style.display = "none";
