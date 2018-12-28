@@ -8,15 +8,12 @@ class NewRecipe extends React.Component {
             <script type="text/javascript" src="/script.js"/>
 
             <form method="POST" action="/recipes/new">
-
                 <TextArea name="Contributor"/>
                 <TextArea name="Name"/>
                 <TextArea name="Description" rows="3"/>
                 <TextArea name="Photo"/>
-
                 <InputForm name='Ingredients'/>
                 <InputForm name='Instructions'/>
-
                 <input type="submit" value="Submit Recipe" id="submit-button"/>
             </form>
         </Default>

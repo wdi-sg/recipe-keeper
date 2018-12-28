@@ -42,7 +42,7 @@ app.post('/recipes/new', (request, response) => {
 app.get('/recipes/:id', (request, response) => {
 	jsonfile.readFile(file, (err, obj) => {
 		err ? console.error(err) : 0;
-		response.render('new-recipe', getRecipe(request.params.id, obj));
+		response.render('recipe', getRecipe(request.params.id, obj));
 	});
 });
 

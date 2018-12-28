@@ -4,16 +4,40 @@ var Default = require('./default');
 
 class Recipe extends React.Component{
     render(){
-        let recipe = {this.props}
+        let recipe = this.props;
+        let ingredients = recipe.ingredients.map((ingredient, index) => {
+            return <Ingredient name={ingredient} index={index}/>;
+        });
+        let instructions = recipe.instructions.map((instruction, index) => {
+            return <Instruction name={instruction} index={index}/>
+        });
         return (
-            <React.Component>
+            <Default>
                 <img src={recipe.photo}/>
-                <h1>{recipe.name}</h1> 
-                <h1>Ingredients</h1>
-                <h1>Instructions</h1>
-            </React.Component>
+                <h2>{recipe.name}</h2> 
+                <h2>Ingredients</h2>
+                    {ingredients}
+                <h2>Instructions</h2>
+                    {instructions}
+            </Default>
         )
     }
 }
 
-module.exports = Recipe;
+class Ingredient extends React.Component{
+    render() {
+        return (
+            <h5>{this.props.name}</h5>
+        )
+    }
+}
+
+class Instruction extends React.Component{
+    render() {
+        return (
+            <h5>{this.props.index + 1}. {this.props.name}</h5>
+        )
+    }
+}
+
+module.exports = Recipe;Ingredient
