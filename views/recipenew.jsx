@@ -7,7 +7,7 @@ class Recipenew extends React.Component{
             <DefaultLayout>
                 <div>
                     <div className="alert alert-danger alert-dismissible fade show text-white" role="alert">
-                      <strong>Please Read!</strong><br /> All fields must be filled and only 1 ingredient is to be chosen when creating a recipe.<br /> Any additional ingredients go over to add ingredients page to do so.
+                      <strong>Please Read!</strong><br /> All fields must be filled and only 1 ingredient is to be chosen when creating a recipe.<br /> Any additional ingredients go over to main page and edit recipe then to add ingredients page to do so.
                       <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>

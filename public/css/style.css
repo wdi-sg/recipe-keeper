@@ -40,7 +40,7 @@ input{
 }
 
 .container{
-	margin-top: 50px;
+	margin-top: 55px;
 }
 
 .recipetitle{
@@ -121,5 +121,20 @@ footer{
 	}
 	.container{
 		margin-top: 100px;
+	}
+	#ingcont{
+		margin-top: -50px;
+		margin-left: 30px;
+	}
+	#ing{
+		margin-left: 15px;
+	}
+	#ingrec{
+		margin-left: -48px;
+	}
+	.recbtn{
+		display: block;
+		padding: 0 50px;
+		min-width: 200px;
 	}
 }

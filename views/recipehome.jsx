@@ -11,7 +11,7 @@ class Recipelist extends React.Component{
                 <div className="modal-content">
                   <div className="modal-header">
                     <h5 className="modal-title text-danger" id="exampleModalLabel">WARNING!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -19,9 +19,9 @@ class Recipelist extends React.Component{
                     You are about to delete a recipe from the database. Click <strong>close</strong> to return to main menu or click <strong>confirm</strong> to proceed with the deletion.
                   </div>
                   <div className="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                     <form method="POST" action={"/recipe/" + this.props.list.id + "?_method=delete"}>
-                        <button type="submit" value="Delete" class="btn btn-primary">Confirm</button>
+                        <button type="submit" value="Delete" className="btn btn-primary">Confirm</button>
                     </form>
                   </div>
                 </div>
