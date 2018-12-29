@@ -1,8 +1,12 @@
 window.onload = () => {   
-    let firstIngredient = document.body.querySelectorAll('.ingredients-wrapper')[0]
-    let firstInstruction = document.body.querySelectorAll('.instructions-wrapper')[0];
-    addButtonListeners(firstIngredient);
-    addButtonListeners(firstInstruction);
+    let ingredients = document.body.querySelectorAll('.ingredients-wrapper');
+    let instructions = document.body.querySelectorAll('.instructions-wrapper');
+    ingredients.concat(instructions).forEach(ingredient => {
+        addButtonListeners(ingredient);
+    });
+    instructions.forEach(instruction => {
+        addButtonListeners(instruction);
+    });
 }
 
 function duplicateThis(){
@@ -29,14 +33,11 @@ function clone(node){
 }
 
 function addButtonListeners(node){
-    node.childNodes[1].addEventListener('click', duplicateThis);
-    node.childNodes[1].addEventListener('keypress', e => {
-        var key = e.which || e.keyCode;
-        if (key === 13) {
-            e.preventDefault();
-            duplicateThis();
-        }
+    node.childNodes[0].addEventListener('keypress', e => {
+        let key = e.which || e.keyCode;
+        key === 13 ? e.preventDefault() : 0;
     });
+    node.childNodes[1].addEventListener('click', duplicateThis);
     node.childNodes[2].addEventListener('click', removeThis);
 }
 

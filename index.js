@@ -17,7 +17,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
 app.get('/recipes/new', (request, response) => {
-	response.render('newRecipe');
+	response.render('recipeForm');
 });
 
 app.get('/recipes', (request,response) => {
@@ -43,6 +43,13 @@ app.get('/recipes/:id', (request, response) => {
 	jsonfile.readFile(file, (err, obj) => {
 		err ? console.error(err) : 0;
 		response.render('recipe', getRecipe(request.params.id, obj));
+	});
+});
+
+app.get('/recipes/:id/edit', (request, response) => {
+	jsonfile.readFile(file, (err, obj) => {
+		err ? console.error(err) : 0;
+		response.render('recipeForm', getRecipe(request.params.id, obj));
 	});
 });
 
