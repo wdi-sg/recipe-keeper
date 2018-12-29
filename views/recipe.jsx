@@ -5,10 +5,10 @@ var Default = require('./default');
 class Recipe extends React.Component{
     render(){
         let recipe = this.props;
-        let ingredients = recipe.ingredients.map((ingredient, index) => {
-            return <Ingredient name={ingredient} index={index}/>;
+        let ingredients = recipe.ingredients.map(ingredient => {
+            return <Ingredient name={ingredient}/>;
         });
-        let instructions = recipe.instructions.map((instruction, index) => {
+        let instructions = recipe.instructions.map((instruction,index) => {
             return <Instruction name={instruction} index={index}/>
         });
         return (
@@ -34,6 +34,7 @@ class Ingredient extends React.Component{
 
 class Instruction extends React.Component{
     render() {
+        console.log(this.props.index);
         return (
             <h5>{this.props.index + 1}. {this.props.name}</h5>
         )

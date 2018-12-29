@@ -4,7 +4,7 @@ body{
     margin: 0 auto;
 }
 
-div a, div a:hover{
+header a, div a, header a:hover, div a:hover{
     text-decoration: none;
     color: inherit;
 }

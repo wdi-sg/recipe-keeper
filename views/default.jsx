@@ -13,6 +13,10 @@ class Default extends React.Component{
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script>
                 </head>
                 <header>
+                    <ul>
+                        <a href='/recipes/'><li>Home</li></a>
+                        <a href='/recipes/new'><li>Create new recipe</li></a>
+                    </ul>
                 </header>
                 <body>
                     {this.props.children}
