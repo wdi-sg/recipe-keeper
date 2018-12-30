@@ -1,11 +1,13 @@
 window.onload = () => {   
-    let ingredients = document.body.querySelectorAll('.ingredients-wrapper');
-    let instructions = document.body.querySelectorAll('.instructions-wrapper');
-    ingredients.concat(instructions).forEach(ingredient => {
-        addButtonListeners(ingredient);
-    });
-    instructions.forEach(instruction => {
-        addButtonListeners(instruction);
+    checkButtonListeners(document.body.querySelectorAll('.ingredients-wrapper'));
+    checkButtonListeners(document.body.querySelectorAll('.instructions-wrapper'));
+}
+
+function checkButtonListeners(nodeList){
+    nodeList.forEach((node, index) => {
+        addButtonListeners(node);
+        index === 0 ? node.childNodes[2].style.display = "none" : node.childNodes[2].style.display = "flex";
+        index === nodeList.length - 1 ? node.childNodes[1].style.display = "flex" : node.childNodes[1].style.display = "none" ;
     });
 }
 

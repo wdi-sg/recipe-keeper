@@ -27,6 +27,13 @@ app.get('/recipes', (request,response) => {
 	})
 });
 
+app.get('/', (request,response) => {
+	jsonfile.readFile(file, (err,obj)=>{
+		err ? console.error(err) : 0;
+		response.redirect('/recipes');
+	})
+});
+
 app.post('/recipes/new', (request, response) => {
 	jsonfile.readFile(file, (err, obj) => {
 		err ? console.error(err) : 0;
@@ -36,6 +43,19 @@ app.post('/recipes/new', (request, response) => {
 			err ? console.error(err) : 0;
 			response.send("written!");
 		});
+	});
+});
+
+app.put('/recipes/:id', (request, response) => {
+	jsonfile.readFile(file, (err,obj) => {
+		err ? console.error(err) : 0;
+		let recipeToEdit = getRecipe(request.params.id, obj);
+		updateRecipe(request.body, recipeToEdit);
+		
+		jsonfile.writeFile(file, obj, err => {
+			err ? console.error(err) : 0;
+			response.redirect('/recipes/' + request.params.id);
+		})
 	});
 });
 
@@ -52,6 +72,12 @@ app.get('/recipes/:id/edit', (request, response) => {
 		response.render('recipeForm', getRecipe(request.params.id, obj));
 	});
 });
+
+function updateRecipe(obj, recipe){
+	Object.keys(recipe).forEach(key => {
+		key === "id" ? 0 : recipe[key] = obj[key];
+	});
+}
 
 function getRecipe(id, obj){
 	return obj.recipes.find(recipe => {

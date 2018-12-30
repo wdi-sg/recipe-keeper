@@ -11,7 +11,7 @@ class Recipes extends React.Component{
             let recipeLink = '/recipes/' + recipe.id;
 
             return (
-                <div className="col-sm-12 col-md-6 col-lg-4" style={{margin: '13px 0px 13px 0px'}} key={recipe.id}>
+                <div className="col-sm-12 col-md-6 col-lg-3" style={{margin: '13px 0px 13px 0px'}} key={recipe.id}>
                     <a href={recipeLink}>
                         <div className="card">
                             <img src={recipe.photo} className="card-img-top" alt={recipe.name}/>

@@ -1,24 +1,25 @@
 var React = require('react');
 var Default = require('./default');
 
-class NewRecipe extends React.Component {
-  render() {
-    return (
-        <Default>
-            <script type="text/javascript" src="/recipeForm.js"/>
-
-            <form method="POST" action="/recipes/new">
-                <TextArea name="Contributor" content={this.props.contributor}/>
-                <TextArea name="Name" content={this.props.name}/>
-                <TextArea name="Description" rows="3"content={this.props.description}/>
-                <TextArea name="Photo" content={this.props.photo}/>
-                <InputForm name='Ingredients' content={this.props.ingredients}/>
-                <InputForm name='Instructions' content={this.props.instructions}/>
-                <input type="submit" value="Submit Recipe" id="submit-button"/>
-            </form>
-        </Default>
-    )
-  }
+class RecipeForm extends React.Component {
+    render() {
+        let action;
+        this.props.id ? action = "/recipes/" + this.props.id + "?_method=PUT" : action = "/recipes/new"
+        return (
+            <Default>
+                <script type="text/javascript" src="/recipeForm.js"/>
+                <form method="POST" action={action}>
+                    <TextArea name="Contributor" content={this.props.contributor}/>
+                    <TextArea name="Name" content={this.props.name}/>
+                    <TextArea name="Description" rows="3"content={this.props.description}/>
+                    <TextArea name="Photo" content={this.props.photo}/>
+                    <InputForm name='Ingredients' content={this.props.ingredients}/>
+                    <InputForm name='Instructions' content={this.props.instructions}/>
+                    <input type="submit" value="Submit Recipe" id="submit-button"/>
+                </form>
+            </Default>
+        )
+    }
 }
 
 class InputForm extends React.Component{
@@ -79,4 +80,4 @@ class TextArea extends React.Component{
     }
 }
 
-module.exports = NewRecipe;
+module.exports = RecipeForm;
