@@ -1,0 +1,66 @@
+body {
+	background-color: #FFFFF0;
+}
+
+h1 {
+	text-align: center;
+	color: grey;
+	font-size: 45px;
+}
+
+h2 {
+	text-align: center;
+	color: grey;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.nav {
+	width: 100%;
+	text-align: center;
+}
+
+ul {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: grey;
+	display: inline-block;
+	padding: 10px;
+	font-size: 20px;
+	border: 2px solid grey;
+	margin: 1px;
+	background-color: white;
+}
+
+a#currentPage, a:hover {
+	background-color: #00FFFF;
+}
+
+div.firstContent {
+	margin-top: 50px;
+	margin-bottom: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+option {
+	font-size: 20px;
+	color: grey;
+}
+
+button {
+	font-size: 20px;
+	color: grey;
+}
+
+div.footer {
+	text-align: center;
+	font-size: 20px;
+	background-color: #00FFFF;
+	padding: 5px;
+	width: 100%;
+	color: grey;
+}
