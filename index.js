@@ -59,14 +59,9 @@ app.get('/recipes/:id', (request, response) => {
 
     jsonfile.readFile(file, (err,obj) => {
         let currentId = parseInt(request.params.id -1);
-        let recipe = obj.recipe;
-        let currentRecipe = null;
+        const recipe = obj.recipe;
+        let currentRecipe = recipe[currentId];
 
-        for (let i=0; i < recipe.length; i++) {
-            if ( currentId === i) {
-                    currentRecipe = obj.recipe[i];
-            }
-        }
         response.render('single-recipe', {single:currentRecipe});
     })
 
@@ -75,10 +70,30 @@ app.get('/recipes/:id', (request, response) => {
 //Display a form for editing a single recipe
 app.get('/recipes/:id/edit', (request, response) => {
 
+    jsonfile.readFile(file, (err,obj)=>{
+        let currentId = parseInt(request.params.id -1);
+        const recipe = obj.recipe;
+        let editRecipe = recipe[currentId];
+        editRecipe.num = parseInt(request.params.id);
+        response.render('edit-recipe', {edit:editRecipe});
+    })
 })
 
 //Update a recipe
 app.put('/recipe/:id', (request,response) => {
+
+    jsonfile.readFile(file, (err,obj)=>{
+        const recipe = obj.recipe;
+        const body = request.body;
+        let currentId = parseInt(request.params.id -1);
+        let updatedRecipe = recipe[currentId];
+        console.log(updatedRecipe);
+        updatedRecipe = updateRecipe (body.title, body.ingredients, body.instructions);
+        console.log(updatedRecipe);
+
+        response.send("Hiiii test");
+
+    })
 
 })
 
@@ -86,5 +101,11 @@ app.put('/recipe/:id', (request,response) => {
 app.delete('/recipe/:id', (request, response) => {
 
 })
+
+function updateRecipe (newTitle, newIngredients, newInstructions ) {
+    this.title = newTitle;
+    this.ingredients = newIngredients;
+    this.instructions = newInstructions;
+}
 
 app.listen(3000, () => console.log('~~~~ Tuning in to port 3000'));
