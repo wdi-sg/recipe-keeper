@@ -1,7 +1,49 @@
 body{
     padding: 50px;
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
+    background-color: #f7f7f7;
+}
+
+header{
+    position:fixed;
+    background-color: white;
+    width: 100%;
+    left: 0%;
+    top: 0%;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+}
+header img{
+    float:left;
+    width: 150px;
+}
+h1{
+    float: left;
+    margin: 0;
+}
+ul{
+    position: absolute;
+    right: 0;
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    display: inline-block;
+}
+
+.card{
+    border: none;
+}
+
+.card-body{
+    padding-bottom: 0;
+}
+
+.card-footer{
+    border: none;
+    background: white;
 }
 
 header a, div a, header a:hover, div a:hover{
@@ -30,15 +72,54 @@ header a, div a, header a:hover, div a:hover{
 
 p{
     font-size: 11pt;
+    line-height: 1.5em;
+    max-height: 4.5em;
+    overflow: hidden;
+    text-align:justify;
+    position: relative;
+    float:left;
+    color: rgb(70,70,70);
+    font-family: 'Open Sans', sans-serif;
 }
 
-img{
-    height: 300px;
+p:before{
+    content: "...";
+    color: rgb(170,170,170);
+    position: absolute;
+    width: 2.0em;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, rgba(255,255,255,0.2),rgba(255,255,255,1.0), rgba(255,255,255,1));
+    text-align: right;
+}
+
+p:after{
+    content: "";  
+    position:absolute;
+    width: 2.0em;
+    height: 1.5em;
+    right: 0;
+    background-image: linear-gradient(to right, rgba(255,255,255,0.2),rgba(255,255,255,1), rgba(255,255,255,1));
+}
+
+div img{
+    height: 400px;
     object-fit: cover;
 }
 
 h5{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16pt;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+small{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 75%;
+    color: rgb(70,70,70);
 }

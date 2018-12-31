@@ -50,10 +50,9 @@ app.put('/recipes/:id', (request, response) => {
 		err ? console.error(err) : 0;
 		let recipeToEdit = getRecipe(request.params.id, obj);
 		updateRecipe(request.body, recipeToEdit);
-		
 		jsonfile.writeFile(file, obj, err => {
 			err ? console.error(err) : 0;
-			response.render('/recipes/' + request.params.id);
+			response.redirect('/recipes/' + request.params.id);
 		})
 	});
 });

@@ -6,12 +6,12 @@ class Recipes extends React.Component{
         let recipeCards = this.props.recipes.map(recipe => {
             
             let descriptionText = recipe.description;
-            descriptionText.length >= 100 ? descriptionText = recipe.description.substring(0,100) + "..." : 0;
+            // descriptionText.length >= 100 ? descriptionText = recipe.description.substring(0,100) + "..." : 0;
             
             let recipeLink = '/recipes/' + recipe.id;
 
             return (
-                <div className="col-sm-12 col-md-6 col-lg-3" style={{margin: '13px 0px 13px 0px'}} key={recipe.id}>
+                <div className="col-sm-12 col-md-6 col-lg-4 card-wrapper" style={{margin: '13px 0px 13px 0px'}} id={"recipe" + recipe.id}>
                     <a href={recipeLink}>
                         <div className="card">
                             <img src={recipe.photo} className="card-img-top" alt={recipe.name}/>
