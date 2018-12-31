@@ -48,9 +48,10 @@ app.post('/recipes', (request,response) => {
 app.get('/recipes/:id', (request, response) => {
 
     jsonfile.readFile(file, (err,obj) => {
-        let currentId = parseInt(request.params.id -1);
+        let currentIndex = parseInt(request.params.id -1);
         const recipe = obj.recipe;
-        let currentRecipe = recipe[currentId];
+        let currentRecipe = recipe[currentIndex];
+        currentRecipe.num = parseInt(request.params.id);
 
         response.render('single-recipe', {single:currentRecipe});
     });
@@ -60,9 +61,9 @@ app.get('/recipes/:id', (request, response) => {
 app.get('/recipes/:id/edit', (request, response) => {
 
     jsonfile.readFile(file, (err,obj)=>{
-        let currentId = parseInt(request.params.id -1);
+        let currentIndex = parseInt(request.params.id -1);
         const recipe = obj.recipe;
-        let editRecipe = recipe[currentId];
+        let editRecipe = recipe[currentIndex];
         editRecipe.num = parseInt(request.params.id);
         response.render('edit-recipe', {edit:editRecipe});
     });
@@ -72,9 +73,9 @@ app.get('/recipes/:id/edit', (request, response) => {
 app.put('/recipes/:id', (request,response) => {
 
     jsonfile.readFile(file, (err,obj)=>{
-        let currentId = parseInt(request.params.id -1);
+        let currentIndex = parseInt(request.params.id -1);
         let recipe = obj.recipe[currentId];
-        const updatedRecipe =  obj.recipe[currentId];
+        const updatedRecipe =  obj.recipe[currentIndex];
         const body = request.body;
         // console.log(updatedRecipe);
         recipe  = new update(recipe,body.title, body.ingredients, body.instructions);
@@ -89,7 +90,19 @@ app.put('/recipes/:id', (request,response) => {
 });
 
 //Remove a recipe
-app.delete('/recipe/:id', (request, response) => {
+app.delete('/recipes/:id', (request, response) => {
+
+    jsonfile.readFile(file, (err,obj)=>{
+       let currentIndex = parseInt(request.params.id -1);
+       let deleteRecipe = obj.recipe[currentIndex];
+       obj.recipe.splice(currentIndex, 1);
+
+       response.send(obj.recipe);
+
+            jsonfile.writeFile(file, obj, (err) =>{
+                console.log(err);
+            })
+    })
 
 })
 
