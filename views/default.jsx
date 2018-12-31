@@ -9,8 +9,10 @@ class Default extends React.Component {
                     <link rel="stylesheet" type="text/css" href="/style.css"/>
                 </head>
                 <body>
-                    <h1> recipe-keeper </h1>
-                    {this.props.children}
+                    <div className="main-container">
+                        <h1> recipe-keeper </h1>
+                        {this.props.children}
+                    </div>
                 </body>
             </html>
         )

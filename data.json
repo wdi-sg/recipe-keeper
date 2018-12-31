@@ -1,1 +1,14 @@
-{"recipe":[{"title":"Test","ingredients":"test","instructions":"test"},{"title":"a new recipe","ingredients":"nugget, nugget,nugget","instructions":"fry,fry,fry"}]}
+{
+  "recipe": [
+    {
+      "title": "Steam Chicken",
+      "ingredients": "1 Chicken, 1/2 teaspoon soy sauce",
+      "instructions": "Boil Chicken then ass Soy Sauce"
+    },
+    {
+      "title": "Boiled Duck",
+      "ingredients": "1 duck, water",
+      "instructions": "boil duck for 20 minutes and take it out. serve."
+    }
+  ]
+}

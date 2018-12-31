@@ -57,6 +57,19 @@ app.post('/recipes', (request,response) => {
 //See a single recipe
 app.get('/recipes/:id', (request, response) => {
 
+    jsonfile.readFile(file, (err,obj) => {
+        let currentId = parseInt(request.params.id -1);
+        let recipe = obj.recipe;
+        let currentRecipe = null;
+
+        for (let i=0; i < recipe.length; i++) {
+            if ( currentId === i) {
+                    currentRecipe = obj.recipe[i];
+            }
+        }
+        response.render('single-recipe', {single:currentRecipe});
+    })
+
 })
 
 //Display a form for editing a single recipe
