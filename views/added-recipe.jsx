@@ -4,9 +4,8 @@ var DefaultLayout = require ('./default');
 class AddedRecipe extends React.Component {
     render() {
         let lastIndex = (this.props.recipes.length - 1);
-        let addRecipe = this.props.recipes[lastIndex];
+        const addRecipe = this.props.recipes[lastIndex];
 
-        console.log(lastIndex);
         return(
             <DefaultLayout>
                 <div>
