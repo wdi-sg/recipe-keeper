@@ -1,0 +1,27 @@
+{
+  "name": "recipe-keeper",
+  "version": "1.0.0",
+  "description": "Create an online recipe keeper.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiewLeng/recipe-keeper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SiewLeng/recipe-keeper/issues"
+  },
+  "homepage": "https://github.com/SiewLeng/recipe-keeper#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-react-views": "^0.11.0",
+    "jsonfile": "^5.0.0",
+    "method-override": "^3.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}
