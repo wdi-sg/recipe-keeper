@@ -4,7 +4,6 @@ const express = require('express');
 const app = express();
 const methodOverride = require('method-override')
 const reactEngine = require('express-react-views').createEngine();
-const newRecipes = '/views/new-recipes'
 
 app.use(express.static(__dirname + '/public/'));
 app.use(express.json());
@@ -37,11 +36,11 @@ app.get('/', (request,response) => {
 app.post('/recipes/new', (request, response) => {
 	jsonfile.readFile(file, (err, obj) => {
 		err ? console.error(err) : 0;
-		request.body.id = obj.recipes.length + 1;
+		request.body.id = obj.recipes[obj.recipes.length -1].id + 1;
 		obj.recipes.push(request.body);
 		jsonfile.writeFile(file, obj, err => {
 			err ? console.error(err) : 0;
-			response.send("written!");
+			response.redirect('/recipes/');
 		});
 	});
 });
@@ -54,9 +53,20 @@ app.put('/recipes/:id', (request, response) => {
 		
 		jsonfile.writeFile(file, obj, err => {
 			err ? console.error(err) : 0;
-			response.redirect('/recipes/' + request.params.id);
+			response.render('/recipes/' + request.params.id);
 		})
 	});
+});
+
+app.delete('/recipes/:id', (request, response) => {
+	jsonfile.readFile(file, (err, obj) => {
+		err ? console.error(err) : 0;
+		obj.recipes.splice(obj.recipes.indexOf(getRecipe(request.params.id, obj)), 1);
+		jsonfile.writeFile(file, obj, err => {
+			err ? console.error(err) : 0;
+			response.render('recipes', obj);
+		})
+	})
 });
 
 app.get('/recipes/:id', (request, response) => {

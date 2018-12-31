@@ -1,6 +1,6 @@
 body{
     padding: 50px;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -35,4 +35,10 @@ p{
 img{
     height: 300px;
     object-fit: cover;
+}
+
+h5{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
