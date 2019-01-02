@@ -9,7 +9,7 @@ class recipeNew extends React.Component {
                 <div>
                 <label>{key}:</label>
                 <br/>
-                <input type='text' value={value} name={key}/>
+                <input type='text' name={key}/> Example: {value}
                 <br/>
                 <br/>
                 </div>
