@@ -1,0 +1,26 @@
+{
+  "name": "recipe-keeper",
+  "version": "1.0.0",
+  "description": "a recipe api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kauvia/recipe-keeper.git"
+  },
+  "author": "kauvia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kauvia/recipe-keeper/issues"
+  },
+  "homepage": "https://github.com/kauvia/recipe-keeper#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.42.0"
+  }
+}
