@@ -50,7 +50,7 @@ app.get('/recipes/new', (request, response) => {
         const recipe = {};
         recipe.sample = {
             "Title": "Boiled duck",
-            "Image": "images/boiledduck.png",
+            "Image": "https://www.images/boiledduck.png",
             "Ingredients": "1 duck, 500ml water" ,
             "Instructions": "Boil duck in water for 20 minutes. Take it out. Serve."
         };
@@ -120,6 +120,7 @@ app.get('/recipes/:id/edit', (request, response) => {
     editRecipe.id = request.params.id;
     delete editRecipe.edit.Id;
     delete editRecipe.edit.CreateDate;
+    delete editRecipe.edit.EditDate;
     response.render('recipeEdit',editRecipe);
     })
 })
