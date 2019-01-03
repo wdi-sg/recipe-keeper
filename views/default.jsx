@@ -19,7 +19,7 @@ class Default extends React.Component{
                     <h1>Creepylobster's Cookbook</h1>
                     <ul>
                         <a href='/recipes/'><li>Home</li></a>
-                        <a href='/recipes/new'><li>Create new recipe</li></a>
+                        <a href='/recipes/new'><li>Create Recipe</li></a>
                     </ul>
                 </header>
                 <body>

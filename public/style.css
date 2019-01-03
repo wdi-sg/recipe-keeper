@@ -1,5 +1,5 @@
 body{
-    padding: 50px;
+    padding: 100px 50px 100px 50px;
     width: 80%;
     margin: 0 auto;
     background-color: #f7f7f7;
@@ -14,10 +14,11 @@ header{
     z-index: 99;
     display: flex;
     align-items: center;
+    padding: 10px 20px 10px 20px;
 }
 header img{
     float:left;
-    width: 150px;
+    width: 60px;
 }
 h1{
     float: left;
@@ -30,6 +31,7 @@ ul{
     padding: 0;
 }
 ul li{
+    margin-right: 30px;
     display: inline-block;
 }
 
