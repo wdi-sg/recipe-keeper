@@ -8,9 +8,8 @@ class recipeHome extends React.Component {
             return <div className="individual">
                         <h2>{recipe.Title}</h2>
                         <img src={recipe.Image}/>
-                        <a href={'/recipes/' + recipe.Id} className = "view">view</a>
+                        <a href={'/recipes/' + recipe.Id} className = "view/delete">view/delete</a>
                         <a href={'/recipes/' + recipe.Id + '/edit'} className = "edit">edit</a>
-                        <a href={'/recipes/'+ recipe.Id} className = "delete">delete</a>
                     </div>
         })
 

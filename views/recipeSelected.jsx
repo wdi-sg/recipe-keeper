@@ -23,8 +23,12 @@ class recipeSelected extends React.Component {
                     <p>created on {this.props.CreateDate}</p>
                     <p>last edited on {this.props.EditDate}</p>
                     <div className="nav">
-                        <a href={'/recipes/' + this.props.Id + '/edit'} className = "edit">edit</a>
-                        <p>delete button tba</p>
+                        <a href={'/recipes/' + this.props.Id + '/edit'} className = "edit"></a>
+                        <div className="delete">
+                            <form method='POST' action={'/recipes/'+ this.props.id+ '?_method=delete'}>
+                            <input type="submit" value="Delete"/>
+                            </form>
+                        </div>
                         <a href='/recipes/' className = "home">back to list of recipes</a>
                     </div>
                 </body>

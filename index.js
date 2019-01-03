@@ -60,8 +60,9 @@ app.get('/recipes/new', (request, response) => {
 app.post('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         err ? console.error(err) : null;
+        let maxIndex = obj.recipes.length - 1;
         let newRecipe = {
-            "Id": obj.recipes.length + 1,
+            "Id": obj.recipes[maxIndex].Id + 1,
             "Image": request.body.Image,
             "Title": request.body.Title,
             "Ingredients": request.body.Ingredients,
@@ -70,19 +71,39 @@ app.post('/recipes', (request, response) => {
         }
         obj.recipes.push(newRecipe);
         jsonfile.writeFile(file, obj, (err) => {
-        err ? console.error(err) : null;
-        response.redirect('/recipes/' + newRecipe.Id); //to modify later;
+            err ? console.error(err) : null;
+        response.redirect('/recipes/' + newRecipe.Id);
         });
     });
 });
 
-//View a specific recipe
+
+//View or Delete a specific recipe
 app.get('/recipes/:id', (request, response) => {
+    let requestParamsId = request.params.id;
+    let indexArray = [];
+    //view
     jsonfile.readFile(file, (err, obj) => {
-    err ? console.error(err) : null;
-    const selectedRecipe = obj.recipes[request.params.id - 1];
-    response.render('recipeSelected',selectedRecipe);
+        err ? console.error(err) : null;
+        let selectedRecipeObject = obj.recipes.find(recipe => {
+            return recipe.Id === parseInt(requestParamsId);
+        })
+        indexArray.push(obj.recipes.indexOf(selectedRecipeObject));
+        const selectedRecipe = obj.recipes[indexArray[0]];
+        response.render('recipeSelected',selectedRecipe);
     });
+    //delete
+    app.delete('/recipes/:id', (request, response) => {
+        jsonfile.readFile(file, (err,obj) => {
+            err ? console.log(err) : null;
+            obj.recipes.splice([indexArray[0]],1);
+            jsonfile.writeFile(file, obj, (err) => {
+                err ? console.error(err) : null;
+                response.redirect('/recipes/')
+            });
+        });
+    });
+
 });
 
 //Edit recipe
@@ -91,8 +112,11 @@ app.get('/recipes/:id', (request, response) => {
 app.get('/recipes/:id/edit', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         err ? console.log(err) : null;
+        let selectedRecipeObject = obj.recipes.find(recipe => {
+            return recipe.Id === parseInt(request.params.id);
+        })
     const editRecipe = {};
-    editRecipe.edit = obj.recipes[request.params.id - 1];
+    editRecipe.edit = selectedRecipeObject;
     editRecipe.id = request.params.id;
     delete editRecipe.edit.Id;
     delete editRecipe.edit.CreateDate;
@@ -103,22 +127,21 @@ app.get('/recipes/:id/edit', (request, response) => {
 app.put('/recipes/:id', (request, response) => {
     jsonfile.readFile(file, (err,obj) => {
         err ? console.log(err) : null;
-        obj.recipes[request.params.id-1].Title = request.body.Title;
-        obj.recipes[request.params.id-1].Image = request.body.Image;
-        obj.recipes[request.params.id-1].Ingredients = request.body.Ingredients;
-        obj.recipes[request.params.id-1].Instructions = request.body.Instructions;
-        obj.recipes[request.params.id-1].EditDate = dd + "-" + mm + "-" + yyyy;
+        let selectedRecipeObject = obj.recipes.find(recipe => {
+            return recipe.Id === parseInt(request.params.id);
+        })
+        let editRecipe = selectedRecipeObject;
+        editRecipe.Title = request.body.Title;
+        editRecipe.Image = request.body.Image;
+        editRecipe.Ingredients = request.body.Ingredients;
+        editRecipe.Instructions = request.body.Instructions;
+        editRecipe.EditDate = dd + "-" + mm + "-" + yyyy;
         jsonfile.writeFile(file, obj, (err) => {
             err ? console.error(err) : null;
             response.redirect('/recipes/' + request.params.id)
         });
     });
 });
-
-
-
-//Delete recipe
-
 
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
