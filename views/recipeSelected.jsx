@@ -14,30 +14,51 @@ class recipeSelected extends React.Component {
                     <link rel="stylesheet" type="text/css" href="/style.css"/>
                 </head>
                 <body>
-                    <h1>House of Cooks</h1>
+                    <header>
+                        <h1>House of Cooks</h1>
+                    </header>
+                    <nav>
+                        <a href='/recipes/' className="home">RECIPES</a>
+                        <a href='/ingredients' className="ingredients">INGREDIENTS</a>
+                        <a href='/recipes/new' className="create">CONTRIBUTE</a>
+                    </nav>
                     <div className="gparent">
-                        <h2>{this.props.Title}</h2>
-                        <img src ={this.props.Image}/>
-                        <div className="parent">
-                            <h3>Ingredients</h3>
-                            <p>{this.props.Ingredients}</p>
+                        <div classname="row">
+                            <div className="column">
+                                <h4>{this.props.Title}</h4>
+                            </div>
                         </div>
-                        <div className="parent">
-                            <h3>Instructions</h3>
-                            <p>{this.props.Instructions}</p>
+                        <div classname="row">
+                            <div className="columnleft">
+                                <img src ={this.props.Image} className ="selectedImage"/>
+                            </div>
+                            <div className="columnright">
+                                <div className="parent">
+                                    <h3>Ingredients</h3>
+                                    <p>{this.props.Ingredients}</p>
+                                </div>
+                                <div className="parent">
+                                    <h3>Instructions</h3>
+                                    <p>{this.props.Instructions}</p>
+                                </div>
+                            </div>
                         </div>
-                        <p className="dates">created on {this.props.CreateDate}</p>
-                        <p  className="dates">last edited on {this.props.EditDate}</p>
-                        <div className="links">
-                            <a href={'/recipes/' + this.props.Id + '/edit'} className = "edit">edit</a>
-                            <a href='/recipes/' className = "home">home</a>
-                        </div>
-                        <div className="delete">
+                        <div className="action clearfix ">
+                            <a href={'/recipes/' + this.props.Id + '/edit'} className = "edit">
+                                <input type="submit" value="Edit" class="button"/>
+                            </a>
                             <form method='POST' action={'/recipes/'+ this.props.id+ '?_method=delete'}>
                                 <input type="submit" value="Delete" class="button"/>
                             </form>
                         </div>
                     </div>
+                    <footer class="clearfix">
+                        <a href='/recipes/' className="home">RECIPES</a>
+                        <a href='/ingredients' className="home">INGREDIENTS</a>
+                        <a href='/recipes/new' className="create">CONTRIBUTE</a>
+                        <a href='' className="contact">CONTACT</a>
+                        <p>©2019 HOUSEOFCOOKS.COM.SG ALL RIGHTS RESERVED.</p>
+                    </footer>
                 </body>
             </html>
         )

@@ -90,12 +90,14 @@ app.get('/recipes/:id', (request, response) => {
         })
         indexArray.push(obj.recipes.indexOf(selectedRecipeObject));
         const selectedRecipe = obj.recipes[indexArray[0]];
+                    console.log([indexArray[0]]);
         response.render('recipeSelected',selectedRecipe);
     });
     //delete
     app.delete('/recipes/:id', (request, response) => {
         jsonfile.readFile(file, (err,obj) => {
             err ? console.log(err) : null;
+
             obj.recipes.splice([indexArray[0]],1);
             jsonfile.writeFile(file, obj, (err) => {
                 err ? console.error(err) : null;
