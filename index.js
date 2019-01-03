@@ -80,16 +80,45 @@ app.post('/recipes', (request, response) => {
 app.get('/recipes/:id', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
     err ? console.error(err) : null;
-    const selected = obj.recipes[request.params.id - 1];
-    console.log(obj.recipes[request.params.id])
-    response.render('recipeSelected',selected);
+    const selectedRecipe = obj.recipes[request.params.id - 1];
+    response.render('recipeSelected',selectedRecipe);
     });
 });
 
 //Edit recipe
-    //Form for editing recipe
+    //Form for editing recipe with current values shown
     //Accept PUT request to update a recipe
+app.get('/recipes/:id/edit', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        err ? console.log(err) : null;
+    const editRecipe = {};
+    editRecipe.edit = obj.recipes[request.params.id - 1];
+    editRecipe.id = request.params.id;
+    delete editRecipe.edit.Id;
+    delete editRecipe.edit.CreateDate;
+    response.render('recipeEdit',editRecipe);
+    })
+})
+
+app.put('/recipes/:id', (request, response) => {
+    jsonfile.readFile(file, (err,obj) => {
+        err ? console.log(err) : null;
+        obj.recipes[request.params.id-1].Title = request.body.Title;
+        obj.recipes[request.params.id-1].Image = request.body.Image;
+        obj.recipes[request.params.id-1].Ingredients = request.body.Ingredients;
+        obj.recipes[request.params.id-1].Instructions = request.body.Instructions;
+        obj.recipes[request.params.id-1].EditDate = dd + "-" + mm + "-" + yyyy;
+        jsonfile.writeFile(file, obj, (err) => {
+            err ? console.error(err) : null;
+            response.redirect('/recipes/' + request.params.id)
+        });
+    });
+});
+
+
 
 //Delete recipe
+
+
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));

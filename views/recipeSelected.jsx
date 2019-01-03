@@ -20,6 +20,8 @@ class recipeSelected extends React.Component {
                         <h2>Instructions</h2>
                         <p>{this.props.Instructions}</p>
                     </div>
+                    <p>created on {this.props.CreateDate}</p>
+                    <p>last edited on {this.props.EditDate}</p>
                     <div className="nav">
                         <a href={'/recipes/' + this.props.Id + '/edit'} className = "edit">edit</a>
                         <p>delete button tba</p>
@@ -32,6 +34,5 @@ class recipeSelected extends React.Component {
     }
 
 }
-
 
 module.exports = recipeSelected;

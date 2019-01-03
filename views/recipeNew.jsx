@@ -7,11 +7,11 @@ class recipeNew extends React.Component {
         const sampleRecipe = Object.entries(this.props.sample).map( ([key, value]) => {
             return (
                 <div>
-                <label>{key}:</label>
-                <br/>
-                <input type='text' name={key}/> Example: {value}
-                <br/>
-                <br/>
+                    <label>{key}:</label>
+                    <br/>
+                    <input type='text' name={key}/> Example: {value}
+                    <br/>
+                    <br/>
                 </div>
             )
         })
