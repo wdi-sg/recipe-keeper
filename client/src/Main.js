@@ -1,6 +1,8 @@
 import { Switch, Route } from "react-router-dom";
 import React, { Component } from "react";
 import Home from "./Home/index";
+import Recipe from "./Recipe/index";
+import RecipeForm from "./RecipeForm/index";
 
 class Main extends Component {
   render() {
@@ -13,6 +15,12 @@ class Main extends Component {
             exact
             path="/"
             render={() => <Home value={this.props.value} />}
+          />
+          <Route exact path="/recipes/new/" render={() => <RecipeForm />} />
+          <Route
+            exact
+            path="/recipes/:id"
+            render={props => <Recipe recipes={this.props.value} {...props} />}
           />
         </Switch>
       </main>

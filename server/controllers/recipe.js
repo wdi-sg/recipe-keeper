@@ -4,20 +4,23 @@ const { Recipe } = model;
 
 class Recipes {
   static createNew(req, res) {
-    // const { name, ingredients, instructions } = req.body
-    // console.log(typeof req.body.ingredients)
-    let name = "dumplings";
-    let ingredients = [
-      {
-        name: "dump",
-        amount: "1 pound"
-      },
-      {
-        name: "ling",
-        amount: "500ml"
-      }
-    ];
-    let instructions = ["dump it", "ling it"];
+    const name = req.body.recipeName;
+    const ingredients = [];
+    const instructions = [];
+
+
+    req.body.ingredients.map(item => {
+      let ingredient = {
+        name: item.ingredientName,
+        amount: item.ingredientAmount
+      };
+      ingredients.push(ingredient);
+    });
+
+    req.body.instructions.map(item => {
+      instructions.push(item.instructionStep);
+    });
+
     return Recipe.create({
       name,
       ingredients,
