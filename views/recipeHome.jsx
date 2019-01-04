@@ -1,10 +1,14 @@
 var React = require('react');
+var Head = require('./head.jsx');
+var Header = require('./header.jsx');
+var Nav = require('./nav.jsx');
+var Footer = require('./footer.jsx');
+var Scripts = require('./scripts.jsx');
 
 class recipeHome extends React.Component {
 
     render() {
-        const recipesAll = this.props.recipes;
-        const recipesAllHTML = recipesAll.map(recipe => {
+        const recipes = this.props.recipes.map(recipe => {
             return  <div className="eachRecipeContainer">
                         <a href={'/recipes/' + recipe.Id}>
                             <img src={recipe.Image} />
@@ -16,32 +20,15 @@ class recipeHome extends React.Component {
 
         return(
            <html>
-                <head>
-                    <meta charset="utf-8"/>
-                     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>
-                    <link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'/>
-                    <link rel="stylesheet" type="text/css" href="/style.css"/>
-                </head>
+                <Head/>
                 <body>
-                    <header>
-                        <h1>House of Cooks</h1>
-                    </header>
-                    <nav>
-                        <a href='/recipes/' className="home">RECIPES</a>
-                        <a href='/ingredients' className="ingredients">INGREDIENTS</a>
-                        <a href='/recipes/new' className="create">CONTRIBUTE</a>
-                    </nav>
+                    <Header/>
+                    <Nav/>
                     <div className="all">
-                        {recipesAllHTML}
+                        {recipes}
                     </div>
-                    <footer>
-                        <a href='/recipes/' className="home">RECIPES</a>
-                        <a href='/ingredients' className="home">INGREDIENTS</a>
-                        <a href='/recipes/new' className="create">CONTRIBUTE</a>
-                        <a href='' className="contact">CONTACT</a>
-                        <p>©2019 HOUSEOFCOOKS.COM.SG ALL RIGHTS RESERVED.</p>
-                    </footer>
+                    <Footer/>
+                    <Scripts/>
                 </body>
             </html>
 

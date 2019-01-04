@@ -47,14 +47,8 @@ app.get('/recipes/', (request,response) => {
     //Form to create a recipe
     //Accept POST requests that creates a recipe
 app.get('/recipes/new', (request, response) => {
-        const recipe = {};
-        recipe.sample = {
-            "Title": "Boiled duck",
-            "Image": "https://www.images/boiledduck.png",
-            "Ingredients": "1 duck, 500ml water" ,
-            "Instructions": "Boil duck in water for 20 minutes. Take it out. Serve."
-        };
-        response.render('recipeNew', recipe);
+    const ingredients = {number: [1,2,3,4,5,6]};
+        response.render('recipeNew',ingredients);
 });
 
 app.post('/recipes', (request, response) => {
@@ -65,10 +59,18 @@ app.post('/recipes', (request, response) => {
             "Id": obj.recipes[maxIndex].Id + 1,
             "Image": request.body.Image,
             "Title": request.body.Title,
-            "Ingredients": request.body.Ingredients,
             "Instructions": request.body.Instructions,
             "CreateDate": dd + "-" + mm + "-" + yyyy
-        }
+        };
+        newRecipe.Ingredients = [];
+        for (i = 0; i<7; i ++) {
+            request.body["Name"+i]?
+            newRecipe.Ingredients.push ({
+                "Name": request.body["Name"+i],
+                "Amount": request.body["Amount"+i],
+                "Notes": request.body["Notes"+i]
+            }) : null;
+        };
         obj.recipes.push(newRecipe);
         jsonfile.writeFile(file, obj, (err) => {
             err ? console.error(err) : null;
@@ -90,7 +92,6 @@ app.get('/recipes/:id', (request, response) => {
         })
         indexArray.push(obj.recipes.indexOf(selectedRecipeObject));
         const selectedRecipe = obj.recipes[indexArray[0]];
-                    console.log([indexArray[0]]);
         response.render('recipeSelected',selectedRecipe);
     });
     //delete
@@ -120,6 +121,7 @@ app.get('/recipes/:id/edit', (request, response) => {
     const editRecipe = {};
     editRecipe.edit = selectedRecipeObject;
     editRecipe.id = request.params.id;
+    editRecipe.ingredientsNum = selectedRecipeObject.Ingredients;
     delete editRecipe.edit.Id;
     delete editRecipe.edit.CreateDate;
     delete editRecipe.edit.EditDate;
@@ -136,8 +138,16 @@ app.put('/recipes/:id', (request, response) => {
         let editRecipe = selectedRecipeObject;
         editRecipe.Title = request.body.Title;
         editRecipe.Image = request.body.Image;
-        editRecipe.Ingredients = request.body.Ingredients;
         editRecipe.Instructions = request.body.Instructions;
+        editRecipe.Ingredients = [];
+        for (i = 0; i<7; i ++) {
+            request.body["Name"+i]?
+            editRecipe.Ingredients.push ({
+                "Name": request.body["Name"+i],
+                "Amount": request.body["Amount"+i],
+                "Notes": request.body["Notes"+i]
+            }) : null;
+        };
         editRecipe.EditDate = dd + "-" + mm + "-" + yyyy;
         jsonfile.writeFile(file, obj, (err) => {
             err ? console.error(err) : null;
