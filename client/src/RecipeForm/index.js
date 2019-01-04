@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import IngredientInput from "./IngredientInputs";
+import InstructionInput from "./InstructionInputs";
 
 class RecipeForm extends Component {
   constructor(props) {
@@ -16,8 +18,33 @@ class RecipeForm extends Component {
     this.addIngredient = this.addIngredient.bind(this);
     this.addInstruction = this.addInstruction.bind(this);
   }
-
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      fetch(`/recipes/${this.props.match.params.id}/edit`)
+        .then(res => res.json())
+        .then(res => {
+          let recipe = res;
+          let ingredients = [];
+          let instructions = [];
+          this.setState({ recipeName: recipe.name });
+          recipe.ingredients.map(val => {
+            let ingredient = {
+              ingredientName: val.name,
+              ingredientAmount: val.amount
+            };
+            ingredients.push(ingredient);
+          });
+          this.setState({ ingredients: ingredients });
+          recipe.instructions.map(val => {
+            let instruction = { instructionStep: val };
+            instructions.push(instruction);
+          });
+          this.setState({ instructions: instructions });
+        });
+    }
+  }
   handleChange(e) {
+    console.log(this.state);
     let target = e.target;
     if (["ingredientName", "ingredientAmount"].includes(target.name)) {
       let ingredients = [...this.state.ingredients];
@@ -33,12 +60,25 @@ class RecipeForm extends Component {
   }
 
   handleSubmit(e) {
-    this.sendDataToDb();
+    if (this.props.match.params.id) {
+      this.updateRecipe();
+    } else {
+      this.addRecipe();
+    }
     e.preventDefault();
     this.setState({ doRedirect: true });
   }
-
-  sendDataToDb = () => {
+  updateRecipe = () => {
+    fetch(`/recipes/:${this.props.match.params.id}/`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    }).then(res => res.json());
+  };
+  addRecipe = () => {
     fetch("/recipes", {
       method: "POST",
       mode: "cors",
@@ -61,9 +101,10 @@ class RecipeForm extends Component {
       instructions: [...prevState.instructions, { instructionStep: "" }]
     }));
   }
-  render() {
 
+  render() {
     let { ingredients, instructions } = this.state;
+
     if (this.state.doRedirect) {
       return <Redirect to="/" />;
     } else {
@@ -71,13 +112,12 @@ class RecipeForm extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
                 <div className="form-group">
                   <label htmlFor="recipeName">Name of recipe</label>
                   <input
                     type="text"
-                    value={this.state.name}
-                    onChange={this.handleChange}
+                    defaultValue={this.state.recipeName}
                     className="form-control"
                     name="recipeName"
                     placeholder="Enter recipe name"
@@ -90,33 +130,7 @@ class RecipeForm extends Component {
                 >
                   Add new ingredient
                 </button>
-                {ingredients.map((val, idx) => {
-                  let ingredientId = `ingredient-${idx}`,
-                    amountId = `amount-${idx}`;
-                  return (
-                    <div className="form-group" key={ingredientId}>
-                      <label htmlFor={ingredientId}>{`Ingredient ${idx +
-                        1}`}</label>
-                      <input
-                        type="text"
-                        name="ingredientName"
-                        data-id={idx}
-                        id={ingredientId}
-                        onChange={this.handleChange}
-                        className="form-control"
-                      />
-                      <label htmlFor={amountId}>amount</label>
-                      <input
-                        type="text"
-                        name="ingredientAmount"
-                        data-id={idx}
-                        id={amountId}
-                        onChange={this.handleChange}
-                        className="form-control"
-                      />
-                    </div>
-                  );
-                })}
+                <IngredientInput ingredients={ingredients} />
                 <button
                   type="button"
                   onClick={this.addInstruction}
@@ -124,22 +138,8 @@ class RecipeForm extends Component {
                 >
                   Add new step
                 </button>
-                {instructions.map((val, idx) => {
-                  let instructionId = `instruction-${idx}`;
-                  return (
-                    <div className="form-group" key={instructionId}>
-                      <label htmlFor={instructionId}>{`Step ${idx + 1}`}</label>
-                      <input
-                        type="text"
-                        name="instructionStep"
-                        data-id={idx}
-                        id={instructionId}
-                        onChange={this.handleChange}
-                        className="form-control"
-                      />
-                    </div>
-                  );
-                })}
+                <InstructionInput instructions={instructions} />
+
                 <input
                   type="submit"
                   value="Submit"

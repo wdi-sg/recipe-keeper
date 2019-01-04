@@ -16,7 +16,20 @@ class Main extends Component {
             path="/"
             render={() => <Home value={this.props.value} />}
           />
-          <Route exact path="/recipes/new/" render={() => <RecipeForm />} />
+          <Route
+            exact
+            path="/recipes/new/"
+            render={props => (
+              <RecipeForm recipes={this.props.value} {...props} />
+            )}
+          />
+          <Route
+            exact
+            path="/recipes/:id/edit"
+            render={props => (
+              <RecipeForm recipes={this.props.value} {...props} />
+            )}
+          />
           <Route
             exact
             path="/recipes/:id"
