@@ -1,0 +1,24 @@
+{
+	"recipes": [{
+		"id": 1,
+		"recipeName": "Laksa",
+		"description": "something",
+		"imgLink": "http://www.imgworlds.com/wp-content/uploads/2015/12/18-CONTACTUS-HEADER.jpg",
+		"ingredientList": ["fww/", "fww"],
+		"instructionList": ["wefwewe", "wefwewe"]
+	}, {
+		"id": 2,
+		"recipeName": "Laksa",
+		"description": "something",
+		"imgLink": "xD",
+		"ingredientList": ["fww/", "fww"],
+		"instructionList": ["wefwewe", "wefwewe"]
+	}, {
+		"id": 3,
+		"recipeName": "Laksa",
+		"description": "something",
+		"imgLink": "something",
+		"ingredientList": ["fww", "fwwrtgrt"],
+		"instructionList": ["wefwewe", "wefwewertgrt"]
+	}]
+}
