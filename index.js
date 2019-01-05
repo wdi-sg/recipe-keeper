@@ -1,5 +1,5 @@
 const jsonfile = require('jsonfile');
-const file = 'ingredient.json';
+const file = 'allRecipes.json';
 const express = require('express');
 const app = express();
 
@@ -18,23 +18,64 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
+
+
 // listing all recipes
 app.get ('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) =>{
         console.log("sup");
-        response.render('mainTemplate', {allFood: obj});
+        response.render('eachRecipe', {allFood: obj});
     })
 }) 
-
 
 app.get ('/recipes/new', (request, response) => {
     jsonfile.readFile(file, (err, obj) =>{
         console.log("sup new");
-        response.render('newRecipe', {allFood: obj}); // TODO: to change 
+        response.render('newRecipe', obj); // TODO: to change 
     })
 }) 
 
-app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));``
+
+app.get ('/recipes/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) =>{
+        console.log("sup, reading my file here");
+        console.log(request.url);
+       
+        var indexNo = parseInt(request.params.id) - 1;    
+        console.log("index", indexNo);
+        console.log(obj.recipes[indexNo].ingredientList.length, "wewe");
+        response.render('eachRecipe', obj.recipes[indexNo]);
+    })
+})
+
+app.post ('/recipes/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) =>{
+        console.log("sup, reading my file");
+       
+        var indexNo = parseInt(request.params.id) - 1;
+        var newRecipeObj = {
+            "id": parseInt(request.params.id),
+            "recipeName": request.body.name,
+            "description": request.body.description,
+            "imgLink": request.body.img,
+            "ingredientList": request.body.ingredients,
+            "instructionList": request.body.instructions
+        }
+
+        console.log(newRecipeObj);
+        obj.recipes.push(newRecipeObj);  
+        
+        jsonfile.writeFile(file, obj, (err) => {
+            console.log(err);
+            response.render('eachRecipe', obj.recipes[indexNo]);
+        });
+        
+    })
+})
+
+
+
+app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
 
 
 // TODO     :

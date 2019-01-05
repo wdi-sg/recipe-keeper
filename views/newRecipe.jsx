@@ -4,14 +4,20 @@ var MainTemplate = require('./mainTemplate');
 class NewRecipe extends React.Component {
     render() {
 
+        var idOfRecipe = "/recipes/" + (this.props.recipes.length + 1);
+        console.log(idOfRecipe);
+        
         return (
             <MainTemplate title="New Recipe">
             <script type="text/javascript" src="/script.js"/>
-            <form action="/recipes/new" method="POST">
+            <form action={idOfRecipe} method="POST">
                 <h3>Add New Recipe</h3>
                 
                 <h4>Recipe Name</h4>
                 <input type="text" name="name" placeholder="e.g. Laksa" className="eightyWidth"/><br/>
+
+                <h4>Recipe Description</h4>
+                <input type="text" name="description" placeholder="e.g. A whiff of Italy" className="eightyWidth"/><br/>
                 
                 <h4>Image Link</h4> 
                 <input type="text" name="img" placeholder="Image URL e.g. https://media.chefdehome.com/740/0/0/laksa-soup/laksa-soup-chefdehome-3.jpg" className="eightyWidth"/><br/> 
