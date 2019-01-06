@@ -75,6 +75,18 @@ app.post ('/recipes/:id', (request, response) => {
     })
 })
 
+app.get ('/recipes/:id/edit', (request, response) => {
+    jsonfile.readFile(file, (err, obj) =>{
+        console.log("sup, reading my file here");
+        console.log(request.url);
+       
+        var indexNo = parseInt(request.params.id);
+        var indexInArr = findRecipe(obj, indexNo);
+
+        response.render('editRecipe', obj.recipes[indexInArr]);
+    })
+})
+
 function findRecipe(obj, id) {
     return obj.recipes.findIndex(function(recipe) {
         return recipe.id === parseInt(id);

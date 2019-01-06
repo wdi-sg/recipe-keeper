@@ -102,6 +102,7 @@ textarea {
     font-size: 12px;
     margin: 0 1px;
     resize: vertical;
+    min-height: 25px;
 }
 
 .eightyWidth {
