@@ -4,13 +4,14 @@ var MainTemplate = require('./mainTemplate');
 class NewRecipe extends React.Component {
     render() {
 
-        var idOfRecipe = "/recipes/" + (this.props.recipes.length + 1);
+        var idOfRecipe = parseInt(this.props.recipes[this.props.recipes.length - 1].id) + 1;
+        var idLink = "/recipes/" + idOfRecipe;
         console.log(idOfRecipe);
         
         return (
             <MainTemplate title="New Recipe">
             <script type="text/javascript" src="/script.js"/>
-            <form action={idOfRecipe} method="POST">
+            <form action={idLink} method="POST">
                 <h3>Add New Recipe</h3>
                 
                 <h4>Recipe Name</h4>

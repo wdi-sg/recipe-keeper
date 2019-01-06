@@ -24,7 +24,7 @@ app.set('view engine', 'jsx');
 app.get ('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) =>{
         console.log("sup");
-        response.render('eachRecipe', {allFood: obj});
+        response.render('allRecipes', {allFood: obj});
     })
 }) 
 
@@ -41,10 +41,10 @@ app.get ('/recipes/:id', (request, response) => {
         console.log("sup, reading my file here");
         console.log(request.url);
        
-        var indexNo = parseInt(request.params.id) - 1;    
-        console.log("index", indexNo);
-        console.log(obj.recipes[indexNo].ingredientList.length, "wewe");
-        response.render('eachRecipe', obj.recipes[indexNo]);
+        var indexNo = parseInt(request.params.id);
+        var indexInArr = findRecipe(obj, indexNo);
+
+        response.render('eachRecipe', obj.recipes[indexInArr]);
     })
 })
 
@@ -52,7 +52,6 @@ app.post ('/recipes/:id', (request, response) => {
     jsonfile.readFile(file, (err, obj) =>{
         console.log("sup, reading my file");
        
-        var indexNo = parseInt(request.params.id) - 1;
         var newRecipeObj = {
             "id": parseInt(request.params.id),
             "recipeName": request.body.name,
@@ -62,18 +61,24 @@ app.post ('/recipes/:id', (request, response) => {
             "instructionList": request.body.instructions
         }
 
-        console.log(newRecipeObj);
+        var indexNo = parseInt(request.params.id);
+        var indexInArr = findRecipe(obj, indexNo);
+  
         obj.recipes.push(newRecipeObj);  
         
         jsonfile.writeFile(file, obj, (err) => {
             console.log(err);
-            response.render('eachRecipe', obj.recipes[indexNo]);
+            response.render('eachRecipe', obj.recipes[indexInArr]);
         });
         
     })
 })
 
-
+function findRecipe(obj, id) {
+    return obj.recipes.findIndex(function(recipe) {
+        return recipe.id === parseInt(id);
+    })
+}
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
 
