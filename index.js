@@ -23,8 +23,8 @@ app.set('view engine', 'jsx');
 // listing all recipes
 app.get ('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) =>{
-        console.log("sup");
-        response.render('allRecipes', {allFood: obj});
+        console.log("sup, reading all the files");
+        response.render('allRecipes', obj);
     })
 }) 
 
@@ -61,13 +61,14 @@ app.post ('/recipes/:id', (request, response) => {
             "instructionList": request.body.instructions
         }
 
-        var indexNo = parseInt(request.params.id);
-        var indexInArr = findRecipe(obj, indexNo);
-  
         obj.recipes.push(newRecipeObj);  
-        
+        console.log(request.url);
+
         jsonfile.writeFile(file, obj, (err) => {
             console.log(err);
+            var indexNo = parseInt(request.params.id);
+              var indexInArr = findRecipe(obj, indexNo);
+  
             response.render('eachRecipe', obj.recipes[indexInArr]);
         });
         

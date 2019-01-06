@@ -8,27 +8,19 @@ class EachRecipe extends React.Component {
         var description = this.props.description;
         var img = this.props.imgLink;
 
-        if (typeof this.props.ingredientList.length !== "string") {
-            var ingredientList = this.props.ingredientList.map(eachIngredient => {
-                return <li>{eachIngredient}</li>;
-            }) 
-        } else {
-            var ingredientList = this.props.ingredientList;
-        }
+        var ingredientList = this.props.ingredientList.map(eachIngredient => {
+            return <li>{eachIngredient}</li>;
+        }) 
 
-        if (typeof this.props.instructionList.length !== "string") {
-            var instructionList = this.props.instructionList.map(eachInstruction => {
-                return <li>{eachInstruction}</li>;
-            }) 
-        } else {
-            var instructionList = this.props.instructionList;
-        }
+        var instructionList = this.props.instructionList.map(eachInstruction => {
+            return <li>{eachInstruction}</li>;
+        }) 
 
         return (
             <MainTemplate title={recipeName}> 
             <img src={img}/>
             <div className="recipeDetails">
-                <h3>{recipeName}</h3>
+                <h3>{recipeName} <a className="buttonLink" href={"/recipes/" + id + "/edit"}>Edit this Recipe</a></h3>
 
                 <h5 className="title">Description</h5>
                 <h4>{description}</h4>
@@ -42,6 +34,8 @@ class EachRecipe extends React.Component {
                 <h4><ol>
                     {instructionList}
                 </ol></h4>
+
+                
             </div>
                 
         

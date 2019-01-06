@@ -18,8 +18,7 @@ class MainPage extends React.Component{
                     </header>
                     <section>
                         <nav>
-                            <a href="#"><div className="navs">Home</div></a>
-                            <a href="/recipes"><div className="navs">All Recipes</div></a>
+                            <a href="/recipes"><div className="navs">Home</div></a>
                             <a href="/recipes/new"><div className="navs">Add New Recipe</div></a>
                             
                         </nav>
