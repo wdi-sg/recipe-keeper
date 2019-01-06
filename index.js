@@ -21,6 +21,11 @@ app.set('view engine', 'jsx');
 
 
 // listing all recipes
+
+app.get('/', (request, response) => {
+    response.redirect('/recipes');
+});
+
 app.get ('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) =>{
         console.log("sup, reading all the files");
@@ -67,7 +72,7 @@ app.post ('/recipes/:id', (request, response) => {
         jsonfile.writeFile(file, obj, (err) => {
             console.log(err);
             var indexNo = parseInt(request.params.id);
-              var indexInArr = findRecipe(obj, indexNo);
+            var indexInArr = findRecipe(obj, indexNo);
   
             response.render('eachRecipe', obj.recipes[indexInArr]);
         });
@@ -84,6 +89,43 @@ app.get ('/recipes/:id/edit', (request, response) => {
         var indexInArr = findRecipe(obj, indexNo);
 
         response.render('editRecipe', obj.recipes[indexInArr]);
+    })
+})
+
+app.put ('/recipes/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) =>{
+        let currentRecipes = obj;
+        console.log("hey look at me");
+        var indexNo = parseInt(request.params.id);
+        var indexInArr = findRecipe(obj, indexNo);
+
+        obj.recipes[indexInArr] = {
+            "id": parseInt(request.params.id),
+            "recipeName": request.body.name,
+            "description": request.body.description,
+            "imgLink": request.body.img,
+            "ingredientList": request.body.ingredients,
+            "instructionList": request.body.instructions
+        }
+
+        jsonfile.writeFile(file, obj, (err) => {
+            console.log(err);
+            response.render('eachRecipe', obj.recipes[indexInArr]);
+        });
+    })
+})
+
+app.delete ('/recipes/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) =>{
+        var indexNo = parseInt(request.params.id);
+        var indexInArr = findRecipe(obj, indexNo);
+
+        obj.recipes.splice(indexInArr, 1);
+
+        jsonfile.writeFile(file, obj, (err) => {
+            console.log(err);
+            response.render('allRecipes', obj);
+        });
     })
 })
 
