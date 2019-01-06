@@ -3,12 +3,24 @@ var React = require('react');
 class Nav extends React.Component {
     render() {
         return(
-            <nav>
-                <a href='/recipes/' className="home">RECIPES</a>
-                <a href='/ingredients' className="ingredients">INGREDIENTS</a>
-                <a href='/recipes/new' className="create">CONTRIBUTE</a>
+
+            <nav className="navbar navbar-expand-md bg-dark">
+              <div className="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a className="nav-link" href='/recipes/'>RECIPES</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href='/ingredients'>INGREDIENTS</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href='/recipes/new'>CONTRIBUTE</a>
+                  </li>
+                </ul>
+              </div>
             </nav>
         )
+
     }
 }
 

@@ -54,9 +54,10 @@ app.get('/recipes/new', (request, response) => {
 app.post('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         err ? console.error(err) : null;
-        let maxIndex = obj.recipes.length - 1;
+
+        let maxRecipeIndex = obj.recipes.length - 1;
         let newRecipe = {
-            "Id": obj.recipes[maxIndex].Id + 1,
+            "Id": obj.recipes[maxRecipeIndex].Id + 1,
             "Image": request.body.Image,
             "Title": request.body.Title,
             "Instructions": request.body.Instructions,
@@ -64,12 +65,18 @@ app.post('/recipes', (request, response) => {
         };
         newRecipe.Ingredients = [];
         for (i = 0; i<7; i ++) {
-            request.body["Name"+i]?
-            newRecipe.Ingredients.push ({
-                "Name": request.body["Name"+i],
-                "Amount": request.body["Amount"+i],
+            if (request.body["Name"+i] && request.body["Notes"+i]) {
+                newRecipe.Ingredients.push ({
+                "Name": request.body["Name"+i] + ",",
+                "Amount": request.body["Amount"+i] + ",",
                 "Notes": request.body["Notes"+i]
-            }) : null;
+                });
+            } else if (request.body["Name"+i] && !request.body["Notes"+i]) {
+                newRecipe.Ingredients.push ({
+                "Name": request.body["Name"+i] + ",",
+                "Amount": request.body["Amount"+i]
+                });
+            }
         };
         obj.recipes.push(newRecipe);
         jsonfile.writeFile(file, obj, (err) => {
@@ -92,6 +99,7 @@ app.get('/recipes/:id', (request, response) => {
         })
         indexArray.push(obj.recipes.indexOf(selectedRecipeObject));
         const selectedRecipe = obj.recipes[indexArray[0]];
+        console.log(selectedRecipe);
         response.render('recipeSelected',selectedRecipe);
     });
     //delete
@@ -155,6 +163,34 @@ app.put('/recipes/:id', (request, response) => {
         });
     });
 });
+
+//recipe grouped by ingredients
+    //Lists every ingredient used by every recipe
+    //Each one should be a link to the recipe that uses it
+app.get('/ingredients', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        err ? console.log(err) : null;
+        obj.recipes.forEach(recipeObj =>{
+            recipeObj.Ingredients.forEach(ingredientObj => {
+                let maxIngredientIndex = obj.ingredients.length - 1;
+                let tempIngredient = {
+                    "Id": obj.ingredients[maxIngredientIndex].Id + 1,
+                    "Name": ingredientObj.Name.substring(0,ingredientObj.Name.length-1)
+                }
+                let duplicate = obj.ingredients.find(element => {
+                    return element.Name === ingredientObj.Name.substring(0,ingredientObj.Name.length-1);
+                });
+                duplicate ?  null : obj.ingredients.push(tempIngredient);
+            })
+        })
+        jsonfile.writeFile(file, obj, (err) => {
+            err ? console.error(err) : null;
+            response.send("hello");
+            // response.render('recipeIngredients',obj);
+        })
+    })
+})
+
 
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));

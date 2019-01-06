@@ -2,11 +2,13 @@ body {
       font-family: helvetica, sans-serif;
       text-align: center;
       color: black;
+      width: 80%;
+      margin: 0 auto;
     }
 
 h1 {
     font-family: 'Londrina Shadow', cursive;
-    font-size: 90px;
+    font-size: 5rem;
     color: rgb(153, 51, 102);
     margin: 10px 0 0 0;
     font-weight: bold;
@@ -26,22 +28,18 @@ h3 {
 }
 
 
-h4 {
-    font-size: 30px;
-    color: rgb(102, 153, 102);
+h5 {
     margin: 30px auto 0;
-    font-weight: bold;
 }
 
 p {
-    font-size: 15px;
     color: black;
-/*    text-align: left;*/
+    margin: 5px 0 0;
 }
 
 img {
     width: 180px;
-    height: 180px;
+    height: 150px;
     border-radius: 5px;
 }
 
@@ -52,22 +50,8 @@ form {
 }
 
 input {
-    width: 500px;
-    height: 40px;
-}
-
-nav {
-    display: block;
-    background-color: rgb(51, 51, 51);
-    padding: 10px;
-    margin-top: 10px;
-}
-
-nav > a {
-    font-size: 16px;
-    padding: 0 30px;
-    color: white;
-    text-decoration: none;
+    text-align: center;
+    margin: 5px;
 }
 
 div a {
@@ -78,38 +62,36 @@ footer {
     display: block;
     background-color: rgb(51, 51, 51);
     padding: 5px;
-    margin: 20px auto 0;
-    height: 80px;
+    margin: 20px 0 10px;
 }
 
-footer > a, footer > p {
+footer > div> div > a, footer > div > div > p {
     font-size: 12px;
-    padding: 10px 30px;
+    padding: 10px;
     color: white;
     text-decoration: none;
 }
 
 
-nav > a:hover {
-    text-decoration: underline;
-    color: rgb(255, 204, 0);
+footer > div > div > a:hover, footer > div > div > p:hover {
+    color: white;
+    text-decoration: none;
 }
 
-footer > a:hover, footer > p:hover {
+nav > div > ul > li > a:hover {
     text-decoration: underline;
-    color: rgb(255, 204, 0);
+    color: white;
+}
+
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
 }
 
 .eachRecipeContainer {
     margin: 30px;
     display: inline-block;
     color: black;
-}
-
-.columnleft, .columnright {
-    display: inline-block;
-    width: 40%;
-    float: left;
 }
 
 .columnleft {
@@ -128,20 +110,6 @@ footer > a:hover, footer > p:hover {
     border-radius: 5px;
 }
 
-.example {
-    font-size: 10px;
-    color: grey;
-    font-style: italic;
-}
-
-/*.gparent{
-    margin: 30px;
-    display: inline-block;
-    color: black;
-    border: 2px solid black;
-    padding: 10px;
-}*/
-
 .dates {
     font-size: 10px;
     display: inline;
@@ -152,18 +120,30 @@ footer > a:hover, footer > p:hover {
     clear: left;
 }
 
-.button {
-    font-size: 15px;
-    width: 100px;
-    padding: 3px;
-    margin: 10px 25px;
-    text-align: center;
-}
-
 .clearfix:after {
    content: ".";
    visibility: hidden;
    display: block;
    height: 0;
    clear: both;
+}
+
+.text-muted {
+    font-size: 12px;
+}
+
+nav > div > ul > li > a {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size:3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link {
+        font-size:0.8rem;
+    }
 }

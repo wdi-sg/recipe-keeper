@@ -9,10 +9,10 @@ class recipeSelected extends React.Component {
 
     render() {
         const ingredients = this.props.Ingredients.map(number => {
-            return (
-                <div>{number.Name}, {number.Amount}, {number.Notes}</div>
+            return(
+                <div> {number.Name} {number.Amount} {number.Notes}</div>
             )
-        })
+        });
 
 
 
@@ -24,18 +24,18 @@ class recipeSelected extends React.Component {
                     <Nav/>
                     <div className="gparent">
                         <div className="row">
-                            <div className="column">
-                                <h4>{this.props.Title}</h4>
+                            <div className="col">
+                                <h5 className="h5">{this.props.Title}</h5>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="columnleft">
+                            <div className="col columnleft">
                                 <img src ={this.props.Image} className ="selectedImage"/>
                             </div>
-                            <div className="columnright">
+                            <div className="col     columnright">
                                 <div className="parent">
                                     <h3>Ingredients</h3>
-                                    <p>{ingredients}</p>
+                                    {ingredients}
                                 </div>
                                 <div className="parent">
                                     <h3>Instructions</h3>
@@ -45,10 +45,10 @@ class recipeSelected extends React.Component {
                         </div>
                         <div className="action clearfix ">
                             <a href={'/recipes/' + this.props.Id + '/edit'} className = "edit">
-                                <input type="submit" value="Edit" className="button"/>
+                                <input type="submit" value="Edit" className="btn btn-primary"/>
                             </a>
                             <form method='POST' action={'/recipes/'+ this.props.id+ '?_method=delete'}>
-                                <input type="submit" value="Delete" className="button"/>
+                                <input type="submit" value="Delete" className="btn btn-primary"/>
                             </form>
                         </div>
                     </div>
