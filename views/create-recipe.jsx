@@ -5,23 +5,39 @@ class CreateRecipe extends React.Component {
     render() {
         return (
             <DefaultLayout>
-                <form className="new-recipe" action="/recipes" method="post">
-                    <div>
-                        <label>recipe title:</label>
-                        <input className="new-input" type="text" name="title"/>
+            <div className="row justify-content-center">
+                <form className = "new-recipe-form" action = "/recipes" method = "post">
+                    <div className ="new-recipe-container">
+                        <label className="col-12">recipe title:</label>
+                        <input className= "new-input" type= "text" name= "title"/>
                     </div>
-                    <div>
-                        <label>ingredients:</label>
-                        <textarea className="new-input" name="ingredients"></textarea>
+                    <div className = "new-recipe-container">
+                        <label className="col-12">preparation level:</label>
+                            <input className = "new-input" type="radio" name="prep" value="easy"/> easy
+                            <input className = "new-input" type="radio" name="prep" value="medium"/> medium
+                            <input className = "new-input" type="radio" name="prep" value="hard"/> hard
                     </div>
-                    <div>
-                        <label>instructions:</label>
-                        <textarea className="new-input" name="instructions"></textarea>
+                    <div className = "new-recipe-container">
+                        <label className="col-12">cook time:</label>
+                        <input className = "new-input" type = "text" name = "cook"/> mins
                     </div>
-                    <div>
-                        <button type="submit"> Save Recipe </button>
+                    <div className = "new-recipe-container">
+                        <label className="col-12">ready to serve in:</label>
+                        <input className = "new-input" type = "text" name = "ready"/> mins
+                    </div>
+                    <div className = "new-recipe-container">
+                        <label className="col-12">ingredients:</label>
+                        <textarea className = "col-12 ingredients-txt-area" name = "ingredients"></textarea>
+                    </div>
+                    <div className = "new-recipe-container">
+                        <label className="col-12">instructions:</label>
+                        <textarea className = "col-12 instructions-txt-area" name = "instructions"></textarea>
+                    </div>
+                    <div className="new-recipe-container">
+                        <button type="submit button" className="btn btn-sm btn-outline-secondary">save recipe</button>
                     </div>
                 </form>
+            </div>
             </DefaultLayout>
         )
     }

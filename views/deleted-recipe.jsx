@@ -3,10 +3,11 @@ var DefaultLayout = require ('./default');
 
 class DeletedRecipe extends React.Component {
     render() {
-        console.log(this.props);
+        console.log(this.props.selected);
+        const recipe = this.props.selected;
         return(
             <DefaultLayout>
-                <h2> successfully delete recipe! </h2>
+                <h2> successfully delete recipe! {recipe.title} </h2>
             </DefaultLayout>
         )
     }

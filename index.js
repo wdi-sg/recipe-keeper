@@ -22,7 +22,10 @@ app.set('view engine', 'jsx');
 app.get('/recipes/', (request,response) => {
 
     jsonfile.readFile(file, (err,obj)=>{
-        const allRecipes = obj.recipe;
+        let allRecipes = obj.recipe;
+            for(let k=0; k < allRecipes.length; k++) {
+                allRecipes[k].num = k + 1;
+            }
         response.render('all-recipes', {all:allRecipes});
     })
 
@@ -60,13 +63,13 @@ app.get('/recipes/:id', (request, response) => {
                 if ( i === currentIndex ) {
                     currentRecipe = recipe[i];
                     currentRecipe.num = parseInt(request.params.id);
-                }
-            }
+                };
+            };
 
             if (currentRecipe === null) {
                  response.status(404);
                  response.send("not found");
-                }
+                };
 
         response.render('single-recipe', {single:currentRecipe});
     });
@@ -90,7 +93,7 @@ app.put('/recipes/:id', (request,response) => {
 
     jsonfile.readFile(file, (err,obj)=>{
         let currentIndex = parseInt(request.params.id -1);
-        let recipe = obj.recipe[currentId];
+        let recipe = obj.recipe[currentIndex];
         const updatedRecipe =  obj.recipe[currentIndex];
         const body = request.body;
         // console.log(updatedRecipe);
@@ -113,14 +116,14 @@ app.delete('/recipes/:id', (request, response) => {
        let deleteRecipe = obj.recipe[currentIndex];
        obj.recipe.splice(currentIndex, 1);
 
-       response.render('deleted-recipe', {deleteRecipe});
+       response.render('deleted-recipe', {selected:deleteRecipe});
 
             jsonfile.writeFile(file, obj, (err) =>{
                 console.log(err);
-            })
-    })
+            });
+    });
 
-})
+});
 
 function update (recipe, newTitle, newIngredients, newInstructions ) {
     recipe.title = newTitle;

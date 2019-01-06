@@ -1,22 +1,157 @@
+
 body {
 	font-family: 'Hind', sans-serif;
 	background-image: url('http://www.luisazissman.co.uk/wp-content/uploads/2018/03/food.jpg');
+	background-repeat: no-repeat;
 	background-size: cover;
 }
 
-label {
-    display: inline-block;
-    text-transform: capitalize;
-    margin-right: 10px;
+h2, label {
+	text-transform: capitalize;
 }
 
-h1{
+.card-text {
+	height: 400px;
+}
+/*Banner*/
+.banner{
 	text-transform: capitalize;
+	text-align: center;
+	background-color: rgba(4, 1, 1, 0.9);
+	color: white;
+}
+
+.banner h1 {
+	margin: 10px;
+}
+
+.card-text h2 {
+	text-align: center;
+}
+/*Navigation Bar*/
+.nav-bar {
+	background-color: beige;
+}
+
+.nav-bar ul {
+	list-style: none;
+	margin: 5px 0px;
+	float: right;
+}
+
+.nav-bar li {
+	text-transform: uppercase;
+	font-weight: 800;
+	display: inline;
+	padding-left: 20px;
+}
+
+.new-recipe-form {
+		margin: 30px;
+    background: #f1f3f1;
+    border-radius: 5px;
+}
+
+.new-recipe-container {
+    margin: 10px 10px;
+}
+
+.new-recipe-container label {
+    margin: 0px;
+    padding: 0;
+}
+
+.new-recipe-container input, textarea {
+    border: solid 1px darkslategray;
+    border-radius: 2px;
+}
+
+.new-recipe-container input[type="radio"] {
+    margin: 10px;
+}
+
+.ingredients-txt-area {
+    height: 125px;
+}
+
+.instructions-txt-area {
+    height: 200px;
+}
+
+.save-btn {
+    background-color: white;
+}
+
+.single-recipe {
+    margin: 30px 0px;
+}
+
+.single-recipe-wrap {
+    padding: 30px 30px;
+    background-color: #eae8e8;
+}
+
+.single-recipe-wrap h2 {
+    text-align: center;
+}
+
+.single-recipe p {
+    padding: 0px 20px;
+}
+
+
+.edit-recipe-form {
+		margin: 30px;
+    background: #f1f3f1;
+    border-radius: 5px;
+}
+
+.edit-recipe-form h2 {
 	text-align: center;
 }
 
-.main-container {
-    background-color: rgba(250, 249, 249, .9);
-    width: 80%;
-    margin: 0 auto;
+
+
+.edit-recipe-container {
+    margin: 10px 10px;
+}
+
+.edit-recipe-container label {
+    margin: 0px;
+    padding: 0;
+}
+
+.edit-recipe-container input, textarea {
+    border: solid 1px darkslategray;
+    border-radius: 2px;
+}
+
+.edit-recipe-container input[type="radio"] {
+    margin: 10px;
+}
+
+
+@media only screen and (max-width: 425px) {
+	.banner h1 {
+		font-size: 30px;
+	}
+
+	.nav-bar ul{
+	text-align: center;
+	padding: 0;
+	float: none;
+	}
+
+	.nav-bar li {
+		font-size: 14px
+	}
+
+	.card-text h2 {
+	font-size: 25px;
+	}
+
+	.single-recipe-wrap {
+	text-align: center;
+	}
+
 }
