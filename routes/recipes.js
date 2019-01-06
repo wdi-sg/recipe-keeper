@@ -112,14 +112,14 @@ router.delete('/delete/:id', (req, res) => {
 
 	// Delete recipe
 	const index = recipes.indexOf(recipe);
-	recipes.splice(index, 1);
+	obj.recipes.splice(index, 1);
 	// Return the updated recipe
-	res.render('recipe');
-
+		jsonfile.writeFile(file, obj, (err) =>{
+            console.log(err);
+            res.render('success');
+        })
 	})
 });
-
-
 
 function validateRecipe(recipe) {
 	const schema = {

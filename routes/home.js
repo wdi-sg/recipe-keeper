@@ -18,6 +18,16 @@ router.get('/', (req, res) => {
 			  <li class="list-group-item active">Title: ${obj.recipes[i].title}</li>
 			  <li class="list-group-item">Ingredients: ${obj.recipes[i].ingredients}</li>
 			  <li class="list-group-item">Instructions:${obj.recipes[i].instructions}</li>
+		  		<li class="list-group-item">
+		  			<div class="form-inline">
+						<form method="GET" class="mr-3" action="/api/recipes/edit/${obj.recipes[i].id}">
+				            <button type="submit" class="btn btn-secondary">Edit this recipe</button>
+				        </form>
+				        <form method="POST" action="/api/recipes/delete/${obj.recipes[i].id}?_method=delete">
+				            <button type="submit" class="btn btn-danger">Delete this recipe</button>
+				        </form>
+			        </div>
+			    </li>
 			</ul>
 	        </div>`;
 

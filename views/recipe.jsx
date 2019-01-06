@@ -4,6 +4,9 @@ class Recipe extends React.Component {
 
   render(props){
 
+  		const Edit = "/api/recipes/edit/"+this.props.id;
+  		const Delete = "/api/recipes/delete/"+this.props.id;
+
     	return (
     		<React.Fragment>
     			<html>
@@ -38,6 +41,16 @@ class Recipe extends React.Component {
 						  <li className="list-group-item">Title: {this.props.title}</li>
 						  <li className="list-group-item">Ingredients: {this.props.ingredients}</li>
 						  <li className="list-group-item">Instructions: {this.props.instructions}</li>
+						 <li className="list-group-item">
+						 	<div className="form-inline">
+								<form method="GET" className="mr-3" action={Edit}>
+						            <button type="submit" className="btn btn-secondary">Edit this recipe</button>
+						        </form>
+						        <form method="GET" action={Delete}>
+						            <button type="submit" className="btn btn-danger">Delete this recipe</button>
+						        </form>
+					      	</div>
+					    </li>
 						</ul>
 			            </div>
 	                </body>
