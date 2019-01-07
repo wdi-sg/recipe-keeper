@@ -45,4 +45,3 @@ class NavigationBar extends React.Component {
 };
 
 module.exports = NavigationBar;
-

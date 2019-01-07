@@ -2,22 +2,22 @@ var React = require('react');
 
 class SideMenu extends React.Component {
     render() {
-        var menu = document.querySelector(".menu"),
-        toggle = document.querySelector(".menu-toggle");
+        // var menu = document.querySelector(".menu"),
+        // toggle = document.querySelector(".menu-toggle");
 
-        function toggleToggle() {
-          toggle.classList.toggle("menu-open");
-        };
+        // function toggleToggle() {
+        //   toggle.classList.toggle("menu-open");
+        // };
 
-        function toggleMenu() {
-          menu.classList.toggle("active");
-        };
+        // function toggleMenu() {
+        //   menu.classList.toggle("active");
+        // };
 
-        toggle.addEventListener("click", toggleToggle, false);
-        toggle.addEventListener("click", toggleMenu, false);
+        // toggle.addEventListener("click", toggleToggle, false);
+        // toggle.addEventListener("click", toggleMenu, false);
 
         return (
-            <nav role="navigation">
+/**            <nav role="navigation">
               <div class="menu-toggle"><span>Menu</span></div>
               <ul class="menu">
                 <li><a href="#"><span>Home</span></a></li>
@@ -28,7 +28,9 @@ class SideMenu extends React.Component {
                 <li><a href="#"><span>Get The Gear</span></a></li>
               </ul>
             </nav>
+
         );
+**/
     }
 };
 
