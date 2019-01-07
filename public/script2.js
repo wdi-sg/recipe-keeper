@@ -9,6 +9,9 @@ window.onload = function() {
     // add event listeners (+ &&  - buttons to remaining buttons)  
     addBothListeners(allIngredientList);
     addBothListeners(allInstructionList);
+
+    // add event listener to delete button
+    // document.getElementById("deleteButton").addEventListener('click', promptUser);
     
 }
 
@@ -69,3 +72,7 @@ function addBothListeners(nodeList) {
         nodeList[i].parentNode.insertBefore(minusButton, nodeList[i].parentNode.lastChild.nextSibling);
     }
 }
+
+// function promptUser(){
+    
+// }

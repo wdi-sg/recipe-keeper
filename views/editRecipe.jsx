@@ -45,7 +45,7 @@ class EditRecipe extends React.Component {
                 <input id="submitButton" type="submit"/>
             </form>
             <form method="POST" action={id + "?_method=delete"}>
-                <input type="submit" value="Delete This Recipe"/>
+                <input id="deleteButton" type="submit" value="Delete This Recipe"/>
             </form>
             </MainTemplate>
         );
