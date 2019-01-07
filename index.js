@@ -56,7 +56,8 @@ function getDate() {
 
 app.get('/recipes/', (req, res) => {
     jsonfile.readFile(FILE, (err, obj) => {
-        res.send(obj);
+        // res.send(obj);
+        res.render('home', obj.recipes)
     })
 })
 
@@ -127,6 +128,7 @@ app.get('/recipes/:id', (req, res) => {
 
 app.get('/recipes/:id/edit', (req, res) => {
     jsonfile.readFile(FILE, (err, obj) => {
+//  Find the recipe
         var recipe;
         for (let i = 0; i < obj.recipes.length; i++) {
             if (obj.recipes[i].id === parseInt(req.params.id)) {
@@ -166,10 +168,22 @@ app.put('/recipes/:id', (req, res) => {
     })
 });
 
-// app.delete('/recipes/:id', (req, res) => {
+app.delete('/recipes/:id', (req, res) => {
+    jsonfile.readFile(FILE, (err, obj) => {
+//  Find the recipe and delete it
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (obj.recipes[i].id === parseInt(req.params.id)) {
+                obj.recipes.splice(i, 1);
+                obj.idList.splice(i, 1);
+            }
+        };
 
-// })
+        jsonfile.writeFile(FILE, obj, (err) => {
+            console.error(err);
+            res.send(obj)
+        })
+    })
+})
 
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
-
