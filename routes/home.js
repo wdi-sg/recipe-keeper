@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         for(let i = 0; i < obj.recipes.length; i++){
             recipes.list.push(obj.recipes[i]);
         }
-    response.render('home', recipes);
+    res.render('home', recipes);
 		// var displayAll = ``;
 
   //       for( let i=0; i<obj.recipes.length; i++ ){
