@@ -10,6 +10,7 @@ function cloneButton(){
     var divToClone = this.parentNode;
     // console.log(divToClone.parentNode);
     var clonedDiv = divToClone.cloneNode(true);
+    clonedDiv.childNodes[0].value = "";
 
     // adding event listener to + button
     clonedDiv.childNodes[1].addEventListener('click', plusDiv);
@@ -33,6 +34,8 @@ function minusDiv() {
 function plusDiv() {
     var divToClone = this.parentNode;
     var clonedDiv = divToClone.cloneNode(true);
+    clonedDiv.childNodes[0].value = "";
+
     clonedDiv.childNodes[1].addEventListener('click', plusDiv);
     clonedDiv.childNodes[2].addEventListener('click', minusDiv);
 
