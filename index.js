@@ -47,6 +47,8 @@ app.get('/recipes/new', (request, response) => {
 
 });
 
+// add new recipes
+
 app.post('/recipes/new', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
 
@@ -78,12 +80,15 @@ app.get('/recipes/:id/edit', (request, response) => {
     let id = (request.params.id) -1;
         jsonfile.readFile(file, (err, obj) => {
             let searchedRecipe = obj.recipes[id];
-
+            console.log("testing ");
             response.render("edit", searchedRecipe)
 
         });
 });
 
+
+
+///// TEsting push branchings
 
 // app.put('/recipes/:id', (request, response) => {
 //     jsonfile.readFile(file, (err, obj) => {
@@ -122,7 +127,7 @@ app.put('/recipes/:id', (request, response) => {
         }
         response.redirect('/recipes/' + request.params.id);
         jsonfile.writeFile(file, obj, (err) => {
-            response.render("edit", recipes)
+            response.render("edit", recipes);
         });
     });
 });
