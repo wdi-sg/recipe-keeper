@@ -80,7 +80,10 @@ function retrieveRecipe(req, res, render, method) {
                             "recipe": currentRecipes.recipes[i],
                             "length": currentRecipes.recipes.length
                         }
-                        res.render(render, recipeAndLength);
+                        jsonfile.writeFile('recipes.json', recipeAndLength.recipes, (err) => {
+                            console.log(err);
+                            res.render(render, recipeAndLength);
+                        });
                         break;
 
                     case 'delete':
