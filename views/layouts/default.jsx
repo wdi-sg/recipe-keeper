@@ -51,7 +51,7 @@ class DefaultLayout extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div style={{backgroundColor: 'grey'}}>
+                <div>
                     {this.props.children}
                 </div>
             </div>
