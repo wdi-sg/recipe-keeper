@@ -1,84 +1,113 @@
-const express = require("express");
+const jsonfile = require('jsonfile');
+
+const file = 'data.json';
+
+const express = require('express');
+
 const app = express();
-const jsonfile = require("jsonfile");
-const file1 = "ingredient.json";
-const file2 = "recipe.json";
-const methodOverride = require("method-override");
 
-app.use(methodOverride("_method"));
-app.use(express.static(__dirname + "/public/"));
+app.use(express.static(__dirname+'/public/'));
+
 app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: true
-  })
-);
 
-// this line below, sets a layout look to your express project
-const reactEngine = require("express-react-views").createEngine();
-app.engine("jsx", reactEngine);
+app.use(express.urlencoded({
+  extended: true
+}));
 
-// this tells express where to look for the view files
-app.set("views", __dirname + "/views");
+const methodOverride = require('method-override')
 
-// this line sets handlebars to be the default view engine
-app.set("view engine", "jsx");
+app.use(methodOverride('_method'));
 
-var ingredients = jsonfile.readFileSync(file1, (err, ingredients) => {});
+const reactEngine = require('express-react-views').createEngine();
 
-app.get("/recipes/", (req, res) => {
-  jsonfile.readFile(file2, (err, recipes) => {
-    console.log(recipes);
-    res.render("home", {
-      recipes: recipes,
-      ingredients: ingredients
+app.engine('jsx', reactEngine);
+
+app.set('views', __dirname + '/views');
+
+app.set('view engine', 'jsx');
+
+//create recipe render
+app.get("/recipes/new", (req,res) => {
+        res.render('newrecipe');
     });
-  });
+
+// post data from form
+app.post('/recipes', (request,response) => {
+
+    jsonfile.readFile(file, (err,obj) =>{
+        const body = request.body;
+        let newRecipe = obj.recipes;
+        newRecipe.push(body);
+
+        response.render('addedrecipe', {recipes:newRecipe});
+
+            jsonfile.writeFile(file, obj, (err) => {
+                console.log(err);
+            });
+    });
 });
 
-app.get("/recipes/:name", (req, res) => {
-  //check thru recipe.json for recipe ingredients id
+//show all recipes
+app.get('/recipes/', (request,response) => {
 
-  jsonfile.readFile(file2, (err, recipes) => {
-    var name = req.params.name.toLowerCase();
-
-    for (i = 0; i < recipes.length; i++) {
-      if (
-        name ==
-        recipes[i].name
-          .toLowerCase()
-          .split(" ")
-          .join("")
-      ) {
-        //ingredientsID
-        //filter ingredients to only have the ID
-        var recipeIngredients = recipes[i].ingredients;
-
-        var ingredientsFiltered = [];
-
-        for (var j = 0; j < recipeIngredients.length; j++) {
-          var temp = ingredients.filter(function(el) {
-            return el.id == recipeIngredients[j].id;
-          });
-
-          if (temp.length > 0) {
-            temp[0].amount = recipeIngredients[j].amount;
-            ingredientsFiltered.push(temp[0]);
-          }
-        }
-
-        res.render("recipe", {
-          ingredients: ingredientsFiltered,
-          recipeName: recipes[i].name,
-          instructions: recipes[i].instructions
-        });
-        return;
-      }
-    }
-    res.send("404: Page Not found");
-  });
+    jsonfile.readFile(file, (err,obj)=>{
+        const rList = obj.recipes;
+        console.log(rList);
+        response.render('allRecipes', {all:rList});
+    })
 });
 
-app.listen(3000, () =>
-  console.log("~~~ Tuning in to the waves of port 3000 ~~~")
-);
+//See a single recipe
+app.get('/recipes/:id', (request, response) => {
+
+    jsonfile.readFile(file, (err,obj) => {
+        const recipe = obj.recipes;
+        let currentIndex = parseInt(request.params.id -1);
+        let currentRecipe = null;
+            for (let i = 0; i < recipe.length; i++) {
+                if ( i === currentIndex ) {
+                    currentRecipe = recipe[i];
+                    currentRecipe.num = parseInt(request.params.id);
+                }
+            }
+
+            if (currentRecipe === null) {
+                 response.status(404);
+                 response.send("not found");
+                }
+
+        response.render('singleRecipe', {single:currentRecipe});
+    });
+});
+
+app.get('/recipes/:id/edit', (request, response) => {
+
+    jsonfile.readFile(file, (err,obj)=>{
+        const recipe = obj.recipes;
+        let currentIndex = parseInt(request.params.id -1);
+        let editRecipe = recipe[currentIndex];
+        editRecipe.num = parseInt(request.params.id);
+
+        response.render('editRecipe', {edit:editRecipe});
+    });
+});
+
+//editing recipe
+app.put('/recipes/:id', (request,response) => {
+
+    jsonfile.readFile(file, (err,obj)=>{
+        let currentIndex = parseInt(request.params.id -1);
+        let recipe = obj.recipes[currentIndex];
+        const updatedRecipe =  obj.recipes[currentIndex];
+        const body = request.body;
+        recipe  = new update(recipe,body.title, body.ingredients, body.instructions);
+
+        response.render('updatedRecipe', {single:updatedRecipe});
+
+            jsonfile.writeFile(file, obj, (err)=>{
+                console.log("Is there an error : " + err);
+            });
+    });
+});
+
+app.listen(3000, () => console.log('~~~~ Tuning in to port 3000'));
