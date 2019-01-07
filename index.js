@@ -28,6 +28,17 @@ app.get('/recipes', (req, res) => {
     });
 })
 
+//Show Individual Recipe
+app.get("/recipes/:id", (req, res) => {
+    jsonfile.readFile(FILE, (err, obj) => {
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (i == req.params.id - 1) {
+                res.render('recipe', obj.recipes[i]);
+            }
+        }
+    });
+});
+
 //uses form data from user (from form on '/recipes') to create new recipe data in data.json
 app.post("/recipes/", (req, res) => {
 
