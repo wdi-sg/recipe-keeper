@@ -44,6 +44,20 @@ app.post('/recipes', (req, res) => {
     })
 });
 
+// app.post('/recipes/new', (req, res) => {
+//     jsonfile.readFile(file, (err, obj) => {
+
+//         response.send(request.body)
+//         obj.recipes.push(request.body)
+
+//         jsonfile.writeFile(file, obj, (err) => {
+//             // res.render("addRecipe")
+//             // res.redirect("/recipes")
+
+//         })
+//     })
+// })
+
 //See all the recipes
 app.get('/recipes/', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
@@ -66,9 +80,10 @@ app.get('/recipes/:id', (req,res) => {
 
 //recipes/:id/edit   GET edit    Display the form for editing a single recipe
 app.get('/recipes/:id/edit', (req,res) => {
+
     jsonfile.readFile(file, (err, obj) => {
         let recipeArray = obj.recipes[parseInt(req.params.id) -1];
-        res.render('editRecipe',{recipesArray});
+        res.render('editRecipe',recipeArray);
     });
 });
 

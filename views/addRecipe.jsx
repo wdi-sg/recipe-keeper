@@ -5,7 +5,7 @@ console.log("Start rendering ");
 
 class AddRecipe extends React.Component {
 
-    console.log(this.props);
+    // console.log(this.props);
     render() {
  /*      let sampleRecipe = this.props.recipes.map( recipe => { return (
         <a href={"http://localhost:3000/recipes/" + recipe.id}>
@@ -22,7 +22,7 @@ class AddRecipe extends React.Component {
        });*/
 
         return(
-            <DefaultLayout title="RECIPE" recipeLength = {this.props.recipe.length}>
+            <DefaultLayout title="RECIPE" recipeLength = {this.props.recipes.length}>
                 <form method="POST" action="/recipes/new">
                 <input type="" name="id" value={this.props.recipeLength+1} style={{display: "none"}}/><br /><br />
                 Recipe Name: <input type="" name="title"/><br /><br />
