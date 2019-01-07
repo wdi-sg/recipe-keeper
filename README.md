@@ -136,10 +136,10 @@ The recipe object should look something like this:
 
 **Note**: you don't have to work on the furthers in the order listed.
 
-#### Further
+#### Further DONE
 Add a way for users to navigate around the site without typing the explicit routes in the browser URL bar.
 
-#### Further
+#### Further DONE
 CSS Part 1:
 
 Add some CSS. Use margin and padding, set basic spacing for all parts of your app. Add some basic colors or styles.
@@ -149,7 +149,7 @@ Add some CSS. Use margin and padding, set basic spacing for all parts of your ap
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 ```
 
-#### Further
+#### Further DONE
 CSS Part 2:
 
 Add some layout styles. Add a kind of column layout to each page. You can use bootstrap.
@@ -172,7 +172,7 @@ Add more data to your recipie: add the date when it was created.
 #### Further
 Validate the user's input. Create limits for how long or short any field should be. 
 
-#### Further
+#### Further DONE
 Create a system where the app actually tracks a kind of ID. This ID is unique to each recipe. The easiest implementation of this is simply a system that increments from the highest number. If a recipe is removed then the app ignores that ID.
 
 #### Further

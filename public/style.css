@@ -1,0 +1,52 @@
+.navHeight {
+    height: 60px;
+}
+
+.nav > .nav-item {
+    margin: auto 5px;
+}
+
+.midWidth {
+    margin: 0 auto;
+}
+.cardsWidth {
+    margin: 15px 30px;
+}
+
+.formWidth {
+    margin: 30px 30px;
+    padding: 20px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.searchWidth {
+    margin: 30px 30px;
+}
+
+.boxshadow {
+    box-shadow: 1px 1px 8px lightgrey;
+}
+
+.formHide {
+    display: none;
+}
+
+label {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+a.nav-link {
+    color:black;
+}
+
+.nav-pills > li > a.now-active{
+    background-color: rgb(156, 119, 7);
+    color: white;
+}
+
+.nav-pills > li > a:hover {
+    background-color: rgb(219, 166, 7);
+
+}
