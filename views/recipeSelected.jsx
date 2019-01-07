@@ -1,9 +1,5 @@
 var React = require('react');
-var Head = require('./head.jsx');
-var Header = require('./header.jsx');
-var Nav = require('./nav.jsx');
-var Footer = require('./footer.jsx');
-var Scripts = require('./scripts.jsx');
+var DefaultLayout = require('./layouts/default');
 
 class recipeSelected extends React.Component {
 
@@ -17,11 +13,7 @@ class recipeSelected extends React.Component {
 
 
         return(
-            <html>
-                <Head/>
-                <body>
-                    <Header/>
-                    <Nav/>
+           <DefaultLayout>
                     <div className="gparent">
                         <div className="row">
                             <div className="col">
@@ -52,10 +44,7 @@ class recipeSelected extends React.Component {
                             </form>
                         </div>
                     </div>
-                    <Footer/>
-                    <Scripts/>
-                </body>
-            </html>
+           </DefaultLayout>
         )
 
     }

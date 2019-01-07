@@ -99,7 +99,6 @@ app.get('/recipes/:id', (request, response) => {
         })
         indexArray.push(obj.recipes.indexOf(selectedRecipeObject));
         const selectedRecipe = obj.recipes[indexArray[0]];
-        console.log(selectedRecipe);
         response.render('recipeSelected',selectedRecipe);
     });
     //delete

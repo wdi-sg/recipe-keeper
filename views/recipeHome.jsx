@@ -1,9 +1,5 @@
 var React = require('react');
-var Head = require('./head.jsx');
-var Header = require('./header.jsx');
-var Nav = require('./nav.jsx');
-var Footer = require('./footer.jsx');
-var Scripts = require('./scripts.jsx');
+var DefaultLayout = require('./layouts/default');
 
 class recipeHome extends React.Component {
 
@@ -19,18 +15,12 @@ class recipeHome extends React.Component {
 
 
         return(
-           <html>
-                <Head/>
-                <body>
-                    <Header/>
-                    <Nav/>
+
+           <DefaultLayout>
                     <div className="all">
                         {recipes}
                     </div>
-                    <Footer/>
-                    <Scripts/>
-                </body>
-            </html>
+           </DefaultLayout>
 
             )
     }

@@ -1,9 +1,5 @@
 var React = require('react');
-var Head = require('./head.jsx');
-var Header = require('./header.jsx');
-var Nav = require('./nav.jsx');
-var Footer = require('./footer.jsx');
-var Scripts = require('./scripts.jsx');
+var DefaultLayout = require('./layouts/default');
 
 class recipeNew extends React.Component {
 
@@ -25,11 +21,7 @@ class recipeNew extends React.Component {
     })
 
         return (
-            <html>
-                <Head/>
-                <body>
-                    <Header/>
-                    <Nav/>
+           <DefaultLayout>
                     <h5 class="h5">Fill up the form below to contribute a new recipe</h5>
                     <form method='POST' action='/recipes'>
                         <div className="form-group">
@@ -54,10 +46,7 @@ class recipeNew extends React.Component {
                         </div>
                         <input type="submit" value="Submit" className="btn btn-primary text"/>
                     </form>
-                    <Footer/>
-                    <Scripts/>
-                </body>
-            </html>
+           </DefaultLayout>
         )
 
     }
