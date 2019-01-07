@@ -11,15 +11,25 @@ class DefaultLayout extends React.Component {
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
         </head>
         <body>
-            <div class="container">
-                {/* Home Button */}
-                <form method="GET" action={"/recipes"}>
-                    <input type="submit" value="Home"/>
-                </form>
-                {/* Modal New Recipe Form */}
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Add New Recipe!
-                </button>
+            <div class="container" style={{marginTop: '50px'}}>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>HC Recipes</h1>
+                    </div>
+                    <div class="col-md-3">
+                        {/* Home Button */}
+                        <form method="GET" action={"/recipes"} style={{float: 'right'}}>
+                            <input type="submit" class="btn btn-primary" value="Home"/>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        {/* Modal New Recipe Form */}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style={{float: 'right'}}>
+                          Add New Recipe!
+                        </button>
+                    </div>
+                </div>
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -41,15 +51,9 @@ class DefaultLayout extends React.Component {
                     </div>
                   </div>
                 </div>
-
-                {this.props.children}
-
-
-
-
-
-
-
+                <div style={{backgroundColor: 'grey'}}>
+                    {this.props.children}
+                </div>
             </div>
 
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

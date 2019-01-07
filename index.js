@@ -23,6 +23,12 @@ app.get("/recipes", (req, res) => {
     });
 });
 
+app.get("/", (req, res) => {
+    jsonfile.readFile('recipes.json', (err, obj) => {
+        res.render('recipes', obj);
+    });
+});
+
 //Create New Recipe
 app.post("/recipes", (req, res) => {
     jsonfile.readFile('recipes.json', (err, obj) => {

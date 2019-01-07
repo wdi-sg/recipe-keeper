@@ -7,7 +7,6 @@ class Recipe extends React.Component {
 
     return (
       <DefaultLayout title="This Recipe" recipeLength={this.props.length}>
-        <h1>Individual Recipe</h1>
         <h2>{this.props.recipe.id}</h2>
         <h2>{this.props.recipe.title}</h2>
         <h2>{this.props.recipe.ingredients}</h2>
