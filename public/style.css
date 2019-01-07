@@ -12,25 +12,34 @@ header{
     left: 0%;
     top: 0%;
     z-index: 99;
-    display: flex;
     align-items: center;
     padding: 10px 20px 10px 20px;
 }
+
 header img{
     float:left;
     width: 60px;
 }
+
 h1{
     float: left;
     margin: 0;
 }
+
 ul{
     position: absolute;
     right: 0;
     margin: 0;
     padding: 0;
 }
+
 ul li{
+    margin-right: 30px;
+    display: inline-block;
+}
+
+
+div li{
     margin-right: 30px;
     display: inline-block;
 }
@@ -96,7 +105,7 @@ p:before{
 }
 
 p:after{
-    content: "";  
+    content: "";
     position:absolute;
     width: 2.0em;
     height: 1.5em;
