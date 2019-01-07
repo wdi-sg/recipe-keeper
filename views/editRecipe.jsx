@@ -9,13 +9,21 @@ class EditRecipe extends React.Component {
         var description = this.props.description;
         var img = this.props.imgLink;
 
-        var ingredientList = this.props.ingredientList.map(eachIngredient => {
-            return (<div className="ingredient"><input type="text" name="ingredients" placeholder="Ingredient" className="eightyWidth" defaultValue={eachIngredient}/><div className="twentyWidth plusButton ingredient">+</div></div>);
-        }) 
+        if (typeof this.props.ingredientList === "string"){
+            var ingredientList = <div className="ingredient"><input type="text" name="ingredients" placeholder="Ingredient" className="eightyWidth" defaultValue={this.props.ingredientList}/><div className="twentyWidth plusButton ingredient">+</div></div>;
+        } else {
+            var ingredientList = this.props.ingredientList.map(eachIngredient => {
+                return (<div className="ingredient"><input type="text" name="ingredients" placeholder="Ingredient" className="eightyWidth" defaultValue={eachIngredient}/><div className="twentyWidth plusButton ingredient">+</div></div>);
+            }) 
+        }
 
-        var instructionList = this.props.instructionList.map(eachInstruction => {
-            return (<div className="instruction"><textarea type="text" name="instructions" placeholder="Instructions e.g. 1. Get your fishing rod." className="eightyWidth" defaultValue={eachInstruction}></textarea><div className="twentyWidth plusButton instruction">+</div></div>);
-        }) 
+        if (typeof this.props.instructionList === "string"){
+            var instructionList = <div className="instruction"><textarea type="text" name="instructions" placeholder="Instructions e.g. 1. Get your fishing rod." className="eightyWidth" defaultValue={this.props.instructionList}></textarea><div className="twentyWidth plusButton instruction">+</div></div>
+        } else {
+            var instructionList = this.props.instructionList.map(eachInstruction => {
+                return (<div className="instruction"><textarea type="text" name="instructions" placeholder="Instructions e.g. 1. Get your fishing rod." className="eightyWidth" defaultValue={eachInstruction}></textarea><div className="twentyWidth plusButton instruction">+</div></div>);
+            }) 
+        }
         
         return (
             <MainTemplate title="New Recipe">

@@ -8,13 +8,21 @@ class EachRecipe extends React.Component {
         var description = this.props.description;
         var img = this.props.imgLink;
 
-        var ingredientList = this.props.ingredientList.map(eachIngredient => {
-            return <li>{eachIngredient}</li>;
-        }) 
+        if (typeof this.props.ingredientList === "string"){
+            var ingredientList = <li>{this.props.ingredientList}</li>; 
+        } else {
+            var ingredientList = this.props.ingredientList.map(eachIngredient => {
+                return <li>{eachIngredient}</li>;
+            })
+        }
 
-        var instructionList = this.props.instructionList.map(eachInstruction => {
-            return <li>{eachInstruction}</li>;
-        }) 
+        if (typeof this.props.instructionList === "string"){
+            var instructionList = <li>{this.props.instructionList}</li>; 
+        } else {
+            var instructionList = this.props.instructionList.map(eachInstruction => {
+                return <li>{eachInstruction}</li>;
+            }) 
+        }
 
         return (
             <MainTemplate title={recipeName}> 

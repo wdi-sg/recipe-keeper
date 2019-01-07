@@ -59,17 +59,19 @@ function moveDiv(divToClone, clonedDiv) {
 }
 
 function addBothListeners(nodeList) {
-    for (var i=1; i<nodeList.length; i++){
-        console.log(nodeList[i]);
-        // adding event listener to plus 
-        nodeList[i].parentNode.childNodes[1]. addEventListener('click', plusDiv);
-
-        // minus button && its corresponding event listener
-        var minusButton = document.createElement("div");
-        minusButton.className = "twentyWidth minusButton";
-        minusButton.textContent = "-";
-        minusButton.addEventListener('click', minusDiv);
-        nodeList[i].parentNode.insertBefore(minusButton, nodeList[i].parentNode.lastChild.nextSibling);
+    if (nodeList.length > 1){
+        for (var i=1; i<nodeList.length; i++){
+            console.log(nodeList[i]);
+            // adding event listener to plus 
+            nodeList[i].parentNode.childNodes[1]. addEventListener('click', plusDiv);
+    
+            // minus button && its corresponding event listener
+            var minusButton = document.createElement("div");
+            minusButton.className = "twentyWidth minusButton";
+            minusButton.textContent = "-";
+            minusButton.addEventListener('click', minusDiv);
+            nodeList[i].parentNode.insertBefore(minusButton, nodeList[i].parentNode.lastChild.nextSibling);
+        }
     }
 }
 
