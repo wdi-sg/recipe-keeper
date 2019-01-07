@@ -21,11 +21,11 @@ app.set('views', __dirname + '/views/');
 
 app.set('view engine', 'jsx');
 
-
+//Show Add Recipes and Add Recipe Form
 app.get('/recipes', (req, res) => {
-
-    res.render('home');
-
+    jsonfile.readFile(FILE, (err, obj) => {
+        res.render('home', obj);
+    });
 })
 
 //uses form data from user (from form on '/recipes') to create new recipe data in data.json
