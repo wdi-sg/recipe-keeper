@@ -1,1 +1,1 @@
-{"recipes":[{"id":1,"title":"Mac And Cheese","ingredients":"Cheese","instructions":"Bake"},{"id":2,"title":"Char Kway Teow","ingredients":"Kway Teow","instructions":"Stir-Fry"},{"id":3,"title":"Fishball","ingredients":"Fish","instructions":"Ball"}]}
+{"recipes":[{"id":"1","title":"banana bread","ingredients":"banana, bread","instructions":"bake"},{"id":"2","title":"french toast","ingredients":"bread, eggs","instructions":"fry"}]}

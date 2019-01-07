@@ -8,30 +8,28 @@ class Recipes extends React.Component {
         if (i == 0) {
             return (
                 <div class="carousel-item active">
-                    <div className="d-block w-100">
-                        <a href={"http://localhost:3000/recipes/" + recipe.id}>
-                            <div className="recipe">
-                                <h3>{recipe.id}</h3>
-                                <h3>{recipe.title}</h3>
-                                <h3>{recipe.ingredients}</h3>
-                                <h3>{recipe.instructions}</h3>
+                    <div className="d-block w-100" style={{height: '300px'}}>
+
+                            <div className="recipe" style={{textAlign: 'center'}} className="carousel-caption d-none d-md-block">
+                                <h3 style={{textTransform: 'uppercase'}}>{recipe.title}</h3>
+
+                                <h5><a style={{color: 'white'}} href={"http://localhost:3000/recipes/" + recipe.id}>Click to view recipe</a></h5>
                             </div>
-                            </a>
+
                     </div>
                 </div>
             );
         } else {
            return (
                 <div class="carousel-item">
-                    <div className="d-block w-100">
-                        <a href={"http://localhost:3000/recipes/" + recipe.id}>
-                            <div className="recipe">
-                                <h3>{recipe.id}</h3>
-                                <h3>{recipe.title}</h3>
-                                <h3>{recipe.ingredients}</h3>
-                                <h3>{recipe.instructions}</h3>
+                    <div className="d-block w-100" style={{height: '300px'}}>
+
+                            <div className="recipe" style={{textAlign: 'center'}} className="carousel-caption d-none d-md-block">
+                                <h3 style={{textTransform: 'uppercase'}}>{recipe.title}</h3>
+
+                                <h5><a style={{color: 'white'}} href={"http://localhost:3000/recipes/" + recipe.id}>Click to view recipe</a></h5>
                             </div>
-                            </a>
+
                     </div>
                 </div>
             );
