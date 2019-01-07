@@ -6,6 +6,8 @@ class UpdatedRecipe extends React.Component {
         const updateRecipe = this.props.single;
         return(
             <DefaultLayout>
+            <div class="jumbotron p-3">
+                <div class="container">
                 <h2> Updated recipe! </h2>
                     <h3> Title:  </h3>
                         <p> {updateRecipe.title} </p>
@@ -13,6 +15,9 @@ class UpdatedRecipe extends React.Component {
                         <p> {updateRecipe.ingredients} </p>
                     <h3> Instructions: </h3>
                         <p> {updateRecipe.instructions} </p>
+                </div>
+                </div>
+                
             </DefaultLayout>
         )
     }
