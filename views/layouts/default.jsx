@@ -15,7 +15,8 @@ class DefaultLayout extends React.Component {
                 <body>
                     <header>
                         <div class="row">
-                            <h1 class="col">House of Cooks</h1>
+
+                            <h1 class="col"><a href='/recipes/'>House of Cooks</a></h1>
                         </div>
                     </header>
                     <nav className="navbar navbar-expand-md bg-dark">
