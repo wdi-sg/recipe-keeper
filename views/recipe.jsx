@@ -3,7 +3,7 @@ var React = require("react");
 class Recipe extends React.Component {
   render() {
     //show recipe details
-    let ingredientsList = this.state.ingredients.map(ingredient => {
+    let ingredientsList = this.props.ingredients.map(ingredient => {
       return (
         <li>
           {ingredient.amount} x {ingredient.name}
@@ -11,9 +11,9 @@ class Recipe extends React.Component {
       );
     });
 
-    let recipeName = this.state.recipeName;
+    let recipeName = this.props.recipeName;
 
-    let instructions = this.state.instructions.map(instruction => {
+    let instructions = this.props.instructions.map(instruction => {
       return <li>{instruction}</li>;
     });
 
@@ -22,12 +22,11 @@ class Recipe extends React.Component {
         <body>
           <div>
             <h2>Dish: {recipeName}</h2>
-            <h2>Ingredients:</h2>
+            <h2>Ingredients:</h2>{" "}
             <p>
               <ul>{ingredientsList}</ul>
             </p>
-            <h2>Instructions:</h2>
-            <ol>{instructions}</ol>
+            <h2>Instructions:</h2> <ol>{instructions}</ol>
           </div>
         </body>
       </html>
