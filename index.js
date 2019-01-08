@@ -21,12 +21,23 @@ app.set('views', __dirname + '/views/');
 
 app.set('view engine', 'jsx');
 
-
+//Show Add Recipes and Add Recipe Form
 app.get('/recipes', (req, res) => {
-
-    res.render('home');
-
+    jsonfile.readFile(FILE, (err, obj) => {
+        res.render('home', obj);
+    });
 })
+
+//Show Individual Recipe
+app.get("/recipes/:id", (req, res) => {
+    jsonfile.readFile(FILE, (err, obj) => {
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (i == req.params.id - 1) {
+                res.render('recipe', obj.recipes[i]);
+            }
+        }
+    });
+});
 
 //uses form data from user (from form on '/recipes') to create new recipe data in data.json
 app.post("/recipes/", (req, res) => {
