@@ -27,8 +27,8 @@ class Recipe extends Component {
       let recipe;
       for (let item in this.props.recipes) {
         if (
-          parseInt(this.props.recipes[item].id) ===
-          parseInt(this.props.match.params.id)
+          this.props.recipes[item].name ===
+          this.props.match.params.id
         ) {
           recipe = this.props.recipes[item];
         }
@@ -73,7 +73,7 @@ class Recipe extends Component {
             </div>
           </div>
         );
-      } else return <div>Not loaded yet</div>;
+      } else return <div>Recipe not loaded yet</div>;
     }
   }
 }

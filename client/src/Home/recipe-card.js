@@ -9,7 +9,7 @@ class RecipeCard extends Component {
         <div className="card-body">
           <h5 className="card-title">{item.name}</h5>
           <Link
-            to={{ pathname: `/recipes/${item.id}`, state: { foo: "bar" } }}
+            to={{ pathname: `/recipes/${item.name}`, state: { foo: "bar" } }}
             className="btn btn-primary"
           >
             See full recipe
