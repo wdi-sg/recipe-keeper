@@ -6,7 +6,7 @@ body {
 .banner {
 	color: white;
 	height: 30px;
-	background-color: #3C455A;
+	background-color: #4B4B4B;
 }
 
 .banner > div {
@@ -17,7 +17,7 @@ body {
 
 .navigation {
 	padding: 0px;
-	height: 900px;
+	height: 680px;
 	background-color: #F4F1F4;
 }
 
@@ -61,4 +61,10 @@ li > a, li > a:hover {
 	color: #807C80;
 	margin-left: 15px;
 	display: inline-block;
+}
+
+/*Add*/
+.add, .edit, .delete {
+	width: 70%;
+	margin-left: 25px;
 }

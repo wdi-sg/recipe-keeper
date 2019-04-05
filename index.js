@@ -57,31 +57,28 @@ var homeRequestHandler = function (request, response) {
     response.render('home');
 }
 
-var getRecipesByIdRequestHandler = function (request, response) {
-    response.send('link!');
-}
-
 var newRecipeRequestHandler = function (request, response) {
-    response.send('link!');
+    response.render('add');
 }
 
 var addNewRecipeRequestHandler = function (request, response) {
-    response.send('link!');
 }
 
 var editRecipeRequestHandler = function (request, response) {
-    response.send('link!');
+    response.render('edit');
 }
 
 var editExistingRecipeRequestHandler = function (request, response) {
-    response.send('link!');
 }
 
 var deleteRecipeRequestHandler = function (request, response) {
-    response.send('link!');
+    response.render('delete');
 }
 
 var deleteExistingRecipeRequestHandler = function (request, response) {
+}
+
+var getRecipesByIdRequestHandler = function (request, response) {
     response.send('link!');
 }
 
@@ -89,7 +86,6 @@ var deleteExistingRecipeRequestHandler = function (request, response) {
 // Routes
 // ===================================
 app.get('/recipes', homeRequestHandler); // GET See all the recipes
-app.get('/recipes/:id', getRecipesByIdRequestHandler); // GET See a single recipe
 
 app.get('/recipes/new', newRecipeRequestHandler); // GET Display the form for creating a single recipe
 app.post('/recipes', addNewRecipeRequestHandler); // POST Create a new recipe
@@ -100,6 +96,7 @@ app.put('/recipes/:id', editExistingRecipeRequestHandler); // PUT Update a recip
 app.get('/recipes/:id/delete', deleteRecipeRequestHandler); // GET Display the form for deleting a single recipe
 app.delete('/recipes/:id', deleteExistingRecipeRequestHandler); // DELETE Remove a recipe
 
+app.get('/recipes/:id', getRecipesByIdRequestHandler); // GET See a single recipe
 app.get('/', homeRequestHandler); // GET See all the recipes
 
 // ===================================

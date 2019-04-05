@@ -22,13 +22,13 @@ class DefaultLayout extends React.Component {
 
                                 <ul className="nav nav-pills home">
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#"><img src="/img/home.svg"/>Home</a>
+                                        <a className="nav-link" href="/"><img src="/img/home.svg"/>Home</a>
                                     </li>
                                 </ul>
 
                                 <ul className="nav nav-pills new">
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#"><img src="/img/plus.svg"/>New Recipe</a>
+                                        <a className="nav-link" href="/recipes/new"><img src="/img/plus.svg"/>New Recipe</a>
                                     </li>
                                 </ul>
                             </div>
@@ -36,7 +36,7 @@ class DefaultLayout extends React.Component {
                             <div className="col-9">
                                 <div className="header">
                                     <img src="/img/chef.svg"/>
-                                    <div>Recipe Keeper</div>
+                                    <div>{ this.props.title }</div>
                                 </div>
                                 {this.props.children}
                             </div>
