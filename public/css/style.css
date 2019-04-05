@@ -1,0 +1,64 @@
+body {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.banner {
+	color: white;
+	height: 30px;
+	background-color: #3C455A;
+}
+
+.banner > div {
+	font-size: 14px;
+	margin-left: 15px;
+	padding-top: 4px;
+}
+
+.navigation {
+	padding: 0px;
+	height: 900px;
+	background-color: #F4F1F4;
+}
+
+input[type=text] {
+	width: 90%;
+	border-radius: 0px;
+	border: 2px solid #807C80;
+	margin: 20px 10px 10px 10px;
+}
+
+.home, .new {
+	text-decoration: none;
+}
+
+.home:hover, .new:hover {
+	border-left: 5px solid #A2A7B0;
+}
+
+a > img {
+	width: 20px;
+	margin: 0px 15px 3px 0px;
+}
+
+li > a, li > a:hover {
+	color: #807C80;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.header {
+	padding: 25px;
+}
+
+.header > img {
+	width: 70px;
+	margin-top: -25px;
+}
+
+.header > div {
+	font-size: 38px;
+	color: #807C80;
+	margin-left: 15px;
+	display: inline-block;
+}
