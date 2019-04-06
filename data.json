@@ -1,3 +1,13 @@
 {
-	"recipes":[]
+	"recipes":[
+		{
+			"id":1,
+			"Recipe Title":"Boiled Chicken",
+			"Ingredients": {
+				"chicken": 1,
+				"water": "10 ml"
+			},
+			"Instructions": "Place chicken in water with salt. Simmer for 20 minutes."
+		}
+	]
 }
