@@ -41,13 +41,25 @@ app.set('view engine', 'jsx');
  * Request Handler
  * ===================================
  */
-var testFunction = function(request, response) {
-    jsonfile.readFile(file, (err, obj) => {
-        console.log(obj);
-    })
-    // res.render('create')
-    response.send("hello world");
+var newRecipe = function(request, response) {
+    response.render('new');
 }
+
+var addNewRecipe = function(request, response) {
+    let newRecipe = request.body;
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err);
+
+        (obj.recipes).push(newRecipe);
+
+        jsonfile.writeFile(file, obj, (err) => {
+            if (err) console.error(err);
+        });
+    });
+
+    response.send(newRecipe);
+};
 
 
 
@@ -56,7 +68,8 @@ var testFunction = function(request, response) {
  * Routes
  * ===================================
  */
- app.get('/', testFunction);
+app.get('/recipes/new', newRecipe);
+app.post('/recipes', addNewRecipe);
 
 
 

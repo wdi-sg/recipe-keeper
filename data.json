@@ -1,3 +1,8 @@
 {
-  "recipes":[]
+		"recipes": [
+		{
+				"recipe_title": "bbq chicken",
+				"ingredients": "1 chicken",
+				"instructions": "marinate chicken in bbq"
+		}]
 }
