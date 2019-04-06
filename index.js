@@ -32,24 +32,59 @@ app.set('view engine', 'jsx');
 let sendNewRecipeRequest = (request, response) => {
      response.render('newrecipe');
 };
-
-//Send request to create a new recipe
 app.get('/recipes/new', sendNewRecipeRequest);
 
 
 
+//Get user input and save it into data.json
+let createNewRecipe = (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let newRecipe = new Object();
+        newRecipe.title = request.body.title;
+        newRecipe.ingredients = request.body.ingredients;
+        newRecipe.instructions = request.body.instructions;
+
+        obj.recipes.push(newRecipe);
+
+        jsonfile.writeFile(file, obj, (err) => {
+            if (err) {
+                console.log(err)
+            };
+        });
+        response.redirect('/');
+    });
+}
+app.post('/recipes', createNewRecipe);
+
+
+
+//Show a single recipe
+let showRecipe = (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let selectedRecipe = obj.recipes[request.params.id];
+        response.render('showrecipe', selectedRecipe);
+    });
+}
+app.get('/recipes/:id', showRecipe);
 
 
 
 
+//Build pre-populated form for editing a recipe
+let editRecipe = (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let recipeIndex = request.params.id;
+        let editItem = obj.recipes[recipeIndex];
+
+        response.render('edit', {item: editItem, index: recipeIndex});
+    });
+}
+app.get('/recipes/:id/edit', editRecipe);
 
 
 
 
-
-
-
-
+/////////////////////////////Done//////////////////////////
 
 
 
