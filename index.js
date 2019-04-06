@@ -35,15 +35,24 @@ app.set('view engine', 'jsx');
 
 app.get('/', (req, res) => {
 
-    res.render("homepage");
+    let recipe = json[0];
+
+    res.render("homepage", recipe);
+
+});
+
+
+app.get('/recipes/:id', (req, res) => {
+
+    console.log(req.params.id)
+    let recipeNum = req.params.id;
+    let recipe = json[recipeNum];
+
+    res.render("homepage", recipe);
 
 });
 
 
 
-
 /////////////////////// PORT ACCESS /////////////////////////
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
-
-
-    console.log(json[0].id);
