@@ -5,6 +5,7 @@ const jsonfile = require('jsonfile');
 const file = 'data.json';
 
 const json = require('./ingredient.json');
+const recipejson = require('./recipe.json');
 
 const express = require('express');
 
@@ -35,34 +36,41 @@ app.set('view engine', 'jsx');
 
 app.get('/', (req, res) => {
 
-    let recipe = json[0];
-
-    res.render("homepage", recipe);
+    res.render("homepage");
 
 });
 
 
-app.get('/recipes/:id', (req, res) => {
+app.post('/recipes/:id', (req, res) => {
 
-    console.log(req.params.id)
-    let recipeNum = req.params.id;
-    let recipe = json[recipeNum];
+    // console.log(req.params.id)
+    // let recipeNum = req.params.id;
+    // let recipe = recipejson.recipes[recipeNum];
+    // console.log(req.body.recipename);
+    let number = req.body.recipename;
+    parseInt(number);
+    console.log(number);
+    let recipeInstructions = recipejson.recipes[number];
+    let recipeList = {ccb: recipeInstructions};
+    res.render("singlerecipe", recipeList);
 
-    res.render("homepage", recipe);
+});
+
+app.post('/test', (req, res) => {
+
+    res.send("Harro");
 
 });
 
-app.post('/recipes/search', (req, res) => {
-
-    console.log(req.body)
-    let recipeNum = req.params.id;
-    let recipe = json[recipeNum];
-
-    res.render("homepage", recipe);
-
-});
 
 
 
 /////////////////////// PORT ACCESS /////////////////////////
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
+
+console.log(recipejson.recipes[2]);
+
+
+    let recipeItems = recipejson.recipes[2].instructions;
+    let recipeList = {ccb: recipeItems};
+    console.log(recipeList);
