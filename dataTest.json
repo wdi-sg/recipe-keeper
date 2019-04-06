@@ -1,11 +1,1 @@
-{
-  "recipes": [
-    {
-      "id" : 1,
-      "category" : "baking",
-      "title": "boiled duck",
-      "ingredients": "1 duck, water",
-      "instructions": "boil duck in water for 20 minutes. take it out. serve."
-    }
-  ]
-}
+{"recipes":[{"id":1,"category":"baking","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":2,"category":"grill","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":3,"category":"grill","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":4,"category":"dinner","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":5,"category":"baking","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":6,"category":"side dish","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":7,"category":"desert","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":8,"category":"beverage","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":9,"category":"side dish","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":10,"category":"lunch","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"id":"11","title":"asdfasdf","category":"eeeeee","ingredients":"fasdf,\r\nasdfasdfasdf,\r\nqwerqewr,\r\nasdfasdf,\r\nqwefqewf\r\n,asdf","instructions":"asdfasdf\r\n,qwef,qwerqewr,\r\nasdfasdf,\r\nqwefqewf"},{"id":"12","title":"asdfasdf","category":"eeeeee","ingredients":"fasdf,\r\nasdfasdfasdf,\r\nqwerqewr,\r\nasdfasdf,\r\nqwefqewf\r\n,asdf","instructions":"asdfasdf\r\n,qwef,qwerqewr,\r\nasdfasdf,\r\nqwefqewf"},{"id":"13","title":"Ell","category":"openhouse","ingredients":"stuff,\r\nstuff,\r\nstuff,stuff,stuff,\r\nstuff,\r\nstuff,\r\nstuff,\r\nstuff,\r\nstuff,\r\nstuff,\r\nstuff,\r\nstuff,","instructions":"stuff,stuff,stuff,\r\nstuff,vv\r\nstuff,\r\nv\r\nv\r\nstuff,\r\nstuff,\r\nstuff,\r\n"}]}

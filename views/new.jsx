@@ -8,6 +8,8 @@ class Head extends React.Component{
                 <meta charSet="utf-8"/>
                 <title>Cook Me Up</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
                 <link rel="stylesheet" href="/style.css"/>
             </head>
         )
@@ -16,9 +18,44 @@ class Head extends React.Component{
 
 class FormNewRecipe extends React.Component{
     render(){
+
+        let formAction = '/recipe/newadded';
+        let lastId = this.props.data.length;
+        let newId = lastId + 1;
+
         return(
             <html>
-            <h2>HeLLLOO222</h2>
+                <form method="POST" action={formAction}>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label >Title: </label>
+                            <input type="text" name="title" class="form-control" required/>
+                        </div>
+                        <div class="col-md-4 mb-3 ml-5">
+                            <label>Category: </label>
+                            <input type="text" name="category" class="form-control" placeholder="Supper, Dinner, Cold Dish etc" required/>
+                        </div>
+                        <div class="col-md-1 invisible">
+                            <label>ID:</label>
+                            <input class="invisible" type="text" name="id" class="form-control" value={newId} required/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-10 mb-3">
+                            <label>Ingredient List</label>
+                            <textarea type="text" name="ingredients" class="form-control"  placeholder="A speck of special, a tea spoon of awesome, a live 4-inch unicorn....."  rows="5"required>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                            <div class="col-md-10 mb-3">
+                            <label>Instructions</label>
+                            <textarea type="text" name="instructions" class="form-control"  placeholder="Tell us all your nifty culinary secrets...."  rows="7"required>
+                            </textarea>
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit Recipe"  class="btn btn-primary"/>
+                </form>
             </html>
         )
     }
@@ -26,6 +63,10 @@ class FormNewRecipe extends React.Component{
 
 class New extends React.Component{
     render(){
+
+        const inputData = this.props.objToRender;
+        const listArr = inputData[1];
+
         return(
             <html>
                 <Head/>
@@ -36,7 +77,7 @@ class New extends React.Component{
                     <main>
                         <NavAndAside/>
                         <div class="content">
-                            <h1>HELLLOOOOO</h1>
+                            <FormNewRecipe data={listArr}/>
                         </div>
                     </main>
                 </body>

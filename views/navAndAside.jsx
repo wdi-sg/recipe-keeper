@@ -19,17 +19,17 @@ class Navigation extends React.Component{
             <nav>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <form method="GET" action="/recipe/new">
-                            <input class="nav-link active btn btn-light" type="submit" value="Add Recipe"/>
-                        </form>
+                        <a method="GET" href="/recipe/new"><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span>Add New Recipe</a>
                     </li>
                     <li class="nav-item">
-                        <form  method="GET" action="/">
-                            <input class="nav-link active btn btn-light" type="submit" value="Home"/>
-                        </form>
+                    <a method="GET" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
                     </li>
                 </ul>
             </nav>
+
+
+
+
         );
     }
 }
