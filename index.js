@@ -52,6 +52,16 @@ app.get('/recipes/:id', (req, res) => {
 
 });
 
+app.post('/recipes/search', (req, res) => {
+
+    console.log(req.body)
+    let recipeNum = req.params.id;
+    let recipe = json[recipeNum];
+
+    res.render("homepage", recipe);
+
+});
+
 
 
 /////////////////////// PORT ACCESS /////////////////////////
