@@ -17,10 +17,15 @@ class SingleRecipe extends React.Component {
 
             let recipeTitle = this.props.ccb.title;
 
+            let recipeId = this.props.ccb.id;
+            let recipeNo = '/recipes/' + recipeId;
+
+            console.log(recipeNo);
+
     return (
                 <Layout>
                     <div class="recipe-page">
-                      <h1>{recipeTitle}</h1>
+                      <h1>Recipe {recipeId} : {recipeTitle}</h1>
                         <div class="row">
 
                           <div class="col-md-8 recipe-image">
@@ -47,12 +52,15 @@ class SingleRecipe extends React.Component {
                         </div>
 
                          <div class="row recipe-buttons">
-                            <form method="post" action="/test" class="col-md-6">
+                            <form method="post" action="/recipe/edit" class="col-md-6">
+                                <input type="text" class="form-control" name = "recipeid"id="recipename" value={recipeId} readonly style={{display: 'none'}}/>
                                 <button type="button" class="btn btn-primary btn-lg btn-block" type="submit">Edit</button>
                             </form>
                                 <br/>
 
                             <form method="post" action="/test" class="col-md-6">
+                                <input type="text" class="form-control" name = "recipeid"id="recipename" value={recipeId} readonly style={{display: 'none'}}/>
+
                                 <button type="button" class="btn btn-danger btn-lg btn-block" type="submit" >Delete</button>
                             </form>
 

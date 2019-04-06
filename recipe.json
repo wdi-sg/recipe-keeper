@@ -22,6 +22,14 @@
   		"ingredients" : ["1 slice bread", "1 egg", "2 tablespoons milk", "1 teaspoon cocoa powder", "banana, sliced", "chocolate chips, to taste"],
   		"instructions" : ["Slice bread into cubes.", "In a bowl, add egg, milk, and cocoa powder, and mix.", "In a microwave-safe mug, place half of the cubed bread and desired amount of bananas and chocolate chips.", "Place the rest of the bread and fix-ins and pour the egg mixture into the mug.", "Microwave for 1½ minutes or until egg is fully cooked.", "Top it off with whipped cream and chocolate syrup."],
   		"img" : "https://www.biggerbolderbaking.com/wp-content/uploads/2017/07/1C5A0159-1024x682.jpg"
+  	},
+
+  	  	{
+  		"id" : 4,
+  		"title": "Fiery Shrimp Salad",
+  		"ingredients" : ["2 tablespoons  kosher salt, plus 1 teaspoon, divided", "6 tablespoons  fresh lime juice, divided", "1 lb  shrimp, 16/20 count, peeled and deveined (455 g)", "¼ cup  mayonnaise (60 g)", "2 teaspoons  McCormick® Fiery Spice Blend, plus more for garnish", "1 teaspoon  dijon mustard", "medium shallot, minced", "1 small jalapeño, seeded and minced", "¼ cup  chives, thinly sliced, plus more for garnish (10 g)", "1 cup  persian cucumber, diced (135 g)", "1 cup  mango, diced, plus more, sliced, for garnish (165 g)", "1 medium avocado, pitted and diced", "½ teaspoon  freshly ground black pepper", "6 green leaf lettuces, washed"],
+  		"instructions" : ["Bring a large pot of water with 2 tablespoons salt and ¼ cup (60 ml) lime juice to a low boil over medium heat. Working in batches of about 6, poach the shrimp until they are firm, opaque, and have a ‘C’ shape but are not tightly curled. The internal temperature should read 145˚F (63˚C). Transfer the cooked shrimp to the refrigerator to cool completely.", "In a medium bowl, mix together the mayonnaise, remaining 2 tablespoons lime juice, Fiery spice blend, Dijon, shallot, jalapeño, and chives.", "Toss cooled shrimp in the dressing to coat, then fold in the cucumber, mango, and avocado. Season with the remaining teaspoon of salt and the pepper.", "Serve the shrimp salad in the lettuce leaves. Garnish with chives, mango slices, and more Fiery spice blend, if desired. Serve cold."],
+  		"img" : "https://img.buzzfeed.com/video-api-prod/assets/9666e18f0a174e7c839a8d9a5b0cb4c5/Thumb_B_FB.jpg"
   	}
   ]
 }
