@@ -1,0 +1,46 @@
+body{
+	background-color: #282923;
+	min-height: 100vh;
+	color: #C3C3C1;
+}
+
+main{
+	display:flex;
+}
+main>*{
+  background-color:#eee;
+  margin:10px;
+}
+
+nav{
+	order: 1;
+	background-color: yellow;
+}
+
+aside{
+	order:3 ;
+	/*margin: auto;*/
+	background-color: red;
+}
+
+.content{
+	order: 1;
+	flex-grow: 3;
+	background-color: green;
+}
+
+nav, aside{
+  min-width:160px;
+  max-width:160px;
+}
+
+.card-img{
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
