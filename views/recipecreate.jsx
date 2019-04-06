@@ -1,4 +1,7 @@
 var React = require('react');
+const recipejson = require('../recipe.json');
+let recipeArrLen = recipejson.recipes.length;
+recipeArrLen++;
 
 class RecipeCreate extends React.Component {
   render() {
@@ -9,6 +12,12 @@ class RecipeCreate extends React.Component {
 
             <form method="POST" action="/recipe/create">
               <div class="form-group row" >
+                  <div class="col-12">
+                    <h3> Recipe Name </h3>
+                    <input type="text" class="form-control" name = "id" id="recipename" value = {recipeArrLen} readonly="readonly"/>
+                    <input type="text" class="form-control" name = "title"id="recipename"/>
+                  </div>
+
                 <h3 class="col-12"> List of Ingredients </h3>
                 <h4 class="col-12"> Note: There is no need to fill up every box. </h4>
                   <div class="col-md-3">
@@ -95,8 +104,14 @@ class RecipeCreate extends React.Component {
                     <input type="text" class="form-control" name = "instructions"id="instructions"/>
                     <label for="instructions">Step 10</label>
                     <input type="text" class="form-control" name = "instructions"id="instructions"/>
-
                 </div>
+
+                <div class="form-group">
+                    <h3> Image </h3>
+                    <label for="instructions">Link to Image</label>
+                    <input type="text" class="form-control" name = "img"id="img"/>
+                </div>
+
 
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>

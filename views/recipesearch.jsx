@@ -1,15 +1,15 @@
 var React = require('react');
+const recipejson = require('../recipe.json');
 
 class RecipeSearch extends React.Component {
-  render() {
+  render(req) {
 
     // let recipeId = this.props.ccb.id;
     // var url = '/recipes/' + recipeId;
 
-    var number = 5;
+    var number = recipejson.recipes[0].id;
     var url = `/recipes/${number}`;
-    // console.log(recipeId);
-    console.log(url);
+    console.log("THIS IS" + url);
 
     return (
         <div>

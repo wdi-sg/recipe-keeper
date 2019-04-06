@@ -2,7 +2,7 @@
 ///////////////// BOILERPLATE CODE ///////////////////////////
 const jsonfile = require('jsonfile');
 
-const file = 'data.json';
+const file = 'recipe.json';
 
 const json = require('./ingredient.json');
 const recipejson = require('./recipe.json');
@@ -35,13 +35,15 @@ app.set('view engine', 'jsx');
 /////// START OF ROUTES //////////////
 
 app.get('/', (req, res) => {
+    // let number = req.body.recipeId;
+    // number--;
+    // // parseInt(number);
+    // let recipeInstructions = recipejson.recipes[number];
+    // console.log(recipeInstructions);
+    let recipeList = recipejson.recipes;
     res.render("homepage");
-    let number = req.body.recipeId;
-    number--;
-    // parseInt(number);
-    let recipeInstructions = recipejson.recipes[number];
-    console.log(recipeInstructions);
-    let recipeList = {ccb: recipeInstructions};
+    // console.log(recipeList[0].ingredients);
+    // console.log("TESTING" + req.body);
 });
 
 
@@ -54,7 +56,7 @@ app.post('/recipes/:id', (req, res) => {
     let number = req.body.recipeId;
     number--;
     // parseInt(number);
-    console.log(number);
+    // console.log(number);
     let recipeInstructions = recipejson.recipes[number];
     console.log(recipeInstructions);
     let recipeList = {ccb: recipeInstructions};
@@ -72,7 +74,7 @@ app.get('/recipes/:id', (req, res) => {
     let testNumber = req.body
     let number = req.params.id;
     parseInt(number);
-    console.log(number);
+    // console.log("TESTING" + number);
 
         if (testNumber > recipejson.recipes.length) {
         res.send("NOT FOUND");
@@ -101,7 +103,14 @@ app.post('/recipe/edit', (req, res) => {
 
 app.post('/recipe/create', (req, res) => {
     console.log(req.body);
-    res.send(req.body);
+    res.send("Recipe Added!");
+    let newRecipe = req.body;
+    recipejson.recipes.push(newRecipe);
+    console.log(recipejson.recipes);
+
+  jsonfile.writeFile(file, recipejson, (err) => {
+    console.log(err)
+  });
 });
 
 app.post('/test', (req, res) => {
@@ -109,6 +118,26 @@ app.post('/test', (req, res) => {
     res.send(req.body);
 });
 
+app.post('/recipe/change', (req, res) => {
+    console.log(req.body);
+    res.send("");
+});
+
+app.post('/recipe/delete', (req, res) => {
+    console.log(req.body);
+    res.send(req.body.recipeid);
+
+    for( var i = 0; i < recipejson.recipes.length; i++){
+        if ( recipejson.recipes[i].id === req.body.recipeid) {
+            recipejson.recipes.splice(i, 1);
+        }
+    }
+
+  jsonfile.writeFile(file, recipejson, (err) => {
+    console.log(err)
+  });
+
+});
 
 /////////////////////// PORT ACCESS /////////////////////////
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));

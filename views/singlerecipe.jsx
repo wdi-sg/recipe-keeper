@@ -58,7 +58,7 @@ class SingleRecipe extends React.Component {
                             </form>
                                 <br/>
 
-                            <form method="post" action="/test" class="col-md-6">
+                            <form method="post" action="/recipe/delete" class="col-md-6">
                                 <input type="text" class="form-control" name = "recipeid"id="recipename" value={recipeId} readonly style={{display: 'none'}}/>
 
                                 <button type="button" class="btn btn-danger btn-lg btn-block" type="submit" >Delete</button>
