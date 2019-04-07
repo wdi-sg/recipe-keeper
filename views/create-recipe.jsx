@@ -5,16 +5,16 @@
 let React = require("react");
 
 function sortRecipeByName(recipeA, recipeB) {
-    var nameA = recipeA.name.toLowerCase();
-    var nameB = recipeB.name.toLowerCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
+  var nameA = recipeA.name.toLowerCase();
+  var nameB = recipeB.name.toLowerCase();
+  if (nameA < nameB) {
+    return -1;
   }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+}
 
 class createRecipe extends React.Component {
   render() {
@@ -23,6 +23,10 @@ class createRecipe extends React.Component {
     let ingredientsSelect = ingredientsArray.map(ingredient => {
       return <option>{ingredient.name}</option>;
     });
+    let quantity = [];
+    for (let i = 1; i < 11; i++) {
+      quantity.push(<option>{i}</option>);
+    }
     return (
       <html>
         <head>
@@ -54,16 +58,46 @@ class createRecipe extends React.Component {
               </small>
             </div>
             <div id="ingredients-list">
-              <div className="form-group ingredient-input">
-                <label for="ingredients0">Ingredient</label>
-                <select className="form-control" id="ingredients0" name="ingredients[0]">
-                  {ingredientsSelect}
-                </select>
+              <div className="ingredient-input row">
+                <div className="form-group ingredient-value col-7">
+                  <label for="ingredientsValue0">Ingredient</label>
+                  <select
+                    className="form-control"
+                    id="ingredientsValue0"
+                    name="ingredients[0]['name']">
+                    {ingredientsSelect}
+                  </select>
+                </div>
+                <div className="form-group ingredient-qty col-2">
+                  <label for="ingredientsQty0">Qty</label>
+                  <select
+                    className="form-control"
+                    id="ingredientsQty0"
+                    name="ingredients[0]['quantity']">
+                    {quantity}
+                  </select>
+                </div>
+                <div className="form-group ingredient-notes col-3">
+                  <label for="ingredientsNotes0">notes</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="ingredientsNotes0"
+                    aria-describedby="ingredient-notes-help"
+                    name="ingredients[0]['notes']"
+                    placeholder="add notes"
+                  />
+                  <small id="ingredient-notes-help" className="form-text text-muted">
+                    add some helpful notes!
+                  </small>
+                </div>
               </div>
             </div>
-            <div id="add-ingredient" className="btn btn-primary">Add Ingredient</div>
-            <br/>
-            <br/>
+            <div id="add-ingredient" className="btn btn-primary">
+              Add Ingredient
+            </div>
+            <br />
+            <br />
             <div className="form-group">
               <label for="instructions">Instructions</label>
               <input
@@ -78,7 +112,9 @@ class createRecipe extends React.Component {
                 Choose a name for your recipe!
               </small>
             </div>
-            <button className="btn btn-primary"type="submit">Submit Recipe</button>
+            <button className="btn btn-primary" type="submit">
+              Submit Recipe
+            </button>
           </form>
           <script src="/create-recipe.js" />
           <script
