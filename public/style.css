@@ -17,7 +17,6 @@ header{
 main{
 	display:flex;
 	margin: 0 auto;
-
 }
 
 main>*{
@@ -85,10 +84,25 @@ img {
 	border-radius: 10px;
 	margin: 2px;
 	text-align: center;
+	color:#EDEEEF
+}
+
+.card-title{
+	color:#EDEEEF;
 }
 
 h1 {
 	font-size: 2em;
+}
+
+h2 {
+	text-decoration: underline;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+h4{
+	text-transform: capitalize;
 }
 /*.card-body-recipes{
 	background-color:
