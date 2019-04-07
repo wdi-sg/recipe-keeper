@@ -35,15 +35,8 @@ app.set('view engine', 'jsx');
 /////// START OF ROUTES //////////////
 
 app.get('/', (req, res) => {
-    // let number = req.body.recipeId;
-    // number--;
-    // // parseInt(number);
-    // let recipeInstructions = recipejson.recipes[number];
-    // console.log(recipeInstructions);
     let recipeList = recipejson.recipes;
     res.render("homepage");
-    // console.log(recipeList[0].ingredients);
-    // console.log("TESTING" + req.body);
 });
 
 
@@ -104,11 +97,24 @@ app.post('/recipe/edit', (req, res) => {
 });
 
 app.post('/recipe/create', (req, res) => {
-    console.log(req.body);
-    res.send("Recipe Added!");
+    // console.log(req.body);
+    // res.send("Recipe Added!");
+
     let newRecipe = req.body;
+    // console.log(newRecipe.ingredients);
+    const ingredientsFilter = newRecipe.ingredients.filter(word => word.length > 0); // this filters out all the blanks in the list.
+    const instructionsFilter = newRecipe.instructions.filter(word => word.length > 0); // this filters out all the blanks in the list.
+
+
+    newRecipe.ingredients = ingredientsFilter;
+    newRecipe.instructions = instructionsFilter;
+    console.log(ingredientsFilter);
+    console.log(newRecipe);
+    // console.log(ingredientsFilter);
     recipejson.recipes.push(newRecipe);
-    console.log(recipejson.recipes);
+    // console.log(recipejson.recipes);
+
+    res.render("pagechange");
 
   jsonfile.writeFile(file, recipejson, (err) => {
     console.log(err)
@@ -122,13 +128,33 @@ app.post('/test', (req, res) => {
 
 app.post('/recipe/change', (req, res) => {
     console.log(req.body);
-    res.send("");
+    let newRecipe = req.body;
+    // console.log(newRecipe.ingredients);
+    const ingredientsFilter = newRecipe.ingredients.filter(word => word.length > 0); // this filters out all the blanks in the list.
+    const instructionsFilter = newRecipe.instructions.filter(word => word.length > 0); // this filters out all the blanks in the list.
+    let recipeId = newRecipe['id']; //need to check why there's a spacing ....
+    console.log(recipeId);
+    let recipeArrNum = recipeId - 1;
+    console.log(recipeArrNum);
+    newRecipe.ingredients = ingredientsFilter;
+    newRecipe.instructions = instructionsFilter;
+    console.log(ingredientsFilter);
+    console.log(newRecipe);
+
+    recipejson.recipes[recipeArrNum] = newRecipe;
+    console.log(recipejson.recipes[recipeArrNum])
+    jsonfile.writeFile(file, recipejson, (err) => {
+    console.log(err)
+  });
+
+    res.render("pagechange");
+
 });
 
 app.post('/recipe/delete', (req, res) => {
     console.log(req.body);
-    res.send(req.body.recipeid);
-
+    // res.send(req.body.recipeid);
+    res.render("pagechange");
     for( var i = 0; i < recipejson.recipes.length; i++){
         if ( recipejson.recipes[i].id === req.body.recipeid) {
             recipejson.recipes.splice(i, 1);

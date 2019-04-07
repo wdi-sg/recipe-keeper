@@ -15,7 +15,7 @@ class RecipeCreate extends React.Component {
                   <div class="col-12">
                     <h3> Recipe Name </h3>
                     <input type="text" class="form-control" name = "id" id="recipename" value = {recipeArrLen} readonly="readonly"/>
-                    <input type="text" class="form-control" name = "title"id="recipename"/>
+                    <input type="text" class="form-control" name = "title"id="recipename" required/>
                   </div>
 
                 <h3 class="col-12"> List of Ingredients </h3>
@@ -109,7 +109,7 @@ class RecipeCreate extends React.Component {
                 <div class="form-group">
                     <h3> Image </h3>
                     <label for="instructions">Link to Image</label>
-                    <input type="text" class="form-control" name = "img"id="img"/>
+                    <input type="text" class="form-control" name = "img"id="img" value="https://burpple-3.imgix.net/foods/1ad72a48167c04aed881093515_original.?w=645&dpr=1&fit=crop&q=80"/>
                 </div>
 
 
