@@ -4,8 +4,25 @@
 
 let React = require("react");
 
+function sortRecipeByName(recipeA, recipeB) {
+    var nameA = recipeA.name.toLowerCase();
+    var nameB = recipeB.name.toLowerCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  }
+
 class createRecipe extends React.Component {
   render() {
+    let ingredientsArray = this.props.ingredients;
+    ingredientsArray.sort(sortRecipeByName);
+    let ingredientsSelect = ingredientsArray.map(ingredient => {
+      return <option>{ingredient.name}</option>;
+    });
     return (
       <html>
         <head>
@@ -22,22 +39,28 @@ class createRecipe extends React.Component {
         </head>
         <body>
           <form action="/create-recipe" method="post">
-            <div class="form-group">
+            <div className="form-group">
               <label for="recipe-name">Recipe Name</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="recipe-name"
                 aria-describedby="emailHelp"
                 name="title"
                 placeholder="Enter recipe name"
               />
-              <small id="recipe-name-help" class="form-text text-muted">
+              <small id="recipe-name-help" className="form-text text-muted">
                 Choose a name for your recipe!
               </small>
             </div>
             <div id="ingredients-list">
               <input type="text" name="ingredients[0]" className="ingredient-input" />
+              <div className="form-group ingredient-input">
+                <label for="ingredients0">Ingredient</label>
+                <select className="form-control" id="ingredients0" name="ingredients[0]">
+                  {ingredientsSelect}
+                </select>
+              </div>
             </div>
             <br />
             <div id="add-ingredient">Add Ingredient</div>

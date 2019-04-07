@@ -5,6 +5,8 @@ const reactEngine = require("express-react-views").createEngine();
 const classes = require("./classes");
 const ingredient = classes.ingredient;
 const recipe = classes.recipe;
+const ingredientsJSON = "ingredient.json";
+let ingredientsObj = {};
 
 const app = express();
 app.use(methodOverride("_method"));
@@ -20,6 +22,18 @@ app.use(
 );
 app.use(express.static(__dirname + "/public/"));
 
+//we keep the json file in the server and read from it so that if
+//the json file is updated with more ingredients, the list/s
+//posted to webpages get updated
+jsonfile.readFile(ingredientsJSON, (err, obj) => {
+  if (err) {
+    console.log(err);
+  }
+  ingredientsObj["ingredients"] = obj["ingredients"];
+  console.log(ingredientsObj["ingredients"][2]);
+  
+});
+
 app.get("/home", (request, response) => {
   //replace these later on with request.body
   //use this home to display available recipes
@@ -33,15 +47,18 @@ app.get("/home", (request, response) => {
 
 app.get("/create-recipe", (request, response) => {
   //use this to send the form to create the request
-  objVariableToSend = {};
+  let obj = {};
+  obj["ingredients"] = ingredientsObj["ingredients"];
 
-  response.render("create-recipe", objVariableToSend);
+  response.render("create-recipe", obj);
 });
 
 app.post("/create-recipe", (request, response) => {
-  objVariableToSend = {};
+  obj = {};
   console.log("recipe " + request.body.title + " received!");
-  response.render("create-recipe", objVariableToSend);
+  let obj = {};
+  obj["ingredients"] = ingredientsObj["ingredients"];
+  response.render("create-recipe", obj);
 });
 
 app.post("/home/recipe-created", (request, response) => {
