@@ -6,7 +6,7 @@ class RecipeHero extends React.Component {
     return (
                 <Layout>
                     <div class="jumbotron recipe-hero">
-                      <h1 class="display-4">Crispy Chicken <br/ >Teriyaki Rice Balls</h1>
+                      <h1 class="display-4">Crispy Chicken <br/>Teriyaki Rice Balls</h1>
                       <a class="btn btn-primary btn-lg" href="http://localhost:3000/recipes/1" role="button">Make Your Own!</a>
                       <br/> <br/><br/><br/>
                     </div>
