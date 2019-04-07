@@ -9,7 +9,7 @@ class Home extends React.Component {
     return (
                 <Layout>
                     <nav class="navbar navbar-dark bg-dark fixed-top">
-                      <a class="navbar-brand text-light">Sexy Hotpots</a>
+                      <a class="navbar-brand text-light" href="http://localhost:3000/">Sexy Hotpots</a>
                       <form class="form-inline" method="POST" action="/recipes/0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search By Recipe No" aria-label="Search" name="recipeId" id="recipeId"/>
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -20,7 +20,6 @@ class Home extends React.Component {
                       <h1>The Sexy Hotpots Cookery</h1>
                     </div>
                     <RecipeHero/>
-                    <RecipeSearch/>
                     <br/>
                     <RecipeCreate/>
                 </Layout>
@@ -30,6 +29,8 @@ class Home extends React.Component {
 
 module.exports = Home;
 
+
+                    // <RecipeSearch/>
 
                       // <form class="form-inline" method="POST" action={url>
 

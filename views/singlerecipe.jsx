@@ -24,6 +24,16 @@ class SingleRecipe extends React.Component {
 
     return (
                 <Layout>
+
+                    <nav class="navbar navbar-dark bg-dark fixed-top">
+                      <a class="navbar-brand text-light" href="http://localhost:3000/">Sexy Hotpots</a>
+                      <form class="form-inline" method="POST" action="/recipes/0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search By Recipe No" aria-label="Search" name="recipeId" id="recipeId"/>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+                    </nav>
+                    <br/><br/>
+
                     <div class="recipe-page">
                       <h1>Recipe {recipeId} : {recipeTitle}</h1>
                         <div class="row">
