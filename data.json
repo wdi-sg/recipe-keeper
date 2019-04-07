@@ -1,0 +1,18 @@
+{
+    "recipes": [
+        {
+            "id": 1,
+            "title": "Egg",
+            "ingredients": "egg",
+            "img": "images/egg.jpg",
+            "instructions": "fry egg"
+        },
+        {
+            "id": 2,
+            "title": "veggies",
+            "ingredients": "vegetables",
+            "img": "images/veggies.jpg",
+            "instructions": "wash veggies"
+        }
+    ]
+}
