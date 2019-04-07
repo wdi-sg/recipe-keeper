@@ -83,7 +83,7 @@ var newRecipeRequestHandler = function (request, response) {
 }
 
 var addNewRecipeRequestHandler = function (request, response) {
-    if (request.body.title === "" || request.body.instructions === "") {
+    if (request.body.title.length < 3 || request.body.instructions.length < 5) {
         response.render('add', {"validation" : "fail"});
     } else {
         let newRecipe = {
@@ -125,8 +125,8 @@ var editRecipeRequestHandler = function (request, response) {
 }
 
 var editExistingRecipeRequestHandler = function (request, response) {
-    if (request.body.title === "" || request.body.instructions === "") {
-        response.render('add', {"validation" : "fail"});
+    if (request.body.title.length < 3 || request.body.instructions.length < 5) {
+        response.render('edit', {"validation" : "fail"});
     } else {
         _.forEach(recipeData.recipes, (o) => {
             if (o.id === request.params.id) {
