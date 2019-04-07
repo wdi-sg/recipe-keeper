@@ -22,6 +22,35 @@ app.set('view engine', 'jsx');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+
+let addIngredient = document.getElementById("addIngredient");
+
+
+var toAddIngredient = () => {
+    let creatFormRow = document.createElement("div")
+    createFormRow.className = "form-row";
+
+    let createCol = document.createElement("div");
+    createCol.className = "col";
+
+    let createLabel = document.createElement("label");
+    createLabel.setAttribute("for", "ingredientName");
+
+    let createInput = document.createElement("input");
+    createInput.type = "text";
+    createInput.className = "form-control form-control-lg";
+    createInput.name = "ingredientName";
+
+    createCol.appendChild(createLabel);
+    createCol.appendChild(createInput);
+
+    createFormRow.appendChild(createCol)
+
+    let formElement = document.querySelector("form");
+    formElement.appendChild("createFormRow");
+}*/
+
 //  display recipes
 app.get('/', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {

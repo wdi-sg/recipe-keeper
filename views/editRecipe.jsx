@@ -53,7 +53,7 @@ class EditRecipe extends React.Component {
 
                     <br />
 
-                    <button type="submit" class="btn btn-primary">Edit</button>
+                    <button type="submit" class="btn btn-primary btn-lg float-right">Edit</button>
 
                 </form>
             </div>

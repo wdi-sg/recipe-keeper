@@ -1,18 +1,1 @@
-{
-    "recipes": [
-        {
-            "id": 1,
-            "title": "Egg",
-            "ingredients": "egg",
-            "img": "images/egg.jpg",
-            "instructions": "fry egg"
-        },
-        {
-            "id": 2,
-            "title": "veggies",
-            "ingredients": "vegetables",
-            "img": "images/veggies.jpg",
-            "instructions": "wash veggies"
-        }
-    ]
-}
+{"recipes":[{"id":3,"title":"Spaghetti Aglio e Olio","img":"http://makpasta.com/media/images/blog/recipe/spaghetti-Shrimp/header_spaghetti%20-with-Shrimp-and-Almonds.jpg","ingredients":"2 pound uncooked spaghetti","instructions":"Bring a large pot of lightly salted water to a boil. Cook spaghetti in the boiling water, stirring occasionally until cooked through but firm to the bite, about 12 minutes. Drain and transfer to a pasta bowl. Watch Now"},{"id":4,"title":"Blueberry Pancake","img":"https://www.weareessential.com/wp-content/uploads/2018/04/fruity-pancakes.jpg","ingredients":"flour","instructions":"In a large bowl, sift together the flour, baking powder, salt and sugar. Make a well in the center and pour in the milk, egg and melted butter; mix until smooth. "}]}

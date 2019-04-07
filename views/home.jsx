@@ -5,16 +5,21 @@ class Home extends React.Component {
 
     render () {
 
-        const recipes = this.props.recipe;
+        const recipes = this.props.recipes;
         // return the recipe array of objects
 
         let allRecipes = recipes.map(obj => {
-            return <div class="card">
-                        <img src={obj.img} />
-                        <div class="card-body">
-                            <h5 class="card-title">{obj.title}</h5>
-                        </div>
+            const link = `/recipes/${obj.id}`;
+            return <div class="imamgeThumbnail-container">
+                        <div class="card">
+                            <img src={obj.img} class="card-img img-thumbnail" />
+                            <div class="card-img-overlay">
+                                <h5 class="card-title" id="centered">
+                                    <a href={link} id="homeTitle">{obj.title}</a>
+                                </h5>
+                            </div>
 
+                        </div>
                     </div>
         });
 
@@ -24,16 +29,13 @@ class Home extends React.Component {
             <div class="home-container">   {/*// main container*/}
 
                 <div class="header-container">
-                    <div class="card">
-                        <div class="card-body card-img-overlay">
-                            <h1 class="card-title">Food Recipe</h1>
-                        </div>
-                        <img src="https://www.freewebheaders.com/wordpress/wp-content/gallery/food/various-spices-and-herbs-website-header.jpg" />
-                    </div>
+                    <h1>Food Recipes</h1>
                 </div>
 
                 <div class="card-group">
-                    {allRecipes}
+                    <div class="card-container">
+                        {allRecipes}
+                    </div>
 
                 </div>
 

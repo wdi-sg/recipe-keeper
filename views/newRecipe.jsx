@@ -2,6 +2,12 @@ var React = require('react');
 var Layout = require('./layout');
 
 class NewRecipe extends React.Component {
+
+    test() {
+        console.log("Button was clicked");
+
+    }
+
     render () {
 
         return (<Layout>
@@ -29,13 +35,15 @@ class NewRecipe extends React.Component {
 
                     <div class="form-row">
                         <div class="col">
-                            <label for="ingredients">Ingredients</label>
-                            <input type="text" class="form-control form-control-lg" name="ingredients" />
+                            <label for="img">Image</label>
+                            <input type="text" class="form-control form-control-lg" name="img" />
                         </div>
 
                         <div class="col">
-                            <label for="img">Image</label>
-                            <input type="text" class="form-control form-control-lg" name="img" />
+                            <label for="ingredients">Ingredients</label>
+                            <input type="text" class="form-control form-control-lg" name="ingredients" />
+
+{/*                            <button type="button" class="btn btn-outline-info" id="addIngredient" onClick={this.test}>Add Ingredient</button>*/}
                         </div>
                     </div>
 
@@ -50,7 +58,7 @@ class NewRecipe extends React.Component {
 
                     <br />
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-lg float-right">Submit</button>
 
                 </form>
             </div>
