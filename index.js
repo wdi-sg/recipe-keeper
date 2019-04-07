@@ -1,7 +1,12 @@
+//===================================
+// Configurations and set up
+//===================================
+
 const express = require('express');
 const jsonfile = require('jsonfile');
 const methodOverride = require('method-override');// so that we can use PUT and DELETE in express to submit changes via HTTP with the POST method in forms
-const FILE = 'ingredient.json';
+const FILE_INGREDIENT = 'data/ingredient.json';
+const FILE_RECIPE = 'data/recipe.json';
 
 
 const app = express(); //Init the express app
@@ -18,10 +23,6 @@ app.engine('jsx', reactEngine);
 app.set('views',__dirname + '/views');
 //setting react to be the default view engine
 app.set('view engine','jsx');
-
-//*===========*/
-//SET UP ingredient.json to have "recipes" as a property name; thereby turning json file into an object
-//*===========*/
 
 //testing out how the ingredient.json file looks like on the terminal
 
@@ -94,6 +95,17 @@ app.get('/recipes/:id',(request, response)=>{
     });
 });
 
+//able to edit a single recipe
+app.get('/recipes/:id/edit', (request, response)=>{
+    let recipeId = parseInt(request, params.id);
+    let selectedRecipeIndex;
+    console.log("Printing out recipeId: " + recipeId);
+    jsonfile.readFile(FILE, (err,obj)=>{
+
+    })
+    //get json from specified file
+
+})
 
 //*=============*/
 //ROUTES here
