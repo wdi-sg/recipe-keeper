@@ -45,22 +45,60 @@ var newRecipe = function(request, response) {
     response.render('new');
 }
 
-var addNewRecipe = function(request, response) {
+var createRecipe = function(request, response) {
     let newRecipe = request.body;
 
     jsonfile.readFile(file, (err, obj) => {
         if (err) console.error(err);
 
-        (obj.recipes).push(newRecipe);
+        let allRecipesArr = obj.recipes;
+        allRecipesArr.push(newRecipe);
+        // let index;
+
+        // for (let i = 0; i < allRecipesArr.length; i++) {
+        //     if (allRecipesArr[i] === newRecipe) {
+        //         index = i;
+        //     }
+        // }
 
         jsonfile.writeFile(file, obj, (err) => {
             if (err) console.error(err);
         });
-    });
 
-    response.send(newRecipe);
+        response.render('show', newRecipe);
+        // response.redirect(`/recipes/${index}`);
+
+    });
 };
 
+var showRecipe = function(request, response) {
+
+    let inputId = parseInt(request.params.id);
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err);
+
+        let currentRecipe = obj.recipes[inputId];
+
+        if (currentRecipe === undefined) {
+            response.status(404);
+            response.send("Recipe not found.");
+        } else {
+            response.render('show', currentRecipe);
+        }
+    });
+};
+
+var indexRecipe = function(request, response) {
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err);
+
+        let allRecipesData = obj;
+
+        response.render('index', allRecipesData);
+    })
+}
 
 
 /**
@@ -69,9 +107,13 @@ var addNewRecipe = function(request, response) {
  * ===================================
  */
 app.get('/recipes/new', newRecipe);
-app.post('/recipes', addNewRecipe);
+app.post('/recipes', createRecipe);
 
+app.get('/recipes/:id', showRecipe);
 
+app.get('/recipes/', indexRecipe);
+
+// app.get('/recipes/:id/edit', editRecipe);
 
 /**
  * ===================================

@@ -1,8 +1,23 @@
 {
 		"recipes": [
 		{
-				"recipe_title": "bbq chicken",
-				"ingredients": "1 chicken",
-				"instructions": "marinate chicken in bbq"
+				"recipeTitle": "Boiled Chicken",
+				"ingredients": "1 chicken, 10 ml water",
+				"instructions": "Place chicken in water with salt. Simmer for 20 minutes."
+		},
+		{
+				"recipeTitle": "BBQ Chicken",
+				"ingredients": "1 chicken, bbq sauce",
+				"instructions": "marinate chicken in bbq sauce"
+		},
+		{
+				"recipeTitle": "Herbal Chicken",
+				"ingredients": "1 chicken, all kinds of herbs",
+				"instructions": "Stuff the chicken with herbs"
+		},
+		{
+				"recipeTitle": "Sushi",
+				"ingredients": "Seaweed, lots of Japanese rice",
+				"instructions": "Wrap rice in seaweed"
 		}]
 }
