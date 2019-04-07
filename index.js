@@ -55,7 +55,7 @@ app.post('/recipes/:id', (req, res) => {
     let recipeList = {ccb: recipeInstructions};
 
     if (recipeInstructions === undefined) {
-        res.send("RECIPE NOT FOUND");
+        res.render("unknown");
     } else {
         res.render("singlerecipe", recipeList);
     }
@@ -77,7 +77,7 @@ app.get('/recipes/:id', (req, res) => {
     let recipeList = {ccb: recipeInstructions};
 
         if (number === undefined) {
-        res.send("NOT FOUND");
+        res.render("unknown");
     }
     res.render("singlerecipe", recipeList);
 });

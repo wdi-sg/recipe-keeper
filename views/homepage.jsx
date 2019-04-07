@@ -3,6 +3,7 @@ var Layout = require('./layout');
 var RecipeSearch = require('./recipesearch');
 var RecipeCreate = require('./recipeCreate');
 var RecipeHero = require('./recipehero');
+var RecipeListing = require('./recipelisting');
 
 class Home extends React.Component {
   render() {
@@ -21,6 +22,7 @@ class Home extends React.Component {
                     </div>
                     <RecipeHero/>
                     <br/>
+                    <RecipeListing/>
                     <RecipeCreate/>
                 </Layout>
     );
