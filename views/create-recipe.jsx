@@ -54,7 +54,6 @@ class createRecipe extends React.Component {
               </small>
             </div>
             <div id="ingredients-list">
-              <input type="text" name="ingredients[0]" className="ingredient-input" />
               <div className="form-group ingredient-input">
                 <label for="ingredients0">Ingredient</label>
                 <select className="form-control" id="ingredients0" name="ingredients[0]">

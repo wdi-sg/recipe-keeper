@@ -29,20 +29,16 @@ function addIngredient() {
     //since values are set, we can now append it to the parent div
     let lineBreak = document.createElement("br");
 
-    let ingredientDiv = document.createElement("div");
-    ingredientDiv.setAttribute("class", "form-group ingredient-input");
-    let ingredientLabel = document.createElement("label");
-    ingredientLabel.setAttribute("for", "ingredients" + numberOfInputsCurrently);
-    ingredientLabel.innerText("Ingredient");
-    let ingredientSelect = document.createElement("select");
-    ingredientSelect.setAttribute("class", "form-control");
-    ingredientSelect.setAttribute("id", "ingredients" + numberOfInputsCurrently);
-    ingredientSelect.setAttribute("name", "ingredients[" + numberOfInputsCurrently + "]");
+    let newIngredientSelect = document.getElementsByClassName("ingredient-input")[0].cloneNode(true);
+    let label = newIngredientSelect.childNodes[0];
+    label.setAttribute("for", "ingredients"+numberOfInputsCurrently);
+    let select = newIngredientSelect.childNodes[1];
+    select.setAttribute("id", "ingredients"+numberOfInputsCurrently);
+    select.setAttribute("name", "ingredients["+numberOfInputsCurrently+"]");
+    
 
     //now we need to grab all the json data and stuff it into the options
-
-    ingredientList.appendChild(lineBreak);
-    ingredientList.appendChild(newIngredientInput);
+    ingredientList.appendChild(newIngredientSelect);
   }
 }
 

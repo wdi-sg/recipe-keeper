@@ -54,8 +54,9 @@ app.get("/create-recipe", (request, response) => {
 });
 
 app.post("/create-recipe", (request, response) => {
-  obj = {};
   console.log("recipe " + request.body.title + " received!");
+  console.log("ingredients: " + request.body.ingredients);
+  
   let obj = {};
   obj["ingredients"] = ingredientsObj["ingredients"];
   response.render("create-recipe", obj);
