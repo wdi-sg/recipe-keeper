@@ -13,7 +13,7 @@ class Home extends React.Component{
             let instructions = thisRecipe.instructions;
                 return(
                     <div>
-                        <h4>Recipe ID: </h4>
+                        <h3>Recipe ID: </h3>
                         <p>{id}</p>
                         <h4>Recipe Title: </h4>
                         <p>{name}</p>
@@ -31,3 +31,4 @@ class Home extends React.Component{
         )
     }
 }
+module.exports = Home;

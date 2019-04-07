@@ -74,6 +74,26 @@ app.get('/recipes/', (request, response)=>{
     });
 });
 
+//show a single recipe:
+app.get('/recipes/:id',(request, response)=>{
+    let recipeId = parseInt(request.params.id);
+    let selectedRecipeIndex;
+    console.log("Printing out recipeId: "+recipeId);
+    //get json from specified file
+    jsonfile.readFile(FILE, (err,obj)=>{
+        if (err) console.log(err);
+        //conditional statement to match request.params.id with the correct index number in recipe array
+        for (let i = 0; i<obj.recipes.length;i++){
+            if (recipeId == obj.recipes[i].id){
+                selectedRecipeIndex = i;
+            }
+        }
+        console.log("Printing out selected recipe index: "+selectedRecipeIndex);
+        let respond = obj.recipes[selectedRecipeIndex];
+        response.render('single',respond);
+    });
+});
+
 
 //*=============*/
 //ROUTES here
