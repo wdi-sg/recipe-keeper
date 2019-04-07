@@ -1,32 +1,11 @@
+//this page will be loaded via a GET request
+//form to do the recipe will be generated
+//additional ingredients will be added through public create-recipe.js file
+
 let React = require("react");
 
 class createRecipe extends React.Component {
   render() {
-    //render a form for the recipe
-    //have a button which sends a GET request to
-    //repopulate the page with an additional input?
-    if (this.props === ) {
-        
-    }
-    let title = this.props.title;
-    let instructions = this.props.instructions;
-    let ingredientArray = this.props.ingredients;
-    let numOfIngredients = this.props.ingredients.length;
-
-    let ingredientsHTML = [];
-    let indexInString;
-    for (let i = 2; i < numOfIngredients + 2; i++) {
-      //within the loop, we want the ingredient inputs to be populated
-      //with values, but we don't want the last value to be populated
-      indexInString = i.toString();
-      const ingredient = ingredientArray[i - 2];
-      ingredientsHTML.push(
-        <div>
-          <input type="text" name="ingredients" value={ingredient} />
-        </div>
-      );
-    }
-
     return (
       <html>
         <head>
@@ -34,17 +13,55 @@ class createRecipe extends React.Component {
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <title>Page Title</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+          />
         </head>
         <body>
-          <form action="/recipe-created" method="post">
-            <input type="text" name="title" value={title} />
-            {ingredientsHTML}
-            <button type="submit" name="ingredientIndex" value={indexInString}>
-              Add More Ingredients
-            </button>
-            <input type="text" name="instructions" value={instructions} />
-            <button type="submit"></button>
+          <form action="/create-recipe" method="post">
+            <div class="form-group">
+              <label for="recipe-name">Recipe Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="recipe-name"
+                aria-describedby="emailHelp"
+                name="title"
+                placeholder="Enter recipe name"
+              />
+              <small id="recipe-name-help" class="form-text text-muted">
+                Choose a name for your recipe!
+              </small>
+            </div>
+            <div id="ingredients-list">
+              <input type="text" name="ingredients[0]" className="ingredient-input" />
+            </div>
+            <br />
+            <div id="add-ingredient">Add Ingredient</div>
+            <br />
+            <input type="text" name="instructions" />
+            <br />
+            <button type="submit">Submit Recipe</button>
           </form>
+          <script src="/create-recipe.js" />
+          <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+          />
+          <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+          />
+          <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+          />
         </body>
       </html>
     );
