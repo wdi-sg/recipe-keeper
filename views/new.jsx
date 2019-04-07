@@ -19,9 +19,10 @@ class Head extends React.Component{
 class FormNewRecipe extends React.Component{
     render(){
 
+
+
         let formAction = '/recipe/newadded';
-        let lastId = this.props.data.length;
-        let newId = lastId + 1;
+        let newId = 1;
 
         return(
             <html>
@@ -65,7 +66,18 @@ class New extends React.Component{
     render(){
 
         const inputData = this.props.objToRender;
-        const listArr = inputData[1];
+        let categoryArr;
+        let listArr;
+
+        if(inputData[1].length > 0){
+            //looks into "recipes" array of objects
+            listArr = inputData[0]; // arr of all items
+            categoryArr = inputData[1];  //arr of unique categories
+
+        } else if(inputData[1].length == 0){
+            categoryArr =[];
+            listArr=[];
+        }
 
         return(
             <html>
@@ -75,9 +87,9 @@ class New extends React.Component{
                         <h1>Recipe List Collector</h1>
                     </header>
                     <main>
-                        <NavAndAside/>
+                        <NavAndAside data={categoryArr}/>
                         <div class="content">
-                            <FormNewRecipe data={listArr}/>
+                            <FormNewRecipe/>
                         </div>
                     </main>
                 </body>

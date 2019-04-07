@@ -2,11 +2,27 @@ var React = require('react');
 //Handles rendering for navigation buttons and aside content for now
 class Aside extends React.Component{
     render(){
+        let inputData = this.props.data
+        console.log("inside ASIDE:!")
+        console.log(inputData);
+        let outList;
+        if(inputData.length>0){
+            outList = inputData.map(item=>{
+                return  <div>
+                            <form method="GET" action="/?searchby=category">
+                            <input type="hidden" name="searchby" value={item}
+                            className="btn btn-info" type="submit"/>
+                            </form>
+                        </div>
+
+            })
+        }
+
         return(
             <aside>
                 <figure>
-                    <h4>Recently Viewed</h4>
-                    <img class="side-img" src="https://i.imgur.com/YTGycJi.jpg" />
+                    <h4>Category PlayList</h4>
+                    {outList}
                 </figure>
             </aside>
         );
@@ -36,10 +52,12 @@ class Navigation extends React.Component{
 
 class NavAndAside extends React.Component{
     render(){
+
+        const inputData = this.props.data
         return(
             <html>
             <Navigation/>
-            <Aside/>
+            <Aside data={inputData}/>
             </html>
         )
     }

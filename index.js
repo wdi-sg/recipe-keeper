@@ -4,9 +4,12 @@ const express = require('express');
 const methodOverride = require('method-override');
 const reactEngine = require('express-react-views').createEngine();
 const app = express();
+const uuidv1 = require('uuid/v1'); // UUIDs (Universally Unique IDentifier)
 
 const FILE = 'ingredient.json';
 const testFile = 'dataTest.json';
+
+
 
 /**
  * ===================================
@@ -58,6 +61,13 @@ var listAllCategories = function(){
     return filteredArray;
 }
 
+var currentDateAndTime = function(){
+    let date = new Date();
+    let dateAndTime = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ` + `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+
+    return dateAndTime;
+}
+
 /**
  * ===================================
  * Routes
@@ -69,6 +79,9 @@ app.get('/', (req,res)=>{
     let categories = listAllCategories(testFile);
     let recipeObj = dataArr;// looks into recipe object
 
+    if(recipeObj.length === 0){
+        res.render('home',{objToRender : [recipeObj, categories] });
+    }
     res.render('home', {objToRender : [recipeObj, categories] });
 })
 
@@ -77,22 +90,33 @@ app.get('/recipe/new', (req,res)=>{
     let categories = listAllCategories(testFile);
     let recipeObj = dataArr;
 
-    res.render('new', {objToRender : [categories, recipeObj] });
+
+    res.render('new', {objToRender : [recipeObj, categories] });
 })
 app.post('/recipe/newadded', (req,res)=>{
+    let id;/////give unique ID without using UUID's.
+    let idArr =[];
+    let idLargest = 0;
+    for(let i = 0; i < dataArr.length; i++){
+        id = dataArr[i].id;
+        idArr.push(id);
+        }
+    for(let i = 0; i < idArr.length; i++){
+        if(idLargest<idArr[i]){
+        idLargest = idArr[i];}
+    }
+    let categories = listAllCategories(testFile);
 
-    let dataRecieved = [];
-    dataRecieved.push(req.body); //from post request
-    console.log("post req: req body");
-    console.log(req.body);
     jsonfile.readFile(testFile, (err,obj)=>{
         let recipeEntry ={};
 
-        recipeEntry.id = parseInt(req.body.id);
+        recipeEntry.id = parseInt(idLargest+1);
         recipeEntry.title = req.body.title;
         recipeEntry.category = req.body.category;
         recipeEntry.ingredients = req.body.ingredients;
         recipeEntry.instructions = req.body.instructions;
+        recipeEntry.timeCreated = currentDateAndTime();
+        recipeEntry.updated_At = "";
 
         obj.recipes.push(recipeEntry);
 
@@ -100,47 +124,76 @@ app.post('/recipe/newadded', (req,res)=>{
             if(err !== null){
                 console.log(err);
             }
-        let categories = listAllCategories(testFile)
-        res.render('success', {objToRender : req.body})
         });
+
+        let recipeToRender;
+        let recipeID = parseInt(idLargest+1);
+
+        for(let i = 0; i < obj.recipes.length; i++){
+            let currentRecipe = obj.recipes[i];
+            if(currentRecipe.id === recipeID){
+                recipeToRender = currentRecipe;
+
+            }
+        }
+    res.render('success', {objToRender : [recipeToRender, categories]})
     });
 })
 
 //**** View form ****//
 app.get('/recipe/:id', (req,res)=>{
-    let arrayIndex = parseInt(req.params.id);
-    let recipeObj = dataArr[arrayIndex-1];
-    console.log('Hello in view request');
-    console.log(recipeObj);
-
-    res.render('viewRecipe', {objToRender : recipeObj});
+    let recipeToRender;
+    let recipeID = parseInt(req.params.id);
+    for(let i = 0; i < dataArr.length; i++){
+        let currentRecipe = dataArr[i];
+        if(currentRecipe.id === recipeID){
+            recipeToRender = currentRecipe;
+        }
+    }
+    res.render('viewRecipe', {objToRender : recipeToRender});
     // res.send('hello');
 })
 
 //**** Edit Entry.****//
 app.get('/recipe/:id/edit', (req,res)=>{
 
-    let arrayIndex = parseInt(req.params.id);
-    let recipeObj = dataArr[arrayIndex-1];
-    console.log(recipeObj);
+    let recipeToRender;
+    let recipeID = parseInt(req.params.id);
+    for(let i = 0; i < dataArr.length; i++){
+        let currentRecipe = dataArr[i];
+        if(currentRecipe.id === recipeID){
+            recipeToRender = currentRecipe;
+        }
+    }
 
-    res.render('edit', {objToRender : recipeObj});
+    res.render('edit', {objToRender : recipeToRender});
 })
 app.put('/recipe/:id', (req,res)=>{
-    let arrayIndex = parseInt(req.params.id);
-    let categories = listAllCategories(testFile);
-    let recipeObj = dataArr;// looks into recipe object
+
+    let recipeToEdit;
+    let recipeID = parseInt(req.params.id);
 
     res.render('updated');
 
-    jsonfile.readFile(testFile,(err,obj)=>{
-        let recipeObjList = obj.recipes[arrayIndex-1];
 
-            recipeObjList.id = req.body.id;
+    jsonfile.readFile(testFile,(err,obj)=>{
+    let recipeArrPos;
+        //find recipe arr position
+    for(let i = 0; i < obj.recipes.length; i++){
+        if(obj.recipes[i].id === recipeID){
+            recipeArrPos = i;
+        }
+    }
+        let recipeObjList = obj.recipes[recipeArrPos];
+
+
+            recipeObjList.id = parseInt(req.body.id);
             recipeObjList.title = req.body.title;
             recipeObjList.category = req.body.category;
             recipeObjList.ingredients = req.body.ingredients;
             recipeObjList.instructions = req.body.instructions;
+            recipeObjList.updated_At = currentDateAndTime();
+
 
         jsonfile.writeFile(testFile, obj, (err)=>{
                 console.log(err)
@@ -150,18 +203,30 @@ app.put('/recipe/:id', (req,res)=>{
 
 //**** Delete Entry.****//
 app.get('/recipe/:id/delete', (req,res)=>{
-    let arrayIndex = parseInt(req.params.id);
-    let recipeObj = dataArr[arrayIndex-1];
 
-    res.render('delete', {objToRender : recipeObj});
+   let recipeToRender;
+   let recipeID = parseInt(req.params.id);
+    for(let i = 0; i < dataArr.length; i++){
+        let currentRecipe = dataArr[i];
+        if(currentRecipe.id === recipeID){
+            recipeToRender = currentRecipe;
+        }
+    }
+    res.render('delete', {objToRender : recipeToRender});
 })
 app.delete('/recipe/:id', (req,res)=>{
-    let categories = listAllCategories(testFile);
-    let recipeObj = dataArr;
+
     res.render('updated');
-    let arrayIndex = parseInt(req.params.id);
+    let recipeID = parseInt(req.params.id);
     jsonfile.readFile(testFile,(err,obj)=>{
-        obj.recipes.splice( arrayIndex - 1 , 1);
+        let recipeArrPos;
+        //find recipe arr position
+        for(let i = 0; i < obj.recipes.length; i++){
+            if(obj.recipes[i].id === recipeID){
+                recipeArrPos = i;
+            }
+        }
+        obj.recipes.splice( recipeArrPos , 1);
 
         const changedObj = obj;
 

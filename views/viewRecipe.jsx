@@ -16,6 +16,48 @@ class Head extends React.Component{
     }
 }
 
+class Aside extends React.Component{
+    render(){
+        let inputData = this.props.data
+        let outList;
+        if(inputData == undefined){
+
+            return  <div>
+
+                    </div>
+        }
+        return(
+            <aside>
+                <figure>
+                    <h4>Category PlayList</h4>
+                    {outList}
+                </figure>
+            </aside>
+        );
+    }
+}
+
+class Navigation extends React.Component{
+    render(){
+        return(
+            <nav>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a method="GET" href="/recipe/new"><span class=" glyphicon glyphicon-plus" aria-hidden="true"></span>Add New Recipe</a>
+                    </li>
+                    <li class="nav-item">
+                    <a method="GET" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+
+        );
+    }
+}
+
 class ViewSingle extends React.Component{
     render(){
 
@@ -25,13 +67,22 @@ class ViewSingle extends React.Component{
             const singleIngredients = singleItem.ingredients;
             const singleInstructions = singleItem.instructions;
             const singleId = singleItem.id;
-
-
+            const timeCreated = singleItem.timeCreated;
+            const timeUpdated = singleItem.updated_At;
 
         return(
             <html>
             <div class="col single-recipe">
-                    <h2>{singleTitle}</h2>
+                <div class="row">
+                    <div class="col">
+                        <h2>{singleTitle}</h2>
+                    </div>
+                    <div class="col time-stamps">
+                        <h8>Created: {timeCreated}</h8>
+                        <br></br>
+                        <h8>Updated: {timeUpdated}</h8>
+                    </div>
+                </div>
                     <br></br>
                     <span><h4>Category: {singleCategory}</h4> </span>
                     <br></br>
@@ -70,7 +121,8 @@ class View extends React.Component{
                         <h1>Recipe List Collector</h1>
                     </header>
                     <main>
-                        <NavAndAside/>
+                        <Aside/>
+                        <Navigation/>
                         <div class="content">
                             <ViewSingle data={listArr}/>
                         </div>

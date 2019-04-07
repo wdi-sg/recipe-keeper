@@ -1,4 +1,5 @@
 var React = require('react');
+var NavAndAside = require('./navAndAside');
 
 class Head extends React.Component{
     render(){
@@ -41,10 +42,6 @@ class Navigation extends React.Component{
                     </li>
                 </ul>
             </nav>
-
-
-
-
         );
     }
 }
@@ -52,11 +49,11 @@ class Navigation extends React.Component{
 class AddSuccess extends React.Component{
     render(){
 
-        let formAction = '/recipe/newadded';
+        console.log(this.props);
         const singleId = this.props.data.id;
+        console.log("AT SUCESS");
+
         console.log(singleId);
-
-
         return(
             <html>
                 <div class="col">
@@ -64,7 +61,7 @@ class AddSuccess extends React.Component{
                         <h4>Sucessfully Added Recipe!</h4>
                     </div>
                     <div class="row">
-                        <a className="btn btn-info"href={`/recipe/${ singleId }`}>View Entry</a>
+                        <a method="GET" className="btn btn-info" href={`/recipe/${ singleId }`}>View Entry</a>
                     </div>
                 </div>
             </html>
@@ -76,8 +73,18 @@ class Success extends React.Component{
     render(){
 
         const inputData = this.props.objToRender;
-        console.log("In react sucess: " + inputData);
+        let categoryArr;
+        let listArr;
 
+        if(inputData[1].length > 0){
+            //looks into "recipes" array of objects
+            listArr = inputData[0]; // arr of all items
+            categoryArr = inputData[1];  //arr of unique categories
+
+        } else if(inputData[1].length == 0){
+            categoryArr =[];
+            listArr=inputData[0];
+        }
 
         return(
             <html>
@@ -87,10 +94,9 @@ class Success extends React.Component{
                         <h1>Recipe List Collector</h1>
                     </header>
                     <main>
-                        <Navigation/>
-                        <Aside/>
+                        <NavAndAside data={categoryArr}/>
                         <div class="content">
-                           <AddSuccess data={inputData} />
+                           <AddSuccess data={listArr} />
                         </div>
                     </main>
                 </body>

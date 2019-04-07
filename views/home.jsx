@@ -16,42 +16,11 @@ class Head extends React.Component{
     }
 }
 
-//Should print only unique categories
-class MainContent extends React.Component{
-    render(){
-
-        const categoryArr = this.props.data;
-        let outList;
-
-            outList = categoryArr.map(item =>{
-            return  <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-category">{item}</h5>
-                        </div>
-                    </div>
-
-        });
-        return(
-            <html>
-                <h3>Categories</h3>
-                <div class="row categories">
-                    {outList}
-                </div>
-            </html>
-
-        );
-    }
-}
-
 class ViewAll extends React.Component{
     render(){
-
-
             const listArr = this.props.data
-            console.log(this.props);
-            console.log(listArr);
-            console.log(listArr.length);
             let outList;
+            if(listArr.length >0){
             outList = listArr.map(item=>{
                 return  <div class="card-recipes">
                             <a class="card-body card-body-recipes" href={`/recipe/${item.id}`}>
@@ -60,6 +29,14 @@ class ViewAll extends React.Component{
                         </div>
 
             })
+        } else {
+            let formAction = '/recipe/new';
+                return  <div class="card-recipes ">
+                            <a class="card-body card-body-recipes" href={formAction}><h4>Click Add New Recipes to Begin</h4></a>
+
+                        </div>
+
+        }
         return(
             <html>
                 <h3>Recipes</h3>
@@ -76,25 +53,16 @@ class Home extends React.Component{
         const inputData = this.props.objToRender;
         let categoryArr;
         let listArr;
-        let id;
-        if(inputData[1].length >1){
+
+        if(inputData[1].length > 0){
             //looks into "recipes" array of objects
             listArr = inputData[0]; // arr of all items
-            console.log("when all is fine and cool: " + listArr);
-            categoryArr = inputData[1];  //arr of unquie categories
-            id = [];
-            console.log("here in normal home");
+            categoryArr = inputData[1];  //arr of unique categories
 
-        } else if(inputData[1].length == 1){
-            console.log('inside ID RENDER');
+        } else if(inputData[1].length == 0){
             categoryArr =[];
-            id = inputData[1];
-            listArr = [inputData[0][id-1]];
-            console.log(categoryArr);
-            console.log(listArr);
-            console.log(id);
+            listArr=[];
         }
-
         return (
             <html>
                 <Head/>
@@ -103,9 +71,8 @@ class Home extends React.Component{
                         <h1>Recipe List Collector</h1>
                     </header>
                     <main>
-                        <NavAndAside/>
+                        <NavAndAside data={categoryArr}/>
                         <div class="content">
-                            <MainContent data={categoryArr}/>
                             <ViewAll data={listArr}/>
                         </div>
                     </main>
@@ -118,7 +85,29 @@ class Home extends React.Component{
 module.exports = Home;
 
 
+// //Should print only unique categories
+// class MainContent extends React.Component{
+//     render(){
 
-  // if(listArr.length == 1){
-  //           outList
-  //           }
+//         const categoryArr = this.props.data;
+//         let outList;
+
+//             outList = categoryArr.map(item =>{
+//             return  <div class="card">
+//                         <div class="card-body">
+//                             <h5 class="card-category">{item}</h5>
+//                         </div>
+//                     </div>
+
+//         });
+//         return(
+//             <html>
+//                 <h3>Categories</h3>
+//                 <div class="row categories">
+//                     {outList}
+//                 </div>
+//             </html>
+
+//         );
+//     }
+// }
