@@ -13,6 +13,7 @@ class Edit extends React.Component {
                 <br/>
                 INSTRUCTIONS: <input type="text" name="instructions" value={this.props.item.instructions}/>
                 <br/>
+                IMAGE LINK: <input type="text" name="img" value={this.props.item.img}/>
                 <input type="submit" value="Submit"/>
                 </form>
             </body>

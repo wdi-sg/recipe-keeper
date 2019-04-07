@@ -11,6 +11,7 @@ class Newrecipe extends React.Component {
                 <br/>
                 INSTRUCTIONS: <input type="text" name="instructions"/>
                 <br/>
+                IMAGE LINK: <input type="text" name="img"/>
                 <input type="submit" value="Submit"/>
                 </form>
             </body>

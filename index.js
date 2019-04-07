@@ -43,15 +43,16 @@ let createNewRecipe = (request, response) => {
         newRecipe.title = request.body.title;
         newRecipe.ingredients = request.body.ingredients;
         newRecipe.instructions = request.body.instructions;
+        newRecipe.img = request.body.img;
 
         obj.recipes.push(newRecipe);
 
         jsonfile.writeFile(file, obj, (err) => {
             if (err) {
-                console.log(err)
-            };
+                console.log(err);
+            }
         });
-        response.redirect('/');
+        response.redirect('/recipes/');
     });
 }
 app.post('/recipes', createNewRecipe);
@@ -61,8 +62,9 @@ app.post('/recipes', createNewRecipe);
 //Show a single recipe
 let showRecipe = (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
+        let index = request.params.id;
         let selectedRecipe = obj.recipes[request.params.id];
-        response.render('showrecipe', selectedRecipe);
+        response.render('showrecipe', {input: selectedRecipe, inputNum: index});
     });
 }
 app.get('/recipes/:id', showRecipe);
@@ -71,7 +73,7 @@ app.get('/recipes/:id', showRecipe);
 
 
 //Build pre-populated form for editing a recipe
-let editRecipe = (request, response) => {
+let sendEditRecipeRequest = (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         let recipeIndex = request.params.id;
         let editItem = obj.recipes[recipeIndex];
@@ -79,25 +81,59 @@ let editRecipe = (request, response) => {
         response.render('edit', {item: editItem, index: recipeIndex});
     });
 }
-app.get('/recipes/:id/edit', editRecipe);
+app.get('/recipes/:id/edit', sendEditRecipeRequest);
 
+
+
+
+//Update data.json with edited recipe
+let editRecipe = (request, response) => {
+
+    jsonfile.readFile(file, (err, obj) => {
+        let index = request.params.id;
+        obj.recipes[index].title = request.body.title;
+        obj.recipes[index].ingredients = request.body.ingredients;
+        obj.recipes[index].instructions = request.body.instructions;
+        obj.recipes[index].img = request.body.img;
+
+        jsonfile.writeFile(file, obj, (err) => {
+            if (err) {
+                console.log(err);
+            }
+            response.redirect('/recipes/' + index);
+        });
+    });
+}
+app.put('/recipes/:id', editRecipe);
+
+
+
+//Delete selected recipe
+let deleteRecipe = (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let index = request.params.id;
+        obj.recipes.splice(index, 1);
+        jsonfile.writeFile(file, obj, (err) => {
+            response.redirect('/recipes/');
+        });
+    })
+}
+app.delete('/recipes/:id',deleteRecipe);
+
+
+
+//Will render home screen
+let home = (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let allRecipes = obj
+        response.render("home", allRecipes);
+    });
+}
+app.get('/recipes/', home);
 
 
 
 /////////////////////////////Done//////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
