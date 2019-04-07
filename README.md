@@ -167,7 +167,7 @@ Add more layout. Add a header/navbar and footer to every page.
 Add special layout and CSS to the landing page `/`
 
 #### Further
-Add more data to your recipie: add the date when it was created.
+Add more data to your recipe: add the date when it was created.
 
 #### Further
 Validate the user's input. Create limits for how long or short any field should be. 
