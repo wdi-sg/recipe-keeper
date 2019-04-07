@@ -11,7 +11,7 @@ class New extends React.Component {
                     <h1>Submit new recipe</h1>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Creamed Spinach" autoFocus/>
+                            <input type="text" class="form-control" name="name" placeholder="Delicious Creamed Spinach" autoFocus/>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Image link</label>
@@ -19,7 +19,7 @@ class New extends React.Component {
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Ingredients</label>
-                        <textarea type="text" name="ingredients" class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Spinach, cream, thyme"/>
+                        <textarea type="text" name="ingredients" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="1 bunch spinach&#10;2 cups cream&#10;1 stalk thyme"/>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Instructions</label>
@@ -30,7 +30,7 @@ class New extends React.Component {
                             <input type="text" class="form-control" name="preparation_time" placeholder="40 minutes" autoFocus/>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Submitted by</label>
+                        <label for="exampleFormControlInput1">Submission by</label>
                             <input type="text" class="form-control" name="author" placeholder="Jubbie Doe" autoFocus/>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

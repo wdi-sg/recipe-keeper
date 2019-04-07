@@ -6,6 +6,8 @@ const express = require('express');
 
 const app = express();
 
+app.use(express.static('public'));
+
 app.use(express.static(__dirname+'/public/'));
 app.use(express.json());
 app.use(express.urlencoded({
@@ -20,7 +22,7 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
-//-----------------------------------------------------//
+//-----------------------HOME--------------------------//
 
 app.get('/recipes', (request, response) => {
 
@@ -38,25 +40,20 @@ app.get('/recipes/new', (request, response) => {
     response.render('new');
 });
 
-
-// Create new recipe here
-
 app.post('/recipes', (request, response) => {
-
-    response.send(request.body);
 
      jsonfile.readFile('recipes.json', (err, obj) => {
 
         console.log(obj);
 
         let newRecipe = {};
-        // newRecipe.id = obj["recipes"].length +1;
+        newRecipe.id = obj["recipes"].length +1;
         newRecipe.name = request.body.name;
         newRecipe.instructions = request.body.instructions;
         newRecipe.ingredients = request.body.ingredients;
         newRecipe.author = request.body.author;
         newRecipe.img = request.body.img;
-        recipe.preparation_time = request.body.preparation_time;
+        newRecipe.preparation_time = request.body.preparation_time;
         newRecipe.created_at = new Date();
 
             // Date + time formatting
@@ -73,8 +70,106 @@ app.post('/recipes', (request, response) => {
         jsonfile.writeFile(FILE, obj, (err) => {
             console.log(err)
         })
+
+        response.render('home');
     })
 })
+
+//----------------INDIVIDUAL RECIPES-------------------//
+
+app.get('/recipes/:id', (request, response) => {
+
+    let recipeIndex = parseInt(request.params.id);
+
+     jsonfile.readFile(FILE, (err, obj) => {
+
+        recipeIndex = obj["recipes"].findIndex(x => x.id === recipeIndex);
+        response.render('recipe', obj["recipes"][recipeIndex]);
+
+    })
+})
+
+//-------------------EDIT RECIPES----------------------//
+
+app.get('/recipes/:id/edit', (request, response) => {
+
+    let recipeIndex = parseInt(request.params.id);
+
+     jsonfile.readFile(FILE, (err, obj) => {
+
+        recipeIndex = obj["recipes"].findIndex(x => x.id === recipeIndex);
+
+        response.render('edit', obj["recipes"][recipeIndex]);
+
+    })
+
+})
+
+app.put('/recipes/:id', (request, response) => {
+
+    let recipeIndex = parseInt(request.params.id);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+
+        recipeIndex = obj["recipes"].findIndex(x => x.id === recipeIndex);
+
+        let recipeObj = obj["recipes"][recipeIndex];
+        recipeObj.name = request.body.name;
+        recipeObj.img = request.body.img;
+        recipeObj.ingredients = request.body.ingredients;
+        recipeObj.instructions = request.body.instructions;
+        recipeObj.preparation_time = request.body.preparation_time;
+        recipeObj.author = request.body.author;
+
+
+        jsonfile.writeFile(FILE, obj, (err) => {
+            console.log(err);
+        });
+
+        response.render('recipe', obj["recipes"][recipeIndex]);
+
+    })
+
+})
+
+//------------------DELETE RECIPES---------------------//
+
+app.get('/recipes/:id/delete', (request, response) => {
+
+    let recipeIndex = parseInt(request.params.id);
+
+     jsonfile.readFile(FILE, (err, obj) => {
+
+        recipeIndex = obj["recipes"].findIndex(x => x.id === recipeIndex);
+
+        response.render('delete', obj["recipes"][recipeIndex]);
+
+    })
+
+})
+
+app.delete('/recipes/:id', (request, response) => {
+
+    let recipeIndex = parseInt(request.params.id);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+
+        recipeIndex = obj["recipes"].findIndex(x => x.id === recipeIndex);
+
+        obj["recipes"].splice(recipeIndex, 1);
+
+
+        jsonfile.writeFile(FILE, obj, (err) => {
+            console.log(err);
+        });
+
+        response.render('home', obj);
+
+    })
+
+})
+
+
 
 //-----------------------------------------------------//
 

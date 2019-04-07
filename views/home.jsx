@@ -7,16 +7,17 @@ class Home extends React.Component {
   render() {
 
     const recipes = this.props.recipes.map( recipe => {
-        return <Cards img={recipe.img} Cards name={recipe.name} Cards author={recipe.author} Cards created_at_display={recipe.created_at_display} Cards prep={recipe.preparation_time}/>
+        return <Cards img={recipe.img} Cards name={recipe.name} Cards author={recipe.author} Cards created_at_display={recipe.created_at_display} Cards prep={recipe.preparation_time} Cards id={recipe.id}/>
     })
 
     return (
         <Layout>
-            <div class="col-lg-12 col-md-12">
-                <div class="card-deck m-5">
+
+                <div class="card-group">
                     {recipes}
                 </div>
-            </div>
+
+
 
 
         </Layout>
