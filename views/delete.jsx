@@ -1,13 +1,15 @@
 var React = require('react');
 
-class Show extends React.Component {
+class Delete extends React.Component {
 
     render() {
+
+        let deleteAction = `/recipes/${this.props.id}?_method=delete`;
 
         return (
 
         <body>
-            <h1>Recipe</h1>
+            <h1>Delete Recipe:</h1>
                 <div>
                     <div>Recipe Title:
                         <p>{this.props.recipeTitle}</p>
@@ -19,10 +21,13 @@ class Show extends React.Component {
                         <p>{this.props.instructions}</p>
                     </div>
                 </div>
+            <form method="POST" action={deleteAction}>
+                <input type="submit" value="Delete"/>
+            </form>
         </body>
 
         );
     }
 }
 
-module.exports = Show;
+module.exports = Delete;

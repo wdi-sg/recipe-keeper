@@ -4,8 +4,6 @@ class Index extends React.Component {
 
     render() {
 
-        // let putAction = `/recipes/${this.props.}?_method=PUT`;
-
 const recipes = this.props.recipes.map ( recipe => {
 
    return <tr>

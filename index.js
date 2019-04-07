@@ -46,45 +46,49 @@ var newRecipe = function(request, response) {
 }
 
 var createRecipe = function(request, response) {
-    let newRecipe = request.body;
 
     jsonfile.readFile(file, (err, obj) => {
         if (err) console.error(err);
 
-        let allRecipesArr = obj.recipes;
-        allRecipesArr.push(newRecipe);
-        // let index;
+        let newRecipe = {
+            "id": obj.recipes.length + 1,
+            "recipeTitle": request.body.recipeTitle,
+            "ingredients": request.body.ingredients,
+            "instructions": request.body.instructions,
+        }
 
-        // for (let i = 0; i < allRecipesArr.length; i++) {
-        //     if (allRecipesArr[i] === newRecipe) {
-        //         index = i;
-        //     }
-        // }
+        obj.recipes.push(newRecipe);
 
         jsonfile.writeFile(file, obj, (err) => {
             if (err) console.error(err);
         });
 
         response.render('show', newRecipe);
-        // response.redirect(`/recipes/${index}`);
 
     });
 };
 
 var showRecipe = function(request, response) {
 
-    let inputId = parseInt(request.params.id);
+    let id = parseInt(request.params.id);
+    var index;
 
     jsonfile.readFile(file, (err, obj) => {
         if (err) console.error(err);
 
-        let currentRecipe = obj.recipes[inputId];
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (id === obj.recipes[i].id) {
+                index = i;
+            }
+        }
 
-        if (currentRecipe === undefined) {
+        let selectedRecipe = obj.recipes[index];
+
+        if (selectedRecipe === undefined) {
             response.status(404);
-            response.send("Recipe not found.");
+            response.send("Error: Recipe not found");
         } else {
-            response.render('show', currentRecipe);
+            response.render('show', selectedRecipe);
         }
     });
 };
@@ -100,6 +104,112 @@ var indexRecipe = function(request, response) {
     })
 }
 
+var editRecipe = function(request, response) {
+
+    let id = parseInt(request.params.id);
+    var index;
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err);
+
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (id === obj.recipes[i].id) {
+                index = i;
+            }
+        }
+
+        let selectedRecipe = obj.recipes[index];
+
+        if (selectedRecipe === undefined) {
+            response.status(404);
+            response.send("Error: Recipe not found");
+        } else {
+            response.render('edit', selectedRecipe);
+        }
+    })
+}
+
+var updateRecipe = function(request, response) {
+
+    let id = parseInt(request.params.id);
+    var index;
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err);
+
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (id === obj.recipes[i].id) {
+                index = i;
+            }
+        }
+
+        let originalRecipeTitle = obj.recipes[index].recipeTitle;
+
+        obj.recipes[index].recipeTitle = request.body.recipeTitle;
+        obj.recipes[index].ingredients = request.body.ingredients;
+        obj.recipes[index].instructions = request.body.instructions;
+
+        // we dont need to reassign this, but lets be explicit about the change
+        const changedObj = obj;
+
+        jsonfile.writeFile(file, changedObj, (err) => {
+            if (err) console.error(err);
+
+            response.send(`Edited Recipe: ${originalRecipeTitle}.`)
+        });
+    })
+}
+
+var deleteRecipe = function(request, response) {
+
+    let id = parseInt(request.params.id);
+    var index;
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err);
+
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (id === obj.recipes[i].id) {
+                index = i;
+            }
+        }
+
+        let selectedRecipe = obj.recipes[index];
+
+        if (selectedRecipe === undefined) {
+            response.status(404);
+            response.send("Error: Recipe not found");
+        } else {
+            response.render('delete', selectedRecipe);
+        }
+    })
+}
+
+var destroyRecipe = function(request, response) {
+
+    let id = parseInt(request.params.id);
+    var index;
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err);
+
+        for (let i = 0; i < obj.recipes.length; i++) {
+            if (id === obj.recipes[i].id) {
+                index = i;
+            }
+        }
+
+        let originalRecipeTitle = obj.recipes[index].recipeTitle;
+
+        obj.recipes.splice(index, 1);
+
+        jsonfile.writeFile(file, obj, (err) => {
+            if (err) console.error(err);
+
+            response.send(`Deleted Recipe: ${originalRecipeTitle}.`);
+        })
+    })
+}
 
 /**
  * ===================================
@@ -109,11 +219,15 @@ var indexRecipe = function(request, response) {
 app.get('/recipes/new', newRecipe);
 app.post('/recipes', createRecipe);
 
+app.get('/', indexRecipe);
+app.get('/recipes/', indexRecipe);
 app.get('/recipes/:id', showRecipe);
 
-app.get('/recipes/', indexRecipe);
+app.get('/recipes/:id/edit', editRecipe);
+app.put('/recipes/:id', updateRecipe);
 
-// app.get('/recipes/:id/edit', editRecipe);
+app.get('/recipes/:id/delete', deleteRecipe);
+app.delete('/recipes/:id', destroyRecipe);
 
 /**
  * ===================================
