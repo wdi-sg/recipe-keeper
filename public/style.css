@@ -1,0 +1,40 @@
+body {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 16px;
+	background-image: url('images/background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+  font-family: 'Quattrocento', serif;
+}
+
+h1, h2, h3 {
+	font-family: 'Cinzel', serif;
+}
+
+
+
+.recipe-page img {
+	width: 100%;
+}
+
+/*.recipe-image {
+	max-width: 100%;
+}
+*/
+/*.recipe-page button {
+	position: relative;
+	top: 16px;
+}
+*/
+.recipe-page h1 {
+	text-align: center;
+}
+
+.recipe-hero {
+  background-image: url("https://i.ytimg.com/vi/6FDBj5SYpRQ/maxresdefault.jpg");
+  background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+}
