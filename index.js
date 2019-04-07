@@ -35,9 +35,44 @@ app.get('/test', (request, response) => {
     });
 });
 
+//Start with ability to render a form to create a recipe
+app.get('/recipes/new',(request, response)=>{
+    
+    response.render('new');
+})
 
+app.post('/recipes',(request, response)=>{
+    console.log("this is the request.body.id: "+request.body.id);
+    console.log("this is the request.body.name: "+request.body.name);
+    console.log("this is the request.body.ingredients: "+request.body.ingredients);
+    console.log("this is the request.body.instructions: "+request.body.instructions);
+    let newRecipe = request.body;
 
+    //read the data in the data file first before pushing new recipe in
+    jsonfile.readFile(FILE, (err,obj)=>{
+        if (err) console.error(err);
+        obj.recipes.push(newRecipe);
+        //we don't need to reassign this, but just for clarity sake...
+        let changedObj = obj;
+        //write file
+        jsonfile.writeFile(FILE, changedObj,{spaces:2},(err)=>{
+            if(err) console.log(err);
+            let recipesList = changedObj.recipes;
+            console.log("Printing out recipesList: "+recipesList);
+            response.render('home',{respondKey: recipesList});
+        });
+    });
+});
 
+//ability to see a list of all the recipes in the root directory
+app.get('/recipes/', (request, response)=>{
+    jsonfile.readFile(FILE, (err,obj)=>{
+        if (err) console.log(err);
+        console.log("Begin reading file to render recipe list into home.jsx");
+        let recipesList = obj.recipes;
+        response.render('home',{respondKey:recipesList});
+    });
+});
 
 
 //*=============*/
@@ -45,7 +80,7 @@ app.get('/test', (request, response) => {
 //============== */
 
 app.get('/hello', (request, response) => {
-    response.send('hello this is recipe-keeper');
+    response.send('hello, you are connected to recipe-keeper');
 });
 
 
