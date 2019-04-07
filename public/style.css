@@ -30,3 +30,12 @@ h1, h2, h3 {
 .recipe-page h1 {
 	text-align: center;
 }
+
+.recipe-hero {
+  background-image: url("https://i.ytimg.com/vi/6FDBj5SYpRQ/maxresdefault.jpg");
+  background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+
+}

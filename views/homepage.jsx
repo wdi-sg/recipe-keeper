@@ -1,7 +1,8 @@
 var React = require('react');
 var Layout = require('./layout');
 var RecipeSearch = require('./recipesearch');
-var RecipeCreate = require('./RecipeCreate');
+var RecipeCreate = require('./recipeCreate');
+var RecipeHero = require('./recipehero');
 
 class Home extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class Home extends React.Component {
                     <div>
                       <h1>The Sexy Hotpots Cookery</h1>
                     </div>
+                    <RecipeHero/>
                     <RecipeSearch/>
                     <br/>
                     <RecipeCreate/>
