@@ -45,7 +45,7 @@ class createRecipe extends React.Component {
                 type="text"
                 className="form-control"
                 id="recipe-name"
-                aria-describedby="emailHelp"
+                aria-describedby="recipe-name-help"
                 name="title"
                 placeholder="Enter recipe name"
               />
@@ -61,12 +61,24 @@ class createRecipe extends React.Component {
                 </select>
               </div>
             </div>
-            <br />
-            <div id="add-ingredient">Add Ingredient</div>
-            <br />
-            <input type="text" name="instructions" />
-            <br />
-            <button type="submit">Submit Recipe</button>
+            <div id="add-ingredient" className="btn btn-primary">Add Ingredient</div>
+            <br/>
+            <br/>
+            <div className="form-group">
+              <label for="instructions">Instructions</label>
+              <input
+                type="text"
+                className="form-control"
+                id="instructions"
+                aria-describedby="instructions-help"
+                name="instructions"
+                placeholder="Enter instructions for recipe"
+              />
+              <small id="instructions-help" className="form-text text-muted">
+                Choose a name for your recipe!
+              </small>
+            </div>
+            <button className="btn btn-primary"type="submit">Submit Recipe</button>
           </form>
           <script src="/create-recipe.js" />
           <script

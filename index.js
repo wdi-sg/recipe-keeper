@@ -3,10 +3,13 @@ const jsonfile = require("jsonfile");
 const methodOverride = require("method-override");
 const reactEngine = require("express-react-views").createEngine();
 const classes = require("./classes");
+const path = require("path");
 const ingredient = classes.ingredient;
 const recipe = classes.recipe;
 const ingredientsJSON = "ingredient.json";
+const dataJSON = "data.json";
 let ingredientsObj = {};
+let dataObj = {};
 
 const app = express();
 app.use(methodOverride("_method"));
@@ -20,7 +23,7 @@ app.use(
     extended: true
   })
 );
-app.use(express.static(__dirname + "/public/"));
+app.use(express.static(path.join(__dirname, "public")));
 
 //we keep the json file in the server and read from it so that if
 //the json file is updated with more ingredients, the list/s
@@ -31,7 +34,6 @@ jsonfile.readFile(ingredientsJSON, (err, obj) => {
   }
   ingredientsObj["ingredients"] = obj["ingredients"];
   console.log(ingredientsObj["ingredients"][2]);
-  
 });
 
 app.get("/home", (request, response) => {
@@ -56,9 +58,28 @@ app.get("/create-recipe", (request, response) => {
 app.post("/create-recipe", (request, response) => {
   console.log("recipe " + request.body.title + " received!");
   console.log("ingredients: " + request.body.ingredients);
-  
+
   let obj = {};
   obj["ingredients"] = ingredientsObj["ingredients"];
+
+  let recipeReceived = new recipe(
+    request.body.title,
+    request.body.ingredients,
+    request.body.instructions
+  );
+  jsonfile.readFile(dataJSON, (err, readObj) => {
+    if (err) {
+      console.log(err);
+    }
+
+    readObj["recipes"].push(recipeReceived);
+    dataObjToWrite = readObj;
+    jsonfile.writeFile(dataJSON, dataObjToWrite, err => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
   response.render("create-recipe", obj);
 });
 
