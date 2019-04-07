@@ -1,8 +1,5 @@
 const React = require("react");
 
-const express = require('express');
-const app = express();
-
 class SeeRecipe extends React.Component {
 
 	render() {
@@ -15,22 +12,26 @@ class SeeRecipe extends React.Component {
 		})
 		const instructions = recipeObject.Instructions;
 
-		const path = `/recipes/${id}?_method=DELETE`;
+		const deletePath = `/recipes/${id}?_method=DELETE`;
+		const editPath = `/recipes/${id}/edit`;
 
 		return (
 			<html>
 			<head>
 			</head>
 			<body>
-				<h1>Delete this recipe?</h1>
+				<h1>View Recipe</h1>
 				<p>Recipe ID: {id}</p>
 				<p>Recipe title: {title}</p>
 				<p>Ingredients: </p>
 				<ul>{ingredientsList}</ul>
 				<p>Instructions: <br></br>
-				{instructions}</p>				
-				<form method="post" action={path} >
-					<input type="submit" value="Delete" />
+				{instructions}</p>	
+				<form method="get" action={editPath} >
+					<input type="submit" value="Edit Recipe" />
+				</form>			
+				<form method="post" action={deletePath} >
+					<input type="submit" value="Delete Recipe" />
 				</form>
 				<form method="get" action="/recipes" >
 					<input type="submit" value="Cancel" />

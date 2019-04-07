@@ -1,8 +1,5 @@
 const React = require("react");
 
-const express = require('express');
-const app = express();
-
 class NewRecipe extends React.Component {
 
 	render() {
@@ -13,8 +10,8 @@ class NewRecipe extends React.Component {
 			<script src="/addField.js"></script>
 			</head>
 			<body>
+			<h1>Enter your new recipe</h1>
 			<form method="post" action="/recipes" >
-				<h1>Enter your new recipe</h1>
 				<p>Recipe title: </p>
 				<input type="text" name="Recipe Title" placeholder="Example: Boiled Chicken" target="_blank" />
 				<br></br>
