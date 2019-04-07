@@ -60,7 +60,12 @@ app.post('/recipes/:id', (req, res) => {
     let recipeInstructions = recipejson.recipes[number];
     console.log(recipeInstructions);
     let recipeList = {ccb: recipeInstructions};
-    res.render("singlerecipe", recipeList);
+
+    if (recipeInstructions === undefined) {
+        res.send("RECIPE NOT FOUND");
+    } else {
+        res.render("singlerecipe", recipeList);
+    }
 
 });
 
@@ -75,15 +80,12 @@ app.get('/recipes/:id', (req, res) => {
     let number = req.params.id;
     parseInt(number);
     // console.log("TESTING" + number);
-
-        if (testNumber > recipejson.recipes.length) {
-        res.send("NOT FOUND");
-    }
     let recipeInstructions = recipejson.recipes[number];
     let recipeList = {ccb: recipeInstructions};
 
-
-
+        if (number === undefined) {
+        res.send("NOT FOUND");
+    }
     res.render("singlerecipe", recipeList);
 });
 
