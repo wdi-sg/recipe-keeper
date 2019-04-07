@@ -85,10 +85,10 @@ li > a, li > a:hover {
 }
 
 .albumItem {
-	margin-bottom: 20px;
 	color: white;
 	position: relative;
   text-align: center;
+ 	margin-bottom: 20px;
 }
 
 .albumItem > a > img {
@@ -101,7 +101,6 @@ li > a, li > a:hover {
 .centered {
   top: 85%;
   left: 50%;
-
  	font-size: 20px;
  	font-weight: bold;
 	position: absolute;
@@ -120,12 +119,13 @@ li > a, li > a:hover {
 	display: inline-block;
 }
 
-.remove {
-
-}
-
 .ingredients > .row {
 	margin-top: 15px;
+}
+
+.error {
+	color: red;
+	margin-left: 25px;
 }
 
 

@@ -79,29 +79,33 @@ var homeRequestHandler = function (request, response) {
 }
 
 var newRecipeRequestHandler = function (request, response) {
-    response.render('add');
+    response.render('add', {"validation" : "none"});
 }
 
 var addNewRecipeRequestHandler = function (request, response) {
-    let newRecipe = {
-        id: uuidv1(),
-        title: request.body.title,
-        ingredients: request.body.ingredients,
-        instructions: request.body.instructions,
-        img: "/img/laksa.jpg",
-        created: getCurrentDateAndTime(),
-        updated: ""
-    };
+    if (request.body.title === "" || request.body.instructions === "") {
+        response.render('add', {"validation" : "fail"});
+    } else {
+        let newRecipe = {
+            id: uuidv1(),
+            title: request.body.title,
+            ingredients: request.body.ingredients,
+            instructions: request.body.instructions,
+            img: "/img/laksa.jpg",
+            created: getCurrentDateAndTime(),
+            updated: ""
+        };
 
-    recipeData.recipes.push(newRecipe);
+        recipeData.recipes.push(newRecipe);
 
-    jsonfile.writeFileAsync(recipeDataFile, recipeData)
-        .then(() => {
-            response.redirect(`/recipes/${ newRecipe.id }`);
-        }).catch((err) => {
-            response.send('There is an error adding a new recipe. Please try again later.');
-            console.log(err);
-        });;
+        jsonfile.writeFileAsync(recipeDataFile, recipeData)
+            .then(() => {
+                response.redirect(`/recipes/${ newRecipe.id }`);
+            }).catch((err) => {
+                response.send('There is an error adding a new recipe. Please try again later.');
+                console.log(err);
+            });;
+    }
 }
 
 var editRecipeRequestHandler = function (request, response) {
@@ -121,23 +125,27 @@ var editRecipeRequestHandler = function (request, response) {
 }
 
 var editExistingRecipeRequestHandler = function (request, response) {
-    _.forEach(recipeData.recipes, (o) => {
-        if (o.id === request.params.id) {
-            o.title = request.body.title;
-            o.ingredients = request.body.ingredients;
-            o.instructions = request.body.instructions;
-            o.category = request.body.category;
-            o.updated = getCurrentDateAndTime();
-        }
-    });
+    if (request.body.title === "" || request.body.instructions === "") {
+        response.render('add', {"validation" : "fail"});
+    } else {
+        _.forEach(recipeData.recipes, (o) => {
+            if (o.id === request.params.id) {
+                o.title = request.body.title;
+                o.ingredients = request.body.ingredients;
+                o.instructions = request.body.instructions;
+                o.category = request.body.category;
+                o.updated = getCurrentDateAndTime();
+            }
+        });
 
-    jsonfile.writeFileAsync(recipeDataFile, recipeData)
-        .then(() => {
-            response.redirect(`/recipes/${ request.params.id }`);
-        }).catch((err) => {
-            response.send('There is an error updating the recipe. Please try again later.');
-            console.log(err);
-        });;
+        jsonfile.writeFileAsync(recipeDataFile, recipeData)
+            .then(() => {
+                response.redirect(`/recipes/${ request.params.id }`);
+            }).catch((err) => {
+                response.send('There is an error updating the recipe. Please try again later.');
+                console.log(err);
+            });;
+    }
 }
 
 var deleteRecipeRequestHandler = function (request, response) {

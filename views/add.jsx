@@ -1,6 +1,22 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 
+class Validation extends React.Component {
+  render() {
+    let content = "";
+
+    if (this.props.data === "fail") {
+        content = "Please fill up all the fields";
+    }
+
+    return (
+        <h4 className="error">
+            { content }
+        </h4>
+    );
+  }
+}
+
 class Add extends React.Component {
   render() {
 
@@ -33,6 +49,8 @@ class Add extends React.Component {
 
                     <input className="btn btn-secondary" type="submit" value="Add new Recipe"/>
                 </form>
+                <br/>
+                <Validation data={ this.props.validation }/>
             </DefaultLayout>
     );
   }
