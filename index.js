@@ -77,12 +77,6 @@ var getCurrentDateAndTime = function () {
     return dt;
 }
 
-var getCuisineCategories = function () {
-    let c = ["Chinese Cuisine", "Western Cuisine", "Korean Cuisine", "Japanese Cuisine"];
-
-    return c;
-}
-
 
 // ===================================
 // Request Handlers
@@ -92,7 +86,7 @@ var homeRequestHandler = function (request, response) {
 }
 
 var newRecipeRequestHandler = function (request, response) {
-    response.render('add', { cuisineCategories: getCuisineCategories() });
+    response.render('add');
 }
 
 var addNewRecipeRequestHandler = function (request, response) {
@@ -101,7 +95,7 @@ var addNewRecipeRequestHandler = function (request, response) {
         title: request.body.title,
         ingredients: request.body.ingredients,
         instructions: request.body.instructions,
-        img: "/img/boiled-duck.jpg",
+        img: "/img/laksa.jpg",
         created: getCurrentDateAndTime(),
         updated: ""
     };
@@ -127,7 +121,7 @@ var editRecipeRequestHandler = function (request, response) {
     });
 
     if (recipe !== undefined) {
-        response.render('edit', { "recipe": recipe, "cuisineCategories": getCuisineCategories() });
+        response.render('edit', recipe);
     } else {
         response.send(404, 'Not found!');
     }

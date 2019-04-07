@@ -1,6 +1,20 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 
+class Ingredients extends React.Component {
+  render() {
+    let ingredientElements = this.props.data.map( (o) => {
+        return <li>{ o["amount"] } { o["name"] }, { o["notes"] }</li>
+    });
+
+    return (
+        <ul>
+            { ingredientElements }
+        </ul>
+    );
+  }
+}
+
 class Delete extends React.Component {
   render() {
 
@@ -10,17 +24,8 @@ class Delete extends React.Component {
             <DefaultLayout title= { `Delete Recipe - ${ this.props.title }` }>
                 <form className="delete" method="POST" action={ formAttribute }>
                     <div>
-                        <div>Category:</div>
-                        <ul>
-                            <li>{ this.props.category }</li>
-                        </ul>
-                    </div>
-
-                    <div>
                         <div>Ingredients:</div>
-                        <ul>
-                            <li>{ this.props.ingredients }</li>
-                        </ul>
+                        <Ingredients data= {this.props.ingredients}/>
                     </div>
 
                     <div>

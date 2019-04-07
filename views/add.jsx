@@ -11,8 +11,20 @@ class Add extends React.Component {
                     <input className="form-control" name="title"/>
                     <br/>
 
-                    <div>Ingredients:</div>
-                    <textarea className="form-control" name="ingredients" rows="3"/>
+                    <div className="ingredients">
+                        Ingredients:<div className="btn btn-info moreIngredientButton">+ Add more Ingredient</div>
+                        <div className="row">
+                            <div className="col">
+                                Name: <input className="form-control" name="ingredients[0][name]"/>
+                            </div>
+                            <div className="col">
+                                Amount: <input type="number" className="form-control" name="ingredients[0][amount]"/>
+                            </div>
+                            <div className="col">
+                                Notes: <input className="form-control" name="ingredients[0][notes]"/>
+                            </div>
+                        </div>
+                    </div>
                     <br/>
 
                     <div>Instructions:</div>

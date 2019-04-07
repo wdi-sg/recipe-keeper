@@ -1,1 +1,39 @@
-{"recipes":[{"id":"5028abb0-5888-11e9-a5d3-b57658eb9d7a","title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve.","img":"/img/boiled-duck.jpg","created":"06/04/2019 00:00:00","updated":""},{"id":"5028abb0-5888-11e9-a5d3-b57658eb9d7w","title":"laksa","ingredients":"1 currey, water","instructions":"boil curry in water for 20 minutes. take it out. serve.","img":"/img/laksa.jpg","created":"06/04/2019 00:00:00","updated":""},{"id":"5028abb0-5888-11e9-a5d3-b57658eb9d71","title":"chicken rice","ingredients":"1 chicken, water","instructions":"boil chicken in water for 20 minutes. take it out. serve.","img":"/img/chicken-rice.jpg","created":"06/04/2019 00:00:00","updated":""},{"id":"b6bfac50-593e-11e9-b399-977923fff70a","title":"Prawn Noodles","ingredients":"- Dry Noodle\r\n- Prawn","instructions":"- Test here\r\n- Cook\r\n- Put Soup","img":"/img/boiled-duck.jpg","created":"07/04/2019 22:09:10","updated":"07/04/2019 22:21:06","_locals":{}}]}
+{
+  "recipes": [
+    {
+      "id": "5028abb0-5888-11e9-a5d3-b57658eb9d7a",
+      "title": "boiled duck",
+      "ingredients": [
+        {
+          "name": "duck",
+          "amount": "1",
+          "notes": "water"
+        }
+      ],
+      "instructions": "boil duck in water for 20 minutes. take it out. serve.",
+      "img": "/img/boiled-duck.jpg",
+      "created": "06/04/2019 00:00:00",
+      "updated": "08/04/2019 00:28:11"
+    },
+    {
+      "id": "4b14bed0-594f-11e9-a715-8beca37f47fc",
+      "title": "Laksa",
+      "ingredients": [
+        {
+          "name": "Prawn",
+          "amount": "2",
+          "notes": "de-shell"
+        },
+        {
+          "name": "Milk",
+          "amount": "1",
+          "notes": "Cow"
+        }
+      ],
+      "instructions": "Stir while mixing",
+      "img": "/img/laksa.jpg",
+      "created": "08/04/2019 00:07:50",
+      "updated": ""
+    }
+  ]
+}

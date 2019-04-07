@@ -28,7 +28,7 @@ class DefaultLayout extends React.Component {
 
                                 <ul className="nav nav-pills new">
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/recipes/new"><img src="/img/plus.svg"/>New Recipe</a>
+                                        <a className="nav-link" href="/recipes/new"><img src="/img/plus.svg"/>Add New Recipe</a>
                                     </li>
                                 </ul>
                             </div>
@@ -43,6 +43,7 @@ class DefaultLayout extends React.Component {
 
                         </div>
                     </div>
+                    <script src="/js/script.js"></script>
                 </body>
             </html>
     );

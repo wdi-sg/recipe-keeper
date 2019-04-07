@@ -64,7 +64,7 @@ li > a, li > a:hover {
 }
 
 .add, .edit, .delete, .recipe {
-	width: 70%;
+	width: 80%;
 	margin-left: 25px;
 	text-transform: capitalize;
 }
@@ -81,7 +81,7 @@ li > a, li > a:hover {
 	flex-wrap: wrap;
 	margin-left: 25px;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .albumItem {
@@ -101,7 +101,7 @@ li > a, li > a:hover {
 .centered {
   top: 85%;
   left: 50%;
-  width: 100%;
+
  	font-size: 20px;
  	font-weight: bold;
 	position: absolute;
@@ -113,6 +113,21 @@ li > a, li > a:hover {
 .add > div {
 	margin-bottom: 8px;
 }
+
+.moreIngredientButton {
+	height: 38px;
+	margin-left: 385px;
+	display: inline-block;
+}
+
+.remove {
+
+}
+
+.ingredients > .row {
+	margin-top: 15px;
+}
+
 
 /*Edit*/
 .edit > a {
