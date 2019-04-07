@@ -7,13 +7,29 @@ class Delete extends React.Component {
     let formAttribute = `/recipes/${this.props.id}?_method=DELETE`;
 
     return (
-            <DefaultLayout title="Delete Existing Recipe">
+            <DefaultLayout title= { `Delete Recipe - ${ this.props.title }` }>
                 <form className="delete" method="POST" action={ formAttribute }>
-                    Recipe Title: <label> { this.props.name } </label><br/>
-                    Ingredients: <label> { this.props.height } </label><br/>
-                    Instructions: <label> { this.props.weight } </label><br/>
-                    <input type="hidden" name="id" value= { this.props.id } /><br/>
-                    <input className="btn btn-danger" type="submit" value="Do you really want to delete this Recipe?"/>
+                    <div>
+                        <div>Category:</div>
+                        <ul>
+                            <li>{ this.props.category }</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div>Ingredients:</div>
+                        <ul>
+                            <li>{ this.props.ingredients }</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div>Instructions:</div>
+                        <ol>
+                            <li>{ this.props.instructions }</li>
+                        </ol>
+                    </div>
+                    <input className="btn btn-danger" type="submit" value="Delete"/>
                 </form>
             </DefaultLayout>
     );

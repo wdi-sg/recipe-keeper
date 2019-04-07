@@ -2,15 +2,18 @@
 // Configurations and set up
 //===================================
 const _ = require('lodash');
+const uuidv1 = require('uuid/v1');
 const express = require('express');
 const promise = require("bluebird");
 const methodOverride = require('method-override')
 const jsonfile = promise.promisifyAll(require('jsonfile'));
-const file = 'data/data.json';
+
+const recipeDataFile = 'data/recipe.json';
+const ingredientDataFile = 'data/ingredient.json';
 
 const app = express();
 
-let data;
+let recipeData, ingredientData;
 
 app.use(express.static('public')) // use to serve static files using express
 app.use(methodOverride('_method')); // use to overcome HTML issue with sending PUT and DELETE request
@@ -37,9 +40,15 @@ app.set('view engine', 'jsx');
 //===================================
 var startServer = function () {
     // read data before starting up server
-    jsonfile.readFileAsync(file)
+    jsonfile.readFileAsync(recipeDataFile)
         .then((JSONContent) => {
-            data = JSONContent;
+            recipeData = JSONContent;
+        })
+        .then(() => {
+            jsonfile.readFileAsync(ingredientDataFile)
+                .then((JSONContent) => {
+                    ingredientData = JSONContent;
+            })
         })
         .then(() => {
             app.listen(3000);
@@ -50,36 +59,144 @@ var startServer = function () {
 }
 
 
+//===================================
+// Helper Function
+//===================================
+var addZero = function(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+var getCurrentDateAndTime = function () {
+    let d = new Date();
+    let dt = `${ addZero(d.getDate()) }/${ addZero(d.getMonth() + 1) }/${ d.getFullYear() } ` +
+                        `${ addZero(d.getHours()) }:${ addZero(d.getMinutes()) }:${ addZero(d.getSeconds()) }`;
+
+    return dt;
+}
+
+var getCuisineCategories = function () {
+    let c = ["Chinese Cuisine", "Western Cuisine", "Korean Cuisine", "Japanese Cuisine"];
+
+    return c;
+}
+
+
 // ===================================
 // Request Handlers
 // ===================================
 var homeRequestHandler = function (request, response) {
-    response.render('home');
+    response.render('home', recipeData);
 }
 
 var newRecipeRequestHandler = function (request, response) {
-    response.render('add');
+    response.render('add', { cuisineCategories: getCuisineCategories() });
 }
 
 var addNewRecipeRequestHandler = function (request, response) {
+    let newRecipe = {
+        id: uuidv1(),
+        title: request.body.title,
+        ingredients: request.body.ingredients,
+        instructions: request.body.instructions,
+        img: "/img/boiled-duck.jpg",
+        created: getCurrentDateAndTime(),
+        updated: ""
+    };
+
+    recipeData.recipes.push(newRecipe);
+
+    jsonfile.writeFileAsync(recipeDataFile, recipeData)
+        .then(() => {
+            response.redirect(`/recipes/${ newRecipe.id }`);
+        }).catch((err) => {
+            response.send('There is an error adding a new recipe. Please try again later.');
+            console.log(err);
+        });;
 }
 
 var editRecipeRequestHandler = function (request, response) {
-    response.render('edit');
+    let recipe;
+
+    _.forEach(recipeData.recipes, (o) => {
+        if (o.id === request.params.id) {
+            recipe = o;
+        }
+    });
+
+    if (recipe !== undefined) {
+        response.render('edit', { "recipe": recipe, "cuisineCategories": getCuisineCategories() });
+    } else {
+        response.send(404, 'Not found!');
+    }
 }
 
 var editExistingRecipeRequestHandler = function (request, response) {
+    _.forEach(recipeData.recipes, (o) => {
+        if (o.id === request.params.id) {
+            o.title = request.body.title;
+            o.ingredients = request.body.ingredients;
+            o.instructions = request.body.instructions;
+            o.category = request.body.category;
+            o.updated = getCurrentDateAndTime();
+        }
+    });
+
+    jsonfile.writeFileAsync(recipeDataFile, recipeData)
+        .then(() => {
+            response.redirect(`/recipes/${ request.params.id }`);
+        }).catch((err) => {
+            response.send('There is an error updating the recipe. Please try again later.');
+            console.log(err);
+        });;
 }
 
 var deleteRecipeRequestHandler = function (request, response) {
-    response.render('delete');
+    let recipe;
+
+    _.forEach(recipeData.recipes, (o) => {
+        if (o.id === request.params.id) {
+            recipe = o;
+        }
+    });
+
+    if (recipe !== undefined) {
+        response.render('delete', recipe);
+    } else {
+        response.send(404, 'Not found!');
+    }
 }
 
 var deleteExistingRecipeRequestHandler = function (request, response) {
+    _.remove(recipeData.recipes, (o) => {
+        return o.id === request.params.id;
+    });
+
+    jsonfile.writeFileAsync(recipeDataFile, recipeData)
+        .then(() => {
+            response.redirect('/recipes');
+        }).catch((err) => {
+            response.send('There is an error deleting the recipe. Please try again later.');
+            console.log(err);
+        });;
 }
 
 var getRecipesByIdRequestHandler = function (request, response) {
-    response.send('link!');
+    let recipe;
+
+    _.forEach(recipeData.recipes, (o) => {
+        if (o.id === request.params.id) {
+            recipe = o;
+        }
+    });
+
+    if (recipe !== undefined) {
+        response.render('view', recipe);
+    } else {
+        response.send(404, 'Not found!');
+    }
 }
 
 // ===================================

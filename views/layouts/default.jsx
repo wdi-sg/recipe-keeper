@@ -18,7 +18,7 @@ class DefaultLayout extends React.Component {
 
                         <div className="row">
                             <div className="col-3 navigation">
-                                <input type="text" class="form-control" placeholder="Search"/>
+                                <input type="text" className="form-control" placeholder="Search..."/>
 
                                 <ul className="nav nav-pills home">
                                     <li className="nav-item">

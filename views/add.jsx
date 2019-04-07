@@ -7,10 +7,19 @@ class Add extends React.Component {
     return (
             <DefaultLayout title="Add a New Recipe">
                 <form className="add" action="/recipes" method="POST">
-                    Recipe Title: <input className="form-control" name="recipeTitle"/><br/>
-                    Ingredients: <input className="form-control" name="ingredients"/><br/>
-                    Instructions: <input className="form-control" name="instructions"/><br/>
-                    <input className="btn btn-dark" type="submit" value="Add new Recipe"/>
+                    <div>Recipe Title:</div>
+                    <input className="form-control" name="title"/>
+                    <br/>
+
+                    <div>Ingredients:</div>
+                    <textarea className="form-control" name="ingredients" rows="3"/>
+                    <br/>
+
+                    <div>Instructions:</div>
+                    <textarea className="form-control" name="instructions" rows="3"/>
+                    <br/>
+
+                    <input className="btn btn-secondary" type="submit" value="Add new Recipe"/>
                 </form>
             </DefaultLayout>
     );

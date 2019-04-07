@@ -1,5 +1,5 @@
 body {
-	width: 960px;
+	width: 80%;
 	margin: 0 auto;
 }
 
@@ -17,14 +17,14 @@ body {
 
 .navigation {
 	padding: 0px;
-	height: 680px;
+	height: 2000px;
 	background-color: #F4F1F4;
 }
 
 input[type=text] {
 	width: 90%;
 	border-radius: 0px;
-	border: 2px solid #807C80;
+	border: 1px solid #807C80;
 	margin: 20px 10px 10px 10px;
 }
 
@@ -63,8 +63,77 @@ li > a, li > a:hover {
 	display: inline-block;
 }
 
-/*Add*/
-.add, .edit, .delete {
+.add, .edit, .delete, .recipe {
 	width: 70%;
 	margin-left: 25px;
+	text-transform: capitalize;
+}
+
+/*Home*/
+.homeHeader {
+	color: #807C80;
+	margin-left: 25px;
+	margin: 25px 0px 15px 25px;
+}
+
+.homeAlbum {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: 25px;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.albumItem {
+	margin-bottom: 20px;
+	color: white;
+	position: relative;
+  text-align: center;
+}
+
+.albumItem > a > img {
+	width: 250px;
+	height: 160px;
+	border-radius: 5px;
+	border: 1px solid #F4F1F4;
+}
+
+.centered {
+  top: 85%;
+  left: 50%;
+  width: 100%;
+ 	font-size: 20px;
+ 	font-weight: bold;
+	position: absolute;
+	text-transform: capitalize;
+  transform: translate(-50%, -50%);
+}
+
+/*Add*/
+.add > div {
+	margin-bottom: 8px;
+}
+
+/*Edit*/
+.edit > a {
+	width: 150px;
+	margin-left: 20px;
+}
+
+
+/*View*/
+.recipeImg {
+	width: 350px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	border: 1px solid #F4F1F4;
+}
+
+.recipe > a {
+	width: 150px;
+	margin-right: 20px;
+}
+
+.recipe > div > div {
+	font-weight: bold;
 }
