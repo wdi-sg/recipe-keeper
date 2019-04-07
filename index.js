@@ -9,11 +9,10 @@ const methodOverride = require('method-override')
 const jsonfile = promise.promisifyAll(require('jsonfile'));
 
 const recipeDataFile = 'data/recipe.json';
-const ingredientDataFile = 'data/ingredient.json';
 
 const app = express();
 
-let recipeData, ingredientData;
+let recipeData;
 
 app.use(express.static('public')) // use to serve static files using express
 app.use(methodOverride('_method')); // use to overcome HTML issue with sending PUT and DELETE request
@@ -43,12 +42,6 @@ var startServer = function () {
     jsonfile.readFileAsync(recipeDataFile)
         .then((JSONContent) => {
             recipeData = JSONContent;
-        })
-        .then(() => {
-            jsonfile.readFileAsync(ingredientDataFile)
-                .then((JSONContent) => {
-                    ingredientData = JSONContent;
-            })
         })
         .then(() => {
             app.listen(3000);
