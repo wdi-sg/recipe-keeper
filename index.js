@@ -18,6 +18,28 @@ app.engine('jsx', reactEngine);
 app.set('views',__dirname + '/views');
 //setting react to be the default view engine
 app.set('view engine','jsx');
+
+//*===========*/
+//SET UP ingredient.json to have "recipes" as a property name; thereby turning json file into an object
+//*===========*/
+
+//testing out how the ingredient.json file looks like on the terminal
+
+app.get('/test', (request, response) => {
+    jsonfile.readFile(FILE, (err, obj) => {
+        console.log("Begin reading file");
+        let firstIngredientName= obj.recipes[0].name;
+        let respond = '<div>'+firstIngredientName+'</div>'
+        response.send(respond);
+        // response.render('home', {respondKey: pokeList});
+    });
+});
+
+
+
+
+
+
 //*=============*/
 //ROUTES here
 //============== */
