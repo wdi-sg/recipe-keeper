@@ -8,15 +8,15 @@ class Home extends React.Component{
 
         let allRecipesArr = this.props.respondKey.map(thisRecipe=>{
             let id = parseInt(thisRecipe.id);
-            let name = thisRecipe.name;
+            let title = thisRecipe.title;
             let ingredients = thisRecipe.ingredients;
             let instructions = thisRecipe.instructions;
                 return(
                     <div>
-                        <h3>Recipe ID: </h3>
+                    <h3>Recipe ID: </h3>
                         <p>{id}</p>
                         <h4>Recipe Title: </h4>
-                        <p>{name}</p>
+                        <p>{title}</p>
                         <h4>Ingredients: </h4>
                         <p>{ingredients}</p>
                         <h4>Instructions: </h4>

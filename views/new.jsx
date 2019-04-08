@@ -8,7 +8,7 @@ class New extends React.Component{
                 Recipe ID: <br/>
                 <input type="number" name="id" value={this.props.id}/><br/>
                 Name: <br/>
-                <input type="text" name="name" value={this.props.name}/><br/>
+                <input type="text" name="name" value={this.props.title}/><br/>
                 Ingredients: <br/>
                 <input type="text" name="ingredients" value={this.props.ingredients}/><br/>
                 Instructions: <br/>
