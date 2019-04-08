@@ -3,14 +3,13 @@ var React = require('react');
 class Aside extends React.Component{
     render(){
         let inputData = this.props.data
-        console.log("inside ASIDE:!")
-        console.log(inputData);
+
         let outList;
         if(inputData.length>0){
             outList = inputData.map(item=>{
                 return  <div>
-                            <form method="GET" action="/?searchby=category">
-                            <input type="hidden" name="searchby" value={item}
+                            <form method="GET" action="/?searchBy=category">
+                            <input type="hidden" name="searchBy" value={item}
                             className="btn btn-info" type="submit"/>
                             </form>
                         </div>
