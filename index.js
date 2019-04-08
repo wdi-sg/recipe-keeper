@@ -84,7 +84,8 @@ app.get('/recipes/', (request, response)=>{
 
 //show a single recipe:
 app.get('/recipes/:id',(request, response)=>{
-    let recipeId = parseInt(request.params.id);
+    let recipeId = parseInt(request.params.id)-1;
+    console.log("Printing out type of recipeId: "+typeof(recipeId)); //this will get you a data type of number
     let selectedRecipeIndex;
     console.log("Printing out recipeId: "+recipeId);
     //get json from specified file
@@ -95,7 +96,7 @@ app.get('/recipes/:id',(request, response)=>{
         console.log("Printing out obj.recipes[0].ingredients: " + obj.recipes[0].ingredients);
         console.log("Printing out obj.recipes[0].instructions: " + obj.recipes[0].instructions);
         for (let i = 0; i < obj.recipes.length; i++){
-            if (recipeId == parseInt(obj.recipes[i])){
+            if (recipeId == obj.recipes.indexOf(obj.recipes[i])){ //find the index number 
                 selectedRecipeIndex = i;
             }
         }
