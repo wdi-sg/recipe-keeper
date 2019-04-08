@@ -7,13 +7,13 @@ This will be an express CRUD app.
 
 Users will be able to:
 
-- Add a new recipe.
+- Add a new recipe. ✅
 
-- See all the recipes that exist.
+- See all the recipes that exist. ✅
 
-- Edit recipes that currently exist.
+- Edit recipes that currently exist. ✅
 
-- Delete recipes.
+- Delete recipes. ✅
 
 A single page should have at least 3 pieces of information:
 

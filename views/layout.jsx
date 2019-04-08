@@ -4,6 +4,7 @@ class Layout extends React.Component {
 
   render() {
 
+
     return (
         <html>
             <head>
@@ -12,24 +13,14 @@ class Layout extends React.Component {
             </head>
             <body>
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navBarSearch">
                     <a class="navbar-brand" href="/recipes">🥕 Cookery</a>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                             <li class="nav-item">
-                                <a class="nav-link" href="/recipes/new">Submit<span class="sr-only">(current)</span></a>
-                             </li>
-                        </ul>
-                    </div>
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                    </button>
-
+                    <a class="nav-link text-dark" href="/recipes/new">Submit <span class="sr-only">(current)</span></a>
                 </nav>
 
-                <div class="m-lg-5">
+
+                <div class="ml-lg-5 mr-lg-5">
                     {this.props.children}
                 </div>
 

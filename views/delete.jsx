@@ -6,14 +6,17 @@ class Delete extends React.Component {
   render() {
 
     let deleteValue = `/recipes/${this.props.id}?_method=DELETE`
+    let editPage = `/recipes/${this.props.id}/edit`
 
     return (
         <Layout>
-                <form method="POST" action={deleteValue}>
-                    <h1>Are you sure you want to delete {this.props.name}?</h1>
-
-                    <button type="submit" class="btn btn-primary">Yes, I'm sure</button>
+            <div class="col-6 m-5">
+                <form method="POST" action={deleteValue} class="d-inline">
+                    <h2>Are you sure you want to delete {this.props.name}?</h2>
+                    <button type="submit" class="btn btn-danger">Yes, I'm sure</button>
                 </form>
+                    <a href={editPage}> <button class="btn btn-primary">Back</button></a>
+            </div>
 
         </Layout>
     );

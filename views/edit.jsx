@@ -10,7 +10,8 @@ class Edit extends React.Component {
 
     return (
         <Layout>
-                <form method="POST" action={value}>
+            <div class="col-lg-6 col-xs-6 d-flex flex-column">
+                <form method="POST" action={value} class="d-inline-block">
                     <h1>Edit recipe</h1>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Name</label>
@@ -22,11 +23,11 @@ class Edit extends React.Component {
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Ingredients</label>
-                        <textarea type="text" name="ingredients" class="form-control" id="exampleFormControlTextarea1" rows="2" value={this.props.ingredients}/>
+                        <textarea type="text" name="ingredients" class="form-control" id="exampleFormControlTextarea1" rows="4" value={this.props.ingredients}/>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Instructions</label>
-                        <textarea type="text" name="instructions" class="form-control" id="exampleFormControlTextarea1" rows="5" value={this.props.instructions}/>
+                        <textarea type="text" name="instructions" class="form-control" id="exampleFormControlTextarea1" rows="4" value={this.props.instructions}/>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Preparation time</label>
@@ -38,7 +39,8 @@ class Edit extends React.Component {
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <a href={deleteLink}><button class="btn btn-danger ml-2" value="Delete Recipe">Delete Recipe</button></a>
+                <a href={deleteLink}><button class="btn btn-danger mt-2" value="Delete Recipe">Delete Recipe</button></a>
+            </div>
         </Layout>
     );
   }

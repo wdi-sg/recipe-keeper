@@ -44,9 +44,10 @@ app.post('/recipes', (request, response) => {
 
      jsonfile.readFile('recipes.json', (err, obj) => {
 
-        console.log(obj);
-
-        let newRecipe = {};
+        if (request.body.name.length < 5) {
+            response.send("oops");
+        } else {
+            let newRecipe = {};
         newRecipe.id = obj["recipes"].length +1;
         newRecipe.name = request.body.name;
         newRecipe.instructions = request.body.instructions;
@@ -69,9 +70,12 @@ app.post('/recipes', (request, response) => {
 
         jsonfile.writeFile(FILE, obj, (err) => {
             console.log(err)
-        })
 
-        response.render('home');
+            response.render('home', obj);
+        })
+        }
+
+
     })
 })
 
