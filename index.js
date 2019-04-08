@@ -30,12 +30,13 @@ app.get('/recipes', (request,response) => {
             obj.recipes.sort(function(a, b) {
                 return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
             });
-            response.render('home', obj);
+            response.render('home2', obj);
         } else if (request.query.sortby == "diet") {
             //sort by diet
             let vegetarianArr = [];
             let veganArr = [];
             let rawArr = [];
+            let noneArr = [];
 
             // if (obj.recipes.diet == "vegetarian") {
             //     obj.recipes.forEach(function(recipe) {
@@ -58,14 +59,16 @@ app.get('/recipes', (request,response) => {
                         veganArr.push(recipe);
                 } else if (obj.recipes.diet == "raw") {
                         rawArr.push(recipe);
+                } else if (obj.recipes.diet == "none") {
+                        noneArr.push(recipe);
                 }
             });
 
             let dietArr = [];
-            dietArr.push(vegetarianArr, veganArr, rawArr);
+            dietArr.push(vegetarianArr, veganArr, rawArr, noneArr);
             // obj["dietRecipes"] = dietArr;
 
-            response.render('home', {"dietRecipes": dietArr});
+            response.render('home2', {"dietRecipes": dietArr});
 
         } else if (request.query.sortby == "ingredient") {
             //sort by ingredient
@@ -86,14 +89,12 @@ app.post('/recipes/:id', (request, response) => {
         // let index = parseInt(request.params.index);
         let servingSize = parseInt(request.body.serving);
         request.body.serving = servingSize;
-        let newId = parseInt(request.body.id);
+        let newId = parseInt(request.body.id) + 1;
         request.body.id = newId;
         obj.recipes.push(request.body);
 
-        // save the request body
         jsonfile.writeFile(file, obj, (err) => {
             console.error(err)
-            // now look inside your json file
             response.send(request.body);
         });
     });
@@ -106,6 +107,64 @@ app.get('/recipes/:id', (request, response) => {
     });
 })
 
+app.get('/recipes/:id/edit', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let index = parseInt(request.params.id) -1;
+        response.render('edit', obj.recipes[index]);
+    });
+})
+
+app.put('/recipes/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let index = parseInt(request.body.id) -1;
+
+        obj.recipes[index].img = request.body.img;
+        obj.recipes[index].id = parseInt(request.body.id);
+        obj.recipes[index].title = request.body.title;
+        obj.recipes[index].diet = request.body.diet;
+        obj.recipes[index].description = request.body.description;
+        obj.recipes[index].serving = parseInt(request.body.serving);
+        obj.recipes[index].ingredients = request.body.ingredients;
+        obj.recipes[index].instructions = request.body.instructions;
+
+        response.send(obj.recipes[index])
+    });
+})
+
+app.get('/recipes/:id/delete', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let index = parseInt(request.params.id) -1;
+        response.render('delete', obj.recipes[index]);
+    });
+})
+
+app.delete('/recipes', (request, response) => {
+    // jsonfile.readFile(file, (err, obj) => {
+    //     let index = parseInt(request.params.id) -1;
+
+    // });
+    jsonfile.readFile(file, (err, obj) => {
+        let index = request.body.id - 1;
+        console.log(index);
+        obj.recipes.splice(index, 1);
+        obj.recipes.forEach(function(recipe) {
+            if (recipe.id > request.body.id) {
+                recipe.id = recipe.id - 1;
+            }
+        });
+
+      jsonfile.writeFile(file, obj, (err) => {
+
+        console.error(err)
+
+        // now look inside your json file
+        response.send(obj.recipes);
+      });
+  });
+})
+
+
+
 
 
 
@@ -115,4 +174,4 @@ app.get('/recipes/:id', (request, response) => {
  * Listen to requests on port 3000
  * ===================================
  */
-app.listen(3001, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
+app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));

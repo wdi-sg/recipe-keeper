@@ -9,8 +9,8 @@ class Home extends React.Component {
         let index = parseInt(recipe.id);
             return (
                 <div className="card m-4 text-center align-middle" style={{width: 18 + 'rem'}, {display: "inline-block"}}>
-                    <img className="card-img-top" src={recipe.img} style={{width:18 +'rem'}}/>
-                    <div className="card-body" style={{width: 18 + 'rem'}}>
+                    <img className="card-img-top" src={recipe.img}/>
+                    <div className="card-body">
                         <h5 className="card-title">{recipe.title}</h5>
                         <p className="card-text">
                             {recipe.description}
