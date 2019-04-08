@@ -30,13 +30,13 @@ app.get('/recipes', (request,response) => {
             obj.recipes.sort(function(a, b) {
                 return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
             });
-            response.render('home2', obj);
+            response.render('home', obj);
         } else if (request.query.sortby == "diet") {
             //sort by diet
-            let vegetarianArr = [];
-            let veganArr = [];
-            let rawArr = [];
-            let noneArr = [];
+            // let vegetarianArr = [];
+            // let veganArr = [];
+            // let rawArr = [];
+            // let noneArr = [];
 
             // if (obj.recipes.diet == "vegetarian") {
             //     obj.recipes.forEach(function(recipe) {
@@ -52,23 +52,11 @@ app.get('/recipes', (request,response) => {
             //     });
             // }
 
-            obj.recipes.forEach(function(recipe) {
-                if (obj.recipes.diet == "vegetarian") {
-                    vegetarianArr.push(recipe);
-                } else if (obj.recipes.diet == "vegan") {
-                        veganArr.push(recipe);
-                } else if (obj.recipes.diet == "raw") {
-                        rawArr.push(recipe);
-                } else if (obj.recipes.diet == "none") {
-                        noneArr.push(recipe);
-                }
-            });
-
-            let dietArr = [];
-            dietArr.push(vegetarianArr, veganArr, rawArr, noneArr);
+            // let dietArr = [];
+            // dietArr.push(vegetarianArr, veganArr, rawArr, noneArr);
             // obj["dietRecipes"] = dietArr;
 
-            response.render('home2', {"dietRecipes": dietArr});
+            response.render('home2', obj);
 
         } else if (request.query.sortby == "ingredient") {
             //sort by ingredient
