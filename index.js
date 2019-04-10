@@ -38,12 +38,42 @@ URL	HTTP Verb	Action	Purpose
 /recipes/:id	DELETE	destroy	Remove a recipe
 */
 
-app.post('/recipes/new', (req,res) =>{
-	jsonfile.read(file, (err,obj) =>{
-		let recipeList;
-		res.send('recipes', recipeList);
+// Test Route ===
+app.get('/hello', function(req, res) {
+	res.render('hello');
+});
+
+app.get('/recipes/', function(req, res) {
+
+	jsonfile.readFile(file, (err, obj) => {
+		console.log(obj);
+		let allRecipes = obj;
+		res.render('home', allRecipes);
 	})
 })
+
+app.get('/recipes/new', function(req, res) {
+	res.render('new');
+});
+
+app.post('/recipes', function(request, response) {
+
+    jsonfile.readFile(file, (err, obj) => {
+        console.log(request.body);
+        let newRecipe = request.body;
+
+        obj.recipes.push(newRecipe);
+
+       jsonfile.writeFile(file, obj, (err) => {
+        response.send("Added new recipe.")
+
+    });
+
+
+   });
+
+})
+
 
 /**
  * ===================================
