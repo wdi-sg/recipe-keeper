@@ -36,6 +36,14 @@ app.set('view engine', 'jsx');
 
 /**
  * ===================================
+ * Common Functions
+ * ===================================
+ *
+
+
+
+/**
+ * ===================================
  * Pages Functions
  * ===================================
  */
@@ -94,6 +102,105 @@ var displayAllRecipes = function(request, response){
 
 }
 
+var displayCreateRecipeForm = function(request, response){
+
+  jsonfile.readFile(FILE, (err, obj)=>{
+    if( err ){
+      console.log("error!", err );
+    }else{
+
+      //assigning an index, todo should be random
+      var lastIndex = obj.recipes.length + 1 ;
+      var data = {
+        lastIndex : lastIndex,
+      }
+      response.render('createRecipe',data);
+    }
+  });
+
+}
+
+
+
+var addNewRecipe = function(request, response){
+
+  var newRecipe = request.body;
+  // save in data file
+  jsonfile.readFile(FILE, (err, obj) => {
+    if( err ){
+      console.log("error reading file");
+      console.log(err);
+    }
+
+    console.log(obj.recipes);
+
+    // save data
+    obj.recipes.push(newRecipe);
+
+
+    jsonfile.writeFile(FILE, obj, (err) => {
+      if( err ){
+        console.log("error writing file");
+        console.log(err)
+      }else{
+
+        var data = {
+          createdSuccess : true
+        }
+
+        var recipeCreated = `/recipes/${obj.recipes.length}`;
+
+        response.redirect(recipeCreated);
+      }
+
+    });
+
+  });
+
+}
+
+
+var showRecipe = function(request, response){
+
+  jsonfile.readFile(FILE, (err, obj)=>{
+    if( err ){
+      console.log("error!", err );
+    }else{
+
+      // this is broken like mad
+      // var recipeIndex = parseInt(request.params.id);
+      //
+      // var matchingRecipe = obj.recipes.find( function(recipe){
+      //
+      //   parseInt(recipe.id) === recipeIndex;
+      //   return recipe
+      // });
+      //
+      // console.log('recipe that matches id ' + matchingRecipe);
+
+      // const data = {
+      //   recipe : matchingRecipe
+      // }
+
+      var id = parseInt(request.params.id) - 1;
+
+      var thisRecipe = obj.recipes[id];
+
+      var data = {
+        recipe : thisRecipe,
+      }
+
+      response.render('single', data);
+    }
+  });
+
+}
+
+
+
+
+
+
 /**
  * ===================================
  * Routes
@@ -112,9 +219,9 @@ var displayAllRecipes = function(request, response){
 
 app.get('/', redirectToRecipes);
 app.get('/recipes/', displayAllRecipes);
-// app.get('/recipes/new', displayCreateRecipeForm);
-// app.post('/recipes/', createRecipe);
-// app.get('/recipes/:id', showRecipe);
+app.get('/recipes/new', displayCreateRecipeForm);
+app.post('/recipes/', addNewRecipe);
+app.get('/recipes/:id', showRecipe);
 // app.get('/recipes/:id/edit', displayEditRecipeForm);
 // app.put('/recipes/:id', updateRecipe);
 // app.delete('/recipes/:id', deleteRecipe);

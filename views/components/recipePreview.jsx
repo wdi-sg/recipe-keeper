@@ -7,10 +7,10 @@ class RecipePreview extends React.Component {
 
     return (
 
-        <div className = "row recipe-preview" >
+        <div className = "row recipe-preview">
           <a href={url}>
             <div className = "three columns">
-              <img className="u-max-full-width" src={this.props.data.image}></img>
+              <img className="u-max-full-width" src={this.props.data.image}/>
             </div>
             <div className = "nine columns">
               <h2>{this.props.data.title}</h2>
