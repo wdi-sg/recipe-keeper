@@ -1,0 +1,14 @@
+{
+  "recipes":[
+    {
+      "title": "boiled duck",
+      "ingredients" : "1 duck, water",
+      "instructions": "boil duck in water for 20 minutes. take it out. serve."
+    },
+    {
+      "title": "boiled duck2",
+      "ingredients" : "1 duck, water2",
+      "instructions": "boil duck in water for 20 minutes. take it out. serve.2"
+    }
+  ]
+}
