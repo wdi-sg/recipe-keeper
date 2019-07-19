@@ -1,0 +1,71 @@
+body {
+  background-image: linear-gradient(rgba(200,200,200,0.5),rgba(0,0,0,0.5));
+  color: rgba(50,50,50,0.5);
+  background-size: cover;
+  min-height: 1000px;
+}
+h1,#main-image{
+  text-align: center;
+
+}
+
+#recipe-header{
+  max-width: 500px;
+  max-height: 500px;
+  margin: 50px auto;
+}
+
+#list-of-recipe-text {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  color: rgba(50,50,50,0.5);
+  text-decoration: underline;
+  text-align: center;
+}
+
+#recipe-box {
+  box-shadow:20px 20px 10px grey;
+  max-width: 500px;
+  min-height: 300px;
+  margin: auto;
+}
+
+#recipes {
+  text-align: justify;
+  column-count: 2;
+  text-align: center;
+}
+
+#instructions, #ingredients {
+  margin: auto;
+  max-width: 500px;
+  min-height: 100px;
+}
+
+li {
+  list-style-type:square;
+  list-style-position: inside;
+}
+
+a, form {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  color: rgba(50,50,50,0.5);
+  text-decoration: none;
+}
+
+form {
+  text-align: center;
+}
+
+img {
+  border-radius: 25px;
+  box-shadow:20px 20px 10px grey;
+}
+
+button {
+  border-radius: 5px;
+  box-shadow: 0px 5px 50px grey;
+}
