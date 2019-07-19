@@ -10,7 +10,13 @@ class Single extends React.Component {
     var message = "";
 
     if (this.props.createdSuccess === true){
-      message = 'This recipe is updated';
+      message = <div className="feedback">This recipe is created.</div>;
+    } else {
+      message = "";
+    }
+
+    if (this.props.updatedSuccess === true){
+      message = <div className="feedback">This recipe is updated.</div>;
     } else {
       message = "";
     }

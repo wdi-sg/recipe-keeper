@@ -182,6 +182,7 @@ var showRecipe = function(request, response){
       //   recipe : matchingRecipe
       // }
 
+      //to replace with Find recipe function
       var id = parseInt(request.params.id) - 1;
 
       var thisRecipe = obj.recipes[id];
@@ -196,9 +197,118 @@ var showRecipe = function(request, response){
 
 }
 
+var displayEditRecipeForm = function(request, response){
+  jsonfile.readFile(FILE, (err,obj) => {
+    if(err){
+      console.log("error!", err );
+    } else{
+
+      //to replace with Find recipe function
+      var id = parseInt(request.params.id) - 1;
+
+      var thisRecipe = obj.recipes[id];
+
+      var data = {
+        recipe : thisRecipe,
+      }
+
+      response.render('editRecipe', data);
+    }
+  });
+}
+
+var updateRecipe = function(request,response){
+
+  var updatedRecipe = request.body;
+
+  jsonfile.readFile(FILE, (err,obj) => {
+    if(err){
+      console.log("error!", err );
+    } else{
+
+      //to replace with Find recipe function
+      obj.recipes[parseInt(request.params.id) - 1] = updatedRecipe;
+
+      var id = parseInt(request.params.id) - 1;
+      var thisRecipe = obj.recipes[id];
+
+      var data = {
+        recipe : thisRecipe,
+        updatedSuccess : true
+      }
+
+      jsonfile.writeFile(FILE, obj, (error) => {
+      if( error ){
+        console.log(error)
+      }
+
+      // response.send(obj.pokemon[parseInt(request.params.id) - 1].name + ' updated!');
+
+      response.render('single', data);
+    });
+    }
+  });
+}
 
 
+var displayConfirmDeleteForm = function(request,response){
 
+  var id = parseInt(request.params.id) - 1;
+
+  jsonfile.readFile(FILE, (error, obj) => {
+    if( error ){
+      console.log(error);
+    }
+
+    console.log(obj);
+
+    //here to find  correct recipe again
+    var thisRecipe = obj.recipes[id];
+
+    var data = {
+      recipe : thisRecipe,
+    }
+
+    response.render('deleteRecipe', data);
+  });
+
+};
+
+
+var deleteRecipe = function(request,response){
+
+  var updatedRecipe = request.body;
+
+  jsonfile.readFile(FILE, (err,obj) => {
+    if(err){
+      console.log("error!", err );
+    } else {
+
+      //to replace with Find recipe function
+      obj.recipes[parseInt(request.params.id) - 1] = updatedRecipe;
+
+      var id = parseInt(request.params.id) - 1;
+      var thisRecipe = obj.recipes[id];
+
+      var data = {
+        recipe : thisRecipe,
+      }
+      //this must change to findIndex
+      obj.recipes.splice(id, 1);
+
+      jsonfile.writeFile(FILE, obj, (error) => {
+      if( error ){
+        console.log(error)
+      }
+
+      // response.send(obj.pokemon[parseInt(request.params.id) - 1].name + ' updated!');
+
+        response.redirect('/recipes');
+      });
+    }
+
+  });
+};
 
 
 /**
@@ -222,9 +332,10 @@ app.get('/recipes/', displayAllRecipes);
 app.get('/recipes/new', displayCreateRecipeForm);
 app.post('/recipes/', addNewRecipe);
 app.get('/recipes/:id', showRecipe);
-// app.get('/recipes/:id/edit', displayEditRecipeForm);
-// app.put('/recipes/:id', updateRecipe);
-// app.delete('/recipes/:id', deleteRecipe);
+app.get('/recipes/:id/edit', displayEditRecipeForm);
+app.put('/recipes/:id', updateRecipe);
+app.get('/recipes/:id/delete', displayConfirmDeleteForm);
+app.delete('/recipes/:id', deleteRecipe);
 
 
 
