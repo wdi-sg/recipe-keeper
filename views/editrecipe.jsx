@@ -26,14 +26,14 @@ class Home extends React.Component {
               <textarea name="ingredients" rows="2" cols="25" placeholder={showRecipe.ingredients} value={showRecipe.ingredients} style={{height:100+"px", width:400+"px"}}></textarea><br/>
               <p>Preparation instructions</p>
               <textarea name="instructions" rows="2" cols="25" placeholder={showRecipe.instructions} value={showRecipe.instructions} style={{height:100+"px", width:400+"px"}}></textarea><br/><br/>
-              <button value="" type="submit">Update recipe</button>
+              <button className="btn btn-secondary" value="" type="submit">Update recipe</button>
             </form>
           </div>
         </div>
         <br/>
         <div>
           <form action="/recipes" method="get">
-            <button value="" type="submit">Back to list</button>
+            <button className="btn btn-secondary" value="" type="submit">Back to list</button>
           </form>
         </div>
       </Allrecipepagelayout>

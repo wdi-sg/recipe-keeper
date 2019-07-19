@@ -17,13 +17,13 @@ class Home extends React.Component {
             <textarea name="ingredients" rows="2" cols="25" placeholder="Salt, pepper, finger of a hobbit..." style={{height:100+"px", width:400+"px"}}></textarea><br/>
             <p>How is this meal prepared?</p>
             <textarea name="instructions" rows="2" cols="25" placeholder="Peel a potato, shave your head, fire up the oven?" style={{height:100+"px", width:400+"px"}}></textarea><br/><br/>
-            <button name="recipe" value="sweet" type="submit">Create recipe!</button>
+            <button className="btn btn-secondary" type="submit">Create recipe!</button>
           </form>
         </div>
         <br/>
         <div>
           <form action="/recipes" method="get">
-            <button value="" type="submit">Back to list</button>
+            <button className="btn btn-secondary" value="" type="submit">Back to list</button>
           </form>
         </div>
       </Allrecipepagelayout>

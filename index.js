@@ -18,7 +18,6 @@ app.use(express.urlencoded({
 //////////////////user will see all recipes here//////////////////
 app.get('/recipes/', (req,res)=>{
   jsonfile.readFile(file,(err,obj)=>{
-    //refers to the recipe json file - obj["recipes"][0] refers to first array item
     var dataSet = {
         recipes: obj["recipes"]
     };
@@ -29,7 +28,6 @@ app.get('/recipes/', (req,res)=>{
 ////////////////Adding that new recipe in//////////////////
 app.post('/recipes', (req,res)=>{
   jsonfile.readFile(file,(err,obj)=>{
-    //refers to the recipe json file - obj["recipes"][0] refers to first array item
     obj["recipes"].push(req.body)
     jsonfile.writeFile(file,obj,(err)=>{
       if(err){
@@ -48,7 +46,6 @@ app.get('/recipes/new', (req,res)=>{
 //////////////////See a single recipe//////////////////
 app.get('/recipes/:id', (req,res)=>{
   jsonfile.readFile(file,(err,obj)=>{
-    //refers to the recipe json file - obj["recipes"][0] refers to first array item
     var dataSet = {
         recipes: obj["recipes"],
         therecipe: req.params.id
@@ -60,7 +57,6 @@ app.get('/recipes/:id', (req,res)=>{
 //////////////////Edit a single recipe//////////////////
 app.get('/recipes/:id/edit', (req,res)=>{
   jsonfile.readFile(file,(err,obj)=>{
-    //refers to the recipe json file - obj["recipes"][0] refers to first array item
     var dataSet = {
         recipes: obj["recipes"],
         therecipe: req.params.id
@@ -72,7 +68,6 @@ app.get('/recipes/:id/edit', (req,res)=>{
 //////////////////Update a single recipe//////////////////
 app.put('/recipes/:id', (req,res)=>{
   jsonfile.readFile(file,(err,obj)=>{
-    //refers to the recipe json file - obj["recipes"][0] refers to first array item
     obj["recipes"][parseInt(req.params.id)] = req.body
     var recipeLink = '/recipes/'+req.params.id
     jsonfile.writeFile(file,obj,(err)=>{
@@ -87,12 +82,10 @@ app.put('/recipes/:id', (req,res)=>{
 //////////////////Delete confirmation page//////////////////
 app.get('/recipes/:id/delete', (req,res)=>{
   jsonfile.readFile(file,(err,obj)=>{
-    //refers to the recipe json file - obj["recipes"][0] refers to first array item
     var dataSet = {
         recipes: obj["recipes"],
         therecipe: req.params.id
     };
-    // res.send('deleting...');
     res.render('deleterecipe',dataSet);
   });
 });
@@ -107,7 +100,6 @@ app.delete('/recipes/:id', (req,res)=>{
       };
     });
     res.redirect('/recipes/');
-    // res.render('homepage',dataSet);
   });
 });
 

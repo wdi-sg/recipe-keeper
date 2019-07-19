@@ -22,20 +22,20 @@ class Home extends React.Component {
         <div id="recipe-box">
           <div>
             <form action={recipeDeleteLink} method="post">
-              <button value="" type="submit">Yes, delete it!</button>
+              <button className="btn btn-secondary" value="" type="submit">Yes, delete it!</button>
             </form>
           </div>
           <br/>
           <div>
             <form action={recipeEditLink} method="get">
-              <button value="" type="submit">No, I changed my mind!</button>
+              <button className="btn btn-secondary" value="" type="submit">No, I changed my mind!</button>
             </form>
           </div>
         </div>
         <br/>
         <div>
           <form action="/recipes" method="get">
-            <button value="" type="submit">Back to list</button>
+            <button className="btn btn-secondary" value="" type="submit">Back to list</button>
           </form>
         </div>
       </Allrecipepagelayout>

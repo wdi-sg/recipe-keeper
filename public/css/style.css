@@ -6,7 +6,8 @@ body {
 }
 h1,#main-image{
   text-align: center;
-
+  font-style: italic;
+  font-weight: bold;
 }
 
 #recipe-header{
@@ -26,13 +27,13 @@ h1,#main-image{
 
 #recipe-box {
   box-shadow:20px 20px 10px grey;
-  max-width: 500px;
-  min-height: 300px;
+  max-width: 600px;
+  min-height: 40px;
   margin: auto;
+
 }
 
 #recipes {
-  text-align: justify;
   column-count: 2;
   text-align: center;
 }
@@ -46,6 +47,12 @@ h1,#main-image{
 li {
   list-style-type:square;
   list-style-position: inside;
+  text-align: left;
+}
+p{
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 a, form {
@@ -65,7 +72,7 @@ img {
   box-shadow:20px 20px 10px grey;
 }
 
-button {
-  border-radius: 5px;
-  box-shadow: 0px 5px 50px grey;
+.responsive {
+  width: 100%;
+  height: auto;
 }

@@ -7,7 +7,8 @@ class Allrecipepage extends React.Component {
     var recipeIndex = "/recipes/"+this.props.index;
 
     return (
-      <div>
+      <div id="recipe-item">
+        <div>{this.props.splitter}</div>
         <li><a href={recipeIndex}>{this.props.title}</a></li>
       </div>
     );
