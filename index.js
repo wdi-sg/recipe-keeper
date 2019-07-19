@@ -46,7 +46,77 @@ app.post('/recipes', (req, res) => {
         obj.recipe.push(req.body);
 
         jsonfile.writeFile(file, obj, (err) => {
-            res.redirect('/');
+            res.redirect(`/recipes/${obj.recipe.length}`);
+        });
+    });
+})
+
+app.get('/recipes/:id', (req, res) => {
+    let id = req.params.id;
+    jsonfile.readFile(file, (err, obj) => {
+        let data = {
+            title: obj.recipe[id - 1].title,
+            item: obj.recipe[id - 1]
+        }
+        res.render('individual', data)
+
+
+    });
+
+})
+
+app.get('/recipes/:id/edit', (req, res) => {
+    let id = req.params.id;
+    jsonfile.readFile(file, (err, obj) => {
+        let data = {
+            title: obj.recipe[id - 1].title,
+            item: obj.recipe[id - 1],
+            id: id
+        }
+        res.render('edit', data)
+
+
+    });
+})
+
+app.put('/recipes/:id', (req, res) => {
+    let id = req.params.id;
+    jsonfile.readFile(file, (err, obj) => {
+        req.body.utensils = req.body.utensils.split(",");
+        req.body.seasonings = req.body.seasonings.split(",");
+        req.body.ingredients = req.body.ingredients.split(",");
+
+        obj.recipe[id-1] = req.body;
+
+        jsonfile.writeFile(file, obj, (err) => {
+            res.redirect(`/recipes/${id}`);
+        });
+    });
+
+})
+
+app.get('/recipes/:id/delete',(req,res)=>{
+    let id=req.params.id;
+    jsonfile.readFile(file, (err, obj) => {
+        let data = {
+            title: obj.recipe[id - 1].title,
+            item: obj.recipe[id - 1],
+            id:id
+        }
+        res.render('delete', data);
+
+
+    });
+})
+
+app.delete('/recipes/:id',(req,res)=>{
+    let id = req.params.id;
+    jsonfile.readFile(file, (err, obj) => {
+
+        obj.recipe.splice(id-1,1);
+
+        jsonfile.writeFile(file, obj, (err) => {
+            res.redirect(`/recipes`);
         });
     });
 })

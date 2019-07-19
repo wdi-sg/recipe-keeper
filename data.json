@@ -1,18 +1,1 @@
-{
-    "recipe": [{
-        "title": "Mayonnaise (S)",
-        "utensils": ["Whisk"],
-        "seasoning": ["Vinegar"],
-        "ingredients": ["Small Egg", "Oil"]
-    }, {
-        "title": "Fried Rice",
-        "utensils": ["Frying Pan"],
-        "seasoning": ["None"],
-        "ingredients": ["Rice Balls", "Egg", "Oil"]
-    }, {
-        "title": "Greens",
-        "utensils": ["Pot"],
-        "seasoning": ["Soy Sauce"],
-        "ingredients": ["Spinach"]
-    }]
-}
+{"recipe":[{"title":"Mayonnaise (S)","utensils":["test"],"seasonings":["Vinegar"],"ingredients":["test"]},{"title":"Fried Rice","utensils":["Frying Pan"],"seasonings":["test"],"ingredients":["Rice Balls","Egg","Oil"]},{"title":"Greens","utensils":["Pot"],"seasonings":["Soy Sauce"],"ingredients":["Spinach"]}]}
