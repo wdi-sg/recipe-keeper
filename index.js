@@ -205,20 +205,23 @@ var displayEditRecipeForm = function(request, response){
 var updateRecipe = function(request,response){
 
   var updatedRecipe = request.body;
+  var updatedRecipeId = request.body.id;
 
   jsonfile.readFile(FILE, (err,obj) => {
     if(err){
       console.log("error!", err );
     } else{
 
+      updatedRecipe.id = parseInt(updatedRecipeId);
       //to replace with Find recipe function
-      obj.recipes[parseInt(request.params.id) - 1] = updatedRecipe;
 
-      var id = parseInt(request.params.id) - 1;
-      var thisRecipe = obj.recipes[id];
+      var requestedId = parseInt(updatedRecipeId);
+      var thisRecipeIndex = findRecipeIndex(obj.recipes, requestedId);
+
+      obj.recipes[thisRecipeIndex] = updatedRecipe;
 
       var data = {
-        recipe : thisRecipe,
+        recipe : updatedRecipe,
         updatedSuccess : true
       }
 
