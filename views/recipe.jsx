@@ -2,11 +2,12 @@ var React = require('react');
 
 class Show extends React.Component{
     render(){
-        let urlIndividualRecipe = "/recipe/"+this.props.recipe.id;
         var mapRecipeData = this.props.recipe.map(recipe=>{
+            let urlIndividualRecipe = "/recipe/"+recipe.id;
             return(
                 <div>
                     <a href={urlIndividualRecipe}>
+                        <p>Dish Id : {recipe.id}</p>
                         <p>Name of dish: {recipe.title}</p>
                         <p>Ingredients: {recipe.ingredients}</p>
                     </a>

@@ -26,14 +26,29 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var individualRecipe = (request,response)=>{
+var singleRecipe = (request,response)=>{
     var recipeId = request.params.id;
-    // console.log("You are in the individualRecipe function");
-    // response.send("You are in the individualRecipe function");
+    // console.log(id);
+    // response.send(id);
+    jsonfile.readFile(file,(err,obj)=>{
+
+        var recipeArrIndex = obj.recipe.findIndex(recipe => recipe.id == recipeId)
+        // console.log(recipeArrIndex);
+
+        var recipeIndex = obj.recipe[recipeArrIndex];
+
+        var data = {
+            recipe : recipeIndex
+        }
+        // console.log(recipeIndex);
+        // response.send(recipeIndex);
+        response.render("individual", data)
+    });
 };
 
 var showAllRecipe = (request,response)=>{
@@ -42,9 +57,12 @@ var showAllRecipe = (request,response)=>{
     jsonfile.readFile(file,(err,obj)=>{
         // console.log(obj.recipe);
         // response.send(obj.recipe);
+        // console.log(obj.recipe);
         var data = {
             recipe : obj.recipe
         }
+        console.log(data);
+        // console.log(obj.recipe);
         response.render("recipe",data);
     });
 };
@@ -52,8 +70,12 @@ var showAllRecipe = (request,response)=>{
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////routes//////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-app.get("/recipe/:id",individualRecipe);
-app.get("/recipe", showAllRecipe);
+app.get('/recipe/:id',singleRecipe);
+app.get('/recipe', showAllRecipe);
+app.get('/', (req, res) => {
+  // running this will let express to run home.handlebars file in your views folder
+  res.render('home')
+})
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
@@ -62,4 +84,4 @@ app.get("/recipe", showAllRecipe);
  * Listen to requests on port 3000
  * ===================================
  */
-app.listen(8080, () => console.log('~~~ Tuning in to the waves of port 8080 ~~~'));
+app.listen(3002, () => console.log('~~~ Tuning in to the waves of port 8080 ~~~'));
