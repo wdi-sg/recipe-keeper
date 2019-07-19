@@ -1,2 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Merriweather|Montserrat:600&display=swap");
 body {
-  background: grey; }
+  margin: 0 auto;
+  width: 100%;
+  font-family: 'Merriweather', serif;
+  font-size: 18px; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif; }
+
+a {
+  text-decoration: none;
+  color: black; }
+
+.recipe-preview {
+  background: #eee;
+  margin-bottom: 20px; }

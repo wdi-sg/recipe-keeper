@@ -41,52 +41,66 @@ app.set('view engine', 'jsx');
  */
 
 
-var redirectRecipes = function(request,response){
+var redirectToRecipes = function(request,response){
    response.redirect("/recipes");
  }
 
 
-var getFunction = function(request, response){
+// var getFunction = function(request, response){
+//
+//   jsonfile.readFile(FILE, (err, obj)=>{
+//     if( err ){
+//       console.log("error!", err );
+//     }else{
+//       //code here
+//       response.render('page');
+//     }
+//   });
+//
+// }
+//
+//
+// var postFunction = function(request,response){
+//   jsonfile.readFile(FILE, (err, obj)=>{
+//     if( err ){
+//       console.log("error!", err );
+//     }else{
+//       //code here
+//       jsonfile.writeFile(FILE, obj, (err)=>{
+//         if( err ){
+//           console.log("error!", err );
+//         }else{
+//           //code here
+//         }
+//       })
+//     }
+//   });
+// }
+
+
+var displayAllRecipes = function(request, response){
 
   jsonfile.readFile(FILE, (err, obj)=>{
     if( err ){
       console.log("error!", err );
     }else{
       //code here
-      response.render('page');
+      const data = {
+        recipes : obj.recipes
+      }
+      response.render('main', data);
     }
   });
 
 }
-
-
-var postFunction = function(request,response){
-  jsonfile.readFile(FILE, (err, obj)=>{
-    if( err ){
-      console.log("error!", err );
-    }else{
-      //code here
-      jsonfile.writeFile(FILE, obj, (err)=>{
-        if( err ){
-          console.log("error!", err );
-        }else{
-          //code here
-        }
-      })
-    }
-  });
-}
-
-
-
 
 /**
  * ===================================
  * Routes
  * ===================================
  */
-app.get('/', redirectRecipes);
-app.get('/page', getFunction);
+
+// app.get('/page', getFunction);
 
 // /recipes/	           GET	index	See all the recipes
 // /recipes/new	       GET	new	Display the form for a single recipe
@@ -96,8 +110,8 @@ app.get('/page', getFunction);
 // /recipes/:id	       PATCH/PUT	update	Update a recipe
 // /recipes/:id	       DELETE	destroy	Remove a recipe
 
-// app.get('/', redirectRecipes);
-// app.get('/recipes/', displayAllRecipes);
+app.get('/', redirectToRecipes);
+app.get('/recipes/', displayAllRecipes);
 // app.get('/recipes/new', displayCreateRecipeForm);
 // app.post('/recipes/', createRecipe);
 // app.get('/recipes/:id', showRecipe);
