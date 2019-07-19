@@ -15,13 +15,14 @@ class DeleteRecipe extends React.Component {
           </div>
           <div className="row">
             <h2>Are you sure you want to delete this recipe</h2>
-            <h2>{this.props.recipe.title}</h2>
+
           </div>
           <div className="row">
             <div className = "six columns">
               <img className="u-max-full-width" src={this.props.recipe.image}></img>
             </div>
             <div className = "six columns">
+              <h2>{this.props.recipe.title}</h2>
               <h3>Ingredients</h3>
               <p>{this.props.recipe.ingredients}</p>
               <h3>Instructions</h3>

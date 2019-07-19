@@ -1,1 +1,39 @@
-{"recipes":[{"id":"1","title":"boiled duckcsdc","ingredients":"1 duck, watersacasdsvsd","instructions":"boil duck in water for 20 minutes. take it out. serve. dfgg","image":"/img/boiled-duck.jpg"},{"id":3,"title":"Chicken Salad","ingredients":"dsf","instructions":"dfdf","image":"/img/chicken-salad.jpg"},{"id":"4","title":"Chicken Saladsdfd","ingredients":"dsfefewf","instructions":"dfdfvfdvfv","image":"/img/chicken-salad.jpg"},{"id":"5","title":"Chicken Salad 444","ingredients":"vfvv edited heredfsdfdsfd","instructions":"fvdf","image":"/img/chicken-salad.jpg"},{"id":6,"title":"Chicken Salad 123","ingredients":"vfsdvs","instructions":"vdsdv","image":"/img/chicken-salad.jpg"},{"id":7,"title":"Chicken Salad e fewf","ingredients":"fef","instructions":"fefe","image":"/img/chicken-salad.jpg"},{"id":8,"title":"Chicken Salad wre twee","ingredients":"effew","instructions":"fewfewew","image":"/img/chicken-salad.jpg"},{"id":9,"title":"Chicken Salad 444","ingredients":"fewfew","instructions":"fwefewfe","image":"/img/chicken-salad.jpg"}]}
+{
+	"recipes": [{
+		"id": 1,
+		"title": "Chicken Salad xcs Marsdkfaf",
+		"ingredients": "dsf",
+		"instructions": "dfdf",
+		"image": "/img/chicken-salad.jpg"
+	}, {
+		"id": 2,
+		"title": "Chicken Salad wre twee",
+		"ingredients": "effew",
+		"instructions": "fewfewew",
+		"image": "/img/chicken-salad.jpg"
+	}, {
+		"id": 3,
+		"title": "Chicken Salad 444",
+		"ingredients": "fewfew",
+		"instructions": "fwefewfe",
+		"image": "/img/chicken-salad.jpg"
+	}, {
+		"id": 4,
+		"title": "Chicken Saladqwrqfqfzx xz",
+		"ingredients": "fewfew",
+		"instructions": "fwefewfe",
+		"image": "/img/chicken-salad.jpg"
+	}, {
+		"id": 5,
+		"title": "Avocado Defp",
+		"ingredients": "fdfadf",
+		"instructions": "sfsdaf3t",
+		"image": "/img/boiled-duck.jpg"
+	}, {
+		"id": 6,
+		"title": "Chicken Salad 444",
+		"ingredients": "feqqfg",
+		"instructions": "srgr",
+		"image": "/img/boiled-duck.jpg"
+	}]
+}

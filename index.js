@@ -34,12 +34,40 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
 
+
 /**
  * ===================================
  * Common Functions
  * ===================================
- *
+ */
 
+var findRecipe = function(object, requestedId){
+  for (var i = 0; i < object.length; i++) {
+    console.log(`${object[i].title}`);
+
+    if(parseInt(object[i].id) === requestedId ){
+      return object[i];
+    }
+  }
+};
+
+var findRecipeIndex = function(object, requestedId){
+  for (var i = 0 ; i < object.length ; i++){
+    if ( object[i].id === requestedId){
+      return i;
+    }
+  }
+}
+
+ // function findRecipe(object, requestedId){
+ //   for (var i = 0; i < object.length; i++) {
+ //     console.log(`${object[i].title}`);
+ //
+ //     if(parseInt(object[i].id) === requestedId ){
+ //       return object[i];
+ //     }
+ //   }
+ // }
 
 
 /**
@@ -53,37 +81,6 @@ var redirectToRecipes = function(request,response){
    response.redirect("/recipes");
  }
 
-
-// var getFunction = function(request, response){
-//
-//   jsonfile.readFile(FILE, (err, obj)=>{
-//     if( err ){
-//       console.log("error!", err );
-//     }else{
-//       //code here
-//       response.render('page');
-//     }
-//   });
-//
-// }
-//
-//
-// var postFunction = function(request,response){
-//   jsonfile.readFile(FILE, (err, obj)=>{
-//     if( err ){
-//       console.log("error!", err );
-//     }else{
-//       //code here
-//       jsonfile.writeFile(FILE, obj, (err)=>{
-//         if( err ){
-//           console.log("error!", err );
-//         }else{
-//           //code here
-//         }
-//       })
-//     }
-//   });
-// }
 
 
 var displayAllRecipes = function(request, response){
@@ -125,6 +122,7 @@ var displayCreateRecipeForm = function(request, response){
 var addNewRecipe = function(request, response){
 
   var newRecipe = request.body;
+  var newRecipeId = parseInt(request.body.id);
   // save in data file
   jsonfile.readFile(FILE, (err, obj) => {
     if( err ){
@@ -133,8 +131,11 @@ var addNewRecipe = function(request, response){
     }
 
     console.log(obj.recipes);
+    console.log("new Recipe" + newRecipe);
+    console.log("new Recipe // IDEA: " + newRecipeId);
 
     // save data
+    newRecipe.id = newRecipeId;
     obj.recipes.push(newRecipe);
 
 
@@ -162,30 +163,16 @@ var addNewRecipe = function(request, response){
 
 var showRecipe = function(request, response){
 
+
+
   jsonfile.readFile(FILE, (err, obj)=>{
     if( err ){
       console.log("error!", err );
     }else{
 
-      // this is broken like mad
-      // var recipeIndex = parseInt(request.params.id);
-      //
-      // var matchingRecipe = obj.recipes.find( function(recipe){
-      //
-      //   parseInt(recipe.id) === recipeIndex;
-      //   return recipe
-      // });
-      //
-      // console.log('recipe that matches id ' + matchingRecipe);
+      var requestedId = parseInt(request.params.id);
+      var thisRecipe = findRecipe(obj.recipes, requestedId);
 
-      // const data = {
-      //   recipe : matchingRecipe
-      // }
-
-      //to replace with Find recipe function
-      var id = parseInt(request.params.id) - 1;
-
-      var thisRecipe = obj.recipes[id];
 
       var data = {
         recipe : thisRecipe,
@@ -203,10 +190,8 @@ var displayEditRecipeForm = function(request, response){
       console.log("error!", err );
     } else{
 
-      //to replace with Find recipe function
-      var id = parseInt(request.params.id) - 1;
-
-      var thisRecipe = obj.recipes[id];
+      var requestedId = parseInt(request.params.id);
+      var thisRecipe = findRecipe(obj.recipes, requestedId);
 
       var data = {
         recipe : thisRecipe,
@@ -253,7 +238,6 @@ var updateRecipe = function(request,response){
 
 var displayConfirmDeleteForm = function(request,response){
 
-  var id = parseInt(request.params.id) - 1;
 
   jsonfile.readFile(FILE, (error, obj) => {
     if( error ){
@@ -262,8 +246,8 @@ var displayConfirmDeleteForm = function(request,response){
 
     console.log(obj);
 
-    //here to find  correct recipe again
-    var thisRecipe = obj.recipes[id];
+    var requestedId = parseInt(request.params.id);
+    var thisRecipe = findRecipe(obj.recipes, requestedId);
 
     var data = {
       recipe : thisRecipe,
@@ -277,24 +261,21 @@ var displayConfirmDeleteForm = function(request,response){
 
 var deleteRecipe = function(request,response){
 
-  var updatedRecipe = request.body;
-
   jsonfile.readFile(FILE, (err,obj) => {
     if(err){
       console.log("error!", err );
     } else {
 
-      //to replace with Find recipe function
-      obj.recipes[parseInt(request.params.id) - 1] = updatedRecipe;
+      var requestedId = parseInt(request.params.id);
+      var thisRecipeIndex = findRecipeIndex(obj.recipes, requestedId);
 
-      var id = parseInt(request.params.id) - 1;
-      var thisRecipe = obj.recipes[id];
+      thisRecipe = obj.recipes[thisRecipeIndex];
 
       var data = {
         recipe : thisRecipe,
       }
       //this must change to findIndex
-      obj.recipes.splice(id, 1);
+      obj.recipes.splice(thisRecipeIndex, 1);
 
       jsonfile.writeFile(FILE, obj, (error) => {
       if( error ){
