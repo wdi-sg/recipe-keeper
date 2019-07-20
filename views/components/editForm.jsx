@@ -4,9 +4,6 @@ class EditForm extends React.Component {
   render() {
 
     let editRecipeUrl = `/recipes/${this.props.id}?_method=PUT`
-
-    console.log(editRecipeUrl);
-
     let title = this.props.title;
     let ingrd = this.props.ingrd;
     let instr = this.props.instr;

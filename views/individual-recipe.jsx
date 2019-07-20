@@ -8,6 +8,7 @@ class EachRecipe extends React.Component {
     let title = this.props.currentRecipe.title;
     let ingrd = this.props.currentRecipe.ingredients;
     let instr = this.props.currentRecipe.instructions;
+    let date = this.props.currentRecipe.created;
 
     let headerTitle = `Recipe: ${title}`;
     let editURL = `/recipes/${this.props.currentId}/edit`
@@ -27,6 +28,7 @@ class EachRecipe extends React.Component {
 
         <p>Ingredients: {ingrd} </p>
         <p>Instructions: {instr} </p>
+        <p>Created On: {date} </p>
 
       </DefaultLayout>
     );

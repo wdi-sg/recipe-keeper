@@ -32,6 +32,16 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
 
+
+/**
+ * ===================================
+ * Global Variables
+ * ===================================
+ */
+
+ let d = new Date();
+ let date = `${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()} `;
+
 /**
  * ===================================
  * Routes
@@ -40,9 +50,7 @@ app.set('view engine', 'jsx');
 
 app.get('/recipes', (req, res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
-
         let recipes = obj.recipes;
-
         let recipeData = {
             recipes : recipes
         }
@@ -57,12 +65,13 @@ app.get('/recipes/new', (req,res) => {
 app.post('/recipes', (req,res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
         let newRecipe = req.body;
+        newRecipe.created = date;
+        console.log(newRecipe);
         obj.recipes.push(newRecipe);
 
         jsonfile.writeFile(recipesFile, obj, (err) => {
             if (err) console.log('err: ' + err);
             else console.log('success in creating!');
-            // res.send('good!');
             res.redirect('/recipes');
         })
     })
