@@ -28,6 +28,10 @@ app.set('view engine', 'jsx');
 //     response.send();
 // })
 
+// jsonfile.writeFile(file, obj, {flag: 'a'}, function (err) {
+//     console.error(err)
+// })
+
 
 //see all recipes, link to home
 app.get('/', (request, response) => {
@@ -54,17 +58,16 @@ app.post('/recipes', (request, response) => {
         let nextIndex = obj.recipes.length;
         let nextId = obj.recipes.length+1;
 
+        obj.recipes[nextIndex] = {};
+        obj.recipes[nextIndex].num = nextId;
+        obj.recipes[nextIndex].title = request.body.title
+        console.log(obj)
+        response.render('home', obj);
+
         jsonfile.writeFile(file, obj, function (err) {
             if (err) {
                 console.log(err);
-            } else {
-                obj.recipes[nextIndex] = {};
-                obj.recipes[nextIndex].num = nextId;
-                obj.recipes[nextIndex].title = request.body.title
-                console.log(obj)
-            }
-
-            response.render('home', obj);
+            };
         })
 
     })

@@ -1,1 +1,21 @@
-{"recipes":[{"num":1,"title":"chicken"},{"num":2,"title":"beef"}]}
+{
+  "recipes": [
+    {
+      "num": 1,
+      "title": "chicken"
+    },
+    {
+      "num": 2,
+      "title": "beef"
+    },
+    {
+      "num": 3,
+      "title": "TENNIS"
+    },
+    {
+      "num": 4,
+      "title": "BADMINTOn"
+    }
+  ],
+  "_locals": {}
+}
