@@ -12,6 +12,10 @@ class Home extends React.Component {
     var showRecipe = recipes[theRecipe]
     var recipeEditLink = "/recipes/"+theRecipe+"/edit"
     var recipeDeleteLink = "/recipes/"+theRecipe+"/delete"
+    var ingredients = showRecipe.ingredients
+    var ingredientCard = ingredients.map((obj)=>{
+      return <div>{obj.ingredient} x {obj.quantity}<br/></div>
+    })
 
     return (
       <Allrecipepagelayout>
@@ -25,8 +29,9 @@ class Home extends React.Component {
           <br/>
           <div id="ingredients">
             <h3><li>ingredients required</li></h3><br/>
-            <div>{showRecipe.ingredients}</div>
+            {ingredientCard}
           </div>
+          <br/>
           <div id="instructions">
             <h3><li>instructions</li></h3><br/>
             <div>{showRecipe.instructions}</div>

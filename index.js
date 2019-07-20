@@ -25,6 +25,22 @@ app.get('/recipes/', (req,res)=>{
     res.render('allrecipepage',dataSet);
   });
 });
+////////////////user will add the number of ingredients in//////////////////
+app.post('/ingredientlist', (req,res)=>{
+    dataSet = {
+      recipes: req.body
+    }
+    res.render('numofingredients',dataSet)
+});
+////////////////User will provide instructions for how to prepare dish//////////////////
+app.post('/instructions', (req,res)=>{
+    dataSet = {
+      recipes: req.body
+    }
+    res.render('instructions',dataSet)
+    // res.send("instructions")
+});
+
 
 ////////////////Adding that new recipe in//////////////////
 app.post('/recipes', (req,res)=>{
@@ -65,27 +81,20 @@ app.get('/recipes/:id', (req,res)=>{
 
 //////////////////Search a single recipe//////////////////
 app.get('/search', (req,res)=>{
-  function hasNumber(input){
-    return /\d/.test(input);
-  }
   jsonfile.readFile(file,(err,obj)=>{
-    if (hasNumber(req.query.q)){
-      console.log("its a number")
-      var returnFind = obj["recipes"].findIndex((obj)=>{
-        return obj.id == req.query.q
-        })
-    }else {
-      console.log("its a string")
-      var returnFind = obj["recipes"].findIndex((obj)=>{
-        return obj.title === req.query.q.toString()
-        })
-    }
-
-    console.log(returnFind)
-    if (returnFind > -1){
-      var recipeLink = "/recipes/"+returnFind
+    var recipeFound = obj["recipes"].findIndex((obj)=>{
+      return obj.title === req.query.q
+    })
+    var recipeIdFound = obj["recipes"].findIndex((obj)=>{
+      return obj.id === req.query.q
+    })
+    if (recipeFound > -1){
+      var recipeLink = "/recipes/"+ recipeFound
       res.redirect(recipeLink)
-    }else{
+    }else if (recipeIdFound > -1){
+      var recipeLink = "/recipes/"+ parseInt(recipeIdFound)
+      res.redirect(recipeLink)
+    }else {
       res.redirect("/recipes/")
     }
   });

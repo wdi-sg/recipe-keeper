@@ -11,6 +11,9 @@ class Allrecipepage extends React.Component {
         return <a class="dropdown-item" href={recipeLink}>{obj.title}</a>
       }
     })
+    var sortedRecipes = file.recipes.map((obj)=>{
+      return <option value={obj.title}/>
+    })
 // <a class="navbar-brand" href="#">Quick Food Access</a>
     return (
       <html>
@@ -50,25 +53,14 @@ class Allrecipepage extends React.Component {
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="get" action="/search">
-              <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search"/>
+              <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search" list="recipes"/>
+              <datalist id="recipes">
+              {sortedRecipes}
+              </datalist>
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
         </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div id="page-content">
           <div id="main-image">
@@ -77,8 +69,6 @@ class Allrecipepage extends React.Component {
           <div>
             {this.props.children}
           </div>
-
-
         </div>
         <footer>
         <p>If you use this app, you agree to contribute to the recipe list with one recipe a day till you stop breathing.</p>
