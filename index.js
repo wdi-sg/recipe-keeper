@@ -1,7 +1,9 @@
 const express = require('express');
+const app = express();
+const { check } = require('express-validator')
+
 const jsonfile = require('jsonfile');
 const file = 'ingredient.json'; //or whatever your json file is called
-const app = express();
 
 // react engine
 const reactEngine = require('express-react-views').createEngine();
@@ -70,11 +72,47 @@ app.get('/recipes/new', (request, response) => {
 });
 
 
+
 /* =========================================
-// Create a new recipe
+// Add new recipe to json file
 ==========================================*/
+app.post('/recipe', (request, response) => {
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            console.log('error reading file');
+            console.log(err);
+        }
+
+        let newId = parseInt(request.body.id);
+        let newName = request.body.name;
+
+        console.log("new id: " + newId);
+        console.log("new name: " + newName);
+
+        let newRecipe = {
+            id: newId,
+            name: newName
+        };
+
+        console.log(newRecipe);
+
+        // Add new recipe to json file
+        obj.ingredient.push(newRecipe);
 
 
+        // save the request body into json file
+        jsonfile.writeFile(file, obj, (err) => {
+            if (err) {
+                console.log('error writing file!');
+                console.log(err);
+                response.status(503).send("no!");
+            }
+        }); ////// end of writing json file //////
+    });////// end of reading json file //////
+    console.log("send response");
+    response.send("New Recipe Added!");
+});
 /* =========================================
 // See a single recipe
 ==========================================*/
