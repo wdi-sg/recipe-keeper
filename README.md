@@ -1,227 +1,47 @@
-# recipe-keeper
-Create an online recipe keeper.
+# Pokedex Express App (with CRUD)
 
-![https://media.giphy.com/media/DZQuf6L7aNsaI/giphy.gif](https://media.giphy.com/media/DZQuf6L7aNsaI/giphy.gif)
+We will build a web app using Node.js and Express - a Pokedex app.
 
-This will be an express CRUD app.
+For this exercise, we will continue building our Pokedex web app - setting up our server to accept POST requests to save user-provided data. We will serve a form to the user for them to send data to our server to create a new pokemon.
 
-Users will be able to:
+The starter code in this repository builds upon the previous exercise's ([pokedex-express](https://github.com/wdi-sg/pokedex-express)).
 
-- Add a new recipe.
+## Getting Started
 
-- See all the recipes that exist.
+1.  Fork and clone this repository to your computer
+2.  Run `npm install` to install dependencies
+3.  Look in the starter file called `index.js`, run `nodemon` to start local server on port 3000
+4.  Open `localhost:3000` on your browser and see the home page
 
-- Edit recipes that currently exist.
+#### Note on comments:
 
-- Delete recipes.
+The comments in this file are deliberately verbose meant to orientate you to an Express app for the first time. Feel free to remove any or all comments.
 
-A single page should have at least 3 pieces of information:
+## Deliverables
 
-1. Title
-2. Ingredients
-3. Instructions
+* Expose a new endpoint that intercepts GET requests to `/pokemon/new`, which responds with a HTML page with a `form` that has these fields: `id`, `num`, `name`, `img`, `height`, and `weight`
 
-```
-Recipe Title: Boiled Chicken
+* Point the form to submit data to the (`/pokemon`) route using POST method
 
-Ingredients:
-  1 chicken
-  10 ml water
-  
-Instructions:
-  Place chicken in water with salt. Simmer for 20 minutes.
-```
+* (for the `id` and `num` fields, for now, the user will simply choose a number. Obviously if they happen to pick an id that already exists, they will have a bad time. We will have the tools to correct this soon)
 
-#### Technical Requirements:
-- Use express to handle the incoming HTTP requests.
+* Expose a new endpoint that accepts POST requests to `/pokemon`, which parses the form data and saves the new pokemon data into `pokedex.json`
 
-- Use React.js to render HTML after a request.
+## Further
 
-- Use jsonfile to store your data on the hard disk.
+* at the root route (GET request) `/` display a list of all the pokemons in the pokedex
 
-- Use RESTful route structure for the recipes
+* Add a "Sort by name" button to the homepage (`/` route) that when clicked, sends a GET request with a query parameter specifying "?sortby=name" ( this requests a whole new page )
+  - (hint) this button should be a subit button in a form with method GET. You would need to add an input that creates the appropriate request.
 
-| **URL** | **HTTP Verb** |  **Action** | **Purpose**  |
-|------------|-------------|------------|------------|
-| /recipes/         | GET       | index    | See all the recipes |
-| /recipes/new      | GET       | new      | Display the form for a single recipe |
-| /recipes          | POST      | create   | Create a new recipe |
-| /recipes/:id      | GET       | show     | See a single recipe |
-| /recipes/:id/edit | GET       | edit     | Display the form for editing a single recipe | 
-| /recipes/:id      | PATCH/PUT | update   | Update a recipe |
-| /recipes/:id      | DELETE    | destroy  | Remove a recipe |
+* Implement this sort functionality as a drop down (`select` `input`) of all the sorting fields the user can choose to sort by.
 
-#### How to get started
-Begin building your app with the json file. The starter code inside of data.json should look something like this: 
-```
-{
-  "recipes":[]
-}
-```
+* Add a "Sort by weight" button to the homepage (`/` route) that when clicked, sends a GET request with a query parameter specifying "?sortby=weight" ( this requests a whole new page )
 
-Begin with building the ability to render the form to create a recipe.
+* Add a "Sort by height" button to the homepage
+  - what do you need to write to abstract the idea of *sorting* in your code? What is the most elegant way to sort by any field in the pokedex?
 
-Then build the route that accepts the POST request that form creates.
-
-Then build the page that will display a single recipe.
-
-Then build the form for editing a recipe.
-
-Then build the route that accepts the PUT request to update a recipe.
-
-Next is DELETE
-
-That's it!
-
----
-
-Don't forget to `npm init`.
-
-Here is a minimal list of the things you will need to install in your app:
-```
-express
-jsonfile
-method-override
-express-react-views
-react
-react-dom
-```
-
-Here's all of the basic bolierplate setup you'll need to do for your app at the top of `index.js`:
-
-```javascript
-const jsonfile = require('jsonfile');
-
-const file = 'data.json';
-
-const express = require('express');
-
-const app = express();
-
-app.use(express.static(__dirname+'/public/'));
-
-app.use(express.json());
-
-app.use(express.urlencoded({
-  extended: true
-}));
-
-const methodOverride = require('method-override')
-
-app.use(methodOverride('_method'));
-
-const reactEngine = require('express-react-views').createEngine();
-
-app.engine('jsx', reactEngine);
-
-app.set('views', __dirname + '/views');
-
-app.set('view engine', 'jsx');
-
-```
-
-**Hint** It's implied that the ID mentioned in the RESTful routes is the index of the recipe array.
-
-This is the simplest way to code the app. If you code the array index to stand in for the ID, don't put the ID in the recipe object as well, or let the user enter the ID as an input in the form.
-
-The recipe object should look something like this:
-
-```json
-{
-  "title": "boiled duck",
-  "ingredients" : "1 duck, water",
-  "instructions": "boil duck in water for 20 minutes. take it out. serve."
-}
-```
-
-**Note**: you don't have to work on the furthers in the order listed.
-
-#### Further
-Add a way for users to navigate around the site without typing the explicit routes in the browser URL bar.
-
-#### Further
-CSS Part 1:
-
-Add some CSS. Use margin and padding, set basic spacing for all parts of your app. Add some basic colors or styles.
-(don't try to add bootstrap or any react CSS as an NPM library- just include the link tag line in the HTML, and a static style css file in the public directory)
-
-```html
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-```
-
-#### Further
-CSS Part 2:
-
-Add some layout styles. Add a kind of column layout to each page. You can use bootstrap.
-
-#### Further
-CSS Part 2.5:
-
-Make your layout styles mobile-first and responsive.
-
-#### Further
-CSS Part 3:
-
-Add more layout. Add a header/navbar and footer to every page.
-
-Add special layout and CSS to the landing page `/`
-
-#### Further
-Add more data to your recipie: add the date when it was created.
-
-#### Further
-Validate the user's input. Create limits for how long or short any field should be. 
-
-#### Further
-Create a system where the app actually tracks a kind of ID. This ID is unique to each recipe. The easiest implementation of this is simply a system that increments from the highest number. If a recipe is removed then the app ignores that ID.
-
-#### Further
-Sort the recipes on the index page. You can choose what dimension to sort them by.
-
-#### Further
-Add a more complex system of ingredients. For each recipe the ingredients are a variable number of ingredient records. To keep this simple you can start with 1-6 ingredients.
-
-An ingredient record would look like this:
-
-(extracted from the recipe object it is inside)
-```json
-"ingredients" :[
-  { 
-    "name" : "chicken",
-    "amount" : "1",
-    "notes" : "de-boned"
-  },
-  { 
-    "name" : "water",
-    "amount" : "1ml",
-    "notes" : "isotonic"
-  }
-]
-```
-
-#### Further
-Add a route `/ingredients` that lists every ingredient used by every recipe. Each one should be a link to the recipe that uses it.
-
-#### Further
-Format the list of ingredients to list the recipes that use that ingredient underneath it.
-
-```
-# Chicken
-  - chicken rice
-  - chicken and orzo
-  - chicken bee hoon
-  - mc spicy
-```
-
-
-#### Further
-Create a system that restricts the user from which ingredients they can use when creating a recipe. Incorporate ingredient json data into the `data.json` that you already have:
-
-```json
-{
-  "ingredients" : [...],
-  "recipes":[]
-}
-```
-
-When creating a new recipe, let the user pick from those ingredients.
+* Instead of saving `id` and `num` as random values input by the user via the form, implement the logic that guarantees the uniqueness of `id` and `num` of every newly created pokemon
+  * eg. if last pokemon in the `pokedex.json` has `"id": 151` and `"num": "151"`, the new pokemon object could have `"id": 152` and `"num": "152"`
+  * Hint: You might consider adding a new key value pair in `pokedex.json`, like `"lastKey": 151` - in this system you *will not* have to worry about ids being consecutive integers.
+  * are there any other ways to make a unique id for something? Remember that it is technically possible for 2 requests to be made to your server at almost the exact same time. What would happen when request 1 comes in and you begin to write to the disk and request 2 comes in and starts *and* finishes writing to the disk before request 1 finished writing to the disk?
