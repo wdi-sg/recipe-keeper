@@ -62,7 +62,12 @@ const addRecipe = (req,res) => {
 			obj.lastKey = lastKey;
 			obj.recipes.push(recipeObject);
 			jsonfile.writeFile(file, obj, (err) => {
-				res.redirect('/recipes/' + recipeObject.id);
+				if (err){
+					console.log(err);
+				}
+				else {
+					res.redirect('/recipes/' + recipeObject.id);
+				}
 			})
 		}
 	})
@@ -70,22 +75,16 @@ const addRecipe = (req,res) => {
 
 const showRecipeDetails = (req,res) => {
 	let id = parseInt(req.params.id);
-	let content = "";
 	jsonfile.readFile(file,(err,obj)=> {
 		if (err) {
 			console.log(err);
 		}
 		else {
 			let recipes = obj.recipes;
-			let data = {};
-			for (let recipe of recipes) {
-				if (id === recipe.id) {
-					data = {
-						'recipe' : recipe,
-						'index' : recipes.indexOf(recipes)
-					};
-				}
-			}
+			let recipe = recipes.find(recipe => recipe.id === id); //get recipe object from recipes array with the unique id
+			let data = {
+				'recipe' : recipe
+			};
 			if (data.recipe !== undefined) {
 				res.render('recipe', data);
 			}
@@ -96,14 +95,77 @@ const showRecipeDetails = (req,res) => {
 	})
 };
 
+const editRecipeForm = (req,res) => {
+	let id = parseInt(req.params.id);
+	jsonfile.readFile(file,(err,obj)=> {
+		if (err) {
+			console.log(err);
+		}
+		else {
+			let recipes = obj.recipes;
+			let recipe = recipes.find(recipe => recipe.id === id); //get recipe object from recipes array with the unique id
+			let data = {
+				recipe : recipe
+			};
+			res.render('edit-form',data)
+		}
+	});
+};
+
+const updateRecipe = (req,res) => {
+	let id = parseInt(req.params.id);
+	jsonfile.readFile(file,(err,obj)=> {
+		if (err) {
+			console.log(err);
+		}
+		else {
+			let recipes = obj.recipes;
+			let recipe = recipes.find(recipe => recipe.id === id); //get recipe object from recipes array with the unique id
+			recipe.title = req.body.title;
+			recipe.ingredients = req.body.ingredients;
+			recipe.instructions = req.body.instructions;
+			recipe.img = req.body.img;
+			jsonfile.writeFile(file, obj, (err) => {
+				if (err) {
+					console.log(err);
+				} else {
+					res.redirect('/recipes/'+id);
+				}
+			});
+		}
+	});
+};
+const deleteRecipe = (req,res) => {
+	let id = parseInt(req.params.id);
+	jsonfile.readFile(file,(err,obj)=> {
+		if (err) {
+			console.log(err);
+		}
+		else {
+			let recipes = obj.recipes;
+			let recipeIndex = recipes.findIndex(recipe => recipe.id === id); //get recipe object index from recipes array with the unique id
+			recipes.splice(recipeIndex,1);
+			jsonfile.writeFile(file, obj, (err) => {
+				if (err) {
+					console.log(err);
+				} else {
+					res.redirect('/recipes/');
+
+				}
+			})
+		}
+	});
+};
+
+
 /* Routing */
 app.get('/recipes', showRecipes);
 app.get('/recipes/new', addRecipeForm);
 app.post('/recipes', addRecipe);
 app.get('/recipes/:id', showRecipeDetails);
-// app.get('/recipes/:id/edit', editRecipeForm);
-// app.put('/recipes/:id', updateRecipe);
-// app.delete('/recipes/:id', removeRecipe);
+app.get('/recipes/:id/edit', editRecipeForm);
+app.put('/recipes/:id', updateRecipe);
+app.delete('/recipes/:id', deleteRecipe);
 
 
 // /recipes/	GET	index	See all the recipes

@@ -2,6 +2,6 @@
     margin-top: 1rem;
 }
 
-.buttons a {
-    margin-right: 1rem;
+.buttons > *{
+    margin-right: 0.5rem;
 }

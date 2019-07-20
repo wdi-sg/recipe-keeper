@@ -1,11 +1,10 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
-
+var DeleteModal = require('./components/delete-modal');
 class AddForm extends React.Component {
 	render() {
 		let recipe = this.props.recipe;
 		let editLink = "../recipes/"+this.props.recipe.id+"/edit";
-		let deleteLink = "../recipes/"+this.props.recipe.id+"/delete";
 		return (
 			<DefaultLayout>
 				<div className="row">
@@ -21,12 +20,16 @@ class AddForm extends React.Component {
 						</div>
 						<div className="buttons">
 							<a href={editLink}><button className="edit-btn btn btn-primary">Edit</button></a>
-							<a href={deleteLink}><button className="delete-btn btn btn-danger">Delete</button></a>
-							<a href="/recipes"><button className="view-btn btn btn-dark">Back to home</button></a>
+							<button type="button" className="btn btn-danger d-inline-block" data-toggle="modal" data-target="#deleteAlert">
+								Delete
+							</button>
+							<a href="/recipes"><button className="view-btn btn btn-dark">Return to home</button></a>
 						</div>
 					</div>
 				</div>
+				<DeleteModal modal="deleteAlert" recipe={recipe}/>
 			</DefaultLayout>
+
 		);
 	}
 }
