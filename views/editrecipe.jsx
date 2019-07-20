@@ -11,6 +11,10 @@ class Home extends React.Component {
     var theRecipe = this.props.therecipe
     var showRecipe = recipes[theRecipe]
     var recipeEditLink = "/recipes/"+theRecipe+"?_method=PUT"
+    var date = new Date();
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    var formattedDate = date.getDate() + "-" + months[date.getMonth()] + "-" + date.getFullYear();
+    var updatedString = "Updated on " + formattedDate;
 
     return (
       <Allrecipepagelayout>
@@ -26,6 +30,10 @@ class Home extends React.Component {
               <textarea name="ingredients" rows="2" cols="25" placeholder={showRecipe.ingredients} value={showRecipe.ingredients} style={{height:100+"px", width:400+"px"}}></textarea><br/>
               <p>Preparation instructions</p>
               <textarea name="instructions" rows="2" cols="25" placeholder={showRecipe.instructions} value={showRecipe.instructions} style={{height:100+"px", width:400+"px"}}></textarea><br/><br/>
+              <input type="hidden" name="createdon" value={showRecipe.createdon}/><br/><br/>
+              <input type="hidden" name="updatedon" value={updatedString}/><br/><br/>
+              <p>Set as favorite?</p>
+              <input type="checkbox" name="atf" checked={showRecipe.atf}/><br/><br/>
               <button className="btn btn-secondary" value="" type="submit">Update recipe</button>
             </form>
           </div>

@@ -19,9 +19,9 @@ class Home extends React.Component {
       var char = obj.title.charAt(0).toUpperCase()
       if (char != firstLetter){
         firstLetter = char
-        return (<Allrecipepagecomponent index={index} title={obj.title} splitter={char}/>)
+        return (<Allrecipepagecomponent index={index} title={obj.title} atf={obj.atf} splitter={char}/>)
       }else {
-        return (<Allrecipepagecomponent index={index} title={obj.title} splitter={emptyChar} />)
+        return (<Allrecipepagecomponent index={index} title={obj.title} atf={obj.atf} splitter={emptyChar} />)
       }
     })
     //rewrite existing array list with new list

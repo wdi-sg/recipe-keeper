@@ -15,6 +15,7 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+
 //////////////////user will see all recipes here//////////////////
 app.get('/recipes/', (req,res)=>{
   jsonfile.readFile(file,(err,obj)=>{
@@ -51,6 +52,23 @@ app.get('/recipes/:id', (req,res)=>{
         therecipe: req.params.id
     };
     res.render('recipepage',dataSet);
+  });
+});
+
+//////////////////Search a single recipe//////////////////
+app.get('/search', (req,res)=>{
+  jsonfile.readFile(file,(err,obj)=>{
+    console.log(req.query.q)
+    var returnFind = obj["recipes"].findIndex((obj)=>{
+      return obj.title === req.query.q.toString()
+      })
+    console.log(returnFind)
+    if (returnFind > -1){
+      var recipeLink = "/recipes/"+returnFind
+      res.redirect(recipeLink)
+    }else{
+      res.redirect("/recipes/")
+    }
   });
 });
 

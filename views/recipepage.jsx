@@ -9,7 +9,6 @@ class Home extends React.Component {
     //code logic goes here
     var recipes = this.props.recipes
     var theRecipe = this.props.therecipe
-    console.log(this.props.recipes);
     var showRecipe = recipes[theRecipe]
     var recipeEditLink = "/recipes/"+theRecipe+"/edit"
     var recipeDeleteLink = "/recipes/"+theRecipe+"/delete"
@@ -27,6 +26,13 @@ class Home extends React.Component {
           <div id="instructions">
             <h3><li>instructions</li></h3><br/>
             <div>{showRecipe.instructions}</div>
+          </div>
+          <br/>
+          <div id="createdon">
+            <div>{showRecipe.createdon}</div>
+          </div>
+          <div id="updatedon">
+            <div>{showRecipe.updatedon}</div>
           </div>
         </div>
         <br/>
