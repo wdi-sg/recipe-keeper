@@ -20,7 +20,7 @@ class Edit extends React.Component {
                         <input className="recipe-input-id" type="number" name="id" defaultValue={this.props.recipeData.id} />
                         <h3>Recipe Name: </h3>
                         <input className="recipe-input-name" name="name" defaultValue={this.props.recipeData.name} />
-                        <input className="submit-input-btn" type="submit" />
+                        <input className="submit-input-btn" type="submit" value="Submit"/>
                     </form>
                 </div>
             </div>
