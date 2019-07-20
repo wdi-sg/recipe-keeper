@@ -1,12 +1,1 @@
-{
-	"recipes":[
-		{
-			"num": 1,
-			"title": "chicken"
-		},
-		{
-			"num": 1,
-			"title": "beef"
-		}
-	]
-}
+{"recipes":[{"num":1,"title":"chicken"},{"num":2,"title":"beef"}]}

@@ -16,13 +16,16 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
-//json temp
+// json temp
 // jsonfile.readFile(file, function(err, obj) {
 //   console.dir(obj)
 // })
 
-// jsonfile.writeFile(file, obj, {flag: 'a'}, function (err) {
-//   console.error(err)
+// jsonfile.writeFile(file, obj, function (err) {
+//     if (err) {
+//         console.log(err);
+//     }
+//     response.send();
 // })
 
 
@@ -34,7 +37,39 @@ app.get('/', (request, response) => {
     })
 })
 
+//create a recipe, get from layout nav, link to createForm
+app.get('/recipes/new', (request, response) => {
+    jsonfile.readFile(file, function(err, obj) {
+        let nextId = obj.recipes.length+1;
+        console.log("next id: "+nextId);
+        response.render('createForm', obj);
+    })
+})
 
+//receive create data form. get from createForm, link to home?
+app.post('/recipes', (request, response) => {
+    console.log("request body title "+request.body.title);
+
+    jsonfile.readFile(file, function(err, obj) {
+        let nextIndex = obj.recipes.length;
+        let nextId = obj.recipes.length+1;
+
+        jsonfile.writeFile(file, obj, function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                obj.recipes[nextIndex] = {};
+                obj.recipes[nextIndex].num = nextId;
+                obj.recipes[nextIndex].title = request.body.title
+                console.log(obj)
+            }
+
+            response.render('home', obj);
+        })
+
+    })
+
+})
 
 
 
