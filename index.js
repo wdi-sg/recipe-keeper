@@ -28,7 +28,7 @@ app.use(express.static(__dirname+'/public/'));
 // Display all the recipes
 ==========================================*/
 
-app.get('/', (request, response) => {
+app.get('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         let recipes = obj.ingredient;
         if (err) {
@@ -41,7 +41,7 @@ app.get('/', (request, response) => {
             recipeId : recipes.id
         }
 
-        console.log(recipes);
+        // console.log(recipes);
         // response.send(recipes);
         response.render('home', data);
     });
@@ -49,11 +49,25 @@ app.get('/', (request, response) => {
 
 
 
-
-
 /* =========================================
 // Display a new recipe form
 ==========================================*/
+app.get('/recipes/new', (request, response) => {
+     jsonfile.readFile(file, (err, obj) => {
+        let recipes = obj.ingredient;
+        if (err) {
+            console.log('error reading file');
+            console.log(err);
+        }
+
+        let data = {
+            recipeKey : recipes,
+            recipeId : recipes.id
+        }
+        console.log('num of recipes: ' , recipes.length);
+        response.render('new', data);
+    });
+});
 
 
 /* =========================================
