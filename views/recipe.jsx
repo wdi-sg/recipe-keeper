@@ -5,6 +5,10 @@ class AddForm extends React.Component {
 	render() {
 		let recipe = this.props.recipe;
 		let editLink = "../recipes/"+this.props.recipe.id+"/edit";
+		let dateAdded = this.props.dateAdded;
+		let dateDisplay = "Created on "+dateAdded.getDate()+"/"+(dateAdded.getMonth()+1)+"/"+dateAdded.getFullYear();
+		let dateEdited = this.props.dateEdited;
+		if (dateEdited instanceof Date && !isNaN(dateEdited)) dateDisplay += ", Edited on "+dateEdited.getDate()+"/"+(dateEdited.getMonth()+1)+"/"+dateEdited.getFullYear();
 		return (
 			<DefaultLayout>
 				<div className="row">
@@ -15,6 +19,7 @@ class AddForm extends React.Component {
 						<div className="recipe-content">
 							<h2>{recipe.id}. {recipe.title}</h2>
 							<hr/>
+							<p><small>{dateDisplay}</small></p>
 							<p>Ingredients: {recipe.ingredients}</p>
 							<p>Instructions: {recipe.instructions}</p>
 						</div>

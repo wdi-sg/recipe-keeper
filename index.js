@@ -57,7 +57,9 @@ const addRecipe = (req,res) => {
 				"title": newRecipe.title,
 				"ingredients": newRecipe.ingredients,
 				"instructions": newRecipe.instructions,
-				"img": newRecipe.img
+				"img": newRecipe.img,
+				"dateAdded": new Date(),
+				"dateEdited": ""
 			};
 			obj.lastKey = lastKey;
 			obj.recipes.push(recipeObject);
@@ -83,7 +85,9 @@ const showRecipeDetails = (req,res) => {
 			let recipes = obj.recipes;
 			let recipe = recipes.find(recipe => recipe.id === id); //get recipe object from recipes array with the unique id
 			let data = {
-				'recipe' : recipe
+				'recipe' : recipe,
+				'dateAdded' : new Date(recipe.dateAdded),
+				'dateEdited' : new Date(recipe.dateEdited)
 			};
 			if (data.recipe !== undefined) {
 				res.render('recipe', data);
@@ -125,6 +129,7 @@ const updateRecipe = (req,res) => {
 			recipe.ingredients = req.body.ingredients;
 			recipe.instructions = req.body.instructions;
 			recipe.img = req.body.img;
+			recipe.dateEdited= new Date();
 			jsonfile.writeFile(file, obj, (err) => {
 				if (err) {
 					console.log(err);
