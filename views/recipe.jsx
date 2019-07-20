@@ -2,6 +2,7 @@ var React = require('react');
 
 class Show extends React.Component{
     render(){
+        var urlNew = "/recipe/new";
         var mapRecipeData = this.props.recipe.map(recipe=>{
             let urlIndividualRecipe = "/recipe/"+recipe.id;
             return(
@@ -19,6 +20,7 @@ class Show extends React.Component{
             <html>
                 <body>
                     <h1>Recipe</h1>
+                    <a href={urlNew}>Add new recipe</a>
                     <p>{mapRecipeData}</p>
                 </body>
             </html>

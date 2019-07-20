@@ -1,10 +1,9 @@
 var React = require('react');
 
-class Individual extends React.Component{
+class Delete extends React.Component{
     render(){
-        let urlEdit = "/recipe/"+this.props.recipe.id+"/edit";
-        let urlDelete = "/recipe/"+this.props.recipe.id+"/delete";
-        let url = "/recipe";
+        var urlDelete = "/recipe/"+this.props.recipe.id+"?_method=DELETE";
+        var url = "/recipe";
         return(
             <html>
                 <body>
@@ -13,8 +12,9 @@ class Individual extends React.Component{
                         <p>{this.props.recipe.ingredients}</p>
                         <h2>Instruction</h2>
                         <p>{this.props.recipe.instructions}</p>
-                        <a href={urlEdit}>Edit recipe</a>
-                        <a href={urlDelete}>Delete recipe</a>
+                        <form method="POST" action={urlDelete}>
+                        <input type="submit"/>
+                        </form>
                         <a href={url}>Return home</a>
                 </body>
             </html>
@@ -22,4 +22,4 @@ class Individual extends React.Component{
     };
 };
 
-module.exports = Individual;
+module.exports = Delete;

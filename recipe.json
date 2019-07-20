@@ -1,16 +1,16 @@
 {
-	"recipe":[
-		{
-			"id" : 1,
-			"name": "boiled duck",
-		  "ingredients" : "1 duck, water",
-		  "instructions": "boil duck in water for 20 minutes. take it out. serve."
-		},
-		{
-			"id": 2,
-			"name": "boiled chicken",
-			"ingredients": "1 chicken, water",
-			"instructions": "boil chicken in water for 40 minutes. Take it out and serve"
-		}
-	]
+  "recipe": [
+    {
+      "id": 1,
+      "name": "boiled lamb",
+      "ingredients": "1 duck, water",
+      "instructions": "NOOOOOO!"
+    },
+    {
+      "id": 2,
+      "name": "boiled pork",
+      "ingredients": "1 chicken, water",
+      "instructions": "boil chicken in water for 40 minutes. Take it out and serve"
+    }
+  ]
 }
