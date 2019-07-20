@@ -26,6 +26,17 @@ app.use(express.static(__dirname+'/public/'));
 
 
 
+/* ===========================================
+// Find index of user input recipe id
+===============================================*/
+var indexCheck = function(objArr, index) {
+    let realIndex = objArr.findIndex(a => a.id === index);
+    console.log("array index: " + realIndex);
+    return realIndex;
+};
+
+
+
 /* =========================================
 // Display all the recipes
 ==========================================*/
@@ -43,8 +54,6 @@ app.get('/recipes', (request, response) => {
             recipeId : recipes.id
         }
 
-        // console.log(recipes);
-        // response.send(recipes);
         response.render('home', data);
     });
 });
@@ -100,7 +109,6 @@ app.post('/recipe', (request, response) => {
         // Add new recipe to json file
         obj.ingredient.push(newRecipe);
 
-
         // save the request body into json file
         jsonfile.writeFile(file, obj, (err) => {
             if (err) {
@@ -129,9 +137,9 @@ app.get('/recipes/:id', (request, response) => {
         }
 
         let userInputId = parseInt(request.params.id);
-        // find recipe with user entered id
-        let realIndex = obj.ingredient.findIndex(a => a.id === userInputId);
-        console.log("array index: " + realIndex);
+
+        // find recipe index with user entered id
+        let realIndex = indexCheck(obj.ingredient, userInputId);
 
         let selectedRecipe = obj.ingredient[realIndex];
 
@@ -147,6 +155,7 @@ app.get('/recipes/:id', (request, response) => {
 });
 
 
+
 /* ===========================================
 // Display the form for editing a single recipe
 ===============================================*/
@@ -158,21 +167,10 @@ app.get('/recipes/:id/edit', (request, response) => {
             console.log(err);
         }
 
-        // let selectedId = (request.params.id) - 1; // -1 becos of index 0
-        // let selectedRecipe = obj.ingredient[selectedId];
-        // console.log("user editing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
-
-        // var data = {
-        //     selectedIdKey: selectedId,
-        //     recipeData: selectedRecipe
-        // }
-
         let userInputId = parseInt(request.params.id);
 
-        // find recipe with user entered id
-        let realIndex = obj.ingredient.findIndex(a => a.id === userInputId);
-        console.log("array index: " + realIndex);
-
+        // find recipe index with user entered id
+        let realIndex = indexCheck(obj.ingredient, userInputId);
         let selectedRecipe = obj.ingredient[realIndex];
 
         // IMPT noted the id here is the value of selectedRecipe.id, not the array index
@@ -186,6 +184,8 @@ app.get('/recipes/:id/edit', (request, response) => {
         response.render('edit', data);
     });
 });
+
+
 
 /* ===========================================
 // Update a single recipe
@@ -204,6 +204,7 @@ app.put('/recipes/:id', (request, response) => {
 
         var index = parseInt(request.body.id); // Convert request id to number
         var updatedName = request.body.name;
+        let realIndex = indexCheck(obj.ingredient, index);
 
         console.log("id: " + index);
         console.log("new name: " + updatedName);
@@ -212,25 +213,22 @@ app.put('/recipes/:id', (request, response) => {
             id: index,
             name: updatedName
         };
-        console.log("updated recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name);
 
-        // find recipe with request id
-        let realIndex = obj.ingredient.findIndex(a => a.id === index);
-        console.log("array index: " + realIndex);
+        console.log("updated recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name);
 
         // replace old content with this new content into the position real-index no. of ingredient array
         obj.ingredient[realIndex] = updatedRecipe;
 
         console.log("about to write file");
         jsonfile.writeFile(file, obj, (err) => {
-            console.log("write file done");
+            console.log("write file done to array index no. " + realIndex);
             if( err ){
                 console.log("error writing file");
                 console.log(err)
                 response.status(503).send("no!");
             } else {
-                console.log("~~~~~~~yay. recipe " + updatedRecipe.id + " updated!");
-                console.log( "send response");
+                console.log("~~~~~~~yaaaaaayyyy~~~! recipe " + updatedRecipe.id + " updated! ~~~~~~~");
+                console.log("sending response ... ");
                 response.send("Recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name + " updated!");
             }
         });
@@ -240,15 +238,79 @@ app.put('/recipes/:id', (request, response) => {
 
 
 /* =========================================
-// Remove a recipe
+// Display remove a recipe form
 ==========================================*/
+app.get('/recipes/:id/delete', (request, response) => {
+    // start reading json file
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            console.log('error reading file');
+            console.log(err);
+        }
+
+            let index = parseInt(request.params.id);
+            let realIndex = indexCheck(obj.ingredient, index);
+            let reqRecipe = obj.ingredient[realIndex];
+
+            let data = {
+                recipeIndex : realIndex,
+                recipeData : reqRecipe
+            };
+            response.render('delete', data);
+    }); // end reading json file
+});
 
 
 
+/**
+ * ===================================
+ * Delete recipe from json file
+ * ===================================
+ */
+app.delete('/recipes/:id', (request, response) => {
+
+    console.log("Begin deletion process...");
+    console.log("about to get file");
+
+    jsonfile.readFile(file, (err, obj) => {
+
+        console.log("got file");
+        if( err ){
+          console.log("error reading file");
+          console.log(err)
+        } else {
+            console.log("what i currently have");
+
+            let index = parseInt(request.params.id);
+            let realIndex = indexCheck(obj.ingredient, index);
+
+            console.log("user input id: " + index);
+            console.log("array index: " + realIndex);
+
+            let recipes = obj.ingredient;
+            let deleteName = recipes[realIndex].name;
+            // console.log("recipe name: " + deleteName);
 
 
+            // delete selected recipe
+            recipes.splice(realIndex, 1);
 
-
+            console.log("about to write file");
+            jsonfile.writeFile(file, obj, (err) => {
+            console.log("write file done");
+                if( err ){
+                    console.log("error writing file");
+                    console.log(err)
+                    response.status(503).send("no!");
+                } else {
+                    console.log("~~~~~~ processing request to delete ~~~~~!");
+                    console.log( "sending request");
+                    response.send("Recipe No. " + index + " " + deleteName +  " deleted");
+                }
+            }); // end of writing to json file
+        }
+    }); // end of reading to json file
+});
 
 
 
