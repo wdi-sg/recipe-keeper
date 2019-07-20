@@ -28,10 +28,6 @@ class Layout extends React.Component {
                     <a class="nav-link" href="/recipes/new">Display the form for a single recipe</a>
                   </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link" href="/recipes/IDHERE">See a single recipe</a>
-                  </li>
-
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Form to edit a recipe, form here
@@ -58,6 +54,10 @@ class Layout extends React.Component {
 
                 </ul>
 
+                <form class="form-inline my-2 my-lg-0" method="GET" action="/recipes/single">
+                  <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search by ID" aria-label="Search"/>
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
               </div>
             </nav>
             {this.props.children}

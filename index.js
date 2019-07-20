@@ -59,7 +59,7 @@ app.post('/recipes', (request, response) => {
         let nextId = obj.recipes.length+1;
 
         obj.recipes[nextIndex] = {};
-        obj.recipes[nextIndex].num = nextId;
+        obj.recipes[nextIndex].id = nextId;
         obj.recipes[nextIndex].title = request.body.title
         console.log(obj)
         response.render('home', obj);
@@ -74,6 +74,21 @@ app.post('/recipes', (request, response) => {
 
 })
 
+//get a single recipe by id,
+app.get('/recipes/single', (request, response) => {
+    let seeId = parseInt(request.query.search);
+    console.log("seeId :"+seeId);
+
+    jsonfile.readFile(file, function(err, obj) {
+        let foundRecipe = obj.recipes.find(recipe =>{
+            return recipe.id = seeId;
+
+        })
+        console.log(foundRecipe);
+        response.send(foundRecipe);
+    })
+
+})
 
 
 

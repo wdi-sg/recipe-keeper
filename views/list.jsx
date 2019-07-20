@@ -4,15 +4,22 @@ class List extends React.Component {
   render() {
 
     let recipeList = this.props.recipeList.map(recipe => {
+
         return(
-            <li>{recipe.title}</li>
+            <ul>
+                <li>Recipe Number: {recipe.id}</li>
+                <li>Recipe Title: {recipe.title}</li>
+                <li>{recipe.ingredients}</li>
+                <li>Instructions: {recipe.instructions}</li>
+            </ul>
         )
     })
 
+
     return (
-      <ul>
+      <div>
         {recipeList}
-      </ul>
+      </div>
     );
   }
 }
