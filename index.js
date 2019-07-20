@@ -110,14 +110,48 @@ app.get("/recipes/", (request, response) => {
 
             let food = obj.recipes;
 
-            //see all step 3: create key data for index page
+            //see all step 3: create key data for render page
             const data = {
                 food : food
             }
-            //see all step 4: render index page
+            //see all step 4: render see all page
             response.render("index", data);
         }
     })
 });
+
+// =============================================
+
+//see single recipe step 1: request to see chosen recipe
+app.get("/recipes/:id", (request, response) => {
+    console.log("See chosen recipe request");
+
+    //see single recipe step 2: read existing json file data
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            console.log(err);
+        } else {
+
+            let recipe;
+
+            //see single recipe step 3: use for loop to find title string in json
+            for (let i = 0; i < obj.recipes.length; i++) {
+
+                //see single recipe step 4: check if request is found in json
+                if (request.params.id === obj.recipes[i].title) {
+                    recipe = obj.recipes[i]
+                }
+            }
+        //see single recipe step 5: create key data for render page
+        const data = {
+            recipe : recipe
+        }
+        //see single recipe step 6: render see single page
+        response.render("recipe", data);
+        }
+    })
+});
+
+// =============================================
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
