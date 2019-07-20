@@ -120,7 +120,7 @@ app.post('/recipe', (request, response) => {
 // See a single recipe
 ==========================================*/
 app.get('/recipes/:id', (request, response) => {
-    console.log(request.params.id);
+    console.log("user entered: " + request.params.id);
 
     jsonfile.readFile(file, (err, obj) => {
         if( err ){
@@ -128,12 +128,19 @@ app.get('/recipes/:id', (request, response) => {
           console.log(err)
         }
 
-        let selectedId = (request.params.id) - 1;
-        let selectedRecipe = obj.ingredient[selectedId];
-        console.log(selectedRecipe);
+        let userInputId = parseInt(request.params.id);
+
+        // find recipe with user entered id
+        let realIndex = obj.ingredient.findIndex(a => a.id === userInputId);
+        console.log("read index: " + realIndex);
+
+        let selectedRecipe = obj.ingredient[realIndex];
+
+        // IMPT noted the id here is the value of selectedRecipe.id, not the array index
+        console.log("user viewing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
 
         let data = {
-            selectedIdKey : selectedId,
+            selectedIdKey : realIndex,
             recipeData : selectedRecipe
         };
 
@@ -145,11 +152,81 @@ app.get('/recipes/:id', (request, response) => {
 /* ===========================================
 // Display the form for editing a single recipe
 ===============================================*/
+app.get('/recipes/:id/edit', (request, response) => {
+    // read pokedex json file
+     jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            console.log('error reading file');
+            console.log(err);
+        }
 
+        let selectedId = (request.params.id) - 1; // -1 becos of index 0
+        let selectedRecipe = obj.ingredient[selectedId];
+        console.log("user editing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
+
+        var data = {
+            selectedIdKey: selectedId,
+            recipeData: selectedRecipe
+        }
+        response.render('edit', data);
+    });
+});
 
 /* ===========================================
 // Update a single recipe
 ===============================================*/
+
+app.put('/recipes/:id', (request, response) => {
+    console.log("WOW PUT");
+    var updatedRecipe = request.body;
+    console.log( updatedRecipe );
+    // save in data file
+    console.log("about to get file");
+    jsonfile.readFile(file, (err, obj) => {
+        console.log("got file");
+        if( err ){
+          console.log("error reading file");
+          console.log(err)
+        }
+        console.log("what i currently have");
+        // console.log(obj.ingredient);
+
+        // save data
+
+        // let index = request.params.id; // check index
+
+
+        var index = parseInt(request.body.id);
+        var updatedId = index + 1;
+        var updatedName = request.body.name;
+
+        console.log("id: " + index);
+        console.log("new name: " + updatedName);
+
+        var updatedRecipe = {
+            id: updatedId,
+            name: updatedName
+        };
+
+        console.log(updatedRecipe);
+        obj.ingredient[index] = updatedRecipe;
+
+        console.log("about to write file");
+        jsonfile.writeFile(file, obj, (err) => {
+            console.log("write file done");
+            if( err ){
+                console.log("error writing file");
+                console.log(err)
+                response.status(503).send("no!");
+            } else {
+                console.log("~~~~~~~yay. recipe " + updatedId + " updated!");
+                console.log( "send response");
+                response.send("Recipe no. " + updatedId + " updated!");
+            }
+        });
+    });
+});
+
 
 
 /* =========================================
