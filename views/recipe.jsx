@@ -8,10 +8,10 @@ class AddForm extends React.Component {
 		return (
 			<DefaultLayout>
 				<div className="row">
-					<div className="col-6">
-						<img src={recipe.img} className="img-fluid" alt={recipe.title}/>
+					<div className="col-12 col-md-6">
+						<img src={recipe.img} className="recipe-img img-fluid" alt={recipe.title}/>
 					</div>
-					<div className="col-4 d-flex align-content-between flex-wrap">
+					<div className="col-12 col-md-4 d-flex align-content-between flex-wrap">
 						<div className="recipe-content">
 							<h2>{recipe.id}. {recipe.title}</h2>
 							<hr/>

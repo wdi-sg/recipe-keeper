@@ -32,7 +32,10 @@ class AddForm extends React.Component {
 									<input name="img" className="form-control" required/>
 								</div>
 							</div>
-							<button type="submit" className="btn btn-dark d-block mx-auto">Submit</button>
+							<div className="buttons text-center">
+								<button type="submit" className="btn btn-primary">Submit</button>
+								<a href="/recipes"><button type="button" className="btn btn-dark">Return</button></a>
+							</div>
 						</form>
 					</div>
 				</div>

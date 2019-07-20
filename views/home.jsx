@@ -1,23 +1,23 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
+var RecipeThumbnail = require('./components/recipe-thumbnail');
 
 class Home extends React.Component {
 	render() {
 		let recipes = this.props.recipes.map(recipe => {
-			let link = "../recipes/"+recipe.id;
 			return (
-				<li><a href={link}>{recipe.title}</a></li>
+				<RecipeThumbnail recipe={recipe}/>
 			);
 		});
 		return (
 			<DefaultLayout>
 				<div className="row">
-					<div className="col-9">
-						<ul>
-						{recipes}
-						</ul>
+					<div className="order-1 order-md-0 col-12 col-md-9">
+						<div class="row">
+							{recipes}
+						</div>
 					</div>
-					<div className="col-3">
+					<div className="order-0 order-md-1 col-12 col-md-3 mb-5">
 						<a href="../recipes/new" className="btn btn-primary">Add new recipe</a>
 					</div>
 				</div>

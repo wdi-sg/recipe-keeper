@@ -5,3 +5,24 @@
 .buttons > *{
     margin-right: 0.5rem;
 }
+.recipe-img {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+a {
+    color: #333;
+}
+.recipe-thumbnail {
+    margin-bottom: 2rem;
+}
+.card-img {
+    width:100%;
+    background-size: cover;
+    background-position: center;
+}
+.card-img:after {
+    content: "";
+    display: block;
+    padding-bottom:75%;
+}
