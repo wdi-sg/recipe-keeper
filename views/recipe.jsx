@@ -3,12 +3,13 @@ var DefaultLayout = require('./layouts/default');
 var DeleteModal = require('./components/delete-modal');
 class AddForm extends React.Component {
 	render() {
+		const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 		let recipe = this.props.recipe;
 		let editLink = "../recipes/"+this.props.recipe.id+"/edit";
 		let dateAdded = this.props.dateAdded;
-		let dateDisplay = "Created on "+dateAdded.getDate()+"/"+(dateAdded.getMonth()+1)+"/"+dateAdded.getFullYear();
+		let dateDisplay = "Created on "+dateAdded.getDate()+" "+months[(dateAdded.getMonth())]+" "+dateAdded.getFullYear();
 		let dateEdited = this.props.dateEdited;
-		if (dateEdited instanceof Date && !isNaN(dateEdited)) dateDisplay += ", Edited on "+dateEdited.getDate()+"/"+(dateEdited.getMonth()+1)+"/"+dateEdited.getFullYear();
+		if (dateEdited instanceof Date && !isNaN(dateEdited)) dateDisplay += ", Edited on "+dateEdited.getDate()+" "+months[(dateEdited.getMonth())]+" "+dateEdited.getFullYear();
 		return (
 			<DefaultLayout>
 				<div className="row">

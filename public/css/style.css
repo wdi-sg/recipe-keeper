@@ -1,5 +1,6 @@
-.container {
-    margin-top: 1rem;
+.container-fluid {
+    margin-top: 2rem;
+    padding: 0 4rem;
 }
 
 .buttons > *{
@@ -13,8 +14,19 @@
 a {
     color: #333;
 }
+a:hover {
+    text-decoration: none;
+    color: #333;
+}
 .recipe-thumbnail {
     margin-bottom: 2rem;
+    transition: 0.25s linear;
+}
+.recipe-thumbnail:hover {
+    box-shadow: 0.5px 0.5px 3px rgba(0,0,0,0.35);
+}
+.recipe-title {
+    text-transform: capitalize;
 }
 .card-img {
     width:100%;

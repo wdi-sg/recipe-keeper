@@ -35,6 +35,20 @@ const showRecipes = (req,res) => {
 		}
 		else {
 			let recipes = obj.recipes;
+			let sortby = req.query.sortby;
+			if (sortby) {
+				switch (sortby) {
+					case "id":
+						recipes.sort(sortByID);
+						break;
+					case "title":
+						recipes.sort(sortByTitle);
+						break;
+					case "date":
+						recipes.sort(sortByDate);
+						break;
+				}
+			}
 			let data = {
 				recipes: recipes
 			};
@@ -162,6 +176,30 @@ const deleteRecipe = (req,res) => {
 	});
 };
 
+/* Sorting Functions */
+
+//Sort alphabetically
+function sortByTitle(a, b) {
+	// Use toUpperCase() to ignore character casing
+	const titleA = a.title.toUpperCase();
+	const titleB = b.title.toUpperCase();
+
+	return titleA>titleB ? 1 : titleA<titleB ? -1 : 0;
+}
+
+//Sort by ID
+function sortByID(a, b) {
+	const indexA = a.id;
+	const indexB = b.id;
+
+	return indexA - indexB;
+}
+
+function sortByDate(a,b) {
+	const dateA = new Date(a.dateAdded);
+	const dateB = new Date(b.dateAdded);
+	return dateA>dateB ? -1 : dateA<dateB ? 1 : 0;
+}
 
 /* Routing */
 app.get('/recipes', showRecipes);
@@ -172,14 +210,6 @@ app.get('/recipes/:id/edit', editRecipeForm);
 app.put('/recipes/:id', updateRecipe);
 app.delete('/recipes/:id', deleteRecipe);
 
-
-// /recipes/	GET	index	See all the recipes
-// /recipes/new	GET	new	Display the form for a single recipe
-// /recipes	POST	create	Create a new recipe
-// /recipes/:id	GET	show	See a single recipe
-// /recipes/:id/edit	GET	edit	Display the form for editing a single recipe
-// /recipes/:id	PATCH/PUT	update	Update a recipe
-// /recipes/:id	DELETE	destroy	Remove a recipe
 
 
 /* Listen to requests on port 3000 */
