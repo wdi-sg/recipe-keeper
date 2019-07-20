@@ -106,6 +106,8 @@ app.get('/recipes/:id/edit', (req,res) => {
 app.put('/recipes/:id', (req,res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
         let currentRecipe = req.body;
+        currentRecipe.updated = date;
+
         let currentId = parseInt(req.params.id);
 
         obj.recipes[currentId-1] = currentRecipe;

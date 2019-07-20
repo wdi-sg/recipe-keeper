@@ -1,6 +1,33 @@
 const React = require('react');
 const DefaultLayout = require('./layouts/default');
 
+class Date extends React.Component {
+    render() {
+
+        let displayDate;
+        let createdDate = this.props.currentRecipe.created;
+        let updatedDate = this.props.currentRecipe.updated;
+
+
+        let display;
+        let created = 'Created on';
+        let updated = 'Updated on';
+
+        if (updatedDate) {
+            displayDate = updatedDate;
+            display = updated;
+        } else {
+            displayDate = createdDate;
+            display = created;
+        }
+
+        return (
+            <p>{display}: {displayDate}</p>
+        );
+    }
+}
+
+
 
 class EachRecipe extends React.Component {
   render() {
@@ -8,7 +35,6 @@ class EachRecipe extends React.Component {
     let title = this.props.currentRecipe.title;
     let ingrd = this.props.currentRecipe.ingredients;
     let instr = this.props.currentRecipe.instructions;
-    let date = this.props.currentRecipe.created;
 
     let headerTitle = `Recipe: ${title}`;
     let editURL = `/recipes/${this.props.currentId}/edit`
@@ -28,7 +54,7 @@ class EachRecipe extends React.Component {
 
         <p>Ingredients: {ingrd} </p>
         <p>Instructions: {instr} </p>
-        <p>Created On: {date} </p>
+        <Date currentRecipe={this.props.currentRecipe}/>
 
       </DefaultLayout>
     );

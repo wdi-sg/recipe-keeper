@@ -12,10 +12,13 @@ class NavBar extends React.Component {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="/recipes">Home</a>
+                <a className="nav-link" href="/recipes">Recipes</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/recipes/new">Create Recipe</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/recipes">Ingredients</a>
               </li>
             </ul>
             <form className="form-inline my-2 my-lg-0">
