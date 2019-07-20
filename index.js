@@ -129,10 +129,9 @@ app.get('/recipes/:id', (request, response) => {
         }
 
         let userInputId = parseInt(request.params.id);
-
         // find recipe with user entered id
         let realIndex = obj.ingredient.findIndex(a => a.id === userInputId);
-        console.log("read index: " + realIndex);
+        console.log("array index: " + realIndex);
 
         let selectedRecipe = obj.ingredient[realIndex];
 
@@ -140,7 +139,6 @@ app.get('/recipes/:id', (request, response) => {
         console.log("user viewing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
 
         let data = {
-            selectedIdKey : realIndex,
             recipeData : selectedRecipe
         };
 
@@ -160,14 +158,31 @@ app.get('/recipes/:id/edit', (request, response) => {
             console.log(err);
         }
 
-        let selectedId = (request.params.id) - 1; // -1 becos of index 0
-        let selectedRecipe = obj.ingredient[selectedId];
+        // let selectedId = (request.params.id) - 1; // -1 becos of index 0
+        // let selectedRecipe = obj.ingredient[selectedId];
+        // console.log("user editing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
+
+        // var data = {
+        //     selectedIdKey: selectedId,
+        //     recipeData: selectedRecipe
+        // }
+
+        let userInputId = parseInt(request.params.id);
+
+        // find recipe with user entered id
+        let realIndex = obj.ingredient.findIndex(a => a.id === userInputId);
+        console.log("array index: " + realIndex);
+
+        let selectedRecipe = obj.ingredient[realIndex];
+
+        // IMPT noted the id here is the value of selectedRecipe.id, not the array index
         console.log("user editing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
 
-        var data = {
-            selectedIdKey: selectedId,
-            recipeData: selectedRecipe
-        }
+        let data = {
+            userEnteredIdKey : userInputId,
+            recipeData : selectedRecipe
+        };
+
         response.render('edit', data);
     });
 });
@@ -175,41 +190,36 @@ app.get('/recipes/:id/edit', (request, response) => {
 /* ===========================================
 // Update a single recipe
 ===============================================*/
-
 app.put('/recipes/:id', (request, response) => {
-    console.log("WOW PUT");
+    console.log("Begin storing updated recipe...");
+
     var updatedRecipe = request.body;
-    console.log( updatedRecipe );
-    // save in data file
-    console.log("about to get file");
+    // start of reading json file
     jsonfile.readFile(file, (err, obj) => {
         console.log("got file");
         if( err ){
           console.log("error reading file");
           console.log(err)
         }
-        console.log("what i currently have");
-        // console.log(obj.ingredient);
 
-        // save data
-
-        // let index = request.params.id; // check index
-
-
-        var index = parseInt(request.body.id);
-        var updatedId = index + 1;
+        var index = parseInt(request.body.id); // Convert request id to number
         var updatedName = request.body.name;
 
         console.log("id: " + index);
         console.log("new name: " + updatedName);
 
         var updatedRecipe = {
-            id: updatedId,
+            id: index,
             name: updatedName
         };
+        console.log("updated recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name);
 
-        console.log(updatedRecipe);
-        obj.ingredient[index] = updatedRecipe;
+        // find recipe with request id
+        let realIndex = obj.ingredient.findIndex(a => a.id === index);
+        console.log("array index: " + realIndex);
+
+        // replace old content with this new content into the position real-index no. of ingredient array
+        obj.ingredient[realIndex] = updatedRecipe;
 
         console.log("about to write file");
         jsonfile.writeFile(file, obj, (err) => {
@@ -219,9 +229,9 @@ app.put('/recipes/:id', (request, response) => {
                 console.log(err)
                 response.status(503).send("no!");
             } else {
-                console.log("~~~~~~~yay. recipe " + updatedId + " updated!");
+                console.log("~~~~~~~yay. recipe " + updatedRecipe.id + " updated!");
                 console.log( "send response");
-                response.send("Recipe no. " + updatedId + " updated!");
+                response.send("Recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name + " updated!");
             }
         });
     });
