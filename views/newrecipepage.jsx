@@ -11,11 +11,11 @@ class Home extends React.Component {
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     var formattedDate = date.getDate() + "-" + months[date.getMonth()] + "-" + date.getFullYear();
     var createdString = "Created on " + formattedDate;
-    var updatedString = "Updated on " + formattedDate;
+
     return (
       <Allrecipepagelayout>
         <div>
-          <form action="/recipes" method="post">
+          <form action="/recipes" name="newrecipe" method="post">
             <p>What is the title of your dish?</p>
             <input name="title" type="text" placeholder="Hobbit stew" required text/><br/>
             <p>What ingredients are required for this dish?</p>
@@ -24,8 +24,9 @@ class Home extends React.Component {
             <textarea name="instructions" rows="2" cols="25" placeholder="Peel a potato, shave your head, fire up the oven?" style={{height:100+"px", width:400+"px"}}></textarea><br/><br/>
             <p>Set as favorite?</p>
             <input type="checkbox" name="atf"/><br/><br/>
-            <input type="hidden" name="createdon" value={createdString}/><br/><br/>
-            <input type="hidden" name="updatedon" /><br/><br/>
+            <input type="hidden" name="createdon" value={createdString}/>
+            <input type="hidden" name="updatedon" />
+            <input type="hidden" name="id" value={this.props.uniqueid}/>
             <button className="btn btn-secondary" type="submit">Create recipe!</button>
           </form>
         </div>
@@ -41,3 +42,9 @@ class Home extends React.Component {
 }
 
 module.exports = Home;
+
+function validateForm(){
+  if (typeof document.newrecipe.title != "String"){
+    return false;
+  }
+}

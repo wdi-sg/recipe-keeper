@@ -30,6 +30,7 @@ app.get('/recipes/', (req,res)=>{
 app.post('/recipes', (req,res)=>{
   jsonfile.readFile(file,(err,obj)=>{
     obj["recipes"].push(req.body)
+    obj["lastID"] += 1;
     jsonfile.writeFile(file,obj,(err)=>{
       if(err){
         console.log(err)
@@ -41,7 +42,14 @@ app.post('/recipes', (req,res)=>{
 
 //////////////////Display form to create a new recipe//////////////////
 app.get('/recipes/new', (req,res)=>{
-  res.render('newrecipepage');
+  jsonfile.readFile(file,(err,obj)=>{
+    var dataSet = {
+        recipes: obj["recipes"],
+        uniqueid: obj["lastID"],
+        therecipe: req.params.id
+    };
+    res.render('newrecipepage',dataSet);
+  });
 });
 
 //////////////////See a single recipe//////////////////
@@ -57,11 +65,22 @@ app.get('/recipes/:id', (req,res)=>{
 
 //////////////////Search a single recipe//////////////////
 app.get('/search', (req,res)=>{
+  function hasNumber(input){
+    return /\d/.test(input);
+  }
   jsonfile.readFile(file,(err,obj)=>{
-    console.log(req.query.q)
-    var returnFind = obj["recipes"].findIndex((obj)=>{
-      return obj.title === req.query.q.toString()
-      })
+    if (hasNumber(req.query.q)){
+      console.log("its a number")
+      var returnFind = obj["recipes"].findIndex((obj)=>{
+        return obj.id == req.query.q
+        })
+    }else {
+      console.log("its a string")
+      var returnFind = obj["recipes"].findIndex((obj)=>{
+        return obj.title === req.query.q.toString()
+        })
+    }
+
     console.log(returnFind)
     if (returnFind > -1){
       var recipeLink = "/recipes/"+returnFind

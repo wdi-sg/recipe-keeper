@@ -30,7 +30,13 @@ h1,#main-image{
   max-width: 600px;
   min-height: 40px;
   margin: auto;
+  position: relative;
+}
 
+#uniqueid {
+  position: absolute;
+  top: 10;
+  right: 10px;
 }
 
 #recipes {

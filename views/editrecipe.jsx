@@ -31,6 +31,7 @@ class Home extends React.Component {
               <p>Preparation instructions</p>
               <textarea name="instructions" rows="2" cols="25" placeholder={showRecipe.instructions} value={showRecipe.instructions} style={{height:100+"px", width:400+"px"}}></textarea><br/><br/>
               <input type="hidden" name="createdon" value={showRecipe.createdon}/><br/><br/>
+              <input type="hidden" name="id" value={showRecipe.id}/><br/><br/>
               <input type="hidden" name="updatedon" value={updatedString}/><br/><br/>
               <p>Set as favorite?</p>
               <input type="checkbox" name="atf" checked={showRecipe.atf}/><br/><br/>

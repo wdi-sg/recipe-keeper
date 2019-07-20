@@ -19,6 +19,10 @@ class Home extends React.Component {
           <p id="list-of-recipe-text">You are currently looking at {showRecipe.title}</p>
         </div>
         <div id="recipe-box">
+          <div id="uniqueid">
+            <p>ID: {showRecipe.id}</p>
+          </div>
+          <br/>
           <div id="ingredients">
             <h3><li>ingredients required</li></h3><br/>
             <div>{showRecipe.ingredients}</div>
