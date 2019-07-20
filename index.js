@@ -74,18 +74,18 @@ app.post('/recipes', (request, response) => {
 
 })
 
-//get a single recipe by id,
+//get a single recipe by id, link to foundRecipe
 app.get('/recipes/single', (request, response) => {
     let seeId = parseInt(request.query.search);
     console.log("seeId :"+seeId);
 
     jsonfile.readFile(file, function(err, obj) {
-        let foundRecipe = obj.recipes.find(recipe =>{
-            return recipe.id = seeId;
-
+        let foundRecipe = obj.recipes.find((recipe) =>{
+            return recipe.id === seeId;
         })
+
         console.log(foundRecipe);
-        response.send(foundRecipe);
+        response.render('singleRecipe', foundRecipe);
     })
 
 })

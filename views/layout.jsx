@@ -61,9 +61,7 @@ class Layout extends React.Component {
               </div>
             </nav>
             {this.props.children}
-            <div>
-                <h1>footer</h1>
-            </div>
+
         </body>
       </html>
     );
