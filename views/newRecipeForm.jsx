@@ -1,7 +1,7 @@
-//create step 3: create new recipe form
+// create new step 3: create new recipe form
 var React = require('react');
 
-//create step 4: allow user to input details for new recipe
+// create new step 4: allow user to input details for new recipe
 class NewRecipeForm extends React.Component {
     render() {
         return (
@@ -9,7 +9,7 @@ class NewRecipeForm extends React.Component {
                 <body>
                     <div>
                         <h1>New Recipe Form</h1>
-                        //create step 5: submit button post method and action to recipe for app.post
+                        {/*create new step 5: submit button post method and action to recipe for app.post*/}
                         <form method = "POST" action = "/recipes">
                             <p>title</p>
                             <input name = "title"/>
