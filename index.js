@@ -113,9 +113,33 @@ app.post('/recipe', (request, response) => {
     console.log("send response");
     response.send("New Recipe Added!");
 });
+
+
+
 /* =========================================
 // See a single recipe
 ==========================================*/
+app.get('/recipes/:id', (request, response) => {
+    console.log(request.params.id);
+
+    jsonfile.readFile(file, (err, obj) => {
+        if( err ){
+          console.log("error reading file");
+          console.log(err)
+        }
+
+        let selectedId = (request.params.id) - 1;
+        let selectedRecipe = obj.ingredient[selectedId];
+        console.log(selectedRecipe);
+
+        let data = {
+            selectedIdKey : selectedId,
+            recipeData : selectedRecipe
+        };
+
+        response.render('onerecipe', data);
+    });
+});
 
 
 /* ===========================================
