@@ -16,7 +16,7 @@ class RecipePreview extends React.Component {
               <div className = "info">
                 <h2>{this.props.data.title}</h2>
                 <p className="description">{this.props.data.description}</p>
-                <p className="cooking-time">{this.props.data.cookingTime}</p>
+                <p className="cooking-time"><img src={"/img/clock.svg"}/>{this.props.data.cookingTime}</p>
               </div>
             </a>
           </div>

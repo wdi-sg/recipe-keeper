@@ -25,32 +25,37 @@ class Single extends React.Component {
       <Template>
         <div className="container">
           <div className="row">
-            <a className="button" href="/recipes">Back to list</a>
+            <div className="col-xs-12">
+              <a className="link" href="/recipes">Back to list</a>
+            </div>
           </div>
           <div className="row">
+            <div className="col-xs-12">
             {message}
-          </div>
-
-          <div className="row">
-            <div className = "two columns"><a className="button button-primary" href={editUrl}>Edit Recipe</a></div>
-            <div className = "two columns"><a className="button button-primary" href={deleteUrl}>Delete Recipe</a></div>
-          </div>
-          
-          <div className="row">
-            <h2>{this.props.recipe.title}</h2>
-          </div>
-          <div className="row">
-            <div className = "six columns">
-              <img className="u-max-full-width" src={this.props.recipe.image}></img>
-            </div>
-            <div className = "six columns">
-              <h3>Ingredients</h3>
-              <p>{this.props.recipe.ingredients}</p>
-              <h3>Instructions</h3>
-              <p>{this.props.recipe.instructions}</p>
             </div>
           </div>
 
+
+          <div className="recipe">
+            <div className="row">
+              <div className = "col-xs-12 col-sm-12 col-md-6 hero">
+                <img src={this.props.recipe.image}></img>
+              </div>
+              <div className = "col-xs-12 col-sm-12 col-md-6 content">
+                <h1>{this.props.recipe.title}</h1>
+                <h2>Ingredients</h2>
+                <p>{this.props.recipe.ingredients}</p>
+                <h2>Instructions</h2>
+                <p>{this.props.recipe.instructions}</p>
+                <div className="row buttons">
+                  <div className = "col-xs-12 col-sm-12 col-md-12 right">
+                      <a className="button" href={editUrl}>Edit Recipe</a>
+                      <a className="button" href={deleteUrl}>Delete Recipe</a>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
         </div>
 
         </Template>

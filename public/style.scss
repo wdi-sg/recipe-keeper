@@ -11,7 +11,7 @@ body{
   width: 100%;
   font-family: 'Oswald', sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 18px;
   background: $background;
   line-height: 1.4;
 }
@@ -23,6 +23,30 @@ h1,h2,h3,h4,h5,h6{
   margin: 0;
 }
 
+h1{
+  font-size: 3.0rem;
+}
+
+h2{
+  font-size: 2.6rem;
+}
+
+h3{
+  font-size: 2.2rem;
+}
+
+h4{
+  font-size: 1.8rem;
+}
+
+h5{
+  font-size: 1.4rem;
+}
+
+h6{
+  font-size: 1.2rem;
+}
+
 a{
   text-decoration: none;
   color: black;
@@ -30,6 +54,11 @@ a{
   &:hover{
     text-decoration: none;
   }
+}
+
+img{
+  width: 100%;
+  height: auto;
 }
 
 p{
@@ -52,21 +81,20 @@ header {
   font-size: 18px;
   font-weight: 400;
   padding: 10px 30px;
-  background-color: $primary;
+  background-color: $gold;
   color: white;
   border-radius: 5px;
   text-transform: uppercase;
+  &:hover{
+    background-color: darken($gold, 10%);
+  }
 }
 
 footer{
-  background: $dark-grey;
   margin-top: 50px;
   padding-top: 30px;
   padding-bottom: 30px;
-  .row{
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+
 }
 
 .right{
@@ -116,12 +144,9 @@ footer{
 }
 
 .feedback{
-  background: lightpink;
-  color: maroon;
-  padding: 10px 20px;
+  color: $gold;
   margin: 20px 0px;
-  border-radius: 2px;
-  font-size: 0.8em;
+  font-size: 1.2em;
 }
 
 .card{
@@ -177,7 +202,159 @@ footer{
       right: 20px;
       text-align: right;
       color: #666;
+      font-weight: 400;
+      font-size: 14px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      img{
+        height: 15px;
+        width: 15px;
+        margin-right: 5px;
+      }
     }
   }
 
+}
+
+.link{
+  font-size: 30px;
+  font-weight: 400;
+}
+.recipe{
+  background: white;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  overflow: hidden;
+  height: 400px;
+
+  .hero{
+    border-radius: 8px 0 0 8px;
+    width: 100%;
+    width: auto;
+    overflow: hidden;
+
+    img{
+      object-fit: fill;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .content{
+    padding: 20px;
+    position: relative;
+
+    h1{
+      font-size: 3.0rem;
+      color: $gold;
+    }
+
+    h2{
+      font-size: 1.6rem;
+      margin-top: 20px;
+    }
+
+    .buttons{
+      position: absolute;
+      width: 100%;
+      bottom: 20px;
+      padding-right: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      .button{
+        margin-left: 20px;
+      }
+    }
+  }
+
+}
+
+
+input,
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  font-size: 16px;
+  height: 50px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+
+.form-modal{
+  padding: 40px;
+  background: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  overflow: hidden;
+
+  h1{
+    margin-bottom: 30px;
+  }
+  p{
+    margin-bottom: 5px;
+  }
 }

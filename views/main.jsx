@@ -20,11 +20,12 @@ class Main extends React.Component {
                   <a className="create-new-recipe" href={createUrl}>Add a New Recipe</a>
               </div>
             </div>
+          </div>
+          <div className="container">
             <div className="row">
-                {allRecipes}
+              {allRecipes}
             </div>
           </div>
-
         </Template>
     );
   }
