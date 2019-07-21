@@ -25,7 +25,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(__dirname+'/public/'));
 
 // links to pages
-const homepage = 'home.jsx';
+const homepage = 'home-ver-2.jsx';
 const editpage = 'edit.jsx';
 const newpage = 'new.jsx';
 const onepage = 'onerecipe.jsx';
