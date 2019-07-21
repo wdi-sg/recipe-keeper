@@ -1,7 +1,7 @@
 //see all step 5: create page to display all recipes
 var React = require('react');
 
-class Index extends React.Component {
+class Recipes extends React.Component {
     render() {
 
         //see all step 6: map all recipes name to recipe list
@@ -18,10 +18,11 @@ class Index extends React.Component {
                     <ul>
                     {recipeList}
                     </ul>
+                    <a href = "../*"><button>home</button></a>
                 </body>
             </html>
         )
     }
 };
 
-module.exports = Index;
+module.exports = Recipes;

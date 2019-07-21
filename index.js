@@ -240,7 +240,7 @@ app.post("/recipes", (request, response) => {
         }
 
     })
-    response.send("post new recipe complete");
+    response.render("home");
 });
 
 // =============================================
@@ -262,7 +262,7 @@ app.get("/recipes/", (request, response) => {
                 food : food
             }
             //see all step 4: render see all page
-            response.render("index", data);
+            response.render("recipes", data);
         }
     })
 });
@@ -297,6 +297,15 @@ app.get("/recipes/:id", (request, response) => {
         response.render("recipe", data);
         }
     })
+});
+
+// =============================================
+
+//home page
+app.get("*", (request, response) => {
+    console.log("requesting home page");
+
+    response.render("home");
 });
 
 // =============================================
