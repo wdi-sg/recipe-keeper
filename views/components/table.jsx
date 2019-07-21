@@ -4,7 +4,7 @@ var React = require('react');
 class Table extends React.Component {
   render() {
     const listOfRecipes = this.props.recipe.map(item=>{
-        let index = this.props.recipe.indexOf(item) + 1;
+        let index = item.id;
         let url = '/recipes/'+(index);
         if(item.utensils.length >=1){
             var listOfUtensils = item.utensils.map(utensils=>{

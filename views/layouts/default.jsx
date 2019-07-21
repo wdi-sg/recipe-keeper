@@ -1,8 +1,57 @@
 var React = require('react');
+const file = require('../../data.json');
 
 
 class DefaultLayout extends React.Component {
   render() {
+    const listOfDishName = file.recipe.map(item=>{
+        let index = item.id;
+        let url = '/recipes/'+index;
+        return <li><a href={url}>{item.title}</a></li>
+    })
+    var listOfUtensils = [];
+    var checkUtensils = [];
+    for(let i=0;i<file.recipe.length;i++){
+        for(let j=0;j<file.recipe[i].utensils.length;j++){
+            let url = '/recipes?something='+file.recipe[i].utensils[j];
+            if(checkUtensils.includes(file.recipe[i].utensils[j])){
+                console.log("Do nothing");
+            }else{
+                listOfUtensils.push(<li><a href={url}>{file.recipe[i].utensils[j]}</a></li>)
+                checkUtensils.push(file.recipe[i].utensils[j]);
+            }
+        }
+    }
+
+
+    var listOfSeasonings = [];
+    var checkSeasonings = [];
+    for(let i=0;i<file.recipe.length;i++){
+        for(let j=0;j<file.recipe[i].seasonings.length;j++){
+            if(checkSeasonings.includes(file.recipe[i].seasonings[j])){
+                console.log("none");
+            }else{
+                let url = '/recipes?something='+file.recipe[i].seasonings[j];
+                listOfSeasonings.push(<li><a href={url}>{file.recipe[i].seasonings[j]}</a></li>)
+                checkSeasonings.push(file.recipe[i].seasonings[j]);
+            }
+        }
+    }
+
+    var listOfIngredients = [];
+    var checkIngredients = [];
+    for(let i=0;i<file.recipe.length;i++){
+        for(let j=0;j<file.recipe[i].ingredients.length;j++){
+            if(checkIngredients.includes(file.recipe[i].ingredients[j])){
+                console.log("none");
+            }else{
+                let url = '/recipes?something='+file.recipe[i].ingredients[j];
+                listOfIngredients.push(<li><a href={url}>{file.recipe[i].ingredients[j]}</a></li>);
+                checkIngredients.push(file.recipe[i].ingredients[j]);
+            }
+        }
+    }
+
     return (
       <html>
         <head>
@@ -28,7 +77,21 @@ class DefaultLayout extends React.Component {
         </nav>
         <div className="main-container">
             <div className="side-bar">
-                qwerty
+                <h4>Dishes</h4>
+                <hr/>
+                {listOfDishName}
+                <hr/>
+                <h4>Utensils</h4>
+                <hr/>
+                {listOfUtensils}
+                <hr/>
+                <h4>Seasonings</h4>
+                <hr/>
+                {listOfSeasonings}
+                <hr/>
+                <h4>ingredients</h4>
+                <hr/>
+                {listOfIngredients}
             </div>
             <div className="main-content">
                 {this.props.children}

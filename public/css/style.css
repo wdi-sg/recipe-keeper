@@ -8,7 +8,15 @@
     border:1px solid black;
     width:200px;
     min-height:600px;
+    list-style: none;
+    padding:10px;
+    background-color: #29a745;
+    color:white;
 
+}
+
+.side-bar a{
+    color:white;
 }
 
 .main-content{

@@ -7,6 +7,24 @@ class Individual extends React.Component {
     let item = this.props.item
     let editUrl = '/recipes/'+this.props.id+'/edit';
     let deleteUrl = '/recipes/'+this.props.id+'/delete';
+    console.log(item.utensils);
+    let utensilsList = item.utensils.map(element=>{
+        let url = '/recipes?something='+element;
+        return <span><a href={url}>{element}</a><br/></span>
+    })
+
+    console.log(utensilsList);
+
+    let seasoningsList = item.seasonings.map(element=>{
+        let url = '/recipes?something='+element;
+        return <span><a href={url}>{element}</a><br/></span>
+    })
+
+    let ingredientsList = item.ingredients.map(element=>{
+        let url = '/recipes?something='+element;
+        return <span><a href={url}>{element}</a><br/></span>
+    })
+
     return (
       <DefaultLayout title={this.props.title}>
       <table className="table table-bordered table-hover individual-data" style={{backgroundColor:"white"}}>
@@ -16,15 +34,15 @@ class Individual extends React.Component {
             </tr>
             <tr>
                 <th scope="row">Utensils</th>
-                <td>{item.utensils.join(", ")}</td>
+                <td>{utensilsList}</td>
             </tr>
             <tr>
                 <th scope="row">Seasonings</th>
-                <td>{item.seasonings.join(", ")}</td>
+                <td>{seasoningsList}</td>
             </tr>
             <tr>
                 <th scope="row">Ingredients</th>
-                <td>{item.ingredients.join(", ")}</td>
+                <td>{ingredientsList}</td>
             </tr>
       </table>
       <div className="choices-container">

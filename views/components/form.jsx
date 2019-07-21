@@ -22,6 +22,7 @@ class Form extends React.Component {
                     <th scopre="row">Ingredients</th>
                     <td><input name="ingredients" type="text" value={this.props.ingredients}/></td>
                 </tr>
+                <input name="id" type="number" value={this.props.id} hidden/>
             </table>
             <input type="submit" value="Submit"/>
         </form>

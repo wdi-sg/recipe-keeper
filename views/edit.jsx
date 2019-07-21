@@ -9,7 +9,7 @@ class Add extends React.Component {
     let item = this.props.item;
     return (
       <DefaultLayout title={this.props.title}>
-      <Form method="POST" action={url} title={item.title} utensils={item.utensils} seasonings={item.seasonings} ingredients={item.ingredients}/>
+      <Form method="POST" action={url} title={item.title} utensils={item.utensils} seasonings={item.seasonings} ingredients={item.ingredients} id={item.id}/>
 
       </DefaultLayout>
     );
