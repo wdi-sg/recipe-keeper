@@ -4,6 +4,7 @@ class Edit extends React.Component {
   render() {
     var url = "/recipes/" + this.props.userEnteredIdKey;
     var formAction = url + "?_method=PUT";
+    const ingredList = this.props.recipeData.ingredients[0];
     return (
       <html>
           <head>
@@ -25,10 +26,14 @@ class Edit extends React.Component {
                 </div>
                 <div className="col-8 card shadow p-3 mb-5 bg-white rounded">
                     <form action={formAction} method="POST">
-                        <div className="action-header">Recipe Id: </div>
+                        <p className="action-header">Recipe Id: </p>
                         <input className="recipe-input-id" type="number" name="id" defaultValue={this.props.recipeData.id} />
-                        <div className="action-header">Edit Recipe Name: </div>
+
+                        <p className="action-header">Edit Recipe Name: </p>
                         <input className="recipe-input-name" name="name" defaultValue={this.props.recipeData.name} />
+
+                        <p className="action-header">Edit Recipe Ingredients: </p>
+                        <textarea className="form-control" rows="3">{ingredList}</textarea>
                         <input className="submit-input-btn" type="submit" value="Submit"/>
                     </form>
                 </div>
