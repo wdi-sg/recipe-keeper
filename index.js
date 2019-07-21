@@ -42,24 +42,42 @@ app.set('view engine', 'jsx');
 ===================================
 **/
 
+
+// To redirect users to recipes page
 app.get('/', (request,response) => {
 
     response.redirect('/recipes');
 
  });
 
+// To display all the recipes
 app.get('/recipes', (request, response) => {
 
-    response.send('recipes page');
-    // response.render('', data);
+    jsonfile.readFile(file, (err,obj) => {
+
+        let data = obj;
+
+        if (err) {
+            console.log('error reading file');
+            console.log(err);
+
+        } else {
+
+            response.render('index', data)
+        }
+    });
+
 });
 
+// To create a new recipe
 app.get('/recipes/new', (request, response) => {
 
     jsonfile.readFile(file, (err,obj) => {
 
         const data = {
+
             arrayLength: obj.recipes.length + 1
+
         }
 
         if (err){
@@ -74,6 +92,7 @@ app.get('/recipes/new', (request, response) => {
     });
 });
 
+// To write a new recipe into data.json file
 app.post('/recipes', (request,response) => {
 
     let recipe = request.body;
@@ -99,7 +118,7 @@ app.post('/recipes', (request,response) => {
                     response.status(503).send("no!");
 
                 } else {
-                    response.send(obj.recipes);
+                    response.redirect('/recipes');
                 }
             });
         }
