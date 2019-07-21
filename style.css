@@ -1,0 +1,70 @@
+img{
+    width: auto;
+}
+
+.card {
+    clear: both;
+    width: 700px;
+    height:350px;
+    display: flex;
+    flex-direction: row;
+    background-image: url("https://www.tasteofhome.com/wp-content/uploads/2018/05/Baja-Pork-Tacos_EXPS_SDAM18_43842_D12_05_1b-696x696.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 3px 3px 20px #000000;
+
+}
+
+.nameplate {
+    width: 100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+    color: white;
+    font-weight: 900;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Qwigley', cursive;
+    text-shadow: 2px 2px 15px #000000;
+}
+.header_bar{
+    position: relative;
+}
+.home_icon{
+    width: 60px;
+    height: 60px;
+    background-image: url('public/images/home_g.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    display:inline-block;
+    float: left;
+    margin: 5px;
+}
+.delete_icon{
+    width: 60px;
+    height: 60px;
+    background-image: url('public/images/trash_g.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+    margin: 5px;
+}
+.edit_icon{
+    width: 60px;
+    height: 60px;
+    background-image: url('public/images/edit_g.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+    margin: 5px;
+}
