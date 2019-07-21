@@ -203,50 +203,50 @@ app.get('/recipes/:id/edit', (request, response) => {
 // /* ===========================================
 // // Update a single recipe
 // ===============================================*/
-// app.put('/recipes/:id', (request, response) => {
-//     console.log("Begin storing updated recipe...");
+app.put('/recipes/:id', (request, response) => {
+    console.log("Begin storing updated recipe...");
 
-//     var updatedRecipe = request.body;
-//     // start of reading json file
-//     jsonfile.readFile(file, (err, obj) => {
-//         console.log("got file");
-//         if( err ){
-//           console.log("error reading file");
-//           console.log(err)
-//         }
+    var updatedRecipe = request.body;
+    // start of reading json file
+    jsonfile.readFile(file, (err, obj) => {
+        console.log("got file");
+        if( err ){
+          console.log("error reading file");
+          console.log(err)
+        }
 
-//         var index = parseInt(request.body.id); // Convert request id to number
-//         var updatedName = request.body.name;
-//         let realIndex = indexCheck(obj.ingredient, index);
+        var index = parseInt(request.body.id); // Convert request id to number
+        var updatedName = request.body.name;
+        let realIndex = indexCheck(obj.ingredient, index);
 
-//         console.log("id: " + index);
-//         console.log("new name: " + updatedName);
+        console.log("id: " + index);
+        console.log("new name: " + updatedName);
 
-//         var updatedRecipe = {
-//             id: index,
-//             name: updatedName
-//         };
+        var updatedRecipe = {
+            id: index,
+            name: updatedName
+        };
 
-//         console.log("updated recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name);
+        console.log("updated recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name);
 
-//         // replace old content with this new content into the position real-index no. of ingredient array
-//         obj.ingredient[realIndex] = updatedRecipe;
+        // replace old content with this new content into the position real-index no. of ingredient array
+        obj.ingredient[realIndex] = updatedRecipe;
 
-//         console.log("about to write file");
-//         jsonfile.writeFile(file, obj, (err) => {
-//             console.log("write file done to array index no. " + realIndex);
-//             if( err ){
-//                 console.log("error writing file");
-//                 console.log(err)
-//                 response.status(503).send("no!");
-//             } else {
-//                 console.log("~~~~~~~yaaaaaayyyy~~~! recipe " + updatedRecipe.id + " updated! ~~~~~~~");
-//                 console.log("sending response ... ");
-//                 response.send("Recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name + " updated!");
-//             }
-//         });
-//     });
-// });
+        console.log("about to write file");
+        jsonfile.writeFile(file, obj, (err) => {
+            console.log("write file done to array index no. " + realIndex);
+            if( err ){
+                console.log("error writing file");
+                console.log(err)
+                response.status(503).send("no!");
+            } else {
+                console.log("~~~~~~~yaaaaaayyyy~~~! recipe " + updatedRecipe.id + " updated! ~~~~~~~");
+                console.log("sending response ... ");
+                response.send("Recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name + " updated!");
+            }
+        });
+    });
+});
 
 
 
