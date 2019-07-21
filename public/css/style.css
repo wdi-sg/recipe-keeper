@@ -1,0 +1,118 @@
+body {
+  background-image: linear-gradient(rgba(200,200,200,0.5),rgba(0,0,0,0.5));
+  color: rgba(50,50,50,0.5);
+  background-size: cover;
+  min-height: 1000px;
+}
+h1,#main-image{
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+}
+
+#title {
+  font-style: italic;
+  font-weight: bold;
+}
+
+#recipe-header{
+  max-width: 500px;
+  max-height: 500px;
+  margin: 50px auto;
+}
+
+#list-of-recipe-text {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  color: rgba(50,50,50,0.5);
+  text-align: center;
+}
+
+#recipe-box {
+  box-shadow:20px 20px 10px grey;
+  max-width: 600px;
+  min-height: 40px;
+  margin: auto;
+  position: relative;
+}
+
+#uniqueid {
+  position: absolute;
+  top: 10;
+  right: 10px;
+}
+
+#splitter {
+  background-color: rgba(100,150,200, 0.5);
+  border-radius: 10px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+#recipes {
+  column-count: 2;
+  text-align: center;
+}
+
+#instructions, #ingredients, #createdon, #updatedon {
+  margin: auto;
+  max-width: 500px;
+  min-height: 100px;
+}
+#createdon, #updatedon {
+  padding: 0;
+  min-height: 20px;
+  font-size: 10px;
+}
+
+li {
+  list-style-type:square;
+  list-style-position: inside;
+  text-align: left;
+}
+p{
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+a, form {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  color: rgba(50,50,50,0.5);
+  text-decoration: none;
+}
+
+form {
+  text-align: center;
+}
+
+img {
+  border-radius: 25px;
+  box-shadow:20px 20px 10px grey;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+#page-content {
+  position: relative;
+  padding-bottom: 100px;
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  height: 4.5rem;
+  background-color: rgba(40,44,52,0.5);
+  color: white;
+}
+
+#nav-list{
+  list-style: none;
+}
