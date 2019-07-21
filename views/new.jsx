@@ -13,11 +13,6 @@ class New extends React.Component{
             margin : "50px 200px"
         }
 
-        var inputStyle = {
-            height: "200px",
-            width: " 400px"
-        }
-
         return(
             <html>
                 <body style={bodyStyle}>
@@ -32,8 +27,14 @@ class New extends React.Component{
                                 <input type="text" name="name"/>
                                 <p>Recipe image</p>
                                 <input type="text" name="img"/>
+                                <p>Recipe origin</p>
+                                <input type="text" name="origin"/>
+                                <p>Type</p>
+                                <input type="text" name="type"/>
+                                <p>Calories counter</p>
+                                <input type="text" name="calories"/>
                                 <p>Ingredients</p>
-                                <input type="text" style = {inputStyle} name="ingredients"/>
+                                <input type="text" name="ingredients"/>
                                 <p>Instructions</p>
                                 <input type="text" name="instructions"/>
                                 <br />

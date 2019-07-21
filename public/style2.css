@@ -1,0 +1,25 @@
+.container{
+	margin-top: 10px;
+	width:1000px;
+}
+
+.containertop{
+	text-align: center;
+	margin:20px 0 30px 0;
+}
+
+.containerbtm{
+	text-align: center;
+	margin:20px 0;
+}
+
+img{
+	height:250px;
+	width:250px;
+	border-radius: 10px;
+	margin-top: 50px;
+}
+
+h1,h2{
+	font-family: 'Fascinate', cursive;
+}

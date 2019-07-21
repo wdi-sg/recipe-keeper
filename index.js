@@ -31,10 +31,27 @@ app.set('view engine', 'jsx');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+var ingredients = (request,response)=>{
+    // response.send("Inside ingredients function");
+    var recipeId = request.params.id;
+    jsonfile.readFile(file,(err,obj)=>{
+        var recipeArrIndex = obj.recipe.findIndex(recipe =>recipe.id == recipeId);
+        var recipe = obj.recipe[recipeArrIndex]
+
+        var data = {
+            recipe: recipe
+        }
+        // response.send(data);
+        response.render('ingredients',data);
+    })
+}
+
 var updateNewRecipe = (request,response)=>{
     // console.log("Inside update new recipe function");
     // response.send("Inside update new recipe function");
     var newRecipe = request.body;
+    newRecipe.id = parseInt(newRecipe.id);
+    newRecipe.calories = parseInt(newRecipe.calories);
     var urlNew = "/recipe/"+newRecipe.id
     jsonfile.readFile(file,(err,obj)=>{
         // response.send(newRecipe);
@@ -176,6 +193,7 @@ var showAllRecipe = (request,response)=>{
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////routes//////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.get('/recipe/:id/ingredients',ingredients);
 app.post('/recipe',updateNewRecipe);
 app.get('/recipe/new',newRecipe);
 app.delete('/recipe/:id',updateDeleteRecipe);
