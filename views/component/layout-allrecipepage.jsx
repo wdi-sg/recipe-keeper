@@ -26,7 +26,7 @@ class Allrecipepage extends React.Component {
         </head>
         <header>
           <div>
-            <h1>Bringing you delight in every meal you make!</h1>
+            <h1 id="title">My Food Book</h1>
           </div>
         </header>
         <body>
@@ -41,18 +41,18 @@ class Allrecipepage extends React.Component {
                 <a class="nav-link" href="/recipes/">Home <span class="sr-only">(current)</span></a>
               </li>
               <li id="nav-list" class="nav-item">
-                <a class="nav-link" href="/recipes/new">Create new recipe <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/recipes/new">Create recipe <span class="sr-only">(current)</span></a>
               </li>
               <li id="nav-list" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  All time favorites
+                  Favorites
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   {allTimeFavorites}
                 </div>
               </li>
               <li id="nav-list" class="nav-item">
-                <a class="nav-link" href="/ingredients">Check out your ingredients!<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/ingredients">Ingredient list<span class="sr-only">(current)</span></a>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="get" action="/search">
@@ -67,7 +67,7 @@ class Allrecipepage extends React.Component {
 
         <div id="page-content">
           <div id="main-image">
-            <img class="responsive" id="recipe-header" src="/images/delicious-steak.jpg"/>
+            <img class="responsive" id="recipe-header" src="/images/feast.jpg"/>
           </div>
           <div>
             {this.props.children}

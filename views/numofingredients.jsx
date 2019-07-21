@@ -18,20 +18,19 @@ class Home extends React.Component {
       return <option value={obj.name}/>
     })
     var array = []
-    for (var i = 0; i < noOfInputFields*5; i+=5){
+    for (var i = 0; i < noOfInputFields*4; i+=4){
       var ingredientNo = "ingredients[" + i + "][ingredient]"
       var quantityNo = "ingredients[" + i + "][quantity]"
-      array[i] = <label>Ingredient</label>
-      array[i+1] = <input name={ingredientNo} type="text" list="ingredient"/>
-      array[i+2] = <label>Quantity</label>
-      array[i+3] = <input name={quantityNo} type="text" style={{width:30+"px"}}/>
-      array[i+4] = <br/>
+      array[i] = <p><label>Ingredient</label></p>
+      array[i+1] = <p><input name={ingredientNo} type="text" list="ingredient" required text/><br/></p>
+      array[i+2] = <p><label>Quantity</label></p>
+      array[i+3] = <p><input name={quantityNo} type="text" style={{width:30+"px"}} required text/><br/></p>
     }
 
     return (
       <Allrecipepagelayout>
         <div>
-          <h3 style={{textAlign:"center"}}>Ingredient List</h3>
+          <h3 style={{textAlign:"center"}} id="list-of-recipe-text">Ingredient List</h3>
           <form action="/instructions" name="newrecipe" method="post">
             <input name="title" type="hidden" value={title}/><br/>
             <input type="hidden" name="createdon" value={createdon}/>

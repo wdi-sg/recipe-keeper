@@ -31,7 +31,7 @@ class Home extends React.Component {
     return (
       <Allrecipepagelayout>
         <div id="recipe-box">
-        <h3 id="list-of-recipe-text">Ingredients currently in use by your recipes</h3><br/>
+        <h3 id="list-of-recipe-text">Ingredients used by your recipes</h3><br/>
           <div id="recipes">
             {ingredients}
           </div>

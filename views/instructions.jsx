@@ -38,7 +38,7 @@ class Home extends React.Component {
             {array}
 
             <p>How is this meal prepared?</p>
-            <textarea name="instructions" rows="2" cols="25" placeholder="Peel a potato, shave your head, fire up the oven?" style={{height:100+"px", width:400+"px"}}></textarea><br/><br/>
+            <textarea name="instructions" rows="2" cols="25" placeholder="Peel a potato, shave your head, fire up the oven?" style={{height:100+"px", width:400+"px"}} required text></textarea><br/><br/>
             <p>Set as favorite?</p>
             <input type="checkbox" name="atf"/><br/><br/>
             <button className="btn btn-secondary" type="submit">Submit instructions!</button>

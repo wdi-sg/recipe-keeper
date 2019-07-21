@@ -24,7 +24,7 @@ class Home extends React.Component {
             <p>What is the title of your dish?</p>
             <input name="title" type="text" placeholder="Hobbit stew" required text/><br/>
             <p>How many ingredients are in this dish?</p>
-            <input type="text" name="noofingredients"/><br/><br/>
+            <input type="text" name="noofingredients" required text/><br/><br/>
             <input type="hidden" name="createdon" value={createdString}/>
             <input type="hidden" name="updatedon" />
             <input type="hidden" name="id" value={this.props.uniqueid}/>

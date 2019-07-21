@@ -12,7 +12,7 @@ class Allrecipepage extends React.Component {
 
     return (
       <div id="recipe-item">
-        <div>{this.props.splitter}</div>
+        <div id="splitter">{this.props.splitter}</div>
         <li><a href={recipeIndex}>{this.props.title}</a></li>
       </div>
     );
