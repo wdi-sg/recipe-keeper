@@ -1,0 +1,14 @@
+body{
+	text-align: center;
+}
+
+.recipeContainer{
+	margin-top: 20px;
+	display: flex;
+  justify-content: space-evenly;
+}
+
+.recipeCards{
+	display:inline-block;
+	text-align: center;
+}

@@ -1,0 +1,33 @@
+{
+  "recipes": [
+    {
+      "id": "1",
+      "name": "bbq chicken",
+      "ingredients": [
+        "chicken",
+        "bbq sauces"
+      ],
+      "qty": "1 chicken, 1 bottle of bbq sauces",
+      "img": "https://cdn.shopify.com/s/files/1/0014/3140/4627/products/REFUL_bbq_chicken_cobb_WEB_240x.JPG?v=1561684371",
+      "instruction": "Rub the chicken with the sauces. Throw it into the oven. Viola."
+    },
+    {
+      "id": "2",
+      "name": "fruit platter",
+      "ingredients": [
+        "fruits"
+      ],
+      "qty": "As many tropical fruits as possible",
+      "img": "https://t3.ftcdn.net/jpg/02/37/36/54/240_F_237365464_DVt4chv6sqJIFdn7Dy9fy7qbiY04QidT.jpg",
+      "instruction": "Cut them all and throw them on me"
+    },
+    {
+      "id": "3",
+      "name": "scramble egg",
+      "ingredients": "egg, milk, cheese",
+      "Qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://lh3.googleusercontent.com/Vs8fiagcv0BKIoiHlCBIYSpcxs4gDyJdQMf1idynI2xmKVPyM2nIiU90_pn8bL0QQuH9xopwGBCjEoHVtP355w",
+      "Instruction": "Crack eggs, go scramble!"
+    }
+  ]
+}
