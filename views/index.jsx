@@ -6,7 +6,7 @@ class indexPage extends React.Component {
 
     const recipe = this.props.recipes.map(element => {
         return(
-            <div className="card">
+            <div className="card" style={{ width: 300, margin: 10 }}>
                 <img className="card-img-top" src={element.img} alt="Card image cap" />
                 <div className="card-body">
                   <h5 className="card-title">{element.title}</h5>
@@ -23,9 +23,9 @@ class indexPage extends React.Component {
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"></link>
         </head>
         <body>
-          <div>
-            <h1>List of All Recipes</h1>
-            <div className="card-deck">
+          <div className="container mx-auto">
+                <h1 className="text-center mt-5">List of All Recipes</h1>
+            <div className = "row mt-3" style={{ justifyContent : "center" }}>
                 {recipe}
             </div>
 
