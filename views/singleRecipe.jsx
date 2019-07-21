@@ -15,6 +15,7 @@ class Recipe extends React.Component {
     let ingredient = items.map(ingredient => {
       return <li classname = "ingd"> {ingredient} </li>;
     })
+    console.log(this.props.recipe);
     console.log(this.props.recipe.instruction)
     let steps = this.props.recipe.instruction.split(".");
     console.log(steps.length);
@@ -48,7 +49,6 @@ class Recipe extends React.Component {
               <div className = "left">
                 <h2>{this.props.recipe.title}</h2>
                 <img src={this.props.recipe.img}/ >
-
                 <form className ="form" action={editUrl} method="GET">
                     <input className ="flleft" type="submit" value="Improve this recipe"/>
                 </form>
@@ -56,6 +56,8 @@ class Recipe extends React.Component {
                 <form className ="form" action={deleteUrl} method="GET">
                     <input className ="flright" type="submit" value="Delete this recipe"/>
                 </form>
+
+               
                 </div>
                 <div className = "right">
                   <h2> Ingredients</h2>
