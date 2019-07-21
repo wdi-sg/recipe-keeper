@@ -47,6 +47,7 @@ class Single extends React.Component {
                 <p>{this.props.recipe.ingredients}</p>
                 <h2>Instructions</h2>
                 <p>{this.props.recipe.instructions}</p>
+                <p>Cooking Time: {this.props.recipe.cookingTime}</p>
                 <div className="row buttons">
                   <div className = "col-xs-12 col-sm-12 col-md-12 right">
                       <a className="button" href={editUrl}>Edit Recipe</a>
@@ -57,6 +58,8 @@ class Single extends React.Component {
               </div>
             </div>
         </div>
+
+
 
         </Template>
     );

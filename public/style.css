@@ -59,6 +59,7 @@ header {
   font-size: 18px;
   font-weight: 400;
   padding: 10px 30px;
+  font-family: 'Oswald', sans-serif;
   background-color: #B79733;
   color: white;
   border-radius: 5px;
@@ -287,3 +288,6 @@ label > .label-body {
     margin-bottom: 30px; }
   .form-modal p {
     margin-bottom: 5px; }
+
+.delete-message {
+  margin-top: 30px; }
