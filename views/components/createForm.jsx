@@ -7,11 +7,24 @@ class CreateForm extends React.Component {
       <div>
         <form method="POST" action="/recipes">
             <p>Recipe Title:</p>
-            <input type={"text"} name={"title"} minLength={"3"} required/>
-            <p>Ingredients:</p>
-            <input type={"text"} name={"ingredients"} minLength={"5"} required/>
+                <input type={"text"} name={"title"} minLength={"3"} required/>
+            <h3>Ingredients (name, amount, notes):</h3>
+            <p>Name:</p>
+                <input type={"text"} name={"name"} minLength={"3"} required/>
+                <input type={"text"} name={"name"} minLength={"3"}/>
+                <input type={"text"} name={"name"} minLength={"3"}/>
+            <p>Amount:</p>
+                <input type={"text"} name={"amount"} required/>
+                <input type={"text"} name={"amount"}/>
+                <input type={"text"} name={"amount"}/>
+            <p>Notes:</p>
+                <input type={"text"} name={"notes"} minLength={"3"} required/>
+                <input type={"text"} name={"notes"} minLength={"3"}/>
+                <input type={"text"} name={"notes"} minLength={"3"}/>
             <p>Instructions:</p>
-            <input type={"text"} name={"instructions"} minLength={"5"} required/>
+            <textarea type={"text"} name={"instructions"} minLength={"5"} required/>
+            <p>Image Link:</p>
+            <input type={"text"} name={"img"} />
             <input type="submit" value="CREATE RECIPE"/>
         </form>
       </div>

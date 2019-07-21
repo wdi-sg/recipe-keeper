@@ -5,10 +5,18 @@ class Ingredients extends React.Component {
   render() {
     let headerTitle = "Ingredients | Recipe Keeper";
 
+    let ingArr = this.props.ingredients.map((ing, i)=> {
+        return (
+            <div>
+                <a href="">{ing}</a>
+            </div>
+        )
+    })
+
     return (
       <DefaultLayout title={headerTitle}>
         <h1>All Ingredients</h1>
-        <div>Recipe 1</div>
+        <div>{ingArr}</div>
       </DefaultLayout>
     );
   }
