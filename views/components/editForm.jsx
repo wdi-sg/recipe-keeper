@@ -12,11 +12,11 @@ class EditForm extends React.Component {
       <div>
         <form method="POST" action={editRecipeUrl}>
             <p>Recipe Title:</p>
-            <input type={"text"} name={"title"} defaultValue={title}/>
+            <input type={"text"} name={"title"} defaultValue={title} minLength={"3"} required/>
             <p>Ingredients:</p>
-            <input type={"text"} name={"ingredients"} defaultValue={ingrd}/>
+            <input type={"text"} name={"ingredients"} defaultValue={ingrd} minLength={"5"} required/>
             <p>Instructions:</p>
-            <input type={"text"} name={"instructions"} defaultValue={instr}/>
+            <input type={"text"} name={"instructions"} defaultValue={instr} minLength={"5"} required/>
             <input type="submit" value="EDIT RECIPE"/>
         </form>
       </div>

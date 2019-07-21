@@ -12,6 +12,7 @@ class EditRecipe extends React.Component {
     let ingrd = currentRecipe.ingredients;
     let instr = currentRecipe.instructions;
     let id = this.props.currentId;
+    let returnURL = `/recipes/${this.props.currentId}`
 
     let headerTitle = `Edit Recipe: ${title}`;
 
@@ -21,6 +22,9 @@ class EditRecipe extends React.Component {
         <h1>Edit Recipe: {title} </h1>
 
         <EditForm id={id} title={title} ingrd={ingrd} instr={instr}/>
+        <form action={returnURL}>
+            <button type={"submit"}>GO BACK</button>
+        </form>
 
       </DefaultLayout>
     );

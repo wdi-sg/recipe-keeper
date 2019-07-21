@@ -54,7 +54,7 @@ app.get('/recipes', (req, res) => {
         let recipeData = {
             recipes : recipes
         }
-        res.render('home', recipeData);
+        res.render('recipes', recipeData);
     })
 })
 
@@ -66,7 +66,8 @@ app.post('/recipes', (req,res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
         let newRecipe = req.body;
         newRecipe.created = date;
-        console.log(newRecipe);
+        newRecipe.id = obj.recipeId + 1;
+        obj.recipeId ++;
         obj.recipes.push(newRecipe);
 
         jsonfile.writeFile(recipesFile, obj, (err) => {
@@ -80,12 +81,19 @@ app.post('/recipes', (req,res) => {
 app.get('/recipes/:id', (req,res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
         let currentId = parseInt(req.params.id);
-        let currentRecipe = obj.recipes[currentId-1];
+        let currentRecipe;
 
+        for (let i=0; i<obj.recipes.length; i++) {
+            let id = parseInt(obj.recipes[i].id);
+            if ( id === currentId ) {
+                currentRecipe = obj.recipes[i];
+            }
+        }
         let recipeData = {
             currentRecipe : currentRecipe,
             currentId : currentId
         }
+        console.log(recipeData);
         res.render('individual-recipe', recipeData);
     })
 })
@@ -93,8 +101,14 @@ app.get('/recipes/:id', (req,res) => {
 app.get('/recipes/:id/edit', (req,res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
         let currentId = parseInt(req.params.id);
-        let currentRecipe = obj.recipes[currentId-1];
+        let currentRecipe;
 
+        for (let i=0; i<obj.recipes.length; i++) {
+            let id = parseInt(obj.recipes[i].id);
+            if ( id === currentId ) {
+                currentRecipe = obj.recipes[i];
+            }
+        }
         let recipeData = {
             currentRecipe : currentRecipe,
             currentId : currentId
@@ -106,11 +120,20 @@ app.get('/recipes/:id/edit', (req,res) => {
 app.put('/recipes/:id', (req,res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
         let currentRecipe = req.body;
-        currentRecipe.updated = date;
 
         let currentId = parseInt(req.params.id);
 
-        obj.recipes[currentId-1] = currentRecipe;
+        for (let i=0; i<obj.recipes.length; i++) {
+            let id = parseInt(obj.recipes[i].id);
+            if ( id === currentId ) {
+                obj.recipes[i].title = currentRecipe.title;
+                obj.recipes[i].ingredients = currentRecipe.ingredients;
+                obj.recipes[i].instructions = currentRecipe.instructions;
+                obj.recipes[i].updated = date;
+
+            }
+        }
+        // obj.recipes[currentId-1] = currentRecipe;
 
         jsonfile.writeFile(recipesFile, obj, (err) => {
             if (err) console.log('err: ' + err);
@@ -123,7 +146,14 @@ app.put('/recipes/:id', (req,res) => {
 app.get('/recipes/:id/delete', (req,res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
         let currentId = parseInt(req.params.id);
-        let currentRecipe = obj.recipes[currentId-1];
+        let currentRecipe;
+
+        for (let i=0; i<obj.recipes.length; i++) {
+            let id = parseInt(obj.recipes[i].id);
+            if ( id === currentId ) {
+                currentRecipe = obj.recipes[i];
+            }
+        }
 
         let recipeData = {
             currentRecipe : currentRecipe,
@@ -138,7 +168,12 @@ app.delete('/recipes/:id', (req,res) => {
         // let currentRecipe = req.body;
         let currentId = parseInt(req.params.id);
 
-        obj.recipes.splice(currentId-1,1);
+        for (let i=0; i<obj.recipes.length; i++) {
+            let id = parseInt(obj.recipes[i].id);
+            if ( id === currentId ) {
+                obj.recipes.splice(i, 1);
+            }
+        }
 
         jsonfile.writeFile(recipesFile, obj, (err) => {
             if (err) console.log('err: ' + err);
@@ -148,8 +183,32 @@ app.delete('/recipes/:id', (req,res) => {
     })
 })
 
+// app.get('/ingredients', (req, res) => {
+    // jsonfile.readFile(recipesFile, (err, obj) => {
+
+    //     let ingredientsArr = [];
+    //     for (let i=0; i<obj.recipes.length; i++) {
+    //         for (let j=0; j<obj.recipes[i].ingredients.length; j++){
+    //             if (!ingredientsArr.includes(obj.recipes[i].ingredients[j].name)){
+    //                 ingredientsArr.push(obj.recipes[i].ingredients[j].name);
+    //             }
+    //         }
+    //     }
+        // let recipes = obj.recipes;
+        // let recipeData = {
+        //     recipes : recipes
+        // }
+        // res.send(ingredientsArr);
+        // res.render('ingredients');
+    // })
+// })
+
+app.get('/', (req, res) => {
+    res.render('home');
+})
+
 app.get('*', (req, res) => {
-  res.redirect('/recipes');
+  res.redirect('/');
 })
 
 

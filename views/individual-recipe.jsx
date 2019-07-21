@@ -20,7 +20,6 @@ class Date extends React.Component {
             displayDate = createdDate;
             display = created;
         }
-
         return (
             <p>{display}: {displayDate}</p>
         );
