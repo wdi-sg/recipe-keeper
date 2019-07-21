@@ -1,7 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:300,400,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bungee+Outline&display=swap');
+
+
+/* ==============
+/*color palette
+coral-reef: #FF7C6F;
+misty-rose: #FFE7E4;
+tangerine: #F58A07;
+peach-orange: #FAC98E;
+very-pale-orange: #FCDFBB;
+magnolia: #F7F5FB;
+darkcerulean: #084887;
+ceil: #909CC2;
+==============*/
+
+
+
 
 body {
 	font-family: 'Muli', sans-serif;
+	background-color: #F7F5FB;
 }
 
 .main-wrapper {
@@ -20,10 +38,20 @@ body {
 	flex-direction: row;
 	justify-content: center;
 	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
+
+.sub-header {
+	font-family: 'Muli', sans-serif;
+	font-size: 1.5rem;
+}
+
 
 h1 {
 	font-weight: 300;
+	font-family: 'Bungee Outline', cursive;
+	color: #FF6F61;
 }
 
 h3 {
@@ -62,7 +90,7 @@ p {
 }
 
 .card-title {
-	color: #000;
+	color: #084887;
 /*	font-size: 1.2em;
 	font-weight: 400;*/
 }
