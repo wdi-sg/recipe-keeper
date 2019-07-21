@@ -1,0 +1,121 @@
+{
+  "recipes": [
+    {
+      "id": "1",
+       "name": "Scramble Egg",
+      "ingredients": "egg, milk, cheese",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://lh3.googleusercontent.com/Vs8fiagcv0BKIoiHlCBIYSpcxs4gDyJdQMf1idynI2xmKVPyM2nIiU90_pn8bL0QQuH9xopwGBCjEoHVtP355w",
+      "instruction": "Crack eggs, go scramble!"
+    },
+    {
+      "id": "2",
+      "name": "Fruit Platter",
+      "ingredients": [
+        "fruits"
+      ],
+      "qty": "As many tropical fruits as possible",
+      "img": "https://t3.ftcdn.net/jpg/02/37/36/54/240_F_237365464_DVt4chv6sqJIFdn7Dy9fy7qbiY04QidT.jpg",
+      "instruction": "Cut them all and throw them on me"
+    },
+    {
+      "id": "3",
+      "name": "BBQ Chicken",
+      "ingredients": [
+        "chicken",
+        "bbq sauces"
+      ],
+      "qty": "1 chicken, 1 bottle of bbq sauces",
+      "img": "https://cdn.shopify.com/s/files/1/0014/3140/4627/products/REFUL_bbq_chicken_cobb_WEB_240x.JPG?v=1561684371",
+      "instruction": "Rub the chicken with the sauces. Throw it into the oven. Viola."
+    },
+    {
+      "id": "4",
+      "name": "Creme Brulee",
+      "ingredients": "egg, milk, cheese",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://static.750g.com/images/240-240/5e65132a7fc1e40b376249714ae099e4/tarte-creme-brulee-coco.jpg",
+      "instruction": "Some cheesy thing, then just fire it away."
+    },
+    {
+      "id": "5",
+      "name": "Tom Yum",
+      "ingredients": "Thai lime, Lemongrass, Chilli Padi, prawns, mushroom",
+      "qty": "1 Thai lime, 1 Lemongrass, 5 Chilli Padi",
+      "img": "https://t4.ftcdn.net/jpg/02/39/43/33/240_F_239433355_0KQ8zaT0axIX9nkgusjPy34JHGrtfG4W.jpg",
+      "instruction": "Swadekaa to flavor bombs!"
+    },
+    {
+      "id": "6",
+      "name": "Seafood Paella",
+      "ingredients": "egg, milk, cheese",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://cdn.shopify.com/s/files/1/2720/4884/products/9c4b67aa89ce56d37b81f82a1fb56e75_240x.jpg?v=1521097689",
+      "instruction": "Good for carbo days"
+    },
+    {
+      "id": "7",
+      "name": "Beef Rendang",
+      "ingredients": "Beef, Spices",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "http://harrys.com.sg/sites/harrys/files/styles/page_slideshow/public/page-with-slideshow/Beef%20Rendang%2002_low-res.jpg?itok=0QcDs7Ev",
+      "instruction": "Ask machiks"
+    },
+    {
+      "id": "8",
+      "name": "Greek Salad",
+      "ingredients": "Veggies, milk, cheese",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://t4.ftcdn.net/jpg/02/52/56/23/240_F_252562336_YOC4QQpD67MvQQBYbNcQ2xE0fjbqofnC.jpg",
+      "instruction": "I will take these EVERYDAY."
+    },
+    {
+      "id": "9",
+      "name": "Tahdig",
+      "ingredients": "rice, milk, saffron",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWrdERMJsGpkiGFvTYq0VOdXTKxx6wrYn3pzChY_wZRaozQ-vd",
+      "instruction": "Not my favourite Iranian food, there are so many more awesome dishes."
+    },
+    {
+      "id": "10",
+      "name": "Burger",
+      "ingredients": "Bread, patty, veggies",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://www.bestrestaurants.com.au/image/entity-catalogue/restaurant/coogee-burger-shack/best-restaurants-coogee-burger-shack-01_240x240.jpg",
+      "instruction": "Smack them together and open your mouth"
+    },
+    {
+      "id": "11",
+      "name": "Gluten-free Cake",
+      "ingredients": "flour, sugar",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWjpMwqyf7DHFsrQe-Y0LzLD4DvYyLQEq7p13RAihl81hXD4GZ",
+      "instruction": "Whip whip whip~"
+    },
+    {
+      "id": "12",
+      "name": "Kimchi Pancake",
+      "ingredients": "Kimchi, flour",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://www.allkpop.com/upload/2017/05/content/misc_1495481154_kimchi.jpg",
+      "instruction": "Eat it while it is hot!"
+    },
+    {
+      "id": "13",
+      "name": "Fugu Sashimi",
+      "ingredients": "Fugu",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://www.oyakata.com.pl/cache/artykuly/sashimi-z-ryby-fugu.jpg_alpha-0_cr-hp_240x240_im.jpg",
+      "instruction": "Do not make this yourself, go to a restaurant or risk saying goodbye to this world!"
+    },
+    {
+      "id": "14",
+      "name": "Potato Salad",
+      "ingredients": "Potato, sauces",
+      "qty": "1 egg, 500ml milk, 1 slice of cheese",
+      "img": "https://cdn.shopify.com/s/files/1/0206/9470/collections/potato_salad_recipe_medium.jpg?v=1516074622",
+      "instruction": "Eat this while Netflixing."
+    }
+  ]
+}
