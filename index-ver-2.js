@@ -217,6 +217,15 @@ app.put('/recipes/:id', (request, response) => {
 
         var index = parseInt(request.body.id); // Convert request id to number
         var updatedName = request.body.name;
+
+        var ingredStr = request.body.ingredients;
+        var separator = "\r\n" ;
+        var updatedIngredArr = ingredStr.split(separator);
+
+        var updatedSource = request.body.source_url;
+        var updateRcpId = request.body.recipe_id;
+        var updatedImgUrl = request.body.image_url;
+
         let realIndex = indexCheck(obj.ingredient, index);
 
         console.log("id: " + index);
@@ -224,7 +233,11 @@ app.put('/recipes/:id', (request, response) => {
 
         var updatedRecipe = {
             id: index,
-            name: updatedName
+            name: updatedName,
+            ingredients: updatedIngredArr,
+            source_url: updatedSource,
+            recipe_id: updateRcpId,
+            image_url: updatedImgUrl
         };
 
         console.log("updated recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name);
