@@ -6,6 +6,14 @@ class EditForm extends React.Component {
 		let recipe = this.props.recipe;
 		let formLink = "/recipes/"+recipe.id+"?_method=PUT";
 		let backLink = "/recipes/"+recipe.id;
+		let ingredientList = "";
+		this.props.recipe.ingredients.map((ingredient,index) => {
+			ingredientList += `${ingredient.name}, ${ingredient.amount}`;
+			if (ingredient.notes) ingredientList+= `, ${ingredient.notes}`;
+			if (index !== this.props.recipe.ingredients.length-1) {
+				ingredientList += '\r\n';
+			}
+		});
 		return (
 			<DefaultLayout>
 				<div className="row">
@@ -20,13 +28,13 @@ class EditForm extends React.Component {
 							<div className="form-group row">
 								<label htmlFor="name" className="col-sm-2 col-form-label">Ingredients</label>
 								<div className="col-sm-10">
-									<input name="ingredients" className="form-control" value={recipe.ingredients} required/>
+									<textarea name="ingredients" className="form-control" value={ingredientList} required/>
 								</div>
 							</div>
 							<div className="form-group row">
 								<label htmlFor="name" className="col-sm-2 col-form-label">Instructions</label>
 								<div className="col-sm-10">
-									<input name="instructions" className="form-control" value={recipe.instructions} required/>
+									<textarea name="instructions" className="form-control" value={recipe.instructions} required/>
 								</div>
 							</div>
 							<div className="form-group row">

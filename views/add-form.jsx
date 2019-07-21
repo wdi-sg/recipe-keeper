@@ -11,25 +11,25 @@ class AddForm extends React.Component {
 							<div className="form-group row">
 								<label htmlFor="name" className="col-sm-2 col-form-label">Title</label>
 								<div className="col-sm-10">
-									<input name="title" className="form-control" required/>
+									<input name="title" className="form-control" placeholder="Title here" required/>
 								</div>
 							</div>
 							<div className="form-group row">
 								<label htmlFor="name" className="col-sm-2 col-form-label">Ingredients</label>
 								<div className="col-sm-10">
-									<input name="ingredients" className="form-control" required/>
+									<textarea name="ingredients" className="form-control" placeholder="Put ingredient names, amount and notes. (Seperate them by commas). To include more ingredients, enter them in a new line." required/>
 								</div>
 							</div>
 							<div className="form-group row">
 								<label htmlFor="name" className="col-sm-2 col-form-label">Instructions</label>
 								<div className="col-sm-10">
-									<input name="instructions" className="form-control" required/>
+									<textarea name="instructions" className="form-control" placeholder="Instructions on how to prepare" required/>
 								</div>
 							</div>
 							<div className="form-group row">
 								<label htmlFor="name" className="col-sm-2 col-form-label">Image Link</label>
 								<div className="col-sm-10">
-									<input name="img" className="form-control" required/>
+									<input type="url" name="img" className="form-control" placeholder="Image URL here" required/>
 								</div>
 							</div>
 							<div className="buttons text-center">

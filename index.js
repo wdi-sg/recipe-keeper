@@ -56,20 +56,25 @@ const showRecipes = (req,res) => {
 		}
 	});
 };
+
 const addRecipeForm = (req,res) => {
 	res.render('add-form')
 };
+
 const addRecipe = (req,res) => {
-	let newRecipe = req.body;
 	jsonfile.readFile(file, (err,obj)=> {
 		if (err) {
 			console.log(err);
 		} else {
+			let newRecipe = req.body;
 			let lastKey = obj.lastKey + 1;
+			let ingredientsInput = newRecipe.ingredients.split("\r\n");
+			let ingredients = getIngredients(ingredientsInput);
+
 			let recipeObject = {
 				"id": lastKey,
 				"title": newRecipe.title,
-				"ingredients": newRecipe.ingredients,
+				"ingredients" : ingredients,
 				"instructions": newRecipe.instructions,
 				"img": newRecipe.img,
 				"dateAdded": new Date(),
@@ -90,16 +95,17 @@ const addRecipe = (req,res) => {
 };
 
 const showRecipeDetails = (req,res) => {
-	let id = parseInt(req.params.id);
 	jsonfile.readFile(file,(err,obj)=> {
 		if (err) {
 			console.log(err);
 		}
 		else {
+			let id = parseInt(req.params.id);
 			let recipes = obj.recipes;
 			let recipe = recipes.find(recipe => recipe.id === id); //get recipe object from recipes array with the unique id
 			let data = {
 				'recipe' : recipe,
+				'ingredients' : recipe.ingredients,
 				'dateAdded' : new Date(recipe.dateAdded),
 				'dateEdited' : new Date(recipe.dateEdited)
 			};
@@ -137,12 +143,15 @@ const updateRecipe = (req,res) => {
 			console.log(err);
 		}
 		else {
+			let updatedRecipe = req.body;
 			let recipes = obj.recipes;
+			let ingredientsInput = updatedRecipe.ingredients.split("\r\n");
+			let ingredients = getIngredients(ingredientsInput);
 			let recipe = recipes.find(recipe => recipe.id === id); //get recipe object from recipes array with the unique id
-			recipe.title = req.body.title;
-			recipe.ingredients = req.body.ingredients;
-			recipe.instructions = req.body.instructions;
-			recipe.img = req.body.img;
+			recipe.title = updatedRecipe.title;
+			recipe.ingredients = ingredients;
+			recipe.instructions = updatedRecipe.instructions;
+			recipe.img = updatedRecipe.img;
 			recipe.dateEdited= new Date();
 			jsonfile.writeFile(file, obj, (err) => {
 				if (err) {
@@ -168,10 +177,69 @@ const deleteRecipe = (req,res) => {
 				if (err) {
 					console.log(err);
 				} else {
-					res.redirect('/recipes/');
-
+					res.redirect('/recipes');
 				}
 			})
+		}
+	});
+};
+
+const showIngredients = (req,res) => {
+	jsonfile.readFile(file, (err,obj)=> {
+		if (err){
+			console.log(err);
+		}
+		else {
+			let recipes = obj.recipes;
+			let ingredientsList = [];
+
+			for (let i=0; i<recipes.length; i++) {
+				let ingredients = recipes[i].ingredients;
+				for (let j=0; j<ingredients.length; j++) {
+					let ingredient = ingredients[j].name.toLowerCase();
+					if (!(ingredientsList.includes(ingredient))) {
+						ingredientsList.push(ingredient);
+					}
+				}
+			}
+			let sortby = req.query.sortby;
+			if (sortby) {
+				switch (sortby) {
+					case "title":
+						ingredientsList.sort(sortByTitleIngredient);
+						break;
+				}
+			}
+			let data = {
+				ingredients: ingredientsList
+			};
+			res.render('ingredients',data)
+		}
+	});
+};
+
+const showIngredientDetails = (req,res) => {
+	jsonfile.readFile(file, (err,obj)=> {
+		if (err){
+			console.log(err);
+		}
+		else {
+			let title = req.params.title;
+			let recipes = obj.recipes;
+			let recipesList = [];
+			for (let i=0;i<recipes.length;i++) {
+				let ingredients = recipes[i].ingredients;
+				for (let j=0; j<ingredients.length; j++) {
+					if (ingredients[j].name === title) {
+						recipesList.push(recipes[i]);
+					}
+				}
+			}
+			let data = {
+				ingredient: title,
+				recipes: recipesList
+			};
+			res.render('ingredient',data)
 		}
 	});
 };
@@ -180,9 +248,16 @@ const deleteRecipe = (req,res) => {
 
 //Sort alphabetically
 function sortByTitle(a, b) {
-	// Use toUpperCase() to ignore character casing
 	const titleA = a.title.toUpperCase();
 	const titleB = b.title.toUpperCase();
+
+	return titleA>titleB ? 1 : titleA<titleB ? -1 : 0;
+}
+
+//Sort alphabetically (Ingredient)
+function sortByTitleIngredient(a, b) {
+	const titleA = a.toUpperCase();
+	const titleB = b.toUpperCase();
 
 	return titleA>titleB ? 1 : titleA<titleB ? -1 : 0;
 }
@@ -201,6 +276,27 @@ function sortByDate(a,b) {
 	return dateA>dateB ? -1 : dateA<dateB ? 1 : 0;
 }
 
+
+/* Get Ingredients from recipe object*/
+function getIngredients(arr) {
+	let ingredients = [];
+	for (var i=0; i<arr.length; i++) {
+		let ingredientInfo = arr[i].split(",").map(function(item) {
+			return item.trim();
+		});
+		let ingredient = {};
+		ingredient.name = ingredientInfo[0];
+		ingredient.amount = ingredientInfo[1];
+		if (ingredientInfo.length === 2) {
+			ingredient.notes = "";
+		} else {
+			ingredient.notes = ingredientInfo[2];
+		}
+		ingredients.push(ingredient);
+	}
+	return ingredients;
+}
+
 /* Routing */
 app.get('/recipes', showRecipes);
 app.get('/recipes/new', addRecipeForm);
@@ -209,6 +305,8 @@ app.get('/recipes/:id', showRecipeDetails);
 app.get('/recipes/:id/edit', editRecipeForm);
 app.put('/recipes/:id', updateRecipe);
 app.delete('/recipes/:id', deleteRecipe);
+app.get('/ingredients', showIngredients);
+app.get('/ingredients/:title', showIngredientDetails);
 
 
 

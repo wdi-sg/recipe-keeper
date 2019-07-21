@@ -13,12 +13,26 @@ class DefaultLayout extends React.Component {
 				<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
 			</head>
 			<body>
-				<nav className="navbar sticky-top navbar-light bg-light">
+				<nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
 					<a className="navbar-brand" href="/recipes">
 						<img src="https://www.trzcacak.rs/file/max/87/876207_chef-icon-png.png" width="30" height="30"
 						     className="d-inline-block align-top mr-3" alt=""/>
 					     Recipe Keeper
 					</a>
+					<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span className="navbar-toggler-icon"></span>
+					</button>
+					<div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+						<ul className="navbar-nav">
+							<li className="nav-item">
+								<a className="nav-link" href="/recipes">Recipes</a>
+							</li>
+							<li className="nav-item">
+								<a className="nav-link" href="/ingredients">Ingredients</a>
+							</li>
+						</ul>
+					</div>
 				</nav>
 				<div className="container-fluid">
 					{this.props.children}

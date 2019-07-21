@@ -1,13 +1,10 @@
-.container-fluid {
-    margin-top: 2rem;
-    padding: 0 4rem;
+.buttons {
+    margin: 2rem 0;
 }
-
 .buttons > *{
     margin-right: 0.5rem;
 }
 .recipe-img {
-    margin-bottom: 1rem;
     width: 100%;
 }
 
@@ -25,7 +22,11 @@ a:hover {
 .recipe-thumbnail:hover {
     box-shadow: 0.5px 0.5px 3px rgba(0,0,0,0.35);
 }
-.recipe-title {
+.recipe-title,
+.ingredient-title,
+.recipe-ingredients .list li::first-letter,
+.ingredient-content h2,
+.recipe-content h2{
     text-transform: capitalize;
 }
 .card-img {
@@ -37,4 +38,21 @@ a:hover {
     content: "";
     display: block;
     padding-bottom:75%;
+}
+.ingredient-content {
+    min-height: 33.333vh;
+}
+textarea.form-control {
+    height: 8rem;
+}
+
+@media screen and (min-width: 768px) {
+    .container-fluid {
+        margin-top: 2rem;
+        padding: 0 4rem;
+    }
+    .navbar {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
 }
