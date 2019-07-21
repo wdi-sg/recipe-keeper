@@ -1,6 +1,7 @@
 //////////////////Basic stuff needed to get this app running//////////////////
 const jsonfile = require('jsonfile');
 const file = 'data.json';
+const ingreFile = 'ingredient.json';
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override')
@@ -34,11 +35,19 @@ app.post('/ingredientlist', (req,res)=>{
 });
 ////////////////User will provide instructions for how to prepare dish//////////////////
 app.post('/instructions', (req,res)=>{
+  jsonfile.readFile(ingreFile,(err,obj)=>{
+    req.body.ingredients.map((item)=>{
+      obj.map((obj)=>{
+          if (item.ingredient === obj.name){
+            item.id = obj.id;
+          }
+      })
+    })
     dataSet = {
       recipes: req.body
     }
     res.render('instructions',dataSet)
-    // res.send("instructions")
+  })
 });
 
 
@@ -113,16 +122,27 @@ app.get('/recipes/:id/edit', (req,res)=>{
 
 //////////////////Update a single recipe//////////////////
 app.put('/recipes/:id', (req,res)=>{
-  jsonfile.readFile(file,(err,obj)=>{
-    obj["recipes"][parseInt(req.params.id)] = req.body
-    var recipeLink = '/recipes/'+req.params.id
-    jsonfile.writeFile(file,obj,(err)=>{
-      if (err){
-        console.log(err);
-      };
+
+  jsonfile.readFile(ingreFile,(err,obj)=>{
+    req.body.ingredients.map((item)=>{
+      obj.map((obj)=>{
+          if (item.ingredient === obj.name){
+            item.id = obj.id;
+          }
+      })
+    })
+    //writes to main data
+    jsonfile.readFile(file,(err,obj)=>{
+      obj["recipes"][parseInt(req.params.id)] = req.body
+      var recipeLink = '/recipes/'+req.params.id
+      jsonfile.writeFile(file,obj,(err)=>{
+        if (err){
+          console.log(err);
+        };
+      });
+      res.redirect(recipeLink)
     });
-    res.redirect(recipeLink)
-  });
+  })
 });
 
 //////////////////Delete confirmation page//////////////////

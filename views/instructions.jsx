@@ -14,18 +14,17 @@ class Home extends React.Component {
     var updatedon = this.props.recipes.updatedon;
     var id = this.props.recipes.id;
     var ingredientGroup = this.props.recipes.ingredients;
-
-    var arrayIngredient = [];
-    var arrayQuantity = [];
+    console.log(this.props.recipes.ingredients[0].id)
+    var array = [];
     for (var i = 0; i < ingredientGroup.length; i++){
       var ingredientNo = "ingredients[" + i + "][ingredient]";
       var quantityNo = "ingredients[" + i + "][quantity]";
+      var foodIdNo = "ingredients[" + i + "][id]";
       var ingredientWord = ingredientGroup[i]["ingredient"];
       var quantityNum = ingredientGroup[i]["quantity"];
-      arrayIngredient[i] = <input name={ingredientNo} type="hidden" value={ingredientWord}/>;
-      arrayQuantity[i] = <input name={quantityNo} type="hidden" value={quantityNum}/>;
+      var foodIdNum = ingredientGroup[i]["id"];
+      array[i] = <div><input name={ingredientNo} type="hidden" value={ingredientWord}/><input name={quantityNo} type="hidden" value={quantityNum}/><input name={foodIdNo} type="hidden" value={foodIdNum}/></div>
     };
-
 
     return (
       <Allrecipepagelayout>
@@ -36,8 +35,8 @@ class Home extends React.Component {
             <input type="hidden" name="createdon" value={createdon}/>
             <input type="hidden" name="updatedon" value={updatedon}/>
             <input type="hidden" name="id" value={id}/>
-            {arrayIngredient}
-            {arrayQuantity}
+            {array}
+
             <p>How is this meal prepared?</p>
             <textarea name="instructions" rows="2" cols="25" placeholder="Peel a potato, shave your head, fire up the oven?" style={{height:100+"px", width:400+"px"}}></textarea><br/><br/>
             <p>Set as favorite?</p>

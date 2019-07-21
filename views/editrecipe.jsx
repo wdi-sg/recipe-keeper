@@ -25,12 +25,12 @@ class Home extends React.Component {
     for (var i = 0; i < ingredients.length; i++){
       var ingredientNo = "ingredients[" + i + "][ingredient]"
       var quantityNo = "ingredients[" + i + "][quantity]"
+      var foodIdNo = "ingredients[" + i + "][id]";
       var ingredientWord = ingredients[i]["ingredient"];
       var quantityNum = ingredients[i]["quantity"];
+      var foodIdNum = ingredients[i]["id"];
       array[i] = <div><label>Ingredient</label><input name={ingredientNo} type="text" value={ingredientWord} list="ingredient"/><label>Quantity</label><input name={quantityNo} type="text" value={quantityNum} style={{width:30+"px"}}/><br/></div>
-      // array[i] = <input name={quantityNo} type="text" value={quantityNum} style={{width:30+"px"}}/>
     }
-    // <input name={ingredientNo} type="text" value={ingredientWord} list="ingredient"/>
 
     return (
       <Allrecipepagelayout>

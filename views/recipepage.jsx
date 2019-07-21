@@ -14,7 +14,7 @@ class Home extends React.Component {
     var recipeDeleteLink = "/recipes/"+theRecipe+"/delete"
     var ingredients = showRecipe.ingredients
     var ingredientCard = ingredients.map((obj)=>{
-      return <div>{obj.ingredient} x {obj.quantity}<br/></div>
+      return <div>Food ID: {obj.id} <br/>{obj.ingredient} <br/>Quantity: {obj.quantity}<br/><br/></div>
     })
 
     return (
