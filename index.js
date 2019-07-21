@@ -36,12 +36,66 @@ app.get('/', (request, response) =>{
 app.get('/recipes/', (request, response) =>{
     jsonfile.readFile(FILE, (err,obj) => {
         let recipe = obj.recipes;
-        // console.log(recipe);
         let data = {
             recipesKey : recipe
         };
         response.render('main', data);
     });
+});
+
+app.get('/recipes/:id/edit', (request, response) =>{
+    jsonfile.readFile(FILE, (err, obj) => {
+        let inputId = parseInt( request.params.id );
+        let recipe;
+        for( let i=0; i<obj.recipes.length; i++ ){
+            let currentRecipes = obj.recipes[i];
+            if( currentRecipes.id === inputId ){
+                recipe = currentRecipes;
+            }
+        }
+
+        if (recipe === undefined) {
+            response.status(404);
+            response.send("not found");
+        } else {
+            let data={
+                recipesEdit: recipe
+            };
+            response.render('form', data);
+        }
+    });
+});
+
+app.post('/recipes/:id', function(request, response) {
+
+    console.log("Edit attempted");
+    var recipes = request.body;
+    console.log( recipes );
+
+  jsonfile.readFile(FILE, (err, obj) => {
+    if( err ){
+      console.log("error reading file");
+      console.log(err)
+    }
+
+    recipes.id = parseInt(recipes.id);
+
+    const index = obj.recipes.findIndex(recipes => recipes.id === request.body.id);
+    obj.recipes[index] = request.body;
+
+    jsonfile.writeFile(FILE, obj, (err) => {
+      if( err ){
+        console.log("error writing file");
+        console.log(err)
+        response.status(503).send("no!");
+      }else{
+        console.log( "send response");
+        response.send(recipes);
+      }
+
+    });
+  });
+
 });
 
 
