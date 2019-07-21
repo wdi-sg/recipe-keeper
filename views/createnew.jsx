@@ -1,7 +1,7 @@
 var React = require('react');
 const Layout = require('./layout.jsx');
 
-class Form extends React.Component {
+class Createnew extends React.Component {
   render() {
     var recipeId = parseInt(this.props.recipesList[this.props.recipesList.length - 1].id);
     return (
@@ -28,4 +28,4 @@ class Form extends React.Component {
   }
 }
 
-module.exports = Form;
+module.exports = Createnew;

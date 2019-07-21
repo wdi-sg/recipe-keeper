@@ -26,11 +26,35 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
 
+//get a single recipe
+app.get('/recipes/:id', (request, response) => {
+    var recipeIdInt = parseInt(request.params.id);
+    console.log(request.params.id);
+    console.log(recipeIdInt);
+
+
+    jsonfile.readFile(file, (err,dataObj) => {
+        if (err) {
+            console.log("Something went wrong when displaying the recipe.");
+        } else {
+            console.log(recipeIdInt);
+
+            let recipes = dataObj.recipes;
+            let recipe = recipes.find(recipe => parseInt(recipe.id) === recipeIdInt);
+            console.log(recipe);
+            let data = {
+                recipe : recipe
+            };
+
+            response.render('onerecipe', data);
+        }
+    });
+})
+
 //Create a new recipe
 app.get('/recipes/new', (request, response) =>{
     console.log("getting form");
     jsonfile.readFile(file, (err, dataObj)=>{
-
         if( err ){
             console.log("error!", err );
         }else{
@@ -38,11 +62,9 @@ app.get('/recipes/new', (request, response) =>{
             const data = {
               recipesList : dataObj.recipes
             };
-
-            response.render('form', data);
+            response.render('createnew', data);
         }
     });
-    //response.render('form');
 });
 
 //write new recipe into data.json
