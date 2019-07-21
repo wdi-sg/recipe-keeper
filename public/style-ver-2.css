@@ -6,6 +6,7 @@
 /*color palette
 coral-reef: #FF7C6F;
 misty-rose: #FFE7E4;
+tea-rose: #FF877C;
 tangerine: #F58A07;
 peach-orange: #FAC98E;
 very-pale-orange: #FCDFBB;
@@ -59,10 +60,10 @@ body {
 
 .action-header {
 	font-family: 'Bungee', cursive;
-	font-size: 2rem;
+	font-size: 1.25rem;
 	line-height: 2.75rem;
 	margin-top: .5rem;
-	margin-bottom: 1.25rem;
+	margin-bottom: .5rem;
 	color: #084887;
 }
 
@@ -205,10 +206,10 @@ input {
 	padding: 10px;
 	margin-bottom: 10px;
 	font-weight: 300;
-	border: 1px solid #FF7C6F;
+/*	border: 1px solid #FF7C6F;*/
 }
 
-.recipe-input-name {
+.recipe-input {
 	max-width: 100%;
 	width: 100%;
 	font-size: 1em;
@@ -216,7 +217,7 @@ input {
 	padding: 10px;
 	margin-bottom: 10px;
 	margin-left: 0;
-	border: 1px solid #FF7C6F;
+/*	border: 1px solid #FF877C;*/
 }
 
 .recipe-input-ingredients {
