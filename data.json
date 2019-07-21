@@ -1,3 +1,28 @@
 {
-  "recipes":[]
+  "recipes":[
+    {
+      "id": 1,
+      "num": "001",
+      "img": "http://www.serebii.net/pokemongo/pokemon/002.png",
+      "title": "boiled duck",
+      "ingredients" : "1 duck, water",
+      "instructions": "boil duck in water for 20 minutes. take it out. serve."
+    },
+    {
+      "id": 2,
+      "num": "002",
+      "img": "http://www.serebii.net/pokemongo/pokemon/002.png",
+      "title": "boiled fish",
+      "ingredients" : "1 fish, salt water",
+      "instructions": "boil fish in water for 50 minutes. take it out. serve."
+    },
+    {
+      "id": 3,
+      "num": "003",
+      "img": "http://www.serebii.net/pokemongo/pokemon/002.png",
+      "title": "boiled mushroom",
+      "ingredients" : "3 mushrooms, chicken soup",
+      "instructions": "boil mushrooms in soup for 10 minutes. take it out. serve."
+    }
+  ]
 }

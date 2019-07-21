@@ -1,7 +1,7 @@
 console.log('In the beginning');
 const jsonfile = require('jsonfile');
 
-const file = 'data.json';
+const FILE = 'data.json';
 
 const express = require('express');
 
@@ -31,6 +31,10 @@ console.log('Engine goes vroom!');
 
 app.get('/', (request, response) =>{
     response.send("Get good Daniel!!");
+});
+
+app.get('/recipes/', (request, response) =>{
+    response.render('main');
 });
 
 
