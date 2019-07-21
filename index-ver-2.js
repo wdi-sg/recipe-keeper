@@ -158,7 +158,7 @@ app.get('/recipes/:id', (request, response) => {
         let data = {
             recipeData : selectedRecipe,
             recipeNameKey: selectedRecipe.name,
-            recipeNameIdKey: selectedRecipe.id,
+            recipeIdKey: selectedRecipe.id,
             recipeImgKey: selectedRecipe.image_url,
             recipeIngrKey: selectedRecipe.ingredients
         };
