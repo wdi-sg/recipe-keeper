@@ -4,7 +4,7 @@ body {
   width: 100%;
   font-family: 'Oswald', sans-serif;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 16px;
   background: #e5e6eb;
   line-height: 1.4; }
 
@@ -50,8 +50,9 @@ footer {
   footer .row {
     padding-left: 10px;
     padding-right: 10px; }
-    footer .row .right {
-      text-align: right; }
+
+.right {
+  text-align: right; }
 
 .main {
   display: flex;
@@ -94,16 +95,17 @@ footer {
 
 .card {
   background: white;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   height: 480px;
   margin: 10px;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  position: relative; }
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     transform: translateY(-2px); }
   .card .food-image {
-    border-radius: 5px 5px 0 0;
+    border-radius: 8px 8px 0 0;
     height: 280px;
     width: auto;
     overflow: hidden;
@@ -116,5 +118,17 @@ footer {
       height: auto;
       max-width: 100%;
       max-height: 100%; }
-  .card .description {
+  .card .info {
     padding: 20px; }
+    .card .info h2 {
+      color: #B79733;
+      font-size: 30px;
+      margin-bottom: 20px; }
+    .card .info .description {
+      margin-bottom: 10px; }
+    .card .info .cooking-time {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      text-align: right;
+      color: #666; }

@@ -13,12 +13,10 @@ class RecipePreview extends React.Component {
               <div className = "food-image">
                 <img className="u-max-full-width" src={this.props.data.image}/>
               </div>
-              <div className = "description">
+              <div className = "info">
                 <h2>{this.props.data.title}</h2>
-                <h3>Ingredients</h3>
-                <p>{this.props.data.ingredients}</p>
-                <h3>Instructions</h3>
-                <p>{this.props.data.instructions}</p>
+                <p className="description">{this.props.data.description}</p>
+                <p className="cooking-time">{this.props.data.cookingTime}</p>
               </div>
             </a>
           </div>
