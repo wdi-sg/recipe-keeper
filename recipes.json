@@ -16,13 +16,27 @@
       "id": 2
     },
     {
-      "title": "fish n chops",
+      "title": "Fish & Chips",
       "ingredients": "fish fries",
       "instructions": "Fry fish",
       "created": "21-7-2019 ",
       "id": 3,
       "updated": "21-7-2019 "
+    },
+    {
+      "title": "Mushroom Soup",
+      "ingredients": "mushroom, water",
+      "instructions": "cook mushroom",
+      "created": "21-7-2019 ",
+      "id": 4
+    },
+    {
+      "title": "Duck rice",
+      "ingredients": "duck rice",
+      "instructions": "cook duck",
+      "created": "21-7-2019 ",
+      "id": 5
     }
   ],
-  "recipeId": 3
+  "recipeId": 5
 }

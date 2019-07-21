@@ -44,6 +44,42 @@ app.set('view engine', 'jsx');
 
 /**
  * ===================================
+ * Sort Function
+ * ===================================
+ */
+
+let sortArray = (array, q) => {
+
+    let compare = (a, b) => {
+
+        let valueA = a.title.toUpperCase();
+        let valueB = b.title.toUpperCase();
+
+        if (q === 'id') {
+            valueA = parseInt(a.id);
+            valueB = parseInt(b.id);
+        } else if (q === 'ingrd') {
+            // valueA = a.ingredients # (to parseInt)
+            // valueB = b.ingredients # (to parseInt)
+        }
+
+        if (valueA < valueB) {
+            return -1;
+        }
+        if (valueA > valueB) {
+            return 1;
+        }
+        return 0;
+    }
+
+    if (q === 'title-des') {
+        return array.sort(compare).reverse();
+    }
+    return array.sort(compare);
+}
+
+/**
+ * ===================================
  * Routes
  * ===================================
  */
@@ -51,6 +87,10 @@ app.set('view engine', 'jsx');
 app.get('/recipes', (req, res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
         let recipes = obj.recipes;
+        let query = req.query.sortby;
+
+        sortArray(recipes, query);
+
         let recipeData = {
             recipes : recipes
         }
@@ -93,7 +133,6 @@ app.get('/recipes/:id', (req,res) => {
             currentRecipe : currentRecipe,
             currentId : currentId
         }
-        console.log(recipeData);
         res.render('individual-recipe', recipeData);
     })
 })
@@ -133,8 +172,6 @@ app.put('/recipes/:id', (req,res) => {
 
             }
         }
-        // obj.recipes[currentId-1] = currentRecipe;
-
         jsonfile.writeFile(recipesFile, obj, (err) => {
             if (err) console.log('err: ' + err);
             else console.log('success in editing!');
@@ -165,16 +202,13 @@ app.get('/recipes/:id/delete', (req,res) => {
 
 app.delete('/recipes/:id', (req,res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
-        // let currentRecipe = req.body;
         let currentId = parseInt(req.params.id);
-
         for (let i=0; i<obj.recipes.length; i++) {
             let id = parseInt(obj.recipes[i].id);
             if ( id === currentId ) {
                 obj.recipes.splice(i, 1);
             }
         }
-
         jsonfile.writeFile(recipesFile, obj, (err) => {
             if (err) console.log('err: ' + err);
             else console.log('success in deleting!');

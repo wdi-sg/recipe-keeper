@@ -17,7 +17,7 @@ class EditForm extends React.Component {
             <input type={"text"} name={"ingredients"} defaultValue={ingrd} minLength={"5"} required/>
             <p>Instructions:</p>
             <input type={"text"} name={"instructions"} defaultValue={instr} minLength={"5"} required/>
-            <input type="submit" value="EDIT RECIPE"/>
+            <input type="submit" value="CONFIRM"/>
         </form>
       </div>
     );
