@@ -613,10 +613,6 @@
       "name": "Sausage - Andouille"
     },
     {
-      "id": 155,
-      "name": "Propel Sport Drink"
-    },
-    {
       "id": 156,
       "name": "Rambutan"
     },
@@ -791,10 +787,6 @@
     {
       "id": 199,
       "name": "Cheese - Le Cru Du Clocher"
-    },
-    {
-      "id": 200,
-      "name": "Gelatine Leaves - Envelopes"
     },
     {
       "id": 201,
@@ -2658,7 +2650,7 @@
     },
     {
       "id": 666,
-      "name": "Sauce - Gravy, Au Jus, Mix"
+      "name": "Sauce - Gravy, Au Jus Au Voir"
     },
     {
       "id": 667,
@@ -4022,10 +4014,6 @@
     },
     {
       "id": 1007,
-      "name": "Alo Alo"
-    },
-    {
-      "id": 1008,
       "name": "Happy Together Jelly"
     }
   ]
