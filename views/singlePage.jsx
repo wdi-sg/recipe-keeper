@@ -1,6 +1,8 @@
 
 var React = require('react');
 
+var navBar = require('./components/navBar.jsx')
+
 class singlePage extends React.Component {
   render() {
 
@@ -8,18 +10,35 @@ class singlePage extends React.Component {
       <html>
         <head>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"></link>
+            <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet"></link>
+
         </head>
         <body>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+              <a className="navbar-brand" href="#">~Delicious Recipes~</a>
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div className="navbar-nav">
+                  <a className="nav-item nav-link active" href={"/recipes"}>Home <span className="sr-only">(current)</span></a>
+                  <a className="nav-item nav-link" href="#">Food</a>
+                  <a className="nav-item nav-link" href="#">Drinks</a>
+                </div>
+              </div>
+            </nav>
+
           <div className="container mx-auto">
-            <h1 className="text-center mt-5">{this.props.title}</h1>
+            <h1 className="text-center my-5" style={{fontFamily : "Lora, serif"
+}}>{this.props.title}</h1>
 
             <div className = "row mt-3" style={{ justifyContent : "center" }}>
                 <div className="media">
                     <div className="media-body">
                         <h5 className="mt-0 mb-1">Ingredients</h5>
-                        <p>{this.props.ingredients}</p>
+                        <p className="mb-5">{this.props.ingredients}</p>
                         <h5 className="mt-0 mb-1">Instructions</h5>
-                        <p>{this.props.instructions}</p>
+                        <p className="mb-5">{this.props.instructions}</p>
                         <a href={"/recipes/"+this.props.id+"/edit"} className="btn btn-info mr-3">Edit Recipe</a>
 
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Delete Recipe</button>
