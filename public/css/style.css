@@ -1,6 +1,4 @@
-body{
-    background-image: url("/images/header.png")
-}
+
 
 .main-container{
     display:flex;
@@ -10,10 +8,15 @@ body{
     border:1px solid black;
     width:200px;
     min-height:600px;
+
 }
 
 .main-content{
     padding:25px;
+    width:100%;
+    background-image: url("https://vignette.wikia.nocookie.net/hmwikia/images/8/8d/Fomt.jpg/revision/latest?cb=20080730023519");
+    background-position:center;
+    background-size:cover;
 }
 
 footer{
@@ -43,6 +46,36 @@ footer p{
 .nav-bg a{
     color:white;
     font-weight:bold;
+}
+
+table li{
+    list-style: none;
+}
+
+.individual-data{
+    margin:0 auto;
+    width:500px;
+}
+
+.choices-container{
+    display:flex;
+    justify-content: center;
+
+}
+.choices{
+    margin:10px;
+}
+
+.table-edit{
+    width:500px;
+}
+
+.table-edit tbody{
+    background-color: white;
+}
+
+.table-edit input{
+    border:none;
 }
 
 

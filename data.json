@@ -1,18 +1,1 @@
-{
-    "recipe": [{
-        "title": "Mayonnaise (S)",
-        "utensils": ["test"],
-        "seasonings": ["Vinegar"],
-        "ingredients": ["test"]
-    }, {
-        "title": "Fried Rice",
-        "utensils": ["Frying Pan"],
-        "seasonings": ["test"],
-        "ingredients": ["Rice Balls", "Egg", "Oil"]
-    }, {
-        "title": "Greens",
-        "utensils": ["Pot"],
-        "seasonings": ["Soy Sauce"],
-        "ingredients": ["Spinach"]
-    }]
-}
+{"recipe":[{"title":"Mayonnaise (S)","utensils":["Whisk"],"seasonings":["Vinegar"],"ingredients":["Small Egg","Oil"]},{"title":"Fried Rice","utensils":["Frying Pan"],"seasonings":[],"ingredients":["Rice Balls","Egg","Oil"]},{"title":"Greens","utensils":["Pot"],"seasonings":["Soy Sauce"],"ingredients":["Spinach"]},{"title":"Wild Grape Juice","utensils":["Pot"],"seasonings":[],"ingredients":["Wild Grape","Wine","Purple Grass"]},{"title":"Pickles","utensils":[],"seasonings":["Salt"],"ingredients":["Cucumber"]},{"title":"Salad","utensils":["Knife"],"seasonings":[],"ingredients":["Cucumber","Cabbage","Tomato","Carrot "]},{"title":"Miso Soup","utensils":["Pot"],"seasonings":["Miso","Salt"],"ingredients":["Bamboo Shoot","Mushroom","Truffle"]},{"title":"Savoury Pancake","utensils":["Knife","Frying Pan"],"seasonings":[],"ingredients":["Cabbage","Oil","Flour","Egg"]},{"title":"Sandwich","utensils":["Knife"],"seasonings":[],"ingredients":["Tomato","Bread"]},{"title":"Mixed Latte","utensils":["Mixer"],"seasonings":[],"ingredients":["Mixed Juice","Milk"]}]}

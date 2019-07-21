@@ -5,21 +5,21 @@ class Form extends React.Component {
 
     return (
         <form method={this.props.method} action={this.props.action}>
-            <table>
+            <table className="table table-bordered table-edit">
                 <tr>
-                    <td>Title</td>
+                    <th scopre="row">Title</th>
                     <td><input name="title" type="text" value={this.props.title}/></td>
                 </tr>
                 <tr>
-                    <td>Utensils</td>
+                    <th scopre="row">Utensils</th>
                     <td><input name="utensils" type="text" value={this.props.utensils}/></td>
                 </tr>
                 <tr>
-                    <td>Seasonings</td>
+                    <th scopre="row">Seasonings</th>
                     <td><input name="seasonings" type="text" value={this.props.seasonings}/></td>
                 </tr>
                 <tr>
-                    <td>Ingredients</td>
+                    <th scopre="row">Ingredients</th>
                     <td><input name="ingredients" type="text" value={this.props.ingredients}/></td>
                 </tr>
             </table>

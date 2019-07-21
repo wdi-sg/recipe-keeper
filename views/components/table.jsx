@@ -6,33 +6,37 @@ class Table extends React.Component {
     const listOfRecipes = this.props.recipe.map(item=>{
         let index = this.props.recipe.indexOf(item) + 1;
         let url = '/recipes/'+(index);
-        console.log(item.utensils.length)
         if(item.utensils.length >=1){
             var listOfUtensils = item.utensils.map(utensils=>{
-                return <li>{utensils}</li>
+                let url = '/recipes?something='+utensils
+                return <li><a href={url}>{utensils}</a></li>
             })
         }else {
             var listOfUtensils = "-";
         }
 
         if(item.seasonings.length >=1){
+
             var listOfSeasonings = item.seasonings.map(seasonings=>{
-                return <li>{seasonings}</li>
+                let url = '/recipes?something='+seasonings
+                return <li><a href={url}>{seasonings}</a></li>
             })
         }else {
             var listOfSeasonings = "-";
         }
 
         if(item.ingredients.length >=1){
+
             var listOfIngredients = item.ingredients.map(ingredients=>{
-                return <li>{ingredients}</li>
+                let url = '/recipes?something='+ingredients
+                return <li><a href={url}>{ingredients}</a></li>
             })
         }else {
             var listOfIngredients = "-";
         }
 
 
-        return <tr className="table-light">
+        return <tr>
                 <td><a href={url}>{item.title}</a></td>
                 <td>{listOfUtensils}</td>
                 <td>{listOfSeasonings}</td>
@@ -41,7 +45,7 @@ class Table extends React.Component {
     })
 
     return (
-        <table className="table table-hover table-bordered">
+        <table className="table table-hover table-bordered table-edit">
             <thead>
                 <tr className="bg-success text-white">
                     <th>Dish Name</th>
@@ -49,8 +53,11 @@ class Table extends React.Component {
                     <th>Seasonings</th>
                     <th>Ingredients</th>
                 </tr>
-                {listOfRecipes}
+
             </thead>
+            <tbody>
+                {listOfRecipes}
+            </tbody>
         </table>
     );
   }
