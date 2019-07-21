@@ -13,17 +13,16 @@ class Main extends React.Component {
 
     return (
       <Template>
-
           <div className="container">
             <div className="row">
-              <div className="eight columns">
+              <div className="col-xs-12 main">
                   <h1>All Recipes</h1>
-              </div>
-              <div className="four columns">
-                <a className="button button-primary" href={createUrl}>Create New Recipe</a>
+                  <a className="create-new-recipe" href={createUrl}>Add a New Recipe</a>
               </div>
             </div>
-            {allRecipes}
+            <div className="row">
+                {allRecipes}
+            </div>
           </div>
 
         </Template>

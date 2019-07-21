@@ -30,6 +30,12 @@ class Single extends React.Component {
           <div className="row">
             {message}
           </div>
+
+          <div className="row">
+            <div className = "two columns"><a className="button button-primary" href={editUrl}>Edit Recipe</a></div>
+            <div className = "two columns"><a className="button button-primary" href={deleteUrl}>Delete Recipe</a></div>
+          </div>
+          
           <div className="row">
             <h2>{this.props.recipe.title}</h2>
           </div>
@@ -44,10 +50,7 @@ class Single extends React.Component {
               <p>{this.props.recipe.instructions}</p>
             </div>
           </div>
-          <div className="row">
-            <div className = "two columns"><a className="button button-primary" href={editUrl}>Edit Recipe</a></div>
-            <div className = "two columns"><a className="button button-primary" href={deleteUrl}>Delete Recipe</a></div>
-          </div>
+
         </div>
 
         </Template>

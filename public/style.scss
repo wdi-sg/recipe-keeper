@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather|Montserrat:600&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500&display=swap');
 
-$background : #EDD382;
-$primary: #544173;
+$primary: #fbd691;
+$gold: #9D9382;
+$light-grey: #e5e6eb;
+$dark-grey: #B0B2B9;
+$background : $light-grey;
 
 body{
   margin: 0 auto;
@@ -11,31 +13,14 @@ body{
   font-weight: 300;
   font-size: 18px;
   background: $background;
+  line-height: 1.4;
 }
 
 h1,h2,h3,h4,h5,h6{
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
   text-transform: capitalize;
-}
-
-.button{
-  font-weight: 400;
-  height: 48px;
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.button.button-primary{
-  background-color: $primary;
-  border: none;
-}
-
-h3{
-  font-size: 3.0rem;
+  margin: 0;
 }
 
 a{
@@ -47,10 +32,77 @@ a{
   }
 }
 
+p{
+  margin: 0;
+}
+
+header {
+  position: relative;
+  top: 0;
+  .curve{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: -10;
+  }
+}
+
+
+.button{
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 30px;
+  background-color: $primary;
+  color: white;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+footer{
+  background: $dark-grey;
+  margin-top: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  .row{
+    padding-left: 10px;
+    padding-right: 10px;
+    .right{
+      text-align: right;
+    }
+  }
+}
+
+.main{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 99;
+
+  h1{
+    font-size: 3rem;
+  }
+
+  .create-new-recipe{
+    color: #333;
+    font-size: 24px;
+    font-weight: 400;
+
+    &:hover{
+      color: #666;
+    }
+  }
+}
+
+
 .logo{
   margin: 0 auto;
   width: 300px;
-  margin-top: 20px;
+  padding-top: 50px;
+  padding-bottom: 30px;
   text-align: center;
   img{
     width: 100%;
@@ -69,4 +121,42 @@ a{
   margin: 20px 0px;
   border-radius: 2px;
   font-size: 0.8em;
+}
+
+.card{
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  height: 480px;
+  margin: 10px;
+  margin-bottom: 30px;
+
+
+  &:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+  }
+
+  .food-image{
+    border-radius: 5px 5px 0 0;
+    height: 280px;
+    width: auto;
+    overflow: hidden;
+    background: red;
+
+    img{
+     object-fit: cover;
+     min-width: 100%;
+     min-height: 100%;
+     width: auto;
+     height: auto;
+     max-width: 100%;
+     max-height: 100%;
+    }
+  }
+
+  .description{
+    padding: 20px;
+  }
+
 }
