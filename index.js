@@ -90,6 +90,48 @@ app.get('/recipes/single', (request, response) => {
 
 })
 
+//show edit form for given ID, link to editForm
+app.get('/recipes/edit', (request, response) => {
+    let editId = parseInt(request.query.edit);
+    jsonfile.readFile(file, function(err, obj) {
+        let editRecipe = obj.recipes.find((recipe) =>{
+            return recipe.id === editId;
+        })
+
+        console.log(editRecipe);
+        response.render('editForm', editRecipe);
+    })
+})
+
+//edit using editForm data, link to home?
+app.put('/recipes/edit/:id', (request, response) => {
+    let editId = parseInt(request.params.id);
+
+
+    jsonfile.readFile(file, function(err, obj) {
+        let editRecipe = obj.recipes.find((recipe) =>{
+            return recipe.id === editId;
+        })
+        console.log(editRecipe);
+
+        // obj.recipes[nextIndex] = {};
+        editRecipe.title = request.body.title;
+        editRecipe.ingredients = request.body.ingredients;
+        editRecipe.instructions = request.body.instructions;
+        console.log(editRecipe);
+        console.log(obj)
+        response.render('home', obj);
+
+        jsonfile.writeFile(file, obj, function (err) {
+            if (err) {
+                console.log(err);
+            };
+        })
+
+    })
+
+
+})
 
 
 

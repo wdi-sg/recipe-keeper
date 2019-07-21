@@ -24,29 +24,18 @@ class Layout extends React.Component {
                   <li class="nav-item active">
                     <a class="nav-link" href="/recipes/">See all the recipes<span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/recipes/new">Display the form for a single recipe</a>
-                  </li>
 
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Form to edit a recipe, form here
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </li>
+                  <form class="form-inline my-2 my-lg-0" method="GET" action="/recipes/edit">
+                      <input class="form-control mr-sm-2" name="edit" type="search" placeholder="Edit recipe by ID" aria-label="Search"/>
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Edit recipe</button>
+                    </form>
+
 
                   <li class="nav-item">
                     <a class="nav-link" href="/recipes/IDHERE">Delete a recipe</a>
                   </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                  </li>
+
 
                   <li class="nav-item">
                     <a class="nav-link" href="/recipes/new">Create a recipe</a>
@@ -55,7 +44,7 @@ class Layout extends React.Component {
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0" method="GET" action="/recipes/single">
-                  <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search by ID" aria-label="Search"/>
+                  <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search recipe by ID" aria-label="Search"/>
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
               </div>
