@@ -26,6 +26,63 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
 
+
+app.get('/recipes/:id/edit', (request, response) => {
+    let recipeIdInt = parseInt(request.params.id);
+    console.log(request.params.id);
+    console.log(recipeIdInt);
+
+
+    jsonfile.readFile(file, (err,dataObj) => {
+        if (err) {
+            console.log("Something went wrong when displaying the recipe.");
+        } else {
+            console.log(recipeIdInt);
+
+            let recipes = dataObj.recipes;
+            let recipe = recipes.find(recipe => parseInt(recipe.id) === recipeIdInt);
+            console.log(recipe);
+            let data = {
+                recipe : recipe
+            };
+
+            response.render('editform', data);
+        }
+    });
+})
+
+app.put('/recipes/:id', (request, response) => {
+    console.log("inside put req");
+    let recipeIdInt = parseInt(request.params.id);
+    console.log(request.params.id);
+    console.log(recipeIdInt);
+
+
+    jsonfile.readFile(file, (err,dataObj) => {
+        if (err) {
+            console.log("Something went wrong when displaying the recipe.");
+        } else {
+            let newCont = request.body;
+            console.log(newCont);
+            let recipes = dataObj.recipes;
+            var index = recipes.findIndex(recipe => parseInt(recipe.id) === recipeIdInt);
+            console.log(index);
+            dataObj.recipes[index] = newCont;
+        }
+
+        jsonfile.writeFile(file,dataObj, (err) => {
+                if( err ){
+                    console.log("error writing file");
+                    console.log(err)
+                    response.status(503).send("Error writing file");
+                } else {
+                    response.send(dataObj.recipes[index].title + ' updated!');
+                }
+            })
+
+    });
+});
+
 //get a single recipe
 app.get('/recipes/:id', (request, response) => {
     var recipeIdInt = parseInt(request.params.id);
@@ -49,7 +106,7 @@ app.get('/recipes/:id', (request, response) => {
             response.render('onerecipe', data);
         }
     });
-})
+});
 
 //Create a new recipe
 app.get('/recipes/new', (request, response) =>{

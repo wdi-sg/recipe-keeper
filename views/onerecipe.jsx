@@ -11,15 +11,11 @@ class Onerecipe extends React.Component {
                     <p>Recipe Id: {this.props.recipe.id}</p>
                     {/*<input name="id" type="number" min="0" value={this.props.recipe.id} readOnly />*/}
                     <p>Recipe Title: {this.props.recipe.title}</p>
-                    <input name="title"/>
                     <p>Image: {this.props.recipe.img}</p>
-                    <input name="img"/>
                     <p>Ingredients: {this.props.recipe.ingredients}</p>
-                    <input name="ingredients"/>
                     <p>Instructions: {this.props.recipe.instructions}</p>
-                    <input name="instructions"/>
                     <p>--</p>
-
+                    <a href={`/recipes/${this.props.recipe.id}/edit`}>Edit this recipe</a>
 
             </div>
         </Layout>
