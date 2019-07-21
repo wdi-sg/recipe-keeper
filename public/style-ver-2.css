@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:300,400,700,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Bungee|Bungee+Hairline|Bungee+Outline&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bungee|Bungee+Hairline|Bungee+Outline|Bungee+Shade&display=swap');
 
 
 /* ==============
@@ -39,32 +39,43 @@ body {
 	flex-direction: row;
 	justify-content: flex-start;
 	width: 100%;
-	margin-top: 20px;
-/*	margin-bottom: 20px;*/
+	margin-top: 1rem;
 }
 
 .display-3 {
-	margin-top: 3rem;
+	margin-top: 1rem;
+	font-family: 'Bungee Shade', cursive;
 }
 
 
 .sub-header {
 	font-family: 'Bungee', cursive;
+	font-size: 2.5rem;
+	line-height: 2.75rem;
+	margin-top: .5rem;
+	margin-bottom: 1.25rem;
+	color: #084887;
+}
+
+.action-header {
+	font-family: 'Bungee', cursive;
 	font-size: 2rem;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
+	line-height: 2.75rem;
+	margin-top: .5rem;
+	margin-bottom: 1.25rem;
 	color: #084887;
 }
 
 
 h1 {
 	font-weight: 300;
-	font-family: 'Bungee Outline', cursive;
+	font-family: 'Bungee Shade', cursive;
 	color: #FF6F61;
 }
 
 h3 {
-	font-weight: 300;
+	font-size: 1.25rem;
+	font-weight: 400;
 }
 
 h5 {
@@ -111,6 +122,37 @@ p {
 }
 
 
+.content-right .col-7 {
+/*	padding-right: 1rem;
+	padding-left: 2rem;*/
+/*	padding-bottom: 5rem;*/
+}
+
+.single-recipe {
+	margin-top: 1.5rem;
+}
+
+.one-recipe-title {
+	font-size: 2em;
+	font-weight: 400;
+	margin-left: 2rem;
+}
+
+ul {
+	list-style-type: circle;
+	list-style-position: inside;
+	line-height: 1.75rem;
+	margin: 0;
+	padding-left: 1.75rem;
+	padding-bottom: 4rem;
+}
+
+li {
+	font-size: 1rem;
+}
+
+
+
 .recipe {
 	display: flex;
 	flex-direction: column;
@@ -145,6 +187,7 @@ input {
 	font-family: 'Muli', sans-serif;
 }
 
+
 .one-input-recipe {
 	display: flex;
 	flex-direction: column;
@@ -156,36 +199,56 @@ input {
 /*	border-radius: 10px;*/
 }
 
-
 .recipe-input-id {
+	width: 80px;
 	font-size: 1em;
 	padding: 10px;
-	margin: 10px 20px;
-	font-size: 2em;
+	margin-bottom: 10px;
 	font-weight: 300;
+	border: 1px solid #FF7C6F;
 }
 
 .recipe-input-name {
 	max-width: 100%;
 	width: 100%;
-	font-size: 2.5em;
+	font-size: 2em;
 	font-weight: 300;
 	padding: 10px;
-	margin: 10px 20px;
-	border: 1px solid #ff00ff;
+	margin-bottom: 10px;
+	margin-left: 0;
+	border: 1px solid #FF7C6F;
 }
 
 
 .submit-input-btn {
 	display: block;
-	width: 200px;
-	height: 100px;
-	font-size: 2.5em;
+	font-size: 1em;
 	font-weight: 300;
 	padding: 10px;
-	margin: 10px 20px;
+	margin-top: 5px;
+	margin-left: 0;
 }
 
+
+/*.edit-title {
+	font-size: 2rem;
+	font-weight: 700;
+	color: #084887;
+}*/
+
+.view-recipe a {
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	width: 150px;
+	height: 40px;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	padding-top: 6px;
+	background-color: #1E5891;
+	border-radius: 5px;
+}
 
 .one-recipe {
 	display: flex;
@@ -200,13 +263,6 @@ input {
 
 .one-recipe-id {
 	font-size: 1em;
-	padding: 10px;
-	margin: 10px 20px;
-}
-
-.one-recipe-title {
-	font-size: 2.5em;
-	font-weight: 300;
 	padding: 10px;
 	margin: 10px 20px;
 }
