@@ -26,7 +26,7 @@ app.use(express.static(__dirname+'/public/'));
 
 // links to pages
 const homepage = 'home-ver-2.jsx';
-const editpage = 'edit.jsx';
+const editpage = 'edit-ver-2.jsx';
 const newpage = 'new.jsx';
 const onepage = 'onerecipe-ver-2.jsx';
 const deletepage = 'delete.jsx';
@@ -172,31 +172,31 @@ app.get('/recipes/:id', (request, response) => {
 // /* ===========================================
 // // Display the form for editing a single recipe
 // ===============================================*/
-// app.get('/recipes/:id/edit', (request, response) => {
-//     // read pokedex json file
-//      jsonfile.readFile(file, (err, obj) => {
-//         if (err) {
-//             console.log('error reading file');
-//             console.log(err);
-//         }
+app.get('/recipes/:id/edit', (request, response) => {
+    // read pokedex json file
+     jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            console.log('error reading file');
+            console.log(err);
+        }
 
-//         let userInputId = parseInt(request.params.id);
+        let userInputId = parseInt(request.params.id);
 
-//         // find recipe index with user entered id
-//         let realIndex = indexCheck(obj.ingredient, userInputId);
-//         let selectedRecipe = obj.ingredient[realIndex];
+        // find recipe index with user entered id
+        let realIndex = indexCheck(obj.ingredient, userInputId);
+        let selectedRecipe = obj.ingredient[realIndex];
 
-//         // IMPT noted the id here is the value of selectedRecipe.id, not the array index
-//         console.log("user editing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
+        // IMPT noted the id here is the value of selectedRecipe.id, not the array index
+        console.log("user editing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
 
-//         let data = {
-//             userEnteredIdKey : userInputId,
-//             recipeData : selectedRecipe
-//         };
+        let data = {
+            userEnteredIdKey : userInputId,
+            recipeData : selectedRecipe
+        };
 
-//         response.render(editpage, data);
-//     });
-// });
+        response.render(editpage, data);
+    });
+});
 
 
 
