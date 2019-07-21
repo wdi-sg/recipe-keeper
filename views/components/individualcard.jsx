@@ -15,6 +15,7 @@ class Card extends React.Component {
 
     const editUrl = "/recipes/"+id+"/edit"
     const deletetUrl = "/recipes/"+id
+    const actionDelete ="/recipes/" + id + "?_method=DELETE";
 
     let ingredList = this.props.data.ingredient.map(item=>{
         let i = Object.values(item);
@@ -42,7 +43,7 @@ class Card extends React.Component {
 
                 </ul>
             </div>
-            <div id="myTabContent" class="tab-content">
+            <div id="myTabContent" className="tab-content">
                 <div className="card-body tab-pane fade active show" id="picture">
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{description}</p>
@@ -64,8 +65,15 @@ class Card extends React.Component {
                             </div>
                         </div>
                         <div className="row justify-content-center">
-                            <a class="btn btn-outline-primary btn-lg mx-md-4 my-md-4" href={editUrl} role="button">EDIT</a>
-                            <a class="btn btn-outline-danger btn-lg mx-md-4 my-md-4" href={deletetUrl} role="button">DELETE</a>
+                            <form method="POST" action={actionDelete}>
+                            <fieldset>
+                            <div className="form-group">
+                            <input type="text" className="form-control" name="id" type="hidden" value={id}/>
+                            <button type="submit" className="btn btn-outline-danger btn-lg mx-md-4 my-md-4" value="delete this">DELETE</button>
+                            </div>
+                            </fieldset>
+                            </form>
+
                         </div>
                     </div>
                 </div>

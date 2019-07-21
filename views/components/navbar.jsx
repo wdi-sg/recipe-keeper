@@ -3,10 +3,12 @@ var React = require('react');
 class NavBar extends React.Component {
   render() {
     console.log("<NavBar> Added")
+    let num = this.props.num
     return (
         <div className="col">
         <nav className="navbar navbar-expand-md navbar-light bg-light">
             <a className="navbar-brand" href="#">Navbar</a>
+
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
@@ -21,11 +23,9 @@ class NavBar extends React.Component {
                     <a className="nav-link" href="/recipes/new">New</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Pricing</a>
+                    <a className="nav-link" href="/recipes/new">Recipes <small><span class="badge badge-pill badge-danger">{num}</span></small></a>
                     </li>
-                    <li className="nav-item">
-                    <a className="nav-link" href="#">About</a>
-                    </li>
+
 
                 </ul>
             <form className="form-inline my-2 my-lg-0">

@@ -15,6 +15,9 @@ var Card = require('./components/card');
 class Home extends React.Component {
   render() {
     console.log("\nStarto")
+    var data = this.props.data;
+
+
 
     return (
       <html>
@@ -22,7 +25,7 @@ class Home extends React.Component {
       <body className="bg-dark">
         <div className="container-fluid ">
           <div className="row justify-content-center my-md-2">
-            <NavBar/>
+            <NavBar num = {data.length}/>
           </div>
           <div className="row justify-content-center my-md-4">
             <Main requestType = {this.props.requestType} data = {this.props.data}/>

@@ -63,22 +63,11 @@ function Recipe(userinput){
     this.id = getId(userinput.name);
 }
 
-
-
 /**
  * ===================================
  * Routes
  * ===================================
  */
-
-
-
-
-
-
-
-
-
 
 app.get('/', (req, res) => {
     //res.redirect('/recipes');
@@ -154,20 +143,26 @@ app.get('/recipes/:id', (req, res) => {
         }
     });
 });
-app.get('/recipes/:id/edit', (req, res) => {
-    res.render('edit');
-});
-app.put('/recipes/:id', (req, res) => {
-    res.render('update');
-});
+// app.get('/recipes/:id/edit', (req, res) => {
+// });
+// app.put('/recipes/:id', (req, res) => {
+// });
 app.delete('/recipes/:id', (req, res) => {
+
     jsonfile.readFile(recipesData, (err, obj) => {
         if (err) console.error(err);
         else{
             console.log("this one recipe gon be deleted");
-            let idRequest = req.params.id
-            recipeIndex = obj.recipe.findIndex(recipe => parseInt(recipe.id)  === idRequest);
-            console.log(obj.recipe[recipeIndex])
+            let idRequest = req.body.id
+            let recipeIndex = obj.recipe.findIndex(recipe => recipe.id  === idRequest);
+            console.log(obj.recipe[recipeIndex]);
+            let deletedRecipeName = obj.recipe[recipeIndex].name
+            obj.recipe.splice(recipeIndex, 1)
+
+            const oneData = {
+                requestType : 5,
+                data : obj.recipe[recipeIndex]
+            }
 
             res.render('home', oneData);
         }

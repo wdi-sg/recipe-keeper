@@ -4,7 +4,7 @@ var CardDeck = require('./carddeck');
 var IndividCard = require('./individualcard')
 var NewForm = require('./newform');
 
-
+var Deleted = require('./delete');
 
 class Main extends React.Component {
   render() {
@@ -27,6 +27,14 @@ class Main extends React.Component {
         case 3:
             content = <NewForm/>;
             colSize = "col-8"
+        break;
+        case 4:
+            content = <NewForm/>;
+            colSize = "col-8"
+        break;
+        case 5:
+            content = <Deleted data={this.props.data}/>;
+            colSize = "col"
         break;
         default:
         text = "";
