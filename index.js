@@ -54,24 +54,56 @@ app.get('/recipes', (request, response) => {
     // response.render('', data);
 });
 
-
 app.get('/recipes/new', (request, response) => {
 
     jsonfile.readFile(file, (err,obj) => {
 
         const data = {
-            arrayLength: obj.pokemon.length + 1
+            arrayLength: obj.recipes.length + 1
         }
 
         if (err){
           console.log("error reading file");
-          console.log(err)
+          console.log(err);
         }
+
         else {
             response.render('form', data)
         }
 
     });
+});
+
+app.post('/recipes', (request,response) => {
+
+    let recipe = request.body;
+    console.log(recipe);
+
+    jsonfile.readFile(file, (err, obj) => {
+        if( err ){
+          console.log("error reading file");
+          console.log(err)
+        }
+
+        if (recipe.id < obj.recipes.length) {
+            response.status(406).send(`Sorry but that ID is incorrect! Please use ID: ${obj.recipe.length + 1}`);
+
+        } else {
+            obj.recipes.push(recipe);
+
+            jsonfile.writeFile(file, obj, (err) => {
+
+                if( err ) {
+                    console.log("error writing file");
+                    console.log(err)
+                    response.status(503).send("no!");
+
+                } else {
+                    response.send(obj.recipes);
+                }
+            });
+        }
+  });
 });
 
 
