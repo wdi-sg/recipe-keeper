@@ -11,37 +11,37 @@ class Form extends React.Component {
         </head>
         <body>
           <div>
-            <h1>Enter Details of New Recipe</h1>
-            <form method="POST" action="/recipes">
+            <h1>Edit Details of Recipe</h1>
+            <form method="POST" action={"/recipes/" + this.props.index + "?_method=PUT"}>
                 <div class="form-group d-none">
                     <label for="inputID">ID</label>
-                    <input type="number" name="id" class="form-control" id="inputID"  defaultValue={this.props.arrayLength} />
+                    <input type="number" name="id" class="form-control" id="inputID"  defaultValue={this.props.recipeData.id} />
                 </div>
 
                 <div class="form-group">
                     <label for="inputTitle">Title</label>
-                    <input type="text" name="title" class="form-control" id="inputTitle" />
+                    <input type="text" name="title" class="form-control" id="inputTitle" defaultValue={this.props.recipeData.title}/>
                 </div>
 
                 <div class="form-group">
                     <label for="inputDescription">Description</label>
-                    <input type="text" name="description" class="form-control" id="inputDescription" />
+                    <input type="text" name="description" class="form-control" id="inputDescription" defaultValue={this.props.recipeData.description}/>
                 </div>
 
                 <div class="form-group">
                     <label for="inputIngredients">Ingredients</label>
-                    <textarea class="form-control" name="ingredients" id="inputIngredients" rows="3"></textarea>
+                    <textarea class="form-control" name="ingredients" id="inputIngredients" rows="3" defaultValue={this.props.recipeData.ingredients}></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="inputInstructions">Instructions</label>
-                    <textarea class="form-control" name="instructions" id="inputInstructions" rows="3"></textarea>
+                    <textarea class="form-control" name="instructions" id="inputInstructions" rows="3" defaultValue={this.props.recipeData.instructions}></textarea>
                 </div>
 
 
                 <div class="form-group">
                     <label for="inputImg">Image URL</label>
-                    <input type="text" name="img" class="form-control" id="inputImg" />
+                    <input type="text" name="img" class="form-control" id="inputImg" defaultValue={this.props.recipeData.img}/>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
 
