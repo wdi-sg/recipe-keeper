@@ -28,7 +28,7 @@ app.use(express.static(__dirname+'/public/'));
 const homepage = 'home-ver-2.jsx';
 const editpage = 'edit.jsx';
 const newpage = 'new.jsx';
-const onepage = 'onerecipe.jsx';
+const onepage = 'onerecipe-ver-2.jsx';
 const deletepage = 'delete.jsx';
 
 
@@ -136,32 +136,36 @@ app.get('/recipes', (request, response) => {
 // /* =========================================
 // // See a single recipe
 // ==========================================*/
-// app.get('/recipes/:id', (request, response) => {
-//     console.log("user entered: " + request.params.id);
+app.get('/recipes/:id', (request, response) => {
+    console.log("user entered: " + request.params.id);
 
-//     jsonfile.readFile(file, (err, obj) => {
-//         if( err ){
-//           console.log("error reading file");
-//           console.log(err)
-//         }
+    jsonfile.readFile(file, (err, obj) => {
+        if( err ){
+          console.log("error reading file");
+          console.log(err)
+        }
 
-//         let userInputId = parseInt(request.params.id);
+        let userInputId = parseInt(request.params.id);
 
-//         // find recipe index with user entered id
-//         let realIndex = indexCheck(obj.ingredient, userInputId);
+        // find recipe index with user entered id
+        let realIndex = indexCheck(obj.ingredient, userInputId);
 
-//         let selectedRecipe = obj.ingredient[realIndex];
+        let selectedRecipe = obj.ingredient[realIndex];
 
-//         // IMPT noted the id here is the value of selectedRecipe.id, not the array index
-//         console.log("user viewing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
+        // IMPT noted the id here is the value of selectedRecipe.id, not the array index
+        console.log("user viewing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
 
-//         let data = {
-//             recipeData : selectedRecipe
-//         };
+        let data = {
+            recipeData : selectedRecipe,
+            recipeNameKey: selectedRecipe.name,
+            recipeNameIdKey: selectedRecipe.id,
+            recipeImgKey: selectedRecipe.image_url,
+            recipeIngrKey: selectedRecipe.ingredients
+        };
 
-//         response.render(onepage, data);
-//     });
-// });
+        response.render(onepage, data);
+    });
+});
 
 
 
