@@ -3,7 +3,7 @@ const app = express();
 const { check } = require('express-validator')
 
 const jsonfile = require('jsonfile');
-const file = 'ingredient-ver-1.json'; //or whatever your json file is called
+const file = 'ingredient-ver-2.json'; //or whatever your json file is called
 
 // react engine
 const reactEngine = require('express-react-views').createEngine();
@@ -69,257 +69,257 @@ app.get('/recipes', (request, response) => {
 
 
 
-/* =========================================
-// Display a new recipe form
-==========================================*/
-app.get('/recipes/new', (request, response) => {
-     jsonfile.readFile(file, (err, obj) => {
-        let recipes = obj.ingredient;
-        if (err) {
-            console.log('error reading file');
-            console.log(err);
-        }
+// /* =========================================
+// // Display a new recipe form
+// ==========================================*/
+// app.get('/recipes/new', (request, response) => {
+//      jsonfile.readFile(file, (err, obj) => {
+//         let recipes = obj.ingredient;
+//         if (err) {
+//             console.log('error reading file');
+//             console.log(err);
+//         }
 
-        let data = {
-            recipeKey : recipes,
-            recipeId : recipes.id
-        }
-        console.log('num of recipes: ' , recipes.length);
-        response.render(newpage, data);
-    });
-});
-
-
-
-/* =========================================
-// Add new recipe to json file
-==========================================*/
-app.post('/recipe', (request, response) => {
-
-    jsonfile.readFile(file, (err, obj) => {
-        if (err) {
-            console.log('error reading file');
-            console.log(err);
-        }
-
-        let newId = parseInt(request.body.id);
-        let newName = request.body.name;
-
-        console.log("new id: " + newId);
-        console.log("new name: " + newName);
-
-        let newRecipe = {
-            id: newId,
-            name: newName
-        };
-
-        console.log(newRecipe);
-
-        // Add new recipe to json file
-        obj.ingredient.push(newRecipe);
-
-        // save the request body into json file
-        jsonfile.writeFile(file, obj, (err) => {
-            if (err) {
-                console.log('error writing file!');
-                console.log(err);
-                response.status(503).send("no!");
-            }
-        }); ////// end of writing json file //////
-    });////// end of reading json file //////
-    console.log("send response");
-    response.send("New Recipe Added!");
-});
+//         let data = {
+//             recipeKey : recipes,
+//             recipeId : recipes.id
+//         }
+//         console.log('num of recipes: ' , recipes.length);
+//         response.render(newpage, data);
+//     });
+// });
 
 
 
-/* =========================================
-// See a single recipe
-==========================================*/
-app.get('/recipes/:id', (request, response) => {
-    console.log("user entered: " + request.params.id);
+// /* =========================================
+// // Add new recipe to json file
+// ==========================================*/
+// app.post('/recipe', (request, response) => {
 
-    jsonfile.readFile(file, (err, obj) => {
-        if( err ){
-          console.log("error reading file");
-          console.log(err)
-        }
+//     jsonfile.readFile(file, (err, obj) => {
+//         if (err) {
+//             console.log('error reading file');
+//             console.log(err);
+//         }
 
-        let userInputId = parseInt(request.params.id);
+//         let newId = parseInt(request.body.id);
+//         let newName = request.body.name;
 
-        // find recipe index with user entered id
-        let realIndex = indexCheck(obj.ingredient, userInputId);
+//         console.log("new id: " + newId);
+//         console.log("new name: " + newName);
 
-        let selectedRecipe = obj.ingredient[realIndex];
+//         let newRecipe = {
+//             id: newId,
+//             name: newName
+//         };
 
-        // IMPT noted the id here is the value of selectedRecipe.id, not the array index
-        console.log("user viewing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
+//         console.log(newRecipe);
 
-        let data = {
-            recipeData : selectedRecipe
-        };
+//         // Add new recipe to json file
+//         obj.ingredient.push(newRecipe);
 
-        response.render(onepage, data);
-    });
-});
-
-
-
-/* ===========================================
-// Display the form for editing a single recipe
-===============================================*/
-app.get('/recipes/:id/edit', (request, response) => {
-    // read pokedex json file
-     jsonfile.readFile(file, (err, obj) => {
-        if (err) {
-            console.log('error reading file');
-            console.log(err);
-        }
-
-        let userInputId = parseInt(request.params.id);
-
-        // find recipe index with user entered id
-        let realIndex = indexCheck(obj.ingredient, userInputId);
-        let selectedRecipe = obj.ingredient[realIndex];
-
-        // IMPT noted the id here is the value of selectedRecipe.id, not the array index
-        console.log("user editing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
-
-        let data = {
-            userEnteredIdKey : userInputId,
-            recipeData : selectedRecipe
-        };
-
-        response.render(editpage, data);
-    });
-});
+//         // save the request body into json file
+//         jsonfile.writeFile(file, obj, (err) => {
+//             if (err) {
+//                 console.log('error writing file!');
+//                 console.log(err);
+//                 response.status(503).send("no!");
+//             }
+//         }); ////// end of writing json file //////
+//     });////// end of reading json file //////
+//     console.log("send response");
+//     response.send("New Recipe Added!");
+// });
 
 
 
-/* ===========================================
-// Update a single recipe
-===============================================*/
-app.put('/recipes/:id', (request, response) => {
-    console.log("Begin storing updated recipe...");
+// /* =========================================
+// // See a single recipe
+// ==========================================*/
+// app.get('/recipes/:id', (request, response) => {
+//     console.log("user entered: " + request.params.id);
 
-    var updatedRecipe = request.body;
-    // start of reading json file
-    jsonfile.readFile(file, (err, obj) => {
-        console.log("got file");
-        if( err ){
-          console.log("error reading file");
-          console.log(err)
-        }
+//     jsonfile.readFile(file, (err, obj) => {
+//         if( err ){
+//           console.log("error reading file");
+//           console.log(err)
+//         }
 
-        var index = parseInt(request.body.id); // Convert request id to number
-        var updatedName = request.body.name;
-        let realIndex = indexCheck(obj.ingredient, index);
+//         let userInputId = parseInt(request.params.id);
 
-        console.log("id: " + index);
-        console.log("new name: " + updatedName);
+//         // find recipe index with user entered id
+//         let realIndex = indexCheck(obj.ingredient, userInputId);
 
-        var updatedRecipe = {
-            id: index,
-            name: updatedName
-        };
+//         let selectedRecipe = obj.ingredient[realIndex];
 
-        console.log("updated recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name);
+//         // IMPT noted the id here is the value of selectedRecipe.id, not the array index
+//         console.log("user viewing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
 
-        // replace old content with this new content into the position real-index no. of ingredient array
-        obj.ingredient[realIndex] = updatedRecipe;
+//         let data = {
+//             recipeData : selectedRecipe
+//         };
 
-        console.log("about to write file");
-        jsonfile.writeFile(file, obj, (err) => {
-            console.log("write file done to array index no. " + realIndex);
-            if( err ){
-                console.log("error writing file");
-                console.log(err)
-                response.status(503).send("no!");
-            } else {
-                console.log("~~~~~~~yaaaaaayyyy~~~! recipe " + updatedRecipe.id + " updated! ~~~~~~~");
-                console.log("sending response ... ");
-                response.send("Recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name + " updated!");
-            }
-        });
-    });
-});
+//         response.render(onepage, data);
+//     });
+// });
 
 
 
-/* =========================================
-// Display remove a recipe form
-==========================================*/
-app.get('/recipes/:id/delete', (request, response) => {
-    // start reading json file
-    jsonfile.readFile(file, (err, obj) => {
-        if (err) {
-            console.log('error reading file');
-            console.log(err);
-        }
+// /* ===========================================
+// // Display the form for editing a single recipe
+// ===============================================*/
+// app.get('/recipes/:id/edit', (request, response) => {
+//     // read pokedex json file
+//      jsonfile.readFile(file, (err, obj) => {
+//         if (err) {
+//             console.log('error reading file');
+//             console.log(err);
+//         }
 
-            let index = parseInt(request.params.id);
-            let realIndex = indexCheck(obj.ingredient, index);
-            let reqRecipe = obj.ingredient[realIndex];
+//         let userInputId = parseInt(request.params.id);
 
-            let data = {
-                recipeIndex : realIndex,
-                recipeData : reqRecipe
-            };
-            response.render(deletepage, data);
-    }); // end reading json file
-});
+//         // find recipe index with user entered id
+//         let realIndex = indexCheck(obj.ingredient, userInputId);
+//         let selectedRecipe = obj.ingredient[realIndex];
 
+//         // IMPT noted the id here is the value of selectedRecipe.id, not the array index
+//         console.log("user editing recipe no. " + selectedRecipe.id + ", " + selectedRecipe.name);
 
+//         let data = {
+//             userEnteredIdKey : userInputId,
+//             recipeData : selectedRecipe
+//         };
 
-/**
- * ===================================
- * Delete recipe from json file
- * ===================================
- */
-app.delete('/recipes/:id', (request, response) => {
-
-    console.log("Begin deletion process...");
-    console.log("about to get file");
-
-    jsonfile.readFile(file, (err, obj) => {
-
-        console.log("got file");
-        if( err ){
-          console.log("error reading file");
-          console.log(err)
-        } else {
-            console.log("what i currently have");
-
-            let index = parseInt(request.params.id);
-            let realIndex = indexCheck(obj.ingredient, index);
-
-            console.log("user input id: " + index);
-            console.log("array index: " + realIndex);
-
-            let recipes = obj.ingredient;
-            let deleteName = recipes[realIndex].name;
-            // console.log("recipe name: " + deleteName);
+//         response.render(editpage, data);
+//     });
+// });
 
 
-            // delete selected recipe
-            recipes.splice(realIndex, 1);
 
-            console.log("about to write file");
-            jsonfile.writeFile(file, obj, (err) => {
-            console.log("write file done");
-                if( err ){
-                    console.log("error writing file");
-                    console.log(err)
-                    response.status(503).send("no!");
-                } else {
-                    console.log("~~~~~~ processing request to delete ~~~~~!");
-                    console.log( "sending request");
-                    response.send("Recipe No. " + index + " " + deleteName +  " deleted");
-                }
-            }); // end of writing to json file
-        }
-    }); // end of reading to json file
-});
+// /* ===========================================
+// // Update a single recipe
+// ===============================================*/
+// app.put('/recipes/:id', (request, response) => {
+//     console.log("Begin storing updated recipe...");
+
+//     var updatedRecipe = request.body;
+//     // start of reading json file
+//     jsonfile.readFile(file, (err, obj) => {
+//         console.log("got file");
+//         if( err ){
+//           console.log("error reading file");
+//           console.log(err)
+//         }
+
+//         var index = parseInt(request.body.id); // Convert request id to number
+//         var updatedName = request.body.name;
+//         let realIndex = indexCheck(obj.ingredient, index);
+
+//         console.log("id: " + index);
+//         console.log("new name: " + updatedName);
+
+//         var updatedRecipe = {
+//             id: index,
+//             name: updatedName
+//         };
+
+//         console.log("updated recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name);
+
+//         // replace old content with this new content into the position real-index no. of ingredient array
+//         obj.ingredient[realIndex] = updatedRecipe;
+
+//         console.log("about to write file");
+//         jsonfile.writeFile(file, obj, (err) => {
+//             console.log("write file done to array index no. " + realIndex);
+//             if( err ){
+//                 console.log("error writing file");
+//                 console.log(err)
+//                 response.status(503).send("no!");
+//             } else {
+//                 console.log("~~~~~~~yaaaaaayyyy~~~! recipe " + updatedRecipe.id + " updated! ~~~~~~~");
+//                 console.log("sending response ... ");
+//                 response.send("Recipe no. " + updatedRecipe.id + ", " + updatedRecipe.name + " updated!");
+//             }
+//         });
+//     });
+// });
+
+
+
+// /* =========================================
+// // Display remove a recipe form
+// ==========================================*/
+// app.get('/recipes/:id/delete', (request, response) => {
+//     // start reading json file
+//     jsonfile.readFile(file, (err, obj) => {
+//         if (err) {
+//             console.log('error reading file');
+//             console.log(err);
+//         }
+
+//             let index = parseInt(request.params.id);
+//             let realIndex = indexCheck(obj.ingredient, index);
+//             let reqRecipe = obj.ingredient[realIndex];
+
+//             let data = {
+//                 recipeIndex : realIndex,
+//                 recipeData : reqRecipe
+//             };
+//             response.render(deletepage, data);
+//     }); // end reading json file
+// });
+
+
+
+// /**
+//  * ===================================
+//  * Delete recipe from json file
+//  * ===================================
+//  */
+// app.delete('/recipes/:id', (request, response) => {
+
+//     console.log("Begin deletion process...");
+//     console.log("about to get file");
+
+//     jsonfile.readFile(file, (err, obj) => {
+
+//         console.log("got file");
+//         if( err ){
+//           console.log("error reading file");
+//           console.log(err)
+//         } else {
+//             console.log("what i currently have");
+
+//             let index = parseInt(request.params.id);
+//             let realIndex = indexCheck(obj.ingredient, index);
+
+//             console.log("user input id: " + index);
+//             console.log("array index: " + realIndex);
+
+//             let recipes = obj.ingredient;
+//             let deleteName = recipes[realIndex].name;
+//             // console.log("recipe name: " + deleteName);
+
+
+//             // delete selected recipe
+//             recipes.splice(realIndex, 1);
+
+//             console.log("about to write file");
+//             jsonfile.writeFile(file, obj, (err) => {
+//             console.log("write file done");
+//                 if( err ){
+//                     console.log("error writing file");
+//                     console.log(err)
+//                     response.status(503).send("no!");
+//                 } else {
+//                     console.log("~~~~~~ processing request to delete ~~~~~!");
+//                     console.log( "sending request");
+//                     response.send("Recipe No. " + index + " " + deleteName +  " deleted");
+//                 }
+//             }); // end of writing to json file
+//         }
+//     }); // end of reading to json file
+// });
 
 
 
