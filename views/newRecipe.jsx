@@ -24,16 +24,27 @@ class Form extends React.Component {
           <div>
             <h1>Create a new recipe!</h1>
             <form method="POST" action={'/recipes'}>
-                <p> Title</p>
-                <input name="title" autocomplete = "off" />
-                <p> Image</p>
-                <input name="img" />
                 
-                <p>Ingredients</p>
-                <input name="ingredient" autocomplete = "off" />
-                <p>Instructions</p>
-                <input name="instruction"  autocomplete = "off"/>
-               
+                <div className= "title">
+                  <p> Title</p>
+                  
+                  <div className = "one" ><input name="title" autocomplete = "off" /></div>
+                
+                </div>
+                <div className = "inputImg">
+                  <p> Image</p>
+                  <div className = "two" ><input name="img" /></div>
+                
+                </div>
+                <div className = "inputIngre">
+                  <p>Ingredients</p>
+                  <div className = "three" ><input name="ingredient" autocomplete = "off" /></div>
+                
+                </div>
+                <div className = " inputIntr">
+                  <p>Instructions</p>
+                  <div className = "four" ><input name="instruction"  autocomplete = "off"/></div>
+               </div>
                 <input type="submit"/>
             </form>
           </div>

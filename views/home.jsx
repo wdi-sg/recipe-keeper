@@ -4,7 +4,8 @@ class Home extends React.Component {
   render() {
     console.log(this.props);
     let listOfRecipes = this.props.recipe.map(recipe => {
-      return <RecipeInfo display={recipe}/>
+      return <RecipeInfo display={recipe} id = {this.props.recipe.indexOf(recipe)}/>
+      console.log(id);
       });
     return (
       <html lang="en">

@@ -36,7 +36,7 @@ nav {
 a{
 	text-decoration: none;
 	color: inherit;
-		font-family: 'Work Sans', sans-serif;
+	font-family: 'Work Sans', sans-serif;
 
 	}
 	a:hover {
@@ -88,7 +88,7 @@ ul li,  {
   	justify-content: center;
 
 }
-.card img {
+.wrapper img {
 	width: 80%;
 	margin-left: 40px;
 	padding: 0;

@@ -26,10 +26,10 @@ class Delete extends React.Component {
                 </ul>
               </nav>
           </header>
-          <div>
+          <div className= "delete">
             <h2>Are you sure you want to delete this recipe?</h2>
             <form method="POST" action= {url}>
-                div className= "title">
+                <div className= "title">
                   <p> Title: </p>
                   <div className = "one" ><input name="title" value ={this.props.recipe.title}/></div>
                 </div> 
@@ -46,7 +46,7 @@ class Delete extends React.Component {
                   <p>Instruction :</p>
                   <div className = "three"><input name="intruction " value ={this.props.recipe.instruction}/></div>
                 </div>
-                <input id = "submit" type="submit" value ="Delete"/>
+                <input className = "submit" type="submit" value ="Delete"/>
             </form>
           </div>
           <footer> © 2019 Recipes-Keeper GA All rights reserved.</footer>

@@ -146,53 +146,42 @@ ul li,  {
 }
 input {
 	font-family: 'Ubuntu', sans-serif;
-	font-size: 13px;
-	
-	/*/*display: block;*/
+	font-size: 13px;	
 	margin: 10px ;
 	text-align: center;
 	border-radius: 5px;
-	background-color: 
-	border: 1px solid #b3e5df;
 	height: 33px;
 	width: 280px;
 }
 
-.edit form {
-	margin- left: 60px;
-}
-#submit {
+
+.submit {
 width: 120px;
 margin-left:350px;
 }
-.edit form p {
-	display:inline;
-	width: 200 px;
-	padding: 20px;
-	margin-left: 130px;
-}
-.editH1 {
+
+
+h1 {
 		text-align: center;
 		margin: 20px auto;
 	}
 
+.title,.inputImg,.inputIngre,.inputIntr {
+	display:flex;
+	justify-content: space-between;
+}
+
  .one, .two, .three, .four {
- 	display: inline;
+ 	float:right;
+ 	width: 55%;
+ }
 
-	
-	
+.title p,.inputImg p,.inputIngre p,.inputIntr p{
+	width: 20 %;
+	padding: 10px;
+	float: left;
+	margin-left: 200px;
 }
-.four {
-	margin-left: 37px;
+.delete h2 {
+	margin-left:  150px;
 }
-.one{
-	margin-left: 47px;
-}
-/*.title, .inputImg, .inputIngr, .inputIntr {
-	display: inline-block
-}
-
-.title {
-	width: 100%;
-	display: inline-block;
-}*/

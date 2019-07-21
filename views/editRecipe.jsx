@@ -35,18 +35,18 @@ class Edit extends React.Component {
                 </div> 
                 <div className = "inputImg">
                   <p> Image: </p>
-                  <div className = "four"> <input name="img" value ={this.props.recipe.img}/></div>
+                  <div className = "two"> <input name="img" value ={this.props.recipe.img}/></div>
                 </div> 
                 <div className = "inputIngre">
                   <p> Ingredients: </p>
-                  <div className = "two"><input name="ingredient" value ={this.props.recipe.ingredient} /></div>
+                  <div className = "three"><input name="ingredient" value ={this.props.recipe.ingredient} /></div>
                 
                 </div>
                 <div className = " inputIntr">
                   <p>Instruction :</p>
-                  <div className = "three"><input name="intruction " value ={this.props.recipe.instruction}/></div>
+                  <div className = "four"><input name="intruction " value ={this.props.recipe.instruction}/></div>
                 </div>
-                <input id = "submit" type="submit"/>
+                <input className = "submit" type="submit"/>
             </form>
           </div>
           <footer> © 2019 Recipes-Keeper GA All rights reserved.</footer>
