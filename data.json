@@ -1,0 +1,24 @@
+{
+  "recipes": [
+    {
+    	"id": 1,
+      "title": "boiled duck",
+      "img": "../img/boiledduck.jpg",
+      "ingredients": "1 duck, water",
+      "instructions": "boil duck in water for 20 minutes. take it out. serve."
+    },
+    {
+    	"id": 2,
+      "title": "boiled chicken",
+      "ingredients": "1 chicken, water",
+      "instructions": "boil chicken in water for 20 minutes. take it out. serve."
+    },
+    {
+    	"id": 3,
+      "title": "new recipe",
+      "img": "",
+      "ingredients": "test test",
+      "instructions": "boil mash fry"
+    }
+  ]
+}
