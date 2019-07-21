@@ -5,6 +5,9 @@ class Delete extends React.Component {
     var url = "/recipes/"+this.props.recipeData.id + "?_method=DELETE";
     return (
       <html>
+          <head>
+              <link rel="stylesheet" type="text/css" href="/style.css" />
+          </head>
         <body>
             <p><a href={"/recipes/"+this.props.recipeData.id}>CLICK ON ME</a></p>
             <div>

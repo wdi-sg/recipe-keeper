@@ -7,7 +7,7 @@ class New extends React.Component {
     return (
       <html>
         <head>
-            <link rel="stylesheet" type="text/css" href="/style.css"></link>
+            <link rel="stylesheet" type="text/css" href="/style.css" />
         </head>
         <body>
           <h1>Add New Recipe to Our Current {totalRecipes} Recipes!</h1>

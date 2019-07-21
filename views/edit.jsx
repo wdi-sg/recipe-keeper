@@ -7,7 +7,7 @@ class Edit extends React.Component {
     return (
       <html>
           <head>
-              <link rel="stylesheet" type="text/css" href="/style.css"></link>
+              <link rel="stylesheet" type="text/css" href="/style.css" />
           </head>
         <body>
             <div className="main-wrapper">
