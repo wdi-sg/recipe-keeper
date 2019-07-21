@@ -9,6 +9,7 @@ class NewRecipeForm extends React.Component {
                 <body>
                     <div>
                         <h1>New Recipe Form</h1>
+
                         {/*create new step 5: submit button post method and action to recipe for app.post*/}
                         <form method = "POST" action = "/recipes">
                             <p>title</p>

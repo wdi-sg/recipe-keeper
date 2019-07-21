@@ -32,11 +32,11 @@ app.set('view engine', 'jsx');
 
 // =============================================
 
-//edit recipe step 1: request to create new list
+//edit recipe step 1: request to edit recipe
 app.get("/recipes/:id/edit", (request, response) => {
     console.log("requesting to edit recipe");
 
-    //edit recipe step 2: replace space value to dash value
+    //edit recipe step 2: replace space value to dash value to edit page
     let id = request.params.id.replace(" ","-");
 
     //edit recipe step 3: read existing json file data
@@ -60,40 +60,116 @@ app.get("/recipes/:id/edit", (request, response) => {
                 id : id,
                 recipe : recipe
             }
-        //edit recipe step 7: render see edit form page
-        response.render("editRecipeForm", data);
+            //edit recipe step 7: render see edit form page
+            response.render("editRecipeForm", data);
         }
     })
 });
 
-
-//edit recipe step 1: request to create new list
+//edit recipe step 10: request to create new list
 app.put("/recipes/:id", (request, response) => {
     console.log("requesting to post edited recipe");
 
+    //edit recipe step 11: replace dash value to space value for for loop
     let id = request.params.id.replace("-", " ");
 
+    //edit recipe step 12: obtain edit details
     const recipe = request.body;
 
+    //edit recipe step 13: read existing json file data
     jsonfile.readFile(file, (err, obj) => {
         if (err) {
             console.log(err);
         } else {
 
+            //edit recipe step 14: use for loop to find title string in json
             for (let i = 0; i < obj.recipes.length; i++) {
                 if (obj.recipes[i].title === id) {
+
+                    //edit recipe step 15: override previous date
                     obj.recipes[i] = recipe;
                 }
             }
+            //edit recipe step 16: write/"save" the updated json file
             jsonfile.writeFile(file, obj, (err) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log("Food edited complete");
+                    console.log("recipe edited complete");
                 }
             })
         }
-        response.send("Food edited complete");
+        response.send("recipe edited complete");
+    })
+});
+
+// =============================================
+
+//delete recipe step 1: request to delete recipe
+app.get("/recipes/:id/delete", (request, response) => {
+    console.log("requesting to delete recipe");
+
+    //delete recipe step 2: replace space value to dash value to edit page
+    let id = request.params.id.replace(" ", "-");
+
+    //delete recipe step 3: read existing json file data
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            console.log(err);
+        } else {
+
+            let recipe;
+
+            //delete recipe step 4: use for loop to find title string in json
+            for (let i = 0; i < obj.recipes.length; i++) {
+
+                //delete recipe step 5: check if request is found in json
+                if (request.params.id === obj.recipes[i].title) {
+                    recipe = obj.recipes[i];
+                }
+            }
+            //delete recipe step 6: create key data for render page
+            const data = {
+                id : id,
+                recipe : recipe
+            }
+            //edit recipe step 7: render see edit form page
+            response.render("deleteRecipeForm", data);
+        }
+    })
+});
+
+//delete recipe step 10: request to create new list
+app.delete("/recipes/:id", (request, response) => {
+    console.log("requesting to post delete recipe");
+
+    //delete recipe step 11: replace dash value to space value for for loop
+    let id = request.params.id.replace("-", " ");
+
+    //edit recipe step 12: read existing json file data
+    jsonfile.readFile(file, (err,obj) => {
+        if (err) {
+            console.log(err);
+        } else {
+
+            //edit recipe step 13: use for loop to find title string in json
+            for (let i = 0; i < obj.recipes.length; i++) {
+                if (obj.recipes[i].title === id) {
+
+                    //edit recipe step 14: splice recipe in json file
+                    obj.recipes.splice(i, 1);
+                }
+            }
+            //edit recipe step 15: write/"save" the updated json file
+            jsonfile.writeFile(file, obj, (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("recipe delete complete");
+                }
+            })
+        }
+        response.send("recipe delete complete");
     })
 });
 

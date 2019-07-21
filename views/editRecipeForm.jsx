@@ -1,16 +1,19 @@
+//edit recipe step 8: create edit form page
 var React = require('react');
-
 
 class EditRecipeForm extends React.Component {
   render () {
 
+    //edit recipe step 9: create url to override submit button post method to put method
     var url = "/recipes/" + this.props.id + "?_method=PUT";
-    console.log("this.props.id: " + this.props.id);
+
     return (
       <html>
         <body>
           <div>
             <h1>Edit Recipe Form</h1>
+
+            {/*edit recipe step 10: submit button post method*/}
             <form action = {url} method = "POST">
 
               <p>Recipe Title</p>
