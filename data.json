@@ -1,0 +1,28 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "num": "001",
+      "name": "boiled duck",
+      "ingredients": "1 duck, water",
+      "instructions": "boil duck in water for 20 minutes. take it out. serve.",
+      "img": "http://yum-korea.com/wp-content/uploads/2015/12/boiled-duck-4.jpg"
+    },
+    {
+      "id": 2,
+      "num": "002",
+      "name": "crispy potatoes",
+      "ingredients": "1 bag of potatoes, oil",
+      "instructions": "bake potatoes in oven for 1hr. take it out. serve.",
+      "img": "https://www.seriouseats.com/recipes/images/2015/10/ultra-crispy-roast-potatoes.jpg"
+    },
+    {
+      "id": "4",
+      "num": "004",
+      "name": "edited apple pie",
+      "ingredients": "flour, granny smith apples, water, butter, sugar, eggs, milk.",
+      "instructions": "Bake until golden brown. Let cool and serve.",
+      "img": "https://www.landolakes.com/RecipeManagementSystem/media/Recipe-Media-Files/Recipes/Retail/x17/16800-blue-ribbon-apple-pie-600x600.jpg?ext=.jpg"
+    }
+  ]
+}
