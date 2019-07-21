@@ -17,15 +17,15 @@ class NewForm extends React.Component {
                 <label>Ingredient 01</label>
                 <div className="row form-group">
 
-                    <div className="col">
+                    <div className="col-md">
                     <input type="text" name="ingredient[0][name]" className="form-control" id="ingName" placeholder="Name" required/>
                     <small className="form-text text-muted">Name of Ingredient</small>
                     </div>
-                    <div className="col">
+                    <div className="col-md">
                         <input type="number" name="ingredient[0][amount]" min="1" className="form-control" id="ingredientAmnt" placeholder="Amount" required/>
                         <small className="form-text text-muted">Amount needed for the ingredient</small>
                     </div>
-                    <div className="col">
+                    <div className="col-md">
                     <input type="text" name="ingredient[0][unit]" className="form-control" id="inputDishName" placeholder="Unit"/>
                     <small className="form-text text-muted">Ingredients unit of measurement</small>
                     </div>
@@ -33,15 +33,15 @@ class NewForm extends React.Component {
 
                 <label>Ingredient 02</label>
                 <div className="row form-group">
-                    <div className="col">
+                    <div className="col-md">
                     <input type="text" name="ingredient[1][name]" className="form-control" id="ingName" placeholder="Name" required/>
                     <small className="form-text text-muted">Name of Ingredient</small>
                     </div>
-                    <div className="col">
+                    <div className="col-md">
                         <input type="number" name="ingredient[1][amount]" min="1" className="form-control" id="ingredientAmnt" placeholder="Amount" required/>
                         <small className="form-text text-muted">Amount needed for the ingredient</small>
                     </div>
-                    <div className="col">
+                    <div className="col-md">
                     <input type="text" name="ingredient[1][unit]" className="form-control" id="inputDishName" placeholder="Unit"/>
                     <small className="form-text text-muted">Ingredients unit of measurement</small>
                     </div>
@@ -49,15 +49,15 @@ class NewForm extends React.Component {
 
                 <label>Ingredient 03</label>
                 <div className="row form-group">
-                    <div className="col">
+                    <div className="col-md">
                     <input type="text" name="ingredient[2][name]" className="form-control" id="ingName" placeholder="Name"/>
                     <small className="form-text text-muted">Name of Ingredient</small>
                     </div>
-                    <div className="col">
+                    <div className="col-md">
                         <input type="number" name="ingredient[2][amount]" min="1" className="form-control" id="ingredientAmnt" placeholder="Amount"/>
                         <small className="form-text text-muted">Amount needed for the ingredient</small>
                     </div>
-                    <div className="col">
+                    <div className="col-md">
                     <input type="text" name="ingredient[2][unit]" className="form-control" id="inputDishName" placeholder="Unit"/>
                     <small className="form-text text-muted">Ingredients unit of measurement</small>
                     </div>
@@ -85,6 +85,7 @@ class NewForm extends React.Component {
                 <button type="submit" className="btn btn-primary">Submit</button>
             </fieldset>
         </form>
+
      );
     }
 }

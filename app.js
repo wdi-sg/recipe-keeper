@@ -11,7 +11,6 @@ const app = express();
 // serve static files in public directory
 app.use(express.static(__dirname + '/public'));
 
-
 // jsonfile module - read/write json
 const jsonfile = require('jsonfile');
 const recipesData = "recipes.json"
@@ -94,11 +93,7 @@ app.get('/recipes/', (req, res) => {
 
             const alldata = {
                 requestType : 1,
-                recipeList : obj.recipe
-            }
-            const oneData = {
-                requestType : 1,
-                recipe : obj.recipe[1]
+                data : obj.recipe
             }
             res.render('home', alldata);
         }
@@ -112,10 +107,9 @@ app.get('/recipes/new', (req, res) => {
             console.log("start writing");
 
             const alldata = {
-                requestType : 2,
-                recipeList : obj.recipe
+                requestType : 3,
+                data : obj.recipe
             }
-
             res.render('home', alldata);
         }
     });
@@ -148,7 +142,20 @@ app.post('/recipes', (req, res) => {
     });
 });
 app.get('/recipes/:id', (req, res) => {
-    res.render('single');
+    jsonfile.readFile(recipesData, (err, obj) => {
+        if (err) console.error(err);
+        else{
+            console.log("this one recipe here");
+            let idRequest = req.params.id
+            recipeMatch = obj.recipe.find(recipe => recipe.id === idRequest);
+
+            const oneData = {
+                requestType : 2,
+                data : recipeMatch
+            }
+            res.render('home', oneData);
+        }
+    });
 });
 app.get('/recipes/:id/edit', (req, res) => {
     res.render('edit');

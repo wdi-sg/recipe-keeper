@@ -15,23 +15,17 @@ var Card = require('./components/card');
 class Home extends React.Component {
   render() {
     console.log("\nStarto")
-    const reqType = this.props.requestType;
-    const recipeList = this.props.recipeList
-
-
-
 
     return (
       <html>
       <Head/>
-      <body>
-        <div className="container-fluid">
-          <div className="row">
+      <body className="bg-dark">
+        <div className="container-fluid ">
+          <div className="row justify-content-center my-md-2">
             <NavBar/>
           </div>
-          <div className="row">
-            <NavSide/>
-            <Main requestType = {this.props.requestType} recipeList = {this.props.recipeList}/>
+          <div className="row justify-content-center my-md-4">
+            <Main requestType = {this.props.requestType} data = {this.props.data}/>
           </div>
           <div className="row">
             <Footer/>

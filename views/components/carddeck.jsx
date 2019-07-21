@@ -6,7 +6,7 @@ class CardDeck extends React.Component {
   render() {
     console.log("\nCardDeck component Added")
 
-    let recipeCards = this.props.recipeList.map(recipe=>{
+    let recipeCards = this.props.data.map(recipe=>{
         return <Card data = {recipe}/>
     })
 
