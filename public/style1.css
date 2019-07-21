@@ -1,7 +1,7 @@
 body {
 	margin: 0 auto;
 	width: 80%;
-	background-color: #a5d6a7;
+	background-color: #b3e9fc;
 	color: #424242;
 }
 header {
@@ -16,7 +16,6 @@ header h1 {
 	text-align: center;
 	font-size: 50px;
 	margin-top: 40px;
-	border-radius: 10px;
 }
 .main {
 	/*box-shadow: 0px 0px 5px #9e9e9e;*/
@@ -35,7 +34,43 @@ a{
 	text-decoration: none;
 	color: inherit;
 	}
-	a:hover {
+img {
+	width: 100%;
+	height:250px;
+}
+
+
+
+.top {
+	display: flex;
+}
+.left, .right{
+	width: 47%;
+}
+.left{
+	float: left;
+}
+.right{
+	float:right;
+	
+}
+.right li {
+	padding-left: 20px;
+	line-height: 1.5;
+	font-family: 'Lato', sans-serif;
+}
+.right h2 {
+	padding-left: 55px;
+}
+ol li {
+	padding-left: 20px;
+	line-height: 1.5;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+
+a:hover {
 	color: darkcyan;
 }
 footer {
@@ -45,7 +80,6 @@ footer {
 	background-color:#b3e5fc;
 	text-align: center;
 	box-shadow: 0px 0px 5px #9e9e9e;
-	border-radius: 10px;
 
 }
 ul li,  {
@@ -68,22 +102,38 @@ ul li,  {
 	font-family: 'Ubuntu', sans-serif;
 	
 }
-.main {
-	width: 100%;
-	display:flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+
+.left form {
+	width: 50%;
+	display: inline-block;
+	margin: 0;
+	
 }
-.card {
-	width: 90%;
-	/*margin: 0 auto;*/
+.left form input {
+	width:90%;
+	height: 30px;
+	font-size: 14px;
+	margin: 0 5px;
+	/*box-shadow: 0px 0px 5px #9e9e9e;*/
+	background-color: #b3e5df;
 }
-.card img {
-	width: 100%;
-	height: 200px;
-	margin-left: 0;
-	border-radius: 20px;
+.left form input.flright {
+	float: right;
 }
-.card h3{
+.left form input.flleft {
+	float: left;
+	margin-top: 0;
+}
+input {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 13px;
+	/*color: #ffffff;*/
+	display: block;
+	margin: 10px ;
 	text-align: center;
+	border-radius: 5px;
+	background-color: #b3e5df;
+	border: 1px solid #b3e5df;
+	height: 33px;
+	width: 300px;
 }

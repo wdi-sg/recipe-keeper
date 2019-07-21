@@ -11,7 +11,6 @@ class Home extends React.Component {
         <head>
             <link rel="stylesheet" type="text/css" href="/style.css"/>
          
-
         </head>
         <body>
 
@@ -19,14 +18,14 @@ class Home extends React.Component {
             <h1> RECIPES-KEEPER</h1>
               <nav>
                 <ul>
-                  <li><a href="./">All recipes</a></li>
+                  <li><a href="#/">All recipes</a></li>
                   <li><a href="#">Ingredients</a></li>
                   <li><a href="#">Search recipes</a></li>
                 </ul>
               </nav>
           </header>
 
-          <div>
+          <div className = "main">
             
             {listOfRecipes}
           </div>

@@ -13,7 +13,7 @@ class Recipe extends React.Component {
     let items =this.props.recipe.ingredient.split(",");
     console.log(items.length);
     let ingredient = items.map(ingredient => {
-      return <li> {ingredient} </li>;
+      return <li classname = "ingd"> {ingredient} </li>;
     })
     console.log(this.props.recipe.instruction)
     let steps = this.props.recipe.instruction.split(".");
@@ -25,8 +25,9 @@ class Recipe extends React.Component {
     return (//this template is working now//
       <html lang="en">
         <head>
+          <link href="https://fonts.googleapis.com/css?family=Ewert|Lato:400i|Source+Sans+Pro&display=swap" rel="stylesheet" />
 
-            <link rel="stylesheet" type="text/css" href="/style.css"/>
+            <link rel="stylesheet" type="text/css" href="/style1.css"/>
         
         </head>
         <body>
@@ -36,7 +37,7 @@ class Recipe extends React.Component {
             <h1> RECIPES-KEEPER</h1>
               <nav>
                 <ul>
-                  <li><a href="./">All recipes</a></li>
+                  <li><a href="/recipes/">All recipes</a></li>
                   <li><a href="#">Ingredients</a></li>
                   <li><a href="#">Search recipes</a></li>
                 </ul>
@@ -44,26 +45,35 @@ class Recipe extends React.Component {
           </header>
 
           <div>
-            <h2>{this.props.recipe.title}</h2>
-            <img src={this.props.recipe.img}/ >
+            <div className = "top">
+              <div className = "left">
+                <h2>{this.props.recipe.title}</h2>
+                <img src={this.props.recipe.img}/ >
 
-            <form action={editUrl} method="GET">
-                <input type="submit" value="Improve this recipe"/>
-            </form>
+                <form className ="form" action={editUrl} method="GET">
+                    <input className ="flleft" type="submit" value="Improve this recipe"/>
+                </form>
 
-            <form action={deleteUrl} method="GET">
-                <input type="submit" value="Delete this recipe"/>
-            </form>
-            <h2> Ingredients</h2>
-            <ul>
-              {ingredient} 
-            </ul>
-            <h2> Instruction</h2>
-            <ol>
-              {instruction}
-            </ol>
-            
+                <form className ="form" action={deleteUrl} method="GET">
+                    <input className ="flright" type="submit" value="Delete this recipe"/>
+                </form>
+                </div>
+                <div className = "right">
+                  <h2> Ingredients</h2>
+                  <ul >
+                    {ingredient} 
+                  </ul>
+                </div>
+            </div>
+
+            <div className= "bottom">
+              <h2> Instruction</h2>
+              <ol>
+                {instruction}
+              </ol>
+            </div>
           </div>
+
           <footer> © 2019 Recipes-Keeper GA All rights reserved.</footer>
          
         </body>

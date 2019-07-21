@@ -5,12 +5,15 @@ class Form extends React.Component {
     console.log("new")
     return (
       <html>
+        <head>
+              <link rel="stylesheet" type="text/css" href="/style1.css"/>
+          </head>
         <body>
         <header>
             <h1> RECIPES-KEEPER</h1>
               <nav>
                 <ul>
-                  <li><a href="./">All recipes</a></li>
+                  <li><a href="/recipes/">All recipes</a></li>
                   <li><a href="#">Ingredients</a></li>
                   <li><a href="#">Search recipes</a></li>
                 </ul>
@@ -20,14 +23,14 @@ class Form extends React.Component {
             <h1>Create a new recipe!</h1>
             <form method="POST" action={'/recipes'}>
                 <p> Title</p>
-                <input name="title" />
+                <input name="title" autocomplete = "off" />
                 <p> Image</p>
                 <input name="img" />
                 
                 <p>Ingredients</p>
-                <input name="ingredient" />
-                <p>Instruction</p>
-                <input name="instruction" />
+                <input name="ingredient" autocomplete = "off" />
+                <p>Instructions</p>
+                <input name="instruction"  autocomplete = "off"/>
                
                 <input type="submit"/>
             </form>

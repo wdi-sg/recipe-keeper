@@ -9,12 +9,15 @@ class Edit extends React.Component {
     console.log(url);
     return (
       <html>
+        <head>
+            <link rel="stylesheet" type="text/css" href="/style1.css"/>
+        </head>
         <body>
         <header>
             <h1> RECIPES-KEEPER</h1>
               <nav>
                 <ul>
-                  <li><a href="./">All recipes</a></li>
+                  <li><a href="/recipes/">All recipes</a></li>
                   <li><a href="#">Ingredients</a></li>
                   <li><a href="#">Search recipes</a></li>
                 </ul>
