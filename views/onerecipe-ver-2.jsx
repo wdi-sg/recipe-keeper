@@ -23,10 +23,17 @@ class Onerecipe extends React.Component {
                 <div className="content-left col-5 card shadow p-3 mb-5 bg-white rounded">
                     <div className="sub-header">{this.props.recipeNameKey}</div>
                     <img className="card-img" src={this.props.recipeImgKey} />
+                    <p className="view-recipe"><a href={"/recipes/" + this.props.recipeIdKey + "/edit"}>Edit this recipe</a></p>
                 </div>
                 <div className="content-right col-7 card shadow p-3 mb-5 bg-white rounded">
                     <p className="one-recipe-title">Ingredients: </p>
                         <ul>{ingredList}</ul>
+                     <p className="one-recipe-title">Cooking Instructions: </p>
+                     <ul>
+                     <li>
+                     <a href={this.props.recipeData.source_url} target="_blank">{this.props.recipeData.source_url}</a>
+                     </li>
+                     </ul>
                 </div>
            </div>
           </div>
