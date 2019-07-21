@@ -1,6 +1,5 @@
 var React = require('react');
 var Allrecipepagelayout = require('./component/layout-allrecipepage.jsx')
-var Allrecipepagecomponent = require('./component/component-allrecipepage.jsx')
 
 //////////////////THE USER WILL SEE THIS RENDERED//////////////////
 class Home extends React.Component {

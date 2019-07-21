@@ -15,14 +15,20 @@ class Home extends React.Component {
     //sort current array and append to new list
     var sortedList = recipes.sort(nameSort("title"));
     //store sorted list into new array
+
     var displayRecipes = sortedList.map((obj,index)=>{
-      var char = obj.title.charAt(0).toUpperCase()
-      if (char != firstLetter){
-        firstLetter = char
-        return (<Allrecipepagecomponent index={index} title={obj.title} atf={obj.atf} splitter={char}/>)
-      }else {
-        return (<Allrecipepagecomponent index={index} title={obj.title} atf={obj.atf} splitter={emptyChar}/>)
-      }
+      var ingredientFound = obj.ingredients.map((object)=>{
+        if (object.ingredient === this.props.theingredient.name){
+          var char = obj.title.charAt(0).toUpperCase()
+          if (char != firstLetter){
+            firstLetter = char
+            return (<Allrecipepagecomponent index={index} title={obj.title} atf={obj.atf} splitter={char}/>)
+          }else {
+            return (<Allrecipepagecomponent index={index} title={obj.title} atf={obj.atf} splitter={emptyChar}/>)
+          }
+        }
+      })
+      return ingredientFound;
     })
     //rewrite existing array list with new list
     jsonfile.readFile(file,(err,obj)=>{
@@ -36,13 +42,7 @@ class Home extends React.Component {
     return (
       <Allrecipepagelayout>
         <div>
-          <form action="/recipes/new" method="get">
-            <button className="btn btn-secondary" value="" type="submit">Create new recipe</button>
-          </form>
-        </div>
-        <br/>
-        <div>
-          <p id="list-of-recipe-text">List of recipes</p>
+          <p id="list-of-recipe-text">List of recipes using {this.props.theingredient.name}</p>
         </div>
         <div id="recipe-box">
           <div id="recipes">{displayRecipes}</div>

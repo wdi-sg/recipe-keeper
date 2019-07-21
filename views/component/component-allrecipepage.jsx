@@ -4,7 +4,11 @@ class Allrecipepage extends React.Component {
 
   render() {
     //code logic goes here
-    var recipeIndex = "/recipes/"+this.props.index;
+    if (this.props.index >= 0){
+      var recipeIndex = "/recipes/"+this.props.index;
+    }else {
+      var recipeIndex = "/ingredients/"+this.props.title;
+    }
 
     return (
       <div id="recipe-item">

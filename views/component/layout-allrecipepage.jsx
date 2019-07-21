@@ -51,6 +51,9 @@ class Allrecipepage extends React.Component {
                   {allTimeFavorites}
                 </div>
               </li>
+              <li id="nav-list" class="nav-item">
+                <a class="nav-link" href="/ingredients">Check out your ingredients!<span class="sr-only">(current)</span></a>
+              </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="get" action="/search">
               <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search" list="recipes"/>

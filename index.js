@@ -108,6 +108,28 @@ app.get('/search', (req,res)=>{
     }
   });
 });
+//////////////////Show list of ingredients which are being used by recipes//////////////////
+app.get('/ingredients', (req,res)=>{
+  jsonfile.readFile(ingreFile,(err,obj)=>{
+    jsonfile.readFile(file,(err,object)=>{
+      var dataSet = {
+        ingredients: obj,
+        recipes: object["recipes"]
+      }
+      res.render('ingredientspage',dataSet)
+    })
+  })
+})
+//////////////////Show which recipe uses that ingredients//////////////////
+app.get('/ingredients/:name',(req,res)=>{
+  jsonfile.readFile(file,(err,obj)=>{
+    var dataSet = {
+      recipes: obj["recipes"],
+      theingredient: req.params
+    }
+    res.render('ingredientrecipepage',dataSet)
+  })
+})
 
 //////////////////Edit a single recipe//////////////////
 app.get('/recipes/:id/edit', (req,res)=>{

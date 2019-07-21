@@ -1,6 +1,5 @@
 var React = require('react');
 var Allrecipepagelayout = require('./component/layout-allrecipepage.jsx')
-var Allrecipepagecomponent = require('./component/component-allrecipepage.jsx')
 var ingredientList = require('../ingredient.json');
 
 
@@ -51,7 +50,6 @@ class Home extends React.Component {
             <button className="btn btn-secondary" value="" type="submit">Back to list</button>
           </form>
         </div>
-
       </Allrecipepagelayout>
     );
   }
