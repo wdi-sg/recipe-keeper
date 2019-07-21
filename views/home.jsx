@@ -9,6 +9,7 @@ class Home extends React.Component {
     return (
       <html lang="en">
         <head>
+            <link href="https://fonts.googleapis.com/css?family=Dosis|Work+Sans&display=swap" rel="stylesheet"/>
             <link rel="stylesheet" type="text/css" href="/style.css"/>
          
         </head>

@@ -6,6 +6,8 @@ class Form extends React.Component {
     return (
       <html>
         <head>
+              <link href="https://fonts.googleapis.com/css?family=Dosis|Work+Sans&display=swap" rel="stylesheet"/>
+
               <link rel="stylesheet" type="text/css" href="/style1.css"/>
           </head>
         <body>

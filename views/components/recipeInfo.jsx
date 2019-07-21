@@ -4,7 +4,9 @@ class RecipeInfo extends React.Component {
     
     return (
       <div className = "card">
-        <img src={this.props.display.img} />
+      	<div className = "wrapper">
+        	<img src={this.props.display.img} />
+        </div>
         <h3>{this.props.display.title}</h3>
 
       </div>   

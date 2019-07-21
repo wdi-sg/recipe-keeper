@@ -25,8 +25,7 @@ class Recipe extends React.Component {
     return (//this template is working now//
       <html lang="en">
         <head>
-          <link href="https://fonts.googleapis.com/css?family=Ewert|Lato:400i|Source+Sans+Pro&display=swap" rel="stylesheet" />
-
+          <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet"/>
             <link rel="stylesheet" type="text/css" href="/style1.css"/>
         
         </head>
@@ -44,7 +43,7 @@ class Recipe extends React.Component {
               </nav>
           </header>
 
-          <div>
+          <div className = "container">
             <div className = "top">
               <div className = "left">
                 <h2>{this.props.recipe.title}</h2>

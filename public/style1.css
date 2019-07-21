@@ -1,24 +1,29 @@
 body {
 	margin: 0 auto;
-	width: 80%;
-	background-color: #b3e9fc;
-	color: #424242;
+	width: 100%;
+	background-color: #2d3135;
+	font-family: 'Work Sans', sans-serif;
+	color: #bed1e4;
 }
 header {
 	background-color:#b3e5fc;
+	background-image: url(https://jeansimpson.com/wp-content/uploads/2018/03/Culinary-arts.jpg);
+	background-size: cover;
+	background-repeat: none;
+	background-position: right;
 	text-align: center;
 	box-shadow: 0px 0px 5px #9e9e9e;
 	padding-top: 20px;
-/*	margin-bottom: 20px;*/
 }
 header h1 {
-	font-family: 'Ewert', cursive;
+	font-family: 'Dosis', sans-serif;
 	text-align: center;
 	font-size: 50px;
 	margin-top: 40px;
+	border-radius: 10px;
 }
 .main {
-	/*box-shadow: 0px 0px 5px #9e9e9e;*/
+	box-shadow: 0px 0px 5px #9e9e9e;
 	padding: 20px;
 }
 nav {
@@ -26,23 +31,38 @@ nav {
 	display: table;
 	margin: auto;
 	height: 60px;
-	background-color:#b3e5df;
-	
+	background-color:#fffdf8c4;
 	border-radius: 3px;
 }
-a{
+a   {
 	text-decoration: none;
 	color: inherit;
+	font-family: 'Work Sans', sans-serif;
 	}
+
+a:hover {
+	color: darkcyan;
+}
 img {
 	width: 100%;
 	height:250px;
+	border-radius: 10px;
+	margin-bottom: 15px;
+}
+.container {
+	width: 80%;
+	margin: 0 auto;
 }
 
 
 
 .top {
 	display: flex;
+	padding: 20px;
+	justify-content: space-between;
+}
+.bottom {
+	padding: 20px;
 }
 .left, .right{
 	width: 47%;
@@ -61,6 +81,8 @@ img {
 }
 .right h2 {
 	padding-left: 55px;
+	margin-bottom: 40px;
+	margin-top: 40px;
 }
 ol li {
 	padding-left: 20px;
@@ -68,18 +90,13 @@ ol li {
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
-
-
-a:hover {
-	color: darkcyan;
-}
 footer {
 	margin: 0 auto;
 	text-align: center;
-	padding: 20px;
-	background-color:#b3e5fc;
+	padding:30px;
+	background-color:#33658A;
 	text-align: center;
-	box-shadow: 0px 0px 5px #9e9e9e;
+	box-shadow: 0px 0px 0px #9e9e9e;
 
 }
 ul li,  {
@@ -132,7 +149,7 @@ input {
 	margin: 10px ;
 	text-align: center;
 	border-radius: 5px;
-	background-color: #b3e5df;
+	background-color: 
 	border: 1px solid #b3e5df;
 	height: 33px;
 	width: 300px;
