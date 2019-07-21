@@ -6,23 +6,80 @@ class NewForm extends React.Component {
 
     return (
 
-        <form action="/recipes">
+        <form action="/recipes" method="POST">
             <fieldset>
                 <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                <label htmlFor="inputDishName">Name</label>
+                <input type="text" className="form-control" name="name" id="inputDishName" aria-describedby="nameHelp" placeholder="Name of your dish" required/>
+                <small id="nameHelp" className="form-text text-muted">What will you name your dish</small>
+                </div>
+
+                <label>Ingredient 01</label>
+                <div className="row form-group">
+
+                    <div className="col">
+                    <input type="text" name="ingredient[0][name]" className="form-control" id="ingName" placeholder="Name" required/>
+                    <small className="form-text text-muted">Name of Ingredient</small>
+                    </div>
+                    <div className="col">
+                        <input type="number" name="ingredient[0][amount]" min="1" className="form-control" id="ingredientAmnt" placeholder="Amount" required/>
+                        <small className="form-text text-muted">Amount needed for the ingredient</small>
+                    </div>
+                    <div className="col">
+                    <input type="text" name="ingredient[0][unit]" className="form-control" id="inputDishName" placeholder="Unit"/>
+                    <small className="form-text text-muted">Ingredients unit of measurement</small>
+                    </div>
+                </div>
+
+                <label>Ingredient 02</label>
+                <div className="row form-group">
+                    <div className="col">
+                    <input type="text" name="ingredient[1][name]" className="form-control" id="ingName" placeholder="Name" required/>
+                    <small className="form-text text-muted">Name of Ingredient</small>
+                    </div>
+                    <div className="col">
+                        <input type="number" name="ingredient[1][amount]" min="1" className="form-control" id="ingredientAmnt" placeholder="Amount" required/>
+                        <small className="form-text text-muted">Amount needed for the ingredient</small>
+                    </div>
+                    <div className="col">
+                    <input type="text" name="ingredient[1][unit]" className="form-control" id="inputDishName" placeholder="Unit"/>
+                    <small className="form-text text-muted">Ingredients unit of measurement</small>
+                    </div>
+                </div>
+
+                <label>Ingredient 03</label>
+                <div className="row form-group">
+                    <div className="col">
+                    <input type="text" name="ingredient[2][name]" className="form-control" id="ingName" placeholder="Name"/>
+                    <small className="form-text text-muted">Name of Ingredient</small>
+                    </div>
+                    <div className="col">
+                        <input type="number" name="ingredient[2][amount]" min="1" className="form-control" id="ingredientAmnt" placeholder="Amount"/>
+                        <small className="form-text text-muted">Amount needed for the ingredient</small>
+                    </div>
+                    <div className="col">
+                    <input type="text" name="ingredient[2][unit]" className="form-control" id="inputDishName" placeholder="Unit"/>
+                    <small className="form-text text-muted">Ingredients unit of measurement</small>
+                    </div>
+                </div>
+
+
+
+                <div className="form-group">
+                    <label htmlFor="cookingSteps">Simple instructions</label>
+                    <textarea name="step" className="form-control" id="cookingSteps" rows="4" placeholder="Keep it simple yeah" required></textarea>
                 </div>
 
                 <div className="form-group">
-                <label htmlFor="exampleTextarea">Example textarea</label>
-                <textarea className="form-control" id="exampleTextarea" rows="3"></textarea>
+                    <label htmlFor="dishImg">Image Link</label>
+                    <input name="image" type="url" pattern="https?://.+" title={"Include http://"} className="form-control" id="dishImg" placeholder="Include http://"/>
+                    <small className="form-text text-muted" required>Visual representation of your dish</small>
                 </div>
 
                 <div className="form-group">
-                <label htmlFor="exampleInputFile">File input</label>
-                <input type="file" className="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"/>
-                <small id="fileHelp" className="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                    <label htmlFor="dishDescription">Dish Description</label>
+                    <input name="description" type="text" maxLength="35" className="form-control" id="dishDescription" placeholder="Describe your dish in one sentence" required/>
+                    <small className="form-text text-muted">Short description coz nobody has time for your bullshit Martha.</small>
                 </div>
 
                 <button type="submit" className="btn btn-primary">Submit</button>

@@ -21,7 +21,7 @@ class Main extends React.Component {
             content = <NewForm/>;
         break;
         default:
-        text = "Looking forward to the Weekend";
+        text = "";
     }
 
 

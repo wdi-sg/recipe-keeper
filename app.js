@@ -47,7 +47,22 @@ function logDate(){
     var loggedDate = m + "/" + d + "/" + y;
     return loggedDate;
 };
-
+function stringToArray(string){
+    return stepArr = string.split(".");
+}
+function getId(string){
+    const id = string.replace(/ /gi,'-');
+    return id.toLowerCase();
+}
+function Recipe(userinput){
+    this.name = userinput.name;
+    this.description = userinput.description;
+    this.ingredient = userinput.ingredient;
+    this.image = userinput.image;
+    this.created = logDate();
+    this.step = stringToArray(userinput.step);
+    this.id = getId(userinput.name);
+}
 
 
 
@@ -57,6 +72,15 @@ function logDate(){
  * ===================================
  */
 
+
+
+
+
+
+
+
+
+
 app.get('/', (req, res) => {
     //res.redirect('/recipes');
     res.redirect(301, '/recipes/');
@@ -64,61 +88,83 @@ app.get('/', (req, res) => {
 
 app.get('/recipes/', (req, res) => {
     jsonfile.readFile(recipesData, (err, obj) => {
-        console.log("all them recipes");
-
-        // let recipeId = request.params.id;
-        const alldata = {
-            requestType : 1,
-            recipeList : obj.recipe
-        }
-        const oneData = {
-            requestType : 1,
-            recipe : obj.recipe[1]
-        }
-
-        res.render('home', alldata);
         if (err) console.error(err);
+        else{
+            console.log("all them recipes here");
+
+            const alldata = {
+                requestType : 1,
+                recipeList : obj.recipe
+            }
+            const oneData = {
+                requestType : 1,
+                recipe : obj.recipe[1]
+            }
+            res.render('home', alldata);
+        }
     });
 });
 
 app.get('/recipes/new', (req, res) => {
     jsonfile.readFile(recipesData, (err, obj) => {
-        console.log("all them recipes");
-
-        // let recipeId = request.params.id;
-        const alldata = {
-            requestType : 2,
-            recipeList : obj.recipe
-        }
-        const oneData = {
-            requestType : 2,
-            recipe : obj.recipe[1]
-        }
-
-        res.render('home', alldata);
         if (err) console.error(err);
+        else{
+            console.log("start writing");
+
+            const alldata = {
+                requestType : 2,
+                recipeList : obj.recipe
+            }
+
+            res.render('home', alldata);
+        }
     });
 });
-
 app.post('/recipes', (req, res) => {
-    res.render('home');
-});
+    jsonfile.readFile(recipesData, (err, obj) => {
+        if (err) console.error(err);
+        else{
+            console.log("all them new recipes here");
+            let userInput = req.body;
+            console.log(userInput);
+            const newRecipe = new Recipe(userInput)
+            console.log(newRecipe);
+            obj.recipe.push(newRecipe);
 
+            const alldata = {
+                requestType : 1,
+                recipeList : obj.recipe
+            }
+            const oneData = {
+                requestType : 1,
+                recipe : obj.recipe[1]
+            }
+            res.render('home', alldata);
+        }
+            jsonfile.writeFile(recipesData, obj, (err) => {
+                if (err) console.error(err);
+                 else console.log("new reciped confirmed");
+            });
+    });
+});
 app.get('/recipes/:id', (req, res) => {
     res.render('single');
 });
-
 app.get('/recipes/:id/edit', (req, res) => {
     res.render('edit');
 });
-
 app.put('/recipes/:id', (req, res) => {
     res.render('update');
 });
-
 app.delete('/recipes/:id', (req, res) => {
     res.render('delete');
 });
+
+
+
+
+
+
 
 /**
  * ===================================
