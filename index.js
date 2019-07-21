@@ -31,6 +31,26 @@ app.set('view engine', 'jsx');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+var updateNewRecipe = (request,response)=>{
+    // console.log("Inside update new recipe function");
+    // response.send("Inside update new recipe function");
+    var newRecipe = request.body;
+    var urlNew = "/recipe/"+newRecipe.id
+    jsonfile.readFile(file,(err,obj)=>{
+        // response.send(newRecipe);
+        obj.recipe.push(newRecipe);
+        // response.send(obj.recipe);
+        jsonfile.writeFile(file,obj,(err)=>{
+            if(err){
+                response.send("Error in updating new recipe");
+            }
+            else{
+                response.redirect(urlNew);
+            }
+        })
+    })
+}
+
 var newRecipe = (request,response)=>{
     // console.log("Inside the new recipe function");
     // response.send("Inside the new recipe function");
@@ -147,7 +167,7 @@ var showAllRecipe = (request,response)=>{
         var data = {
             recipe : obj.recipe
         };
-        console.log(data);
+        // console.log(data);
         // console.log(obj.recipe);
         response.render("recipe",data);
     });
@@ -156,6 +176,7 @@ var showAllRecipe = (request,response)=>{
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////routes//////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.post('/recipe',updateNewRecipe);
 app.get('/recipe/new',newRecipe);
 app.delete('/recipe/:id',updateDeleteRecipe);
 app.get('/recipe/:id/delete',deleteRecipe);
@@ -175,4 +196,4 @@ app.get('/', (req, res) => {
  * Listen to requests on port 3000
  * ===================================
  */
-app.listen(3002, () => console.log('~~~ Tuning in to the waves of port 8080 ~~~'));
+app.listen(3002, () => console.log('~~~ Tuning in to the waves of port 3002 ~~~'));

@@ -1,16 +1,18 @@
 {
   "recipe": [
     {
-      "id": 1,
-      "name": "boiled lamb",
-      "ingredients": "1 duck, water",
-      "instructions": "NOOOOOO!"
+      "id": "1",
+      "name": "Beef Rendang",
+      "img": "https://rasamalaysia.com/wp-content/uploads/2018/04/beef-rendang-thumb.jpg",
+      "ingredients": "500 grams of meat (beef), 4 cups of coconut milk, 2 tbsp Gula Melaka,  Salt to taste, 8 shallots, 2 cloves of garlic, 1 inch of ginger, 1 inch of galangal, 1 inch of fresh turmeric, 3 stalks of lemongrass, 5 chillies sliced, 3 pieces of candlenut, 3 tbsp water",
+      "instructions": "1. Make the kerisik. Toast the 1 cup of grated coconut on a hot pan without oil. Stir constantly to avoid burning.   2. Once browned and crispy, place in a mortar and pestle and pound. Do not use a blender as it will not turn the toasted coconut shavings into powder. Set aside.  3. Make the rempah (spice paste). Toss all the ingredients into the blender and blend until pureed. Add water 1 tablespoon at a time if the ingredients do not combine.  4. Heat ghee in the pot and add cinnamon, cloves, cardamom, cumin and coriander.   5. Add the spice paste and two tablespoons of kerisik. Let it simmer for 15 minutes. Once cooked, add in the chunks of meet and mix well.  6. Add the coconut milk followed by kaffir lime leaves, turmeric leaves, gula melaka and salt. Cover partially and let it simmer over low heat for an hour.  7. If it’s still wet at this point, you have kailo. It’s ready to serve as it is, but keep going if you want true rendang. This process can take anywhere from 30 mins to an hour more depending on how long it takes for the meat to soften.  8. If you find that the rendang is getting too dry but the meat is still tough, add water and let it simmer until it dries down again.   9. Rendang is done when the beef has softened considerably, the gravy is dry and a deep brown in colour."
     },
     {
-      "id": 2,
-      "name": "boiled pork",
-      "ingredients": "1 chicken, water",
-      "instructions": "boil chicken in water for 40 minutes. Take it out and serve"
+      "id": "2",
+      "name": "Ayam Lemak Chilli Padi",
+      "img": "https://i.pinimg.com/736x/a6/9a/6c/a69a6c01aa7506d0c9419e8efd333d4e.jpg",
+      "ingredients": "Approximately half a chicken cut into bite size, washed and drained, 10 fire chillies and a few more for garnishing, 2 cloves of garlic, 4 shallots, 1 inch fresh turmeric, 2 stalks lemon grass, bruised, 1 slice of dried tamarind, 1 box of 200ml coconut milk (fresh is fine too), 2 tbsp of cooking oil, 1 cup water,  Salt, sugar, and fish sauce to taste",
+      "instructions": "Have all your ingredients portioned out and ready. Blend or pound all your aromatics (garlic, chilies, onions, tumeric) with the chili. Heat the pan over medium heat. Here you can choose to precook the chicken in the hot pan, to rid the chicken of any access water. I was lazy so I did not. Add the oil into the pan and fry your aromatics including the bruised lemongrass until fragrant. Add your chicken and mix well. Add water and bring to the boil. Add tamarind slice and let it simmer for about 10 minutes or until the chicken pieces are thoroughly cooked. Add salt to taste, a dash of fish sauce(optional) and balance out the sourness from the tamarind with some sugar."
     }
   ]
 }
