@@ -26,12 +26,26 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
 
-
+//Create a new recipe
 app.get('/recipes/new', (request, response) =>{
     console.log("getting form");
-    response.render('form');
+    jsonfile.readFile(file, (err, dataObj)=>{
+
+        if( err ){
+            console.log("error!", err );
+        }else{
+
+            const data = {
+              recipesList : dataObj.recipes
+            };
+
+            response.render('form', data);
+        }
+    });
+    //response.render('form');
 });
 
+//write new recipe into data.json
 app.post('/recipes', (request,response) => {
 
     console.log("YAY WOW");
@@ -65,13 +79,12 @@ app.post('/recipes', (request,response) => {
     });
 });
 
-
+//Create a list of recipes
 app.get('/recipes', (request, response) =>{
     jsonfile.readFile(file, (err, dataObj)=>{
 
         if( err ){
             console.log("error!", err );
-
         }else{
 
             const data = {
