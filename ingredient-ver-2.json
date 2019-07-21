@@ -120,25 +120,25 @@
       "id": 5,
       "name": "Shrimp Grits & Poach Eggs",
       "ingredients": [
-      "1 cup yellow grits (not instant)",
-      "1 cup grated sharp white cheddar",
-      "1 tablespoon unsalted butter",
-      "1 jalapeño, seeded, diced",
-      "1/4 cup heavy cream",
-      "Kosher salt, freshly ground pepper",
-      "1/2 cup 1/3\" cubes tasso, andouille sausage, or bacon",
-      "1 tablespoon vegetable oil (optional)",
-      "3 garlic cloves, sliced",
-      "2 tablespoons (1/4 stick) butter, divided",
-      "16 large shrimp (about 1 pound), peeled, deveined",
-      "1/4 cup (or more) beer",
-      "1/4 cup low-salt chicken stock",
-      "4 large eggs",
-      "1 tablespoon chopped fresh tarragon"
-    ],
-    "source_url": "http://www.bonappetit.com/recipes/2011/09/shrimp-and-grits",
-    "recipe_id": "49639",
-    "image_url": "http://static.food2fork.com/breakfastshrimpgrits6465821.jpg"
+        "1 cup yellow grits (not instant)",
+        "1 cup grated sharp white cheddar",
+        "1 tablespoon unsalted butter",
+        "1 jalapeño, seeded, diced",
+        "1/4 cup heavy cream",
+        "Kosher salt, freshly ground pepper",
+        "1/2 cup 1/3\" cubes tasso, andouille sausage, or bacon",
+        "1 tablespoon vegetable oil (optional)",
+        "3 garlic cloves, sliced",
+        "2 tablespoons (1/4 stick) butter, divided",
+        "16 large shrimp (about 1 pound), peeled, deveined",
+        "1/4 cup (or more) beer",
+        "1/4 cup low-salt chicken stock",
+        "4 large eggs",
+        "1 tablespoon chopped fresh tarragon"
+      ],
+      "source_url": "http://www.bonappetit.com/recipes/2011/09/shrimp-and-grits",
+      "recipe_id": "49639",
+      "image_url": "http://static.food2fork.com/breakfastshrimpgrits6465821.jpg"
     },
     {
       "id": 6,
@@ -361,6 +361,23 @@
       ],
       "source_url": "http://www.simplyrecipes.com/recipes/shrimp_fried_rice/",
       "recipe_id": "36928",
+      "image_url": "http://static.food2fork.com/jadenshrimpfriedrice300x200f9ec6736.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Happy Fried Rice",
+      "ingredients": [
+        "8 ounces small raw shrimp, shelled and deveined",
+        "1/2 teaspoon kosher salt",
+        "freshly ground black pepper",
+        "2 tablespoons cooking oil, divided",
+        "3 eggs, beaten",
+        "2 stalks green onion, minced",
+        "4 cups leftover rice, grains separated well",
+        "3/4 cup frozen peas and carrots, defrosted"
+      ],
+      "source_url": "http://www.simplyrecipes.com/recipes/shrimp_fried_rice/happy_happy",
+      "recipe_id": "36928-55555",
       "image_url": "http://static.food2fork.com/jadenshrimpfriedrice300x200f9ec6736.jpg"
     }
   ]
