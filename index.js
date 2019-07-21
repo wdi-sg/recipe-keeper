@@ -96,7 +96,7 @@ app.get('/recipes/new', (request, response) => {
 app.post('/recipes', (request,response) => {
 
     let recipe = request.body;
-    console.log(recipe);
+    request.body.id = parseInt(request.body.id);
 
     jsonfile.readFile(file, (err, obj) => {
         if( err ){
@@ -125,6 +125,94 @@ app.post('/recipes', (request,response) => {
   });
 });
 
+app.get('/recipes/:id', (request, response) => {
+
+    jsonfile.readFile(file, (err, obj) => {
+
+        let inputId = parseInt( request.params.id );
+
+        let recipe;
+
+        for( let i=0; i<obj.recipes.length; i++ ){
+
+            let currentRecipe = obj.recipes[i];
+
+            if( currentRecipe.id === inputId ){
+                recipe = currentRecipe;
+            }
+        }
+
+        if (recipe === undefined) {
+
+            response.status(404);
+            response.send("Sorry! Recipe doesn not exist");
+        }
+        else {
+
+            response.render('singlePage', recipe);
+        }
+    });
+});
+
+app.get('/recipes/:id/edit',(request, response)=>{
+
+    jsonfile.readFile(file, (err,obj) => {
+
+        let recipeIndex = request.params.id - 1;
+        const recipe = obj.recipes[recipeIndex]
+
+        const data = {
+            index: recipeIndex,
+            recipeData : recipe
+        }
+
+        if (err){
+          console.log("error reading file");
+          console.log(err)
+        }
+        else {
+            response.render('editform', data)
+        }
+
+    });
+
+});
+
+app.put('/recipes/:id', (request, response) =>{
+
+    console.log(request.params)
+
+    jsonfile.readFile(file, (err,obj) => {
+
+
+        let recipeIndex = request.params.id;
+        console.log(recipeIndex)
+
+        let updatedObj = obj;
+        console.log(updatedObj)
+
+        updatedObj.recipes[recipeIndex] = request.body;
+        console.log(request.body)
+        updatedObj.recipes[recipeIndex].id = parseInt(updatedObj.recipes[recipeIndex].id);
+
+        if (err){
+          console.log("error reading file");
+          console.log(err)
+        }
+
+        else {
+
+            jsonfile.writeFile(file, updatedObj, (err) => {
+                if (err) {
+                    console.log('error reading file')
+                    console.log(err)
+                } else {
+                    response.redirect('/recipes');
+                }
+            })
+        }
+    });
+});
 
 
 
