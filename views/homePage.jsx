@@ -1,4 +1,5 @@
 var React = require('react');
+var Layout = require('./components/layout.jsx');
 
 class Home extends React.Component {
   render() {
@@ -17,12 +18,8 @@ class Home extends React.Component {
 
 
     return(
-        <html>
-            <head>
-            <link rel="stylesheet" type="text/css" href="/style.css"/>
-            </head>
-            <body>
-                <h1>Home: Sort Recipes</h1>
+        <Layout>
+            <div className = "container">
                 <form method = "GET" action="/recipes">
                     <select name ="sortby">
                         <option value = "id">Sort by Id</option>
@@ -33,8 +30,8 @@ class Home extends React.Component {
                 <div className = "recipeContainer">
                     {recipeCards}
                 </div>
-            </body>
-        </html>
+            </div>
+        </Layout>
     )
   }
 }

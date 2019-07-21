@@ -1,37 +1,33 @@
 var React = require('react');
+var Layout = require('./components/layout.jsx');
 
 class Create extends React.Component {
   render() {
     return(
-        <html>
-            <head>
-            <link rel="stylesheet" type="text/css" href="/style.css"/>
-            </head>
-            <body>
-                <h1>Create a new Recipe!</h1>
-                <form action ="/recipes" method ="POST">
-                    <h2>ID</h2>
-                    <input type="number" name="id" defaultValue="ID"/>
+        <Layout>
+            <h1>Create a new Recipe!</h1>
+            <form action ="/recipes" method ="POST">
+                <h2>ID</h2>
+                <input type="number" name="id" defaultValue="ID"/>
 
-                    <h2>Name</h2>
-                    <input type="text" name="name" defaultValue="Name"/>
+                <h2>Name</h2>
+                <input type="text" name="name" defaultValue="Name"/>
 
-                    <h2>Ingredients</h2>
-                    <input type="text" name="ingredients" defaultValue="Ingredients"/>
+                <h2>Ingredients</h2>
+                <input type="text" name="ingredients" defaultValue="Ingredients"/>
 
-                    <h2>Quantity</h2>
-                    <input type="text" name="Qty" defaultValue="Quantity"/>
+                <h2>Quantity</h2>
+                <input type="text" name="Qty" defaultValue="Quantity"/>
 
-                    <h2>Img Src</h2>
-                    <input type="text" name="img" defaultValue="Img Src"/>
+                <h2>Img Src</h2>
+                <input type="text" name="img" defaultValue="Img Src"/>
 
-                    <h2>Instruction</h2>
-                    <input type="text" name="Instruction" defaultValue="Instruction"/>
-                    <br/><br/>
-                    <input type="submit"/>
-                </form>
-            </body>
-        </html>
+                <h2>Instruction</h2>
+                <input type="text" name="Instruction" defaultValue="Instruction"/>
+                <br/><br/>
+                <input type="submit"/>
+            </form>
+        </Layout>
     )
   }
 }
