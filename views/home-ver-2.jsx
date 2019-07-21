@@ -20,7 +20,9 @@ class Home extends React.Component {
         </head>
         <body>
             <div className="main-wrapper">
-                <div className="header"><h1>Hello! Welcome to Home Cook Book!</h1></div>
+                <div className="header">
+                    <h1 className="display-1">Shrimpy World</h1>
+                </div>
                     {recipeList}
             </div>
         </body>
