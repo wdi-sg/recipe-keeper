@@ -16,6 +16,10 @@ div {
   align-items: center;
 }
 
+.hidden {
+	display: none;
+}
+
 
 h1 {
 	margin-top: 10%;

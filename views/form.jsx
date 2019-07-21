@@ -13,7 +13,7 @@ class Form extends React.Component {
           <div>
             <h1>Enter Details of New Recipe</h1>
             <form method="POST" action="/recipes">
-                <div class="form-group">
+                <div class="form-group hidden">
                     <label for="inputID">ID</label>
                     <input type="number" name="id" class="form-control" id="inputID"  defaultValue={this.props.arrayLength} />
                 </div>
@@ -24,8 +24,13 @@ class Form extends React.Component {
                 </div>
 
                 <div class="form-group">
+                    <label for="inputDescription">Description</label>
+                    <input type="text" name="description" class="form-control" id="inputDescription" />
+                </div>
+
+                <div class="form-group">
                     <label for="inputIngredients">Ingredients</label>
-                    <input type="text" name="ingredients" class="form-control" id="inputIngredients" />
+                    <textarea class="form-control" name="ingredients" id="inputIngredients" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
