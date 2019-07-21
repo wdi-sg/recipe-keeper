@@ -33,10 +33,10 @@ class Layout extends React.Component {
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="cookbook/new">Add a recipe</a>
+          <a class="dropdown-item" href={"/cookbook/new"}>Add a recipe</a>
           <a class="dropdown-item" href="#">Edit a recipe</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Delete a recipe</a>
+          <a class="dropdown-item">Delete a recipe</a>
         </div>
       </li>
 

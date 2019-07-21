@@ -9,23 +9,23 @@ class editForm extends React.Component {
         <html>
         <body>
           <div>
-            <h1>Enter Details of New Pokemon</h1>
-            <form method="POST" action={"/pokemon/" + this.props.index + "?_method=PUT"} >
-                <p>Pokemon ID</p>
-                <input name="id"  defaultValue={this.props.id}/>
-                <p>Pokemon Number</p>
-                <input name="num" defaultValue={this.props.num}/>
-                <p>Pokemon Name</p>
-                <input name="name" defaultValue={this.props.name}/>
+            <h1>Edit a Recipe</h1>
+            <div class="formlist">
+            <form method="POST" action={"/cookbook/" + this.props.index + "?_method=PUT"} >
+                <p>Name of dish</p>
+                <input name="title" defaultValue={this.props.title}/>
+                 <p>Dish ID</p>
+                <input name="id" defaultValue={this.props.id}/>
                 <p>Image URL</p>
-                <input name="imgURL" defaultValue={this.props.img}/>
-                <p>Height (m)</p>
-                <input name="height" defaultValue={this.props.height}/>
-                <p>Weight (kg)</p>
-                <input name="weight" defaultValue={this.props.weight}/>
+                <input name="img" defaultValue={this.props.img}/>
+                <p>Ingredients</p>
+                <input name="ingredients"  id="space" defaultValue={this.props.ingredients}/>
+                <p>Instructions</p>
+                <input name="instructions"  id="space" defaultValue={this.props.instructions}/>
                 <br /> <br />
-                <input type="submit"/>
+                <input type="submit" value="Edit" id="sub"/>
             </form>
+            </div>
           </div>
         </body>
         </html>

@@ -10,11 +10,10 @@ class Form extends React.Component {
             <div>
         <html>
         <head>
-
         </head>
         <body>
           <div>
-            <h1 class= "enter">Enter a new recipe</h1>
+            <h1 class= "enter">Add a new recipe</h1>
             <div class="formlist">
             <form method="POST" action="/cookbook">
                 <p>Name of dish</p>

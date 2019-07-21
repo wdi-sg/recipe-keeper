@@ -35,34 +35,24 @@ app.get('/cookbook/new', (request, response) => {
 // /////////form to edit pokemon details, need to read jsonfile first///////////
 app.get('/cookbook/:id/edit', (request, response) => {
     // console.log(request.params.id);
-    response.send("yayy")
-
-    // jsonfile.readFile(file, (err, obj) => {
-    //     if( err ){
-    //         console.log("it didnt work");
-    //     } else {
-    //         // minus 1 cos user wouldnt know array starts from 0
-    //         //save the number as a variable
-    //         let pokemonIndex = parseInt(request.params.id -1)
-    //         // console.log(pokemonIndex);
-    //         // access the object pokedex using the variable saved earlir on
-    //         let data = obj.pokemon[pokemonIndex];
-    //         console.log(data);
-    //         // access the edit form and put in the object info as an arguement
-    //         //data MUST BE AN OBJECT
-    //         response.render('editForm.jsx', data);
-    //     }
-    // });
+    // response.send("yayy")
+    jsonfile.readFile(file, (err, obj) => {
+        if( err ){
+            console.log("it didnt work");
+        } else {
+            let index = parseInt(request.params.id -1)
+            let data = obj.recipes[index];
+            console.log(data);
+            response.render('editForm.jsx', data);
+        }
+    });
 });
 
-/////////a put request to edit the info of the pokedex/////
-app.put("/pokemon/:id", (request, response) => {
+/////////a put request to edit the info of the recipe/////
+app.put("/cookbook/:id", (request, response) => {
     console.log("PUT works!");
     console.log(request.body);
-    response.send(`<html>Details Edited!</html>`);
-    // readjson file and add json file into the it
-
-    let newPokemon = request.body;
+    let newRecipe = request.body;
         //read file
     jsonfile.readFile(file, (err, obj) => {
         if( err ){
@@ -70,10 +60,10 @@ app.put("/pokemon/:id", (request, response) => {
           console.log(err)
         }else{
             //var edited pokeindex is the current id number
-            let editedPokeIndex = parseInt(newPokemon.id -1);
-            console.log(editedPokeIndex);
+            let editedIndex = parseInt(newRecipe.id -1);
+            console.log(editedIndex);
             // replace/ assign the current array object with new object
-            obj.pokemon[editedPokeIndex] = newPokemon;
+            obj.recipes[editedIndex] = newRecipe;
             // write the new obj into pokedex.json
             jsonfile.writeFile(file, obj, (err) => {
                 if( err ) {
@@ -81,10 +71,41 @@ app.put("/pokemon/:id", (request, response) => {
                     console.log(err)
                     response.status(503).send("no!");
                 } else {
+                     response.redirect('/cookbook');
                 }
             });
         };
     });
+});
+
+/////////a delete request to edit the info of the recipe/////
+app.delete("/cookbook/:id", (request, response) => {
+    response.send("delete works!");
+    // console.log(request.body);
+    // let newRecipe = request.body;
+    //     //read file
+    // jsonfile.readFile(file, (err, obj) => {
+    //     if( err ){
+    //       console.log("error reading file");
+    //       console.log(err)
+    //     }else{
+    //         //var edited pokeindex is the current id number
+    //         let editedIndex = parseInt(newRecipe.id -1);
+    //         console.log(editedIndex);
+    //         // replace/ assign the current array object with new object
+    //         obj.recipes[editedIndex] = newRecipe;
+    //         // write the new obj into pokedex.json
+    //         jsonfile.writeFile(file, obj, (err) => {
+    //             if( err ) {
+    //                 console.log("error writing file");
+    //                 console.log(err)
+    //                 response.status(503).send("no!");
+    //             } else {
+    //                  response.redirect('/cookbook');
+    //             }
+    //         });
+    //     };
+    // });
 });
 
 
