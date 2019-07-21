@@ -12,6 +12,7 @@ class indexPage extends React.Component {
                   <h5 className="card-title">{element.title}</h5>
                   <p className="card-text">{element.description}</p>
                   <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                  <a href={"/recipes/"+element.id} class="btn btn-primary">View Recipe</a>
                 </div>
             </div>
         );

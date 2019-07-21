@@ -207,7 +207,7 @@ app.put('/recipes/:id', (request, response) =>{
                     console.log('error reading file')
                     console.log(err)
                 } else {
-                    response.redirect('/recipes');
+                    response.redirect('/recipes/' + parseInt(updatedObj.recipes[recipeIndex].id));
                 }
             })
         }

@@ -20,6 +20,7 @@ class singlePage extends React.Component {
                   <p>{this.props.ingredients}</p>
                   <h5 class="mt-0 mb-1">Instructions</h5>
                   <p>{this.props.instructions}</p>
+                  <a href={"/recipes/"+this.props.id+"/edit"}>Edit Recipe</a>
                 </div>
                 <img class="ml-3" src={this.props.img} alt="Generic placeholder image" />
               </div>
