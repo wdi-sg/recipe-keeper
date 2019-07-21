@@ -12,7 +12,7 @@ const reactEngine = require('express-react-views').createEngine();
 app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
-app.use(express.static(__dirname + '/public/'));
+app.use(express.static(__dirname+'/public/'));
 
 app.get('/', (req, res) => {
     res.redirect('/recipes');
@@ -52,8 +52,12 @@ app.post('/recipes', (req, res) => {
 })
 
 app.get('/recipes/:id', (req, res) => {
-    let id = req.params.id;
-    jsonfile.readFile(file, (err, obj) => {
+    let id = parseInt(req.params.id);
+
+    if(isNaN(id)){
+        res.send("bad input")
+    }else{
+        jsonfile.readFile(file, (err, obj) => {
         let data = {
             title: obj.recipe[id - 1].title,
             item: obj.recipe[id - 1]
@@ -61,26 +65,34 @@ app.get('/recipes/:id', (req, res) => {
         res.render('individual', data)
 
 
-    });
+        });
+    }
+
 
 })
 
 app.get('/recipes/:id/edit', (req, res) => {
-    let id = req.params.id;
-    jsonfile.readFile(file, (err, obj) => {
-        let data = {
-            title: obj.recipe[id - 1].title,
-            item: obj.recipe[id - 1],
-            id: id
-        }
-        res.render('edit', data)
+
+    let id = parseInt(req.params.id);
+    if(isNaN(id)){
+        res.send("bad input")
+    }else{
+        jsonfile.readFile(file, (err, obj) => {
+            let data = {
+                title: obj.recipe[id - 1].title,
+                item: obj.recipe[id - 1],
+                id: id
+            }
+            res.render('edit', data)
 
 
-    });
+        });
+    }
 })
 
 app.put('/recipes/:id', (req, res) => {
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
+
     jsonfile.readFile(file, (err, obj) => {
         req.body.utensils = req.body.utensils.split(",");
         req.body.seasonings = req.body.seasonings.split(",");
@@ -96,21 +108,26 @@ app.put('/recipes/:id', (req, res) => {
 })
 
 app.get('/recipes/:id/delete',(req,res)=>{
-    let id=req.params.id;
-    jsonfile.readFile(file, (err, obj) => {
-        let data = {
-            title: obj.recipe[id - 1].title,
-            item: obj.recipe[id - 1],
-            id:id
-        }
-        res.render('delete', data);
+
+    let id = parseInt(req.params.id);
+    if(isNaN(id)){
+        res.send("bad input")
+    }else{
+        jsonfile.readFile(file, (err, obj) => {
+            let data = {
+                title: obj.recipe[id - 1].title,
+                item: obj.recipe[id - 1],
+                id:id
+            }
+            res.render('delete', data);
 
 
-    });
+        });
+    }
 })
 
 app.delete('/recipes/:id',(req,res)=>{
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
     jsonfile.readFile(file, (err, obj) => {
 
         obj.recipe.splice(id-1,1);

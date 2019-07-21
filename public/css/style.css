@@ -1,0 +1,48 @@
+body{
+    background-image: url("/images/header.png")
+}
+
+.main-container{
+    display:flex;
+}
+
+.side-bar{
+    border:1px solid black;
+    width:200px;
+    min-height:600px;
+}
+
+.main-content{
+    padding:25px;
+}
+
+footer{
+    background-color: #26258d;
+    padding-top:30px;
+}
+
+#footer-image{
+    display:block;
+    margin:0 auto;
+}
+
+footer p{
+    text-align:center;
+    color:white;
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size:30px;
+    margin-bottom:0;
+}
+
+.nav-bg{
+    background-color: #26258d;
+
+}
+
+.nav-bg a{
+    color:white;
+    font-weight:bold;
+}
+
+
