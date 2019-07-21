@@ -59,17 +59,15 @@ p {
 }
 
 
-.name {
+.title {
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: 400;
 }
 
-
-
-img {
-/*	box-sizing: content-box;*/
-}
+/*.image {
+	max-width: 100%;
+}*/
 
 input {
 	font-family: 'Muli', sans-serif;
@@ -134,7 +132,7 @@ input {
 	margin: 10px 20px;
 }
 
-.one-recipe-name {
+.one-recipe-title {
 	font-size: 2.5em;
 	font-weight: 300;
 	padding: 10px;
