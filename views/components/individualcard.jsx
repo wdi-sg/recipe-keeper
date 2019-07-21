@@ -7,13 +7,14 @@ class Card extends React.Component {
 
     console.log("\nCard component Added")
 
+    const id = this.props.data.id
     const name = this.props.data.name
     const url = this.props.data.image
     const description = this.props.data.description
     const date = this.props.data.created
 
-    const editUrl = "/recipes/"+this.props.data.name+"/edit"
-    const deletetUrl = "/recipes/"+name+"/delete"
+    const editUrl = "/recipes/"+id+"/edit"
+    const deletetUrl = "/recipes/"+id
 
     let ingredList = this.props.data.ingredient.map(item=>{
         let i = Object.values(item);

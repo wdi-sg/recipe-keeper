@@ -127,18 +127,14 @@ app.post('/recipes', (req, res) => {
 
             const alldata = {
                 requestType : 1,
-                recipeList : obj.recipe
-            }
-            const oneData = {
-                requestType : 1,
-                recipe : obj.recipe[1]
+                data : obj.recipe
             }
             res.render('home', alldata);
         }
-            jsonfile.writeFile(recipesData, obj, (err) => {
-                if (err) console.error(err);
-                 else console.log("new reciped confirmed");
-            });
+        jsonfile.writeFile(recipesData, obj, (err) => {
+            if (err) console.error(err);
+            else console.log("new recipe confirmed");
+        });
     });
 });
 app.get('/recipes/:id', (req, res) => {
@@ -148,6 +144,7 @@ app.get('/recipes/:id', (req, res) => {
             console.log("this one recipe here");
             let idRequest = req.params.id
             recipeMatch = obj.recipe.find(recipe => recipe.id === idRequest);
+            console.log(recipeMatch)
 
             const oneData = {
                 requestType : 2,
@@ -164,14 +161,22 @@ app.put('/recipes/:id', (req, res) => {
     res.render('update');
 });
 app.delete('/recipes/:id', (req, res) => {
-    res.render('delete');
+    jsonfile.readFile(recipesData, (err, obj) => {
+        if (err) console.error(err);
+        else{
+            console.log("this one recipe gon be deleted");
+            let idRequest = req.params.id
+            recipeIndex = obj.recipe.findIndex(recipe => parseInt(recipe.id)  === idRequest);
+            console.log(obj.recipe[recipeIndex])
+
+            res.render('home', oneData);
+        }
+        jsonfile.writeFile(recipesData, obj, (err) => {
+            if (err) console.error(err);
+            else console.log("deleted that recipe");
+        });
+    });
 });
-
-
-
-
-
-
 
 /**
  * ===================================

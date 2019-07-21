@@ -5,15 +5,11 @@ class Footer extends React.Component {
     console.log("<Footer> component Added")
     return (
         <div className="col">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="footer-copyright text-center py-3">© 2019 Copyright:
-
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="footer-copyright text-center py-3">© 2019 Copyright:
+                </div>
+            </nav>
         </div>
-
-        </nav>
-
-        </div>
-
      );
 }
 }

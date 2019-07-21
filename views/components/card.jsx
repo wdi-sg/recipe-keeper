@@ -7,11 +7,12 @@ class Card extends React.Component {
 
     console.log("\nCard component Added")
 
+    const id = this.props.data.id
     const name = this.props.data.name
     const url = this.props.data.image
     const description = this.props.data.description
     const date = this.props.data.created
-    const individUrl ="/recipes/"+this.props.data.id
+    const individUrl ="/recipes/"+id
 
     return (
         <div className="col-md-4">
