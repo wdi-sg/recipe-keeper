@@ -36,7 +36,7 @@ app.get('/', (request, response) =>{
 app.get('/recipes/', (request, response) =>{
     jsonfile.readFile(FILE, (err,obj) => {
         let recipe = obj.recipes;
-        console.log(recipe);
+        // console.log(recipe);
         let data = {
             recipesKey : recipe
         };

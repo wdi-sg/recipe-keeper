@@ -23,6 +23,86 @@
       "title": "boiled mushroom",
       "ingredients" : "3 mushrooms, chicken soup",
       "instructions": "boil mushrooms in soup for 10 minutes. take it out. serve."
+    },
+    {
+      "id": 4,
+      "num": "004",
+      "img": "https://www.thespruceeats.com/thmb/YyyMF4DhOpY8Vx750FPBvxBDLIc=/4288x2848/filters:fill(auto,1)/sauteed-broccoli-482862-Hero-5b96d87146e0fb0050721d12.jpg",
+      "title": "boiled broccoli",
+      "ingredients" : "1 broccoli, salt water",
+      "instructions": "boil broccoli in water for 50 minutes. take it out. serve."
+    },
+    {
+      "id": 5,
+      "num": "005",
+      "img": "https://www.wikihow.com/images/thumb/e/e5/Boil-Corned-Beef-Step-8-Version-3.jpg/aid630225-v4-728px-Boil-Corned-Beef-Step-8-Version-3.jpg",
+      "title": "boiled beef",
+      "ingredients" : "3 beef, beef soup",
+      "instructions": "boil beef in soup for 10 minutes. take it out. serve."
+    },
+    {
+      "id": 5,
+      "num": "005",
+      "img": "https://img.sndimg.com/food/image/upload/c_thumb,q_80,w_412,h_232/v1/img/recipes/33/99/47/picRJlWaC.jpg",
+      "title": "boiled onions",
+      "ingredients" : "1 onion, salt water",
+      "instructions": "boil onion in water for 50 minutes. take it out. serve."
+    },
+    {
+      "id": 6,
+      "num": "006",
+      "img": "https://www.strongertogether.coop/sites/default/files/styles/article_node/public/wp-content/uploads/2015/04/Radishes2_0.jpg?itok=33SXoOsp",
+      "title": "boiled radish",
+      "ingredients" : "3 radishes, chicken soup",
+      "instructions": "boil radishes in soup for 10 minutes. take it out. serve."
+    },
+    {
+      "id": 7,
+      "num": "007",
+      "img": "https://5.imimg.com/data5/VQ/OP/MY-5446602/chicken-nuggets-500x500.jpg",
+      "title": "boiled nuggets",
+      "ingredients" : "1 nugget, salt water",
+      "instructions": "boil nugget in water for 50 minutes. take it out. serve."
+    },
+    {
+      "id": 8,
+      "num": "008",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Jellyfish_sesame_oil_and_chili_sauce.jpg/220px-Jellyfish_sesame_oil_and_chili_sauce.jpg",
+      "title": "boiled jellyfish",
+      "ingredients" : "3 jellyfishes, chicken soup",
+      "instructions": "boil jellyfishes in soup for 10 minutes. take it out. serve."
+    },
+    {
+      "id": 9,
+      "num": "009",
+      "img": "https://images.eatthismuch.com/site_media/img/254529_hopscotch_queen_8ee616b5-5415-46d9-8740-55be1b2d811f.png",
+      "title": "boiled protein shakes",
+      "ingredients" : "1 protein shake, salt water",
+      "instructions": "boil protein shake in water for 50 minutes. take it out. serve."
+    },
+    {
+      "id": 10,
+      "num": "010",
+      "img": "https://cdn.shopify.com/s/files/1/0150/0232/products/Pearl_Valley_Swiss_Slices_36762caf-0757-45d2-91f0-424bcacc9892_grande.jpg?v=1534871055",
+      "title": "boiled cheese",
+      "ingredients" : "3 boxes of cheese, chicken soup",
+      "instructions": "boil the cheese in soup for 10 minutes. take it out. serve."
+    },
+    {
+      "id": 11,
+      "num": "011",
+      "img": "https://media.wired.com/photos/5c7082419d5bf17d94aac203/master/pass/Topo-Athletic-Ultraventure_2.jpg",
+      "title": "boiled shoes",
+      "ingredients" : "1 shoe, salt water",
+      "instructions": "boil shoe in water for 50 minutes. take it out. serve."
+    },
+    {
+      "id": 12,
+      "num": "012",
+      "img": "http://topmotoric.com/wp-content/uploads/2019/03/content-wheels-compressor.jpg",
+      "title": "boiled tire",
+      "ingredients" : "3 tires, chicken soup",
+      "instructions": "boil tires in soup for 10 minutes. take it out. serve."
     }
   ]
 }
