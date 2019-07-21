@@ -16,17 +16,17 @@ class Onerecipe extends React.Component {
             <div className="row">
                 <div className="col">
                     <h1 className="display-3">Shrimpy World</h1>
-                    <div className="sub-header">{this.props.recipeNameKey}</div>
                 </div>
             </div>
 
-            <div key={this.props.recipeNameKey} className="row">
-                <div className="col-7 card shadow p-3 mb-5 bg-white rounded">
+            <div key={this.props.recipeNameKey} className="row single-recipe">
+                <div className="content-left col-5 card shadow p-3 mb-5 bg-white rounded">
+                    <div className="sub-header">{this.props.recipeNameKey}</div>
                     <img className="card-img" src={this.props.recipeImgKey} />
                 </div>
-                <div className="col-5">
+                <div className="content-right col-7 card shadow p-3 mb-5 bg-white rounded">
                     <p className="one-recipe-title">Ingredients: </p>
-                    {ingredList};
+                        <ul>{ingredList}</ul>
                 </div>
            </div>
           </div>
