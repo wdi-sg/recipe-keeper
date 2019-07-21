@@ -59,12 +59,12 @@ header {
   font-size: 18px;
   font-weight: 400;
   padding: 10px 30px;
-  background-color: #9D9382;
+  background-color: #B79733;
   color: white;
   border-radius: 5px;
   text-transform: uppercase; }
   .button:hover {
-    background-color: #847a68; }
+    background-color: #8f7628; }
 
 footer {
   margin-top: 50px;
@@ -106,7 +106,7 @@ footer {
   margin-bottom: 20px; }
 
 .feedback {
-  color: #9D9382;
+  color: #B79733;
   margin: 20px 0px;
   font-size: 1.2em; }
 
@@ -190,7 +190,7 @@ footer {
     position: relative; }
     .recipe .content h1 {
       font-size: 3.0rem;
-      color: #9D9382; }
+      color: #B79733; }
     .recipe .content h2 {
       font-size: 1.6rem;
       margin-top: 20px; }
