@@ -32,17 +32,89 @@ app.set('view engine', 'jsx');
 
 // =============================================
 
-//create food object recipe array in json file
-app.get("/create", (request, response) => {
-    console.log("Creating food json file request");
+//edit recipe step 1: request to create new list
+app.get("/recipes/:id/edit", (request, response) => {
+    console.log("requesting to edit recipe");
+
+    //edit recipe step 2: replace space value to dash value
+    let id = request.params.id.replace(" ","-");
+
+    //edit recipe step 3: read existing json file data
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            console.log(err);
+        } else {
+
+            let recipe;
+
+            //edit recipe step 4: use for loop to find title string in json
+            for (let i = 0; i < obj.recipes.length; i++) {
+
+                //edit recipe step 5: check if request is found in json
+                if (request.params.id === obj.recipes[i].title) {
+                    recipe = obj.recipes[i];
+                }
+            }
+            //edit recipe step 6: create key data for render page
+            const data = {
+                id : id,
+                recipe : recipe
+            }
+        //edit recipe step 7: render see edit form page
+        response.render("editRecipeForm", data);
+        }
+    })
+});
+
+
+//edit recipe step 1: request to create new list
+app.put("/recipes/:id", (request, response) => {
+    console.log("requesting to post edited recipe");
+
+    let id = request.params.id.replace("-", " ");
+
+    const recipe = request.body;
 
     jsonfile.readFile(file, (err, obj) => {
         if (err) {
             console.log(err);
         } else {
+
+            for (let i = 0; i < obj.recipes.length; i++) {
+                if (obj.recipes[i].title === id) {
+                    obj.recipes[i] = recipe;
+                }
+            }
+            jsonfile.writeFile(file, obj, (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Food edited complete");
+                }
+            })
+        }
+        response.send("Food edited complete");
+    })
+});
+
+// =============================================
+
+//create recipes object step 1: request to create new list
+app.get("/create", (request, response) => {
+    console.log("requesting to create recipes array in json file");
+
+    //create recipes object step 2: read existing json file data
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            console.log(err);
+        } else {
+
+            //create recipes object step 3: prepare data to be written into json file
             var obj = {
                 "recipes" : []
             }
+
+            //create recipes object step 4: write/"save" the updated json file
             jsonfile.writeFile(file, obj, (err) => {
                 if (err) {
                     console.log(err);
@@ -52,15 +124,14 @@ app.get("/create", (request, response) => {
             })
         }
     })
-
     response.send("Create food json file complete");
 });
 
 // =============================================
 
-//create new step 1: request for create new recipe
+//create new step 1: request to create new recipe
 app.get("/recipes/new", (request, response) => {
-    console.log("creating new recipe request");
+    console.log("requesting to create new recipe");
 
     //create new step 2: render new recipe form
     response.render("newRecipeForm");
@@ -68,7 +139,7 @@ app.get("/recipes/new", (request, response) => {
 
 //create new step 6: post newRecipeForm details to json file
 app.post("/recipes", (request, response) => {
-    console.log("posting new recipe request");
+    console.log("requesting to post new recipe request");
 
     //create new step 7: read existing json file data
     jsonfile.readFile(file, (err, obj) => {
@@ -87,20 +158,20 @@ app.post("/recipes", (request, response) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log("posting new recipe complete");
+                    console.log("post new recipe complete");
                 }
             })
         }
 
     })
-    response.send("posting new recipe complete");
+    response.send("post new recipe complete");
 });
 
 // =============================================
 
 //see all step 1: request to see all recipes
 app.get("/recipes/", (request, response) => {
-    console.log("See all recipes request");
+    console.log("requesting to see all recipes");
 
     //see all step 2: read existing json file data
     jsonfile.readFile(file, (err, obj) => {
@@ -124,7 +195,7 @@ app.get("/recipes/", (request, response) => {
 
 //see single recipe step 1: request to see chosen recipe
 app.get("/recipes/:id", (request, response) => {
-    console.log("See chosen recipe request");
+    console.log("requesting to see single recipe");
 
     //see single recipe step 2: read existing json file data
     jsonfile.readFile(file, (err, obj) => {
