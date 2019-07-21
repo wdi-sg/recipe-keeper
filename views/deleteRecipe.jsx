@@ -11,7 +11,6 @@ class DeleteRecipe extends React.Component {
       <Template>
         <div className="container">
           <div className="row">
-            <a href={recipeURL}>Back to list</a>
           </div>
           <div className="row">
             <h2>Are you sure you want to delete this recipe</h2>

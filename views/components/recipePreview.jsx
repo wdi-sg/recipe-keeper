@@ -9,10 +9,10 @@ class RecipePreview extends React.Component {
 
         <div className = "row recipe-preview">
           <a href={url}>
-            <div className = "three columns">
+            <div className = "six columns">
               <img className="u-max-full-width" src={this.props.data.image}/>
             </div>
-            <div className = "nine columns">
+            <div className = "six columns">
               <h2>{this.props.data.title}</h2>
               <h3>Ingredients</h3>
               <p>{this.props.data.ingredients}</p>

@@ -1,22 +1,47 @@
 @import url("https://fonts.googleapis.com/css?family=Merriweather|Montserrat:600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500&display=swap");
 body {
   margin: 0 auto;
   width: 100%;
-  font-family: 'Merriweather', serif;
-  font-size: 18px; }
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  background: #EDD382; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
   text-transform: capitalize; }
+
+.button {
+  font-weight: 400;
+  height: 48px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.button.button-primary {
+  background-color: #544173;
+  border: none; }
 
 h3 {
   font-size: 3.0rem; }
 
 a {
   text-decoration: none;
-  color: black; }
+  color: black;
+  font-family: 'Oswald', sans-serif; }
   a:hover {
     text-decoration: none; }
+
+.logo {
+  margin: 0 auto;
+  width: 300px;
+  margin-top: 20px;
+  text-align: center; }
+  .logo img {
+    width: 100%; }
 
 .recipe-preview {
   background: #eee;
@@ -25,5 +50,7 @@ a {
 .feedback {
   background: lightpink;
   color: maroon;
-  padding: 5px 10px;
-  margin: 20px 0px; }
+  padding: 10px 20px;
+  margin: 20px 0px;
+  border-radius: 2px;
+  font-size: 0.8em; }

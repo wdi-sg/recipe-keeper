@@ -11,6 +11,11 @@ class Template extends React.Component {
           <link rel="stylesheet" href="/style.css"></link>
         </head>
         <body>
+            <div className="logo">
+              <a href="/recipes"><img src= "/img/logo.png"/>
+              <p>Easy Recipes under 30 mins!</p>
+              </a>
+            </div>
             {/*THIS IS THE IMPORTANT PART*/}
               {this.props.children}
         </body>

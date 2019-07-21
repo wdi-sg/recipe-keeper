@@ -20,7 +20,7 @@ class Main extends React.Component {
                   <h1>All Recipes</h1>
               </div>
               <div className="four columns">
-                <a href={createUrl}>Create New Recipe</a>
+                <a className="button button-primary" href={createUrl}>Create New Recipe</a>
               </div>
             </div>
             {allRecipes}

@@ -59,17 +59,6 @@ var findRecipeIndex = function(object, requestedId){
   }
 }
 
- // function findRecipe(object, requestedId){
- //   for (var i = 0; i < object.length; i++) {
- //     console.log(`${object[i].title}`);
- //
- //     if(parseInt(object[i].id) === requestedId ){
- //       return object[i];
- //     }
- //   }
- // }
-
-
 /**
  * ===================================
  * Pages Functions
@@ -80,8 +69,6 @@ var findRecipeIndex = function(object, requestedId){
 var redirectToRecipes = function(request,response){
    response.redirect("/recipes");
  }
-
-
 
 var displayAllRecipes = function(request, response){
 
@@ -107,7 +94,11 @@ var displayCreateRecipeForm = function(request, response){
     }else{
 
       //assigning an index, todo should be random
-      var lastIndex = obj.recipes.length + 1 ;
+      var recipes = obj.recipes;
+      var indexOfLastRecipe = recipes.length - 1;
+      var idOfLastRecipe = recipes[indexOfLastRecipe].id
+      var lastIndex = parseInt(idOfLastRecipe) + 1 ;
+
       var data = {
         lastIndex : lastIndex,
       }
@@ -116,8 +107,6 @@ var displayCreateRecipeForm = function(request, response){
   });
 
 }
-
-
 
 var addNewRecipe = function(request, response){
 
@@ -149,9 +138,9 @@ var addNewRecipe = function(request, response){
           createdSuccess : true
         }
 
-        var recipeCreated = `/recipes/${obj.recipes.length}`;
+        var newRecipePage = `/recipes/${newRecipe.id}`;
 
-        response.redirect(recipeCreated);
+        response.redirect(newRecipePage);
       }
 
     });
@@ -159,7 +148,6 @@ var addNewRecipe = function(request, response){
   });
 
 }
-
 
 var showRecipe = function(request, response){
 
@@ -207,6 +195,7 @@ var updateRecipe = function(request,response){
   var updatedRecipe = request.body;
   var updatedRecipeId = request.body.id;
 
+
   jsonfile.readFile(FILE, (err,obj) => {
     if(err){
       console.log("error!", err );
@@ -238,7 +227,6 @@ var updateRecipe = function(request,response){
   });
 }
 
-
 var displayConfirmDeleteForm = function(request,response){
 
 
@@ -260,7 +248,6 @@ var displayConfirmDeleteForm = function(request,response){
   });
 
 };
-
 
 var deleteRecipe = function(request,response){
 

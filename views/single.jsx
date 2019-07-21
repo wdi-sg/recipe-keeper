@@ -25,7 +25,7 @@ class Single extends React.Component {
       <Template>
         <div className="container">
           <div className="row">
-            <a href="/recipes">Back to list</a>
+            <a className="button" href="/recipes">Back to list</a>
           </div>
           <div className="row">
             {message}
@@ -45,8 +45,8 @@ class Single extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className = "two columns"><a href={editUrl}>Edit Recipe</a></div>
-            <div className = "two columns"><a href={deleteUrl}>Delete Recipe</a></div>
+            <div className = "two columns"><a className="button button-primary" href={editUrl}>Edit Recipe</a></div>
+            <div className = "two columns"><a className="button button-primary" href={deleteUrl}>Delete Recipe</a></div>
           </div>
         </div>
 
