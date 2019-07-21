@@ -3,7 +3,7 @@ const app = express();
 const { check } = require('express-validator')
 
 const jsonfile = require('jsonfile');
-const file = 'ingredient-ver-1.json'; //or whatever your json file is called
+const file = 'ingredient.json'; //or whatever your json file is called
 
 // react engine
 const reactEngine = require('express-react-views').createEngine();
