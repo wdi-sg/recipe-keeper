@@ -3,7 +3,7 @@ const app = express();
 const { check } = require('express-validator')
 
 const jsonfile = require('jsonfile');
-const file = 'ingredient.json'; //or whatever your json file is called
+const file = 'ingredient-ver-1.json'; //or whatever your json file is called
 
 // react engine
 const reactEngine = require('express-react-views').createEngine();
@@ -23,6 +23,15 @@ app.use(methodOverride('_method'));
 
 // Add CSS file in a public folder
 app.use(express.static(__dirname+'/public/'));
+
+// links to pages
+const homepage = 'home.jsx';
+const editpage = 'edit.jsx';
+const newpage = 'new.jsx';
+const onepage = 'onerecipe.jsx';
+const deletepage = 'delete.jsx';
+
+
 
 
 
@@ -54,7 +63,7 @@ app.get('/recipes', (request, response) => {
             recipeId : recipes.id
         }
 
-        response.render('home', data);
+        response.render(homepage, data);
     });
 });
 
@@ -76,7 +85,7 @@ app.get('/recipes/new', (request, response) => {
             recipeId : recipes.id
         }
         console.log('num of recipes: ' , recipes.length);
-        response.render('new', data);
+        response.render(newpage, data);
     });
 });
 
@@ -150,7 +159,7 @@ app.get('/recipes/:id', (request, response) => {
             recipeData : selectedRecipe
         };
 
-        response.render('onerecipe', data);
+        response.render(onepage, data);
     });
 });
 
@@ -181,7 +190,7 @@ app.get('/recipes/:id/edit', (request, response) => {
             recipeData : selectedRecipe
         };
 
-        response.render('edit', data);
+        response.render(editpage, data);
     });
 });
 
@@ -256,7 +265,7 @@ app.get('/recipes/:id/delete', (request, response) => {
                 recipeIndex : realIndex,
                 recipeData : reqRecipe
             };
-            response.render('delete', data);
+            response.render(deletepage, data);
     }); // end reading json file
 });
 
