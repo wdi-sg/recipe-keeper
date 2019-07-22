@@ -130,6 +130,31 @@ app.put('/recipes/edit/:id', (request, response) => {
 
     })
 
+})
+
+//difficulty getting app.delete to work
+//delete by ID, link to home?
+app.get('/recipes/delete', (request, response) => {
+    let deleteId = parseInt(request.query.delete);
+    let spliceIndex = deleteId-1;
+
+    jsonfile.readFile(file, function(err, obj) {
+        let deleteRecipe = obj.recipes.find((recipe) =>{
+            return recipe.id === deleteId;
+        })
+
+        obj.recipes.splice(spliceIndex, 1);
+
+        console.log(deleteRecipe);
+        response.render('home', obj);
+
+        jsonfile.writeFile(file, obj, function (err) {
+            if (err) {
+                console.log(err);
+            };
+        })
+
+    })
 
 })
 

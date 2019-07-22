@@ -25,21 +25,25 @@ class Layout extends React.Component {
                     <a class="nav-link" href="/recipes/">See all the recipes<span class="sr-only">(current)</span></a>
                   </li>
 
-                  <form class="form-inline my-2 my-lg-0" method="GET" action="/recipes/edit">
-                      <input class="form-control mr-sm-2" name="edit" type="search" placeholder="Edit recipe by ID" aria-label="Search"/>
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Edit recipe</button>
-                    </form>
-
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="/recipes/IDHERE">Delete a recipe</a>
-                  </li>
-
-
-
                   <li class="nav-item">
                     <a class="nav-link" href="/recipes/new">Create a recipe</a>
                   </li>
+
+                  <form class="form-inline my-2 my-lg-0" method="GET" action="/recipes/edit">
+                      <input class="form-control mr-sm-2" name="edit" type="search" placeholder="Edit recipe by ID" aria-label="Search"/>
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Edit recipe</button>
+                  </form>
+
+
+
+                  <form class="form-inline my-2 my-lg-0" method="GET" action="/recipes/delete">
+                      <input class="form-control mr-sm-2" name="delete" type="search" placeholder="Delete recipe by ID" aria-label="Search"/>
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Delete recipe by ID</button>
+                  </form>
+
+
+
+
 
                 </ul>
 
@@ -49,7 +53,13 @@ class Layout extends React.Component {
                 </form>
               </div>
             </nav>
-            {this.props.children}
+
+
+            <div className="row mainwrapper my-sm-2 my-lg-4">
+                <div className="col col-lg-6 offset-lg-3 col-sm-12 main">
+                {this.props.children}
+                </div>
+            </div>
 
         </body>
       </html>
