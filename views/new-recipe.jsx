@@ -12,7 +12,7 @@ class NewRecipe extends React.Component {
 
       <DefaultLayout title={headerTitle}>
 
-        <h1>New Recipe!</h1>
+        <h1>Create New Recipe</h1>
 
         <CreateForm/>
 

@@ -7,10 +7,15 @@ class Home extends React.Component {
 
     return (
       <DefaultLayout title={headerTitle}>
-        <h1>The Recipe Keeper</h1>
-        <div>See Recipes</div>
-        <div>See Ingredients</div>
-        <div>Get Inspiration</div>
+      <div className="home">
+        <h1 className="header-text">The Recipe Keeper</h1>
+        <div className="home-recipe">
+            <a href="./recipes"className="home-p">Recipes</a>
+        </div>
+        <div className="home-ingredients">
+            <a href="./ingredients"className="home-p">Ingredients</a>
+        </div>
+      </div>
       </DefaultLayout>
     );
   }

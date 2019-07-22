@@ -25,6 +25,8 @@ class CreateForm extends React.Component {
             <textarea type={"text"} name={"instructions"} minLength={"5"} required/>
             <p>Image Link:</p>
             <input type={"text"} name={"img"} />
+            <br/>
+            <br/>
             <input type="submit" value="CREATE RECIPE"/>
         </form>
       </div>

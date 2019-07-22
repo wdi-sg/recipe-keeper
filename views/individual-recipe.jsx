@@ -54,20 +54,20 @@ class EachRecipe extends React.Component {
         </form>
 
         <h5>Ingredient 1:</h5>
-        <ul>
+        <ul className="ing-listhead">
             <li>{ing1.name}</li>
             <li>{ing1.amount}</li>
             <li>{ing1.notes}</li>
         </ul>
 
         <h5>Ingredient 2:</h5>
-        <ul>
+        <ul className="ing-listhead">
             <li>{ing2.name}</li>
             <li>{ing2.amount}</li>
             <li>{ing2.notes}</li>
         </ul>
         <h5>Ingredient 3:</h5>
-        <ul>
+        <ul className="ing-listhead">
             <li>{ing3.name}</li>
             <li>{ing3.amount}</li>
             <li>{ing3.notes}</li>

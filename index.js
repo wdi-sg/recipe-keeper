@@ -241,14 +241,33 @@ app.get('/ingredients', (req, res) => {
         let ingredientsArr = [];
         for (let i=0; i<obj.recipes.length; i++) {
             for (let j=0; j<obj.recipes[i].ingredients.length; j++){
-                if (!ingredientsArr.includes(obj.recipes[i].ingredients[j].name)){
-                    ingredientsArr.push(obj.recipes[i].ingredients[j].name);
+                let ingName = obj.recipes[i].ingredients[j].name;
+                let recipeTitle = obj.recipes[i].title;
+                let ingObj = {
+                    name : ingName,
+                    recipes : []
+                }
+                ingredientsArr.push(ingObj);
+                for (let k=0; k<ingredientsArr.length; k++) {
+                    if (ingName === ingredientsArr[k].name) {
+                        ingredientsArr[k].recipes.push(recipeTitle)
+                    }
                 }
             }
         }
-        let recipes = obj.recipes;
+
+        // FILTER ARRAY
+
+        // let uniqueArray = ingredientsArr.filter((ing,index) => {
+        //   return index === things.thing.findIndex(obj => {
+        //     return JSON.stringify(obj) === JSON.stringify(thing);
+        //   });
+        // });
+        // res.send(ingredientsArr);
+        // filter ingredients array
+
         let recipeData = {
-            recipes : recipes,
+            recipes : obj.recipes,
             ingredients : ingredientsArr
         }
         res.render('ingredients', recipeData);
