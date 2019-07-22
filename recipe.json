@@ -1,0 +1,51 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Double Tomato Bruschetta",
+      "date": "2019-7-22 0:24",
+      "img": "https://images.media-allrecipes.com/userphotos/720x405/4542188.jpg",
+      "cookTime": "35",
+      "ingredients": "6 roma (plum) tomatoes, chopped\r\n1/2 cup sun-dried tomatoes, packed in oil\r\n3 cloves minced garlic\r\n1/4 cup olive oil\r\n2 tablespoons balsamic vinegar\r\n \r\n1/4 cup fresh basil, stems removed\r\n1/4 teaspoon salt\r\n1/4 teaspoon ground black pepper\r\n1 French baguette\r\n2 cups shredded mozzarella cheese",
+      "instructions": "1. Preheat the oven on broiler setting.\r\n\r\n2. In a large bowl, combine the roma tomatoes, sun-dried tomatoes, garlic, olive oil, vinegar, basil, salt, and pepper. Allow the mixture to sit for 10 minutes.\r\n\r\n3. Cut the baguette into 3/4-inch slices. On a baking sheet, arrange the baguette slices in a single layer. Broil for 1 to 2 minutes, until slightly brown.\r\n\r\n4. Divide the tomato mixture evenly over the baguette slices. Top the slices with mozzarella cheese.\r\n\r\n5. Broil for 5 minutes, or until the cheese is melted."
+    },
+    {
+      "id": 2,
+      "title": "Black Pepper Beef and Cabbage Stir Fry",
+      "date": "2019-7-22 0:0",
+      "img": "https://images.media-allrecipes.com/userphotos/720x405/5181801.jpg",
+      "cookTime": "30",
+      "ingredients": "2 tablespoons vegetable oil\r\n4 cloves garlic, chopped\r\n1/2 pound ground beef\r\n1/2 small head cabbage, shredded\r\n1 red bell pepper, cut into strips\r\n2 tablespoons soy sauce\r\n1 teaspoon cornstarch\r\n1/2 cup cold water",
+      "instructions": "1. Heat a wok or large skillet over medium-high heat, and add oil. Saute garlic for about 5 seconds, then add ground beef. Stir-fry until beef is evenly brown, 5 to 7 minutes; drain excess fat.\r\n\r\n2. Stir in cabbage and pepper, and cook until vegetables are tender and beef is fully cooked. Stir in soy sauce. Mix together cornstarch and water, and stir in. Season with pepper; add salt to taste. Cook, stirring, until sauce has thickened."
+    },
+    {
+      "id": 3,
+      "title": "Spicy Grilled Shrimp",
+      "date": "2019-7-22 0:3",
+      "img": "https://images.media-allrecipes.com/userphotos/720x405/1384969.jpg",
+      "cookTime": "21",
+      "ingredients": "1 large clove garlic\r\n1 teaspoon coarse salt\r\n1/2 teaspoon cayenne pepper\r\n1 teaspoon paprika\r\n2 tablespoons olive oil\r\n2 teaspoons lemon juice\r\n2 pounds large shrimp, peeled and deveined\r\n8 wedges lemon, for garnish",
+      "instructions": "1. Preheat grill for medium heat.\r\n\r\n2. In a small bowl, crush the garlic with the salt. Mix in cayenne pepper and paprika, and then stir in olive oil and lemon juice to form a paste. In a large bowl, toss shrimp with garlic paste until evenly coated.\r\n\r\n3. Lightly oil grill grate. Cook shrimp for 2 to 3 minutes per side, or until opaque. Transfer to a serving dish, garnish with lemon wedges, and serve."
+    },
+    {
+      "id": 4,
+      "title": "Easy Quiche",
+      "date": "2019-7-22 0:15",
+      "img": "https://images.media-allrecipes.com/userphotos/720x405/1125179.jpg",
+      "cookTime": "60",
+      "ingredients": "2 cups milk\r\n4 eggs\r\n3/4 cup biscuit baking mix\r\n1/4 cup butter, softened\r\n1 cup grated Parmesan cheese\r\n1 (10 ounce) package chopped frozen broccoli, thawed and drained\r\n1 cup cubed cooked ham\r\n8 ounces shredded Cheddar cheese",
+      "instructions": "1. Preheat oven to 375 degrees F (190 degrees C). Lightly grease a 10 inch quiche dish.\r\n\r\n2. In a large bowl, beat together milk, eggs, baking mix, butter and parmesan cheese. Batter will be lumpy. Stir in broccoli, ham and Cheddar cheese. Pour into prepared quiche dish.\r\n\r\n3. Bake in preheated oven for 50 minutes, until eggs are set and top is golden brown."
+    },
+    {
+      "id": 5,
+      "title": "Classic Waffles",
+      "date": "2019-7-22 0:19",
+      "img": "https://images.media-allrecipes.com/userphotos/720x405/34761.jpg",
+      "cookTime": "25",
+      "ingredients": "2 cups all-purpose flour\r\n1 teaspoon salt\r\n4 teaspoons baking powder\r\n2 tablespoons white sugar\r\n2 eggs\r\n1 1/2 cups warm milk\r\n1/3 cup butter, melted\r\n1 teaspoon vanilla extract",
+      "instructions": "1. In a large bowl, mix together flour, salt, baking powder and sugar; set aside. Preheat waffle iron to desired temperature.\r\n\r\n2. In a separate bowl, beat the eggs. Stir in the milk, butter and vanilla. Pour the milk mixture into the flour mixture; beat until blended.\r\n\r\n3. Ladle the batter into a preheated waffle iron. Cook the waffles until golden and crisp. Serve immediately."
+    }
+  ],
+  "lastKey": 4,
+  "lastDeleted": []
+}
