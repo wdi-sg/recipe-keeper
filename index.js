@@ -27,6 +27,113 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
 
+//Create a new recipe
+app.get('/recipes/new', (request, response) =>{
+    console.log("getting form");
+    jsonfile.readFile(file, (err, dataObj)=>{
+        if( err ){
+            console.log("error!", err );
+        }else{
+
+            const data = {
+              recipesList : dataObj.recipes
+            };
+            response.render('createnew', data);
+        }
+    });
+});
+
+//write new recipe into data.json
+app.post('/recipes', (request,response) => {
+
+    console.log("YAY WOW");
+    var recipeData = request.body;
+    console.log( recipeData );
+
+    // save in data file
+    jsonfile.readFile(file, (err, dataObj) => {
+        if( err ){
+          console.log("error reading file");
+          console.log(err)
+        } else {
+            console.log("what i currently have");
+            console.log(dataObj.recipeData);
+            // save data
+            dataObj.recipes.push(recipeData);
+        }
+
+        jsonfile.writeFile(file, dataObj, (err) => {
+
+            if( err ){
+                console.log("error writing file");
+                console.log(err)
+                response.status(503).send("Error writing file");
+            } else {
+                //sends response after saving it in the file. for user to know if it was saved in the file.
+                console.log( "send response");
+                response.send("The new recipe has been saved!");
+            }
+        });
+    });
+});
+
+//get a single recipe to delete
+app.get('/recipes/:id/delete', (request, response) => {
+    var recipeIdInt = parseInt(request.params.id);
+    console.log(request.params.id);
+    console.log(recipeIdInt);
+
+
+    jsonfile.readFile(file, (err,dataObj) => {
+        if (err) {
+            console.log("Something went wrong when displaying the recipe.");
+        } else {
+            console.log(recipeIdInt);
+
+            let recipes = dataObj.recipes;
+            let recipe = recipes.find(recipe => parseInt(recipe.id) === recipeIdInt);
+            console.log(recipe);
+            let data = {
+                recipe : recipe
+            };
+
+            response.render('deleterecipe', data);
+        }
+    });
+});
+
+app.delete('/recipes/:id', (request, response) => {
+    var recipeIdInt = parseInt(request.params.id);
+    console.log(request.params.id);
+    console.log(recipeIdInt);
+
+
+    jsonfile.readFile(file, (err,dataObj) => {
+        if (err) {
+            console.log("Something went wrong when displaying the recipe.");
+        } else {
+            let newCont = request.body;
+            console.log(newCont);
+            let recipes = dataObj.recipes;
+            var index = recipes.findIndex(recipe => parseInt(recipe.id) === recipeIdInt);
+            console.log(index);
+
+            dataObj.recipes.splice(index, 1);
+
+            jsonfile.writeFile(file,dataObj, (err) => {
+                if( err ){
+                    console.log("error writing file");
+                    console.log(err)
+                    response.status(503).send("Error writing file");
+                } else {
+                    response.redirect('/recipes');
+                }
+            })
+        }
+    });
+});
+
+//edit a single recipe
 app.get('/recipes/:id/edit', (request, response) => {
     let recipeIdInt = parseInt(request.params.id);
     console.log(request.params.id);
@@ -108,55 +215,7 @@ app.get('/recipes/:id', (request, response) => {
     });
 });
 
-//Create a new recipe
-app.get('/recipes/new', (request, response) =>{
-    console.log("getting form");
-    jsonfile.readFile(file, (err, dataObj)=>{
-        if( err ){
-            console.log("error!", err );
-        }else{
 
-            const data = {
-              recipesList : dataObj.recipes
-            };
-            response.render('createnew', data);
-        }
-    });
-});
-
-//write new recipe into data.json
-app.post('/recipes', (request,response) => {
-
-    console.log("YAY WOW");
-    var recipeData = request.body;
-    console.log( recipeData );
-
-    // save in data file
-    jsonfile.readFile(file, (err, dataObj) => {
-        if( err ){
-          console.log("error reading file");
-          console.log(err)
-        } else {
-            console.log("what i currently have");
-            console.log(dataObj.recipeData);
-            // save data
-            dataObj.recipes.push(recipeData);
-        }
-
-        jsonfile.writeFile(file, dataObj, (err) => {
-
-            if( err ){
-                console.log("error writing file");
-                console.log(err)
-                response.status(503).send("Error writing file");
-            } else {
-                //sends response after saving it in the file. for user to know if it was saved in the file.
-                console.log( "send response");
-                response.send("The new recipe has been saved!");
-            }
-        });
-    });
-});
 
 //Create a list of recipes
 app.get('/recipes', (request, response) =>{
