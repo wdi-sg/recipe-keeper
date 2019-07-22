@@ -1,0 +1,34 @@
+var React = require('react');
+var Header = require('./layouts/mainheader.jsx');
+var Form = require('./components/recipeform.jsx')
+var Footer = require('./layouts/mainfooter.jsx');
+
+
+
+class ShowRecipe extends React.Component {
+  render() {
+    return (
+        <html style={{height:'100%'}}>
+            <head>
+                <title> Recipe Keeper: Edit Recipes </title>
+                <meta name={"viewport"} content={"width=device-width, initial-scale=1, shrink-to-fit=no"} />
+                <link rel={"stylesheet"} href={"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"} integrity={"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"} crossOrigin={"anonymous"} />
+            </head>
+            <body style={{backgroundColor:'grey', height:'95%'}}>
+                <div className={'container'}style={{backgroundColor:'white', height:'100%'}}>
+                    <Header />
+                    <div className={'row mt-3'} style={{overflow:'auto'}}>
+                        <img src={this.props.recipe.img} className = {'col-5 offset-1'} style={{width:'100%', height: '50%'}} />
+                        <form method={'POST'} action={`/recipes/${this.props.recipe.id}/edit?_method=PUT`} className = {'col-5'} style={{fontWeight:'bold', fontSize:'1rem'}}>
+                            <Form submitText={'Edit'} recipes={this.props.recipe} />
+                        </form>
+                    </div>
+                </div>
+    		</body>
+            <Footer />
+    	</html>
+    );
+  }
+}
+
+module.exports = ShowRecipe;
