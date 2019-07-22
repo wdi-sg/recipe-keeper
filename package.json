@@ -1,0 +1,27 @@
+{
+  "name": "19-jul-recipe-keeper",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "jsonfile": "^4.0.0",
+    "method-override": "^2.3.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "description": "Create an online recipe keeper.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hockie2/19-jul-recipe-keeper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hockie2/19-jul-recipe-keeper/issues"
+  },
+  "homepage": "https://github.com/hockie2/19-jul-recipe-keeper#readme"
+}

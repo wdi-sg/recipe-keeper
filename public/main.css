@@ -1,0 +1,126 @@
+body{
+    background-image: url('food-backgrd.jpg');
+    /*background-size: cover;*/
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    color: white;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.wrapper{
+    width:90%;
+    height: 80%;
+    /*border: 1px solid blue;*/
+    background-color: #594f40;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*align-items: center;*/
+    border-radius: 20px;
+    padding: 20px 0;
+
+}
+
+/* === Navbar === */
+
+h1{
+    font-family: 'Satisfy', cursive;
+    font-size: 60px;
+    text-shadow: 5px 5px 10px #000000;
+    margin: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #c58819;
+}
+
+/* === Navbar === */
+
+
+/* === New Form Page === */
+.wrapper_new{
+    width:60%;
+    height: 90%;
+    /*border: 1px solid blue;*/
+    background-color: #594f40;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+    font-size: 20px;
+    border-radius: 20px;
+
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    margin-bottom: 10px;
+}
+
+.input-field{
+    text-align: center;
+    width:380px;
+}
+
+input{
+    width:100px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+textarea{
+    text-align: center;
+}
+
+/* === New Form Page === */
+
+/* === ID Page === */
+.photo{
+    width:40%;
+    height:auto;
+    /*background-image: url('{{this.props.food.img}}');*/
+    margin-bottom: 10px;
+}
+
+.photo img{
+    width: 100%;
+    height: auto;
+
+    }
+
+/* === ID Page === */

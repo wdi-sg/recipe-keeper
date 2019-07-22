@@ -1,0 +1,28 @@
+.wrapper_new{
+    display:flex;
+    flex-direction: row;
+}
+
+.right_wrapper{
+    width: 53%;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo{
+    width:40%;
+    height:auto;
+    /*background-image: url('{{this.props.food.img}}');*/
+    margin: 10px;
+}
+
+input{
+    width:50%;
+}
+
+a{
+    color:yellow;
+    text-decoration: none;
+}
