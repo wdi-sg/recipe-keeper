@@ -17,28 +17,14 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
+//*================HomePage==========================*//
+app.get('/recipes',(request,response)=>{
+    response.render('home');
+});
+
 //*=================ADD recipe=====================*/
-app.get('/recipes', (request, response) => {
-    jsonfile.readFile(file,(err,obj)=>{
-        if(err){
-            console.log(err);
-        }else{
-             // render a template form here
-             // let form = '';
-             // form = '<html>' +
-             // '<body>'+
-             // '<h1>Recipes form</h1>'+
-             // '<form method="POST" action="/recipesdetails">'+
-             // '<p>title:</p><input name="title"/>'+
-             // '<p>ingredients:</p><input name="ingredients"/>'+
-             // '<p>instructions:</p><input name="instructions"/>'+
-             // '<input type="submit"/>'+
-             // '</form>'+
-             // '</body>'+
-             // '</html>';
-             response.render('form');
-         }
-     })
+app.get('/recipes/new', (request, response) => {
+    response.render('form');
 });
 
 //*=========create details of recipes into json file=============*//

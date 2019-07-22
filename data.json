@@ -1,14 +1,1 @@
-{
-  "recipes": [
-    {
-      "ingredients": "lettuce",
-      "instructions": "cook",
-      "title": "MAMA"
-    },
-    {
-      "ingredients": "lettuce",
-      "instructions": "mix",
-      "title": "LEMON"
-    }
-  ]
-}
+{"recipes":[{}]}
