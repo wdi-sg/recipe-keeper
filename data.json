@@ -1,0 +1,20 @@
+{
+  "recipes":[
+  {
+      "title": "Ponyo Ramen",
+      "ingredients": [
+        "1 packet Nissin Chicken Ramen",
+        "400ml water",
+        "1 sliced cooked ham",
+        "1/2 hard boiled egg",
+        "Chopped green onion"
+      ],
+      "instructions": [
+        "Boil the water",
+        "Place the noodles in a ramen bowl. Pour boiling water over the noodles and cover. Set and start your timer for 3 minutes",
+        "After the first minute, quickly open, shake the noodles to seperate, then arrange the ham, egg, and green onion over the noodles. Cover again and wait until the timer beeps"
+      ],
+      "id": 1
+    }
+  ]
+}
