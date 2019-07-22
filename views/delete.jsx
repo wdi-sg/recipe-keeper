@@ -3,7 +3,7 @@ var React = require('react');
 class Delete extends React.Component {
   render() {
     console.log("deleting");
-    var url = "/recipes/" +this.props.id + "/delete?_method=delete";
+    var url = "/recipes/" +this.props.i + "/delete?_method=delete";
     return (
       <html>
         <body>

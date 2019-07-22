@@ -20,15 +20,23 @@ app.set('view engine', 'jsx');
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'));
 
-//display all recipes
-// app.get('/recipes', (request,response) => {
-//     console.log('see all recipes');
+let recipeList = [];
+let newRecipeList = [];
 
-//     const data = dataObj
+//display all recipe names with button
+app.get('/recipes', (request,response) => {
+    console.log('see all recipes');
 
-//     }
-//     response.render('show', data);
-// })
+    // jsonfile.readFile(file, (err, dataObj) => {
+
+    // const data = {
+    //     id :
+    //   one : dataObj.recipes[0]
+    // }
+    // })
+
+    response.render('show');
+})
 
 //show form and create new recipe//
 app.get('/recipes/new', (request,response) => {
@@ -37,7 +45,7 @@ app.get('/recipes/new', (request,response) => {
     response.render('create');
 })
 
-app.post('/recipes', (request,response) => {
+app.post('/recipes/new', (request,response) => {
     console.log('creating new recipe');
 
     let newRecipe = request.body;
@@ -64,91 +72,111 @@ app.get('/recipes/:id', (request, response) => {
   jsonfile.readFile(file, (err, dataObj) => {
     let recipeId = parseInt( request.params.id );
     console.log(recipeId);
-    var recipeDisplay;
 
     for( let i=0; i<dataObj.recipes.length; i++ ){
     console.log(dataObj.recipes.length);
       let currentRecipe = dataObj.recipes[i];
 
       if( dataObj.recipes.indexOf(currentRecipe) === recipeId ){
-        recipeDisplay = currentRecipe;
+        const data = {
+            id : recipeId,
+            title : currentRecipe.title,
+            ingredients : currentRecipe.ingredients,
+            instructions : currentRecipe.instructions
+        };
+          response.render('onerecipe', data);
       }
-    console.log(recipeDisplay);
     }
 
-    if (recipeDisplay === undefined) {
-
-      response.status(404);
-      response.send("not found");
-    } else {
-
-      response.send(recipeDisplay);
-    }
   });
 });
 
-//display and edit single recipe
+//edit single recipe
 app.get('/recipes/:id/edit', (request, response) => {
-    console.log('showing existing pokemon info');
+    console.log('showing existing recipe');
 
-    jsonfile.readFile(FILE, (err, obj) => {
-    if( err ){
-      console.log("error reading file");
-      console.log(err)
-    }
+    jsonfile.readFile(file, (err, dataObj) => {
+    let recipeId = parseInt( request.params.id );
+    console.log(recipeId);
 
-    let inputId = parseInt( request.params.id );
+    for( let i=0; i<dataObj.recipes.length; i++ ){
+    console.log(dataObj.recipes.length);
+      let currentRecipe = dataObj.recipes[i];
 
-    var pokemon;
-
-    for( let i=0; i<obj.pokemon.length; i++ ){
-
-        let currentPokemon = obj.pokemon[i];
-
-        if( currentPokemon.id === inputId ){
-            pokemon = currentPokemon;
-        }
-    }
-      const data = pokemon;
+      if( dataObj.recipes.indexOf(currentRecipe) === recipeId ){
+        const data = {
+            id : recipeId,
+            title : currentRecipe.title,
+            ingredients : currentRecipe.ingredients,
+            instructions : currentRecipe.instructions
+        };
 
     response.render('edit', data)
-    });
+    }
+}
+});
 });
 
-app.put('/recipes/:id', (request, response) => {
-    console.log('amending pokemon info');
+app.put('/recipes/:id/edit', (request, response) => {
+    console.log('amending recipe');
     console.log(request.body);
 
-    let id = parseInt(request.params.id);
+    let recipeId = parseInt(request.params.id);
 
-    jsonfile.readFile(FILE, (err, obj) => {
+    jsonfile.readFile(file, (err, dataObj) => {
         if( err ){
           console.log("error reading file");
           console.log(err)
         }
 
-        let newPokemonInfo = request.body;
-        newPokemonInfo.id = parseInt(newPokemonInfo.id);
+        let newRecipe = request.body;
+        newRecipe.id = parseInt(newRecipe.id);
 
-        obj.pokemon[id-1] = newPokemonInfo;
+        dataObj.recipes[recipeId] = newRecipe;
 
-        jsonfile.writeFile(FILE, obj, (err) => {
+        jsonfile.writeFile(file, dataObj, (err) => {
             console.log("write file done");
 //display new info for pokemon created by user
-            response.redirect("/recipes/"+id);
+            response.redirect("/recipes/"+recipeId);
         });
     });
 });
 
 //delete a recipe
-app.get('/recipes/:id/delete', (request, response) => {
-    console.log('about to delete pokemon');
+// app.get('/recipes/:id/delete', (request, response) => {
+//     console.log('about to delete pokemon');
 
-    response.render('delete');
+//     response.render('delete');
 
+// });
+
+app.delete("/recipes/:id/delete", (request, response) => {
+    console.log('deleting the recipe');
+
+    let recipeId = parseInt(request.params.id);
+
+    jsonfile.readFile(file, (err, dataObj) => {
+        if( err ){
+          console.log("error reading file");
+          console.log(err)
+        }
+
+        dataObj.recipes.splice(recipeId, 1);
+
+
+        jsonfile.writeFile(file, dataObj, (err) => {
+            console.log("write file done");
+
+            response.render('show');
+        });
+    });
 });
-
-
 //~~~~~~~~~~~~~~~~//
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
+
+/*
+<h2>{this.props.title}</h2>
+            <p>{this.props.ingredients}</p>
+            <p>{this.props.instructions}</p>
+*/

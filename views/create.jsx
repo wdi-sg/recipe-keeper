@@ -9,7 +9,7 @@ class Create extends React.Component {
         <body>
           <div>
             <h1>Enter new recipe</h1>
-            <form action="/recipes" method="POST">
+            <form action="/recipes/new" method="POST">
                 <p>Title</p>
                 <input type="text" name="title"/><br/>
                 <p>Ingredients</p>
