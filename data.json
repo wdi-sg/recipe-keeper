@@ -1,0 +1,74 @@
+{
+  "recipes": [
+    {
+      "id": "1",
+      "title": "Cuban Pork Burger",
+      "prepTime": "20",
+      "img": "../css/images/cuban-pork-burger.jpg",
+      "desc": "Its a veggie bowl",
+      "ingredients": [
+        "1000 ounce Yukon Gold Potatoes",
+        "1 tablespoon Fry Seasoning",
+        "1 unit Dill Pickle ",
+        "2 tablespoon Mayonnaise"
+      ],
+      "instructions": "Preheat oven to 450 degrees. Wash and dry all produce. Trim and quarter zucchini lengthwise; cut crosswise into 1-inch pieces. Core, deseed, and dice bell pepper into 1-inch pieces. Halve, peel, and slice shallot into ½-inch-thick wedges. Trim and thinly slice scallions, separating whites from greens. Zest and quarter lemon quarter both lemons for 4 servings."
+    },
+    {
+      "id": 2,
+      "title": "Veggie Rice Bowl",
+      "prepTime": 20,
+      "img": "../css/images/veggie-tagine.jpg",
+      "desc": "Its a veggie bowl",
+      "ingredients": [
+        "1000 ounce Yukon Gold Potatoes",
+        "1 tablespoon Fry Seasoning",
+        "1 unit Dill Pickle ",
+        "2 tablespoon Mayonnaise"
+      ],
+      "instructions": "Preheat oven to 450 degrees. Wash and dry all produce. Trim and quarter zucchini lengthwise; cut crosswise into 1-inch pieces. Core, deseed, and dice bell pepper into 1-inch pieces. Halve, peel, and slice shallot into ½-inch-thick wedges. Trim and thinly slice scallions, separating whites from greens. Zest and quarter lemon quarter both lemons for 4 servings."
+    },
+    {
+      "id": 3,
+      "title": "Quick and Easy Chicken Rice",
+      "prepTime": 15,
+      "img": "../css/images/spanish-chicken.jpg",
+      "desc": "Its a gui peng",
+      "ingredients": "",
+      "instructions": "Wash and dry all produce. Mince or grate garlic. Heat a drizzle of oil in a medium pot over medium-high heat. Add half the garlic and cook until fragrant, about 30 seconds. Add 1¾ cups water, 1 stock concentrate, turmeric, and a large pinch of salt. Bring to a boil."
+    },
+    {
+      "id": 4,
+      "title": "Cheesy Pork Sausage Flatbreads",
+      "prepTime": 35,
+      "img": "../css/images/cheesy-pork.jpg",
+      "desc": "Its a pork hollog",
+      "ingredients": "",
+      "instructions": "Adjust rack to top position and preheat oven to 450 degrees. Wash and dry all produce. Halve, peel, and cut onion into ½-inch-thick wedges. Slice top off green pepper. Core, then cut into ½-inch-thick rounds."
+    },
+    {
+      "id": 5,
+      "title": "Pork Sausage Spaghetti ",
+      "prepTime": 30,
+      "img": "../css/images/pork-sausage-spaghetti.jpg",
+      "desc": "Its a Spaghetti",
+      "ingredients": "",
+      "instructions": "Bring a large pot of salted water to a boil. Wash and dry all produce. Mince garlic. Trim ends from zucchini. Shave zucchini lengthwise into thin ribbons using a peeler, rotating as you go. Stop once you get to the seedy core; discard core."
+    },
+    {
+      "id": 6,
+      "title": "Shrimp Noodles",
+      "prepTime": 20,
+      "img": "../css/images/shrimp-noodle.jpg",
+      "desc": "Its a shrimp noodles",
+      "ingredients": "",
+      "instructions": "Wash and dry all produce. Cut green beans into 1-inch pieces. Peel ginger, then mince until you have 1 TBSP. Mince or grate garlic. Trim, then thinly slice scallions. TIP: Set aside some of the scallion greens for garnish, if you like. Peel carrot, then cut in half lengthwise. Slice each half into thin half-moons."
+    },
+    {
+      "title": "test",
+      "ingredients": "testt",
+      "instructions": "testttt",
+      "img": "https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/chikorita.png"
+    }
+  ]
+}
