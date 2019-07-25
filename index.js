@@ -27,8 +27,8 @@ app.put('/recipes/:id', (req, res) => {
         } else {
             let keyArr = Object.keys(req.body);
             let recipe = obj["recipes"][recipeId];
-            console.log(recipe);
-            console.log(keyArr);
+            //console.log(recipe);
+            //console.log(keyArr);
             keyArr.forEach((key) => {
                 if(key !== "keywords") {
                     obj['recipes'][recipeId][key] = newRecipe[key];
@@ -45,7 +45,7 @@ app.put('/recipes/:id', (req, res) => {
             }
             obj.id = arrIndex;
             jsonfile.writeFile(file, obj, (err) => {
-                console.log("Updating Recipe id: " + arrIndex + ".......");
+                //console.log("Updating Recipe id: " + arrIndex + ".......");
                 //console.dir(obj['recipes'][recipeId]);
                 res.redirect(`/recipes`);
             });
@@ -67,8 +67,8 @@ app.post('/recipes', (req, res) => {
             obj.recipes.push(newRecipe);
             jsonfile.writeFile(file, obj, (err) => {
 
-                console.log("Creating new id: " + obj + ".......");
-                console.dir(obj['recipes']);
+                //console.log("Creating new id: " + obj + ".......");
+                //console.dir(obj['recipes']);
                 res.redirect('/recipes/' + newRecipe.id);
             });
         }
@@ -77,13 +77,13 @@ app.post('/recipes', (req, res) => {
 
 app.delete('/recipes/:id', (req, res) => {
     let recipeId = parseInt(req.params.id);
-    console.log("DELETE : " + recipeId);
+    //console.log("DELETE : " + recipeId);
     jsonfile.readFile(file, (err, obj) => {
         if (err) {
             console.log(err);
         } else {
             obj["recipes"].splice(recipeId, 1);
-            console.log(obj);
+            //console.log(obj);
             jsonfile.writeFile(file, obj, (err) => {
                 if (err) {
                     console.log(`ERROR DETECTED : ${err}`);
@@ -112,12 +112,12 @@ app.get('/recipes/search', (req, res) => {
                 recipes : []
             }
             let = recipeArr = obj["recipes"];
-            console.log(recipeArr);
+            //console.log(recipeArr);
             recipeArr.forEach( (recipe, index) => {
                 if (recipe.keywords.includes(searchWord)) {
                     newObj.recipes.push(recipe)
                 }
-                console.dir(newObj);
+                //console.dir(newObj);
 
             });
             res.render('search.jsx', newObj);
@@ -145,7 +145,7 @@ app.get('/recipes/:id/edit', (req, res) => {
                 }
             }
             obj.id = arrIndex;
-            console.log("Editing Recipe id: " + arrIndex + ".......");
+            //console.log("Editing Recipe id: " + arrIndex + ".......");
             res.render('edit', obj);
         }
     });
@@ -166,7 +166,7 @@ app.get('/recipes/:id/delete', (req, res) => {
                 }
             }
             obj.id = arrIndex;
-            console.log("Editing Recipe id: " + arrIndex + ".......");
+            //console.log("Editing Recipe id: " + arrIndex + ".......");
             res.render('delete', obj);
         }
     });
@@ -186,8 +186,8 @@ app.get('/recipes/:id', (req, res) => {
                 }
             }
             obj.id = arrIndex;
-            console.log("array index" + arrIndex);
-            console.log("Parsing id: " + req.params.id + ".......");
+            //console.log("array index" + arrIndex);
+            //console.log("Parsing id: " + req.params.id + ".......");
             //console.dir(obj['recipes']);
             res.render('recipe', obj);
         }
@@ -199,7 +199,7 @@ app.get('/recipes', (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            console.log("Read JSON File success.............");
+            //console.log("Read JSON File success.............");
             res.render('home', obj);
         }
     });
@@ -207,4 +207,4 @@ app.get('/recipes', (req, res) => {
 
 
 
-app.listen(80, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
+app.listen(80, () => console.log('~~~ Tuning in to the waves of port 80 ~~~'));
