@@ -317,4 +317,4 @@ app.delete('/recipes/:id', deleteRecipe);
  * Listen to requests on port 4200
  * ===================================
  */
-app.listen(4200, () => console.log('~~~ Tuning in to the waves of port 4200 ~~~'));
+app.listen(80, () => console.log('~~~ Tuning in to the waves of port 80 ~~~'));
