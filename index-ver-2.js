@@ -348,4 +348,4 @@ app.put('/recipes/:id', (request, response) => {
  * Listen to requests on port 3000
  * ===================================
  */
-app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
+app.listen(80, () => console.log('~~~ Tuning in to the waves of port 80 ~~~'));
