@@ -4,20 +4,20 @@ const file = 'recipes.json'
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override')
-const Request = require("request");
+//const Request = require("request");
 var React = require('react');
 
 app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(express.urlencoded({
-  extended: true
+    extended: true
 }));
 app.use(express.static(__dirname+'/public/'));
 
 const reactEngine = require('express-react-views').createEngine();
 
 app.engine('jsx', reactEngine);
-app.set('views', __dirname + '/views');
+app.set('views', __dirname);
 app.set('view engine', 'jsx');
 
 //Display the form for a single recipe
@@ -28,17 +28,17 @@ app.get('/recipes/new', (req, res) => {
 });
 
 //Create a new recipe
-app.post('/recipes', (req, res) => {
+app.post('/recipes/', (req, res) => {
     jsonfile.readFile(file, (err,obj) => {
         let recipesArray = obj.recipes;
-        req.body.id = parseInt(recipesArray.id + 1);
-        recipesArray.push(req.body);
+        //req.body.id = parseInt(recipesArray.id + 1);
+        recipesArray.push(req.body); // req.body contains the form input
         let newRecipesJson = {recipes: recipesArray};
-
+        
         // save the request body
         jsonfile.writeFile(file, newRecipesJson, (err) => {
             console.log(err);
-            prompt("Recipe Added!");
+            console.log("Recipe Added!");
             res.redirect('/recipes/'); // after posting new recipe, redirect to display all recipes.
         })
     })
@@ -47,7 +47,7 @@ app.post('/recipes', (req, res) => {
 //See all the recipes
 app.get('/recipes/', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-        res.render('viewRecipes', obj);
+        res.render('home', obj);
     });
 });
 
@@ -59,8 +59,10 @@ app.get('/recipes/:id', (req,res) => {
         if(err) {
             console.log(err);
         }
-        let searchedRecipe = obj["recipes"][id];
-        res.render("viewRecipes", searchedRecipe);
+        let searchedRecipe = obj["recipes"][recipeID];
+        console.log(searchedRecipe);
+        res.send(searchedRecipe);
+        //res.render("viewSingleRecipe", searchedRecipe);
     });
 });
 
@@ -74,33 +76,33 @@ app.get('/recipes/:id/edit', (req,res) => {
 
 
 //recipes/:id    PATCH/PUT   update  Update a recipe
-app.put('/recipes/:id', (req,res) => {
-    let updateRecipe = req.params.id;
-    let recipeId = req.query;
+// app.put('/recipes/:id', (req,res) => {
+//     let updateRecipe = req.params.id;
+//     let recipeId = req.query;
 
-    jsonfile.readFile(file, (err, obj) => {
+//     jsonfile.readFile(file, (err, obj) => {
 
-    });
-});
+//     });
+// });
 
 //recipes/:id    DELETE  destroy Remove a recipe
-app.delete('/recipes/:id', (req,res) => {
-    let recipeName = req.params.id;
+// app.delete('/recipes/:id', (req,res) => {
+//     let recipeName = req.params.id;
 
-    jsonfile.readFile(file, (err, obj) => {
-        for(let i = 0; i < obj.recipes.length; i++) {
-            if(recipeName === obj.recipes[i].id){
+//     jsonfile.readFile(file, (err, obj) => {
+//         for(let i = 0; i < obj.recipes.length; i++) {
+//             if(recipeName === obj.recipes[i].id){
 
-                obj.recipes.splice(parseInt(obj.recipes[i].id) -1,1)
-            }
-        }
+//                 obj.recipes.splice(parseInt(obj.recipes[i].id) -1,1)
+//             }
+//         }
 
-        res.render('');
-        jsonfile.writeFile(file, obj, (err) => {
+//         res.render('');
+//         jsonfile.writeFile(file, obj, (err) => {
 
-        });
-    });
-});
+//         });
+//     });
+// });
 
 
 

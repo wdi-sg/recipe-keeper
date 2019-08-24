@@ -1,1 +1,22 @@
-{"recipes":[{"id":"NaN","title":"chicken","ingredients":"rice and duck","instructions":"flip the prata"},{"id":"NaN","title":"chicken","ingredients":"curry","instructions":"mix fix and chipss"}]}
+{
+    "recipes": [
+        {
+            "id": null,
+            "title": "Tikki Masala",
+            "ingredients": "chips",
+            "instructions": "apples"
+        },
+        {
+            "id": "2",
+            "title": "chip putti",
+            "ingredients": "chips",
+            "instructions": "potatoes"
+        },
+        {
+            "id": "3",
+            "title": "Tikki Masala",
+            "ingredients": "milk and chicken",
+            "instructions": "toss and mix"
+        }
+    ]
+}

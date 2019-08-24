@@ -3,9 +3,11 @@ var DefaultLayout = require('./default');
 console.log("Start rendering ");
 
 
-class ViewRecipes extends React.Component {
+class Home extends React.Component {
     render() {
-       let sampleRecipe = this.props.recipes.map( recipe => { return (
+        console.log(this.props);
+
+    let sampleRecipe = this.props.recipes.map(recipe => { return (
                 <div className="recipe">
                     Recipe ID: <h3>{recipe.id}</h3>
                     Recipe Title: <h3>{recipe.title}</h3>
@@ -13,7 +15,7 @@ class ViewRecipes extends React.Component {
                     Recipe Instructions: <h4>{recipe.instructions}</h4>
                 </div>
                 );
-       });
+    });
 
         return(
             <DefaultLayout title="All Recipes" recipeLength = {this.props.recipe}>
@@ -26,4 +28,4 @@ class ViewRecipes extends React.Component {
     }
 }
 
-module.exports = ViewRecipes;
+module.exports = Home;

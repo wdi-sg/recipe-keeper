@@ -4,13 +4,14 @@
   "description": "Create an online recipe keeper.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonwongys/recipe-keeper.git"
   },
-  "author": "",
+  "author": "jasonwongys <jasonwongys@hotmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jasonwongys/recipe-keeper/issues"
@@ -23,5 +24,6 @@
     "method-override": "^3.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
-  }
+  },
+  "devDependencies": {}
 }

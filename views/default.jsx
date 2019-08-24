@@ -13,20 +13,20 @@ class DefaultLayout extends React.Component {
         <body>
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">Add Recipe</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+                    <a class="navbar-brand" href="/recipes/new">Add Recipe</a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Delete Recipe <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/recipes/:id">Delete Recipe <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Update Recipe</a>
+                <a class="nav-link" href="/recipes/:id/edit">Update Recipe</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">View Recipe</a>
+                <a class="nav-link" href="/recipes/:id">View Recipe</a>
               </li>
 
         </ul>

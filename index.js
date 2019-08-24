@@ -4,7 +4,7 @@ const file = 'recipes.json'
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override')
-const Request = require("request");
+//const Request = require("request");
 var React = require('react');
 
 app.use(methodOverride('_method'));
@@ -47,7 +47,7 @@ app.post('/recipes', (req, res) => {
 //See all the recipes
 app.get('/recipes/', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-        res.render('viewRecipes', obj);
+        res.render('home', obj);
     });
 });
 
