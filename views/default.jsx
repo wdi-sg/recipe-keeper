@@ -28,7 +28,6 @@ class DefaultLayout extends React.Component {
               <li class="nav-item">
                 <a class="nav-link" href="/recipes/:id">View Recipe</a>
               </li>
-
         </ul>
         </div>
         </nav>

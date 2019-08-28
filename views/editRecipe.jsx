@@ -1,17 +1,26 @@
 var React = require('react');
 var DefaultLayout = require('./default');
-console.log("Start rendering ");
+console.log("Start rendering EDIT ");
 
 class EditRecipe extends React.Component {
     render() {
+        console.log(this.props + 'INFO HERE');
         return (
-            <DefaultLayout title="RECIPE" recipeLength = {this.props.recipe.length}>
-            <h2>{this.props.recipe.id}</h2>
-            <h2>{this.props.recipe.title}</h2>
-            <h2>{this.props.recipe.ingredients}</h2>
-            <h2>{this.props.recipe.instructions}</h2>
-            <form method="POST" action={"/recipes/:id/edit" + this.props.recipe.id + "?_method=PUT"}>
-                <input type="submit" value="Edit Recipe"/>
+            <DefaultLayout title="RECIPE">
+            
+            <h3>Recipe Title:{this.props.title} </h3>
+            
+            {/* <h3>Recipe Instructions: {this.props.instructions}</h3>
+            <h3>Recipe Ingredients:{this.props.ingredients}</h3> */}
+            <form method="POST" action={'/recipes/'+this.props.id+ '?_method=PUT'}>
+                <div>
+                    Recipe Title: <input name="title" type="text" value={this.props.title}/>
+                    Recipe Ingredients: <input name="ingredients" type="text" value={this.props.ingredients}/>
+                    Recipe Instructions: <input name="instructions" type="text" value={this.props.instructions}/>
+                    <input type="submit" value="Edit Recipe"/>
+
+                </div>
+                
             </form>
             </DefaultLayout>
             )};

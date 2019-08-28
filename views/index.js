@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-app.use(express.static(__dirname+'/public/'));
+app.use(express.static(__dirname+'../public'));
 
 const reactEngine = require('express-react-views').createEngine();
 
@@ -47,6 +47,7 @@ app.post('/recipes/', (req, res) => {
 //See all the recipes
 app.get('/recipes/', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
+        console.log(obj);
         res.render('home', obj);
     });
 });
@@ -59,50 +60,69 @@ app.get('/recipes/:id', (req,res) => {
         if(err) {
             console.log(err);
         }
-        let searchedRecipe = obj["recipes"][recipeID];
+        let searchedRecipe = obj["recipes"][recipeID-1];
         console.log(searchedRecipe);
-        res.send(searchedRecipe);
-        //res.render("viewSingleRecipe", searchedRecipe);
+        //res.send(searchedRecipe);
+        res.render("viewSingleRecipe", searchedRecipe);
     });
 });
 
 //recipes/:id/edit   GET edit    Display the form for editing a single recipe
 app.get('/recipes/:id/edit', (req,res) => {
+    let recipeID = req.params.id;
+
     jsonfile.readFile(file, (err, obj) => {
-        let recipeArray = obj.recipes[parseInt(req.params.id) -1];
-        res.render('editRecipe',{recipesArray});
+        //console.log(obj);
+        let updateRecipe = obj["recipes"][recipeID];
+        console.log(updateRecipe + "Selected record");
+        res.render('editRecipe', updateRecipe);
+        //res.send(recipeArray);
     });
 });
 
 
 //recipes/:id    PATCH/PUT   update  Update a recipe
-// app.put('/recipes/:id', (req,res) => {
-//     let updateRecipe = req.params.id;
-//     let recipeId = req.query;
+app.put('/recipes/:id', (req, res) => {
+    jsonfile.readFile(file, (err, obj) => {
+        // Request body (req.body) is the form information passed 
+        console.log("Request body here: " + req.body.title);
 
-//     jsonfile.readFile(file, (err, obj) => {
+        let updateRecipe =  obj.recipes[req.params.id-1];
 
-//     });
-// });
+        updateRecipe.title= req.body.title;
+        updateRecipe.ingredients= req.body.ingredients;
+        updateRecipe.instructions= req.body.instructions;
+
+        jsonfile.writeFile(file, obj, (err) => {
+            console.log(err)
+            console.log("Recipe updated");
+            res.redirect("/recipes/");
+        })
+    });
+});
 
 //recipes/:id    DELETE  destroy Remove a recipe
-// app.delete('/recipes/:id', (req,res) => {
-//     let recipeName = req.params.id;
+app.delete('/recipes/:id', (req,res) => {
+    let recipeID = req.body.id;
+    console.log("recipe ID is : " + recipeID);
+    
 
-//     jsonfile.readFile(file, (err, obj) => {
-//         for(let i = 0; i < obj.recipes.length; i++) {
-//             if(recipeName === obj.recipes[i].id){
+    jsonfile.readFile(file, (err, obj) => {
 
-//                 obj.recipes.splice(parseInt(obj.recipes[i].id) -1,1)
-//             }
-//         }
+        console.log("recipe to delete: " + obj.recipes["recipeID"]);
+        for(let i = 0; i < obj.recipes.length; i++) {
+            if(recipeID === obj.recipes[i].id){
 
-//         res.render('');
-//         jsonfile.writeFile(file, obj, (err) => {
-
-//         });
-//     });
-// });
+                obj.recipes.splice(parseInt(obj.recipes[i].id) -1,1)
+            }
+        }
+        jsonfile.writeFile(file, obj, (err) => {
+            console.log(err)
+            console.log("Recipe deleted");
+            res.redirect("/recipes/");
+        });
+    });
+});
 
 
 
