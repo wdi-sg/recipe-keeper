@@ -103,19 +103,25 @@ app.put('/recipes/:id', (req, res) => {
 
 //recipes/:id    DELETE  destroy Remove a recipe
 app.delete('/recipes/:id', (req,res) => {
-    let recipeID = req.body.id;
+    let recipeID = parseInt(req.body.id);
+    let recipeName = req.body.title;
+
     console.log("recipe ID is : " + recipeID);
-    
+    console.log("recipe name is : " + recipeName);
 
     jsonfile.readFile(file, (err, obj) => {
 
-        console.log("recipe to delete: " + obj.recipes["recipeID"]);
-        for(let i = 0; i < obj.recipes.length; i++) {
-            if(recipeID === obj.recipes[i].id){
+        //console.log("recipe to delete: " + obj.recipes[0].id);
+        console.log("length of object: " + obj.recipes.length);
 
-                obj.recipes.splice(parseInt(obj.recipes[i].id) -1,1)
+        for(let i = 0; i < obj.recipes.length; i++) {
+
+            if(recipeID === parseInt(obj.recipes[i].id) && recipeName === obj.recipes[i].title){
+                console.log("Match is found!");
+                obj.recipes.splice(parseInt(obj.recipes[i].id), 1)
             }
         }
+
         jsonfile.writeFile(file, obj, (err) => {
             console.log(err)
             console.log("Recipe deleted");

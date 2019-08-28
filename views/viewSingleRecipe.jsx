@@ -16,6 +16,7 @@ class ViewSingleRecipe extends React.Component {
 
                     <form method="POST" action={'/recipes/'+this.props.id+'?_method=delete'}>
                         <input name="id" type="hidden" value={this.props.id} />
+                        <input name="title" type="hidden" value={this.props.title} />
                         <input type="submit" value="Delete Recipe" />
                     </form>
             </div>

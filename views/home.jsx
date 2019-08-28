@@ -1,5 +1,6 @@
 var React = require('react');
 var DefaultLayout = require('./default');
+//var style = require('../public/style.css')
 console.log("Start rendering HOme ");
 
 
@@ -8,11 +9,15 @@ class Home extends React.Component {
         console.log(this.props);
 
     let sampleRecipe = this.props.recipes.map(recipe => { return (
-                <div className="recipe">
-                    Recipe ID: <h3>{recipe.id}</h3>
-                    Recipe Title: <h3><a href={'/recipes/'+recipe.id}>{recipe.title}</a></h3>
-                    Recipe Ingredients: <h4>{recipe.ingredients}</h4>
-                    Recipe Instructions: <h4>{recipe.instructions}</h4>
+                <div className="card-deck" >
+                    <div className="card" style={{display:"flex"}}>
+                        <h4 style={{color: "red"}}>Recipe ID: {recipe.id}</h4>
+                        <div className="card-body">
+                            <h3 className="card-title">Title: <a href={'/recipes/'+recipe.id}>{recipe.title}</a></h3>
+                            <h5 className="card-text">Ingredients: {recipe.ingredients}</h5>
+                            <h5 className="card-text">Instructions: {recipe.instructions}</h5>                            
+                        </div>
+                    </div>
                 </div>
                 );
     });
