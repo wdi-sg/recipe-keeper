@@ -1,4 +1,4 @@
-[{"id":1,"name":"Wine - Rosso Toscano Igt"},
+{"ingredients": [{"id":1,"name":"Wine - Rosso Toscano Igt"},
 {"id":2,"name":"Spaghetti Squash"},
 {"id":3,"name":"Pepperoni Slices"},
 {"id":4,"name":"Compound - Pear"},
@@ -998,3 +998,4 @@
 {"id":998,"name":"Wine - Sauvignon Blanc Oyster"},
 {"id":999,"name":"Paste - Black Olive"},
 {"id":1000,"name":"Nantucket - Orange Mango Cktl"}]
+}

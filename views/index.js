@@ -1,6 +1,7 @@
 const jsonfile = require('jsonfile');
 
 const file = 'recipes.json'
+const ingredients = '../ingredient.json'
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override')
@@ -73,7 +74,7 @@ app.get('/recipes/:id/edit', (req,res) => {
 
     jsonfile.readFile(file, (err, obj) => {
         //console.log(obj);
-        let updateRecipe = obj["recipes"][recipeID];
+        let updateRecipe = obj["recipes"][recipeID-1];
         console.log(updateRecipe + "Selected record");
         res.render('editRecipe', updateRecipe);
         //res.send(recipeArray);
@@ -92,6 +93,9 @@ app.put('/recipes/:id', (req, res) => {
         updateRecipe.title= req.body.title;
         updateRecipe.ingredients= req.body.ingredients;
         updateRecipe.instructions= req.body.instructions;
+        updateRecipe["date created"] = req.body["date created"];
+
+        console.log(updateRecipe["date created"]);
 
         jsonfile.writeFile(file, obj, (err) => {
             console.log(err)
@@ -116,9 +120,9 @@ app.delete('/recipes/:id', (req,res) => {
 
         for(let i = 0; i < obj.recipes.length; i++) {
 
-            if(recipeID === parseInt(obj.recipes[i].id) && recipeName === obj.recipes[i].title){
+            if(recipeID === parseInt(obj.recipes[i].id)){
                 console.log("Match is found!");
-                obj.recipes.splice(parseInt(obj.recipes[i].id), 1)
+                obj.recipes.splice(parseInt(obj.recipes[i].id)-1, 1)
             }
         }
 
@@ -127,6 +131,13 @@ app.delete('/recipes/:id', (req,res) => {
             console.log("Recipe deleted");
             res.redirect("/recipes/");
         });
+    });
+});
+
+app.get('/ingredients/', (req, res) => {
+    jsonfile.readFile(ingredients, (err, obj) => {
+        //console.log(obj);
+        res.render('ingredients', obj);
     });
 });
 

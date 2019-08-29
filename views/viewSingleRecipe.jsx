@@ -1,4 +1,5 @@
 var React = require('react');
+var DefaultLayout = require('./default');
 
 console.log("Reading view recipes");
 class ViewSingleRecipe extends React.Component {
@@ -6,13 +7,14 @@ class ViewSingleRecipe extends React.Component {
     render() {
         console.log(this.props);
         return (
+            <DefaultLayout>
             <div className="recipe">
-                    Recipe ID: <h3>{this.props.id}</h3>
-                    Recipe Title: <h3>{this.props.title}</h3>
-                    Recipe Ingredients: <h4>{this.props.ingredients}</h4>
-                    Recipe Instructions: <h4>{this.props.instructions}</h4>
+                    <h3>Recipe ID:{this.props.id}</h3>
+                    <h3>Recipe Title: {this.props.title}</h3>
+                    <h4>Recipe Ingredients: {this.props.ingredients}</h4>
+                    <h4>Recipe Instructions: {this.props.instructions}</h4>
 
-                    <button><a href={'/recipes/'+this.props.id+'/edit'}>Edit Recipe</a></button>
+                    <a href={'/recipes/'+this.props.id+'/edit'}><button>Edit Recipe</button></a>
 
                     <form method="POST" action={'/recipes/'+this.props.id+'?_method=delete'}>
                         <input name="id" type="hidden" value={this.props.id} />
@@ -20,7 +22,7 @@ class ViewSingleRecipe extends React.Component {
                         <input type="submit" value="Delete Recipe" />
                     </form>
             </div>
-
+            </DefaultLayout>
         );
     }
 }
