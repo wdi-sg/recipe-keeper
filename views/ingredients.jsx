@@ -11,14 +11,14 @@ class Ingredients extends React.Component {
         })
         console.log("ingredients here: " +this.props);
         return (
-            
+            <DefaultLayout>
             <div>
                 <ul>
                     <li>{ingredientList}</li>
                 </ul>
                 
             </div>
-            
+            </DefaultLayout>
         )
     }
 }

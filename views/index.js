@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-app.use(express.static(__dirname+'../public'));
+app.use(express.static(__dirname+'/public'));
 
 const reactEngine = require('express-react-views').createEngine();
 
@@ -55,13 +55,14 @@ app.get('/recipes/', (req, res) => {
 
 //recipes/:id    GET show    See a single recipe **
 app.get('/recipes/:id', (req,res) => {
-    let recipeID = req.params.id;
+    let recipeID = req.params.id - 1;
+
 
     jsonfile.readFile(file, (err, obj) => {
         if(err) {
             console.log(err);
         }
-        let searchedRecipe = obj["recipes"][recipeID-1];
+        let searchedRecipe = obj["recipes"][recipeID];
         console.log(searchedRecipe);
         //res.send(searchedRecipe);
         res.render("viewSingleRecipe", searchedRecipe);
@@ -120,7 +121,7 @@ app.delete('/recipes/:id', (req,res) => {
 
         for(let i = 0; i < obj.recipes.length; i++) {
 
-            if(recipeID === parseInt(obj.recipes[i].id)){
+            if(recipeID === parseInt(obj.recipes[i].id)-1){
                 console.log("Match is found!");
                 obj.recipes.splice(parseInt(obj.recipes[i].id)-1, 1)
             }

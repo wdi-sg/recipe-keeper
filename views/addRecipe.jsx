@@ -6,6 +6,15 @@ console.log("Start rendering ");
 
 
 class AddRecipe extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleOnChange = this.handleOnChange.bind(this);
+    }
+
+    handleOnChange(e) {
+        
+    }
     render() {
         let date= new Date();
         let newDate = date.toString();

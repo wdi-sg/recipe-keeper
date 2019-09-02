@@ -1,0 +1,13 @@
+
+.container {
+    display: flex;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+
+footer {
+    background-color: turquoise;
+    color: black;    
+    position: bottom;
+
+}
