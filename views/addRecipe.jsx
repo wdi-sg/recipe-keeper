@@ -1,15 +1,18 @@
 var React = require('react');
 var DefaultLayout = require('./default');
+//import DropdownList from 'react-widgets/lib/DropdownList'
+
 var IngredientsList = require('./ingredients');
 var listObj = require('../ingredient.json');
 console.log("Start rendering ");
-
+//let { DropdownList } = ReactWidgets
 
 class AddRecipe extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {value: 'orange'}
 
-        this.handleOnChange = this.handleOnChange.bind(this);
+        //this.handleOnChange = this.handleOnChange.bind(this);
     }
 
     handleOnChange(e) {
@@ -47,6 +50,12 @@ class AddRecipe extends React.Component {
                         {/* <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <button class="dropdown-item" type="button"><IngredientsList ingredients={listObj}></IngredientsList></button>
                         </div> */}
+
+                        {/* <DropdownList
+                            data={listObj}
+                            value="Select ingredient"
+                            onChange={value=>this.setState({value})}
+                        /> */}
                     </div>
                     <input type="" name="date created" value={newDate} style={{display: "none"}}/>
                     <input type="submit" value="Add Recipe"/>

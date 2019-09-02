@@ -14,7 +14,8 @@
     "jsonfile": "^5.0.0",
     "method-override": "^3.0.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-widgets": "^4.4.11"
   },
   "devDependencies": {},
   "description": ""
