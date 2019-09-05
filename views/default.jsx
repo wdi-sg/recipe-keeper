@@ -6,7 +6,7 @@ class DefaultLayout extends React.Component {
       <html>
         <head>
             <title>Recipe Keeper</title>
-            <link rel="stylesheet" href="style.css" type="text/css" />
+            <link rel="stylesheet" href="/css/style.css" type="text/css" />
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
             <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet"></link>
         </head>
@@ -28,7 +28,10 @@ class DefaultLayout extends React.Component {
                   </li>
 
                   <li className="nav-item">
-                    <input type="text" className="input" placeholder="Search" />   
+                    <form>
+                      <input type="text" className="input" placeholder="Enter text" />  
+                      <button type="submit">Search</button> 
+                    </form>
                   </li>
                   </ul>
               </div>
@@ -38,7 +41,7 @@ class DefaultLayout extends React.Component {
         <div className="container">
             {this.props.children}
           </div>
-          <footer>
+          <footer className="fixed-bottom">
             Created by Jason Wong @ github
           </footer>
             

@@ -13,12 +13,13 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-app.use(express.static(__dirname+'../public'));
+//app.use(express.static(__dirname+'../public'));
+app.use(express.static('public'));
 
 const reactEngine = require('express-react-views').createEngine();
 
 app.engine('jsx', reactEngine);
-app.set('views', __dirname + '/views');
+app.set('views', __dirname);
 app.set('view engine', 'jsx');
 
 //Display the form for a single recipe
