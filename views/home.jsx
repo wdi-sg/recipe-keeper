@@ -30,7 +30,8 @@ class Home extends React.Component {
 
         return(
             <DefaultLayout title="All Recipes" recipeLength = {this.props.recipe}>
-            <h1>Recipe Keeper </h1>
+            
+            
             <div className="card-deck" >
                 
                 {sampleRecipe}

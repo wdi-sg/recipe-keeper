@@ -42,7 +42,10 @@ class DefaultLayout extends React.Component {
         </nav>
         </header>
         <body>
+        <h1> My Recipe Keeper </h1>
         <div className="container">
+        
+        
             {this.props.children}
           </div>
           <footer className="fixed-bottom">

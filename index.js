@@ -143,6 +143,14 @@ app.get('/ingredients/', (req, res) => {
     });
 });
 
+app.get('/dishes/', (req, res) => {
+    res.render('dishes');
+})
+
+
+app.get('categories/', (req,res) => {
+    res.render('category');
+})
 
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
