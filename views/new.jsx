@@ -6,16 +6,14 @@ class New extends React.Component {
             <html>
                 <body>
                     <h2>Add New Recipe</h2>
-
+                    <p>{this.props.message}</p>
                     <form method="POST" action="/recipes/new">
-                        Recipe Title:<br/>
+                        <h3>Recipe Title:</h3>
                         <input type="text" name="title" required/><br/>
-                        Ingredients:<br/>
-                        <input type="text" name="ingredients1"/><br/>
-                        <input type="text" name="ingredients2"/><br/>
-                        <input type="text" name="ingredients3"/><br/>
-                        Instructions:<br/>
-                        <input type="text" name="instructions" required/><br/>
+                        <h3>Ingredients:</h3>
+                        <input type="text" name="ingredients"/><br/>
+                        <h3>Instructions:</h3>
+                        <input type="text" name="instructions" required/><br/><br/>
                         <input type="submit" value="Submit"/>
                     </form>
                 </body>

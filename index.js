@@ -59,8 +59,7 @@ app.set('view engine', 'jsx');
             recipe.message = "Found";
             // Debug - check recipe found
             console.log(recipe);
-            response.send("Recipe exist!");
-            //response.render('found', recipe);
+            response.render('found', recipe);
         }
     });
 });
@@ -69,18 +68,37 @@ app.set('view engine', 'jsx');
 app.post('/recipes/new', (request, response) => {
     console.log(request.body);
     let newRecipe = request.body;
+    let recipeExist = false;
 
     jsonfile.readFile(FILE, (err, obj) => {
         if (err) {
         console.log(err);
         }
 
-        jsonfile.writeFile(FILE, obj, (err) => {
-            if (err) {
-                console.error(`Error is ${err}`)
+        let existingRecipe = obj.recipes;
+        // check if recipe title already exist
+        existingRecipe.forEach( recipe => {
+            if ( newRecipe.title.toLowerCase() === recipe.title.toLowerCase() ) {
+                recipeExist = true;
+                let exists = { message: "Recipe's title already exists!"}
+                response.render('new', exists);
             }
-            response.render('found', newRecipe);
-        })
+        });
+
+        if (recipeExist === false) {
+
+            obj.recipes.push(newRecipe);
+
+            jsonfile.writeFile(FILE, obj, (err) => {
+                if (err) {
+                    console.error(err);
+                }
+
+                newRecipe.message = "Added"
+                response.render('found', newRecipe);
+            })
+
+        }
     })
 })
 
