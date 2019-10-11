@@ -7,7 +7,7 @@ class Home extends React.Component {
        <body>
            <h1>Add a Recipe</h1>
            <form method="POST"action="/allrecipes">
-              <p><input type="text" name="title" placeholder="Recipe Name"/></p> 
+              <p><input type="text" name="name" placeholder="Name"/></p> 
               <p><input type="text" name="ingredients" placeholder="Ingredients"/></p> 
               <p><input type="text" name="instructions" placeholder="Instructions"/></p> 
                <input type="submit"/>

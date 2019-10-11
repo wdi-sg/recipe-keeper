@@ -1,21 +1,18 @@
-var React = require('react');
+var React = require("react");
 
-class AllRecipes extends React.Component {
+class Home extends React.Component {
   render() {
+    
+
     return (
       <html>
-       <body>
-           <h1>Add a Recipe</h1>
-           <form method="POST"action="/allrecipes">
-              <p><input type="text" name="title" placeholder="Recipe Name"/></p> 
-              <p><input type="text" name="ingredients" placeholder="Ingredients"/></p> 
-              <p><input type="text" name="instructions" placeholder="Instructions"/></p> 
-               <input type="submit"/>
-           </form>
-       </body>
+        <body>
+          <h1>List of Recipes</h1>
+          <ol></ol>
+        </body>
       </html>
     );
   }
 }
 
-module.exports = AllRecipes;
+module.exports = Home;

@@ -27,12 +27,20 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
 // Home page where you can add new recipes
-app.get('/home', (request, response) =>{
-    response.render('home')
+app.get('/new', (request, response) =>{
+    response.render('form')
 })
 
-// See all recipes that exist 
-
+app.post('/allrecipes', (request, response) =>{
+    const newRecipe = request.body;
+    jsonfile.readFile(FILE, (err, obj) => {
+        obj.recipes.push(newRecipe);
+        jsonfile.writeFile(FILE, obj, err => {
+          console.log(err);
+          response.render("successfuladd");
+        });
+      });
+})
 // Edit Recipes that currently exist 
 
 // Delete Recipes
