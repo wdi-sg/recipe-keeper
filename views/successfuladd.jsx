@@ -7,6 +7,7 @@ class Home extends React.Component {
        <body>
            <h1>Recipe Successfully Added</h1>
           <p><a href="/new">Add Another?</a></p>
+          <p><a href="/home">Home</a></p>
        </body>
       </html>
     );
