@@ -38,6 +38,21 @@ app.get("/home", (request, response) => {
       });
  
 });
+// Page that renders each individual recipe when selected from the home page
+app.get("/:recipename", (request,response)=>{
+    jsonfile.readFile(FILE, (err, obj) => {
+        let recipepage;
+       for(let i = 0; i<obj.recipes.length; i++) {
+           let selectedRecipe = obj.recipes[i]["name"];
+           if(selectedRecipe === request.params.recipename){
+            recipepage = obj.recipes[i]
+            
+           }
+       }
+       response.render("individualrecipe", recipepage);
+       });
+       
+})
 app.get("/new", (request, response) => {
   response.render("form");
 });

@@ -5,9 +5,8 @@ class Home extends React.Component {
       let allRecipe = this.props.recipe.map(item =>{
           return(
               <li>
-                  <p>{item.name}</p>
-                  <p>{item.ingredients}</p>
-                  <p>{item.instructions}</p>
+                  <p><a href={"/"+ item.name}>{item.name}</a> </p>
+                
               </li>
           )
       })
@@ -16,7 +15,7 @@ class Home extends React.Component {
        <body>
            <h1>Recipe Home Page</h1>
           <p> <a href="/new">Add A New Recipe</a></p>
-
+        <h3>All Recipes: </h3>
           <ul>
               {allRecipe}
           </ul>

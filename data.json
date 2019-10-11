@@ -1,3 +1,11 @@
 {
-	"recipes": []
+	"recipes": [{
+		"name": "Roasted Chicken",
+		"ingredients": "chicken",
+		"instructions": "Roast the chicken"
+	}, {
+		"name": "Boiled Egg",
+		"ingredients": "Egg",
+		"instructions": "Boil The Egg"
+	}]
 }
