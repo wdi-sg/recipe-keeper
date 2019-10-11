@@ -1,0 +1,39 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Boiled Chicken",
+      "ingredients": "1 Chicken",
+      "instructions": "Place Chicken in water",
+      "_locals": {}
+    },
+    {
+      "id": 2,
+      "title": "Boiled Pork",
+      "ingredients": "1 Pork",
+      "instructions": "Place Pork in water",
+      "_locals": {}
+    },
+    {
+      "id": 3,
+      "title": "Boiled Duck",
+      "ingredients": "1 Duck",
+      "instructions": "Place Duck in Water",
+      "_locals": {}
+    },
+    {
+      "id": 4,
+      "title": "Grilled Chicken",
+      "ingredients": "1 Chicken",
+      "instructions": "Place chicken in the pan",
+      "_locals": {}
+    },
+    {
+      "id": 5,
+      "title": "Pork Chop",
+      "ingredients": "1 Big Pork",
+      "instructions": "Grill pork in pan for 15mins",
+      "_locals": {}
+    }
+  ]
+}
