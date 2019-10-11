@@ -1,0 +1,8 @@
+{
+  "recipes":[
+  	{	"title" : "Boiled Chicken",
+  		"ingredients" : ["1 chicken", "10 ml water"],
+  		"instructions" : "Place chicken in water with salt. Simmer for 20 minutes."
+  	}
+  ]
+}
