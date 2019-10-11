@@ -34,7 +34,12 @@ app.get('/',(req,res)=>{res.send('landing page!')});
 ╩┘└┘─┴┘└─┘┴ └─
 ==================================================
 */
-app.get('/recipes/',(req,res)=>{res.send('landing page!')});
+app.get('/recipes/',(req,res)=>{
+    jsonfile.readFile(file,(err,obj)=>{
+        if (err) console.log(err);
+        res.render('home',obj);
+    });
+});
 /*
 ==================================================
 ╔╗╔┌─┐┬ ┬
@@ -50,7 +55,17 @@ app.get('/recipes/new',(req,res)=>{res.render('new')});
 ╚═╝┴└─└─┘┴ ┴ ┴ └─┘
 ==================================================
 */
-app.post('/recipes',(req,res)=>{res.send('landing page!')});
+app.post('/recipes',(req,res)=>{
+    jsonfile.readFile(file,(err,obj)=>{
+        if (err) console.log(err);
+// push new recipe to array in data.json
+        obj.recipes.push(req.body);
+        jsonfile.writeFile(file,obj,(err)=>{
+            if (err) console.log(err);
+        });
+    });
+    res.render('home');
+});
 /*
 ==================================================
 ╔═╗┬ ┬┌─┐┬ ┬

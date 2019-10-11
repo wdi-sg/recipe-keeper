@@ -1,5 +1,1 @@
-{"recipes":[{
-  "title": "boiled duck",
-  "ingredients" : "1 duck, water",
-  "instructions": "boil duck in water for 20 minutes. take it out. serve."
-}]}
+{"recipes":[{"title":"boiled duck","ingredients":"1 duck, water","instructions":"boil duck in water for 20 minutes. take it out. serve."},{"title":"banana","ingredients":"wow","instructions":"hi"},{"title":"orange","ingredients":"1 orange","instructions":"peel it"},{"title":"Rice","ingredients":"1 cup of rice, 1 cup of water","instructions":"Mix rice and water in bowl, add everything to rice cooker and press cook."},{"title":"Rice","ingredients":"1 cup of rice, 1 cup of water","instructions":"Mix rice and water in bowl, add everything to rice cooker and press cook."},{"title":"Apple","ingredients":"1 Apple","url":"https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?201606271147","instructions":"Pay generous amounts to queue for extended hours"}]}

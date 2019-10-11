@@ -10,7 +10,7 @@ class Layout extends React.Component {
                 </head>
                 <body>
                     <div className="container">
-                        <div className="jumbotron">
+                        <div className="mt-5 jumbotron">
                             {this.props.children}
                         </div>
                     </div>
