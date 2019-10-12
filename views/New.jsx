@@ -1,4 +1,6 @@
 const React = require("react");
+const SetNumber = require("./components/SetNumber");
+const InputRecipe = require("./components/InputRecipe");
 
 class New extends React.Component {
   constructor() {
@@ -32,32 +34,8 @@ class New extends React.Component {
       <>
         <h1>Add new recipe</h1>
         <button><a href="/recipes">Cancel</a></button>
-        <form action="/recipes/new" method="get">
-          <label htmlFor="number">Total number of ingredients required? </label>
-          <input type="number" name="number" defaultValue={number}/>
-        </form>
-
-        {number > 0 ? (
-          <>
-            <form action="/recipes" method="post" id="newRecipe">
-              <div>
-                <label htmlFor="title">Recipe title: </label>
-                <input type="text" name="title" />
-              </div>
-              <label>Ingredients:</label>
-              <div>{this.numOfIngredients}</div>
-              <label htmlFor="instructions">Instructions:</label>
-              <div>
-                <textarea cols="50" rows="4" name="instructions" />
-              </div>
-            </form>
-            <button type="submit" form="newRecipe" value="submit">
-              Add
-            </button>
-          </>
-        ) : (
-          <div></div>
-        )}
+        <SetNumber number={number}/>
+        <InputRecipe number={number} numOfIngredients={this.numOfIngredients} />
       </>
     );
   }

@@ -1,4 +1,6 @@
 const React = require("react");
+const SetNumber = require("./components/SetNumber");
+const InputRecipe = require("./components/InputRecipe");
 
 class Edit extends React.Component {
   constructor() {
@@ -49,35 +51,17 @@ class Edit extends React.Component {
     return (
       <>
         <h1>Edit</h1>
-        <button><a href={`/recipes/${recipe.id}`}>Cancel</a></button>
-        <form action={`/recipes/${recipe.id}/edit`} method="get">
-          <label htmlFor="number">Total number of ingredients required? </label>
-          <input type="number" name="number" defaultValue={number} />
-        </form>
-        <form
-          action={`/recipes/${recipe.id}?_method=put`}
-          method="post"
-          id="editRecipe"
-        >
-          <div>
-            <label htmlFor="title">Recipe title: </label>
-            <input type="text" name="title" defaultValue={recipe.title} />
-          </div>
-          <label>Ingredients:</label>
-          <div>{this.numOfIngredients}</div>
-          <label htmlFor="instructions">Instructions:</label>
-          <div>
-            <textarea
-              cols="50"
-              rows="4"
-              name="instructions"
-              defaultValue={recipe.instructions}
-            />
-          </div>
-        </form>
-        <button type="submit" form="editRecipe" value="submit">
-          Edit
+        <button>
+          <a href={`/recipes/${recipe.id}`}>Cancel</a>
         </button>
+        <SetNumber number={number} id={recipe.id} />
+        <InputRecipe
+          number={number}
+          numOfIngredients={this.numOfIngredients}
+          id={recipe.id}
+          title={recipe.title}
+          instructions={recipe.instructions}
+        />
       </>
     );
   }
