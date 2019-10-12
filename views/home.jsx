@@ -6,7 +6,6 @@ class Home extends React.Component{
 
 
         const title = this.props.recipeList.map((item,i) => {
-            console.log(item.id)
 
                 return <li key = {i}><a href = {`/recipes/${item.id}`}> {item.title}</a> </li>
             })

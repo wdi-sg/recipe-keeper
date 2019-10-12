@@ -1,0 +1,41 @@
+{
+  "recipes": [
+    {
+      "title": "Cinnamon roll",
+      "ingredients": "cinnamon, butter, other stuff",
+      "instructions": "MINE",
+      "id": 1
+    },
+    {
+      "title": "Coffee",
+      "ingredients": "Coffee",
+      "instructions": "TEARS",
+      "id": 2
+    },
+    {
+      "title": "Banana",
+      "ingredients": "Banana",
+      "instructions": "Peel banana",
+      "id": 3
+    },
+    {
+      "title": "Pasta",
+      "ingredients": "Pasta",
+      "instructions": "Pour hot water.",
+      "id": 4
+    },
+    {
+      "title": "cat",
+      "ingredients": "cat",
+      "instructions": "NO DON'T EAT IT",
+      "id": 5
+    },
+    {
+      "title": "cat",
+      "ingredients": "cat",
+      "instructions": "DON'T EAT IT IT'S MINE",
+      "id": 7
+    }
+  ],
+  "IDs": 8
+}

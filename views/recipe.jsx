@@ -28,6 +28,12 @@ class Recipe extends React.Component{
                             Back to homepage
                         </button>
                     </form>
+
+                    <form action={"/recipes/"+ this.props.recipe.id + "?_method=delete"} method="post">
+                         <button type="submit">
+                            Delete this recipe
+                        </button>
+                    </form>
                 </body>
               </html>
             )
