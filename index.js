@@ -57,7 +57,7 @@ app.get("/recipes/", (req, res) => {
       recipes: recipes
     };
 
-    res.render("AllRecipes", data);
+    res.render("Recipes", data);
   });
 });
 
