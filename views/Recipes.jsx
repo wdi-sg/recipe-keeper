@@ -8,6 +8,7 @@ class Recipes extends React.Component {
     return (
       <>
         <h1>List of recipes</h1>
+        <button><a href="/">Home</a></button>
         <button><a href="/recipes/new">Add new recipe</a></button>
         {recipes.length !== 0 ? (
           <>
