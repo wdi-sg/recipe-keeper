@@ -37,8 +37,12 @@ app.get("/ingredients/new", (req, res) => {
   res.render("NewIngredient");
 });
 
+app.get("/recipes/new", (req, res) => {
+  res.render("NewRecipe");
+});
+
 app.post("/ingredients", (req, res) => {
-  console.log("req.params ****************", req.body);
+  console.log("req.body ****************", req.body);
   const { ingredientName, ingredientAmount, ingredientNotes } = req.body;
 
   const newIngredient = {
@@ -55,6 +59,28 @@ app.post("/ingredients", (req, res) => {
         console.error(err);
       }
       res.send("ingredient added");
+    });
+  });
+});
+
+app.post("/recipes", (req, res) => {
+  console.log("req.body ****************", req.body);
+  const { recipeTitle, recipeIngredients, recipeInstructions } = req.body;
+
+  const newRecipe = {
+    title: recipeTitle,
+    ingredients: recipeIngredients,
+    instructions: recipeInstructions
+  };
+
+  jsonfile.readFile(FILE, (err, obj) => {
+    obj.recipes.push(newRecipe);
+
+    jsonfile.writeFile(FILE, obj, err => {
+      if (err) {
+        console.error(err);
+      }
+      res.send("recipe added");
     });
   });
 });
