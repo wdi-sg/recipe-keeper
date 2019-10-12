@@ -17,6 +17,9 @@ class Recipe extends React.Component {
         </ul>
         <h2>Instructions:</h2>
         <p>{instructions}</p>
+        <form action={`/recipes/${id}?_method=DELETE`} method="post">
+          <button>Delete recipe</button>
+        </form>
       </>
     );
   }

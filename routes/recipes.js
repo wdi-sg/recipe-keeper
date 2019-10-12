@@ -93,7 +93,16 @@ router.put("/:id", (req, res) => {
 
 // delete 1
 router.delete("/:id", (req, res) => {
-  return res.render("recipe");
+  jsonfile.readFile(file, (err, data) => {
+    data.recipes.forEach((recipe, i) => {
+      if (recipe.id === req.params.id) {
+        data.recipes.splice(i, 1);
+      }
+    });
+    jsonfile.writeFile(file, data, (err) => {
+      res.redirect(`/recipes`);
+    });
+  });
 });
 
 
