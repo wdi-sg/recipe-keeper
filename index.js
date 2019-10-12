@@ -34,6 +34,7 @@ app.get('/', (request, response) =>{
     response.render('home');
 });
 
+// app.post for adding new recipe
 app.post('/newrecipe', (request,response) => {
     console.log("creating new recipe");
     console.log(request.body);
@@ -42,16 +43,32 @@ app.post('/newrecipe', (request,response) => {
             let newRecipe = request.body;
             let all = obj;
             all.recipes.push(newRecipe);
+            let newRecipeDetails = {
+                title: request.body.title,
+                ingredients: request.body.ingredients,
+                instructions: request.body.instructions
+            }
+            response.render('newrecipedisplay', newRecipeDetails);
 
                 jsonfile.writeFile(file, all, (err) => {
                     if (err) {
                         console.log(err);
                     }
-                    response.send("new recipe below!" + request.body);
+                    // render display items
                     console.log("recipe added!");
                 });
         });
 });
+
+// app.get for seeing all recipes
+// app.get('/allrecipes', (request,response) => {
+//     console.log("seeing all recipes")
+
+//     jsonfile.readFile(file, (err, obj) => {
+//         let everything = obj.recipes;
+//         response.render(everything);
+//     });
+// });
 
 
 
