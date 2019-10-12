@@ -16,7 +16,7 @@ class DefaultLayout extends React.Component {
 <div className="container">
   <div className="row mx-auto">
     <div className="col-12 border">
-    <h1>{this.props.title}</h1>
+    <h1>{this.props.pageTitle}</h1>
     </div>
     {/*end header row*/}
   </div>

@@ -4,31 +4,31 @@ class New extends React.Component {
   render() {
     return (
 
-          <DefaultLayout title="Add a New Recipe">
+          <DefaultLayout pageTitle={this.props.pageTitle}>
 
 
 
                   { this.props.warning }
-            <form method="POST" action="../recipes">
+            <form method="POST" action={ this.props.postType }>
              <br/>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Recipe Title:</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" name="recipeTitle"/>
+                <div className="form-group">
+                  <label htmlFor="exampleFormControlInput1">Recipe Title:</label>
+                  <input type="text" className="form-control" id="exampleFormControlInput1" name="recipeTitle" value={this.props.recipeTitle}/>
                 </div>
                   <br/>
                 <div className="form-group">
-                  <label for="exampleFormControlTextarea1">Ingredients:</label>
-                  <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="ingredients">
+                  <label htmlFor="exampleFormControlTextarea1">Ingredients:</label>
+                  <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="ingredients" value={this.props.ingredients}>
                   </textarea>
                 </div>
                   <br/>
                 <div className="form-group">
-                  <label for="exampleFormControlTextarea1">Instructions</label>
-                  <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions">
+                  <label htmlFor="exampleFormControlTextarea1">Instructions</label>
+                  <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions" value={this.props.instructions}>
                   </textarea>
                 </div>
                   <br/>
-                  <input type="submit"  class="btn btn-primary mb-2" value="Submit"/>
+                  <input type="submit"  className="btn btn-primary mb-2" value="Submit"/>
             </form>
           </DefaultLayout>
     );
