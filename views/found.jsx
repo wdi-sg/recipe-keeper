@@ -3,6 +3,7 @@ var React = require('react');
 class Recipe extends React.Component {
     render() {
         let formEdit = '/recipes/' + this.props.id + '/edit';
+        let formDelete = '/recipes/' + this.props.id + '?_method=delete';
         return (
             <html>
                 <body>
@@ -15,6 +16,9 @@ class Recipe extends React.Component {
                     <p>{this.props.instructions}</p>
                     <form method="GET" action={formEdit}>
                         <input type="submit" value="Edit"/>
+                    </form>
+                    <form method="POST" action={formDelete}>
+                        <input type="submit" value="Delete"/>
                     </form>
                 </body>
             </html>

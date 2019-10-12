@@ -146,6 +146,7 @@ app.put('/recipes/:id', (request, response) => {
                 console.log(err);
             }
 
+            editedRecipe.id = request.params.id;
             editedRecipe.message = "Edited";
             response.render('found', editedRecipe);
         })
@@ -154,6 +155,25 @@ app.put('/recipes/:id', (request, response) => {
 
 // delete recipe
 app.delete('/recipes/:id', (request, response) => {
+    console.log("Received request to delete recipe: " + request.params.id);
+    let inputId = parseInt(request.params.id)-1;
+
+    jsonfile.readFile(FILE, (err, obj) => {
+        if (err) {
+            console.log(err);
+        }
+
+        // remove recipe by index from recipes json file
+        obj.recipes.splice(inputId, 1);
+        jsonfile.writeFile(FILE, obj, (err) => {
+            if (err) {
+                console.log(err);
+            }
+
+            response.send("Go back to homepage");
+        })
+
+    })
 
 })
 
