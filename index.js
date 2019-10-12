@@ -34,18 +34,24 @@ ROUTES!
 ******
 */
 
+app.get("/recipes", (request,response)=>{
+    jsonfile.readFile(file, (err,obj) => {
+
+        const data = {
+            recipeList: obj.recipes
+        }
+        response.render("home", data)
+    })
+})
+
 
 // NEW RECIPE FORM
 app.get("/recipes/new", (request,response)=>{
     response.render("new")
 })
 
+
 app.post("/recipes/new", (request, response)=>{
-    // Object.keys(request.body).forEach((key)=>{
-    //     if (request.body[key] === ""){
-    //         request.send(`${key} cannot be empty.`)
-    //     }
-    // });
     let newRecipe = request.body
     const data = {
             title: newRecipe.title,
@@ -55,12 +61,17 @@ app.post("/recipes/new", (request, response)=>{
 
     jsonfile.readFile(file, (err,obj)=>{
         let recipes = obj.recipes
+        let id = obj.IDs
+        newRecipe.id = id
+        console.log(newRecipe)
         recipes.push(newRecipe)
+        obj.IDs = obj.IDs + 1
 
         jsonfile.writeFile(file, obj, {spaces:2}, (err)=>{
             console.error(err)
         })
     })
+
     response.render('added', data)
 })
 
