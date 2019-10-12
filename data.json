@@ -1,38 +1,24 @@
 {
   "recipes": [
     {
-      "id": 1,
-      "title": "Boiled Chicken",
-      "ingredients": "1 Chicken",
-      "instructions": "Place Chicken in water",
-      "_locals": {}
-    },
-    {
-      "id": 2,
-      "title": "Boiled Pork",
-      "ingredients": "1 Pork",
-      "instructions": "Place Pork in water",
-      "_locals": {}
-    },
-    {
-      "id": 3,
-      "title": "Boiled Duck",
-      "ingredients": "1 Duck",
-      "instructions": "Place Duck in Water",
-      "_locals": {}
-    },
-    {
-      "id": 4,
-      "title": "Grilled Chicken",
-      "ingredients": "1 Chicken",
-      "instructions": "Place chicken in the pan",
-      "_locals": {}
-    },
-    {
-      "id": 5,
       "title": "Pork Chop",
-      "ingredients": "1 Big Pork",
-      "instructions": "Grill pork in pan for 15mins",
+      "img": "https://hips.hearstapps.com/del.h-cdn.co/assets/17/34/1503418779-pork-chops-delish.jpg",
+      "ingredients": "2 pork chops.\r\nOlive oil.\r\nSalt.\r\nPepper.",
+      "instructions": "Pan fry pork chop with olive oil for 15 mins.\r\nSeason with salt and pepper.",
+      "_locals": {}
+    },
+    {
+      "title": "Boiled Chicken",
+      "img": "https://momofuku-assets.s3.amazonaws.com/uploads/sites/37/2019/08/resize-resize-Whole-Boiled-Chicken-4-Credit-Andrew-Bezek-1.jpg",
+      "ingredients": "1 chicken.\r\n300ml of water.\r\nSalt.",
+      "instructions": "Place chicken in boiling water.\r\nSimmer for 30 mins with salt.",
+      "_locals": {}
+    },
+    {
+      "title": "Smoke Duck",
+      "img": "https://honest-food.net/wp-content/uploads/2017/12/tea-smoked-duck.jpg",
+      "ingredients": "1 Duck\r\n1 TBSP Honey\r\n1 TBSP Molasses\r\n2 TBSP Orange Juice\r\n1 TBSP Balsamic Vinegar\r\nZest of one orange\r\nPinch of salt and pepper",
+      "instructions": "Combine ingredients and brush it on the duck. \r\nSmoke duck to an internal temp of 165 in the breast and 175 in the thigh.\r\nAllow it to rest for 15 – 20 minutes.",
       "_locals": {}
     }
   ]

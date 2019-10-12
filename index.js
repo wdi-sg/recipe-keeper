@@ -42,8 +42,6 @@ app.set('view engine', 'jsx');
 const showAll = (request, response) =>{
 
     jsonfile.readFile(file, (err, obj)=>{
-        for(let i=0; i<obj.recipes.length; i++){
-        };
         response.render("allRecipes", obj);
     })
 };
@@ -63,7 +61,6 @@ const showNewRecipe = (request, response) =>{
     jsonfile.readFile(file, (err, obj)=>{
 
         obj.recipes.push(request.body);
-        request.body.id = parseInt(request.body.id);
         response.render("newRecipe", request.body);
 
         jsonfile.writeFile(file, obj, {spaces:2}, (err)=>{
@@ -81,9 +78,12 @@ const showOneRecipe = (request, response)=>{
 
         for(let i=0; i<obj.recipes.length; i++){
             let inputId = parseInt(request.params.id);
-            if(inputId === obj.recipes[i].id){
-                var currentRecipe = obj.recipes[i];
-                response.render("currentRecipe", currentRecipe);
+            if(inputId === i+1){
+                let data = {
+                    userinputID: inputId,
+                    currentRecipe: obj.recipes[i]
+                }
+                response.render("currentRecipe", data);
             };
         };
 
@@ -100,9 +100,12 @@ const editRecipe = (request, response)=>{
 
         for(let i=0; i<obj.recipes.length; i++){
             let inputId = parseInt(request.params.id);
-            if(inputId === obj.recipes[i].id){
-                var currentRecipe = obj.recipes[i];
-                response.render("editRecipe", currentRecipe);
+            if(inputId === i+1){
+                let data = {
+                    userinputID : inputId,
+                    currentRecipe: obj.recipes[i]
+                }
+                response.render("editRecipe", data);
             };
         };
 
@@ -122,17 +125,19 @@ const showEditedRecipe = (request, response)=>{
         for(let i=0; i<obj.recipes.length; i++){
             let inputId = parseInt(request.params.id);
             let editedRecipe = request.body;
-            if(inputId === obj.recipes[i].id){
+            console.log(request.body);
+            if(inputId === i+1){
                 var currentRecipe = obj.recipes[i];
                 currentRecipe.title = editedRecipe.title;
+                currentRecipe.img = editedRecipe.img;
                 currentRecipe.ingredients = editedRecipe.ingredients;
                 currentRecipe.instructions = editedRecipe.instructions;
+                response.render("showEditedRecipe", currentRecipe);
             };
         };
 
             jsonfile.writeFile(file, obj, {spaces:2}, (err)=>{
                 console.log(err);
-                response.render("showEditedRecipe", currentRecipe);
             });
 
     });
@@ -141,6 +146,31 @@ const showEditedRecipe = (request, response)=>{
 };
 //==============================
 
+
+
+//==============================
+const deleteRecipe = (request, response)=>{
+
+    jsonfile.readFile(file, (err,obj)=>{
+
+        for(let i=0; i<obj.recipes.length; i++){
+            let inputId = parseInt(request.params.id);
+
+            if(inputId === i+1){
+                let deletingRecipe = [obj.recipes[i]];
+                console.log(deletingRecipe);
+                obj.recipes.splice(i, 1);
+                response.render("deletedRecipe", deletingRecipe[0]);
+            };
+        };
+
+            jsonfile.writeFile(file, obj, {spaces:2}, (err)=>{
+                console.log(err);
+            });
+    });
+
+};
+//==============================
 
 
 
@@ -155,7 +185,7 @@ app.post("/recipes", showNewRecipe);
 app.get("/recipes/:id", showOneRecipe);
 app.get("/recipes/:id/edit", editRecipe);
 app.put("/recipes/:id", showEditedRecipe);
-// app.delete("/recipes/:id", deleteRecipe);
+app.delete("/recipes/:id", deleteRecipe);
 //==============================
 //==============================
 
