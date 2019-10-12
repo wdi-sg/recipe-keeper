@@ -1,12 +1,12 @@
 var React = require('react');
 
-class Home extends React.Component {
+class Form extends React.Component {
   render() {
     return (
       <html>
        <body>
            <h1>Add a Recipe</h1>
-           <form method="POST"action="/allrecipes">
+           <form method="POST"action="/added">
               <p><input type="text" name="name" placeholder="Name"/></p> 
               <p><input type="text" name="ingredients" placeholder="Ingredients"/></p> 
               <p><input type="text" name="instructions" placeholder="Instructions"/></p> 
@@ -18,4 +18,4 @@ class Home extends React.Component {
   }
 }
 
-module.exports = Home;
+module.exports = Form;
