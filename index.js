@@ -76,7 +76,8 @@ app.post("/recipes/new", (request, response)=>{
 })
 
 app.get("/recipes/:id", (request,response) => {
-    let index = request.params.id
+    let identifier = request.params.id
+    let index = identifier - 1
 
     jsonfile.readFile(file, (err,obj)=> {
 
