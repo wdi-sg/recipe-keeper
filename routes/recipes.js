@@ -9,7 +9,7 @@ const router = express.Router();
 // show all
 router.get("/", (req, res) => {
   jsonfile.readFile(file, (err, recipes) => {
-    return res.render("recipes", recipes);
+    res.render("recipes", recipes);
   });
 });
 
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 router.get("/new", (req, res) => {
   const {number} = req.query;
   jsonfile.readFile(ingredients, (err, ingredientsArr) => {
-    return res.render("new", {ingredientsArr, number});
+    res.render("new", {ingredientsArr, number});
   });
 });
 
@@ -53,7 +53,7 @@ router.get("/:id", (req, res) => {
         recipe = obj;
       }
     });
-    return res.render("recipe", recipe);
+    res.render("recipe", recipe);
   });
 });
 

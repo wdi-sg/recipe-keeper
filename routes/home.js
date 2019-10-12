@@ -4,7 +4,7 @@ const file = "data.json";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  return res.render("index");
+  res.render("index");
 });
 
 module.exports = router;
