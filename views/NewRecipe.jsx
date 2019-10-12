@@ -5,6 +5,20 @@ class NewIngredient extends React.Component {
   render() {
     // console.log("this.props!!!!",this.props);
 
+    console.log("this.props.ingredients*******", this.props.ingredients);
+
+    const ingredients = this.props.ingredients.map(ingredient => (
+      <li class="list-group-item">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          value={JSON.stringify(ingredient)}
+          name="recipeIngredients"
+        />
+        {ingredient.amount} {ingredient.name}, {ingredient.notes}
+      </li>
+    ));
+
     return (
       <Layout>
         <div className="container">
@@ -20,20 +34,13 @@ class NewIngredient extends React.Component {
                     name="recipeTitle"
                     id="recipeTitle"
                     aria-describedby="recipeTitle"
-                    placeholder="example: pizza"
+                    placeholder="e.g. apple pie"
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="recipeIngredients">ingredients</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="recipeIngredients"
-                    id="recipeIngredients"
-                    aria-describedby="recipeIngredients"
-                    placeholder="*********"
-                  />
-                </div>
+                <p>select ingredients:</p>
+                <ul class="list-group list-group-flush">
+                    {ingredients}
+                </ul>
                 <div className="form-group">
                   <label htmlFor="recipeInstructions">instructions</label>
                   <input
@@ -42,10 +49,12 @@ class NewIngredient extends React.Component {
                     name="recipeInstructions"
                     id="recipeInstructions"
                     aria-describedby="recipeInstructions"
-                    placeholder="*********"
+                    placeholder="e.g. first, slice the apple ... "
                   />
                 </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" className="btn btn-primary">
+                  Add
+                </button>
               </form>
             </div>
           </div>

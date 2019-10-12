@@ -38,7 +38,15 @@ app.get("/ingredients/new", (req, res) => {
 });
 
 app.get("/recipes/new", (req, res) => {
-  res.render("NewRecipe");
+  jsonfile.readFile(FILE, (err, obj) => {
+    const ingredients = obj.ingredients;
+
+    data = {
+      ingredients: ingredients
+    };
+
+    res.render("NewRecipe", data);
+  });
 });
 
 app.post("/ingredients", (req, res) => {
@@ -64,8 +72,15 @@ app.post("/ingredients", (req, res) => {
 });
 
 app.post("/recipes", (req, res) => {
-  console.log("req.body ****************", req.body);
-  const { recipeTitle, recipeIngredients, recipeInstructions } = req.body;
+  let { recipeTitle, recipeIngredients, recipeInstructions } = req.body;
+
+  if (Array.isArray(recipeIngredients)) {
+    recipeIngredients.forEach((ingredient, i, ingredients) => {
+      ingredients[i] = JSON.parse(ingredient);
+    });
+  } else {
+    recipeIngredients = [JSON.parse(recipeIngredients)];
+  }
 
   const newRecipe = {
     title: recipeTitle,
