@@ -61,14 +61,14 @@ app.post('/newrecipe', (request,response) => {
 });
 
 // app.get for seeing all recipes
-// app.get('/allrecipes', (request,response) => {
-//     console.log("seeing all recipes")
+app.get("/allrecipes", (req,res) => {
 
-//     jsonfile.readFile(file, (err, obj) => {
-//         let everything = obj.recipes;
-//         response.render(everything);
-//     });
-// });
+    jsonfile.readFile(file, (err, obj) => {
+        let recipes = obj.recipes;
+        console.log(recipes);
+        res.send(recipes);
+    });
+});
 
 
 
