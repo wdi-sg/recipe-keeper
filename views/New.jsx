@@ -34,7 +34,7 @@ class New extends React.Component {
         <h1>Add new recipe</h1>
         <form action="/recipes/new" method="get">
           <label htmlFor="number">Total number of ingredients required? </label>
-          <input type="number" name="number" placeholder={0} />
+          <input type="number" name="number" value={number}/>
         </form>
 
         {number > 0 ? (
