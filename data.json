@@ -1,0 +1,44 @@
+{
+  "recipes": [
+    {
+      "title": "Boiled Chicken",
+      "ingredients": " 1 chicken and 10 ml water   ",
+      "instructions": "Place chicken in water with salt. Simmer for 20 minutes."
+    },
+    {
+      "title": "Roasted Duck",
+      "ingredients": "One Duck",
+      "instructions": "Put in Pot"
+    },
+    {
+      "title": "Angus Beef",
+      "ingredients": "Fat Cow",
+      "instructions": "Sear the beef"
+    },
+    {
+      "title": "Boiled Duck",
+      "ingredients": "1 Duck, Water",
+      "instructions": "Boil duck in water for 20 minutes. Take it out. Serve."
+    },
+    {
+      "title": "Honey Fish",
+      "ingredients": "Honey and Fish",
+      "instructions": "Put Honey on Fish"
+    },
+    {
+      "title": "Sweet and Sour Pork",
+      "ingredients": "Pork and Tomato Sauce",
+      "instructions": "Mix them together"
+    },
+    {
+      "title": "Fish Fillet",
+      "ingredients": "Fish, Oil",
+      "instructions": "Fry the Fish"
+    },
+    {
+      "title": "Asparagus Pasta",
+      "ingredients": "Asparagus, Pasta",
+      "instructions": "Boil all together and Serve"
+    }
+  ]
+}
