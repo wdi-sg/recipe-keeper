@@ -66,7 +66,7 @@ app.post("/recipes/new", (request, response)=>{
 
 app.get("/recipes/:id", (request,response) => {
     let index = request.params.id
-    console.log(index)
+
     jsonfile.readFile(file, (err,obj)=> {
 
         const data = {
@@ -74,21 +74,39 @@ app.get("/recipes/:id", (request,response) => {
         }
         response.render('recipe', data)
     })
-
 })
 
-// app.get("/recipes/:id/edit", (request,response)=>{
+app.get("/recipes/:id/edit", (request,response)=>{
+    let index = request.params.id
 
-//     jsonfile.readFile(file, (err,obj)=> {
-//         let identifier = this.params.id
-//         const recipe = {
-//             item: obj.recipes[identifier]
-//         }
-//     })
+    jsonfile.readFile(file, (err,obj)=> {
 
-// })
+        const data = {
+            recipe: obj.recipes[index],
+            index: index
+        }
+        response.render('editform', data)
+    })
+})
 
+app.put("/recipes/:id", (request,response)=> {
+    let index = request.params.id
+    let edit = request.body
+    console.log(index)
 
+    jsonfile.readFile(file, (err,obj) =>{
+        obj.recipes[index] = edit
+
+        const data = {
+            recipe: obj.recipes[index]
+        }
+        jsonfile.writeFile(file,obj,{spaces:2}, (err)=>{
+            console.error(err)
+        })
+        response.render('edited', data)
+    })
+
+})
 
 
 
