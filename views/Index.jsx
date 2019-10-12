@@ -1,16 +1,12 @@
 const React = require("react");
+const Navbar = require("./components/Navbar");
 
 class Index extends React.Component {
   render() {
     return (
       <>
-        <h1>Index</h1>
-        <button>
-          <a href="/recipes">View Recipec List</a>
-        </button>
-        <button>
-          <a href="/ingredients">View Ingredient List</a>
-        </button>
+        <Navbar />
+        <h1>Recipe Keeper</h1>
       </>
     );
   }
