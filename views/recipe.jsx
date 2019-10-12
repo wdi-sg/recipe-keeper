@@ -7,6 +7,7 @@ class Recipe extends React.Component{
         let ingredients = this.props.recipe.ingredients
         let instructions = this.props.recipe.instructions
 
+
         return(
             <html>
                 <body>
@@ -15,6 +16,18 @@ class Recipe extends React.Component{
                         <h2>Ingredients: {ingredients}</h2>
                         <h2>Instructions: {instructions}</h2>
                   </div>
+
+                   <form action={"/recipes/" + this.props.recipe.id + "/edit"} method="get" id="edit">
+                         <button type = "reload">
+                            Edit recipe
+                        </button>
+                    </form>
+
+                    <form action="/recipes" method="get" id="home">
+                         <button type = "reload">
+                            Back to homepage
+                        </button>
+                    </form>
                 </body>
               </html>
             )
