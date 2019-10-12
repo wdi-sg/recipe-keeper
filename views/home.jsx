@@ -15,6 +15,9 @@ class Home extends React.Component{
 
         return(
             <html>
+                <head>
+                    <link rel="stylesheet" type="text/css" href="style.css" />
+                </head>
                 <body>
                   <div>
                     <marquee behavior = "alternate"><h1>INDEX OF RECIPES</h1></marquee>

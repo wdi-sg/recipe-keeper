@@ -88,21 +88,6 @@ app.get("/recipes/:id", (request,response) => {
     })
 })
 
-app.get("/recipes/:id/edit", (request,response)=>{
-    let identifier = request.params.id
-    let index = identifier - 1
-    console.log(index)
-
-    jsonfile.readFile(file, (err,obj)=> {
-
-        const data = {
-            recipe: obj.recipes[index],
-            id: obj.recipes[index]["id"]
-        }
-        response.render('editform', data)
-    })
-})
-
 app.put("/recipes/:id", (request,response)=> {
     let identifier = request.params.id
     let index = identifier-1
@@ -148,6 +133,23 @@ app.delete("/recipes/:id", (request,response)=> {
     })
 
 })
+
+app.get("/recipes/:id/edit", (request,response)=>{
+    let identifier = request.params.id
+    let index = identifier - 1
+    console.log(index)
+
+    jsonfile.readFile(file, (err,obj)=> {
+
+        const data = {
+            recipe: obj.recipes[index],
+            id: obj.recipes[index]["id"]
+        }
+        response.render('editform', data)
+    })
+})
+
+
 
 
 
