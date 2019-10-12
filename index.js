@@ -19,12 +19,13 @@ app.set('view engine', 'jsx');
 // see all recipes, load top page
 app.get('/', (request, response) => {
   // giving home.jsx file an object/context with `name` as a property
-  const data = {warning: ""};
+  let data = {warning: ""};
   response.render('main', data);
 });
 
  // display the receipe form to create a new recipe
 app.get('/recipes/new', (request, response) =>{
+  let data = {};
 	data = {pageTitle : "Add a New Recipe"};
 	data = {postType : "/recipes"};
  	response.render('new', data);
@@ -85,6 +86,7 @@ app.get('/recipes/:id/edit', (request, response) => {
     } else {
 
   // add the ID for the render  
+  obj.recipes[inputId].pageTitle = "Edit the Recipe";
 	obj.recipes[inputId].id = inputId;
 	obj.recipes[inputId].postType = "/recipes/"+inputId+"?_method=put";
 	let data = obj.recipes[inputId];
