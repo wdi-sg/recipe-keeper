@@ -26,6 +26,7 @@ app.get('/', (request, response) => {
  // display the receipe form to create a new recipe
 app.get('/recipes/new', (request, response) =>{
 	data = {pageTitle : "Add a New Recipe"};
+	data = {postType : "/recipes"};
  	response.render('new', data);
 });
 
@@ -41,7 +42,7 @@ app.post('/recipes', (request, response) => {
       } else  { 
     data = {pageTitle : "Recipe Added!"};  	
     // data = {warning: "Recipe Added!"}; 
-      }
+      }    
   response.render('new', data);
   
 
@@ -55,7 +56,8 @@ app.post('/recipes', (request, response) => {
   // run the file write
   // 
   // save the request body
-  // beautify(obj, null, 2, 80)
+  // remove the ID key from used in the form, as we use the array id for the id
+  delete obj["recipes"].id;
   jsonfile.writeFile(file,obj, (err) => {
     console.error(err)
   });
@@ -65,6 +67,7 @@ app.post('/recipes', (request, response) => {
 });
 
 
+//  show the recipe to edit
 app.get('/recipes/:id/edit', (request, response) => {
   // get json from specified file
       console.log("id: ",request.params.id);
@@ -81,13 +84,17 @@ app.get('/recipes/:id/edit', (request, response) => {
       response.send("not found");
     } else {
 
-  // get the recipe data  
-let currentRecipe = obj.recipes[inputId];
+  // add the ID for the render  
+	obj.recipes[inputId].id = inputId;
+	obj.recipes[inputId].postType = "/recipes/"+inputId+"?_method=put";
+	let data = obj.recipes[inputId];
 
-  response.render('new', currentRecipe);
+  	response.render('new', data);
     }
   });
 });
+
+
 
 
 /**
