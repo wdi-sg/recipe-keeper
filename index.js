@@ -20,6 +20,7 @@ app.use(methodOverride("_method"));
 
 app.use("/", routes.home);
 app.use("/recipes", routes.recipes);
+app.use("/ingredients", routes.ingredients);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
