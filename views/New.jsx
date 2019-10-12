@@ -22,7 +22,7 @@ class New extends React.Component {
   }
 
   render() {
-    const {ingredientsArr, number} = this.props;
+    const {number} = this.props;
     if (number > 0) {
       for (let i = 0; i < number; i++) {
         this.numOfIngredients.push(this.addSelection(i));
@@ -31,6 +31,7 @@ class New extends React.Component {
     return (
       <>
         <h1>Add new recipe</h1>
+        <button><a href="/recipes">Cancel</a></button>
         <form action="/recipes/new" method="get">
           <label htmlFor="number">Total number of ingredients required? </label>
           <input type="number" name="number" defaultValue={number}/>

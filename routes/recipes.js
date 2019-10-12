@@ -56,12 +56,39 @@ router.get("/:id", (req, res) => {
 
 // edit 1
 router.get("/:id/edit", (req, res) => {
-  return res.render("edit");
+  const {number} = req.query;
+  Promise.all([
+    jsonfile.readFile(ingredients),
+    jsonfile.readFile(file),
+  ]).then((data) => {
+    const ingredientsArr = data[0];
+    const recipes = data[1].recipes;
+    let recipe;
+    const {id} = req.params;
+    recipes.forEach((obj) => {
+      if (obj.id === id) {
+        recipe = obj;
+      }
+    });
+    res.render("edit", {ingredientsArr, recipe, number});
+  });
 });
 
 // update 1
 router.put("/:id", (req, res) => {
-  return res.render("recipe");
+  jsonfile.readFile(file, (err, data) => {
+    data.recipes.forEach((recipe) => {
+      if (recipe.id === req.params.id) {
+        const {title, ingredients, instructions} = req.body;
+        recipe.title = title;
+        recipe.ingredients = ingredients;
+        recipe.instructions = instructions;
+      }
+    });
+    jsonfile.writeFile(file, data, (err) => {
+      res.redirect(`/recipes/${req.params.id}`);
+    });
+  });
 });
 
 // delete 1
