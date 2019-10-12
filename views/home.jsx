@@ -23,6 +23,13 @@ class Home extends React.Component{
                         {title}
                     </ol>
                   </div>
+
+                  <form action="/recipes/new" method="get" id="add">
+                     <button type = "add">
+                        Add a recipe
+                    </button>
+                    </form>
+
                 </body>
               </html>
             )

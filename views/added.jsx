@@ -19,6 +19,13 @@ class Added extends React.Component{
                         Add another recipe
                     </button>
                     </form>
+
+                    <form action="/recipes" method="get" id="home">
+                     <button type = "reload">
+                        Back to homepage
+                    </button>
+                    </form>
+
                   </div>
                 </body>
               </html>
