@@ -79,6 +79,8 @@ app.post("/added", (request, response) => {
   });
 });
 
+/*********************************************************************************** */
+/*********************************************************************************** */
 // Edit Recipes that currently exist
 app.get("/:recipename/edit", (request, response) =>{
     jsonfile.readFile(FILE, (err, obj) => {
@@ -107,13 +109,52 @@ app.put("/edited/:recipename", (request, response)=>{
               }
           }
         jsonfile.writeFile(FILE, obj, err => {
-       
-         
         });
         response.render("edited", updateRecipe);
       });
-      
 })
+
+/*********************************************************************************** */
+/*********************************************************************************** */
+
 // Delete Recipes
+app.get("/:recipename/delete", (request, response) =>{
+    jsonfile.readFile(FILE, (err, obj) => {
+        let recipepage;
+        for (let i = 0; i < obj.recipes.length; i++) {
+          let selectedRecipe = obj.recipes[i]["name"];
+          if (selectedRecipe === request.params.recipename) {
+            recipepage = obj.recipes[i];
+          }
+        }
+        response.render("delete", recipepage);
+      });
+})
+
+app.delete("/deleted/:recipename", (request, response)=>{
+    let deleteName = request.params.recipename;
+       
+    jsonfile.readFile(FILE, (err, obj) => {
+        for(i = 0; i < obj.recipes.length; i++){
+            let selectedRecipe = obj.recipes[i]["name"];
+              if(selectedRecipe === deleteName){
+                obj.recipes.splice(obj.recipes[i] ,1) 
+              }
+          }
+        jsonfile.writeFile(FILE, obj, err => {
+        });
+        response.render("deleted");
+      });
+})
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000);
