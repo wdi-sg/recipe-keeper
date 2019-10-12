@@ -1,12 +1,15 @@
 const express = require("express");
 const jsonfile = require("jsonfile");
+const uuid = require("uuidv4").default;
 const file = "data.json";
 const ingredients = "ingredient.json";
 const router = express.Router();
 
 // show all
 router.get("/", (req, res) => {
-  return res.render("recipes");
+  jsonfile.readFile(file, (err, recipes) => {
+    return res.render("recipes", recipes);
+  });
 });
 
 // get new
@@ -19,9 +22,21 @@ router.get("/new", (req, res) => {
 
 // create new
 router.post("/", (req, res) => {
-  jsonfile.readFile(ingredients, (err, dataArr) => {
+  jsonfile.readFile(file, (err, data) => {
+    const id = uuid();
+    const {recipes} = data;
+    const {title, ingredients, instructions} = req.body;
+    const recipe = {
+      id,
+      title,
+      ingredients,
+      instructions,
+    };
+    data.recipes.push(recipe);
+    jsonfile.writeFile(file, data, (err) => {
+      res.redirect("/recipes");
+    });
   });
-  return res.render("recipes");
 });
 
 // show one
