@@ -23,6 +23,46 @@ app.get('/', (request, response) => {
   response.render('main', data);
 });
 
+ // display the receipe form to create a new recipe
+app.get('/recipes/new', (request, response) =>{
+	data = {pageTitle : "Add a New Recipe"};
+ 	response.render('new', data);
+});
+
+
+// if empty build the basic screen for input
+app.post('/recipes', (request, response) => {
+    console.log('full body ', request.body);
+  // giving home.jsx file an object/context with `name` as a property
+  let data = {warning: ""};
+  if (request.body.recipeTitle === "" || request.body.ingredients === "" || request.body.instructions === "") {
+    data = {warning: "Empty title or other data..."}; 
+      } else  { 
+    data = {warning: "Recipe Added!"}; 
+      }
+  response.render('new', data);
+  
+
+  // add the new data to the read object
+  // whats the current last ID?
+  jsonfile.readFile(file, (err, obj) => {
+  // console.log('body ', request.body);
+  // console.log('obj pokemon: ', obj["pokemon"]);
+  obj["recipes"].push(request.body);
+    // console.log('new object:', obj)
+  // run the file write
+  // 
+  // save the request body
+  // beautify(obj, null, 2, 80)
+  jsonfile.writeFile(file,obj, (err) => {
+    console.error(err)
+  });
+
+  });
+
+});
+
+
 
 /**
  * ===================================
