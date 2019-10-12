@@ -80,7 +80,40 @@ app.post("/added", (request, response) => {
 });
 
 // Edit Recipes that currently exist
+app.get("/:recipename/edit", (request, response) =>{
+    jsonfile.readFile(FILE, (err, obj) => {
+        let recipepage;
+        for (let i = 0; i < obj.recipes.length; i++) {
+          let selectedRecipe = obj.recipes[i]["name"];
+          if (selectedRecipe === request.params.recipename) {
+            recipepage = obj.recipes[i];
+          }
+        }
+        response.render("edit", recipepage);
+      });
 
+   
+})
+
+app.put("/edited/:recipename", (request, response)=>{
+    let updateName = request.params.recipename;
+       let updateRecipe = request.body;
+    
+    jsonfile.readFile(FILE, (err, obj) => {
+        for(i = 0; i < obj.recipes.length; i++){
+            let selectedRecipe = obj.recipes[i]["name"];
+              if(selectedRecipe === updateName){
+                obj.recipes.splice(obj.recipes[i] ,1,updateRecipe) 
+              }
+          }
+        jsonfile.writeFile(FILE, obj, err => {
+       
+         
+        });
+        response.render("edited", updateRecipe);
+      });
+      
+})
 // Delete Recipes
 
 app.listen(3000);
