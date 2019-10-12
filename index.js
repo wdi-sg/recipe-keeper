@@ -49,6 +49,18 @@ app.get("/recipes/new", (req, res) => {
   });
 });
 
+app.get("/recipes/", (req, res) => {
+  jsonfile.readFile(FILE, (err, obj) => {
+    const recipes = obj.recipes;
+
+    data = {
+      recipes: recipes
+    };
+
+    res.render("AllRecipes", data);
+  });
+});
+
 app.post("/ingredients", (req, res) => {
   console.log("req.body ****************", req.body);
   const { ingredientName, ingredientAmount, ingredientNotes } = req.body;
