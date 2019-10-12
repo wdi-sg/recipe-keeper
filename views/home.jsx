@@ -4,13 +4,21 @@ class Home extends React.Component {
   render() {
       let allRecipe = this.props.recipe.map(item =>{
           return(
-              <li>
                 
-                  <p><a href={"/"+ item.name}>{item.name}</a> </p>
-                
-              </li>
+    <div className="card">
+      <div className="card-body">
+        <h3 className="card-title">{item.name}</h3>
+        <p className="card-text"><strong>Ingredients: </strong> {item.ingredients}</p>
+        <a href={"/"+ item.name} className="btn btn-primary">See Recipe</a>
+      </div>
+    </div>
+  
+           
           )
       })
+      let half = Math.ceil(allRecipe.length / 2);
+      let leftSide = allRecipe.slice(0, half)
+      let rightSide = allRecipe.slice(half, allRecipe.length)
     return (
       <html>
       <head>
@@ -21,10 +29,18 @@ class Home extends React.Component {
          <h1 className="text-center">Recipe Home Page</h1>
           <p> <a href="/new">Add A New Recipe</a></p>
         <h3>All Recipes: </h3>
-          <ul>
-              {allRecipe}
-          </ul>
+       <div className="row">
+         <div className="col-6">
+         {leftSide}
          </div>
+         <div className="col-6">
+         {rightSide}
+         </div>
+       </div>
+         
+      
+         </div>
+
          
        </body>
       </html>
