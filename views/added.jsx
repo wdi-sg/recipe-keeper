@@ -8,10 +8,17 @@ class Added extends React.Component{
                 <body>
                   <div>
                     <h1>Added new recipe!</h1>
+                    <ol>
+                        <li>{this.props.title}</li>
+                        <li>{this.props.ingredients}</li>
+                        <li>{this.props.instructions}</li>
+                    </ol>
 
-                     <button onclick='window.location.href = "/recipes"'>
-                        Back to Homepage
+                    <form action="/recipes/new" method="get" id="add">
+                     <button type = "reload">
+                        Add another recipe
                     </button>
+                    </form>
                   </div>
                 </body>
               </html>

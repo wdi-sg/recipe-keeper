@@ -46,25 +46,28 @@ app.post("/recipes/new", (request, response)=>{
     //         request.send(`${key} cannot be empty.`)
     //     }
     // });
+    let newRecipe = request.body
+    const data = {
+            title: newRecipe.title,
+            ingredients: newRecipe.ingredients,
+            instructions: newRecipe.instructions
+        }
 
     jsonfile.readFile(file, (err,obj)=>{
         let recipes = obj.recipes
-        let newRecipe = request.body
         recipes.push(newRecipe)
-        const data = {
-            title: newRecipe.title,
-            ingredients: newRecipe.ingredients,
-            insructions: newRecipe.instructions
-        }
 
-        jsonfile.writeFile(file,obj,(err)=>{
+        jsonfile.writeFile(file, obj, {spaces:2}, (err)=>{
             console.error(err)
         })
-        response.render('added', data)
     })
-
-
+    response.render('added', data)
 })
+
+// app.get("/recipes/:id", (request,response)=>{
+
+
+// })
 
 
 
