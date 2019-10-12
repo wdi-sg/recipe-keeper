@@ -32,7 +32,26 @@ app.set('view engine', 'jsx');
 app.get('/', (request, response) =>{
     console.log("home page");
     response.render('home');
-})
+});
+
+app.post('/newrecipe', (request,response) => {
+    console.log("creating new recipe");
+    console.log(request.body);
+
+        jsonfile.readFile(file, (err, obj) => {
+            let newRecipe = request.body;
+            let all = obj;
+            all.recipes.push(newRecipe);
+
+                jsonfile.writeFile(file, all, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    response.send("new recipe below!" + request.body);
+                    console.log("recipe added!");
+                });
+        });
+});
 
 
 
