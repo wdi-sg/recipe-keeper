@@ -64,8 +64,27 @@ app.post("/recipes/new", (request, response)=>{
     response.render('added', data)
 })
 
-// app.get("/recipes/:id", (request,response)=>{
+app.get("/recipes/:id", (request,response) => {
+    let index = request.params.id
+    console.log(index)
+    jsonfile.readFile(file, (err,obj)=> {
 
+        const data = {
+        recipe: obj.recipes[index]
+        }
+        response.render('recipe', data)
+    })
+
+})
+
+// app.get("/recipes/:id/edit", (request,response)=>{
+
+//     jsonfile.readFile(file, (err,obj)=> {
+//         let identifier = this.params.id
+//         const recipe = {
+//             item: obj.recipes[identifier]
+//         }
+//     })
 
 // })
 
