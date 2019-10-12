@@ -43,7 +43,7 @@ class NewIngredient extends React.Component {
                 </ul>
                 <div className="form-group">
                   <label htmlFor="recipeInstructions">instructions</label>
-                  <input
+                  <textarea
                     type="text"
                     className="form-control"
                     name="recipeInstructions"
