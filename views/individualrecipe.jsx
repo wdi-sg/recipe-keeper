@@ -2,6 +2,8 @@ var React = require("react");
 
 class IndividualRecipe extends React.Component {
   render() {
+   let recipeArr = this.props.recipelist
+   
     return (
       <html>
         <head>
@@ -14,37 +16,36 @@ class IndividualRecipe extends React.Component {
         </head>
         <body>
           <div className="container text-center pt-5">
-            <h1 className="text-center">{this.props.name}</h1>
+            <h1 className="text-center">{this.props.recipepage.name}</h1>
             <div className="row pt-5">
               <div className="col-6">
                 <h3>Ingredients:</h3>
-                <p>{this.props.ingredients}</p>
+                <p>{this.props.recipepage.ingredients}</p>
               </div>
               <div className="col-6">
                 <h3>Instructions:</h3>
-                <p>{this.props.instructions}</p>
+                <p>{this.props.recipepage.instructions}</p>
               </div>
             </div>
             <div className="btn-group d-flex justify-content-around pt-4">
               <button className="btn btn-primary btn-lg">
                 <a
                   className="text-light"
-                  href={"/" + this.props.name + "/edit"}
+                  href={"/" + (recipeArr.indexOf(this.props.recipepage) + 1)+ "/edit"}
                 >
                   Edit
                 </a>
               </button>
 
               <button className="btn btn-danger btn-lg">
-                <a
-                  className="text-light"
-                  href={"/" + this.props.name + "/delete"}
-                >
+                <a className="text-light" href={"/" + (recipeArr.indexOf(this.props.recipepage) + 1)+ "/delete"}>
                   Delete
                 </a>
               </button>
               <button className="btn btn-info btn-lg">
-                <a className="text-light" href="/home">Back</a>
+                <a className="text-light" href="/home">
+                  Back
+                </a>
               </button>
             </div>
           </div>

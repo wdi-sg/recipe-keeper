@@ -9,9 +9,11 @@ class Edited extends React.Component {
         </head>
        <body>
            <h1>Recipe Edited</h1>
-           <li>{this.props.name}</li>
-           <li>{this.props.ingredients}</li>
-           <li>{this.props.instructions}</li>
+           <h3>{this.props.updateRecipe.name}</h3>
+           <h4>Ingredients</h4>
+           <il>{this.props.updateRecipe.ingredients}</il>
+           <h4>Instructions</h4>
+           <li>{this.props.updateRecipe.instructions}</li>
 
            <button><a href="/home">Back to Home</a></button>
            

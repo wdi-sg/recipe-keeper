@@ -30,7 +30,6 @@ app.set("view engine", "jsx");
 /*********************************************************************************** */
 /*********************************************************************************** */
 
-
 // Home page where you can view all recipes, can click into individual recipes or add a new recipe
 app.get("/home", (request, response) => {
   jsonfile.readFile(FILE, (err, obj) => {
@@ -43,24 +42,31 @@ app.get("/home", (request, response) => {
 /*********************************************************************************** */
 /*********************************************************************************** */
 
-// Add a new recipe page, submission will bring you to 
+// Add a new recipe page, submission will bring you to
 app.get("/new", (request, response) => {
-    response.render("form");
-  });
+  response.render("form");
+});
 /*********************************************************************************** */
 /*********************************************************************************** */
 
 // Page that renders each individual recipe when selected from the home page
-app.get("/:recipename", (request, response) => {
+app.get("/:id", (request, response) => {
   jsonfile.readFile(FILE, (err, obj) => {
     let recipepage;
     for (let i = 0; i < obj.recipes.length; i++) {
-      let selectedRecipe = obj.recipes[i]["name"];
-      if (selectedRecipe === request.params.recipename) {
+      let selectedRecipe = i + 1;
+ 
+      if (selectedRecipe === parseInt(request.params.id)) {
         recipepage = obj.recipes[i];
       }
     }
-    response.render("individualrecipe", recipepage);
+    const data = {
+      recipelist: obj.recipes,
+      recipepage: recipepage
+    };
+
+    response.render("individualrecipe", data);
+   
   });
 });
 
@@ -82,79 +88,79 @@ app.post("/added", (request, response) => {
 /*********************************************************************************** */
 /*********************************************************************************** */
 // Edit Recipes that currently exist
-app.get("/:recipename/edit", (request, response) =>{
-    jsonfile.readFile(FILE, (err, obj) => {
-        let recipepage;
-        for (let i = 0; i < obj.recipes.length; i++) {
-          let selectedRecipe = obj.recipes[i]["name"];
-          if (selectedRecipe === request.params.recipename) {
-            recipepage = obj.recipes[i];
-          }
-        }
-        response.render("edit", recipepage);
-      });
+app.get("/:id/edit", (request, response) => {
+  jsonfile.readFile(FILE, (err, obj) => {
+    let recipepage;
+    for (let i = 0; i < obj.recipes.length; i++) {
+      let selectedRecipe = i + 1
+      if (selectedRecipe === parseInt(request.params.id)) {
+        recipepage = obj.recipes[i];
+      }
+    }
+    const data = {
+      recipelist: obj.recipes,
+      recipepage: recipepage
+    };
+    response.render("edit", data);
+  });
+});
 
-   
-})
+app.put("/edited/:id", (request, response) => {
+  let updateId = parseInt(request.params.id);
+  let updateRecipe = request.body;
 
-app.put("/edited/:recipename", (request, response)=>{
-    let updateName = request.params.recipename;
-       let updateRecipe = request.body;
-    
-    jsonfile.readFile(FILE, (err, obj) => {
-        for(i = 0; i < obj.recipes.length; i++){
-            let selectedRecipe = obj.recipes[i]["name"];
-              if(selectedRecipe === updateName){
-                obj.recipes.splice(obj.recipes[i] ,1,updateRecipe) 
-              }
-          }
-        jsonfile.writeFile(FILE, obj, err => {
-        });
-        response.render("edited", updateRecipe);
-      });
-})
-
-/*********************************************************************************** */
-/*********************************************************************************** */
+  jsonfile.readFile(FILE, (err, obj) => {
+    for (i = 0; i < obj.recipes.length; i++) {
+      
+      if (i === updateId) {
+        obj.recipes.splice(i - 1, 1, updateRecipe);
+      } else if(updateId === obj.recipes.length){
+        obj.recipes.splice(obj.recipes.length - 1, 1, updateRecipe)
+      }
+    }
+    jsonfile.writeFile(FILE, obj, err => {
+      const data= {
+        updateRecipe: updateRecipe
+      }
+      response.render("edited", data);
+    });
+  });
+});
+// /*********************************************************************************** */
+// /*********************************************************************************** */
 
 // Delete Recipes
-app.get("/:recipename/delete", (request, response) =>{
-    jsonfile.readFile(FILE, (err, obj) => {
-        let recipepage;
-        for (let i = 0; i < obj.recipes.length; i++) {
-          let selectedRecipe = obj.recipes[i]["name"];
-          if (selectedRecipe === request.params.recipename) {
-            recipepage = obj.recipes[i];
-          }
-        }
-        response.render("delete", recipepage);
-      });
-})
+app.get("/:id/delete", (request, response) => {
+  jsonfile.readFile(FILE, (err, obj) => {
+    let recipepage;
+    for (let i = 0; i < obj.recipes.length; i++) {
+      
+      if (i + 1 === parseInt(request.params.id)) {
+        recipepage = obj.recipes[i];
+      }
+    }
+    const data = {
+      recipeArr: obj.recipes,
+      recipepage: recipepage
+    }
+    response.render("delete", data);
+  });
+});
 
-app.delete("/deleted/:recipename", (request, response)=>{
-    let deleteName = request.params.recipename;
-       
-    jsonfile.readFile(FILE, (err, obj) => {
-        for(i = 0; i < obj.recipes.length; i++){
-            let selectedRecipe = obj.recipes[i]["name"];
-              if(selectedRecipe === deleteName){
-                obj.recipes.splice(obj.recipes[i] ,1) 
-              }
-          }
-        jsonfile.writeFile(FILE, obj, err => {
-        });
-        response.render("deleted");
-      });
-})
+app.delete("/deleted/:id", (request, response) => {
+  let deleteId = parseInt(request.params.id);
 
-
-
-
-
-
-
-
-
-
+  jsonfile.readFile(FILE, (err, obj) => {
+    for (i = 0; i < obj.recipes.length; i++) {
+      if (i  === deleteId) {
+        obj.recipes.splice(i - 1, 1);
+      }else if(deleteId === obj.recipes.length){
+        obj.recipes.splice(obj.recipes.length - 1, 1)
+      }
+    }
+    jsonfile.writeFile(FILE, obj, err => {});
+    response.render("deleted");
+  });
+});
 
 app.listen(3000);
