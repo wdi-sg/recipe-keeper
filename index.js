@@ -106,6 +106,7 @@ app.post('/recipes/new', (request, response) => {
 
 // edit recipe
 app.get('/recipes/:id/edit', (request, response) => {
+    console.log("Received request to edit recipe: " + request.params.id);
     let inputId = parseInt(request.params.id)-1;
 
     jsonfile.readFile(FILE, (err, obj) =>{
@@ -115,12 +116,37 @@ app.get('/recipes/:id/edit', (request, response) => {
 
         // find recipe by index from the recipes json file
         let editRecipe = obj.recipes[inputId];
+        editRecipe.id = request.params.id;
+        // Debug - check recipe to be edited
         console.log(editRecipe);
         response.render('edit', editRecipe);
 
     })
 })
 
+app.put('/recipes/:id', (request, response) => {
+    // Debug - check request body
+    console.log(request.body);
+    let editedRecipe = request.body;
+    let inputId = parseInt(request.params.id)-1;
+
+    jsonfile.readFile(FILE, (err, obj) => {
+        if (err) {
+            console.log(err);
+        }
+
+        // update recipe by index from recipes json file
+        obj.recipes[inputId] = editedRecipe;
+        jsonfile.writeFile(FILE, obj, (err) => {
+            if (err) {
+                console.log(err);
+            }
+
+            editedRecipe.message = "Edited";
+            response.render('found', editedRecipe);
+        })
+    })
+})
 
 
 /**
