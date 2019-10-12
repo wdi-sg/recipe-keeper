@@ -36,6 +36,8 @@ class RecipeList extends React.Component{
                 return <RecipeFunction key1={value1}/>
             })
         } else {
+            console.log("Path Else")
+            console.log(recipeObj)
             recipeP = recipeObj.map(value1 =>{
                 return <RecipeFunction key1={value1}/>
             })

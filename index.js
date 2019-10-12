@@ -103,7 +103,51 @@ app.get('/GC/edit', (request,response)=>{
 
 app.get('/GC/edit/:name',(request,response)=>{
     var x = request.params.name;
-    response.send(x)
+    jsonfile.readFile(recipe, (err,obj)=>{
+        let recipeObj = obj["allRecipe"];
+        let selectedRecipe;
+        for(var i=0; i<recipeObj.length; i++){
+            if(recipeObj[i]["name"] === x){
+                selectedRecipe = recipeObj[i];
+            }
+        }
+        const data = {
+            recipeObj: selectedRecipe,
+            userRequest: x
+        }
+        response.render('editPage.jsx',data)
+    })
+})
+
+app.put('/GC/edit/:name',(request, response)=>{
+    jsonfile.readFile(recipe, (err,obj)=>{
+        if(err){
+            console.log(err)
+        }
+        let name = request.params.name;
+        let dataRecieved = request.body;
+        let select;
+
+        let ing = request.body.ingredients;
+        let ingArr = ing.split(", ");
+        ingArr = ingArr.join();
+        ingArr = ingArr.split(',');
+        console.log(ingArr)
+        dataRecieved.ingredients = ingArr;
+
+        for(var i=0; i< obj["allRecipe"].length; i++){
+            if(obj["allRecipe"][i]["name"] === name){
+                select = obj["allRecipe"][i];
+            }
+        }
+        select.name = dataRecieved.name;
+        select.type = dataRecieved.type;
+        select.instruction = dataRecieved.instructions;
+        select.ingredient = dataRecieved.ingredients
+        jsonfile.writeFile(recipe, obj, (err)=>{
+            response.send("Done Updating");
+        })
+    })
 })
 
 app.listen(3000, () => console.log('~~~ Tuning into the ports of 3000 ~~~'))
