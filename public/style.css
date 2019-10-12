@@ -1,0 +1,293 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500&display=swap");
+body {
+  margin: 0 auto;
+  width: 100%;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  background: #e5e6eb;
+  line-height: 1.4; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin: 0; }
+
+h1 {
+  font-size: 3.0rem; }
+
+h2 {
+  font-size: 2.6rem; }
+
+h3 {
+  font-size: 2.2rem; }
+
+h4 {
+  font-size: 1.8rem; }
+
+h5 {
+  font-size: 1.4rem; }
+
+h6 {
+  font-size: 1.2rem; }
+
+a {
+  text-decoration: none;
+  color: black;
+  font-family: 'Oswald', sans-serif; }
+  a:hover {
+    text-decoration: none; }
+
+img {
+  width: 100%;
+  height: auto; }
+
+p {
+  margin: 0; }
+
+header {
+  position: relative;
+  top: 0; }
+  header .curve {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: -10; }
+
+.button {
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 30px;
+  font-family: 'Oswald', sans-serif;
+  background-color: #B79733;
+  color: white;
+  border-radius: 5px;
+  text-transform: uppercase; }
+  .button:hover {
+    background-color: #8f7628; }
+
+footer {
+  margin-top: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px; }
+
+.right {
+  text-align: right; }
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 99; }
+  .main h1 {
+    font-size: 3rem; }
+  .main .create-new-recipe {
+    color: #333;
+    font-size: 24px;
+    font-weight: 400; }
+    .main .create-new-recipe:hover {
+      color: #666; }
+
+.logo {
+  margin: 0 auto;
+  width: 300px;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  text-align: center; }
+  .logo img {
+    width: 100%; }
+
+.recipe-preview {
+  background: #eee;
+  margin-bottom: 20px; }
+
+.feedback {
+  color: #B79733;
+  margin: 20px 0px;
+  font-size: 1.2em; }
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  height: 480px;
+  margin: 10px;
+  margin-bottom: 30px;
+  position: relative; }
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); }
+  .card .food-image {
+    border-radius: 8px 8px 0 0;
+    height: 280px;
+    width: auto;
+    overflow: hidden;
+    background: red; }
+    .card .food-image img {
+      object-fit: cover;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%; }
+  .card .info {
+    padding: 20px; }
+    .card .info h2 {
+      color: #B79733;
+      font-size: 30px;
+      margin-bottom: 20px; }
+    .card .info .description {
+      margin-bottom: 10px; }
+    .card .info .cooking-time {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      text-align: right;
+      color: #666;
+      font-weight: 400;
+      font-size: 14px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+      .card .info .cooking-time img {
+        height: 15px;
+        width: 15px;
+        margin-right: 5px; }
+
+.link {
+  font-size: 30px;
+  font-weight: 400; }
+
+.recipe {
+  background: white;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  height: 400px; }
+  .recipe .hero {
+    border-radius: 8px 0 0 8px;
+    width: 100%;
+    width: auto;
+    overflow: hidden; }
+    .recipe .hero img {
+      object-fit: fill;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%; }
+  .recipe .content {
+    padding: 20px;
+    position: relative; }
+    .recipe .content h1 {
+      font-size: 3.0rem;
+      color: #B79733; }
+    .recipe .content h2 {
+      font-size: 1.6rem;
+      margin-top: 20px; }
+    .recipe .content .buttons {
+      position: absolute;
+      width: 100%;
+      bottom: 20px;
+      padding-right: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px; }
+      .recipe .content .buttons .button {
+        margin-left: 20px; }
+
+input,
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  font-size: 16px;
+  height: 50px;
+  padding: 6px 10px;
+  /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  margin-bottom: 20px; }
+
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+
+fieldset {
+  padding: 0;
+  border-width: 0; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+
+.form-modal {
+  padding: 40px;
+  background: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden; }
+  .form-modal h1 {
+    margin-bottom: 30px; }
+  .form-modal p {
+    margin-bottom: 5px; }
+
+.delete-message {
+  margin-top: 30px; }
