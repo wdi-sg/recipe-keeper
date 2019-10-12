@@ -11,6 +11,10 @@ class Update extends React.Component {
           <p>Ingredients: {this.props.recipe.ingredients}</p>
           <p>Instructions: {this.props.recipe.instructions}</p>
         </body>
+
+        <form action={"/recipes/" + this.props.id + "?_method=DELETE"} method="POST">
+            <input type="submit" value="Delete This Recipe"/>
+        </form>
       </html>
     );
   }
