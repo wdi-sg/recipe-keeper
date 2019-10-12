@@ -22,3 +22,14 @@ h1{
 .editButton{
 	margin-bottom: 2%;
 }
+
+footer{
+	text-align: center;
+	background-color: #343A40;
+	color: white;
+	height: 70px;
+}
+
+footer p{
+	padding-top: 20px;
+}
