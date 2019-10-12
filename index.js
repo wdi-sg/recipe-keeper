@@ -4,7 +4,7 @@
  * ===================================
  */
 
- //========require jsonfile ========
+//========require jsonfile ========
 const jsonfile = require('jsonfile');
 
 const FILE = 'data.json';
@@ -14,13 +14,13 @@ const express = require('express');
 
 const app = express();
 
-app.use(express.static(__dirname+'/public/'));
+app.use(express.static(__dirname + '/public/'));
 
 //======tell your app to use the module========
 app.use(express.json());
 
 app.use(express.urlencoded({
-  extended: true
+    extended: true
 }));
 
 // Set up method-override for PUT and DELETE forms
@@ -61,14 +61,14 @@ app.set('view engine', 'jsx');
 //home page with navigation
 app.get('/', (req, res) => {
 
-res.render('home');
+    res.render('home');
 
 });
 
 //add recipe, render add new, form file  app.get
 app.get('/recipes/new', (req, res) => {
 
-res.render('addNewRecipe');
+    res.render('addNewRecipe');
 
 });
 
@@ -76,23 +76,31 @@ res.render('addNewRecipe');
 app.post('/recipes', (req, res) => {
 
 
-     jsonfile.readFile(FILE, (err, obj)=>{
+    jsonfile.readFile(FILE, (err, obj) => {
 
         obj.recipes.push(req.body);
         res.render("viewNewRecipe", req.body);
 
-        jsonfile.writeFile(FILE, obj, (err)=>{
+        jsonfile.writeFile(FILE, obj, (err) => {
             console.log(err);
         });
     });
 
+});
 
-
+//view all recipes in grid
+app.get('/recipes/', (rec, res) => {
+  jsonfile.readFile(FILE, (err, obj) => {
+    data = {
+      data : obj.recipes
+    }
+    res.render ('viewRecipes', data);
   });
+});
 
 
 
- /**
+/**
  * ===================================
  * Listen to requests on port 3000
  * ===================================
