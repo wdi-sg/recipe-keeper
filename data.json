@@ -1,0 +1,27 @@
+{
+		"recipes": [
+		{
+				"id": "1",
+				"title": "Boiled chicken",
+				"ingredients": "chicken",
+				"instructions": "boil chicken"
+		},
+		{
+				"id": "2",
+				"title": "Fried chicken",
+				"ingredients": "chicken",
+				"instructions": "fry chicken"
+		},
+		{
+				"id": "3",
+				"title": "Fried chicken",
+				"ingredients": "chicken",
+				"instructions": "fry chicken"
+		},
+		{
+				"id": "4",
+				"title": "3o3o3o3o3o",
+				"ingredients": "fojeofjo",
+				"instructions": "owjfowej"
+		}]
+}
