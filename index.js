@@ -36,9 +36,11 @@ app.post('/recipes', (request, response) => {
   // giving home.jsx file an object/context with `name` as a property
   let data = {warning: ""};
   if (request.body.recipeTitle === "" || request.body.ingredients === "" || request.body.instructions === "") {
+    data = {pageTitle : "Try again..."};
     data = {warning: "Empty title or other data..."}; 
       } else  { 
-    data = {warning: "Recipe Added!"}; 
+    data = {pageTitle : "Recipe Added!"};  	
+    // data = {warning: "Recipe Added!"}; 
       }
   response.render('new', data);
   
@@ -62,6 +64,30 @@ app.post('/recipes', (request, response) => {
 
 });
 
+
+app.get('/recipes/:id/edit', (request, response) => {
+  // get json from specified file
+      console.log("id: ",request.params.id);
+  jsonfile.readFile(file, (err, obj) => {
+    // extract input data from request
+    console.log(err);
+    // let inputId = parseInt( request.params.id );
+    let inputId = parseInt( request.params.id )
+
+    if (inputId > obj.recipes.length) {
+
+      // send 404 back
+      response.status(404);
+      response.send("not found");
+    } else {
+
+  // get the recipe data  
+let currentRecipe = obj.recipes[inputId];
+
+  response.render('new', currentRecipe);
+    }
+  });
+});
 
 
 /**
