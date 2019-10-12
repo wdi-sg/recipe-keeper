@@ -1,6 +1,7 @@
 const express = require("express");
 const jsonfile = require("jsonfile");
 const uuid = require("uuidv4").default;
+const dateTime = require("../utils/dateTime");
 const file = "data.json";
 const ingredients = "ingredient.json";
 const router = express.Router();
@@ -26,11 +27,13 @@ router.post("/", (req, res) => {
     const id = uuid();
     const {recipes} = data;
     const {title, ingredients, instructions} = req.body;
+    const lastUpdated = dateTime();
     const recipe = {
       id,
       title,
       ingredients,
       instructions,
+      lastUpdated,
     };
     data.recipes.push(recipe);
     jsonfile.writeFile(file, data, (err) => {
@@ -80,9 +83,11 @@ router.put("/:id", (req, res) => {
     data.recipes.forEach((recipe) => {
       if (recipe.id === req.params.id) {
         const {title, ingredients, instructions} = req.body;
+        const lastUpdated = dateTime();
         recipe.title = title;
         recipe.ingredients = ingredients;
         recipe.instructions = instructions;
+        recipe.lastUpdated = lastUpdated;
       }
     });
     jsonfile.writeFile(file, data, (err) => {
