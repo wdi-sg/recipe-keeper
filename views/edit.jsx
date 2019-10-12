@@ -1,5 +1,5 @@
 var React = require("react");
-
+const Nav = require('./navbar');
 class Edit extends React.Component {
 
   render() {
@@ -15,14 +15,36 @@ class Edit extends React.Component {
             crossorigin="anonymous"
           ></link>
         </head>
+        <Nav/>
         <body>
-           <h1>Editing Recipe : {this.props.name}</h1>
-           <form method="POST"action={"/edited/" + (allrecipes.indexOf(editRecipe) + 1) +'?_method=put'}>
-              <p><input type="text" name="name" value={editRecipe.name}/></p> 
-              <p><input type="text" name="ingredients"value={editRecipe.ingredients} /></p> 
-              <p><input type="text" name="instructions" value={editRecipe.instructions}/></p> 
-               <input type="submit" value="submit"/>
+          <div className="container text-center mt-5">
+          <h1 className="display-2">Editing Recipe : {this.props.name}</h1>
+          <div className="row">
+          <div className="col-12">
+          <form className="mt-3" method="POST"action={"/edited/" + (allrecipes.indexOf(editRecipe) + 1) +'?_method=put'}>
+              <div className="form-group">
+                <label htmlFor="name" class="col-sm-2 col-form-label col-form-label-lg">Recipe Name: </label>
+                <p><input className="form-control-lg" type="text" name="name" value={editRecipe.name}/></p> 
+              </div>
+              <div className="form-group">
+                <label htmlFor="name" class="col-sm-2 col-form-label col-form-label-lg" >Ingredients </label>
+                <p><input className="form-control-lg" type="text" name="ingredients"value={editRecipe.ingredients} /></p> 
+              </div>
+              <div className="form-group">
+                <label htmlFor="name" class="col-sm-2 col-form-label col-form-label-lg">Instructions </label>
+                <p><input className="form-control-lg" type="text" name="instructions" value={editRecipe.instructions}/></p> 
+              </div>
+              
+              
+             
+               <button  class="btn btn-primary" type="submit" value="submit">Submit</button>
            </form>
+          </div>
+          </div>
+  
+           
+          </div>
+          
        </body>
       </html>
     );

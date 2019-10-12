@@ -1,6 +1,7 @@
 const jsonfile = require("jsonfile");
 
 const FILE = "data.json";
+const INGREDIENT = "ingredient.json";
 
 const express = require("express");
 
@@ -44,7 +45,13 @@ app.get("/home", (request, response) => {
 
 // Add a new recipe page, submission will bring you to
 app.get("/new", (request, response) => {
-  response.render("form");
+  jsonfile.readFile(INGREDIENT, (err, obj) => {
+    const data = {
+      ingredient: obj
+    };
+    response.render("form", data);
+  });
+  
 });
 /*********************************************************************************** */
 /*********************************************************************************** */

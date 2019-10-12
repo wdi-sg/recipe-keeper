@@ -16,7 +16,7 @@ class IndividualRecipe extends React.Component {
         </head>
         <body>
           <div className="container text-center pt-5">
-            <h1 className="text-center">{this.props.recipepage.name}</h1>
+            <h1 className="text-center display-3">{this.props.recipepage.name}</h1>
             <div className="row pt-5">
               <div className="col-6">
                 <h3>Ingredients:</h3>

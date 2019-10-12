@@ -1,5 +1,5 @@
 var React = require('react');
-
+const Nav = require('./navbar')
 class Deleted extends React.Component {
   render() {
    
@@ -9,9 +9,13 @@ class Deleted extends React.Component {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
         </head>
        <body>
-           <h1>Recipe Deleted</h1>
+         <Nav/>
+         <div className="container">
+         <h1 className="display-2">Recipe Deleted</h1>
            
-        <button><a href="/home">Back To Home</a></button>
+           <button><a href="/home">Back To Home</a></button>
+         </div>
+           
         
        </body>
       </html>

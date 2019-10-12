@@ -34,17 +34,16 @@ class Home extends React.Component {
         <body>
          <Navbar/>
           <div className="container pt-5">
-            <h1 className="text-center">Recipe Home Page</h1>
-            <p>
-            
-              <a href="/new">Add A New Recipe</a>
-            </p>
+            <h1 className="text-center display-2">Find a Recipe</h1>
+            <div className="container">
             <h3>All Recipes: </h3>
             <div className="row">
               <div className="col-6">{leftSide}</div>
               <div className="col-6">{rightSide}</div>
               
             </div>
+            </div>
+           
           </div>
         </body>
       </html>
