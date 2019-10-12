@@ -11,7 +11,7 @@ class New extends React.Component {
     return (
       <div key={index}>
         <span>{index+1}) </span>
-        <select>
+        <select name="ingredients">
           <option value="none">Select ingredient</option>
           {ingredientsArr.map((data, i) => (
             <option key={i} value={data.name}>{data.name}</option>
@@ -22,7 +22,6 @@ class New extends React.Component {
   }
 
   render() {
-    console.log("0");
     const {ingredientsArr, number} = this.props;
     if (number > 0) {
       for (let i = 0; i < number; i++) {
@@ -34,7 +33,7 @@ class New extends React.Component {
         <h1>Add new recipe</h1>
         <form action="/recipes/new" method="get">
           <label htmlFor="number">Total number of ingredients required? </label>
-          <input type="number" name="number" value={number}/>
+          <input type="number" name="number" defaultValue={number}/>
         </form>
 
         {number > 0 ? (

@@ -19,9 +19,7 @@ router.get("/new", (req, res) => {
 
 // create new
 router.post("/", (req, res) => {
-  console.log("new recipe", req.body);
   jsonfile.readFile(ingredients, (err, dataArr) => {
-    console.log("new Recipe", dataArr);
   });
   return res.render("recipes");
 });
