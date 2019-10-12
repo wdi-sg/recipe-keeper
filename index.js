@@ -1,6 +1,6 @@
 const jsonfile = require("jsonfile");
 
-const file = "data.json";
+const FILE = "data.json";
 
 const express = require("express");
 
@@ -28,8 +28,35 @@ app.set("views", __dirname + "/views");
 
 app.set("view engine", "jsx");
 
-app.get("/", function(req, res) {
-  res.send("hello world");
+app.get("/", (req, res) => {
+  //   res.send("hello world");
+  res.render("Home");
+});
+
+app.get("/ingredients/new", (req, res) => {
+  res.render("NewIngredient");
+});
+
+app.post("/ingredients", (req, res) => {
+  console.log("req.params ****************", req.body);
+  const { ingredientName, ingredientAmount, ingredientNotes } = req.body;
+
+  const newIngredient = {
+    name: ingredientName,
+    amount: ingredientAmount,
+    notes: ingredientNotes
+  };
+
+  jsonfile.readFile(FILE, (err, obj) => {
+    obj.ingredients.push(newIngredient);
+
+    jsonfile.writeFile(FILE, obj, err => {
+      if (err) {
+        console.error(err);
+      }
+      res.send("ingredient added");
+    });
+  });
 });
 
 app.listen(3000);
