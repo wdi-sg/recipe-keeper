@@ -2,6 +2,7 @@ var React = require('react');
 
 class Recipe extends React.Component {
     render() {
+        let formEdit = '/recipes/' + this.props.id + '/edit';
         return (
             <html>
                 <body>
@@ -12,6 +13,9 @@ class Recipe extends React.Component {
                     <p>{this.props.ingredients}</p>
                     <h3>Instructions:</h3>
                     <p>{this.props.instructions}</p>
+                    <form method="GET" action={formEdit}>
+                        <input type="submit" value="Edit"/>
+                    </form>
                 </body>
             </html>
         );

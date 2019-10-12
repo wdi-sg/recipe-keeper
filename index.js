@@ -30,9 +30,9 @@ app.set('view engine', 'jsx');
  * ===================================
  */
 
-//retrieve or ask for new recipe
+// retrieve or ask for new recipe
  app.get('/recipes/:id', (request, response) => {
-    //Debug - check input received
+    // Debug - check input received
     console.log("Received request for: " + request.params.id);
 
     // read data from json file
@@ -57,6 +57,8 @@ app.set('view engine', 'jsx');
             response.render('new');
         // display found recipe
         } else {
+            // assign recipe an id
+            recipe.id = request.params.id;
             recipe.message = "Found";
             // Debug - check recipe found
             // console.log(recipe);
@@ -95,7 +97,9 @@ app.post('/recipes/new', (request, response) => {
                 if (err) {
                     console.error(err);
                 }
-
+                // assign recipe an id
+                newRecipe.id = obj.recipes.length;
+                console.log("New recipe id: " + newRecipe.id);
                 newRecipe.message = "Added"
                 response.render('found', newRecipe);
             })
@@ -148,6 +152,10 @@ app.put('/recipes/:id', (request, response) => {
     })
 })
 
+// delete recipe
+app.delete('/recipes/:id', (request, response) => {
+
+})
 
 /**
  * ===================================
