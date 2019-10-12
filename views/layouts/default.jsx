@@ -26,7 +26,7 @@ class DefaultLayout extends React.Component {
     <nav className="nav flex-column">
     <a className="nav-link" href="#">Top</a>
     <a className="nav-link" href="../recipes/">See All Recipes</a>
-    <a className="nav-link" href="#">Create/Edit/Delete</a>
+    <a className="nav-link" href="../recipes/new">Create/Edit/Delete</a>
     <a className="nav-link" href="#">Link</a>   
     </nav> 
     </div>
