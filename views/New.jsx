@@ -1,11 +1,66 @@
-const React = require('react');
+const React = require("react");
 
 class New extends React.Component {
-    render() {
-      return (
-        <h1>New</h1>
-      );
+  constructor() {
+    super();
+    this.numOfIngredients = [];
+  }
+
+  addSelection(index) {
+    const {ingredientsArr} = this.props;
+    return (
+      <div key={index}>
+        <span>{index+1}) </span>
+        <select>
+          <option value="none">Select ingredient</option>
+          {ingredientsArr.map((data, i) => (
+            <option key={i} value={data.name}>{data.name}</option>
+          ))}
+        </select>
+      </div>
+    );
+  }
+
+  render() {
+    console.log("0");
+    const {ingredientsArr, number} = this.props;
+    if (number > 0) {
+      for (let i = 0; i < number; i++) {
+        this.numOfIngredients.push(this.addSelection(i));
+      }
     }
+    return (
+      <>
+        <h1>Add new recipe</h1>
+        <form action="/recipes/new" method="get">
+          <label htmlFor="number">Total number of ingredients required? </label>
+          <input type="number" name="number" placeholder={0} />
+        </form>
+
+        {number > 0 ? (
+          <>
+            <form action="/recipes" method="post" id="newRecipe">
+              <div>
+                <label htmlFor="title">Recipe title: </label>
+                <input type="text" name="title" />
+              </div>
+              <label>Ingredients:</label>
+              <div>{this.numOfIngredients}</div>
+              <label htmlFor="instructions">Instructions:</label>
+              <div>
+                <textarea cols="50" rows="4" name="instructions" />
+              </div>
+            </form>
+            <button type="submit" form="newRecipe" value="submit">
+              Add
+            </button>
+          </>
+        ) : (
+          <div></div>
+        )}
+      </>
+    );
+  }
 }
 
 module.exports = New;
