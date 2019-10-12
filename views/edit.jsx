@@ -24,15 +24,15 @@ class Edit extends React.Component {
           <form className="mt-3" method="POST"action={"/edited/" + (allrecipes.indexOf(editRecipe) + 1) +'?_method=put'}>
               <div className="form-group">
                 <label htmlFor="name" class="col-sm-2 col-form-label col-form-label-lg">Recipe Name: </label>
-                <p><input className="form-control-lg" type="text" name="name" value={editRecipe.name}/></p> 
+                <p><input className="form-control form-control-lg" type="text" name="name" value={editRecipe.name}/></p> 
               </div>
               <div className="form-group">
                 <label htmlFor="name" class="col-sm-2 col-form-label col-form-label-lg" >Ingredients </label>
-                <p><input className="form-control-lg" type="text" name="ingredients"value={editRecipe.ingredients} /></p> 
+                <p><input className="form-control form-control-lg" type="text" name="ingredients"value={editRecipe.ingredients} /></p> 
               </div>
               <div className="form-group">
                 <label htmlFor="name" class="col-sm-2 col-form-label col-form-label-lg">Instructions </label>
-                <p><input className="form-control-lg" type="text" name="instructions" value={editRecipe.instructions}/></p> 
+                <p><textarea  class="form-control form-control-lg" type="text" name="instructions" value={editRecipe.instructions}/></p> 
               </div>
               
               

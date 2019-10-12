@@ -11,7 +11,7 @@ class Delete extends React.Component {
        <body>
          <Nav/>
          <div className="container pt-5 text-center">
-         <h1 className="display-2">You are deleting <mark>{this.props.recipepage.name}</mark></h1>
+         <h1 className="display-2">You are deleting {this.props.recipepage.name}</h1>
            <h2 className="display-4">Are you sure?</h2>
          <form className="pt-3" method="POST" action={"/deleted/" + (recipeArr.indexOf(this.props.recipepage) + 1) + '?_method=delete'}>
         <button class="btn btn-danger" type="submit" value="Confirm">Confirm</button>

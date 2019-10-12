@@ -10,10 +10,10 @@ class Deleted extends React.Component {
         </head>
        <body>
          <Nav/>
-         <div className="container">
+         <div className="container text-center mt-4">
          <h1 className="display-2">Recipe Deleted</h1>
            
-           <button><a href="/home">Back To Home</a></button>
+           <button className="mtt-3"><a href="/home">Back To Home</a></button>
          </div>
            
         
