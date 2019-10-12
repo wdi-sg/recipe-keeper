@@ -3,17 +3,17 @@ const React = require("react");
 class Navbar extends React.Component {
   render() {
     return (
-      <>
-        <button>
-          <a href="/">Home</a>
+      <div className="nav">
+        <button className="nav-buttons">
+          <a className="nav-links" href="/">Home</a>
         </button>
-        <button>
-          <a href="/recipes">Recipe List</a>
+        <button className="nav-buttons">
+          <a className="nav-links" href="/recipes">Recipes</a>
         </button>
-        <button>
-          <a href="/ingredients">Ingredient List</a>
+        <button className="nav-buttons">
+          <a className="nav-links" href="/ingredients">Ingredients</a>
         </button>
-      </>
+      </div>
     );
   }
 }

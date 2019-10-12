@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: lightgrey;
+}
+
+.nav-links {
+  font-size: 2em;
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+}
+
+.nav-buttons {
+  background-color: lightgrey;
+  padding: 10px 20px;
+}
+
+.title {
+  text-align: center;
+}

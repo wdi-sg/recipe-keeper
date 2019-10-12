@@ -5,8 +5,9 @@ class Index extends React.Component {
   render() {
     return (
       <>
+        <link rel="stylesheet" href="./css/index.css" />
         <Navbar />
-        <h1>Recipe Keeper</h1>
+        <h1 className="title">Recipe Keeper</h1>
       </>
     );
   }
