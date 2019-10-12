@@ -1,0 +1,24 @@
+{
+		"allRecipe": [
+		{
+				"name": "Chicken Rice",
+				"type": "N.Veg",
+				"instruction": "Lorem",
+				"ingredient": ["Chicken", "Rice"]
+		},{
+				"name": "Acorn Rice",
+				"type": "Veg",
+				"instruction": "Lorem",
+				"ingredient": ["Acorn", "Rice"]
+		},{
+				"name": "Corn Rice",
+				"type": "Veg",
+				"instruction": "Lorem",
+				"ingredient": ["Corn", "Rice"]
+		},{
+				"name": "Pea Rice",
+				"type": "Veg",
+				"instruction": "Lorem",
+				"ingredient": ["Pea", "Rice"]
+		} ]
+}

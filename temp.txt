@@ -1,0 +1,8 @@
+
+/*----Used to break ingredients into elements, works with/out spaces: a,b,c and a, b, c.----*/
+
+var ingredient = "Chicken,Rice,Oil,Chili";
+var ingredientArr = ingredient.split(", ");
+ingredientArr = ingredientArr.join();
+ingredientArr = ingredientArr.split(',')
+console.log(ingredientArr);
