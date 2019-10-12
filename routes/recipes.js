@@ -41,7 +41,17 @@ router.post("/", (req, res) => {
 
 // show one
 router.get("/:id", (req, res) => {
-  return res.render("recipe");
+  jsonfile.readFile(file, (err, data) => {
+    const {recipes} = data;
+    const {id} = req.params;
+    let recipe;
+    recipes.forEach((obj) => {
+      if (obj.id === id) {
+        recipe = obj;
+      }
+    });
+    return res.render("recipe", recipe);
+  });
 });
 
 // edit 1
