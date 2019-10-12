@@ -64,7 +64,7 @@ app.post('/recipes',(req,res)=>{
             if (err) console.log(err);
         });
     });
-    res.render('home');
+    res.render('home',obj);
 });
 /*
 ==================================================
@@ -73,7 +73,18 @@ app.post('/recipes',(req,res)=>{
 ╚═╝┴ ┴└─┘└┴┘
 ==================================================
 */
-app.get('/recipes/:id',(req,res)=>{res.send('landing page!')});
+app.get('/recipes/:id',(req,res)=>{
+    jsonfile.readFile(file,(err,obj)=>{
+        if (err) console.log(err);
+// using the :id, find the corresponding recipe
+        let index = parseInt(req.params.id);
+// rename data to be sent
+        selectedRecipe = obj.recipes[index];
+// add in index of recipe to data
+        selectedRecipe.index = index;
+        res.render('show',selectedRecipe);
+    });
+});
 /*
 ==================================================
 ╔═╗┌┬┐┬┌┬┐
@@ -81,7 +92,18 @@ app.get('/recipes/:id',(req,res)=>{res.send('landing page!')});
 ╚═╝─┴┘┴ ┴
 ==================================================
 */
-app.get('/recipes/:id/edit',(req,res)=>{res.send('landing page!')});
+app.get('/recipes/:id/edit',(req,res)=>{
+    jsonfile.readFile(file,(err,obj)=>{
+        if (err) console.log(err);
+// using the :id, find the corresponding recipe
+        let index = parseInt(req.params.id);
+// rename data to be sent
+        selectedRecipe = obj.recipes[index];
+// add in index of recipe to data
+        selectedRecipe.index = index;
+        res.render('edit',selectedRecipe);
+    });
+});
 /*
 ==================================================
 ╦ ╦┌─┐┌┬┐┌─┐┌┬┐┌─┐
@@ -89,7 +111,19 @@ app.get('/recipes/:id/edit',(req,res)=>{res.send('landing page!')});
 ╚═╝┴  ─┴┘┴ ┴ ┴ └─┘
 ==================================================
 */
-app.put('/recipes/:id',(req,res)=>{res.send('landing page!')});
+app.put('/recipes/:id',(req,res)=>{
+// using the :id, find the corresponding recipe
+    let index = parseInt(req.params.id);
+    jsonfile.readFile(file,(err,obj)=>{
+        if (err) console.log(err);
+// overwrite the current data with new data
+        obj.recipes[index] = req.body;
+        jsonfile.writeFile(file,obj,(err)=>{
+            if (err) console.log(err);
+        });
+        res.render('show',obj.recipes[index]);
+    });
+});
 /*
 ==================================================
 ╔╦╗┌─┐┌─┐┌┬┐┬─┐┌─┐┬ ┬
@@ -97,7 +131,18 @@ app.put('/recipes/:id',(req,res)=>{res.send('landing page!')});
 ═╩╝└─┘└─┘ ┴ ┴└─└─┘ ┴
 ==================================================
 */
-app.delete('/recipes/:id',(req,res)=>{res.send('landing page!')});
+app.delete('/recipes/:id',(req,res)=>{
+    let index = parseInt(req.params.id);
+    jsonfile.readFile(file,(err,obj)=>{
+        if (err) console.log(err);
+// overwrite the current data with new data
+        obj.recipes.splice(index,1);
+        jsonfile.writeFile(file,obj,(err)=>{
+            if (err) console.log(err);
+        });
+        res.render('home', obj);
+    });
+});
 /*
 ==================================================
 ╔═╗┌─┐┬─┐┌┬┐
