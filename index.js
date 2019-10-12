@@ -32,6 +32,7 @@ app.set('view engine', 'jsx');
 
 //retrieve or ask for new recipe
  app.get('/recipes/:id', (request, response) => {
+    //Debug - check input received
     console.log("Received request for: " + request.params.id);
 
     // read data from json file
@@ -47,7 +48,7 @@ app.set('view engine', 'jsx');
         let inputId = parseInt(request.params.id)-1;
 
         // find recipe by index from the recipes json file
-        var recipe = obj.recipes[inputId];
+        let recipe = obj.recipes[inputId];
 
         // if not found or params is 'new'
         if (recipe === undefined || request.params.id === "new") {
@@ -58,7 +59,7 @@ app.set('view engine', 'jsx');
         } else {
             recipe.message = "Found";
             // Debug - check recipe found
-            console.log(recipe);
+            // console.log(recipe);
             response.render('found', recipe);
         }
     });
@@ -66,6 +67,7 @@ app.set('view engine', 'jsx');
 
 // get new recipe
 app.post('/recipes/new', (request, response) => {
+    // Debug - check request body
     console.log(request.body);
     let newRecipe = request.body;
     let recipeExist = false;
@@ -80,11 +82,11 @@ app.post('/recipes/new', (request, response) => {
         existingRecipe.forEach( recipe => {
             if ( newRecipe.title.toLowerCase() === recipe.title.toLowerCase() ) {
                 recipeExist = true;
-                let exists = { message: "Recipe's title already exists!"}
-                response.render('new', exists);
+                newRecipe.message = "Recipe's title already exists!";
+                response.render('new', newRecipe);
             }
         });
-
+        // add new recipe
         if (recipeExist === false) {
 
             obj.recipes.push(newRecipe);
@@ -99,6 +101,23 @@ app.post('/recipes/new', (request, response) => {
             })
 
         }
+    })
+})
+
+// edit recipe
+app.get('/recipes/:id/edit', (request, response) => {
+    let inputId = parseInt(request.params.id)-1;
+
+    jsonfile.readFile(FILE, (err, obj) =>{
+        if (err) {
+            console.log(err);
+        }
+
+        // find recipe by index from the recipes json file
+        let editRecipe = obj.recipes[inputId];
+        console.log(editRecipe);
+        response.render('edit', editRecipe);
+
     })
 })
 
