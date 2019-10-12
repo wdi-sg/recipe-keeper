@@ -89,26 +89,35 @@ app.get("/recipes/:id", (request,response) => {
 })
 
 app.get("/recipes/:id/edit", (request,response)=>{
-    let index = request.params.id
+    let identifier = request.params.id
+    let index = identifier - 1
+    console.log(index)
 
     jsonfile.readFile(file, (err,obj)=> {
 
         const data = {
             recipe: obj.recipes[index],
-            index: index
+            id: obj.recipes[index]["id"]
         }
         response.render('editform', data)
     })
 })
 
 app.put("/recipes/:id", (request,response)=> {
-    let index = request.params.id
+    let identifier = request.params.id
+    let index = identifier-1
     let edit = request.body
-    console.log(index)
+
+    let editTitle =  edit.title
+    let editIng = edit.ingredients
+    let editIns = edit.instructions
+
 
     jsonfile.readFile(file, (err,obj) =>{
-        obj.recipes[index] = edit
-
+        console.log(obj.recipes[index])
+        obj.recipes[index].title = editTitle
+        obj.recipes[index].ingredients = editIng
+        obj.recipes[index].instructions = editIns
         const data = {
             recipe: obj.recipes[index]
         }

@@ -10,6 +10,7 @@ class Edited extends React.Component{
         } = this.props.recipe
 
         console.log(this.props.recipe)
+        console.log(this.props.id)
 
         return(
             <html>
@@ -17,9 +18,9 @@ class Edited extends React.Component{
                   <div>
                     <h1>Edited recipe!</h1>
                     <ol>
-                        <li>{title}</li>
-                        <li>{ingredients}</li>
-                        <li>{instructions}</li>
+                        <li>Title: {title}</li>
+                        <li>Ingredients: {ingredients}</li>
+                        <li>Instructions: {instructions}</li>
                     </ol>
 
                     <form action="/recipes" method="get" id="home">
