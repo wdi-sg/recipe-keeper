@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 var ingredient = [{
+=======
+[{
+>>>>>>> starter-branch
 		"id": 1,
 		"name": "Wine - Rosso Toscano Igt"
 	},
