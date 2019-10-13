@@ -1,0 +1,16 @@
+{
+	"recipes":[
+		{
+			"id": 1,
+			"title":"Boiled Chicken",
+			"ingredients":"1 chicken",
+			"instructions":"Eat it raw"
+		},
+		{
+			"id": 2,
+			"title":"Boiled Fish",
+			"ingredients":"Fish",
+			"instructions":"Eat it raw too"
+		}
+	]
+}
