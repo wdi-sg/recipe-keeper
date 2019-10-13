@@ -159,7 +159,7 @@ app.get('/recipes/:id/delete', (request, response) => {
 
     let itemToChange = request.params.id;
     obj.recipes.splice(itemToChange,1);
-    
+
              const data = {
             recipeobj: obj
         }       
@@ -172,6 +172,34 @@ app.get('/recipes/:id/delete', (request, response) => {
   response.render('showall', data);
   });
   });
+
+
+ // show single recipe
+app.get('/recipes/:id', (request, response) => {
+  // get json from specified file
+      // console.log("id: ",request.params.id);
+  jsonfile.readFile(file, (err, obj) => {
+    // extract input data from request
+    console.log(err);
+    // let inputId = parseInt( request.params.id );
+    let inputId = parseInt( request.params.id )
+
+    if (inputId > obj.recipes.length) {
+
+      // send 404 back
+      response.status(404);
+      response.send("not found");
+    } else {
+
+  // add the ID for the render  
+  obj.recipes[inputId].pageTitle = "Yumm!";
+  obj.recipes[inputId].id = inputId;
+  let data = obj.recipes[inputId];
+
+    response.render('single', data);
+    }
+  });
+});
 
 
 /**
