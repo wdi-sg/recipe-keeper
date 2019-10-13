@@ -10,7 +10,7 @@ class Home extends React.Component {
 
         if (recipes.title) {
 
-        return <a href={"/recipes/"+recipes.id}><li>{recipes.title}</li></a>
+        return <li><a href={"/recipes/"+recipes.id}>{recipes.title}</a></li>
         } else {
             return <span/>
         }
@@ -20,6 +20,17 @@ class Home extends React.Component {
                 <Layout>
                     <h1>Welcome to the Recipe Keeper</h1>
                         <h2>All Recipes</h2>
+
+                    <h3>Sort by </h3>
+                    <form method="GET" action="/recipes?">
+                        <select name="sortby">
+                            <option value="title">Title</option>
+                            <option value="ingredient">Ingredients</option>
+                        </select>
+                        <input type="submit" class="m-2 btn btn-primary"/>
+</form>
+
+
                             <ul>
                             {allRecipes}
                             </ul>

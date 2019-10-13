@@ -67,6 +67,23 @@ app.post('/recipes', (request, response) => {
     })
 })
 
+app.get('/recipes?', (request, response) => {
+    console.log(`THIS IS !!!!!!!!!!!!!!!!!!!!${request.query.sortby}`)
+    let field = request.query.sortby;
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (field === 'title') {
+
+            let allRecipes = obj.recipes.map(x => x);
+            allRecipes.sort();
+            response.send(allRecipes)
+    }
+
+    })
+
+
+})
+
 // Shows the page for a single recipe by id
 app.get('/recipes/:id/', (request, response) => {
     let index = parseInt(request.params.id) - 1;
