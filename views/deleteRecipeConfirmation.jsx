@@ -7,7 +7,8 @@ class DeleteRecipeConfirmation extends React.Component {
             <html>
                 <body>
                     <div>
-                            <h3>Recipe no.: {this.props.id} has been deleted.</h3>
+                        <a href="/recipes">Back to Home</a> | <a href="/recipes/new">Add New Recipe</a>
+                        <h3>Recipe no.: {this.props.id} has been deleted.</h3>
                     </div>
                 </body>
             </html>

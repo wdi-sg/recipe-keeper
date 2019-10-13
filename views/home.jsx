@@ -19,6 +19,7 @@ class Home extends React.Component {
             <html>
                 <body>
                     <div>
+                        <a href="/recipes/new">Add New Recipe</a>
                         <h3>View all Recipes </h3>
                         <ul>
                             {recipeDetails}

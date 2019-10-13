@@ -7,7 +7,7 @@ class EditRecipeConfirmation extends React.Component {
             <html>
                 <body>
                     <div>
-
+                            <a href="/recipes">Back to Home</a> | <a href="/recipes/new">Add New Recipe</a> | <a href={"/recipes/" + this.props.id + "/delete"}>Delete this Recipe</a>
                             <h3>Your changes for recipe no.: {this.props.id} has been saved.</h3>
                            <br />
                                 ID: <input type="text" name="id" value={this.props.id} readOnly />
