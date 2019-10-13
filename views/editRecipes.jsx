@@ -7,14 +7,14 @@ class EditRecipes extends React.Component {
         <html>
         <body>
             <div>
-                <h1>Updated YummyRecipes</h1>
-                <form method="POST" action={"/recipes/" + this.props.index + "?_method=PUT"}>
+                <h1>Editing Yummy Recipes for Improvement</h1>
+                <form method="POST" name= "create" action={"/recipes/" + this.props.id + "?_method=put"}>
                     <p> Recipes Title</p>
-                    <input name="title" value ={this.props.title}/>
+                    <input name="title" defaultValue ={this.props.title}/>
                     <p> Recipes Ingredients </p>
-                    <input name="ingredients" value ={this.props.ingredients}/>
+                    <input name="ingredients" defaultValue ={this.props.ingredients}/>
                     <p> Recipes Instructions</p>
-                    <input name="Instructions" value= {this.props.instructions}/>
+                    <input name="Instructions" defaultValue= {this.props.instructions}/>
                     <br/>
                     <input type="submit"/>
                 </form>
