@@ -2,7 +2,7 @@ const React = require("react");
 const Layout = require("./Layout");
 const Recipe = require("./Recipe");
 
-class Recipes extends React.Component {
+class AllRecipes extends React.Component {
   render() {
     return (
       <Layout>
@@ -23,4 +23,4 @@ class Recipes extends React.Component {
   }
 }
 
-module.exports = Recipes;
+module.exports = AllRecipes;

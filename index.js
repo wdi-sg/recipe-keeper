@@ -57,7 +57,7 @@ app.get("/recipes/", (req, res) => {
       recipes: recipes
     };
 
-    res.render("Recipes", data);
+    res.render("AllRecipes", data);
   });
 });
 
@@ -109,6 +109,27 @@ app.post("/recipes", (req, res) => {
       }
       res.send("recipe added");
     });
+  });
+});
+
+app.get("/recipes/:id", (req, res) => {
+  console.log("req.params", req.params);
+
+  const recipeId = req.params.id;
+
+  jsonfile.readFile(FILE, (err, obj) => {
+
+    const recipes = obj.recipes;
+
+    const recipe = recipes[recipeId];
+
+    data = {
+        recipe: recipe
+    }
+
+    res.render("SingleRecipe", data);
+
+
   });
 });
 
