@@ -92,20 +92,75 @@ app.post('/recipes', (req, res) => {
 //view all recipes in grid
 app.get('/recipes/', (req, res) => {
   jsonfile.readFile(FILE, (err, obj) => {
-    // data = {
-    //   data : obj.recipes
-    // }
-    res.render ('viewRecipes', req.body);
+    data = {
+      data : obj.recipes
+    }
+    res.render ('viewRecipes', data);
   });
 });
 
 //edit recipe
 
+app.get('/recipes/:id/edit', (req, res) => {
+  let id = parseInt(req.params.id)-1;
 
+  jsonfile.readFile(FILE, (err, obj) => {
+    console.log(obj.recipes[id]);
+    const recipes = obj.recipes[id];
+
+    const data = {
+      id : id,
+      recipes : recipes
+    };
+    res.render('editRecipe', data);
+  });
+});
+
+app.put('/recipes/:id', (req, res) => {
+  let id = parseInt(req.params.id)-1;
+  let editedRecipe = req.body;
+
+  jsonfile.readFile (FILE, (err, obj) => {
+    obj.recipes[id] = editedRecipe;
+    jsonfile.writeFile(FILE, obj, {spaces:2}, (err) => {
+      console.log(err);
+    });
+
+    res.send("Recipe edited");
+  });
+});
+// change path in navigation for edit
 
 
 //delete recipe
+app.get('/recipes/:id/delete', (req, res) => {
+  let id = parseInt(req.params.id)+1;
 
+  jsonfile.readFile(FILE, (err, obj) => {
+    console.log("line 140 " + obj.recipes[id]);
+    const recipes = obj.recipes[id];
+
+    const data = {
+      id : id,
+      recipes : recipes
+    };
+    res.render('deleteRecipe', data);
+  });
+})
+//fix spaces in jsonfile after deleting
+app.delete('/recipes/:id', (req, res) => {
+  let id = parseInt(req.params.id);
+  jsonfile.readFile (FILE, (err, obj) => {
+    obj.recipes.splice(id, 1);
+    jsonfile.writeFile(FILE, obj, {space:2}, (err) => {
+      console.log(err);
+    });
+    res.send("Recipe deleted")
+  })
+})
+
+//instead of separate pages, on every single recipe preview, add buttons for delete and edit the current recipe
+//make page for single recipe, on the recipes grid page, add link to view full recipe on every img
 
 
 /**
