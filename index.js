@@ -77,6 +77,40 @@ app.post('/recipes', (request, response) => {
     });
 });
 
+//Display single recipe
+app.get('/recipes/:id', (request, response) => {
+
+    let recipeId = parseInt(request.params.id);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+
+        // When recipeId === obj.recipes[i].id
+        // Get the value of i
+        // Get title,ingredients and instructions of that recipe
+
+        let title;
+        let ingredients;
+        let instructions;
+
+        for(let i = 0; i < obj.recipes.length; i++) {
+
+            if(recipeId == obj.recipes[i].id) {
+
+                console.log(i);
+
+                const data = {
+                    id: obj.recipes[i].id,
+                    title: obj.recipes[i].title,
+                    ingredients: obj.recipes[i].ingredients,
+                    instructions: obj.recipes[i].instructions
+                };
+
+            response.render('viewSingleRecipe', data);
+            }
+        }
+    });
+});
+
 // Listen on port
 app.listen(port);
 console.log("listening on port " + port);
