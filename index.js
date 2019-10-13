@@ -150,7 +150,18 @@ app.put("/recipes/:id", (req, res) => {
 
     console.log("req.body!!!!!",req.body);
 
-    res.send("recipe edited!");
+    const recipeId = req.params.id;
+    const updatedRecipe = req.body;
+
+    jsonfile.readFile(FILE, (err,obj) => {
+
+        const recipes = obj.recipes;
+        recipes[recipeId] = updatedRecipe;
+
+        jsonfile.writeFile(FILE, obj, err => {
+            res.send("recipe edited!");
+        })
+    })
 })
 
 app.listen(3000);
