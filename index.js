@@ -177,7 +177,7 @@ app.put("/recipes/:id", (req, res) => {
       ingredients: recipeIngredients,
       instructions: recipeInstructions
     };
-    
+
     jsonfile.readFile(FILE, (err, obj) => {
       const recipes = obj.recipes;
       recipes[recipeId] = updatedRecipe;
@@ -189,5 +189,55 @@ app.put("/recipes/:id", (req, res) => {
   }
 
 });
+
+
+  app.get("/recipes/:id/edit", (req, res) => {
+  const recipeId = req.params.id;
+
+  jsonfile.readFile(FILE, (err, obj) => {
+    const recipes = obj.recipes;
+    const recipe = recipes[recipeId];
+
+    data = {
+      recipeId: recipeId,
+      recipe: recipe
+    };
+
+    res.render("EditRecipe", data);
+  });
+});
+
+app.get("/recipes/:id/delete", (req, res) => {
+    const recipeId = req.params.id;
+  
+    jsonfile.readFile(FILE, (err, obj) => {
+      const recipes = obj.recipes;
+      const recipe = recipes[recipeId];
+  
+      data = {
+        recipeId: recipeId,
+        recipe: recipe
+      };
+  
+      res.render("DeleteRecipe", data);
+    });
+  });
+
+app.delete("/recipes/:id", (req, res) => {
+    const recipeId = req.params.id;
+  
+    jsonfile.readFile(FILE, (err, obj) => {
+      const recipes = obj.recipes;
+
+      recipes.splice(recipeId, 1);
+
+      jsonfile.writeFile(FILE, obj, err => {
+
+        res.send("recipe DELETED!!!!!");
+
+      })
+  
+    });
+  });
 
 app.listen(3000);
