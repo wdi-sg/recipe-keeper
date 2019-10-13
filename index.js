@@ -46,6 +46,8 @@ app.post('/newrecipe', (request,response) => {
             let newRecipeDetails = {
                 title: request.body.title,
                 id: request.body.id,
+                img: request.body.img,
+                type: request.body.type,
                 ingredients: request.body.ingredients,
                 instructions: request.body.instructions
             }
@@ -80,6 +82,7 @@ app.get('/allrecipes/:id/edit', (req,res) => {
         const data = {
             id: obj.recipes[id-1].id,
             title: obj.recipes[id-1].title,
+            type: obj.recipes[id-1].type,
             ingredients: obj.recipes[id-1].ingredients,
             instructions: obj.recipes[id-1].instructions
         };
