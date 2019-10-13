@@ -170,7 +170,8 @@ app.delete('/recipes/:id', (request, response) => {
                 console.log(err);
             }
 
-            response.send("Go back to homepage");
+            let recipes = obj;
+            response.render('home', recipes);
         })
 
     })

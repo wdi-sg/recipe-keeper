@@ -2,9 +2,10 @@ var React = require('react');
 
 class Home extends React.Component {
     render() {
-        const recipes = this.props.recipes.map( recipe => {
+        const recipes = this.props.recipes.map( (recipe, index) => {
+            let recipeLink = "http://localhost:3000/recipes/" + (index+1);
             return (
-                <li>{recipe.title}</li>
+                <li><a href={recipeLink}>{recipe.title}</a></li>
                 );
         })
 
