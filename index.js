@@ -59,6 +59,7 @@ app.set('view engine', 'jsx');
  */
 
 //home page with navigation
+//later move the navigation in header navbar and continue the homepage with all recipes
 app.get('/', (req, res) => {
 
     res.render('home');
@@ -81,7 +82,7 @@ app.post('/recipes', (req, res) => {
         obj.recipes.push(req.body);
         res.render("viewNewRecipe", req.body);
 
-        jsonfile.writeFile(FILE, obj, (err) => {
+        jsonfile.writeFile(FILE, obj, {spaces:2}, (err) => {
             console.log(err);
         });
     });
@@ -89,14 +90,21 @@ app.post('/recipes', (req, res) => {
 });
 
 //view all recipes in grid
-app.get('/recipes/', (rec, res) => {
+app.get('/recipes/', (req, res) => {
   jsonfile.readFile(FILE, (err, obj) => {
-    data = {
-      data : obj.recipes
-    }
-    res.render ('viewRecipes', data);
+    // data = {
+    //   data : obj.recipes
+    // }
+    res.render ('viewRecipes', req.body);
   });
 });
+
+//edit recipe
+
+
+
+
+//delete recipe
 
 
 
