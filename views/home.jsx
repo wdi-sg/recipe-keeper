@@ -30,9 +30,9 @@ class Home extends React.Component {
                         <p>Recipe Type:</p>
                         <input type="text" name="type" placeholder="bfast / lunch / dinner"/><br/><br/>
                         <p>Required Ingredients:</p>
-                        <input type="text" name="ingredients"/><br/><br/>
+                        <input type="text" name="ingredients" class="form-control form-control-large" rows="6"/><br/>
                         <p>Instructions:</p>
-                        <input type="text" name="instructions"/><br/><br/>
+                        <input type="text" name="instructions" class="form-control form-control-large"/><br/><br/>
                       </div>
                     </div>
                     <input type="submit" value="Submit"/>
