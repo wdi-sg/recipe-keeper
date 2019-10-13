@@ -19,11 +19,8 @@ class Home extends React.Component {
   {
     navItem:"Edit Recipe",
     pathLink:"/recipes/:id/edit"
-  },
-  {
-    navItem:"Search Recipe",
-    pathLink:"/recipes/search"
   }
+
   ];
 
 
