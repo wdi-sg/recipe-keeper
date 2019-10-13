@@ -19,6 +19,11 @@ const reactEngine = require('express-react-views').createEngine();
 app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
+const getDate = () => {
+    let date = new Date;
+    let dateString = date.toDateString();
+    return dateString;
+};
 /*
 ==================================================
 ╦  ┌─┐┌┐┌┌┬┐┬┌┐┌┌─┐
@@ -26,7 +31,7 @@ app.set('view engine', 'jsx');
 ╩═╝┴ ┴┘└┘─┴┘┴┘└┘└─┘
 ==================================================
 */
-app.get('/',(req,res)=>{res.send('landing page!')});
+app.get('/',(req,res)=>{res.render('landing')});
 /*
 ==================================================
 ╦┌┐┌┌┬┐┌─┐─┐ ┬
@@ -58,13 +63,14 @@ app.get('/recipes/new',(req,res)=>{res.render('new')});
 app.post('/recipes',(req,res)=>{
     jsonfile.readFile(file,(err,obj)=>{
         if (err) console.log(err);
+        req.body.date = getDate();
 // push new recipe to array in data.json
         obj.recipes.push(req.body);
         jsonfile.writeFile(file,obj,(err)=>{
             if (err) console.log(err);
         });
+        res.render('home',obj);
     });
-    res.render('home',obj);
 });
 /*
 ==================================================
