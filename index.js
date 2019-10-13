@@ -192,6 +192,8 @@ app.get('/recipes', (request, response) => {
     })
 })
 
+// to implement sortby, have to add id key to recipe object
+
 /**
  * ===================================
  * Listen to requests on port 3000

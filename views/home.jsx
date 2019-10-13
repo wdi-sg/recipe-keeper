@@ -17,6 +17,9 @@ class Home extends React.Component {
                     <ul>
                     {recipes}
                     </ul>
+                    <form method="GET" action="/recipes/new">
+                        <input type="submit" value="New Recipe"/>
+                    </form>
                 </body>
             </html>
             );
