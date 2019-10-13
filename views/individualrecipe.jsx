@@ -3,8 +3,7 @@ const Nav = require("./navbar");
 class IndividualRecipe extends React.Component {
   render() {
     let recipeArr = this.props.recipelist;
-    console.log(typeof this.props.recipepage.instructions);
-    console.log(this.props.recipepage.instructions);
+    
     return (
       <html>
         <head>

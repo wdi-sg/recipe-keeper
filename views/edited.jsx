@@ -1,5 +1,5 @@
 var React = require('react');
-
+const Nav = require("./navbar.jsx")
 class Edited extends React.Component {
   render() {
     return (
@@ -8,6 +8,7 @@ class Edited extends React.Component {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
         </head>
        <body>
+         <Nav/>
            <h1>Recipe Edited</h1>
            <h3>{this.props.updateRecipe.name}</h3>
            <h4>Ingredients</h4>

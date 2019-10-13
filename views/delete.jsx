@@ -14,8 +14,11 @@ class Delete extends React.Component {
          <h1 className="display-2">You are deleting {this.props.recipepage.name}</h1>
            <h2 className="display-4">Are you sure?</h2>
          <form className="pt-3" method="POST" action={"/deleted/" + (recipeArr.indexOf(this.props.recipepage) + 1) + '?_method=delete'}>
-        <button class="btn btn-danger" type="submit" value="Confirm">Confirm</button>
-        <button class="btn btn-info text-white" ><a className="text-white" href="/home">Back To Home</a></button>
+         <div className=" text-center well d-flex justify-content-around justify-content-center mt-5 " style={{width: "300px", margin:"0 auto"}}>
+         <button class="btn btn-danger btn-lg" type="submit" value="Confirm">Confirm</button>
+        <button class="btn btn-info btn-lg" ><a className="text-white" href="/home">Back To Home</a></button>
+           </div>
+        
          </form>
          </div>
            

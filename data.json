@@ -1,1 +1,35 @@
-{"recipes":[{"name":"chicken","ingredients":"chicken","instructions":"chicken"},{"name":"fish","ingredients":"fish","instructions":"fish"},{"name":"roasted veg","ingredients":"veg ","instructions":"veg"},{"name":"hokkien mee","ingredients":"mee","instructions":"mee"},{"name":"wine","ingredients":"Wine - Rosso Toscano Igt","instructions":"Wine it"},{"name":"asdassdasdas","ingredients":["Wine - Rosso Toscano Igt","Spaghetti Squash","Pepperoni Slices"],"instructions":"cook it"},{"name":"Mashed Potato","ingredients":"Potatoes - Mini Red","instructions":"Mash Potatoes\r\nEat the potatoes"},{"name":"asdasdas","ingredients":"Spaghetti Squash","instructions":"step 1\r\n\r\nstep 2\r\n\r\nstep 3"}]}
+{
+	"recipes": [{
+		"name": "chicken",
+		"ingredients": "chicken",
+		"instructions": "chicken"
+	}, {
+		"name": "fish",
+		"ingredients": "fish",
+		"instructions": "fish"
+	}, {
+		"name": "hokkien mee",
+		"ingredients": "mee",
+		"instructions": "mee"
+	}, {
+		"name": "Fries",
+		"ingredients": ["Potatoes - Mini Red", "Chicken Breast Halal", "Pepsi - Diet, 355 Ml"],
+		"instructions": "cook it "
+	}, {
+		"name": "PopCorn",
+		"ingredients": "Corn - Cream, Canned",
+		"instructions": ""
+	}, {
+		"name": "adsadas",
+		"ingredients": ["Spaghetti Squash", "Pepperoni Slices"],
+		"instructions": "asdasdasda"
+	}, {
+		"name": "fish tacos",
+		"ingredients": "Spaghetti Squash",
+		"instructions": "fish fish fish"
+	}, {
+		"name": "Chicken",
+		"ingredients": "Pepperoni Slices",
+		"instructions": "asdsad"
+	}]
+}

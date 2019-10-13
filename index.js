@@ -40,6 +40,17 @@ app.get("/home", (request, response) => {
     response.render("home", data);
   });
 });
+app.get("/search", (request, response) =>{
+  
+  jsonfile.readFile(FILE, (err, obj) => {
+    const data = {
+      recipeArr: obj.recipes,
+      query: request.query.query
+    }
+    response.render("results", data)
+  });
+  
+})
 /*********************************************************************************** */
 /*********************************************************************************** */
 
@@ -169,5 +180,7 @@ app.delete("/deleted/:id", (request, response) => {
     response.render("deleted");
   });
 });
+
+
 
 app.listen(3000);

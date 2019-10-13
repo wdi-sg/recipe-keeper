@@ -13,7 +13,7 @@ class Deleted extends React.Component {
          <div className="container text-center mt-4">
          <h1 className="display-2">Recipe Deleted</h1>
            
-           <button className="mtt-3"><a href="/home">Back To Home</a></button>
+           <button className="mt-3 btn btn-primary btn-lg"><a className="text-white" href="/home">Back To Home</a></button>
          </div>
            
         
