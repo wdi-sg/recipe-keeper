@@ -35,6 +35,22 @@ const port = 3000;
 // GET/POST METHODS
 //--------------------------------
 
+// Define GET method - To display all recipes
+app.get('/recipes', (request, response) => {
+
+    jsonfile.readFile(FILE, (err, obj) => {
+
+        // Read the file
+        // Specify what do we want to display
+        const data = {
+            recipes: obj.recipes
+        };
+
+        // Render all recipes
+        response.render('home', data);
+    });
+});
+
 //Define GET method - To show user the form to fill in using React view
 app.get('/recipes/new', (request, response) => {
 
@@ -77,7 +93,7 @@ app.post('/recipes', (request, response) => {
     });
 });
 
-//Display single recipe
+//Define GET method - To display single recipe
 app.get('/recipes/:id', (request, response) => {
 
     let recipeId = parseInt(request.params.id);
