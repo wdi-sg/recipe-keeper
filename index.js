@@ -79,6 +79,8 @@ app.post("/ingredients", (req, res) => {
         console.error(err);
       }
       res.send("ingredient added");
+
+      //   res.render("AllRecipes");
     });
   });
 });
@@ -107,7 +109,14 @@ app.post("/recipes", (req, res) => {
       if (err) {
         console.error(err);
       }
-      res.send("recipe added");
+      //   res.send("recipe added");
+      const recipes = obj.recipes;
+
+      data = {
+        recipes: recipes
+      };
+
+      res.render("AllRecipes", data);
     });
   });
 });
@@ -187,11 +196,9 @@ app.put("/recipes/:id", (req, res) => {
       });
     });
   }
-
 });
 
-
-  app.get("/recipes/:id/edit", (req, res) => {
+app.get("/recipes/:id/edit", (req, res) => {
   const recipeId = req.params.id;
 
   jsonfile.readFile(FILE, (err, obj) => {
@@ -208,36 +215,33 @@ app.put("/recipes/:id", (req, res) => {
 });
 
 app.get("/recipes/:id/delete", (req, res) => {
-    const recipeId = req.params.id;
-  
-    jsonfile.readFile(FILE, (err, obj) => {
-      const recipes = obj.recipes;
-      const recipe = recipes[recipeId];
-  
-      data = {
-        recipeId: recipeId,
-        recipe: recipe
-      };
-  
-      res.render("DeleteRecipe", data);
-    });
+  const recipeId = req.params.id;
+
+  jsonfile.readFile(FILE, (err, obj) => {
+    const recipes = obj.recipes;
+    const recipe = recipes[recipeId];
+
+    data = {
+      recipeId: recipeId,
+      recipe: recipe
+    };
+
+    res.render("DeleteRecipe", data);
   });
+});
 
 app.delete("/recipes/:id", (req, res) => {
-    const recipeId = req.params.id;
-  
-    jsonfile.readFile(FILE, (err, obj) => {
-      const recipes = obj.recipes;
+  const recipeId = req.params.id;
 
-      recipes.splice(recipeId, 1);
+  jsonfile.readFile(FILE, (err, obj) => {
+    const recipes = obj.recipes;
 
-      jsonfile.writeFile(FILE, obj, err => {
+    recipes.splice(recipeId, 1);
 
-        res.send("recipe DELETED!!!!!");
-
-      })
-  
+    jsonfile.writeFile(FILE, obj, err => {
+      res.send("recipe DELETED!!!!!");
     });
   });
+});
 
 app.listen(3000);

@@ -14,7 +14,9 @@ class Recipe extends React.Component {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title text-primary">{this.props.recipe.title}</h5>
+              <h5 className="card-title text-primary">
+              <a href={"/recipes/" + this.props.recipeId}>{this.props.recipe.title}</a>
+              </h5>
               <h6>ingredients</h6>
               {this.props.recipe.ingredients.map(ingredient => (
                 <ul className="list-group list-group-flush text-secondary">

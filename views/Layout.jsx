@@ -13,10 +13,17 @@ class Layout extends React.Component {
           />
           <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
           <title>Recipe Keeper</title>
-          <link rel="stylesheet" href="/bootstrap.min.css"/>
+          <link rel="stylesheet" href="/bootstrap.min.css" />
+          <link rel="stylesheet" href="/fontawesomeAll.css" />
         </head>
         <body>
-            {this.props.children}
+          <nav className="navbar navbar-light bg-primary">
+            <a className="navbar-brand text-white" href="/">
+              <i class="fas fa-utensils mr-2"></i>
+              Recipe Keeper
+            </a>
+          </nav>
+          {this.props.children}
         </body>
       </html>
     );
