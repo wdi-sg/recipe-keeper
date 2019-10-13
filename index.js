@@ -105,6 +105,49 @@ app.put('/allrecipes/:id', (req,res) => {
     });
 });
 
+// deleting recipe
+app.get('/allrecipes/:id/delete', (req,res) => {
+    console.log("in deleting page!")
+    let id = parseInt(req.params.id);
+    
+    jsonfile.readFile(file, (err,obj) => {
+        if (err) {
+            console.log(err);
+        }
+        const data = {
+            id: obj.recipes[id-1].id,
+            title: obj.recipes[id-1].title,
+            ingredients: obj.recipes[id-1].ingredients,
+            instructions: obj.recipes[id-1].instructions
+        };
+        res.render('delete', data);
+    });
+});
+
+app.delete('/allrecipes/:id', (req,res) => {
+    console.log("executing delete function");
+    let id = parseInt((req.params.id)-1);
+    console.log(id);
+
+    jsonfile.readFile(file, (err,obj) => {
+        if (err) {
+            console.log(err);
+        };
+
+        obj.recipes.splice(id, 1);
+
+        jsonfile.writeFile(file, obj, (err) => {
+            if (err) {
+                console.log(err);
+            };
+            res.send("deleted!");
+        });
+
+    });
+});
+
+
+
 
 
 app.listen(7010, () => console.log('~~~ Tuning in to the waves of port 7000 ~~~'));
