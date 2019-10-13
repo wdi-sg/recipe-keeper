@@ -32,6 +32,8 @@ app.set("view engine", "jsx");
 /*********************************************************************************** */
 
 // Home page where you can view all recipes, can click into individual recipes or add a new recipe
+
+
 app.get("/home", (request, response) => {
   jsonfile.readFile(FILE, (err, obj) => {
     const data = {
@@ -40,6 +42,7 @@ app.get("/home", (request, response) => {
     response.render("home", data);
   });
 });
+
 app.get("/search", (request, response) =>{
   
   jsonfile.readFile(FILE, (err, obj) => {
@@ -64,9 +67,43 @@ app.get("/new", (request, response) => {
   });
   
 });
-/*********************************************************************************** */
-/*********************************************************************************** */
 
+
+
+app.get('/ingredients', (request, response) =>{
+  jsonfile.readFile(INGREDIENT, (err, obj) => {
+    const data = {
+      ingredient: obj
+    };
+    response.render("ingredients", data);
+  });
+})
+
+
+
+
+/*********************************************************************************** */
+/*********************************************************************************** */
+app.get("/related/:ingredientname", (request, response)=>{
+  let ingredient = request.params.ingredientname
+  let relatedRecipe= [];
+  jsonfile.readFile(FILE, (err, obj) => {
+    
+    for(let i = 0; i < obj.recipes.length; i++) {
+      if(obj.recipes[i].ingredients.includes(ingredient)){
+        relatedRecipe.push(obj.recipes[i])
+      }
+    }
+    const data = {
+      recipeArr: obj.recipes,
+      relatedRecipe: relatedRecipe,
+      ingredient: ingredient
+    }
+
+    response.render("related", data);
+   
+  });
+})
 // Page that renders each individual recipe when selected from the home page
 app.get("/:id", (request, response) => {
   jsonfile.readFile(FILE, (err, obj) => {
@@ -87,6 +124,11 @@ app.get("/:id", (request, response) => {
    
   });
 });
+
+
+
+
+
 
 /*********************************************************************************** */
 /*********************************************************************************** */
@@ -165,6 +207,7 @@ app.get("/:id/delete", (request, response) => {
   });
 });
 
+
 app.delete("/deleted/:id", (request, response) => {
   let deleteId = parseInt(request.params.id);
 
@@ -180,6 +223,8 @@ app.delete("/deleted/:id", (request, response) => {
     response.render("deleted");
   });
 });
+
+
 
 
 

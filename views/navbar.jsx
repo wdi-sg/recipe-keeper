@@ -19,6 +19,9 @@ class Navbar extends React.Component {
       <li class="nav-item">
         <a class="nav-link" href="/new">Add a Recipe</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ingredients">Ingredients List</a>
+      </li>
     
       
     </ul>

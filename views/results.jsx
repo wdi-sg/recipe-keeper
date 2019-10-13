@@ -3,12 +3,7 @@ const Nav = require("./navbar.jsx")
 const Script = require("./script")
 class Results extends React.Component {
   render() {
-    // let lowerArr = (arr) => {
-    //   let lowered = arr.forEach(item => {
-    //     item.toLowerCase()
-    //   })
-    //   return lowered
-    // }
+
       let list;
       let recipeArr = this.props.recipeArr;
       let searchQuery = this.props.query
@@ -25,6 +20,10 @@ class Results extends React.Component {
     
       
       list = resultsArr.map(item =>{
+        // let ingredients = item.ingredients;
+
+        // console.log("THIS IS A " + typeof ingredients)
+        
           return(
                 <div className="card">
           <div className="card-body">
@@ -40,6 +39,7 @@ class Results extends React.Component {
           )
           
       })
+    
       
     return (
       <html>

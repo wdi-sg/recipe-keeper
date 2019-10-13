@@ -20,7 +20,7 @@ class Form extends React.Component {
         <body>
           <Nav />
           <div className="container text-center pt-5">
-            <h1 className="display-2">Add a Recipe</h1>
+            <h1 className="display-2 border-bottom">Add a Recipe</h1>
             <form method="POST" action="/added" className="pt-3">
               <p>
                 <input
@@ -48,6 +48,7 @@ class Form extends React.Component {
                   type="text"
                   name="instructions"
                   placeholder="Instructions"
+                  style={{height:"200px"}}
                 ></textarea>
                
               </p>

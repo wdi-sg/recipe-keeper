@@ -25,7 +25,7 @@ class IndividualRecipe extends React.Component {
             <div className="row mt-5">
               <div className="col-6 border-bottom">
                 <h3>Ingredients:</h3>
-                <p>{(this.props.recipepage.ingredients).join(", ")}</p>
+                <p>{(this.props.recipepage.ingredients)}</p>
               </div>
               <div className="col-6 border-bottom pb-4">
                 <h3>Instructions:</h3>

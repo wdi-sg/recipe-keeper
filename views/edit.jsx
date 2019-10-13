@@ -19,7 +19,7 @@ class Edit extends React.Component {
         <Nav/>
         <body>
           <div className="container text-center mt-5">
-          <h1 className="display-2">Editing Recipe : {this.props.name}</h1>
+          <h1 className="display-2">Editing Recipe : {editRecipe.name}</h1>
           <div className="row">
           <div className="col-12">
           <form className="mt-3" method="POST"action={"/edited/" + (allrecipes.indexOf(editRecipe) + 1) +'?_method=put'}>
@@ -33,7 +33,7 @@ class Edit extends React.Component {
               </div>
               <div className="form-group">
                 <label htmlFor="name" class="col-sm-2 col-form-label col-form-label-lg">Instructions </label>
-                <p><textarea  class="form-control form-control-lg" type="text" name="instructions" value={editRecipe.instructions}/></p> 
+                <p><textarea  class="form-control form-control-lg " style={{height:"200px"}} type="text" name="instructions" value={editRecipe.instructions}/></p> 
               </div>
               
               
