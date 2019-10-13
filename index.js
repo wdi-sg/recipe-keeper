@@ -40,6 +40,14 @@ app.get('/',(req,res)=>{res.render('landing')});
 ==================================================
 */
 app.get('/recipes/',(req,res)=>{
+    if (req.query.search !== undefined) {
+        let searchTerm = req.query.search;
+        jsonfile.readFile(file,(err,obj)=>{
+            obj.recipes = obj.recipes.filter(recipe=>recipe.title.includes(searchTerm));
+            res.render('home',obj);
+            return;
+        });
+    };
     jsonfile.readFile(file,(err,obj)=>{
         if (err) console.log(err);
         res.render('home',obj);
