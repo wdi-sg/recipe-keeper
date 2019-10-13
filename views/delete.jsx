@@ -1,5 +1,6 @@
 var React = require('react');
 const Nav = require('./navbar')
+const Script = require("./script")
 class Delete extends React.Component {
   render() {
    let recipeArr= this.props.recipeArr;
@@ -23,6 +24,7 @@ class Delete extends React.Component {
          </div>
            
        </body>
+       <Script/>
       </html>
     );
   }

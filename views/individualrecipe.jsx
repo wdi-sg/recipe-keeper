@@ -1,5 +1,6 @@
 var React = require("react");
 const Nav = require("./navbar");
+const Script = require("./script")
 class IndividualRecipe extends React.Component {
   render() {
     let recipeArr = this.props.recipelist;
@@ -24,7 +25,7 @@ class IndividualRecipe extends React.Component {
             <div className="row mt-5">
               <div className="col-6 border-bottom">
                 <h3>Ingredients:</h3>
-                <p>{this.props.recipepage.ingredients}</p>
+                <p>{(this.props.recipepage.ingredients).join(", ")}</p>
               </div>
               <div className="col-6 border-bottom pb-4">
                 <h3>Instructions:</h3>
@@ -60,6 +61,7 @@ class IndividualRecipe extends React.Component {
           
             </div>
           </div>
+          <Script/>
         </body>
       </html>
     );

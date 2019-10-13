@@ -1,5 +1,6 @@
 var React = require('react');
 const Nav = require('./navbar')
+const Script = require("./script")
 class Deleted extends React.Component {
   render() {
    
@@ -18,6 +19,7 @@ class Deleted extends React.Component {
            
         
        </body>
+       <Script/>
       </html>
     );
   }

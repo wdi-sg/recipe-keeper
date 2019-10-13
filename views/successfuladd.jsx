@@ -1,5 +1,6 @@
 var React = require('react');
 const Nav = require('./navbar.jsx')
+const Script = require("./script")
 class Home extends React.Component {
   render() {
     return (
@@ -18,7 +19,7 @@ class Home extends React.Component {
            </div>
           
          </div>
-           
+           <Script/>
        </body>
       </html>
     );

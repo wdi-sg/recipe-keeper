@@ -1,5 +1,6 @@
 var React = require('react');
-const Nav = require("./navbar.jsx")
+const Nav = require("./navbar.jsx");
+const Script = require("./script");
 class Edited extends React.Component {
   render() {
     return (
@@ -19,6 +20,7 @@ class Edited extends React.Component {
            <button><a href="/home">Back to Home</a></button>
            
        </body>
+       <Script/>
       </html>
     );
   }

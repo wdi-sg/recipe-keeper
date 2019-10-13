@@ -1,5 +1,6 @@
 var React = require("react");
 const Nav = require("./navbar");
+const Script = require("./script");
 class Form extends React.Component {
   render() {
     let ingArr = this.props.ingredient;
@@ -53,6 +54,7 @@ class Form extends React.Component {
               <button type="submit" className="btn btn-success btn-lg btn-block" >Add</button>
             </form>
           </div>
+          <Script/>
         </body>
       </html>
     );

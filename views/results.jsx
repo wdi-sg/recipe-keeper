@@ -1,20 +1,28 @@
 var React = require('react');
 const Nav = require("./navbar.jsx")
+const Script = require("./script")
 class Results extends React.Component {
   render() {
+    // let lowerArr = (arr) => {
+    //   let lowered = arr.forEach(item => {
+    //     item.toLowerCase()
+    //   })
+    //   return lowered
+    // }
       let list;
       let recipeArr = this.props.recipeArr;
       let searchQuery = this.props.query
       let resultsArr = []
       for(let i = 0; i <recipeArr.length; i++) {
           let name = (recipeArr[i].name).toLowerCase();
-          let ingredients = recipeArr[i].ingredients;
+          let ingredients = (recipeArr[i].ingredients).toString().toLowerCase();
           let instructions = (recipeArr[i].instructions).toLowerCase();
           if(name.includes(searchQuery.toLowerCase()) || ingredients.includes(searchQuery.toLowerCase()) || instructions.includes(searchQuery.toLowerCase())){
                resultsArr.push(recipeArr[i])
           }
-          console.log(typeof ingredients)
+          console.log(ingredients)
       }
+    
       
       list = resultsArr.map(item =>{
           return(
@@ -32,7 +40,7 @@ class Results extends React.Component {
           )
           
       })
-      console.log(resultsArr)
+      
     return (
       <html>
       <head>
@@ -45,7 +53,7 @@ class Results extends React.Component {
         {list}
            
          </div>
-          
+          <Script/>
        </body>
       </html>
     );

@@ -1,5 +1,6 @@
 var React = require("react");
 const Navbar = require("./navbar.jsx");
+const Script = require("./script")
 class Home extends React.Component {
   render() {
     let recipeArr = this.props.recipe
@@ -28,23 +29,25 @@ class Home extends React.Component {
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           ></link>
+
+         
         </head>
         <body>
          <Navbar/>
           <div className="container pt-5">
-            <h1 className="text-center display-2">Find a Recipe</h1>
-            <div className="container">
-            <h3>All Recipes: </h3>
+            <h1 className="text-center display-2 border-bottom">Find a Recipe</h1>
+            <div className="container pt-4">
+           
             <div className="row">
-              <div className="col-6">{leftSide}</div>
-              <div className="col-6">{rightSide}</div>
-              
+              <div className="col">{leftSide}</div>
+              <div className="col">{rightSide}</div>
             </div>
             </div>
            
           </div>
+          <Script/>
         </body>
       </html>
     );
