@@ -19,7 +19,7 @@ class AddNew extends React.Component {
               Ingredients:
               <input type="text" placeholder = "Ingredients" name="ingredients"/> <br/>
               Preparation:
-              <input class="big-div" type="text" placeholder = "Preparation" ame="preparation"/> <br/>
+              <input class="big-div" type="text" placeholder = "Preparation" name="preparation"/> <br/>
 
               <input type="submit" form="myForm" value="Submit"/>
             </form>
