@@ -6,13 +6,17 @@ class Related extends React.Component {
    let recipeArr = this.props.recipeArr;
    let relatedRecipes = this.props.relatedRecipe
 
+   let ing = [];
+
    let list = relatedRecipes.map(item => {
+     
+     ing.push(item.ingredients)
        return(
            <div className="card">
           <div className="card-body">
             <h3 className="card-title">{item.name}</h3>
             <p className="card-text">
-              <strong>Ingredients: </strong> {item.ingredients}
+              <strong>Ingredients: </strong> {ing.join(" , ")}
             </p>
             <a href={"/" + (recipeArr.indexOf(item) + 1) } className="btn btn-primary">
               See Recipe

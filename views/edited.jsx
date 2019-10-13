@@ -10,14 +10,17 @@ class Edited extends React.Component {
         </head>
        <body>
          <Nav/>
-           <h1>Recipe Edited</h1>
-           <h3>{this.props.updateRecipe.name}</h3>
+         <div className="container mt-4 text-center">
+         <h1 className="display-2 ">{this.props.updateRecipe.name} Recipe Edited</h1>
+           
            <h4>Ingredients</h4>
-           <il>{this.props.updateRecipe.ingredients}</il>
+           <p>{this.props.updateRecipe.ingredients}</p>
            <h4>Instructions</h4>
-           <li>{this.props.updateRecipe.instructions}</li>
+           <p>{this.props.updateRecipe.instructions}</p>
 
-           <button><a href="/home">Back to Home</a></button>
+           <button className="btn btn-primary btn-lg"><a className="text-white" href="/home">Back to Home</a></button>
+         </div>
+         
            
        </body>
        <Script/>
