@@ -177,6 +177,20 @@ app.delete('/recipes/:id', (request, response) => {
 
 })
 
+// create homepage
+app.get('/recipes', (request, response) => {
+    // get all recipes from recipes json file
+    jsonfile.readFile(FILE, (err, obj) => {
+        if (err) {
+            console.log(err);
+        }
+        // refer to object, not array
+        let recipes = obj;
+        response.render('home', recipes);
+
+    })
+})
+
 /**
  * ===================================
  * Listen to requests on port 3000
