@@ -64,6 +64,7 @@ app.post('/recipes',(req,res)=>{
     jsonfile.readFile(file,(err,obj)=>{
         if (err) console.log(err);
         req.body.date = getDate();
+        req.body.id = parseInt(obj.recipes[obj.recipes.length-1].id) + 1;
 // push new recipe to array in data.json
         obj.recipes.push(req.body);
         jsonfile.writeFile(file,obj,(err)=>{

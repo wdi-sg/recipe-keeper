@@ -1,1 +1,75 @@
-{"recipes":[{"title":"Pizza","ingredients":"Pizza Dough, Pepperoni, Mozzarella cheese, Tomato sauce","url":"https://www.simplyrecipes.com/wp-content/uploads/2007/01/homemade-pizza-horiz-a-1200-600x400.jpg","instructions":"Flatten dough ball, and stretch out into a round. Brush dough top with olive oil. Sprinkle pizza peel with corn meal, put flattened dough on top. Spread with tomato sauce and sprinkle with toppings. Bake pizza.","date":"Sun Oct 13 2019"},{"title":"Fish Soup","ingredients":"Fish, Water, Seasoning","url":"https://4scoin37ye-flywheel.netdna-ssl.com/wp-content/uploads/2018/03/9F5C4471.jpg","instructions":"Make the soup base. Prepare fish and vegetables. Make the fish soup.","date":"Sun Oct 13 2019"},{"title":"Bacon Wrapped Asparagus","ingredients":"Asparagus, Bacon","url":"https://4scoin37ye-flywheel.netdna-ssl.com/wp-content/uploads/2016/03/baconwrapasparagus2.jpg","instructions":"Prep asparagus by trimming and discarding the lower ends of each spear. Wrap each bacon slice with some asparagus. Brush vegetables with olive oil. Bake at preheated oven of 200°C.","date":"Sun Oct 13 2019"},{"title":"Garlic-Butter Steak","ingredients":"2 tablespoons butter, 1 beef","url":"https://www.tasteofhome.com/wp-content/uploads/2017/10/Garlic-Butter-Steak_EXPS_SDFM18_45362_C10_11_4b-2-696x696.jpg","instructions":"Sprinkle steak with salt and pepper. In a large skillet, heat remaining butter over medium heat. Add steak, cook until meat reaches desired doneness.","date":"Sun Oct 13 2019"},{"title":"Beef Stew","ingredients":"1 pound of beef, 2 teaspoons herbes de Provence, 2 cups beef broth, 3 cups cubed peeled potatoes","url":"https://www.tasteofhome.com/wp-content/uploads/0001/01/The-Best-Beef-Stew_EXPS_TOHON19_242973_E06_11_2b-696x696.jpg","instructions":"Add beef, a few pieces at a time, and toss beef and 1/4 teaspoon salt. Stir in tomato paste, herbes de Provence and garlic. Add potatoes, onions and carrots. Cover; simmer until meat and vegetables are tender, about 30 minutes longer.","date":"Sun Oct 13 2019"},{"title":"Spicy Moroccan Carrot Salad","ingredients":"1 1/2 pounds small rainbow carrots","url":"https://i1.wp.com/www.foodrepublic.com/wp-content/uploads/2015/10/moroccancarrots.jpg?resize=700%2C431","instructions":"Prepare the carrots. Blanch the carrots in the boiling water until tender when pierced with a knife, about 3 minutes. Crisscross the carrots on a platter. Scatter the micro greens and almonds on top and season with flaked sea salt.","date":"Sun Oct 13 2019"},{"title":"Sea Urchin Guacamole Tacos","ingredients":"36 sea urchin tongues, 3 canned minced chipotle chilies, 12 tortillas, 60 cilantro leaves","url":"https://i1.wp.com/www.foodrepublic.com/wp-content/uploads/2015/12/seaurchintaco.jpg?resize=700%2C390","instructions":"Lay out the warm tortillas on serving plates. Place a few tablespoons of the sea urchin guacamole on each tortilla and evenly distribute the 48 urchin tongues among the tacos.","date":"Sun Oct 13 2019"},{"title":"Peeping Mushroom Pasta","ingredients":"9 ounces rigatoni pasta, 3 1/2 ounces Gruyère cheese, 6 ounces mixed enoki or shimeji mushrooms","url":"https://i2.wp.com/www.foodrepublic.com/wp-content/uploads/2015/10/mushroompasta.jpg?resize=700%2C533","instructions":"Preheat the oven to 350°F. Bring a stockpot of salted water to a boil. Put the pasta in the water and cook for 2 minutes less than the package instructions say. Drain the pasta and arrange the rigatoni pieces upright tightly in four ovenproof dishes; they will look a bit like honeycomb. Pour the sauce over the pasta. Tap the base of the baking dishes to allow the sauce to get between the holes, spooning more on if necessary. Place the mushroom stalks into the rigatoni holes, leaving the caps poking out. Sprinkle with the remaining cheese. Bake for 20 to 25 minutes, or until the cheese is golden and bubbling. Serve with a sprinkle of finely chopped parsley on top.","date":"Sun Oct 13 2019"}]}
+{
+		"recipes": [
+		{
+				"id": 1,
+				"title": "Pizza",
+				"ingredients": "Pizza Dough, Pepperoni, Mozzarella cheese, Tomato sauce",
+				"url": "https://www.simplyrecipes.com/wp-content/uploads/2007/01/homemade-pizza-horiz-a-1200-600x400.jpg",
+				"instructions": "Flatten dough ball, and stretch out into a round. Brush dough top with olive oil. Sprinkle pizza peel with corn meal, put flattened dough on top. Spread with tomato sauce and sprinkle with toppings. Bake pizza.",
+				"date": "Sun Oct 13 2019"
+		},
+		{
+				"id": 2,
+				"title": "Fish Soup",
+				"ingredients": "Fish, Water, Seasoning",
+				"url": "https://4scoin37ye-flywheel.netdna-ssl.com/wp-content/uploads/2018/03/9F5C4471.jpg",
+				"instructions": "Make the soup base. Prepare fish and vegetables. Make the fish soup.",
+				"date": "Sun Oct 13 2019"
+		},
+		{
+				"id": 3,
+				"title": "Bacon Wrapped Asparagus",
+				"ingredients": "Asparagus, Bacon",
+				"url": "https://4scoin37ye-flywheel.netdna-ssl.com/wp-content/uploads/2016/03/baconwrapasparagus2.jpg",
+				"instructions": "Prep asparagus by trimming and discarding the lower ends of each spear. Wrap each bacon slice with some asparagus. Brush vegetables with olive oil. Bake at preheated oven of 200°C.",
+				"date": "Sun Oct 13 2019"
+		},
+		{
+				"id": 4,
+				"title": "Garlic-Butter Steak",
+				"ingredients": "2 tablespoons butter, 1 beef",
+				"url": "https://www.tasteofhome.com/wp-content/uploads/2017/10/Garlic-Butter-Steak_EXPS_SDFM18_45362_C10_11_4b-2-696x696.jpg",
+				"instructions": "Sprinkle steak with salt and pepper. In a large skillet, heat remaining butter over medium heat. Add steak, cook until meat reaches desired doneness.",
+				"date": "Sun Oct 13 2019"
+		},
+		{
+				"id": 5,
+				"title": "Beef Stew",
+				"ingredients": "1 pound of beef, 2 teaspoons herbes de Provence, 2 cups beef broth, 3 cups cubed peeled potatoes",
+				"url": "https://www.tasteofhome.com/wp-content/uploads/0001/01/The-Best-Beef-Stew_EXPS_TOHON19_242973_E06_11_2b-696x696.jpg",
+				"instructions": "Add beef, a few pieces at a time, and toss beef and 1/4 teaspoon salt. Stir in tomato paste, herbes de Provence and garlic. Add potatoes, onions and carrots. Cover; simmer until meat and vegetables are tender, about 30 minutes longer.",
+				"date": "Sun Oct 13 2019"
+		},
+		{
+				"id": 6,
+				"title": "Spicy Moroccan Carrot Salad",
+				"ingredients": "1 1/2 pounds small rainbow carrots",
+				"url": "https://i1.wp.com/www.foodrepublic.com/wp-content/uploads/2015/10/moroccancarrots.jpg?resize=700%2C431",
+				"instructions": "Prepare the carrots. Blanch the carrots in the boiling water until tender when pierced with a knife, about 3 minutes. Crisscross the carrots on a platter. Scatter the micro greens and almonds on top and season with flaked sea salt.",
+				"date": "Sun Oct 13 2019"
+		},
+		{
+				"id": 7,
+				"title": "Sea Urchin Guacamole Tacos",
+				"ingredients": "36 sea urchin tongues, 3 canned minced chipotle chilies, 12 tortillas, 60 cilantro leaves",
+				"url": "https://i1.wp.com/www.foodrepublic.com/wp-content/uploads/2015/12/seaurchintaco.jpg?resize=700%2C390",
+				"instructions": "Lay out the warm tortillas on serving plates. Place a few tablespoons of the sea urchin guacamole on each tortilla and evenly distribute the 48 urchin tongues among the tacos.",
+				"date": "Sun Oct 13 2019"
+		},
+		{
+				"id": 8,
+				"title": "Peeping Mushroom Pasta",
+				"ingredients": "9 ounces rigatoni pasta, 3 1/2 ounces Gruyère cheese, 6 ounces mixed enoki or shimeji mushrooms",
+				"url": "https://i2.wp.com/www.foodrepublic.com/wp-content/uploads/2015/10/mushroompasta.jpg?resize=700%2C533",
+				"instructions": "Preheat the oven to 350°F. Bring a stockpot of salted water to a boil. Put the pasta in the water and cook for 2 minutes less than the package instructions say. Drain the pasta and arrange the rigatoni pieces upright tightly in four ovenproof dishes; they will look a bit like honeycomb. Pour the sauce over the pasta. Tap the base of the baking dishes to allow the sauce to get between the holes, spooning more on if necessary. Place the mushroom stalks into the rigatoni holes, leaving the caps poking out. Sprinkle with the remaining cheese. Bake for 20 to 25 minutes, or until the cheese is golden and bubbling. Serve with a sprinkle of finely chopped parsley on top.",
+				"date": "Sun Oct 13 2019"
+		},
+		{
+				"title": "Beet Pickled Devilish Eggs Recipe",
+				"ingredients": "2 serrano peppers, 2 small beets, 12 large hard-boiled eggs, 1 tablespoon Dijon-style mustard",
+				"url": "https://i1.wp.com/www.foodrepublic.com/wp-content/uploads/2015/05/BeetPickledDeviledEggs_0.jpg?resize=700%2C617",
+				"instructions": "Cut 1 of the serrano peppers into halves lengthwise, retaining the seeds. Place the pepper in a large saucepan and add the water, vinegar, sugar, beets, garlic, bay leaves, peppercorns, and salt. Bring to a boil over high heat, reduce the heat to low, and simmer until the beets are tender, about 20 minutes. Remove the pot from the heat and let cool completely. Cut the eggs into halves lengthwise and remove the yolks. Place the yolks in a medium bowl and place the whites on a large plate. Add the mayonnaise, olive oil, mustard, and Sriracha to the yolks. Mix and mash to combine thoroughly. Fill the whites with the yolk mixture. Slice the remaining serrano pepper into rounds. Top each egg with a slice of serrano and a sprinkle of curry powder, if desired.",
+				"date": "Sun Oct 13 2019",
+				"id": 9
+		}]
+}
