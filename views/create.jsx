@@ -3,14 +3,15 @@ var React = require('react');
 class Create extends React.Component {
 
     render () {
+        const Layout = require('./defaultlayout.jsx');
+
         const recipesArr = this.props.recipes.recipes;
         const getID = recipesArr.length + 1;
 
         console.log(getID)
 
         return (
-            <html>
-                <body>
+            <Layout>
                 <h1>New Recipe</h1>
                     <form method="POST" action="/recipes">
                         ID: <input type="text" name="id" value={getID} readOnly/><br/>
@@ -19,8 +20,7 @@ class Create extends React.Component {
                         Instructions: <input type="text" name="instructions" required/><br/>
                         <input type="submit" value="Submit"/>
                     </form>
-                </body>
-            </html>
+                </Layout>
         )
     }
 }

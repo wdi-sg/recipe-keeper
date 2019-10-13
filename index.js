@@ -24,6 +24,7 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
+const emptyObject = {"potato": "delicious"}
 /**
  * ===================================
  * Routes
@@ -59,13 +60,15 @@ app.post('/recipes', (request, response) => {
         obj.recipes.push(newRecipe);
 
         jsonfile.writeFile(file, obj, (err) => {
-            response.send(`<html><body><h1>Yay! New recipe added</h1></body></html>`)
+
+            response.render('show', newRecipe)
+
         })
     })
 })
 
 // Shows the page for a single recipe by id
-app.get('/recipes/:id', (request, response) => {
+app.get('/recipes/:id/', (request, response) => {
     let index = parseInt(request.params.id) - 1;
 
 console.log("potato")
@@ -76,6 +79,56 @@ console.log("potato")
     })
 })
 
+// Shows the page to edit recipe by id
+app.get('/recipes/:id/edit', (request, response) => {
+    let index = parseInt(request.params.id) - 1;
+
+console.log("editing to add porcini mushrooms")
+    jsonfile.readFile(file, (err, obj) => {
+        const currentRecipe = obj.recipes[index];
+        console.log(currentRecipe)
+        response.render('edit', currentRecipe)
+    })
+})
+
+app.put('/recipes/:id', (request, response) => {
+    let index = parseInt(request.params.id) - 1;
+    let updatedRecipe = request.body;
+
+    jsonfile.readFile(file, (err, obj) => {
+        obj.recipes.splice(index, 1, updatedRecipe);
+
+        jsonfile.writeFile(file, obj, (err) => {
+
+        })
+    })
+    response.render("show", updatedRecipe)
+})
+
+app.get('/recipes/:id/delete', (request, response) => {
+    let index = parseInt(request.params.id) - 1;
+
+    jsonfile.readFile(file, (err, obj) => {
+        let toDelete = obj.recipes[index];
+            response.render('delete', toDelete)
+    })
+
+})
+
+app.delete('/recipes/:id', (request, response) => {
+    let index = parseInt(request.params.id) - 1;
+
+    jsonfile.readFile(file, (err, obj) => {
+        let toDelete = obj.recipes[index];
+        obj.recipes.splice(index, 1, emptyObject);
+
+        jsonfile.writeFile(file, obj, (err) => {
+
+        })
+        console.log("deleted it, now you can have truffle fries")
+        response.send(`The recipe for ${toDelete.title} has been removed.`)
+    })
+})
 
 
 /**
