@@ -147,13 +147,28 @@ app.get('/recipes/', (request, response) =>{
         }
   data.pageTitle = "All Recipes";
   // let data = {};
-   console.log(data.recipeobj)
+   // console.log(data.recipeobj)
   response.render('showall', data);
   });
   });
 
 // delete the recipe
+app.get('/recipes/:id/delete', (request, response) => {
+  jsonfile.readFile(file, (err, obj) => {
 
+
+    let itemToChange = request.params.id;
+    obj.recipes.splice(itemToChange,1);
+             const data = {
+            recipeobj: obj
+        }       
+  data.pageTitle = "Recipe Deleted";
+  // let data = {};
+
+   // console.log(data.recipeobj)
+  response.render('showall', data);
+  });
+  });
 
 
 /**
