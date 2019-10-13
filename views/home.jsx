@@ -11,8 +11,6 @@ class Home extends React.Component{
             })
 
 
-        console.log(this.props.recipe)
-
         return(
             <html>
                 <head>

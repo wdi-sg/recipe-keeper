@@ -5,6 +5,7 @@ class New extends React.Component{
 
         return(
             <html>
+
                 <body>
                   <div>
                     <h1>Add new recipe!</h1>
@@ -25,6 +26,10 @@ class New extends React.Component{
                     <button type="submit" form="new" value="submit">
                         Submit
                     </button>
+
+                    <div className = "new">
+                    </div>
+
                   </div>
                 </body>
               </html>

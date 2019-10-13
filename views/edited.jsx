@@ -9,8 +9,8 @@ class Edited extends React.Component{
             instructions
         } = this.props.recipe
 
-        console.log(this.props.recipe)
-        console.log(this.props.id)
+        console.log("recipe item" + this.props.recipe)
+        console.log("recipe item id" + this.props.id)
 
         return(
             <html>

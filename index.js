@@ -34,6 +34,7 @@ ROUTES!
 ******
 */
 
+//main index page
 app.get("/recipes", (request,response)=>{
     jsonfile.readFile(file, (err,obj) => {
 
@@ -50,7 +51,7 @@ app.get("/recipes/new", (request,response)=>{
     response.render("new")
 })
 
-
+//add new recipe
 app.post("/recipes/new", (request, response)=>{
     let newRecipe = request.body
     const data = {
@@ -75,12 +76,11 @@ app.post("/recipes/new", (request, response)=>{
     response.render('added', data)
 })
 
+//show each recipe
 app.get("/recipes/:id", (request,response) => {
     let identifier = parseInt(request.params.id)
 
-
     jsonfile.readFile(file, (err,obj)=> {
-
 
         obj.recipes.forEach((item, index)=>{
 
@@ -89,34 +89,62 @@ app.get("/recipes/:id", (request,response) => {
                 const data = {
                     recipe: item
                 }
-
                 response.render('recipe', data)
-
             }
-
         })
+    })
+})
+
+//edit recipe form
+app.get("/recipes/:id/edit", (request,response)=>{
+    let identifier = parseInt(request.params.id)
+
+    jsonfile.readFile(file, (err,obj)=> {
+
+          obj.recipes.forEach((item)=>{
+
+            if(identifier === item.id){
+                console.log(item)
+
+                const data = {
+                    recipe: item
+                }
+            response.render('editform', data)
+            }
+          })
 
     })
 })
 
+//edit recipe
 app.put("/recipes/:id", (request,response)=> {
-    let identifier = request.params.id
-    let index = identifier-1
+    let identifier = parseInt(request.params.id)
+
     let edit = request.body
 
     let editTitle =  edit.title
     let editIng = edit.ingredients
     let editIns = edit.instructions
 
+    let data;
 
     jsonfile.readFile(file, (err,obj) =>{
-        console.log(obj.recipes[index])
-        obj.recipes[index].title = editTitle
-        obj.recipes[index].ingredients = editIng
-        obj.recipes[index].instructions = editIns
-        const data = {
-            recipe: obj.recipes[index]
-        }
+
+          obj.recipes.forEach((item)=>{
+
+            if(identifier === item.id){
+                item.title = editTitle
+                item.ingredients = editIng
+                item.instructions = editIns
+
+                data = {
+                    recipe: item
+                }
+
+            }
+            console.log("data is " + data)
+          })
+
         jsonfile.writeFile(file,obj,{spaces:2}, (err)=>{
             console.error(err)
         })
@@ -145,20 +173,7 @@ app.delete("/recipes/:id", (request,response)=> {
 
 })
 
-app.get("/recipes/:id/edit", (request,response)=>{
-    let identifier = request.params.id
-    let index = identifier - 1
-    console.log(index)
 
-    jsonfile.readFile(file, (err,obj)=> {
-
-        const data = {
-            recipe: obj.recipes[index],
-            id: obj.recipes[index]["id"]
-        }
-        response.render('editform', data)
-    })
-})
 
 
 

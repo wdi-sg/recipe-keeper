@@ -11,10 +11,11 @@ class Edit extends React.Component{
 
         return(
             <html>
+
                 <body>
                   <div>
                     <h1>Edit recipe!</h1>
-                    <form action={"/recipes/"+ this.props.id + "?_method=put"} method="post" id="edit">
+                    <form action={"/recipes/"+ this.props.recipe.id + "?_method=put"} method="post" id="edit">
                       <div>
                         <label htmlFor="title">Title:  </label>
                         <input type="text" name="title" defaultValue = {title}/>

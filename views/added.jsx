@@ -5,6 +5,7 @@ class Added extends React.Component{
 
         return(
             <html>
+
                 <body>
                   <div>
                     <h1>Added new recipe!</h1>
