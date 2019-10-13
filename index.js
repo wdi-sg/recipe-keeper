@@ -28,6 +28,10 @@ app.set('views', __dirname + '/views');
 // this line sets react to be the default view engine
 app.set('view engine', 'jsx');
 
+// Set up method-override for PUT and DELETE forms
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'));
+
 // Declare port to listen on
 const port = 3000;
 
@@ -75,11 +79,20 @@ app.post('/recipes', (request, response) => {
 
         // Store the newly input information to a variable
         const newRecipe = request.body;
-        console.log(newRecipe);
-        response.send(obj.recipes);
+        /*console.log(newRecipe);
+        response.send(obj.recipes);*/
 
         // Push the newly created recipe to the object array
         obj["recipes"].push(newRecipe);
+
+        const data = {
+            id: request.body.id,
+            title: request.body.title,
+            ingredients: request.body.ingredients,
+            instructions: request.body.instructions
+        };
+
+        response.render('addNewConfirmation', data);
 
         // Save the request body
         jsonfile.writeFile(FILE, obj, (err) => {
@@ -111,8 +124,6 @@ app.get('/recipes/:id', (request, response) => {
         for(let i = 0; i < obj.recipes.length; i++) {
 
             if(recipeId == obj.recipes[i].id) {
-
-                console.log(i);
 
                 const data = {
                     id: obj.recipes[i].id,
