@@ -113,24 +113,44 @@ app.post("/recipes", (req, res) => {
 });
 
 app.get("/recipes/:id", (req, res) => {
-  console.log("req.params", req.params);
+  //   console.log("req.params", req.params);
 
   const recipeId = req.params.id;
 
   jsonfile.readFile(FILE, (err, obj) => {
-
     const recipes = obj.recipes;
 
     const recipe = recipes[recipeId];
 
     data = {
-        recipe: recipe
-    }
+      recipe: recipe
+    };
 
     res.render("SingleRecipe", data);
-
-
   });
 });
+
+app.get("/recipes/:id/edit", (req, res) => {
+  const recipeId = req.params.id;
+
+  jsonfile.readFile(FILE, (err, obj) => {
+    const recipes = obj.recipes;
+    const recipe = recipes[recipeId];
+
+    data = {
+        recipeId : recipeId,
+        recipe: recipe
+    };
+
+    res.render("EditRecipe", data);
+  });
+});
+
+app.put("/recipes/:id", (req, res) => {
+
+    console.log("req.body!!!!!",req.body);
+
+    res.send("recipe edited!");
+})
 
 app.listen(3000);

@@ -1,31 +1,29 @@
 const React = require("react");
 const Layout = require("./Layout");
 
-class NewRecipe extends React.Component {
+class EditRecipe extends React.Component {
   render() {
-    // console.log("this.props!!!!",this.props);
 
-    console.log("this.props.ingredients*******", this.props.ingredients);
-
-    const ingredients = this.props.ingredients.map(ingredient => (
-      <li class="list-group-item">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          value={JSON.stringify(ingredient)}
-          name="recipeIngredients"
-        />
-        {ingredient.amount} {ingredient.name}, {ingredient.notes}
-      </li>
-    ));
-
+        console.log("this.props!!!!!",this.props)
+    const ingredients = this.props.recipe.ingredients.map(ingredient => (
+        <li class="list-group-item">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            value={JSON.stringify(ingredient)}
+            name="recipeIngredients"
+          />
+          {ingredient.amount} {ingredient.name}, {ingredient.notes}
+        </li>
+      ));
+  
     return (
       <Layout>
         <div className="container">
           <div className="row">
             <div className="col">
-              <h1 className="text-center text-primary">🍽️ add a new recipe</h1>
-              <form method="POST" action="/recipes">
+              <h1 className="text-center text-primary">🍽️ edit recipe</h1>
+              <form method="POST" action={"/recipes/"+ this.props.recipeId + "?_method=put"}>
                 <div className="form-group">
                   <label htmlFor="recipeTitle">title</label>
                   <input
@@ -35,6 +33,7 @@ class NewRecipe extends React.Component {
                     id="recipeTitle"
                     aria-describedby="recipeTitle"
                     placeholder="e.g. apple pie"
+                    value={this.props.recipe.title}
                   />
                 </div>
                 <p>select ingredients:</p>
@@ -50,10 +49,11 @@ class NewRecipe extends React.Component {
                     id="recipeInstructions"
                     aria-describedby="recipeInstructions"
                     placeholder="e.g. first, slice the apple ... "
+                    value={this.props.recipe.instructions}
                   />
                 </div>
                 <button type="submit" className="btn btn-primary">
-                  Add
+                  Update
                 </button>
               </form>
             </div>
@@ -64,4 +64,4 @@ class NewRecipe extends React.Component {
   }
 }
 
-module.exports = NewRecipe;
+module.exports = EditRecipe;
