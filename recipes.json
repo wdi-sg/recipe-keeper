@@ -1,1 +1,35 @@
-{"title":"Curry Chicken","ingredients":"chicken wings, curry sauce packet","instructions":"put them all together and cook"}
+{
+        "recipes": [
+        {
+                "title": "Curry Chicken 001",
+                "ingredients": "chicken wings, curry sauce packet",
+                "instructions": "put them all together and cook"
+        },
+        {
+                "title": "Curry Chicken 002",
+                "ingredients": "chicken wings, curry sauce packet",
+                "instructions": "put them all together and cook"
+        },
+        {
+                "title": "Curry Chicken 002",
+                "ingredients": "chicken wings, curry sauce packet",
+                "instructions": "put them all together and cook"
+        },
+        {
+                "title": "Curry Chicken 003",
+                "ingredients": "chicken wings, curry sauce packet",
+                "instructions": "put them all together and cook"
+        },
+        {
+                "id": "lkdjfsf",
+                "title": "Curry Chicken 005",
+                "ingredients": "chicken wings, curry sauce packet",
+                "instructions": "put them all together and cook"
+        },
+        {
+                "id": "6",
+                "title": "Curry Chicken 006",
+                "ingredients": "chicken wings, curry sauce packet",
+                "instructions": "put them all together and cook"
+        }]
+}

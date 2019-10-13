@@ -4,6 +4,7 @@
 
 // Require jsonfile
 const jsonfile = require('jsonfile');
+const FILE = 'recipes.json';
 
 // Require Express
 const express = require('express');
@@ -30,7 +31,6 @@ app.set('view engine', 'jsx');
 // Declare port to listen on
 const port = 3000;
 
-
 //--------------------------------
 // GET/POST METHODS
 //--------------------------------
@@ -38,23 +38,42 @@ const port = 3000;
 //Define GET method - To show user the form to fill in using React view
 app.get('/recipes/new', (request, response) => {
 
-    // Render a template form here
-    response.render('newRecipe');
+    jsonfile.readFile(FILE, (err, obj) => {
 
+        let recipeId = parseInt(obj.recipes.length + 1);
+
+        const data = {
+            id: recipeId
+        };
+
+        // Render a template form here
+        response.render('newRecipe', data);
+    });
 });
 
 // Define POST method - For user to create new recipe
 app.post('/recipes', (request, response) => {
 
-    // Debug code (output request body)
-    console.log(request.body);
+    // Get JSON from specified file
+    jsonfile.readFile(FILE, (err, obj) => {
 
-    // Save the request body
-    jsonfile.writeFile('recipes.json', request.body, (err) => {
-        console.log(err);
+        // Store the newly input information to a variable
+        const newRecipe = request.body;
+        console.log(newRecipe);
+        response.send(obj.recipes);
 
-        // Now look inside your json file
-        response.send(request.body);
+        // Push the newly created recipe to the object array
+        obj["recipes"].push(newRecipe);
+
+        // Save the request body
+        jsonfile.writeFile(FILE, obj, (err) => {
+
+            console.log("Error: " + err);
+
+            // Now look inside your json file
+            response.send(request.body);
+
+        });
     });
 });
 
