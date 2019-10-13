@@ -15,6 +15,7 @@ class Addrecipe extends React.Component {
               <option value="Western">Western</option>
               <option value="Chinese">Chinese</option>
               <option value="Japanese">Japanese</option>
+              <option value="Indian">Indian</option>
             </select><br/>
             ingredient 1:
             <input type="text" name="ingredient1"/><br/>

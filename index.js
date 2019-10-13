@@ -77,6 +77,7 @@ app.post('/recipe/new', (req, res) => {
 //   })
 // });
 
+/////////////////////////////////DONE///////////////////////////////
 //this section will show recipes by cuisine category
 app.get('/recipe/:Category', (req, res) => {
   console.log(req.query);
@@ -89,4 +90,6 @@ app.get('/recipe/:Category', (req, res) => {
       for (let i = 0; i < recipeBook.length; i++) {}
     })
 });
+
+/////////////////////////////////DONE///////////////////////////////
 app.listen(3000, () => (console.log("you\'re on port 3000")));

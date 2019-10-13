@@ -6,7 +6,7 @@ class Home extends React.Component {
             <html>
                 <body>
                     <div>
-                        <h1>Welcome to my recipe book</h1>
+                        <h1>Welcome to my Recipe book</h1>
                         <p>Choose the following: </p>
                         <form method="GET" action="/recipe/new">
                             <input type="submit" value="Add New recipe"/>
