@@ -30,39 +30,39 @@ app.set('view engine', 'jsx');
  * ===================================
  */
 
-// // Home page
-// app.get('/recipes', (request, response) => {
-//     jsonfile.readFile(file, (err, obj) => {
-//         const data = {
-//             recipes: obj
-//         }
-//         response.render('home', data)
-//     })
-// })
+// Home page
+app.get('/recipes', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        const data = {
+            recipes: obj
+        }
+        response.render('home', data)
+    })
+})
 
-// // Shows 'New Recipe' page
-// app.get('/recipes/new', (request, response) => {
-//     jsonfile.readFile(file, (err, obj) => {
-//         const data = {
-//             recipes: obj
-//         }
-//         response.render('create', data)
-//     })
-// })
+// Shows 'New Recipe' page
+app.get('/recipes/new', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        const data = {
+            recipes: obj
+        }
+        response.render('create', data)
+    })
+})
 
-// // Adds new recipe
-// app.post('/recipes', (request, response) => {
-//     jsonfile.readFile(file, (err, obj) => {
+// Adds new recipe
+app.post('/recipes', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
 
-//         let newRecipe = request.body;
-//         console.log(newRecipe);
-//         obj.recipes.push(newRecipe);
+        let newRecipe = request.body;
+        console.log(newRecipe);
+        obj.recipes.push(newRecipe);
 
-//         jsonfile.writeFile(file, obj, (err) => {
-//             response.send(`<html><body><h1>Yay! New recipe added</h1></body></html>`)
-//         })
-//     })
-// })
+        jsonfile.writeFile(file, obj, (err) => {
+            response.send(`<html><body><h1>Yay! New recipe added</h1></body></html>`)
+        })
+    })
+})
 
 // Shows the page for a single recipe by id
 app.get('/recipes/:id', (request, response) => {
