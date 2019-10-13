@@ -78,7 +78,9 @@ app.post("/ingredients", (req, res) => {
       if (err) {
         console.error(err);
       }
-      res.send("ingredient added");
+
+
+      res.render("Home");
 
       //   res.render("AllRecipes");
     });
@@ -132,7 +134,8 @@ app.get("/recipes/:id", (req, res) => {
     const recipe = recipes[recipeId];
 
     data = {
-      recipe: recipe
+      recipe: recipe,
+      recipeId: recipeId
     };
 
     res.render("SingleRecipe", data);

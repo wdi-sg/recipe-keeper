@@ -10,8 +10,19 @@ class SingleRecipe extends React.Component {
           <div className="row">
             <div className="col">
               <div className="m-2 d-flex flex-column align-items-center">
-                {/* <h2>All Recipes</h2> */}
-                  <Recipe recipe={this.props.recipe} />
+                <Recipe recipe={this.props.recipe} recipeId={this.props.recipeId}/>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <div className="m-2 d-flex flex-row justify-content-center">
+                <a class="btn btn-secondary m-2" href={"/recipes/" + this.props.recipeId + "/edit"} role="button">
+                  Edit
+                </a>
+                <a class="btn btn-danger m-2" href={"/recipes/" + this.props.recipeId + "/delete"} role="button">
+                  Delete
+                </a>
               </div>
             </div>
           </div>
