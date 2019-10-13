@@ -154,16 +154,26 @@ app.put("/recipes/:id", (request,response)=> {
 })
 
 app.delete("/recipes/:id", (request,response)=> {
-    let identifier = request.params.id
-    let index = identifier-1
+    let identifier = parseInt(request.params.id)
+    let data;
+
 
     jsonfile.readFile(file, (err,obj) =>{
 
-        const data = {
-            recipe: obj.recipes[index]
-        }
+        obj.recipes.forEach((item, index)=>{
 
-        obj.recipes.splice(index,1)
+            if(identifier === item.id){
+                console.log(item)
+
+                data = {
+                    recipe: item
+                }
+
+                obj.recipes.splice(index,1)
+            }
+        })
+
+
 
         jsonfile.writeFile(file,obj,{spaces:2}, (err)=>{
             console.error(err)
