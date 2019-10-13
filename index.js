@@ -29,14 +29,14 @@ app.get('/recipes/new', (request, response) =>{
 	data.postType = "/recipes";
   data.pageTitle = "Add a New Recipe";
   // let data = {};
-  console.log(data)
+  // console.log(data)
  	response.render('new', data);
 });
 
 
 // if empty build the basic screen for input
 app.post('/recipes', (request, response) => {
-    console.log('full body ', request.body);
+    // console.log('full body ', request.body);
   // giving home.jsx file an object/context with `name` as a property
   let data = {warning: ""};
   if (request.body.recipeTitle === "" || request.body.ingredients === "" || request.body.instructions === "") {
@@ -73,7 +73,7 @@ app.post('/recipes', (request, response) => {
 //  show the recipe to edit
 app.get('/recipes/:id/edit', (request, response) => {
   // get json from specified file
-      console.log("id: ",request.params.id);
+      // console.log("id: ",request.params.id);
   jsonfile.readFile(file, (err, obj) => {
     // extract input data from request
     console.log(err);
@@ -159,13 +159,16 @@ app.get('/recipes/:id/delete', (request, response) => {
 
     let itemToChange = request.params.id;
     obj.recipes.splice(itemToChange,1);
+    
              const data = {
             recipeobj: obj
         }       
-  data.pageTitle = "Recipe Deleted";
-  // let data = {};
+      data.pageTitle = "Recipe Deleted";
+      jsonfile.writeFile(file,obj, (err) => {
+        console.error(err)
+      });
 
-   // console.log(data.recipeobj)
+   console.log(obj)
   response.render('showall', data);
   });
   });
