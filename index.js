@@ -26,8 +26,10 @@ app.get('/', (request, response) => {
  // display the receipe form to create a new recipe
 app.get('/recipes/new', (request, response) =>{
   let data = {};
-	data = {pageTitle : "Add a New Recipe"};
-	data = {postType : "/recipes"};
+	data.postType = "/recipes";
+  data.pageTitle = "Add a New Recipe";
+  // let data = {};
+  console.log(data)
  	response.render('new', data);
 });
 
@@ -38,10 +40,10 @@ app.post('/recipes', (request, response) => {
   // giving home.jsx file an object/context with `name` as a property
   let data = {warning: ""};
   if (request.body.recipeTitle === "" || request.body.ingredients === "" || request.body.instructions === "") {
-    data = {pageTitle : "Try again..."};
-    data = {warning: "Empty title or other data..."}; 
+    data.pageTitle = "Try again...";
+    data.warning = "Empty title or other data..."; 
       } else  { 
-    data = {pageTitle : "Recipe Added!"};  	
+    data.pageTitle = "Recipe Added!";  	
     // data = {warning: "Recipe Added!"}; 
       }    
   response.render('new', data);
@@ -96,6 +98,59 @@ app.get('/recipes/:id/edit', (request, response) => {
   });
 });
 
+
+// edit the recipe, overwirte existing
+// if empty build the basic screen for input
+app.put('/recipes/:id', (request, response) => {
+    console.log('edit the recipe started');
+    let recipeIndex = request.params.id;
+  // giving home.jsx file an object/context with `name` as a property
+  let data = {};
+  if (request.body.recipeTitle === "" || request.body.ingredients === "" || request.body.instructions === "") {
+     data=request.body;
+     data.warning= "Empty name or other data..."; 
+      } else  { 
+      data=request.body;
+      data.pageTitle = "Recipe Has Been Edited!";
+      data.id = request.params.id;
+      data.postType = "/recipes/"+request.params.id+"?_method=put";
+      }
+  response.render('new', data);
+  
+  jsonfile.readFile(file, (err, obj) => {
+
+  // remove the id key
+      delete request.body.id;
+      delete request.body.postType;
+      delete request.body._locals;
+      delete request.body.pageTitle;
+      // console.error(request.body)                                                
+  // save the request body
+obj["recipes"][recipeIndex]= request.body;
+
+
+  jsonfile.writeFile(file,obj, (err) => {
+    console.error(err)
+  });
+
+  });
+
+console.log('completed writing')
+});
+
+
+ // see all recipes
+app.get('/recipes/', (request, response) =>{
+  let data = {};
+  data.postType = "/recipes/";
+  data.pageTitle = "All Recipes";
+  // let data = {};
+  console.log(data)
+  response.render('showall', data);
+});
+
+
+// delete the recipe
 
 
 
