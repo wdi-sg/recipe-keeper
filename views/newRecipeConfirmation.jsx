@@ -1,6 +1,6 @@
 var React = require('react');
 
-class AddNewConfirmation extends React.Component {
+class NewRecipeConfirmation extends React.Component {
     render() {
 
         return (
@@ -23,4 +23,4 @@ class AddNewConfirmation extends React.Component {
     }
 }
 
-module.exports = AddNewConfirmation;
+module.exports = NewRecipeConfirmation;

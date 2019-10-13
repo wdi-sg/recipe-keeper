@@ -92,7 +92,7 @@ app.post('/recipes', (request, response) => {
             instructions: request.body.instructions
         };
 
-        response.render('addNewConfirmation', data);
+        response.render('newRecipeConfirmation', data);
 
         // Save the request body
         jsonfile.writeFile(FILE, obj, (err) => {
@@ -135,6 +135,79 @@ app.get('/recipes/:id', (request, response) => {
             response.render('viewSingleRecipe', data);
             }
         }
+    });
+});
+
+// Define GET method - To display edit form
+app.get('/recipes/:id/edit', (request, response) => {
+
+    let recipeId = parseInt(request.params.id);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+
+        // When recipeId === obj.recipes[i].id
+        // Get the value of i
+        // Get title,ingredients and instructions of that recipe
+
+        let title;
+        let ingredients;
+        let instructions;
+
+        for(let i = 0; i < obj.recipes.length; i++) {
+
+            if(recipeId == obj.recipes[i].id) {
+
+                const data = {
+                    id: obj.recipes[i].id,
+                    title: obj.recipes[i].title,
+                    ingredients: obj.recipes[i].ingredients,
+                    instructions: obj.recipes[i].instructions
+                };
+
+            response.render('editRecipe', data);
+            }
+        }
+    });
+});
+
+// Define PUT method - To update changes made by user back to JSON file
+app.put('/recipes/:id', (request, response) => {
+
+    let recipeId = parseInt(request.params.id);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+
+        for(let i = 0; i < obj.recipes.length; i++) {
+
+            if(recipeId == obj.recipes[i].id) {
+
+                // Update values back to json file
+                obj.recipes[i].id = request.body.id;
+                obj.recipes[i].title = request.body.title;
+                obj.recipes[i].ingredients = request.body.ingredients;
+                obj.recipes[i].instructions = request.body.instructions;
+
+                // Read the updated values for display
+
+                const data = {
+                    id: obj.recipes[i].id,
+                    title: obj.recipes[i].title,
+                    ingredients: obj.recipes[i].ingredients,
+                    instructions: obj.recipes[i].instructions
+                }
+
+            response.render('editRecipeConfirmation', data);
+
+            }
+        }
+
+        // Save the request body
+        jsonfile.writeFile(FILE, obj, (err) => {
+
+            console.log("Error: " + err);
+        });
+
+
     });
 });
 
