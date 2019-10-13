@@ -196,7 +196,7 @@ app.put('/recipes/:id', (request, response) => {
                     instructions: obj.recipes[i].instructions
                 }
 
-            response.render('editRecipeConfirmation', data);
+                response.render('editRecipeConfirmation', data);
 
             }
         }
@@ -206,8 +206,67 @@ app.put('/recipes/:id', (request, response) => {
 
             console.log("Error: " + err);
         });
+    });
+});
 
+// Define GET method - To display recipe to delete
+app.get('/recipes/:id/delete', (request, response) => {
 
+    let recipeId = parseInt(request.params.id);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+
+        // When recipeId === obj.recipes[i].id
+        // Get the value of i
+        // Get title,ingredients and instructions of that recipe
+
+        let title;
+        let ingredients;
+        let instructions;
+
+        for(let i = 0; i < obj.recipes.length; i++) {
+
+            if(recipeId == obj.recipes[i].id) {
+
+                const data = {
+                    id: obj.recipes[i].id,
+                    title: obj.recipes[i].title,
+                    ingredients: obj.recipes[i].ingredients,
+                    instructions: obj.recipes[i].instructions
+                };
+
+                response.render('deleteRecipe', data);
+            }
+        }
+    });
+});
+
+// Define DELETE method - To delete recipe and update back to JSON file
+app.delete('/recipes/:id', (request, response) => {
+
+    let recipeId = parseInt(request.params.id);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+
+        for(let i = 0; i < obj.recipes.length; i++) {
+
+            if(recipeId == obj.recipes[i].id) {
+
+                const data = {
+                    id: obj.recipes[i].id
+                }
+                // Get the position and remove the 1 object from file using splice
+                obj.recipes.splice(i, 1);
+
+                response.render('deleteRecipeConfirmation', data);
+
+            }
+        }
+        // Save the request body
+        jsonfile.writeFile(FILE, obj, (err) => {
+
+            console.log("Error: " + err);
+        });
     });
 });
 
