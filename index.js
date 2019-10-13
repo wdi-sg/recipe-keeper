@@ -6,7 +6,7 @@ const express = require('express');
 
 const app = express();
 
-app.use(express.static(__dirname+'/public/'));
+app.use(express.static(__dirname+'/public'));
 
 app.use(express.json());
 
@@ -76,15 +76,26 @@ app.post("/recipes/new", (request, response)=>{
 })
 
 app.get("/recipes/:id", (request,response) => {
-    let identifier = request.params.id
-    let index = identifier - 1
+    let identifier = parseInt(request.params.id)
+
 
     jsonfile.readFile(file, (err,obj)=> {
 
-        const data = {
-        recipe: obj.recipes[index]
-        }
-        response.render('recipe', data)
+
+        obj.recipes.forEach((item, index)=>{
+
+            if(identifier === item.id){
+
+                const data = {
+                    recipe: item
+                }
+
+                response.render('recipe', data)
+
+            }
+
+        })
+
     })
 })
 

@@ -19,19 +19,23 @@ class Home extends React.Component{
                     <link rel="stylesheet" type="text/css" href="style.css" />
                 </head>
                 <body>
-                  <div>
-                    <marquee behavior = "alternate"><h1>INDEX OF RECIPES</h1></marquee>
-                    <ol>
-                        {title}
-                    </ol>
-                  </div>
+                    <div className = "bg">
 
-                  <form action="/recipes/new" method="get" id="add">
-                     <button type = "add">
-                        Add a recipe
-                    </button>
-                    </form>
+                    <div className = "container">
+                        <div>
+                        <h1>INDEX OF RECIPES</h1>
+                        <ul>
+                            {title}
+                        </ul>
+                      </div>
 
+                      <form action="/recipes/new" method="get" id="add">
+                         <button type = "add">
+                            Add a recipe
+                        </button>
+                        </form>
+                    </div>
+                    </div>
                 </body>
               </html>
             )

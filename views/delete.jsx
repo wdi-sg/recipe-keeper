@@ -14,11 +14,11 @@ class Delete extends React.Component{
                 <body>
                   <div>
                     <h1>You have deleted this recipe: </h1>
-                    <ul>
+                    <ol>
                         <li>Title: {title}</li>
                         <li>Ingredients: {ingredients}</li>
                         <li>Instructions: {instructions}</li>
-                    </ul>
+                    </ol>
                   </div>
 
                    <form action="/recipes" method="get" id="home">

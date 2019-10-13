@@ -9,9 +9,9 @@ class Added extends React.Component{
                   <div>
                     <h1>Added new recipe!</h1>
                     <ol>
-                        <li>{this.props.title}</li>
-                        <li>{this.props.ingredients}</li>
-                        <li>{this.props.instructions}</li>
+                        <li>Title: {this.props.title}</li>
+                        <li>Ingredients: {this.props.ingredients}</li>
+                        <li>Instructions: {this.props.instructions}</li>
                     </ol>
 
                     <form action="/recipes/new" method="get" id="add">
