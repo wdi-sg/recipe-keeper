@@ -141,14 +141,16 @@ console.log('completed writing')
 
  // see all recipes
 app.get('/recipes/', (request, response) =>{
-  let data = {};
-  data.postType = "/recipes/";
+  jsonfile.readFile(file, (err, obj) => {
+        const data = {
+            recipeobj: obj
+        }
   data.pageTitle = "All Recipes";
   // let data = {};
-  console.log(data)
+   console.log(data.recipeobj)
   response.render('showall', data);
-});
-
+  });
+  });
 
 // delete the recipe
 
