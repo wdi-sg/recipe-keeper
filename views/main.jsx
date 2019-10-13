@@ -6,8 +6,8 @@ class Main extends React.Component {
     return (
           
           <DefaultLayout title="Recipe Top Page">
-
-inside
+<h1>Food Recipes</h1>
+<img src="/food-tray.svg" className="align-center"/>
 
 
           </DefaultLayout>
