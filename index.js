@@ -138,8 +138,8 @@ app.get("/recipes/:id/edit", (req, res) => {
     const recipe = recipes[recipeId];
 
     data = {
-        recipeId : recipeId,
-        recipe: recipe
+      recipeId: recipeId,
+      recipe: recipe
     };
 
     res.render("EditRecipe", data);
@@ -147,21 +147,47 @@ app.get("/recipes/:id/edit", (req, res) => {
 });
 
 app.put("/recipes/:id", (req, res) => {
+  const recipeId = req.params.id;
+  let { recipeTitle, recipeIngredients, recipeInstructions } = req.body;
 
-    console.log("req.body!!!!!",req.body);
+  if (!recipeIngredients) {
+    jsonfile.readFile(FILE, (err, obj) => {
+      const recipes = obj.recipes;
+      const recipe = recipes[recipeId];
 
-    const recipeId = req.params.id;
-    const updatedRecipe = req.body;
+      data = {
+        recipeId: recipeId,
+        recipe: recipe,
+        missingIngredients: true
+      };
 
-    jsonfile.readFile(FILE, (err,obj) => {
+      res.render("EditRecipe", data);
+    });
+  } else if (Array.isArray(recipeIngredients)) {
+    recipeIngredients.forEach((ingredient, i, ingredients) => {
+      ingredients[i] = JSON.parse(ingredient);
+    });
+  } else {
+    recipeIngredients = [JSON.parse(recipeIngredients)];
+  }
 
-        const recipes = obj.recipes;
-        recipes[recipeId] = updatedRecipe;
+  if (recipeIngredients) {
+    const updatedRecipe = {
+      title: recipeTitle,
+      ingredients: recipeIngredients,
+      instructions: recipeInstructions
+    };
+    
+    jsonfile.readFile(FILE, (err, obj) => {
+      const recipes = obj.recipes;
+      recipes[recipeId] = updatedRecipe;
 
-        jsonfile.writeFile(FILE, obj, err => {
-            res.send("recipe edited!");
-        })
-    })
-})
+      jsonfile.writeFile(FILE, obj, err => {
+        res.send("recipe edited!");
+      });
+    });
+  }
+
+});
 
 app.listen(3000);

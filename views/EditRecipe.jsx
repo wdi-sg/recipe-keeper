@@ -3,27 +3,38 @@ const Layout = require("./Layout");
 
 class EditRecipe extends React.Component {
   render() {
-
-        console.log("this.props!!!!!",this.props)
+    console.log("this.props!!!!!", this.props);
     const ingredients = this.props.recipe.ingredients.map(ingredient => (
-        <li class="list-group-item">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value={JSON.stringify(ingredient)}
-            name="recipeIngredients"
-          />
-          {ingredient.amount} {ingredient.name}, {ingredient.notes}
-        </li>
-      ));
-  
+      <li class="list-group-item">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          value={JSON.stringify(ingredient)}
+          name="recipeIngredients"
+          checked
+        />
+        {ingredient.amount} {ingredient.name}, {ingredient.notes}
+      </li>
+    ));
+
+    let alert = "";
+    if (this.props.missingIngredients) {
+         alert = <div className="alert alert-warning" role="alert" >
+                    Please select at least 1 ingredient!
+                </div>;
+    }
+
     return (
       <Layout>
         <div className="container">
           <div className="row">
             <div className="col">
               <h1 className="text-center text-primary">🍽️ edit recipe</h1>
-              <form method="POST" action={"/recipes/"+ this.props.recipeId + "?_method=put"}>
+              {alert}
+              <form
+                method="POST"
+                action={"/recipes/" + this.props.recipeId + "?_method=put"}
+              >
                 <div className="form-group">
                   <label htmlFor="recipeTitle">title</label>
                   <input
@@ -37,9 +48,7 @@ class EditRecipe extends React.Component {
                   />
                 </div>
                 <p>select ingredients:</p>
-                <ul class="list-group list-group-flush">
-                    {ingredients}
-                </ul>
+                <ul class="list-group list-group-flush">{ingredients}</ul>
                 <div className="form-group">
                   <label htmlFor="recipeInstructions">instructions</label>
                   <textarea
