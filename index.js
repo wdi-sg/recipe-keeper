@@ -26,6 +26,7 @@ app.get('/recipes/new', (request, response) => {
 /////SHOWS NEWLY ADDED RECIPE AFTER FORM SUBMISSION//////
 app.post('/recipes', (request, response) => {
     let newRecipe = request.body;
+    newRecipe.id = parseInt(newRecipe.id);
 
     const data = {
         "id": newRecipe.id,
@@ -56,16 +57,15 @@ app.get('/recipes/:id', (request, response) => {
         //look inside data.json for the recipe
         recipeList.forEach(function(recipeItem){
             console.log(recipeItem);
-            let selectedRecipe = recipeItem;
-
-            if (selectedRecipe.id === inputId){
-                recipe = selectedRecipe;
+            if (recipeItem.id === inputId){
+                recipe = recipeItem;
                 const data = {
-                    id: selectedRecipe.id,
-                    title: selectedRecipe.title,
-                    ingredients: selectedRecipe.ingredients,
-                    instructions: selectedRecipe.instructions
+                    id: recipe.id,
+                    title: recipe.title,
+                    ingredients: recipe.ingredients,
+                    instructions: recipe.instructions
                 };
+
             response.render('Recipes', data);
             };
         });
@@ -78,10 +78,91 @@ app.get('/recipes/:id', (request, response) => {
     });
 });
 
+/////SHOWS FORM TO EDIT INDIVIDUAL RECIPE/////
+app.get('/recipes/:id/edit', (request, response) => {
+
+    jsonfile.readFile(FILE, (err, obj) => {
+        let inputId = parseInt(request.params.id);
+        var recipe;
+        let recipeList = obj.recipes;
+
+        recipeList.forEach(function (recipeItem){
+            if (recipeItem.id === inputId){
+                recipe = recipeItem;
+                const data = {
+                    id: recipe.id,
+                    title: recipe.title,
+                    ingredients: recipe.ingredients,
+                    instructions: recipe.instructions
+                };
+            response.render('Edit', data);
+            };
+        });
+    });
+});
+
+/////CHANGES THE INDIVIDUAL RECIPE/////
+app.put('/recipes/:id', (request,response) => {
+    let userInput = request.body;
+    let index = parseInt(request.params.id) - 1;
+
+    jsonfile.readFile(FILE, (err, obj) => {
+        let recipeList = obj.recipes;
+        const editedRecipe = userInput;
+        recipeList[index] = editedRecipe;
+
+        const data = {
+            id: editedRecipe.id,
+            title: editedRecipe.title,
+            ingredients: editedRecipe.ingredients,
+            instructions: editedRecipe.instructions
+        };
+
+    jsonfile.writeFile(FILE, obj, (err) => {
+        console.log(err);
+    });
+
+    response.render('Recipes', data);
+    });
+});
+
+/////REQUEST PAGE TO DELETE RECIPE/////
+app.get("/recipes/:id/delete", (request, response) => {
+    let index = parseInt(request.params.id) - 1;
+
+    jsonfile.readFile(FILE, (err, obj) => {
+        let targetRecipe = obj.recipes[index];
+
+        const data = {
+            id: targetRecipe.id,
+            title: targetRecipe.title,
+            ingredients: targetRecipe.ingredients,
+            instructions: targetRecipe.instructions
+        };
+
+    response.render('delete', data);
+    });
+})
+
+
+/////DELETE THE PAGE/////
+app.delete("/recipes/:id", (request, response) => {
+  let index = parseInt(request.params.id) - 1;
+
+  jsonfile.readFile(FILE, (err,obj) =>{
+    let recipeList = obj.recipes;
+    recipeList.splice(index,1)
+
+    jsonfile.writeFile(FILE, obj, (err)=>{
+        console.log(err)
+        response.send("This recipe has been deleted")
+        })
+    })
+})
 
 /**
  * ===================================
- * Listen to requests on port 3000
+ * Listen to requests on port 8000
  * ===================================
  */
 app.listen(8000, () => console.log('~~~ Tuning in to the waves of port 8000 ~~~'));
