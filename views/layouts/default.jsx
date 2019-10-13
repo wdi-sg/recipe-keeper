@@ -4,7 +4,7 @@ class DefaultLayout extends React.Component {
   render() {
     return (
 <html lang="en">
-  <head><title>{this.props.title}</title>
+  <head><title>{this.props.pageTitle}</title>
         <link
   rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -24,10 +24,9 @@ class DefaultLayout extends React.Component {
   <div className="row">
     <div className="col-3">
     <nav className="nav flex-column">
-    <a className="nav-link" href="#">Top</a>
+    <a className="nav-link" href="/">Top</a>
     <a className="nav-link" href="../recipes/">See All Recipes</a>
-    <a className="nav-link" href="../recipes/new">Create/Edit/Delete</a>
-    <a className="nav-link" href="#">Link</a>   
+    <a className="nav-link" href="../recipes/new">Create New Recipe</a>
     </nav> 
     </div>
     <div className="col-9">
