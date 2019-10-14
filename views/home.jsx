@@ -6,8 +6,7 @@ class Home extends React.Component {
 // function to generate cards
         const recipeArray = this.props.recipes;
         const cards = recipeArray.map((eachRecipe, index)=>{
-            let urlField = "";
-            eachRecipe.url === undefined ? urlField = "" : urlField = eachRecipe.url;
+            let urlField = eachRecipe.url === undefined ? "" : eachRecipe.url;
             return (
                 <div className="card">
                     <img src={urlField} className="card-img"/>
