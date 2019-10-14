@@ -161,39 +161,42 @@ app.put('/recipes/:id', (req,res) => {
     res.send(req.body)
 });
 //WORKING---------------------------------------------------------------
-app.get('/recipes/:id/delete', (req, res) => {
-    jsonfile.readFile(FILE, (err, obj) => {
-        let inputIndex = parseInt( req.params.id );
-        let thisRecipe = obj.recipes[inputIndex];
-        var data2;
-        // find recipe by index from the data.json file
-        for( let i=0; i<obj.recipes.length; i++ ) {
-            let foundRecipe = obj.recipes[i];
-            if( foundRecipe === thisRecipe ){
-                data2 = foundRecipe;
-            }
-        }
+// app.get('/recipes/:id/delete', (req, res) => {
+//     jsonfile.readFile(FILE, (err, obj) => {
+//         let inputIndex = parseInt( req.params.id );
+//         let thisRecipe = obj.recipes[inputIndex];
+//         var data2;
+//         // find recipe by index from the data.json file
+//         for( let i=0; i<obj.recipes.length; i++ ) {
+//             let foundRecipe = obj.recipes[i];
+//             if( foundRecipe === thisRecipe ){
+//                 data2 = foundRecipe;
+//             }
+//         }
         
-        console.log("Data: " + data2);
-        if (data2 === undefined) {
-            // send 404 back
-            res.status(404);
-            res.send("not found");
-        } else {
-            console.log("turn up recipe page for: " + data2);
-            res.render ('deleteRecipe', data2);
+//         console.log("Data: " + data2);
+//         if (data2 === undefined) {
+//             // send 404 back
+//             res.status(404);
+//             res.send("not found");
+//         } else {
+//             console.log("turn up recipe page for: " + data2);
+//             res.render ('deleteRecipe', data2);
     
-        }
-    });
-});
+//         }
+//     });
+// });
 //WORKING---------------------------------------------------------------
 
 app.delete('/recipes/:id', (req,res) => {
     console.log("Recipe Deleted!" , req.body);
-    let editID = parseInt( req.params.id );
+    console.log("ID is: " + req.params.id);
+    let deleteID = parseInt( req.params.id );
     jsonfile.readFile(FILE, (err,obj) => {
         console.log(err);
-        obj.recipes.splice(editID, 1);
+        
+        console.log("Check this out: " +deleteID);
+        obj.recipes.splice(deleteID, 1);
         jsonfile.writeFile( FILE, obj, (err) => {
             console.error(err);
         });

@@ -24,6 +24,7 @@ class allRecipes extends React.Component {
                 <input type="submit" value="Submit"/>
             </form> 
             <br/>
+            <a type="button" href="/recipes/add">Add a Recipe!</a>
             <div><ul>{list}</ul></div>
           </div>
         </body>

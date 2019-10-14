@@ -9,16 +9,22 @@ class deleteRecipe extends React.Component {
         <body>
           <div>
             <h1>Deleting Recipe: {this.props.title}</h1>
-            <form method="POST" action={"/recipes/'+recipes+'?_method=delete"}>
+            
                 <div class="recipe-attribute">
-                  <input type="text" name="title" value={this.props.title}/>
+                  <h4>Title:</h4>
+                  <p>{this.props.title}</p>
                   <br></br>
-                  <input type="text" name="ingredients" value={this.props.ingredients}/>
+                  <h4>Ingredients: </h4>
+                  <p>{this.props.ingredients}</p>
                   <br></br>
-                  <input type="text" name="instructions" value={this.props.instructions}/>
+                  <h4>Steps: </h4>
+                  
+                  <p>{this.props.instructions}</p>
                   <br></br>
-                  <input type="submit" value="Submit"/>
+                  
                 </div>
+            <form method="POST" action={"/recipes/'+recipes+'?_method=delete"}>
+              <input type="submit" value="Confirm Deletion?"/>
             </form>
           </div>
         </body>

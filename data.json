@@ -23,7 +23,7 @@
     {
       "title": "Laksa",
       "ingredients": "Noodles, sauce, cockles, curry leaves",
-      "instructions": "Cook in the morning, serve read of the day"
+      "instructions": "Cook in the morning, serve rest of the day"
     },
     {
       "title": "Char Kway Teow",
@@ -44,6 +44,11 @@
       "title": "Fishball Noodle",
       "ingredients": "Fish, Balls, Noodles",
       "instructions": "Boil that mess"
+    },
+    {
+      "title": "Bak Kut Teh",
+      "ingredients": "Pork, more pork",
+      "instructions": "stew all day"
     }
   ]
 }
