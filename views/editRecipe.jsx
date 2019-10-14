@@ -1,4 +1,5 @@
 let React = require('react');
+const HomeNav = require('./home.jsx');
 
 class Edit extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class Edit extends React.Component {
         <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet"></link>
         </head>
         <body>
+        <HomeNav/>
         <main class="form-row" style={{ margin: '50px auto',  width: '500px', fontFamily: 'Montserrat'}} >
 
 

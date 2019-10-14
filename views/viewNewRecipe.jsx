@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDom = require('react-dom');
+const HomeNav = require('./home.jsx');
 
 class ViewNew extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class ViewNew extends React.Component {
         <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet"></link>
         </head>
         <body>
+        <HomeNav />
         <main  style={{ margin: '0 auto',  width: '800px', fontFamily: 'Montserrat'}} >
 
             <h1 class="text-center" style={{ marginTop: '20px', }}>{this.props.title} </h1><br/>

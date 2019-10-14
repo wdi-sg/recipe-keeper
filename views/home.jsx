@@ -1,5 +1,6 @@
 var React = require('react');
 var List = require('./homeNav');
+var RecipesGrid = require('./viewRecipes');
 
 class Home extends React.Component {
 
@@ -25,7 +26,10 @@ class Home extends React.Component {
 
 
         return (
+
           <List items={navigation}/>
+
+
         );
     }
 }

@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDom = require('react-dom')
+const HomeNav = require('./home.jsx');
 
 class AddNew extends React.Component {
   render() {
@@ -11,6 +12,7 @@ class AddNew extends React.Component {
         <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet"></link>
         </head>
       <body>
+      <HomeNav />
            <main class="form-row" style={{ margin: '50px auto',  width: '500px', fontFamily: 'Montserrat'}} >
           <form id="myForm" method="POST" action="/recipes"  style={{width: '500px'}} >
               <h3 class="text-center">Add New Recipe: </h3><br/>

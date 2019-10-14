@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDom = 'react-dom';
+const HomeNav = require('./home.jsx');
 
 
 // class Row extends React.Component {
@@ -43,11 +44,13 @@ class Recipes extends React.Component {
         return (
             <html>
             <head>
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"></link>
         </head>
 
-        <body class="bg-light" style={{ marginTop: '50px', fontFamily: 'Montserrat'}} >
+        <body class="bg-light" style={{ fontFamily: 'Montserrat'}} >
+        <HomeNav/>
           <h1 class="text-center" style={{ margin: '50px'}}>Recipes</h1>
           <div class="container-fluid">
           <div class="row d-flex flex-row flex-wrap align-items-center justify-content-around" >

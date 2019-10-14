@@ -1,6 +1,6 @@
 var React = require('react');
 const ReactDom = require('react-dom');
-var Recipes = require('./viewRecipes');
+var RecipesGrid = require('./viewRecipes');
 
 // class Link extends React.Component {
 
@@ -46,8 +46,10 @@ class List extends React.Component {
             {navElements}
           </ul>
           </nav>
-         {Recipes}
+
           </div>
+
+
           </body>
           </html>
         );
