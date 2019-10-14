@@ -27,17 +27,17 @@ app.set('view engine', 'jsx');
 
 
 
-
-// app.get('/recipes', (request,response) => {
+//cant get it  work.
+// app.get('/recipes/', (request,response) => {
 //     jsonfile.readFile(FILE,(err,obj) => {
 //         var receipes = obj.recipes;
 //         var content = {
 //             recipes:recipes
 //         }
-//         response.render('allrecipes',content);
+//         response.sned(obj.recipes);
 //     })
 // })
-//****************************************************************
+// //****************************************************************
 ///show new-recipe for entry!
 app.get('/recipes/new',(request,response) => {
     jsonfile.readFile(FILE,(err,obj) =>{
@@ -49,10 +49,10 @@ app.get('/recipes/new',(request,response) => {
         response.render('new-recipe',data);
     })
 })
+
+
+
 //****************************************************************
-
-
-
 app.get('/recipes/:id/edit',(request, response)=> {
 
     jsonfile.readFile(FILE, (err,obj) => {
@@ -98,6 +98,8 @@ app.post('/recipes',(request,response) =>{
     })
 })
 
+
+
 //****************************************************************
 //show single recipe from ID
 
@@ -130,6 +132,50 @@ app.get('/recipes/:id',(request,response)=>{
     })
 })
 
+
+
+//****************************************************************
+app.put('/recipes/:id', (request,response) => {
+    let inputId =  parseInt(request.params.id);
+    let editedRecipe = request.body;
+
+    jsonfile.readFile(FILE,(err,obj) => {
+        let oldRecipe = obj.recipes[inputId - 1];
+
+       oldRecipe.Ingredients = editedRecipe .Ingredients;
+        oldRecipe.Instructions = editedRecipe .Instructions;
+
+
+        jsonfile.writeFile(FILE, obj,{spaces: 2},(err) => {
+            console.log(err)
+            response.render("editedRecipe", oldRecipe );
+        })
+    })
+
+})
+
+
+
+//****************************************************************
+
+app.delete('/recipes/:id',(request,response) =>{
+    jsonfile.readFile(FILE,(err,obj)=>{
+        for(let i =0; i < obj.recipes.length; i++){
+            let inputId = parseInt(request.params.id);
+            let currentRecipe = obj.recipes[i];
+            currentRecipe.id = parseInt(currentRecipe.id);
+
+            if(inputId === currentRecipe.id){
+                let deleteRecipe = [];
+                obj.recipes.splice(i,1);
+            };
+        };
+        jsonfile.writeFile(FILE,obj,{spaces: 2},(err)=>{
+            console.log(err);
+            response.render('delete',deleteRecipe)
+        })
+    })
+})
 
 
 

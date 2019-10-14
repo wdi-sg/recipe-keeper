@@ -1,6 +1,6 @@
 const React = require('react');
 
-class editRecipe extends React.Component {
+class delete extends React.Component {
     render() {
 
         return (
@@ -8,10 +8,13 @@ class editRecipe extends React.Component {
              <body>
                 <div>
                     <h1>Edit {this.props.Title} </h1>
-                   <form action={"/recipes/"+this.props.id+'?_method=put'} method="POST">
+                   <form action={"/recipes/"+this.props.id+'?_method=delete'} method="POST">
 
                         <div>
-                            <h2>{this.props.Title}</h2>
+                            <h2>Deleteing {this.props.Title} recipe</h2>
+                            <h3>Title :</h3>
+                            <input type="text" name="Title" defaultValue={this.props.Title}/>
+
                             <h3>Ingredients :</h3>
                             <input type="text" name="Ingredients" defaultValue={this.props.Ingredients}/>
                               <h3>Instructions :</h3>
@@ -28,4 +31,4 @@ class editRecipe extends React.Component {
     }
 
 
-module.exports = editRecipe;
+module.exports = delete;
