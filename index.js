@@ -92,11 +92,9 @@ app.get('/recipes/:id',(req,res)=>{
     jsonfile.readFile(file,(err,obj)=>{
         if (err) console.log(err);
 // using the :id, find the corresponding recipe
-        let index = parseInt(req.params.id);
+        let id = parseInt(req.params.id);
 // rename data to be sent
-        selectedRecipe = obj.recipes[index];
-// add in index of recipe to data
-        selectedRecipe.index = index;
+        [selectedRecipe] = obj.recipes.filter(recipe=>recipe.id === id);
         res.render('show',selectedRecipe);
     });
 });
@@ -111,11 +109,9 @@ app.get('/recipes/:id/edit',(req,res)=>{
     jsonfile.readFile(file,(err,obj)=>{
         if (err) console.log(err);
 // using the :id, find the corresponding recipe
-        let index = parseInt(req.params.id);
+        let id = parseInt(req.params.id);
 // rename data to be sent
-        selectedRecipe = obj.recipes[index];
-// add in index of recipe to data
-        selectedRecipe.index = index;
+        [selectedRecipe] = obj.recipes.filter(recipe=>recipe.id === id);
         res.render('edit',selectedRecipe);
     });
 });
@@ -128,15 +124,16 @@ app.get('/recipes/:id/edit',(req,res)=>{
 */
 app.put('/recipes/:id',(req,res)=>{
 // using the :id, find the corresponding recipe
-    let index = parseInt(req.params.id);
+    let id = parseInt(req.params.id);
     jsonfile.readFile(file,(err,obj)=>{
         if (err) console.log(err);
 // overwrite the current data with new data
-        obj.recipes[index] = req.body;
+        [selectedRecipe] = obj.recipes.filter(recipe=>recipe.id === id);
+        selectedRecipe = req.body;
         jsonfile.writeFile(file,obj,(err)=>{
             if (err) console.log(err);
         });
-        res.render('show',obj.recipes[index]);
+        res.render('show',selectedRecipe);
     });
 });
 /*
@@ -147,10 +144,11 @@ app.put('/recipes/:id',(req,res)=>{
 ==================================================
 */
 app.delete('/recipes/:id',(req,res)=>{
-    let index = parseInt(req.params.id);
+    let id = parseInt(req.params.id);
     jsonfile.readFile(file,(err,obj)=>{
         if (err) console.log(err);
 // overwrite the current data with new data
+        let index = obj.recipes.findIndex(recipe=>recipe.id === id);
         obj.recipes.splice(index,1);
         jsonfile.writeFile(file,obj,(err)=>{
             if (err) console.log(err);

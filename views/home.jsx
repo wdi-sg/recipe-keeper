@@ -5,7 +5,7 @@ class Home extends React.Component {
     render() {
 // function to generate cards
         const recipeArray = this.props.recipes;
-        const cards = recipeArray.map((eachRecipe, index)=>{
+        const cards = recipeArray.map(eachRecipe=>{
             let urlField = eachRecipe.url === undefined ? "" : eachRecipe.url;
             return (
                 <div className="card">
@@ -16,7 +16,7 @@ class Home extends React.Component {
                     <p className="card-text d-flex justify-content-center">
                         <small className="text-muted">{eachRecipe.date}</small>
                     </p>
-                    <a className="stretched-link" href={"/recipes/"+index}/>
+                    <a className="stretched-link" href={"/recipes/"+eachRecipe.id}/>
                 </div>
                 );
         });

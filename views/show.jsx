@@ -4,7 +4,7 @@ const Layout = require('./layout');
 class Show extends React.Component {
     render() {
 // grab and destructure recipe object
-        let {title, ingredients, url, instructions, index} = this.props;
+        let {title, ingredients, url, instructions, id} = this.props;
 // format ingredients list
         let ingredientsArray = ingredients.split(',');
 // map onto the <li> array
@@ -32,12 +32,12 @@ class Show extends React.Component {
 
                 <div className="row">
                     <div className="col">
-                        <form method="GET" action={"/recipes/"+index+"/edit"}>
+                        <form method="GET" action={"/recipes/"+id+"/edit"}>
                             <input type="submit" className="btn btn-warning btn-block" value="Edit"/>
                         </form>
                     </div>
                     <div className="col">
-                        <form method="POST" action={"/recipes/"+index+"?_method=delete"}>
+                        <form method="POST" action={"/recipes/"+id+"?_method=delete"}>
                             <input type="submit" className="btn btn-danger btn-block" value="Delete"/>
                         </form>
                     </div>

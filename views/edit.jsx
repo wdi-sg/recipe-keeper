@@ -3,11 +3,11 @@ const Layout = require('./layout');
 
 class Edit extends React.Component {
     render() {
-        let {title, ingredients, url, instructions, index} = this.props;
+        let {title, ingredients, url, instructions, id} = this.props;
         return (
             <Layout>
 
-                <form method="POST" action={"/recipes/"+index+"?_method=put"}>
+                <form method="POST" action={"/recipes/"+id+"?_method=put"}>
                     <div className="form-group">
                         <label>Recipe Title</label>
                         <input className="form-control form-control-lg" type="text" value={title} name="title" required/>
