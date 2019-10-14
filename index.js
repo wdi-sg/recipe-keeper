@@ -97,7 +97,7 @@ app.get('/recipes/:id/edit', (request,response) => {
 app.put("/recipes/:id", (request,response) => {
     console.log(request.body);
 
-    var requestId = 4;
+    var requestId = request.params.id;
     var newRecipes = request.body;
 
 
