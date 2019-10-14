@@ -4,13 +4,15 @@ const Script = require("./script")
 class Home extends React.Component {
   render() {
     let recipeArr = this.props.recipe
+    let ing = []
     let allRecipe = recipeArr.map(item => {
+      ing.push(item.ingredients)
       return (
         <div className="card">
           <div className="card-body">
             <h3 className="card-title">{item.name}</h3>
             <p className="card-text">
-              <strong>Ingredients: </strong> {item.ingredients}
+              <strong>Ingredients: </strong> {(item.ingredients)}
             </p>
             <a href={"/" + (recipeArr.indexOf(item) + 1) } className="btn btn-primary">
               See Recipe

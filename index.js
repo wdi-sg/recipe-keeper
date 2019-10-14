@@ -28,8 +28,12 @@ app.engine("jsx", reactEngine);
 app.set("views", __dirname + "/views");
 
 app.set("view engine", "jsx");
-/*********************************************************************************** */
-/*********************************************************************************** */
+/**
+ * ===================================
+ * Home Page
+ * ===================================
+ */
+
 
 // Home page where you can view all recipes, can click into individual recipes or add a new recipe
 
@@ -43,6 +47,13 @@ app.get("/home", (request, response) => {
   });
 });
 
+/**
+ * ===================================
+ * Search Functionality
+ * ===================================
+ */
+
+
 app.get("/search", (request, response) =>{
   
   jsonfile.readFile(FILE, (err, obj) => {
@@ -54,8 +65,13 @@ app.get("/search", (request, response) =>{
   });
   
 })
-/*********************************************************************************** */
-/*********************************************************************************** */
+
+/**
+ * ===================================
+ * Add a new Recipe
+ * ===================================
+ */
+
 
 // Add a new recipe page, submission will bring you to
 app.get("/new", (request, response) => {
@@ -69,6 +85,11 @@ app.get("/new", (request, response) => {
 });
 
 
+/**
+ * ===================================
+ * Ingredients 
+ * ===================================
+ */
 
 app.get('/ingredients', (request, response) =>{
   jsonfile.readFile(INGREDIENT, (err, obj) => {
@@ -82,8 +103,12 @@ app.get('/ingredients', (request, response) =>{
 
 
 
-/*********************************************************************************** */
-/*********************************************************************************** */
+/**
+ * ===================================
+ * Click into ingredients to see which recipes use it
+ * ===================================
+ */
+
 app.get("/related/:ingredientname", (request, response)=>{
   let ingredient = request.params.ingredientname
   let relatedRecipe= [];
@@ -104,7 +129,13 @@ app.get("/related/:ingredientname", (request, response)=>{
    
   });
 })
-// Page that renders each individual recipe when selected from the home page
+
+/**
+ * ===================================
+ * Individual Recipe Page
+ * ===================================
+ */
+
 app.get("/:id", (request, response) => {
   jsonfile.readFile(FILE, (err, obj) => {
     let recipepage;
@@ -130,10 +161,12 @@ app.get("/:id", (request, response) => {
 
 
 
-/*********************************************************************************** */
-/*********************************************************************************** */
+/**
+ * ===================================
+ * Notify Users that New Recipe Was added
+ * ===================================
+ */
 
-// Notify the user that recipe has been successfully added, ask if want to add new recipe or go back to home page
 app.post("/added", (request, response) => {
   const newRecipe = request.body;
   jsonfile.readFile(FILE, (err, obj) => {
@@ -145,9 +178,12 @@ app.post("/added", (request, response) => {
   });
 });
 
-/*********************************************************************************** */
-/*********************************************************************************** */
-// Edit Recipes that currently exist
+/**
+ * ===================================
+ *Edit a selected Recipe
+ * ===================================
+ */
+
 app.get("/:id/edit", (request, response) => {
   jsonfile.readFile(FILE, (err, obj) => {
     let recipepage;
@@ -164,6 +200,12 @@ app.get("/:id/edit", (request, response) => {
     response.render("edit", data);
   });
 });
+
+/**
+ * ===================================
+ * Notify Users that recipe was edited, and change the data.json
+ * ===================================
+ */
 
 app.put("/edited/:id", (request, response) => {
   let updateId = parseInt(request.params.id);
@@ -186,10 +228,14 @@ app.put("/edited/:id", (request, response) => {
     });
   });
 });
-// /*********************************************************************************** */
-// /*********************************************************************************** */
 
-// Delete Recipes
+
+/**
+ * ===================================
+ * Choose to Delete a particular Recipe
+ * ===================================
+ */
+
 app.get("/:id/delete", (request, response) => {
   jsonfile.readFile(FILE, (err, obj) => {
     let recipepage;
@@ -207,6 +253,11 @@ app.get("/:id/delete", (request, response) => {
   });
 });
 
+/**
+ * ===================================
+ * Notify users that it was deleted, edit data.json
+ * ===================================
+ */
 
 app.delete("/deleted/:id", (request, response) => {
   let deleteId = parseInt(request.params.id);
