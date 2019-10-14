@@ -14,7 +14,6 @@ class ShowAll extends React.Component {
         }
 
         const allRecipes = this.props.recipeobj.recipes.map( (recipes, index) => {
-          console.log(recipes)
             return (
                 <li style={style}><a style={style2} href={"/recipes/"+index} className="list-group-item list-group-item-action list-group-item-primary">{recipes.recipeTitle}</a>
                 <br/>
