@@ -15,16 +15,28 @@ class Edit extends React.Component {
                     <Navbar/>
                   </header>
                 <main role="main" class="flex-shrink-0">
-                    <h2>Edit Recipe</h2>
-                    <form method="POST" action={formAction}>
-                        <h3>Recipe Title:</h3>
-                        <input type="text" name="title" value={this.props.title} required/><br/>
-                        <h3>Ingredients:</h3>
-                        <input type="text" name="ingredients" value={this.props.ingredients} required/><br/>
-                        <h3>Instructions:</h3>
-                        <input type="text" name="instructions" value={this.props.instructions} required/><br/><br/>
-                        <input type="submit" value="Submit"/>
-                    </form>
+                    <div class="jumbotron">
+                      <div class="container">
+                        <h1 class="display-4">Edit Recipe</h1>
+                        <p class="lead">Find and share everyday cooking inspiration</p>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form method="POST" action={formAction}>
+                                    <h3>Recipe Title:</h3>
+                                    <input type="text" name="title" value={this.props.title} required/><br/>
+                                    <h3>Ingredients:</h3>
+                                    <input type="text" name="ingredients" value={this.props.ingredients} required/><br/>
+                                    <h3>Instructions:</h3>
+                                    <input type="text" name="instructions" value={this.props.instructions} required/><br/><br/>
+                                    <input type="submit" value="Submit"/>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="/images/Cooking-Mama-Photo.png" class="img-fluid" alt="Responsive image"/>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
                 </main>
                 <footer class="footer mt-auto">
                   <div class="container">
