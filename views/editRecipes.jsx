@@ -1,6 +1,6 @@
 var React = require('react');
 
-class EditRecipes extends React.Component {
+class editRecipes extends React.Component {
     render() {
         return (
 
@@ -26,4 +26,4 @@ class EditRecipes extends React.Component {
     }
 }
 
-module.exports = EditRecipes;
+module.exports = editRecipes;
