@@ -1,0 +1,54 @@
+{
+  "recipes": [
+    {
+      "title": "Ba Chor Mee",
+      "ingredients": "Pork, Noodles, Oil, Water",
+      "instructions": "Mix them all up"
+    },
+    {
+      "title": "Mee Goreng",
+      "ingredients": "Noodles, Kecap Manis, Tofu, Meat",
+      "instructions": "Shake and bake"
+    },
+    {
+      "title": "Tauhu Telor",
+      "ingredients": "Tofu, Egg, Oil, More oil",
+      "instructions": "Deep fryyyyy"
+    },
+    {
+      "title": "Eggs Benedict",
+      "ingredients": "Eggs, Benedict, Kangkong",
+      "instructions": "Poach that egg, dispose of kangkong"
+    },
+    {
+      "title": "Laksa",
+      "ingredients": "Noodles, sauce, cockles, curry leaves",
+      "instructions": "Cook in the morning, serve rest of the day"
+    },
+    {
+      "title": "Char Kway Teow",
+      "ingredients": "Noodles, Dark sauce, Oil",
+      "instructions": "Fry on the spot"
+    },
+    {
+      "title": "Prawn Pasta",
+      "ingredients": "Prawns, Pasta, Water",
+      "instructions": "Boil water, Add prawns"
+    },
+    {
+      "title": "Duck Rice",
+      "ingredients": "Duck, rice",
+      "instructions": "Braise, grill, soak"
+    },
+    {
+      "title": "Fishball Noodle",
+      "ingredients": "Fish, Balls, Noodles",
+      "instructions": "Boil that mess"
+    },
+    {
+      "title": "Bak Kut Teh",
+      "ingredients": "Pork, more pork",
+      "instructions": "stew all day"
+    }
+  ]
+}
