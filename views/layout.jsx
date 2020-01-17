@@ -42,7 +42,7 @@ class Layout extends React.Component {
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                   <a className="nav-link" href="/recipes/new">
-                    Create
+                    New Recipe
                   </a>
                 </li>
               </ul>

@@ -38,10 +38,39 @@ app.post("/recipes/", (req, res) => {
     obj.recipes.push(req.body);
 
     jsonfile.writeFile(file, obj, err => {
-      console.log(obj)
+      console.log(obj);
     });
   });
   res.redirect("/");
+});
+
+app.get("/recipes/:id", (req, res) => {
+  const index = req.params.id;
+  let recipe;
+  jsonfile.readFile(file, (err, obj) => {
+    recipe = obj.recipes[index];
+    res.render("recipe", recipe);
+  });
+});
+
+app.get("/recipes/:id/edit", (req, res) => {
+  const index = req.params.id;
+  let recipe;
+  jsonfile.readFile(file, (err, obj) => {
+    recipe = obj.recipes[index];
+    res.render("edit", recipe);
+  });
+});
+
+app.put("/recipes/:id", (req, res) => {
+  console.log(req.body);
+  const index = req.params.id;
+  jsonfile.readFile(file, (err, obj) => {
+    Object.assign(obj.recipes[index], req.body);
+    jsonfile.writeFile(file, obj, err => {
+      res.redirect("/");
+    });
+  });
 });
 
 app.listen(3000, () => {
