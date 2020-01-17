@@ -175,12 +175,24 @@ app.delete('/recipes/:id', (request, response) => {
       if (err) {
         return console.log(err)
       }
-      
+
       response.send("Deleted!")
     })
     //END readFile
   })
   //END app.delete
+})
+
+app.get('/recipes', (request,response)=>{
+  
+  jsonfile.readFile(file, (err, obj)=>{
+    const data = {
+      recipes: obj.recipes
+    }
+
+    response.render('overview', data)
+  })
+
 })
 
 app.listen(3000, () => console.log("Listening.....TO YOUR INPUT"))
