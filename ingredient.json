@@ -1,4 +1,6 @@
-[{"id":1,"name":"Wine - Rosso Toscano Igt"},
+[
+	{"id":1,
+"name":"Wine - Rosso Toscano Igt"},
 {"id":2,"name":"Spaghetti Squash"},
 {"id":3,"name":"Pepperoni Slices"},
 {"id":4,"name":"Compound - Pear"},

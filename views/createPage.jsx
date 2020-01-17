@@ -11,8 +11,8 @@ class createPage extends React.Component {
         <div className="col-10 col-md-8 col-lg-6">
 <form className="mt-5" method="POST" action="/recipes">
   <div className="form-group">
-    <label for="Title">Title</label>
-    <input type="text" className="form-control" name="Title"/>
+    <label for="title">Title</label>
+    <input type="text" className="form-control" name="title"/>
   </div>
   <div className="form-group">
     <label for="ingredients">Ingredients</label>

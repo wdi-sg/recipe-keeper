@@ -28,13 +28,69 @@ const addRecipe = (request,response)=>{
        response.status(503).send("error reading file");
        return;
       }
-      const data = request.body;
+      const data = {
+          title : request.body.title,
+          ingredients : request.body.ingredients,
+          instructions : request.body.instructions
+       }
+
         obj.recipes.push(data);
     jsonfile.writeFile(file , obj, (err) => {
       console.error(err);
     });
         console.log("Done reading");
-        response.send("Success");
+        let id = obj.recipes.length;
+        let path = '/recipes/'+id;
+        response.redirect(path);
+    });
+}
+const displayRecipe = ( request,response)=>{
+ console.log("displaying recipe");
+    jsonfile.readFile(file, (err, obj) => {
+        let id = parseInt(request.params.id)
+        console.log("recipes");
+        const data = obj.recipes[id-1];
+        response.render("recipePage",data);
+    });
+}
+const displayRecipes = (request, response)=>{
+    console.log("displaying all recipes");
+    jsonfile.readFile(file, (err, obj)=>{
+        response.render("recipePages", obj);
+        console.log("Done rendering pages");
+    })
+}
+//////Functions not yet tested
+const editPage = (request, response)=>{
+    console.log("Edit page");
+    jsonfile.readFile(file, (err,obj)=>{
+        let id = request.params.id;
+        let recipe = obj.recipes[id-1];
+        const data = {
+            title: recipe.title,
+            instructions : recipe.instructions,
+            ingredients: recipe.ingredients
+        }
+        response.render("editPage", data);
+    })
+}
+const updateRecipe = (request,response)=>{
+    let id = request.params.id;
+    jsonfile.readFile(file, (err,obj)=>{
+        obj.recipes[id-1] = request.body;
+        jsonfile.writeFile(file, obj, (err)=>{
+
+        });
+    })
+}
+const deleteRecipe = (request, response)=>{
+    let id = request.params.id;
+    console.log("deleteRecipe");
+    jsonfile.readFile(file, (err,obj)=>{
+        obj.recipes.splice(id-1,1);
+        jsonfile.writeFile(file, (err,obj)=>{
+        });
+        response.redirect('/recipes');
     });
 }
 //*******
@@ -43,5 +99,13 @@ const addRecipe = (request,response)=>{
 app.get('/recipes/new',(request,response)=>{
     response.render('createPage');
 })
-app.post('/recipes', addRecipe)
+app.post('/recipes', addRecipe);
+app.get('/recipes/:id', displayRecipe);
+app.get('/recipes', displayRecipes);
+//
+app.get('/recipes/:id/edit',editPage);
+app.put('/recipes/:id', updateRecipe);
+app.get('/recipes/:id', deleteRecipe);
+//
+
 app.listen(3000, () => console.log("~~ Tuning in to port 3000 ~~"));
