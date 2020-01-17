@@ -10,6 +10,7 @@ class Recipe extends React.Component {
       return <li>{ingredient}</li>;
     });
     const editPath = "/recipes/" + this.props.id + "/edit";
+    const deletePath = "/recipes/" + this.props.id + "/delete";
     console.log(editPath);
     return (
       <Layout>
@@ -26,9 +27,14 @@ class Recipe extends React.Component {
             <strong>Instructions: </strong>
             {recipe.instructions}
           </p>
-          <button className="btn btn-warning">
+          <button className="btn btn-warning mr-1">
             <a className="text-light" href={editPath}>
-              Edit Recipe
+              Edit
+            </a>
+          </button>
+          <button className="btn btn-danger">
+            <a className="text-light" href={deletePath}>
+              Delete
             </a>
           </button>
         </div>

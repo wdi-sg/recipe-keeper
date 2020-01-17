@@ -33,10 +33,10 @@ app.get("/recipes/new", (req, res) => {
 });
 
 app.post("/recipes/", (req, res) => {
-  console.log(req.body);
+  const recipe = req.body;
   jsonfile.readFile(file, (err, obj) => {
-    obj.recipes.push(req.body);
-
+    recipe.id = obj.recipes.length;
+    obj.recipes.push(recipe);
     jsonfile.writeFile(file, obj, err => {
       console.log(obj);
     });
@@ -63,10 +63,29 @@ app.get("/recipes/:id/edit", (req, res) => {
 });
 
 app.put("/recipes/:id", (req, res) => {
-  console.log(req.body);
   const index = req.params.id;
   jsonfile.readFile(file, (err, obj) => {
     Object.assign(obj.recipes[index], req.body);
+    jsonfile.writeFile(file, obj, err => {
+      res.redirect("/");
+    });
+  });
+});
+
+app.get("/recipes/:id/delete", (req, res) => {
+  const index = req.params.id;
+  jsonfile.readFile(file, (err, obj) => {
+    res.render("delete", obj.recipes[index]);
+  });
+});
+
+app.delete("/recipes/:id", (req, res) => {
+  const index = req.params.id;
+  jsonfile.readFile(file, (err, obj) => {
+    obj.recipes.splice(index, 1);
+    for (let i = 0; i < obj.recipes.length; i++) {
+      obj.recipes[i].id = i;
+    }
     jsonfile.writeFile(file, obj, err => {
       res.redirect("/");
     });
