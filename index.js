@@ -12,7 +12,9 @@ app.use(express.urlencoded({
 
 // Method override for PUT and DEL requests
 const methodOverride = require('method-override')
-app.use(methodOverride('_method'));
+const replacementMethods = { methods: ['GET', 'POST'] };
+app.use(methodOverride('_method', replacementMethods));
+
 
 // React Renderer
 const reactEngine = require('express-react-views').createEngine();

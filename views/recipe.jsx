@@ -16,9 +16,7 @@ class Recipe extends React.Component {
               <h3>Method:</h3>
               <p>{this.props.recipe.method}</p>
               <p><a href={editURL}>Click me to edit this recipe.</a></p>
-              <p><form action={actionURL} method="POST">
-                Click to delete recipe:<input type="submit" name="DELETE THIS RECIPE"/>
-              </form></p>
+              <p><a href={actionURL}>Click to delete recipe:</a></p>
             <p><a href="/recipes/add">Click me to add a new recipe</a></p>
             <p><a href="/recipes/">Click me to go back to the main list.</a></p>
             </div>
