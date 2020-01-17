@@ -63,7 +63,8 @@ app.post('/recipes', (request, response) => {
             const newIndex = obj.recipes.length - 1;
             const data = {
                 recipe: obj.recipes[newIndex],
-                message: 'Recipe added.'
+                message: 'Recipe added.',
+                recipeId: newIndex
             };
             response.render('recipe', data)
             return;
@@ -71,8 +72,45 @@ app.post('/recipes', (request, response) => {
     })
 })
 
+// Delete record at ID.
+app.delete('/recipes/:id', (request, response) => {
+  // if id is not a number, return not found.
+  if (isNaN(request.params.id)) {
+      response.status(404).send(`Not found, ${request.params.id} is not a valid number.`);
+      return;
+  }
+  const getRequestId = parseInt(request.params.id);
+
+  jsonfile.readFile(recipesFile, (err, obj) => {
+      if (err) {
+          console.log(err);
+          response.status(501).send('Error when reading the file: ' + err);
+          return;
+      }
+
+      // if not in the array, return not found.
+      if (!obj.recipes[getRequestId]) {
+          response.status(404).send(`Recipe number ${getRequestId} not found`);
+          return;
+      }
+
+      obj.recipes.splice(getRequestId, 1);
+
+      jsonfile.writeFile(recipesFile, obj, (err) => {
+          if (err) {
+              console.log(err);
+              response.status(501).send('Error when writing the file: ' + err);
+              return;
+          }
+
+          response.send(`recipe ${getRequestId} deleted`);
+          return;
+      })
+  })
+})
+
 // PUT request to change a recipe in place
-app.post('/recipes/:id', (request, response) => {
+app.put('/recipes/:id', (request, response) => {
     // Validate the input, if not valid then return/render the form again with changes to be made.
     console.log(request.body);
 
@@ -98,10 +136,10 @@ app.post('/recipes/:id', (request, response) => {
                 return;
             }
 
-            const newIndex = obj.recipes.length - 1;
             const data = {
-                recipe: obj.recipes[newIndex],
-                message: 'Recipe updated'
+                recipe: obj.recipes[request.params.id],
+                message: 'Recipe updated',
+                recipeId: request.params.id
             };
             response.render('recipe', data)
             return;
@@ -167,7 +205,8 @@ app.get('/recipes/:id', (request, response) => {
         const recipeToDisplay = obj.recipes[getRequestId];
 
         const data = {
-            recipe: recipeToDisplay
+            recipe: recipeToDisplay,
+            recipeId: getRequestId
         };
         response.render('recipe', data);
         return;
@@ -175,10 +214,28 @@ app.get('/recipes/:id', (request, response) => {
 
 })
 
+// get index list of recipes.
+app.get('/recipes/', (request, response) => {
+  console.log('listing all recipes');
+  jsonfile.readFile(recipesFile, (err, obj) => {
+      if (err) {
+          console.log(err);
+          response.status(501).send('Error when reading the file: ' + err);
+          return;
+      }
+
+      const data = {
+          recipes: obj.recipes,
+      };
+      response.render('recipelist', data);
+      return;
+  })
+})
+
 
 // Catch all for any sort of request
 app.get('*', (request, response) => {
-    const message = 'It works!';
+    const message = '404 Not Found';
     const data = {
         message: message
     };

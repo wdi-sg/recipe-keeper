@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class Message extends React.Component {
+class EditRecipe extends React.Component {
 
     render() {
 
-        const actionURL = `/recipes/${this.props.recipeId}?_method=puts`;
+        const actionURL = `/recipes/${this.props.recipeId}?_method=put`;
         // action="/pokemon/'+pokemon.id+'?_method=delete"
         return (<div>
             <h1>Edit Recipe</h1>
@@ -24,4 +24,4 @@ class Message extends React.Component {
     }
 }
 
-export default Message;
+export default EditRecipe;
