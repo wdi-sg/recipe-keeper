@@ -62,9 +62,48 @@ app.post('/recipes', (request, response) => {
 
             const newIndex = obj.recipes.length - 1;
             const data = {
-                recipe: obj.recipes[newIndex]
+                recipe: obj.recipes[newIndex],
+                message: 'Recipe added.'
             };
-            response.render('newrecipe', data)
+            response.render('recipe', data)
+            return;
+        })
+    })
+})
+
+// PUT request to change a recipe in place
+app.post('/recipes/:id', (request, response) => {
+    // Validate the input, if not valid then return/render the form again with changes to be made.
+    console.log(request.body);
+
+    const newRecipe = {
+        title: request.body.title,
+        ingredients: request.body.ingredients,
+        method: request.body.method
+    }
+
+    jsonfile.readFile(recipesFile, (err, obj) => {
+        if (err) {
+            console.log(err);
+            response.status(501).send('Error when reading the file: ' + err);
+            return;
+        }
+
+        obj.recipes[request.params.id] = newRecipe;
+
+        jsonfile.writeFile(recipesFile, obj, (err) => {
+            if (err) {
+                console.log(err);
+                response.status(501).send('Error when writing the file: ' + err);
+                return;
+            }
+
+            const newIndex = obj.recipes.length - 1;
+            const data = {
+                recipe: obj.recipes[newIndex],
+                message: 'Recipe updated'
+            };
+            response.render('recipe', data)
             return;
         })
     })
@@ -75,8 +114,33 @@ app.get('/recipes/new', (request, response) => {
     response.render('addrecipe');
 })
 
+// redirect /add to /new just in case.
 app.get('/recipes/add', (request, response) => {
     response.status(301).redirect('/recipes/new');
+})
+
+// Edit a recipe, and push in a PUT request.
+app.get('/recipes/:id/edit', (request, response) => {
+
+    if (isNaN(request.params.id)) {
+        response.status(404).send(`Not found, ${request.params.id} is not a valid number.`);
+        return;
+    }
+    const getRequestId = parseInt(request.params.id);
+
+    jsonfile.readFile(recipesFile, (err, obj) => {
+        if (err) {
+            console.log(err);
+            response.status(501).send('Error when reading the file: ' + err);
+            return;
+        }
+        const recipeToEdit = obj.recipes[getRequestId];
+        const data = {
+            recipe: recipeToEdit,
+            recipeId: getRequestId
+        };
+        response.render('editrecipe', data);
+    })
 })
 
 // Display a recipe by the index of the recipe in the array:

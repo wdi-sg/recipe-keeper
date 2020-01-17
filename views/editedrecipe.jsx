@@ -7,7 +7,7 @@ class NewRecipe extends React.Component {
         return ( <
             div >
             <
-            h2 > Alert: Added! < /h2> <
+            h2 > Alert: Edited! < /h2> <
             h1 > {
                 this.props.recipe.title
             } < /h1> <

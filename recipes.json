@@ -1,11 +1,1 @@
-{
-	"recipes": [{
-		"title": "Chicken Rice",
-		"ingredients": "Chicken and Rice",
-		"method": "Put them on a plate"
-	}, {
-		"title": "Bak Kuh Teh",
-		"ingredients": "A huge slab of pork",
-		"method": "Put it in some soup. Easy Peasy"
-	}]
-}
+{"recipes":[{"title":"Chicken Rice","ingredients":"Chicken and Rice","method":"Put them on a plate"},{"title":"Bak Kuh Teh","ingredients":"A huge slab of pork","method":"Put it in some soup. Easy Peasy"},{"title":"Beef Stroganoff","ingredients":"Beef and Stew","method":"Chuck 'em in a pot."}]}
