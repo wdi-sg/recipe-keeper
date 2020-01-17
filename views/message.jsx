@@ -5,13 +5,10 @@ class Message extends React.Component {
     render() {
 
         return (
-            // Put text here
-            <
-            p > {
-                this.props.message
-            } < /p>
-        )
-
+        // Put text here
+        <p>
+            {this.props.message}
+        </p>)
     }
 }
 
