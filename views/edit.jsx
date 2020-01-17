@@ -17,6 +17,7 @@ class Edit extends React.Component {
                 id="exampleFormControlInput1"
                 name="title"
                 placeholder={recipe.title}
+                minLength="3"
                 required
               />
             </div>
@@ -28,6 +29,7 @@ class Edit extends React.Component {
                 id="exampleFormControlInput1"
                 name="ingredients"
                 placeholder={recipe.ingredients}
+                minLength="4"
                 required
               />
             </div>
@@ -42,12 +44,13 @@ class Edit extends React.Component {
                 name="instructions"
                 placeholder={recipe.instructions}
                 required
+                minLength="30"
               ></textarea>
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Recipe Image Link</label>
               <input
-                type="text"
+                type="url"
                 class="form-control"
                 id="exampleFormControlInput1"
                 name="image"
