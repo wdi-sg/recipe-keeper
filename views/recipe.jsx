@@ -5,6 +5,7 @@ class Recipe extends React.Component {
     render() {
         let recipe = this.props
         let editLink = "/recipes/"+recipe.index+"/edit"
+        let deleteLink = "/recipes/"+recipe.index+"?_method=delete"
         return (
                 <html>
                     <Template />
@@ -17,6 +18,9 @@ class Recipe extends React.Component {
                             </div>
                             <button type="link" className="btn btn-primary"><a className="text-white" href={editLink}>Edit</a></button>
                         </div>
+                        <form action={deleteLink} method="POST">
+                            <button type="submit" className="btn btn-danger">Delete</button>
+                        </form>
                     </body>
                 </html>
         );

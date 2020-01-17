@@ -1,11 +1,6 @@
 {
   "recipes": [
     {
-      "title": "Rando Chicken1",
-      "ingredients": "lots of chicken, lots of rando123",
-      "instructions": "add chicken, stir, mix mix stir, add rando123"
-    },
-    {
       "title": "Rando Chicken2",
       "ingredients": "lots of chicken, lots of rando2",
       "instructions": "add chicken, stir, mix mix stir, add rando2"

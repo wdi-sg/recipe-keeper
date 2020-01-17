@@ -61,7 +61,15 @@ app.put('/recipes/:index', (request,response) => {
     })
 })
 
-
+app.delete('/recipes/:index', (request,response) => {
+    jsonfile.readFile(file, (err,obj) => {
+        let index = parseInt(request.params.index)-1;
+        obj.recipes.splice(index, 1)
+        jsonfile.writeFile(file, obj, (err) => {
+            response.send("Recipe Deleted")
+        })
+    })
+})
 
 
 
