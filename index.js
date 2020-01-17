@@ -20,6 +20,21 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
+// Functions
 
+
+///////////////////////
+// Listen responses. //
+///////////////////////
+
+
+
+// Catch all for any sort of request
+app.get('*', ( request, response ) => {
+  response.send('It works!');
+})
+
+
+// Listen
 const listenPort = 3000;
 app.listen(3000, () => {console.log(`Listening to incoming input on port ${listenPort}`)});
