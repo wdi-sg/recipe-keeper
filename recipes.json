@@ -1,1 +1,11 @@
-{"recipes":[{"title":"Chicken Rice","ingredients":"Chicken and Rice","method":"Put them on a plate"}]}
+{
+	"recipes": [{
+		"title": "Chicken Rice",
+		"ingredients": "Chicken and Rice",
+		"method": "Put them on a plate"
+	}, {
+		"title": "Bak Kuh Teh",
+		"ingredients": "A huge slab of pork",
+		"method": "Put it in some soup. Easy Peasy"
+	}]
+}

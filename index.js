@@ -48,6 +48,7 @@ app.post('/recipes', (request, response) => {
         if (err) {
             console.log(err);
             response.status(501).send('Error when reading the file: ' + err);
+            return;
         }
 
         obj.recipes.push(newRecipe);
@@ -56,8 +57,15 @@ app.post('/recipes', (request, response) => {
             if (err) {
                 console.log(err);
                 response.status(501).send('Error when writing the file: ' + err);
+                return;
             }
-            response.send('it worked!');
+
+            const newIndex = obj.recipes.length - 1;
+            const data = {
+                recipe: obj.recipes[newIndex]
+            };
+            response.render('newrecipe', data)
+            return;
         })
     })
 })
@@ -68,9 +76,40 @@ app.get('/recipes/new', (request, response) => {
 })
 
 app.get('/recipes/add', (request, response) => {
-  response.status(301).redirect('/recipes/new');
+    response.status(301).redirect('/recipes/new');
 })
 
+// Display a recipe by the index of the recipe in the array:
+app.get('/recipes/:id', (request, response) => {
+    // if id is not a number, return not found.
+    if (isNaN(request.params.id)) {
+        response.status(404).send(`Not found, ${request.params.id} is not a valid number.`);
+        return;
+    }
+    const getRequestId = parseInt(request.params.id);
+
+    jsonfile.readFile(recipesFile, (err, obj) => {
+        if (err) {
+            console.log(err);
+            response.status(501).send('Error when reading the file: ' + err);
+            return;
+        }
+
+        // if not in the array, return not found.
+        if (!obj.recipes[getRequestId]) {
+            response.status(404).send(`Recipe number ${getRequestId} not found`);
+            return;
+        }
+        const recipeToDisplay = obj.recipes[getRequestId];
+
+        const data = {
+            recipe: recipeToDisplay
+        };
+        response.render('recipe', data);
+        return;
+    })
+
+})
 
 
 // Catch all for any sort of request

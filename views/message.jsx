@@ -2,14 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class Message extends React.Component {
-  render () {
+    render() {
 
-    return (
-      // Put text here
-      <p>{this.props.message}</p>
-    )
+        return (
+            // Put text here
+            <
+            p > {
+                this.props.message
+            } < /p>
+        )
 
-  }
+    }
 }
 
 export default Message;
