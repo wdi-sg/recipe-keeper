@@ -7,7 +7,7 @@ class Message extends React.Component {
 
         return (
           <div>
-        <h1>Add Recipe:</h1>
+        <h1>Add Recipe</h1>
         <form action="/recipes" method="POST">
             <p>Title:
                 <input type="text" name="title"/></p>
