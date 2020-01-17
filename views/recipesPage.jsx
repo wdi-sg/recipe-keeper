@@ -2,7 +2,7 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 
-class recipePages extends React.Component {
+class recipesPage extends React.Component {
   render() {
 
          const recipes = this.props.recipes;
@@ -23,4 +23,4 @@ class recipePages extends React.Component {
   }
 }
 
-module.exports = recipePages;
+module.exports = recipsPage;

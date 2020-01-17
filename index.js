@@ -36,7 +36,6 @@ const addRecipe = (request,response)=>{
 
         obj.recipes.push(data);
     jsonfile.writeFile(file , obj, (err) => {
-      console.error(err);
     });
         console.log("Done reading");
         let id = obj.recipes.length;
@@ -62,7 +61,7 @@ const displayRecipe = ( request,response)=>{
 const displayRecipes = (request, response)=>{
     console.log("displaying all recipes");
     jsonfile.readFile(file, (err, obj)=>{
-        response.render("recipePages", obj);
+        response.render("recipesPage", obj);
         console.log("Done rendering pages");
     })
 }
@@ -90,15 +89,31 @@ const updateRecipe = (request,response)=>{
     })
 }
 //////Functions not yet tested
-const deleteRecipe = (request, response)=>{
+const showDeleteRecipe = (request, response)=>{
     let id = request.params.id;
-    console.log("deleteRecipe");
+
     jsonfile.readFile(file, (err,obj)=>{
-        obj.recipes.splice(id-1,1);
-        jsonfile.writeFile(file, (err,obj)=>{
-        });
-        response.redirect('/recipes');
+        let recipe = obj.recipes[id-1];
+        const data = {
+            id : id,
+            title : recipe.title,
+            instructions : recipe.instructions,
+            ingredients : recipe.ingredients
+        };
+        console.log("Current delete data " + (id-1));
+        response.render("deletePage", data);
     });
+}
+
+const deleteRecipe  = (request,response)=>{
+  let id = parseInt(request.params.id);
+  jsonfile.readFile(file, (err, obj) => {
+    obj.recipes.splice(id-1, 1);
+    jsonfile.writeFile(file, obj, (err) => {
+      console.log('DELETED');
+      response.redirect('/recipes');
+    });
+  });
 }
 //*******
 //Routes
@@ -109,10 +124,11 @@ app.get('/recipes/new',(request,response)=>{
 app.post('/recipes', addRecipe);
 app.get('/recipes/:id', displayRecipe);
 app.get('/recipes', displayRecipes);
-//
 app.get('/recipes/:id/edit',editPage);
 app.put('/recipes/:id', updateRecipe);
-app.get('/recipes/:id', deleteRecipe);
+app.get('/recipes/:id/delete', showDeleteRecipe);
+//
+app.delete('/recipes/:id', deleteRecipe);
 //
 
 app.listen(3000, () => console.log("~~ Tuning in to port 3000 ~~"));
