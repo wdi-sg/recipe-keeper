@@ -5,22 +5,25 @@ class Home extends React.Component {
   render() {
     // console.log("INSIDE HOMEEEEEEEEEEEE", this.props.recipes)
     const recipes = this.props.recipes;
+    const searchString = this.props.searchString;
     const recipe = recipes.map(recipe => {
-      const recipePath = "recipes/" + recipe.id;
+      const recipePath = "/recipes/" + recipe.id;
       const ingredients = recipe.ingredients.split(",");
       const ingredientItem = ingredients.map(ingredient => {
         return <li>{ingredient}</li>;
       });
       return (
         <div className=" col-lg-6">
-          <img
-            className="card-img-top"
-            src={recipe.image}
-            alt="Card image cap"
-            style={{ maxHeight: "350px" }}
-          />
+          <a href={recipePath}>
+            <img
+              className="card-img-top"
+              src={recipe.image}
+              alt="Card image cap"
+              style={{ maxHeight: "350px" }}
+            />
+          </a>
           <div className="card-body" style={{ padding: "10px 0" }}>
-            <h5 className="card-title">
+            <h5 className="card-title" style={{ textAlign: "center" }}>
               <a
                 href={recipePath}
                 style={{ textDecoration: "underline", color: "black" }}
@@ -29,7 +32,6 @@ class Home extends React.Component {
                 {recipe.title}
               </a>
             </h5>
-          
           </div>
         </div>
       );
@@ -43,7 +45,8 @@ class Home extends React.Component {
           >
             Recipe Keepr
           </h1>
-          <div className="row">{recipe}</div>
+          <h2 style={{ textAlign: "center" }}>{searchString}</h2>
+          <div className="row d-flex justify-content-center">{recipe}</div>
         </div>
       </Layout>
     );

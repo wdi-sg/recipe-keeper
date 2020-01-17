@@ -60,7 +60,8 @@ app.get("/recipes/search/", (req, res) => {
     }
     if (found) {
       const searchObject = {
-        recipes: searchArray
+        recipes: searchArray,
+        searchString: `You searched for "${search}"!`
       };
       console.log("search object is", searchObject)
       res.render("home", searchObject);

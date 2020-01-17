@@ -6,7 +6,7 @@ class Layout extends React.Component {
     return (
       <html lang="en">
         <head>
-          <title>Document</title>
+          <title>Recipe Keepr</title>
           <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -54,6 +54,7 @@ class Layout extends React.Component {
                   placeholder="Search"
                   aria-label="Search"
                   name="search"
+                  required
                 />
                 <button
                   className="btn btn-outline-success my-2 my-sm-0"
