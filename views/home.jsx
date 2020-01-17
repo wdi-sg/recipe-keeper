@@ -3,8 +3,8 @@ const Layout = require("./layout");
 
 class Home extends React.Component {
   render() {
-    const recipes = this.props.recipes.recipes;
-
+    // console.log("INSIDE HOMEEEEEEEEEEEE", this.props.recipes)
+    const recipes = this.props.recipes;
     const recipe = recipes.map(recipe => {
       const recipePath = "recipes/" + recipe.id;
       const ingredients = recipe.ingredients.split(",");

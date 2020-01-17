@@ -21,10 +21,8 @@ app.set("view engine", "jsx");
 
 app.get("/", (req, res) => {
   jsonfile.readFile(file, (err, obj) => {
-    const data = {
-      recipes: obj
-    };
-    res.render("home", data);
+    
+    res.render("home", obj);
   });
 });
 
@@ -37,11 +35,39 @@ app.post("/recipes/", (req, res) => {
   jsonfile.readFile(file, (err, obj) => {
     recipe.id = obj.recipes.length;
     obj.recipes.push(recipe);
-    jsonfile.writeFile(file, obj, err => {
-      console.log(obj);
-    });
+    jsonfile.writeFile(file, obj, err => {});
   });
   res.redirect("/");
+});
+
+app.get("/recipes/search/", (req, res) => {
+  const search = req.query.search.toLowerCase();
+  let found;
+  let index;
+  const searchArray = [];
+
+  jsonfile.readFile(file, (err, obj) => {
+    const data = {
+      search: search
+    };
+    for (let i = 0; i < obj.recipes.length; i++) {
+      if (obj.recipes[i].title.toLowerCase().includes(search)) {
+        found = true;
+        index = i;
+        searchArray.push(obj.recipes[i]);
+      }
+      console.log("helllllllooo", searchArray);
+    }
+    if (found) {
+      const searchObject = {
+        recipes: searchArray
+      };
+      console.log("search object is", searchObject)
+      res.render("home", searchObject);
+    } else {
+      res.render("404", data);
+    }
+  });
 });
 
 app.get("/recipes/:id", (req, res) => {

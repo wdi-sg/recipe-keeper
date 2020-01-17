@@ -3,7 +3,6 @@ const Layout = require("./layout");
 
 class Recipe extends React.Component {
   render() {
-    console.log(this.props);
     const recipe = this.props;
     const ingredients = recipe.ingredients.split(",");
     const ingredientItem = ingredients.map(ingredient => {

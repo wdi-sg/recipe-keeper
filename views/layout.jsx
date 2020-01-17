@@ -1,4 +1,5 @@
 const React = require("react");
+const Footer = require("./footer");
 
 class Layout extends React.Component {
   render() {
@@ -46,12 +47,13 @@ class Layout extends React.Component {
                   </a>
                 </li>
               </ul>
-              <form className="form-inline my-2 my-lg-0">
+              <form className="form-inline my-2 my-lg-0" method="GET" action="/recipes/search">
                 <input
                   className="form-control mr-sm-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  name="search"
                 />
                 <button
                   className="btn btn-outline-success my-2 my-sm-0"
@@ -63,6 +65,7 @@ class Layout extends React.Component {
             </div>
           </nav>
           <div className="fluid-container">{this.props.children}</div>
+          <Footer />
         </body>
       </html>
     );
