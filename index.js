@@ -49,7 +49,13 @@ const displayRecipe = ( request,response)=>{
     jsonfile.readFile(file, (err, obj) => {
         let id = parseInt(request.params.id)
         console.log("recipes");
-        const data = obj.recipes[id-1];
+        let recipe = obj.recipes[id-1];
+        const data = {
+            id : id,
+            title: recipe.title,
+            ingredients: recipe.ingredients,
+            instructions: recipe.instructions
+        };
         response.render("recipePage",data);
     });
 }
@@ -60,13 +66,13 @@ const displayRecipes = (request, response)=>{
         console.log("Done rendering pages");
     })
 }
-//////Functions not yet tested
 const editPage = (request, response)=>{
     console.log("Edit page");
     jsonfile.readFile(file, (err,obj)=>{
-        let id = request.params.id;
+        let id = parseInt(request.params.id);
         let recipe = obj.recipes[id-1];
         const data = {
+            id: id,
             title: recipe.title,
             instructions : recipe.instructions,
             ingredients: recipe.ingredients
@@ -83,6 +89,7 @@ const updateRecipe = (request,response)=>{
         });
     })
 }
+//////Functions not yet tested
 const deleteRecipe = (request, response)=>{
     let id = request.params.id;
     console.log("deleteRecipe");

@@ -4,8 +4,9 @@ var DefaultLayout = require('./layouts/default');
 
 class recipePage extends React.Component {
   render() {
-     let linkDelete= "/recipe/"+this.props.id+"/delete";
-     let linkEdit= "/recipe/"+this.props.id+"/edit";
+     let linkDelete= "/recipes/"+this.props.id+"/delete";
+     let linkEdit= "/recipes/"+this.props.id+"/edit";
+
      console.log(this.props.id);
     return (
       <DefaultLayout title="Recipe">
