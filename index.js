@@ -27,11 +27,18 @@ app.set('view engine', 'jsx');
 // Listen responses. //
 ///////////////////////
 
+// Display form to add a recipe:
+app.get('/recipes/new', ( request, response ) => {
+  response.render('addrecipe');
+})
+
 
 
 // Catch all for any sort of request
 app.get('*', ( request, response ) => {
-  response.send('It works!');
+  const message = 'It works!';
+  const data = { message: message };
+  response.render('message', data);
 })
 
 
