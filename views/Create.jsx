@@ -18,6 +18,7 @@ class Create extends React.Component {
                 <label for='inst'>Instructions: </label>
                     <input id ='instructions' type = 'text/input' name = 'instructions' placeholder='Instructions'/>
                 <input type = 'submit'/>
+                <button>Cancel</button>
                 </form>
           </div>
         </body>
