@@ -12,13 +12,13 @@ class Home extends React.Component {
         return <li>{ingredient}</li>;
       });
       return (
-        <div className=" col-lg-6">
+        <div className=" col-lg-4">
           <a href={recipePath}>
             <img
               className="card-img-top img-fluid"
               src={recipe.image}
               alt="Card image cap"
-              style={{ maxHeight: "350px" }}
+              style={{ maxHeight: "300px", maxWidth:"300px", borderRadius: "2px", display:"block", margin:"0 auto" }}
             />
           </a>
           <div className="card-body" style={{ padding: "10px 0" }}>
@@ -26,7 +26,7 @@ class Home extends React.Component {
               Get recipe:
               <a
                 href={recipePath}
-                style={{ color: "black", textDecoration: "underline" }}
+                style={{ color: "#FF8429", textDecoration: "underline", }}
               >
                 {" "}
                 {recipe.title}
@@ -40,12 +40,12 @@ class Home extends React.Component {
       <Layout>
         <div className="container">
           <h1
-            className={"display-1"}
+            className={"display-3"}
             style={{ textAlign: "center", marginBottom: "20px" }}
           >
             Recipe Keepr
           </h1>
-          <h2 style={{ textAlign: "center" }}>{searchString}</h2>
+          <h5 style={{ textAlign: "center" }}>{searchString}</h5>
           <div className="row d-flex justify-content-center">{recipe}</div>
         </div>
       </Layout>

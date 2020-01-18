@@ -33,7 +33,7 @@ class Layout extends React.Component {
         <body>
           <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
             <a className="navbar-brand" href="/">
-              HOME
+              Recipe Keepr
             </a>
             <button
               className="navbar-toggler"
@@ -53,13 +53,13 @@ class Layout extends React.Component {
             >
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <a className="nav-link" href="/recipes/new">
+                  <a className="nav-link text-center" href="/recipes/new">
                     New
                   </a>
                 </li>
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle text-center"
                     href="#"
                     id="navbarDropdown"
                     role="button"
@@ -69,16 +69,21 @@ class Layout extends React.Component {
                   >
                     Sort
                   </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="/recipes/sort/name">
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <a
+                      className="dropdown-item text-center"
+                      href="/recipes/sort/name"
+                    >
                       Sort by alphabetical order
                     </a>
-                    <a className="dropdown-item" href="/recipes/sort/date">
+                    <a
+                      className="dropdown-item text-center"
+                      href="/recipes/sort/date"
+                    >
                       Sort by newly added
-                    </a>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#">
-                      Nothing here yet...
                     </a>
                   </div>
                 </li>
@@ -88,17 +93,18 @@ class Layout extends React.Component {
                 className="form-inline my-2 my-lg-0"
                 method="GET"
                 action="/recipes/search"
+                style={{display:"flex", justifyContent:"center"}}
               >
                 <input
                   className="form-control mr-sm-2"
                   type="search"
-                  placeholder="Search"
+                  placeholder="Find a recipe!"
                   aria-label="Search"
                   name="search"
                   required
                 />
                 <button
-                  className="btn btn-outline-success my-2 my-sm-0"
+                  className="btn btn btn-outline-warning my-2 my-sm-0"
                   type="submit"
                 >
                   Search

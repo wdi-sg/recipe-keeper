@@ -18,7 +18,6 @@ class Edit extends React.Component {
                 name="title"
                 placeholder={recipe.title}
                 minLength="3"
-                required
               />
             </div>
             <div class="form-group">
@@ -30,7 +29,6 @@ class Edit extends React.Component {
                 name="ingredients"
                 placeholder={recipe.ingredients}
                 minLength="4"
-                required
               />
             </div>
             <div class="form-group">
@@ -43,7 +41,6 @@ class Edit extends React.Component {
                 rows="3"
                 name="instructions"
                 placeholder={recipe.instructions}
-                required
                 minLength="30"
               ></textarea>
             </div>

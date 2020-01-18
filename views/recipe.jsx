@@ -15,18 +15,19 @@ class Recipe extends React.Component {
       <Layout>
         <div className="container">
           <h1>{recipe.title}</h1>
-          <h6>Date added: {recipe.date}</h6>
+          <h6 style={{ color: "#FF8325", fontWeight:"lighter" }}>Date added: {recipe.date}</h6>
           <div>
-            <img src={recipe.image} style={{ width: "50%"}}></img>
+            <img src={recipe.image} style={{ width: "50%" }}></img>
           </div>
-          <p>
-            <strong>Ingredients: </strong>
+
+          <div className="pt-3">
+            <h4>Ingredients: </h4>
             <ul>{ingredientItem}</ul>
-          </p>
-          <p>
-            <strong>Instructions: </strong>
-            {recipe.instructions}
-          </p>
+
+            <h4>Instructions: </h4>
+            <p>{recipe.instructions}</p>
+          </div>
+
           <button className="btn btn-warning mr-1">
             <a className="text-light" href={editPath}>
               Edit
