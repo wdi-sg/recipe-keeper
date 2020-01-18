@@ -53,7 +53,7 @@ app.get('/recipes', (request, response) => {
     const data = {
         recipeList: listOfRecipe
     }
-    response.render("home", data);
+    response.render('home', data);
     //response.render must be within ur jsonfile.readFile otherwise it won't work
   });
 });
@@ -61,18 +61,18 @@ app.get('/recipes', (request, response) => {
 
 //URL -> /recipes/new && HTTP Verb -> GET && Action -> new && Purpose -> Display the form for a single recipe
 app.get('/recipes/new', (request, response) => {
-    response.render("create");
+    response.render('create');
 });
 
 
-//URL -> /recipes && HTTP Verb -> POST && Action -> create && Purpose -> Create a new recipe
+//URL -> /recipes && HTTP Verb -> POST && Action -> create && Purpose -> Create a new recipe  && ensure that strings is in lowercase
 app.post("/recipes", (request, response) => {
     console.log("Received POST");
     console.log(request.body);
     const newRecipe = {
-    title: request.body.title,
-    ingredients: request.body.ingredients,
-    instructions: request.body.instructions,
+    title: request.body.title.toLowerCase(),
+    ingredients: request.body.ingredients.toLowerCase(),
+    instructions: request.body.instructions.toLowerCase()
   };
 
   jsonfile.readFile(file, (err, obj) => {
@@ -91,7 +91,7 @@ app.post("/recipes", (request, response) => {
       const data = {
         latestRecipe: newRecipe
       }
-      response.render("addedNew", data)
+      response.render('addedNew', data)
       return;
     });
   });
@@ -99,48 +99,44 @@ app.post("/recipes", (request, response) => {
 
 
 //URL -> /recipes/id && HTTP Verb -> GET && Action -> show && Purpose -> See a single recipe
-// app.get('/recipes/:id', (request, response) => {
-//     console.log(request.params.id)
-//   // get json from specified file
-//   jsonfile.readFile(file, (err, obj) => {
+app.get('/recipes/:id', (request, response) => {
+    console.log(request.params.id)
+  // get json from specified file
+  jsonfile.readFile(file, (err, obj) => {
 
-//     // check to make sure the file was properly read
-//     if( err ){
+    // check to make sure the file was properly read
+    if( err ){
 
-//       console.log("error with json read file:",err);
-//       response.status(503).send("error reading filee");
-//       return;
-//     }
-//     // obj is the object from the pokedex json file
-//     // extract input data from request
-//     let inputId = parseInt( request.params.id );
+      console.log("error with json read file:",err);
+      response.status(503).send("error reading filee");
+      return;
+    }
+    // obj is the object from the data.json file
+    // extract input data from request
+    let inputId = parseInt( request.params.id );
+    var recipe;
+    let currentRecipe = obj.recipes[inputId];
+    // find recipe by index of the obj.recipes's array from the data.json file
+      if( currentRecipe === obj.recipes[inputId] ){
+        recipe = currentRecipe;
+      }
 
-//     var pokemon;
 
-//     // find pokemon by id from the pokedex json file
-//     for( let i=0; i<obj.pokemon.length; i++ ){
+    if (recipe === undefined) {
 
-//       let currentPokemon = obj.pokemon[i];
+      // send 404 back
+      response.status(404);
+      response.render('error');
+    } else {
+        const data = {
+            recipeList: recipe
+        }
+              response.render('show', data);
+    }
+  });
+});
 
-//       if( currentPokemon.id === inputId ){
-//         pokemon = currentPokemon;
-//       }
-//     }
-
-//     if (pokemon === undefined) {
-
-//       // send 404 back
-//       response.status(404);
-//       response.send("not found");
-//     } else {
-//         const data = {
-//             pokeList: pokemon
-//         }
-//       response.render("info", data);
-//     }
-//   });
-// });
-
+//URL -> /recipes/id/edit && HTTP Verb -> GET && Action -> edit && Purpose -> Display the form for editing a single recipe
 // app.get("/recipes/:id/edit", (request, response) => {
 //   let pokemonIndex = parseInt(request.params.id) - 1; // need to minus the index so pokemon are the same!! if not it becomes next pokemon in array
 
@@ -155,9 +151,18 @@ app.post("/recipes", (request, response) => {
 //   });
 // });
 
-// app.put("/recipes/:id", (request, response) => {
 
-// })
+//URL -> /recipes/id && HTTP Verb -> PATCH/PUT && Action -> update && Purpose -> Update a recipe
+// app.put("/recipes/:id", (request, response) => {
+// read the file in and write out to it
+// });
+
+
+//URL -> /recipes/id && HTTP Verb -> PATCH/PUT && Action -> update && Purpose -> Update a recipe
+// app.delete("/recipes/:id", (request, response) => {
+//   //read the file in and write out to it
+// });
+
 
 
 /**
