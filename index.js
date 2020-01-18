@@ -25,8 +25,14 @@ app.post('/recipes', (request, response) => {
 		for (i=0;i<obj.recipes.length;i++) {
 			arrayOfTitles.push(obj.recipes[i].title);
 		};
-		let data = {titles: arrayOfTitles};
-		response.render("index",data);
+	});
+});
+app.put('/recipes/:id', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+        obj.recipes[parseInt(request.params.id)] = request.body;
+        let data = obj.recipes[parseInt(request.params.id)];
+        jsonfile.writeFile(file, obj);
+        response.render("show", data);
     });
 });
 // CRUD //
@@ -56,7 +62,10 @@ app.get("/recipes/:id", (request,response)=>{
 });
 // - edit - //
 app.get("/recipes/:id/edit", (request,response)=>{
-	response.render("edit", data);
+	jsonfile.readFile(file,(err,obj)=> {
+		let data = {id: request.params.id, recipe: obj.recipes[request.params.id]};
+		response.render("edit",data);
+	});
 });
 // Gets //
 
