@@ -40,7 +40,7 @@ app.set("view engine", "jsx");
  */
 
 app.get("/recipes/new", (req, res) => {
-    res.render("New");
+    response.render("New");
 });
 
 app.post("/recipes", (req, res) => {
@@ -67,7 +67,7 @@ app.post("/recipes", (req, res) => {
     };
 
     if (errors.length > 0 && !duplicate) {
-        res.render("New", errObj);
+        response.render("New", errObj);
     } else {
         jsonfile.readFile(file, (err, obj) => {
                 if (Array.isArray(obj.recipes) && obj.recipes.length > 0) {// if array is empty and the length is zero returns a false value
@@ -86,11 +86,11 @@ app.post("/recipes", (req, res) => {
                 ) {
                     duplicate = true;
                     errObj.errorMessage = `There was an error!
-            ${recipesData.title} or ${recipesData.id} already exists!`;
+            ${recipesData.title} already exists!`;
                 }
             }
             if (duplicate) {
-                res.render("New", errObj);
+                response.render("New", errObj);
             } else {
                 
                 recipesData.title += "";
@@ -98,7 +98,7 @@ app.post("/recipes", (req, res) => {
                 recipesData.instructions += "";
                 obj.recipes.push(recipesData);
                 jsonfile.writeFile(file, obj, err => { });
-                res.redirect(`/recipes/${recipesData.id}`);
+                response.redirect(`/recipes/${recipesData.id}`);
                 console.log(obj.recipes.length - 1);
             }
         });
@@ -128,7 +128,7 @@ app.get("/recipes/:id", (request, response) => {
         if (recipes === undefined) {
             // send 404 back
             response.status(404);
-            response.send("404 Not Found");
+            response.send("Recipe not created yet");
         } else {
             response.render("recipeSearch", recipes);
         }
@@ -197,19 +197,17 @@ app.get("/recipes/:id/delete", (request, response) => {
     });
 });
 
-app.delete("/recipes/:id", (request, response) => {
+app.delete("/recipes/:id/", (request, response) => {
     const index = parseInt(request.params.id);
     console.log("index is", index);
 
     jsonfile.readFile(file, (err, obj) => {
         console.log("deleted", obj.recipes[index]);
-        //Joyce edited the console.log to remove the .name because it was causing an error
         obj.recipes.splice(index - 1, 1);
         for (let i = 0; i < obj.recipes.length; i++) {
             obj.recipes[i].id = i + 1;
         }
-
-        // console.log(obj.recipes);
+        console.log(obj.recipes);
         jsonfile.writeFile(file, obj, err => {
             const data = {
                 recipes: obj.recipes
@@ -218,8 +216,13 @@ app.delete("/recipes/:id", (request, response) => {
         });
     });
 });
+/**
+ * ===================================
+ * VIEW ALL RECIPES
+ * ===================================
+ */
 
-app.get("/", (request, response) => {
+app.get("/recipes/", (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         const data = {
             recipes: obj.recipes
@@ -229,7 +232,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("*", (request, response) => {
-    response.send("404 Not Found");
+    response.send("404 Not Found.");
 });
 
 /**
