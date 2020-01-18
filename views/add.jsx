@@ -1,5 +1,6 @@
 var React = require('react');
 var Template = require('./template')
+var NavHead = require('./navHead')
 
 class Add extends React.Component {
     render() {
@@ -8,6 +9,7 @@ class Add extends React.Component {
                     <Template />
                     <body>
                         <div className="container">
+                            <NavHead />
                             <div className="col-6">
                                 <form action="/" method="POST">
                                     <div className="form-group">

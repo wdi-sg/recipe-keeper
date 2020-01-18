@@ -22,7 +22,6 @@ app.get('/recipes/new', (request, response) => {
 
 //get to render form for editing
 app.get('/recipes/:index/edit', (request, response) => {
-    console.log("i'm getting here")
     jsonfile.readFile(file, (err,obj) => {
         let index = parseInt(request.params.index);
         const data = obj.recipes[index-1];
@@ -79,7 +78,9 @@ app.delete('/recipes/:index', (request,response) => {
 
 
 
-
+app.get('*', (request, response) => {
+    response.render('home')
+})
 
 
 
