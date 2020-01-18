@@ -21,6 +21,11 @@ app.set('view engine', 'jsx');
 //*********
 //Functions
 //*********
+
+//*************************
+//****Get date and time****
+//Format date
+//**************************
 const getDateTime = ()=>{
        const currentDateTime = new Date();
         const options = {
@@ -33,6 +38,12 @@ const getDateTime = ()=>{
     return dateFormat;
 }
 
+//***********************
+//******Sort Recipe******
+//Read file
+//Sort Recipe
+//Render page with data
+//***********************
 const sortRecipe = (request,response)=>{
     jsonfile.readFile(file, (err,obj)=>{
         let recipes = obj.recipes;
@@ -61,6 +72,39 @@ const sortRecipe = (request,response)=>{
          response.render("recipesPage",data);
     });
 }
+
+//***************************
+//****Display All Recipes****
+//Display all recipes
+//***************************
+const displayRecipes = (request, response)=>{
+    console.log("displaying all recipes");
+    jsonfile.readFile(file, (err, obj)=>{
+        response.render("recipesPage", obj);
+        console.log("Done rendering pages");
+    })
+}
+
+const checkId = (id, obj)=>{
+    let recipes;
+    let recipeId;
+    for( let i=0; i<obj.recipes.length; i++ ){
+      let currentRecipe = obj.recipes[i];
+      console.log(currentRecipe.id)
+      if( currentRecipe.id === id){
+        recipeId=i;
+        break;
+      }
+    }
+        return recipeId;
+}
+//******************
+//****ADD RECIPE****
+//Check input
+//Read file
+//Add data
+//write file
+//******************
 const addRecipe = (request,response)=>{
     console.log("creating new recipe");
     jsonfile.readFile(file, (err, obj) => {
@@ -68,30 +112,62 @@ const addRecipe = (request,response)=>{
        console.log("error with json read file:",err);
        response.status(503).send("error reading file");
        return;
-}
+   }
+   let title = request.body.title;
+   let ingredients = request.body.ingredients;
+   let instructions = request.body.instructions;
+    if(title!=="" && ingredients !== "" && instructions !== ""){
       let date = getDateTime();
       const data = {
-          title : request.body.title,
-          ingredients : request.body.ingredients,
-          instructions : request.body.instructions,
+          id : obj.lastId+1,
+          title : title,
+          ingredients : ingredients,
+          instructions : instructions,
           createdDate : date
        }
-
+        obj.lastId = obj.lastId +1;
+                let id = obj.lastId;
         obj.recipes.push(data);
     jsonfile.writeFile(file , obj, (err) => {
     });
         console.log("Done reading");
-        let id = obj.recipes.length;
         let path = '/recipes/'+id;
         response.redirect(path);
+    }else{
+        let message1 ="";
+        let message2 = "";
+        let message3 = "";
+            if(title ===""){
+                message1 = "*Please input a title.";
+            }
+            if(ingredients ===""){
+                  message2 = "*Please input an ingredient.";
+            }
+            if(instructions === ""){
+                message3 = "*Please input instructions.";
+            }
+       const data = {
+            message1: message1,
+            message2: message2,
+            message3: message3
+        }
+        response.render("createPage", data);
+    }
     });
 }
+
+//**********************
+//****Display Recipe****
+//Display one recipe
+//**********************
 const displayRecipe = ( request,response)=>{
  console.log("displaying recipe");
     jsonfile.readFile(file, (err, obj) => {
         let id = parseInt(request.params.id)
         console.log("recipes");
-        let recipe = obj.recipes[id-1];
+        let currentIndex = checkId(id,obj);
+
+        let recipe = obj.recipes[currentIndex];
         const data = {
             id : id,
             title: recipe.title,
@@ -101,39 +177,49 @@ const displayRecipe = ( request,response)=>{
         response.render("recipePage",data);
     });
 }
-const displayRecipes = (request, response)=>{
-    console.log("displaying all recipes");
-    jsonfile.readFile(file, (err, obj)=>{
-        response.render("recipesPage", obj);
-        console.log("Done rendering pages");
-    })
-}
 
+//************************
+//****Edit Recipe Page****
+//Get id of recipe and
+//display it
+//************************
 const editPage = (request, response)=>{
     console.log("Edit page");
     jsonfile.readFile(file, (err,obj)=>{
         let id = parseInt(request.params.id);
-        console.log(obj);
-        let recipe = obj.recipes[id-1];
+        let currentIndex = checkId(id,obj)
+        let recipe = obj.recipes[currentIndex];
+        console.log(id);
     const data = {
             id: id,
             title: recipe.title,
             instructions : recipe.instructions,
             ingredients: recipe.ingredients
         }
-        console.log("asjbdjahdgjlskbcajkehsgdfkuyesb"+data);
         response.render("editPage", data);
     })
 }
+
+//**************************
+//****Update edit recipe****
+//check input
+//write recipe
+//**************************
 const updateRecipe = (request,response)=>{
     let id = parseInt(request.params.id);
+    let title = request.body.title;
+    let ingredients = request.body.ingredients;
+    let instructions = request.body.instructions;
     jsonfile.readFile(file, (err,obj)=>{
-           let recipe = obj.recipes[id-1];
-            obj.recipes[id-1].title =  request.body.title;
-            obj.recipes[id-1].ingredients = request.body.ingredients;
-            obj.recipes[id-1].instructions = request.body.instructions;
+        let currentIndex = checkId(id,obj);
+         let recipe = obj.recipes[currentIndex];
+        console.log("updateRecipe"+currentIndex);
+    if(title!=="" && ingredients !== "" && instructions !== ""){
+            obj.recipes[currentIndex].title =  title;
+            obj.recipes[currentIndex].ingredients = ingredients;
+            obj.recipes[currentIndex].instructions = instructions;
         const data = {
-            id: id,
+            id: currentIndex,
             title: recipe.title,
             instructions : recipe.instructions,
             ingredients: recipe.ingredients
@@ -141,13 +227,42 @@ const updateRecipe = (request,response)=>{
         jsonfile.writeFile(file, obj, (err)=>{
         response.render("recipePage", data);
         });
-    })
+    }else{
+        let message1 ="";
+        let message2 = "";
+        let message3 = "";
+            if(title ===""){
+                message1 = "*Please input a title.";
+            }
+            if(ingredients ===""){
+                  message2 = "*Please input an ingredient.";
+            }
+            if(instructions === ""){
+                message3 = "*Please input instructions.";
+            }
+        const data = {
+            id: id,
+            title: recipe.title,
+            instructions : recipe.instructions,
+            ingredients: recipe.ingredients,
+            message1: message1,
+            message2: message2,
+            message3: message3
+        }
+        response.render("editPage", data);
+        }
+    });
 }
 
+//*********************
+//****Delete recipe****
+//*********************
 const deleteRecipe  = (request,response)=>{
   let id = parseInt(request.params.id);
   jsonfile.readFile(file, (err, obj) => {
-    obj.recipes.splice(id-1, 1);
+    let currentIndex = checkId(id, obj);
+    console.log("dxklsanx"+ currentIndex);
+    obj.recipes.splice(currentIndex, 1);
     jsonfile.writeFile(file, obj, (err) => {
       console.log('DELETED');
       response.redirect('/recipes');
@@ -169,8 +284,5 @@ app.get('/recipes', displayRecipes);
 app.get('/recipes/:id/edit',editPage);
 app.put('/recipes/:id', updateRecipe);
 app.delete('/recipes/:id', deleteRecipe);
-
-
-
 
 app.listen(3000, () => console.log("~~ Tuning in to port 3000 ~~"));

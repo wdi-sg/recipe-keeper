@@ -9,12 +9,12 @@ class recipePage extends React.Component {
      let linkEdit= "/recipes/"+this.props.id+"/edit";
     return (
       <DefaultLayout title="Recipe">
-       <NavLayout sort={false}>
-      <li class="nav-item">
-        <a class="nav-link mt-4"  href="/recipes">Home </a>
+       <NavLayout>
+      <li className="nav-item">
+        <a className="nav-link mt-4"  href="/recipes">Home </a>
       </li>
-    <li class="nav-item">
-        <a class="nav-link mt-4" active href="/recipes/new">Add</a>
+    <li className="nav-item">
+        <a className="nav-link mt-4" active href="/recipes/new">Add</a>
       </li>
       </NavLayout>
 
@@ -28,16 +28,16 @@ class recipePage extends React.Component {
                 </div>
                 <div className="row">
                 <div className="container h-100 ">
-                <div class="row">
-                <div class ="col-md-3">
+                <div className="row">
+                <div className ="col-md-3">
        <label>Ingredients :  </label></div>
-       <div class ="col-md-12">
+       <div className ="col-md-12">
        <p>{this.props.ingredients}</p>
        </div>
 </div>
-        <div class="row"><div class ="col-md-3">
+        <div className="row"><div className ="col-md-3">
                     <label className="mr-4">Instructions : </label></div>
-                    <div class ="col-md-12">
+                    <div className ="col-md-12">
             <p>{this.props.instructions}</p>
             </div>
 
