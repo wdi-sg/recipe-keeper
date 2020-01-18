@@ -1,15 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+const React = require('react');
+const PropTypes = require('prop-types');
+const DefaultLayout = require('./layouts/default');
 
 class Message extends React.Component {
     render() {
 
         return (
         // Put text here
+        <DefaultLayout>
         <p>
             {this.props.message}
-        </p>)
-    }
+        </p>
+      </DefaultLayout>
+    )};
 }
 
-export default Message;
+module.exports = Message;

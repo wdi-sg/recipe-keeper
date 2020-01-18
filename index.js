@@ -104,8 +104,9 @@ app.delete('/recipes/:id', (request, response) => {
               response.status(501).send('Error when writing the file: ' + err);
               return;
           }
-
-          response.send(`recipe ${getRequestId} deleted`);
+          const message = `recipe ${getRequestId} deleted`;
+          const data = { message: message };
+          response.render('message', data);
           return;
       })
   })

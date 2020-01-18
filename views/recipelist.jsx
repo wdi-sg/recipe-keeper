@@ -1,22 +1,29 @@
 const React = require('react');
 const PropTypes = require('prop-types');
+const DefaultLayout = require('./layouts/default');
 
 class RecipeList extends React.Component {
     render() {
 
-      const RecipeList = this.props.recipes.map( (recipe, index) => {
-        // console.log(recipe);
-        const url = `/recipes/${index}`;
-        return <li>{index} - <a href={url}>{recipe.title}</a></li>
-      });
+        const RecipeList = this.props.recipes.map((recipe, index) => {
+            // console.log(recipe);
+            const url = `/recipes/${index}`;
+            return <li>{index}
+                -
+                <a href={url}>{recipe.title}</a>
+            </li>
+        });
 
         return (
-          <div>
-              <h1>List of all recipes:</h1>
-              <ul>
-                {RecipeList}
-              </ul>
-          </div>);
+          <DefaultLayout>
+            <div>
+                <h1>List of all recipes:</h1>
+                <ul>
+                    {RecipeList}
+                </ul>
+            </div>
+        </DefaultLayout>
+      );
     }
 };
 
