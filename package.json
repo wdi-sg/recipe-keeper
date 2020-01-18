@@ -1,0 +1,23 @@
+{
+  "name": "recipe-keeper",
+  "version": "1.0.0",
+  "description": "Create an online recipe keeper.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SafrazHakamali/recipe-keeper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SafrazHakamali/recipe-keeper/issues"
+  },
+  "homepage": "https://github.com/SafrazHakamali/recipe-keeper#readme",
+  "devDependencies": {
+    "mocha": "^7.0.0"
+  }
+}
