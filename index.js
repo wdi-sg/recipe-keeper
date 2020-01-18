@@ -12,7 +12,9 @@ app.use(express.urlencoded({
 
 // Method override for PUT and DEL requests
 const methodOverride = require('method-override')
-const replacementMethods = { methods: ['GET', 'POST'] };
+const replacementMethods = {
+    methods: ['GET', 'POST']
+};
 app.use(methodOverride('_method', replacementMethods));
 
 
@@ -79,40 +81,42 @@ app.post('/recipes', (request, response) => {
 
 // Delete record at ID.
 app.delete('/recipes/:id', (request, response) => {
-  // if id is not a number, return not found.
-  if (isNaN(request.params.id)) {
-      response.status(404).send(`Not found, ${request.params.id} is not a valid number.`);
-      return;
-  }
-  const getRequestId = parseInt(request.params.id);
+    // if id is not a number, return not found.
+    if (isNaN(request.params.id)) {
+        response.status(404).send(`Not found, ${request.params.id} is not a valid number.`);
+        return;
+    }
+    const getRequestId = parseInt(request.params.id);
 
-  jsonfile.readFile(recipesFile, (err, obj) => {
-      if (err) {
-          console.log(err);
-          response.status(501).send('Error when reading the file: ' + err);
-          return;
-      }
+    jsonfile.readFile(recipesFile, (err, obj) => {
+        if (err) {
+            console.log(err);
+            response.status(501).send('Error when reading the file: ' + err);
+            return;
+        }
 
-      // if not in the array, return not found.
-      if (!obj.recipes[getRequestId]) {
-          response.status(404).send(`Recipe number ${getRequestId} not found`);
-          return;
-      }
+        // if not in the array, return not found.
+        if (!obj.recipes[getRequestId]) {
+            response.status(404).send(`Recipe number ${getRequestId} not found`);
+            return;
+        }
 
-      obj.recipes.splice(getRequestId, 1);
+        obj.recipes.splice(getRequestId, 1);
 
-      jsonfile.writeFile(recipesFile, obj, (err) => {
-          if (err) {
-              console.log(err);
-              response.status(501).send('Error when writing the file: ' + err);
-              return;
-          }
-          const message = `recipe ${getRequestId} deleted`;
-          const data = { message: message };
-          response.render('message', data);
-          return;
-      })
-  })
+        jsonfile.writeFile(recipesFile, obj, (err) => {
+            if (err) {
+                console.log(err);
+                response.status(501).send('Error when writing the file: ' + err);
+                return;
+            }
+            const message = `recipe ${getRequestId} deleted`;
+            const data = {
+                message: message
+            };
+            response.render('message', data);
+            return;
+        })
+    })
 })
 
 // PUT request to change a recipe in place
@@ -189,6 +193,22 @@ app.get('/recipes/:id/edit', (request, response) => {
     })
 })
 
+
+// Go to a random recipe for funsies.
+app.get('/recipes/random', (request, response) => {
+    jsonfile.readFile(recipesFile, (err, obj) => {
+        if (err) {
+            console.log(err);
+            response.status(501).send('Error when reading the file: ' + err);
+            return;
+        }
+
+        const randomIndex = Math.floor(Math.random() * obj.recipes.length);
+        response.redirect(`/recipes/${randomIndex}`)
+    });
+})
+
+
 // Display a recipe by the index of the recipe in the array:
 app.get('/recipes/:id', (request, response) => {
     // if id is not a number, return not found.
@@ -224,29 +244,33 @@ app.get('/recipes/:id', (request, response) => {
 
 // get index list of recipes.
 app.get('/recipes/', (request, response) => {
-  console.log('listing all recipes');
-  jsonfile.readFile(recipesFile, (err, obj) => {
-      if (err) {
-          console.log(err);
-          response.status(501).send('Error when reading the file: ' + err);
-          return;
-      }
+    console.log('listing all recipes');
+    jsonfile.readFile(recipesFile, (err, obj) => {
+        if (err) {
+            console.log(err);
+            response.status(501).send('Error when reading the file: ' + err);
+            return;
+        }
 
-      const data = {
-          recipes: obj.recipes,
-      };
-      response.render('recipelist', data);
-      return;
-  })
+        const data = {
+            recipes: obj.recipes,
+        };
+        response.render('recipelist', data);
+        return;
+    })
 })
+
 
 
 // Have a nice homepage. Placeholder for now.
 app.get('/', (request, response) => {
-  const pageTitle = `The Freshly Baked Cookbook!`;
-  const message = `Welcome to the new Freshly Baked Cookbook, the best page for amazing recipes delivered in a real sarcastic manner`;
-  const data = { title: pageTitle , message: message };
-  response.render('message', data);
+    const pageTitle = `The Freshly Baked Cookbook!`;
+    const message = `Welcome to the new Freshly Baked Cookbook, the best page for amazing recipes delivered in a real sarcastic manner`;
+    const data = {
+        title: pageTitle,
+        message: message
+    };
+    response.render('message', data);
 })
 
 
