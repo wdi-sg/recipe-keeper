@@ -17,10 +17,13 @@ class Recipe extends React.Component {
               <p>{this.props.recipe.ingredients}</p>
               <h3>Method:</h3>
               <p>{this.props.recipe.method}</p>
-              <p><a href={editURL}>Click me to edit this recipe.</a></p>
-              <p><a href={actionURL}>Click to delete recipe:</a></p>
-            <p><a href="/recipes/add">Click me to add a new recipe</a></p>
-            <p><a href="/recipes/">Click me to go back to the main list.</a></p>
+              <a href={editURL} type="button" className="btn btn-primary">
+                Edit this recipe
+              </a>
+              <span> </span>
+              <a href={actionURL} type="button" className="btn btn-danger">
+                Delete this recipe
+              </a>
             </div>
         </DefaultLayout>
         );

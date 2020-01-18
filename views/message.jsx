@@ -7,7 +7,10 @@ class Message extends React.Component {
 
         return (
         // Put text here
-        <DefaultLayout>
+        <DefaultLayout title={this.props.title}>
+          <div className="display-4">
+            {this.props.title}
+          </div>
         <p>
             {this.props.message}
         </p>

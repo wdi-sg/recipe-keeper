@@ -238,6 +238,15 @@ app.get('/recipes/', (request, response) => {
 })
 
 
+// Have a nice homepage. Placeholder for now.
+app.get('/', (request, response) => {
+  const pageTitle = `The Freshly Baked Cookbook!`;
+  const message = `Welcome to the new Freshly Baked Cookbook, the best page for amazing recipes delivered in a real sarcastic manner`;
+  const data = { title: pageTitle , message: message };
+  response.render('message', data);
+})
+
+
 // Catch all for any sort of request
 app.get('*', (request, response) => {
     const message = '404 Not Found';

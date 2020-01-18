@@ -9,16 +9,22 @@ class AddRecipe extends React.Component {
         return (<DefaultLayout>
             <div>
                 <h1>Add Recipe</h1>
-                <form action="/recipes" method="POST">
-                    <p>Title:
-                        <input type="text" name="title"/></p>
-                    <p>Ingredients:
-                        <input type="textarea" name="ingredients" rows="3"/></p>
-                    <p>Method:
-                        <input type="textarea" name="method" rows="3"/></p>
-                    <input type="submit"/>
-                </form>
-            </div>
+                  <form action="/recipes" method="POST" className="w-100">
+                    <div className="form-group">
+                      <label htmlFor="recipetitleindex">Title:</label>
+                      <input className="form-control" type="text" name="title" id="recipetitleindex"/>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="recipeingredientsindex">Ingredients:</label>
+                      <textarea className="form-control" name="ingredients" rows="3" id="recipeingredientsindex"/>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="recipemethodindex">Method:</label>
+                      <textarea className="form-control" name="method" rows="3" id="recipemethodindex"/>
+                    </div>
+                      <button type="submit" className="btn btn-primary">Submit</button>
+                  </form>
+                </div>
         </DefaultLayout>)
     }
 }
