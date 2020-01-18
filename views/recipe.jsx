@@ -2,6 +2,7 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const DefaultLayout = require('./layouts/default');
 const DateParser = require('./components/dateparser');
+const MultiLineStringToList = require('./components/multilinestringtolist');
 
 class Recipe extends React.Component {
     render() {
@@ -18,9 +19,9 @@ class Recipe extends React.Component {
               <h1>{this.props.recipe.title}</h1>
               <small className="text-muted">Date Created: <DateParser date={dateCreated}/> - Last Updated: <DateParser date={dateUpdated}/></small>
               <h3>Ingredients:</h3>
-              <p>{this.props.recipe.ingredients}</p>
+              <MultiLineStringToList string={this.props.recipe.ingredients}/>
               <h3>Method:</h3>
-              <p>{this.props.recipe.method}</p>
+              <MultiLineStringToList string={this.props.recipe.method}/>
               <a href={editURL} type="button" className="btn btn-primary">
                 Edit this recipe
               </a>

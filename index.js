@@ -84,8 +84,11 @@ app.post('/recipes', (request, response) => {
 app.delete('/recipes/:id', (request, response) => {
     // if id is not a number, return not found.
     if (isNaN(request.params.id)) {
-        response.status(404).send(`Not found, ${request.params.id} is not a valid number.`);
-        return;
+      response.status(404)
+      const message = `Recipe number ${getRequestId} is not a valid number.`;
+      const data = { message: message };
+      response.render('message', data);
+      return;
     }
     const getRequestId = parseInt(request.params.id);
 
@@ -98,8 +101,11 @@ app.delete('/recipes/:id', (request, response) => {
 
         // if not in the array, return not found.
         if (!obj.recipes[getRequestId]) {
-            response.status(404).send(`Recipe number ${getRequestId} not found`);
-            return;
+          response.status(404)
+          const message = `Recipe number ${getRequestId} not found.`;
+          const data = { message: message };
+          response.render('message', data);
+          return;
         }
 
         obj.recipes.splice(getRequestId, 1);
@@ -192,8 +198,11 @@ app.get('/recipes/add', (request, response) => {
 app.get('/recipes/:id/edit', (request, response) => {
 
     if (isNaN(request.params.id)) {
-        response.status(404).send(`Not found, ${request.params.id} is not a valid number.`);
-        return;
+      response.status(404)
+      const message = `Recipe input '${request.params.id}' is not a valid number.`;
+      const data = { message: message };
+      response.render('message', data);
+      return;
     }
     const getRequestId = parseInt(request.params.id);
 
@@ -232,21 +241,30 @@ app.get('/recipes/random', (request, response) => {
 app.get('/recipes/:id', (request, response) => {
     // if id is not a number, return not found.
     if (isNaN(request.params.id)) {
-        response.status(404).send(`Not found, ${request.params.id} is not a valid number.`);
-        return;
+      response.status(404)
+      const message = `Recipe input '${request.params.id}' not a valid number.`;
+      const data = { message: message };
+      response.render('message', data);
+      return;
     }
     const getRequestId = parseInt(request.params.id);
 
     jsonfile.readFile(recipesFile, (err, obj) => {
         if (err) {
             console.log(err);
-            response.status(501).send('Error when reading the file: ' + err);
+            response.status(501)
+            const message = 'Error when reading the file: ' + err;
+            const data = { message: message };
+            response.render('message', data);
             return;
         }
 
         // if not in the array, return not found.
         if (!obj.recipes[getRequestId]) {
-            response.status(404).send(`Recipe number ${getRequestId} not found`);
+            response.status(404)
+            const message = `Recipe number ${getRequestId} not found.`;
+            const data = { message: message };
+            response.render('message', data);
             return;
         }
         const recipeToDisplay = obj.recipes[getRequestId];
