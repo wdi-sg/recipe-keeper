@@ -4,12 +4,13 @@ var DefaultLayout = require('./layouts/default');
 
 class editPage extends React.Component {
   render() {
+    let formURL = "/recipes/"+this.props.id+"?_method=put";
     return (
    <DefaultLayout  title="Edit Recipe">
 <div className="container h-100">
     <div className="row h-100 justify-content-center align-items-center">
         <div className="col-10 col-md-8 col-lg-6">
-<form className="mt-5" method="POST" action="/recipes">
+<form className="mt-5" method="POST" action={formURL}>
   <div className="form-group">
     <label for="title">Title</label>
     <input type="text" className="form-control" name="title" value={this.props.title}/>

@@ -16,10 +16,24 @@ const reactEngine = require('express-react-views').createEngine();
 app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
+
 //End Of setting up
 //*********
 //Functions
 //*********
+const getDateTime = ()=>{
+       const currentDateTime = new Date();
+        const options = {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+
+    };
+    const dateFormat = currentDateTime.toLocaleString("en-GB",options);
+    return dateFormat;
+}
+
+
 const addRecipe = (request,response)=>{
     console.log("creating new recipe");
     jsonfile.readFile(file, (err, obj) => {
@@ -27,11 +41,13 @@ const addRecipe = (request,response)=>{
        console.log("error with json read file:",err);
        response.status(503).send("error reading file");
        return;
-      }
+}
+      let date = getDateTime();
       const data = {
           title : request.body.title,
           ingredients : request.body.ingredients,
-          instructions : request.body.instructions
+          instructions : request.body.instructions,
+          createdDate : date
        }
 
         obj.recipes.push(data);
@@ -65,44 +81,40 @@ const displayRecipes = (request, response)=>{
         console.log("Done rendering pages");
     })
 }
+
 const editPage = (request, response)=>{
     console.log("Edit page");
     jsonfile.readFile(file, (err,obj)=>{
         let id = parseInt(request.params.id);
+        console.log(obj);
         let recipe = obj.recipes[id-1];
+    const data = {
+            id: id,
+            title: recipe.title,
+            instructions : recipe.instructions,
+            ingredients: recipe.ingredients
+        }
+        console.log("asjbdjahdgjlskbcajkehsgdfkuyesb"+data);
+        response.render("editPage", data);
+    })
+}
+const updateRecipe = (request,response)=>{
+    let id = parseInt(request.params.id);
+    jsonfile.readFile(file, (err,obj)=>{
+           let recipe = obj.recipes[id-1];
+            obj.recipes[id-1].title =  request.body.title;
+            obj.recipes[id-1].ingredients = request.body.ingredients;
+            obj.recipes[id-1].instructions = request.body.instructions;
         const data = {
             id: id,
             title: recipe.title,
             instructions : recipe.instructions,
             ingredients: recipe.ingredients
         }
-        response.render("editPage", data);
-    })
-}
-const updateRecipe = (request,response)=>{
-    let id = request.params.id;
-    jsonfile.readFile(file, (err,obj)=>{
-        obj.recipes[id-1] = request.body;
         jsonfile.writeFile(file, obj, (err)=>{
-
+        response.render("recipePage", data);
         });
     })
-}
-//////Functions not yet tested
-const showDeleteRecipe = (request, response)=>{
-    let id = request.params.id;
-
-    jsonfile.readFile(file, (err,obj)=>{
-        let recipe = obj.recipes[id-1];
-        const data = {
-            id : id,
-            title : recipe.title,
-            instructions : recipe.instructions,
-            ingredients : recipe.ingredients
-        };
-        console.log("Current delete data " + (id-1));
-        response.render("deletePage", data);
-    });
 }
 
 const deleteRecipe  = (request,response)=>{
@@ -115,6 +127,8 @@ const deleteRecipe  = (request,response)=>{
     });
   });
 }
+
+
 //*******
 //Routes
 //*******
@@ -126,9 +140,9 @@ app.get('/recipes/:id', displayRecipe);
 app.get('/recipes', displayRecipes);
 app.get('/recipes/:id/edit',editPage);
 app.put('/recipes/:id', updateRecipe);
-app.get('/recipes/:id/delete', showDeleteRecipe);
-//
 app.delete('/recipes/:id', deleteRecipe);
-//
+
+
+
 
 app.listen(3000, () => console.log("~~ Tuning in to port 3000 ~~"));
