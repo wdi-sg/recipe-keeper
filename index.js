@@ -43,7 +43,9 @@ app.post('/recipes', (request, response) => {
     const newRecipe = {
         title: request.body.title,
         ingredients: request.body.ingredients,
-        method: request.body.method
+        method: request.body.method,
+        dateCreated: new Date(),
+        dateUpdated: new Date()
     }
 
     jsonfile.readFile(recipesFile, (err, obj) => {
@@ -65,7 +67,8 @@ app.post('/recipes', (request, response) => {
             const newIndex = obj.recipes.length - 1;
             const data = {
                 recipe: obj.recipes[newIndex],
-                message: 'Recipe added.',
+                message: `${newRecipe.title} has now been added to the recipe database`,
+                title: 'Successfully Added',
                 recipeId: newIndex
             };
             response.render('recipe', data)
