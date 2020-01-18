@@ -19,6 +19,8 @@ app.use(methodOverride('_method'));
 app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
+//includes all directories
+app.use(express.static("."));
 
 // ******************************************
 // ******************************************
@@ -192,6 +194,15 @@ app.get('/recipes', (request,response)=>{
 
     response.render('overview', data)
   })
+})
+
+app.get('/', (request, response)=>{
+
+  jsonfile.readFile(file, (err, obj)=>{
+
+    response.render('home', obj)
+  })
+
 
 })
 

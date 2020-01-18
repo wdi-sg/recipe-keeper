@@ -1,0 +1,15 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0!important;
+    padding: 0!important;
+}
+
+body {
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+}
+
+h1 {
+    color: brown;
+}
