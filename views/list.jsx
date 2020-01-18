@@ -5,10 +5,10 @@ var NavHead = require('./navHead')
 class List extends React.Component {
     render() {
         const recipes = this.props.recipes;
+        let index = 0;
         const recipeElements = recipes.map( recipe => {
-            let count = 0;
-            count++
-            let hrefStr = "/recipes/"+count
+            index++
+            let hrefStr = "/recipes/"+index
             return (<div><a href={hrefStr}>{recipe.title}</a></div>)
         })
         return (

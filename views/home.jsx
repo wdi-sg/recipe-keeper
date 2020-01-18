@@ -10,6 +10,7 @@ class Home extends React.Component {
                     <body>
                         <div className="container">
                             <NavHead />
+                            <h1>Welcome to Sam's Recipes</h1>
                         </div>
                     </body>
                 </html>
