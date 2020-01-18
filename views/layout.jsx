@@ -54,7 +54,7 @@ class Layout extends React.Component {
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                   <a className="nav-link" href="/recipes/new">
-                    New Recipe
+                    New
                   </a>
                 </li>
                 <li className="nav-item dropdown">
@@ -67,18 +67,18 @@ class Layout extends React.Component {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Sort Recipes
+                    Sort
                   </a>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a className="dropdown-item" href="/recipes/sort/name">
                       Sort by alphabetical order
                     </a>
-                    <a className="dropdown-item" href="/recipes/sort/ingredients">
-                      Sort by number of ingredients
+                    <a className="dropdown-item" href="/recipes/sort/date">
+                      Sort by newly added
                     </a>
                     <div className="dropdown-divider"></div>
                     <a className="dropdown-item" href="#">
-                      Something else here
+                      Nothing here yet...
                     </a>
                   </div>
                 </li>

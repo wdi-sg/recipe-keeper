@@ -31,8 +31,18 @@ app.get("/recipes/new", (req, res) => {
 
 app.post("/recipes/", (req, res) => {
   const recipe = req.body;
+  const date = new Date();
+  const options = {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  };
   jsonfile.readFile(file, (err, obj) => {
     recipe.id = obj.recipes.length;
+    recipe.date = date.toLocaleDateString("en-US", options);
     obj.recipes.push(recipe);
     jsonfile.writeFile(file, obj, err => {});
   });
@@ -121,9 +131,16 @@ app.delete("/recipes/:id", (req, res) => {
 app.get("/recipes/sort/:type", (req, res) => {
   const type = req.params.type;
   jsonfile.readFile(file, (err, obj) => {
-    obj.recipes.sort((a, b) => {
-      return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
-    });
+    if (type === "name") {
+      obj.recipes.sort((a, b) => {
+        return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+      });
+    } else if ('type === "date') {
+      obj.recipes.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+      console.log(obj.recipes);
+    }
     res.render("home", obj);
   });
   // redirect to home with type sorted

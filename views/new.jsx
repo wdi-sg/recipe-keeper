@@ -42,7 +42,7 @@ class Create extends React.Component {
             <div class="form-group">
               <label for="exampleFormControlInput1">Recipe Image</label>
               <input
-                type="text"
+                type="url"
                 class="form-control"
                 id="exampleFormControlInput1"
                 name="image"
