@@ -29,7 +29,7 @@ app.get('/recipes',(req,res)=>{
   jsonfile.readFile(FILE, (err,obj) => {
     console.log(`recipes:` + obj);
     const data = {recipes: obj.recipes};
-    res.render('home',data);
+    res.render('list',data);
   });
 });
 
@@ -136,5 +136,43 @@ app.put('/recipes/:id', (req, res) => {
     });
   });
 });
+
+//to get delete form
+app.get('/recipesdelete/:id',(req, res) => {
+    console.log('delete recipe');
+    var id = parseInt(req.params.id);
+    let index = id -1;
+    console.log(index);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+        console.log(obj);
+        const data ={recipes: obj.recipes[index]};
+        res.render('delete',data);
+    });
+});
+
+//route to process deleting from database
+app.delete('/recipes/:id', (req, res) => {
+    var id = parseInt(req.params.id);
+    let index = id -1;
+    console.log(index);
+
+    jsonfile.readFile(FILE, (err, obj) => {
+    obj.recipes.splice(index,1);
+        jsonfile.writeFile(FILE, obj, (err) => {
+            console.error(err)
+            console.log(obj);
+            const data = {
+                recipes:obj.recipes
+            }
+            res.render('list',data);
+    // res.send('working');
+    });
+  });
+});
+
+
+//landing / home page
+
 
 app.listen(3000,()=>{console.log('listening to local host')});

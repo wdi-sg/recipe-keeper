@@ -1,13 +1,11 @@
 var React = require('react');
 
-class Info extends React.Component {
+class Delete extends React.Component {
   render() {
-    let editUrl = '/recipes/'+this.props.recipes.id+'/edit';
-    let deleteUrl = '/recipesdelete/'+this.props.recipes.id;
+    let deleteUrl = '/recipes/'+this.props.recipes.id+'?_method=delete'
     let title = this.props.recipes.title;
     let ing = this.props.recipes.ingredients;
     let inst = this.props.recipes.instructions;
-    console.log(editUrl);
     console.log(deleteUrl);
     console.log(title);
     console.log(ing);
@@ -19,13 +17,16 @@ class Info extends React.Component {
         </head>
         <body>
           <div>
+          <h1>Delete Form:</h1>
             <h1>{title}</h1>
             <h2>Ingredients:</h2>
                 <p>{ing}</p>
             <h2>Instructions:</h2>
                 <p>{inst}</p>
-                <button><a href = {editUrl}>Edit</a></button>
-                <button><a href = {deleteUrl}>Delete</a></button>
+        <form action = {deleteUrl} method = 'POST'>
+        <label for='delete'> Click Confirm to Delete: </label>
+            <input id = 'delete' type ='submit' value = 'Confirm'/>
+        </form>
           </div>
         </body>
     </html>
@@ -33,4 +34,4 @@ class Info extends React.Component {
   }
 }
 
-module.exports = Info;
+module.exports = Delete;
