@@ -2,20 +2,18 @@ var React = require('react');
 
 class Edit extends React.Component {
   render() {
-    // const pokemonID = this.props.indexPokemon.id;
-    // const postURL = `pokemon/${pokemonID}?_method=put`;
+    const recipeID = this.props.id;
+    const postURL = '/recipes/'+recipeID+'?_method=put';
     return (
       <html>
         <body>
           <div>
-            <h1>Hello</h1>
-            <form method="POST" action="/pokemon/'+pokemon.id+'?_method=put">
-                Id: <input type="text" name="id" placeholder={this.props.indexPokemon.id}/><br/>
-                Num: <input type="text" name="num" placeholder={this.props.indexPokemon.num}/><br/>
-                Name: <input type="text" name="name" placeholder={this.props.indexPokemon.name}/><br/>
-                Height: <input type="text" name="height" placeholder={this.props.indexPokemon.height}/><br/>
-                Weight: <input type="text" name="weight" placeholder={this.props.indexPokemon.weight}/><br/>
-                <input type="submit" value="Submit"/>
+            <h1>Edit Form</h1>
+            <form method="POST" action={postURL}>
+                Title: <input type="text" name="title" placeholder={this.props.recipeIndex.title}/><br/>
+                Ingredients: <input type="text" name="ingredients" placeholder={this.props.recipeIndex.ingredients}/><br/>
+                Instructions: <input type="text" name="instructions" placeholder={this.props.recipeIndex.instructions}/><br/>
+                <input type="submit" value="Edit"/>
             </form>
           </div>
         </body>
