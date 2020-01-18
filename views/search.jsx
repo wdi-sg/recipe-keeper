@@ -2,17 +2,22 @@ var React = require('react');
 var Template = require('./template')
 var NavHead = require('./navHead')
 
-class Home extends React.Component {
+class Search extends React.Component {
     render() {
+        const recipes = this.props.recipes;
+        let index = 0;
+        const recipeElements = recipes.map( recipe => {
+            index++
+            let hrefStr = "/recipes/"+index
+            return (<div><a href={hrefStr}>{recipe.title}</a></div>)
+        })
         return (
                 <html>
                     <Template />
                     <body>
                         <div className="container">
                             <NavHead />
-                            <div className="">
-                                <h1 className="">Welcome to Sam's Recipes</h1>
-                            </div>
+                            {recipeElements}
                         </div>
                     </body>
                 </html>
@@ -20,4 +25,4 @@ class Home extends React.Component {
     }
 }
 
-module.exports = Home;
+module.exports = Search;

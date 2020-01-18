@@ -78,8 +78,20 @@ app.delete('/recipes/:index', (request,response) => {
 
 
 
+
 app.get('*', (request, response) => {
-    response.render('home')
+    if (request.query.search) {
+        let search = request.query.search
+        let index = 0;
+        let recipes = [];
+        jsonfile.readFile(file, (err,obj) => {
+            obj.recipes.map(function(recipe, index) {
+
+            })
+        })
+        //response.render('search', data)
+    }
+        response.render('home')
 })
 
 
