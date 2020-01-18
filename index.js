@@ -48,6 +48,7 @@ app.post('/recipes', (request, response) => {
     const newRecipeID = obj.recipes.length - 1
     //create data obj with the new item, for rendering success message
     const data = {
+      recipes: obj.recipes,
       recipe: obj.recipes[newRecipeID],
       success: "Item added successfully!"
     }
@@ -57,9 +58,11 @@ app.post('/recipes', (request, response) => {
         return console.log(err)
       }
       response.render('displayid', data)
+      // response.send("Success!")
     })
     //END readFile
   })
+
   //END app.post
 })
 
@@ -77,6 +80,9 @@ app.get('/recipes/:id', (request, response) => {
 
     //store recipe object in data object
     const data = {
+      //pass whole recipes array for navbar
+      recipes: obj.recipes,
+      //pass recipe for the requested ID
       recipe: requestedRecipe
     }
 
@@ -124,6 +130,7 @@ app.put('/recipes/:id', (request, response) => {
     Object.assign(obj.recipes[id], editedRecipe)
     //create data object for rendering success message
     const data = {
+      recipes: obj.recipes,
       success: "Edited successfully!",
       recipe: editedRecipe
     }

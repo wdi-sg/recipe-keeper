@@ -16,7 +16,7 @@ if (index < 3) { return item } }); const allRecipes=topThree.map((item, index)=>
             <div className="card-body text-success">
                 <h5 className="card-title">{item.title}</h5>
                 <p className="card-text">{limitedDescription}</p>
-                <a href={hrefURL} className="btn btn-success w-50 d-flex ml-auto">More...</a>
+                <a href={hrefURL} className="btn btn-success w-50 d-flex justify-content-center ml-auto">More</a>
             </div>
         </div>
     </div>
