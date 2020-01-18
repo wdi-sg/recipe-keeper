@@ -1,3 +1,1 @@
-{
-    "recipes":[]
-  }
+{"recipes":[{"id":1,"title":"New recipes One","ingredients":"oil water flour salt","instructions":"1) find 2) add all ingredients, 3) stir"},{"id":2,"title":"New recipes 2","ingredients":"water salt oil","instructions":"1) stir, 2) fry"},{"id":3,"title":"New recipe 3","ingredients":"vinegar, oil","instructions":"shake "}]}

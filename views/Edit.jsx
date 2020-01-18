@@ -2,15 +2,17 @@ const React = require("react");
 
 class New extends React.Component {
   render() {
-    const id = parseInt(this.props.id);
-    const title = this.props.title;
-    const ingredients = this.props.ingredients;
-    const instructions = this.props.instructions;
-    const filePath = "/recipes/" + (id) + "?_method=put";
-    return (
+        const id = parseInt(this.props.id);
+        const title = this.props.title;
+        const ingredients = this.props.ingredients;
+        const instructions = this.props.instructions;
+
+        const filePath = "/recipes/" + (id) + "?_method=put";
+    
+    return ( 
       <html lang="en">
         <head>
-          <meta charset="UTF-8" />
+          <meta charSet="UTF-8" />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
@@ -33,7 +35,7 @@ class New extends React.Component {
           <div
             style={{ margin: `20px`, display: `flex`, flexDirection: `column` }}
           >
-            <h1>Edit {name}!</h1>
+            <h1>Edit {title}!</h1>
             <div style={{ marginBottom: `10px` }}>
               {this.props.errorMessage}
             </div>
@@ -43,32 +45,25 @@ class New extends React.Component {
                 <input
                   type="text"
                   placeholder="recipes name"
-                  name="name"
-                  value={name} className="form-control"
+                  name="title"
+                  value={title} className="form-control"
+                />
+              </div>
+             
+              <div style={{ paddingBottom: `10px`, width:`12%` }}>
+                <input
+                  type="text"
+                  placeholder="recipes ingredients"
+                  name="ingredients"
+                  value={ingredients} className="form-control"
                 />
               </div>
               <div style={{ paddingBottom: `10px`, width:`12%` }}>
                 <input
                   type="text"
-                  placeholder="recipes image link"
-                  name="img"
-                  value={image} className="form-control"
-                />
-              </div>
-              <div style={{ paddingBottom: `10px`, width:`12%` }}>
-                <input
-                  type="text"
-                  placeholder="recipes height"
-                  name="height"
-                  value={height} className="form-control"
-                />
-              </div>
-              <div style={{ paddingBottom: `10px`, width:`12%` }}>
-                <input
-                  type="text"
-                  placeholder="recipes weight"
-                  name="weight"
-                  value={weight} className="form-control"
+                  placeholder="recipes instructions"
+                  name="instructions"
+                  value={instructions} className="form-control"
                 />
               </div>
               <div>
