@@ -36,7 +36,7 @@ app.set('view engine', 'jsx');
  * ===================================
  */
 
-
+//INDEX HOMEPAGE OR LIKE A MENU PAGE WITH ALL RECIPES IN IT
 //URL -> /recipes/ && HTTP Verb -> GET && Action -> index && Purpose -> See all recipes
 app.get('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
@@ -44,7 +44,7 @@ app.get('/recipes', (request, response) => {
     // check to make sure the file was properly read
     if( err ){
       console.log("error with json read file:",err);
-      response.status(503).send("error reading filee");
+      response.status(503).send("error reading file");
       return;
     }
     console.log(obj.recipes);
@@ -58,13 +58,13 @@ app.get('/recipes', (request, response) => {
   });
 });
 
-
+//NEW FORM FOR USER TO FILL IN
 //URL -> /recipes/new && HTTP Verb -> GET && Action -> new && Purpose -> Display the form for a single recipe
 app.get('/recipes/new', (request, response) => {
     response.render('create');
 });
 
-
+//CREATE NEW RECIPE IN DATA.JSON
 //URL -> /recipes && HTTP Verb -> POST && Action -> create && Purpose -> Create a new recipe  && ensure that strings is in lowercase
 app.post('/recipes', (request, response) => {
     console.log("Received POST");
@@ -97,7 +97,7 @@ app.post('/recipes', (request, response) => {
   });
 });
 
-//
+//SHOW PAGE WITH SINGLE RECIPE
 //URL -> /recipes/id && HTTP Verb -> GET && Action -> show && Purpose -> See a single recipe
 app.get('/recipes/:id', (request, response) => {
     console.log(request.params.id)
@@ -138,7 +138,7 @@ app.get('/recipes/:id', (request, response) => {
   });
 });
 
-//Beginning of edit forms and update data in data.json
+//EDIT FORM
 // URL -> /recipes/id/edit && HTTP Verb -> GET && Action -> edit && Purpose -> Display the form for editing a single recipe
 app.get('/recipes/:id/edit',(req,res)=>{
     jsonfile.readFile(file,(err,obj)=>{
@@ -153,12 +153,23 @@ app.get('/recipes/:id/edit',(req,res)=>{
     });
 });
 
+//UPDATE DATA
 //URL -> /recipes/id && HTTP Verb -> PATCH/PUT && Action -> update && Purpose -> Update a recipe
-// app.put("/recipes/:id", (request, response) => {
-// read the file in and write out to it
-// });
+app.put('/recipes/:id',(req,res)=>{
+// using the :id, find the corresponding recipe
+    let index = parseInt(req.params.id);
+    jsonfile.readFile(file,(err,obj)=>{
+        if (err) console.log(err);
+// overwrite the current data with new data
+        obj.recipes[index] = req.body;
+        jsonfile.writeFile(file,obj,(err)=>{
+            if (err) console.log(err);
+        });
+        res.render('addedNew',obj.recipes[index]);
+    });
+});
 
-
+//DELETE
 //URL -> /recipes/id && HTTP Verb -> PATCH/PUT && Action -> update && Purpose -> Update a recipe
 // app.delete("/recipes/:id", (request, response) => {
 //   //read the file in and write out to it
