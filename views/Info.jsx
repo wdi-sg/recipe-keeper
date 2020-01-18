@@ -2,9 +2,9 @@ var React = require('react');
 
 class Info extends React.Component {
   render() {
-    let title = this.props.recipe.title;
-    let ing = this.props.recipe.ingredients;
-    let inst = this.props.recipe.instructions;
+    let title = this.props.recipes.title;
+    let ing = this.props.recipes.ingredients;
+    let inst = this.props.recipes.instructions;
     console.log(title);
     console.log(ing);
     console.log(inst);

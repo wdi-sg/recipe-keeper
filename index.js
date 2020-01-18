@@ -40,64 +40,6 @@ app.get('/recipes/new',(req,res) => {
     res.render('create');
 });
 
-//process request to add/post new recipe into recipes database
-app.post('/recipes', (req,res)=> {
-    jsonfile.readFile(FILE, (err,obj) =>{
-        console.log(obj);
-        console.log('input received:'+ req.body);
-        let newTitle = req.body.title;
-        let newIng = req.body.ingredients;
-        let newInst = req.body.instructions;
-            let newRecipe = {
-                id: obj.recipes.length + 1,
-                title:newTitle,
-                ingredients:newIng,
-                instructions:newInst
-            }
-                obj.recipes.push(newRecipe);
-                console.log(obj);
-            jsonfile.writeFile(FILE, obj, (err) => {
-              console.error(err);
-              res.redirect('/recipes');
-            });
-    });
-});
-
-//get page to edit existing recipe from database
-app.get('recipes/:id/edit', (req, res)=>{
-    jsonfile.readFile(FILE, (err,obj) =>{
-        console.error(err);
-        let index = parseInt(req.params.id)-1;
-            console.log(index);
-        let recipeItem = obj.recipes[index];
-        const data = {
-            recipeItem:recipeItem
-        };
-        res.render('edit',data);
-        });
-});
-
-//process request to edit recipe data
-app.put('recipes/:id', (req, res) => {
-    console.log(req.body);
-    let index = parseInt(req.params.id)-1;
-    jsonfile.readFile(FILE, (err, obj) => {
-    // save the request body
-    let editData = {
-        id: parseInt(req.params.id),
-        title: req.body.title,
-        ingredients: req.body.ingredients ,
-        instructions: req.body.instructions
-    }
-    // replace recipe into array;
-    obj.recipes[index] = editData;
-        jsonfile.writeFile(FILE, obj, (err) => {
-          console.error(err)
-          res.render('info');
-        });
-  });
-});
-
 //to render page for individual recipe based on id
 app.get('/recipes/:id', (req, res) => {
     jsonfile.readFile(FILE, (err, obj) => {
@@ -124,9 +66,74 @@ app.get('/recipes/:id', (req, res) => {
       res.status(404);
       res.send("Sorry, we were unable to find what you were looking for.");
     } else {
-      const data = {recipe: recipes}
+      const data = {recipes: recipes}
       res.render('info',data);
     }
+  });
+});
+
+//process request to add/post new recipe into recipes database
+app.post('/recipes', (req,res)=> {
+    jsonfile.readFile(FILE, (err,obj) =>{
+        console.log(obj);
+        console.log('input received:'+ req.body);
+        let newTitle = req.body.title;
+        let newIng = req.body.ingredients;
+        let newInst = req.body.instructions;
+            let newRecipe = {
+                id: obj.recipes.length + 1,
+                title:newTitle,
+                ingredients:newIng,
+                instructions:newInst
+            }
+                obj.recipes.push(newRecipe);
+                console.log(obj);
+            jsonfile.writeFile(FILE, obj, (err) => {
+              console.error(err);
+              res.redirect('/recipes');
+            });
+    });
+});
+
+
+//get page to edit existing recipe from database
+app.get('/recipes/:id/edit', (req, res)=>{
+    console.log(req.params.id);
+    jsonfile.readFile(FILE, (err,obj) =>{
+        console.log(obj);
+        let index = parseInt(req.params.id) -1;
+        console.log(index);
+        let recipeItem = obj.recipes[index];
+        const data = {
+            recipe:recipeItem
+        }
+    res.render('edit', data);
+    });
+});
+
+//process request to edit recipe data
+app.put('/recipes/:id', (req, res) => {
+    console.log(req.body);
+    var id = parseInt(req.params.id);
+    let index = id -1;
+    console.log(index);
+    jsonfile.readFile(FILE, (err, obj) => {
+    // save the request body
+    let revisions = {
+        id: id,
+        title: req.body.title,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions
+    }
+    // replace recipe into array;
+    obj.recipes[index] = revisions;
+    console.log(revisions);
+        jsonfile.writeFile(FILE, obj, (err) => {
+          console.error(err)
+        const data = {recipes:revisions }
+        res.render('info',data);
+    // res.send('working');
+    });
   });
 });
 
