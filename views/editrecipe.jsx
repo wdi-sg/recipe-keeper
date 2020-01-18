@@ -5,22 +5,29 @@ const DefaultLayout = require('./layouts/default');
 class EditRecipe extends React.Component {
 
     render() {
-
         const actionURL = `/recipes/${this.props.recipeId}?_method=put`;
         // action="/pokemon/'+pokemon.id+'?_method=delete"
         return (<DefaultLayout>
             <div>
                 <h1>Edit Recipe</h1>
-                <form action={actionURL} method="POST">
-                    <p>Index:
-                        <input type="text" name="index" defaultValue={this.props.recipeId} readOnly="readOnly"/></p>
-                    <p>Title:
-                        <input type="text" name="title" defaultValue={this.props.recipe.title}/></p>
-                    <p>Ingredients:
-                        <input type="textarea" name="ingredients" defaultValue={this.props.recipe.ingredients} rows="3"/></p>
-                    <p>Method:
-                        <input type="textarea" name="method" defaultValue={this.props.recipe.method} rows="3"/></p>
-                    <input type="submit"/>
+                <form action={actionURL} method="POST" className="w-100">
+                    <div className="form-group">
+                      <label htmlFor="recipeIndexIndex">Index</label>
+                        <input className="form-control" type="text" name="index" id="recipeIndexIndex" defaultValue={this.props.recipeId} readOnly="readOnly"/>
+                      </div>
+                    <div className="form-group">
+                      <label htmlFor="recipeTitleIndex">Title</label>
+                        <input type="text" className="form-control" id="recipeTitleIndex" name="title" defaultValue={this.props.recipe.title}/>
+                      </div>
+                    <div className="form-group">
+                      <label htmlFor="recipeIngredientsIndex">Ingredients</label>
+                        <textarea rows="3" className="form-control" id="recipeIngredientsIndex" name="ingredients" defaultValue={this.props.recipe.ingredients} rows="3"/>
+                      </div>
+                    <div className="form-group">
+                      <label htmlFor="recipeMethodIndex">Method</label>
+                        <textarea rows="3" className="form-control" id="recipeMethodIndex" name="method" defaultValue={this.props.recipe.method} rows="3"/>
+                      </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
         </DefaultLayout>)

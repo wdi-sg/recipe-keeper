@@ -8,10 +8,7 @@ class RecipeList extends React.Component {
         const RecipeList = this.props.recipes.map((recipe, index) => {
             // console.log(recipe);
             const url = `/recipes/${index}`;
-            return <li>{index}
-                -
-                <a href={url}>{recipe.title}</a>
-            </li>
+            return <li key={index}>{index} - <a href={url}>{recipe.title}</a></li>
         });
 
         return (
