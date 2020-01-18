@@ -75,7 +75,24 @@ class New extends React.Component {
                 <button style={{ borderRadius: `5px` }}>
                   <a href="/recipes/">Recipe Index</a>
                 </button>
-                
+                <div
+                  style={{ margin: `20px`, display: `flex`, flexDirection: `column` }}
+                >
+                  <h1>Delete {this.props.id}?</h1>
+
+                  <form action={filePath} method="POST">
+                    <div>
+                      <input
+                        type="submit"
+                        value="Delete!"
+                        style={{ borderRadius: `5px`, marginRight: `10px` }}
+                      />
+                      <button style={{ borderRadius: `5px` }}>
+                        <a href="/recipes/">Recipe Index</a>
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </form>
           </div>

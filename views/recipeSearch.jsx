@@ -30,7 +30,7 @@ class Created extends React.Component {
         </head>
         <body>
           <h2 style={{ margin: "10px" }}>
-            {this.props.title}!
+            {recipesTitle}!
           </h2>
           <ul>
             <li><strong>Id</strong>: {this.props.id}</li>
@@ -56,6 +56,9 @@ class Created extends React.Component {
                   value="Delete!"
                   style={{ borderRadius: `5px`, marginRight: `10px` }}
                 />
+               <button style={{ borderRadius: `5px` }}>
+                  <a href="/recipes/">Recipe Index</a>
+                </button>
               </div>
             </form>
           </div>
