@@ -79,6 +79,7 @@ app.post('/recipes', (request, response) => {
     })
 })
 
+
 // Delete record at ID.
 app.delete('/recipes/:id', (request, response) => {
     // if id is not a number, return not found.
@@ -119,6 +120,7 @@ app.delete('/recipes/:id', (request, response) => {
     })
 })
 
+
 // PUT request to change a recipe in place
 app.put('/recipes/:id', (request, response) => {
     // Validate the input, if not valid then return/render the form again with changes to be made.
@@ -129,7 +131,8 @@ app.put('/recipes/:id', (request, response) => {
     const newRecipe = {
         title: request.body.title,
         ingredients: request.body.ingredients,
-        method: request.body.method
+        method: request.body.method,
+        dateUpdated: new Date()
     }
 
     jsonfile.readFile(recipesFile, (err, obj) => {
@@ -139,7 +142,20 @@ app.put('/recipes/:id', (request, response) => {
             return;
         }
 
-        obj.recipes[request.params.id] = newRecipe;
+        const recipeToUpdate = obj.recipes[request.params.id];
+
+        // using object.entries to loop through the keys provided in
+        // newRecipe and overwrite those keys in the original recipe.
+        // Cannot overwrite the whole object as we need to preserve
+        // the date it was created.
+        // https://zellwk.com/blog/looping-through-js-objects/
+        const newRecipeEntries = Object.entries(newRecipe);
+        for (const [key, value] of newRecipeEntries) {
+            recipeToUpdate[key] = value;
+        };
+
+        // write back to the file.
+        obj.recipes[request.params.id] = recipeToUpdate;
 
         jsonfile.writeFile(recipesFile, obj, (err) => {
             if (err) {
@@ -159,15 +175,18 @@ app.put('/recipes/:id', (request, response) => {
     })
 })
 
+
 // Display form to add a recipe:
 app.get('/recipes/new', (request, response) => {
     response.render('addrecipe');
 })
 
+
 // redirect /add to /new just in case.
 app.get('/recipes/add', (request, response) => {
     response.status(301).redirect('/recipes/new');
 })
+
 
 // Edit a recipe, and push in a PUT request.
 app.get('/recipes/:id/edit', (request, response) => {
@@ -242,6 +261,7 @@ app.get('/recipes/:id', (request, response) => {
 
 })
 
+
 // get index list of recipes.
 app.get('/recipes/', (request, response) => {
     console.log('listing all recipes');
@@ -259,7 +279,6 @@ app.get('/recipes/', (request, response) => {
         return;
     })
 })
-
 
 
 // Have a nice homepage. Placeholder for now.
