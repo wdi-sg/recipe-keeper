@@ -185,7 +185,11 @@ app.delete('/recipes/:id', (request, response) => {
         return console.log(err)
       }
 
-      response.send("Deleted!")
+      const data = {
+        recipes: obj.recipes
+      }
+
+      response.render('home', data)
     })
     //END readFile
   })
