@@ -11,9 +11,9 @@ class AddRecipe extends React.Component {
                 <p>Title:
                     <input type="text" name="title"/></p>
                 <p>Ingredients:
-                    <input type="text" name="ingredients"/></p>
+                    <input type="textarea" name="ingredients" rows="3"/></p>
                 <p>Method:
-                    <input type="text" name="method"/></p>
+                    <input type="textarea" name="method" rows="3"/></p>
                 <input type="submit"/>
             </form>
         </div>)

@@ -1,5 +1,6 @@
 const React = require('react');
 const PropTypes = require('prop-types');
+const DefaultLayout = require('./layouts/default');
 
 class Recipe extends React.Component {
     render() {
@@ -8,6 +9,7 @@ class Recipe extends React.Component {
       const editURL = `/recipes/${this.props.recipeId}/edit`;
 
         return (
+          <DefaultLayout>
             <div>
               <h3>{this.props.message}</h3>
               <h1>{this.props.recipe.title}</h1>
@@ -20,6 +22,7 @@ class Recipe extends React.Component {
             <p><a href="/recipes/add">Click me to add a new recipe</a></p>
             <p><a href="/recipes/">Click me to go back to the main list.</a></p>
             </div>
+        </DefaultLayout>
         );
     }
 };

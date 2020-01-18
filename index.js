@@ -114,6 +114,8 @@ app.delete('/recipes/:id', (request, response) => {
 // PUT request to change a recipe in place
 app.put('/recipes/:id', (request, response) => {
     // Validate the input, if not valid then return/render the form again with changes to be made.
+    console.log('This is app.put');
+    console.log('id: ' + request.params.id);
     console.log(request.body);
 
     const newRecipe = {

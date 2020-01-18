@@ -15,9 +15,9 @@ class EditRecipe extends React.Component {
                 <p>Title:
                     <input type="text" name="title" defaultValue={this.props.recipe.title}/></p>
                 <p>Ingredients:
-                    <input type="text" name="ingredients" defaultValue={this.props.recipe.ingredients}/></p>
+                    <input type="textarea" name="ingredients" defaultValue={this.props.recipe.ingredients} rows="3"/></p>
                 <p>Method:
-                    <input type="text" name="method" defaultValue={this.props.recipe.method}/></p>
+                    <input type="textarea" name="method" defaultValue={this.props.recipe.method} rows="3"/></p>
                 <input type="submit"/>
             </form>
         </div>)
