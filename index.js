@@ -33,7 +33,34 @@ const getDateTime = ()=>{
     return dateFormat;
 }
 
+const sortRecipe = (request,response)=>{
+    jsonfile.readFile(file, (err,obj)=>{
+        let recipes = obj.recipes;
+        let sortType = request.params.sort;
+        let property;
+        if(sortType === "title"){
+            property = "title";
 
+        }else{
+            property = "date";
+        }
+
+         recipes.sort(function(a, b){
+             if(property === "title"){
+                a[property] = a[property].charAt(0).toUpperCase() + a[property].slice(1);
+                 b[property] = b[property].charAt(0).toUpperCase()+ b[property].slice(1);
+             }
+                return a[property] == b[property] ? 0 : +(a[property] > b[property]) || -1;
+            });
+         if(sortType === "latest"){
+            recipes.reverse();
+         }
+        const data ={
+            recipes : recipes,
+        }
+         response.render("recipesPage",data);
+    });
+}
 const addRecipe = (request,response)=>{
     console.log("creating new recipe");
     jsonfile.readFile(file, (err, obj) => {
@@ -137,6 +164,7 @@ app.get('/recipes/new',(request,response)=>{
 })
 app.post('/recipes', addRecipe);
 app.get('/recipes/:id', displayRecipe);
+app.get('/recipes/sort/:sort',sortRecipe);
 app.get('/recipes', displayRecipes);
 app.get('/recipes/:id/edit',editPage);
 app.put('/recipes/:id', updateRecipe);

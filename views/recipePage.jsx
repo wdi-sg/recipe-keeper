@@ -32,25 +32,24 @@ class recipePage extends React.Component {
                 <div class ="col-md-3">
        <label>Ingredients :  </label></div>
        <div class ="col-md-12">
-       <p>{this.props.ingredients}></p>
+       <p>{this.props.ingredients}</p>
        </div>
 </div>
         <div class="row"><div class ="col-md-3">
                     <label className="mr-4">Instructions : </label></div>
                     <div class ="col-md-12">
-            <p>{this.props.instructions}></p>
+            <p>{this.props.instructions}</p>
             </div>
 
                     <br/>
                     </div>
                 </div>
                  </div>
-                <div className="row">
-               <a className="btn btn-primary ml-1 mr-1" href={linkEdit}>Edit</a>
-
-              <form  method="POST" action={formUrl}>
-                <button type="submit" className="btn btn-primary btn-customized">Delete</button>
+                <div className="d-flex flex-row-reverse">
+               <form  method="POST" action={formUrl}>
+                <button type="submit" className="btn btn-danger btn-customized align-self-end">Delete</button>
                 </form>
+               <a className="btn btn-primary mr-1" href={linkEdit}>Edit</a>
         </div>
     </div>
 </div>

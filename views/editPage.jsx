@@ -17,11 +17,11 @@ class editPage extends React.Component {
   </div>
   <div className="form-group">
     <label for="ingredients">Ingredients</label>
-    <textarea className="form-control" name="ingredients" rows="3" value={this.props.ingredients}></textarea>
+    <textarea className="form-control" name="ingredients" rows="3" value={this.props.ingredients} style={{resize: "none"}}></textarea>
   </div>
   <div className="form-group">
     <label for="instructions">Instructions</label>
-    <textarea className="form-control" name="instructions" rows="3" value={this.props.instructions}></textarea>
+    <textarea className="form-control" name="instructions" rows="3" value={this.props.instructions} style={{resize: "none"}}></textarea>
   </div>
     <button type="submit" className="btn btn-primary btn-customized">Edit</button>
 </form>
