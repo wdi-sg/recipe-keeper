@@ -73,8 +73,9 @@ class New extends React.Component {
                   style={{ borderRadius: `5px`, marginRight: `10px` }}
                 />
                 <button style={{ borderRadius: `5px` }}>
-                  <a href="/">Go Home</a>
+                  <a href="/recipes/">Recipe Index</a>
                 </button>
+                
               </div>
             </form>
           </div>

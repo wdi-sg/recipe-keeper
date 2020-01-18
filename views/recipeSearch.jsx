@@ -41,6 +41,24 @@ class Created extends React.Component {
           <button style={{ borderRadius: `5px`, marginLeft:`20px` }}>
             <a href={editPath}>Edit {recipesTitle}</a>
           </button>
+          <button style={{ borderRadius: `5px` }}>
+            <a href="/recipes/">Recipe Index</a>
+          </button>
+          <div
+            style={{ margin: `20px`, display: `flex`, flexDirection: `column` }}
+          >
+            <h1>Delete {this.props.id}?</h1>
+
+            <form action={"/recipes/" + parseInt(this.props.id) + "?_method=delete"} method="POST">
+              <div>
+                <input
+                  type="submit"
+                  value="Delete!"
+                  style={{ borderRadius: `5px`, marginRight: `10px` }}
+                />
+              </div>
+            </form>
+          </div>
         </body>
       </html>
     );

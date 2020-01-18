@@ -39,17 +39,17 @@ app.set("view engine", "jsx");
  * ===================================
  */
 
-app.get("/recipes/new", (req, res) => {
+app.get("/recipes/new", (request, response) => {
     response.render("New");
 });
 
-app.post("/recipes", (req, res) => {
+app.post("/recipes", (request, response) => {
     let duplicate = false;
     const recipesData = {
-        id: req.body.id,
-        title: req.body.title,
-        ingredients: req.body.ingredients,
-        instructions: req.body.instructions
+        id: request.body.id,
+        title: request.body.title,
+        ingredients: request.body.ingredients,
+        instructions: request.body.instructions
     };
     console.log(recipesData);
 
@@ -72,16 +72,13 @@ app.post("/recipes", (req, res) => {
         jsonfile.readFile(file, (err, obj) => {
                 if (Array.isArray(obj.recipes) && obj.recipes.length > 0) {// if array is empty and the length is zero returns a false value
                     recipesData.id = obj.recipes[obj.recipes.length - 1].id + 1; //zooming in on the last ID   from the json file to the id, without having to search through the whole object/array 
-                    
-                    console.log("if stamt")
+                    console.log("if stmt")
                 } else{
                     recipesData.id = 1;
                     console.log("else stmt")
                 }
             for (let i = 0; i < obj.recipes.length; i++) {
                 if (
-                    obj.recipes[i].title.toLowerCase() ===
-                    recipesData.title.toLowerCase() ||
                     obj.recipes[i].id === recipesData.id
                 ) {
                     duplicate = true;
@@ -97,6 +94,7 @@ app.post("/recipes", (req, res) => {
                 recipesData.ingredients += "";
                 recipesData.instructions += "";
                 obj.recipes.push(recipesData);
+
                 jsonfile.writeFile(file, obj, err => { });
                 response.redirect(`/recipes/${recipesData.id}`);
                 console.log(obj.recipes.length - 1);
@@ -190,7 +188,7 @@ app.get("/recipes/:id/delete", (request, response) => {
         const recipes = obj.recipes[index];
         console.log("index is", index);
         const data = {
-            name: recipes.name,
+            title: recipes.title,
             id: recipes.id
         };
         response.render("Delete", data);

@@ -10,8 +10,8 @@ class New extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <meta http-Equiv="X-UA-Compatible" content="ie=edge" />
-          <title>Document</title>
+          <meta httpequiv="X-UA-Compatible" content="ie=edge" />
+          <title>Create Recipe</title>
           <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -39,10 +39,10 @@ class New extends React.Component {
               </div>
               
               <div style={{ paddingBottom: `10px` }}>
-                <input type="text" placeholder="recipes ingredients" name="ingredients" />
+                <input type="text" placeholder="recipe ingredients" name="ingredients" />
               </div>
               <div style={{ paddingBottom: `10px` }}>
-                <input type="text" placeholder="recipes instructions" name="instructions" />
+                <input type="text" placeholder="recipe instructions" name="instructions" />
               </div>
               <div>
                 <input
@@ -51,7 +51,7 @@ class New extends React.Component {
                   style={{ borderRadius: `5px`, marginRight:`10px`}}
                 />
                 <button style={{ borderRadius: `5px` }}>
-                  <a href="/">Recipe Index</a>
+                  <a href="/recipes/">Recipe Index</a>
                 </button>
               </div>
             </form>
