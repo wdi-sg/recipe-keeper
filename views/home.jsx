@@ -3,7 +3,6 @@ const Layout = require("./layout");
 
 class Home extends React.Component {
   render() {
-    // console.log("INSIDE HOMEEEEEEEEEEEE", this.props.recipes)
     const recipes = this.props.recipes;
     const searchString = this.props.searchString;
     const recipe = recipes.map(recipe => {
@@ -16,7 +15,7 @@ class Home extends React.Component {
         <div className=" col-lg-6">
           <a href={recipePath}>
             <img
-              className="card-img-top"
+              className="card-img-top img-fluid"
               src={recipe.image}
               alt="Card image cap"
               style={{ maxHeight: "350px" }}
@@ -24,9 +23,10 @@ class Home extends React.Component {
           </a>
           <div className="card-body" style={{ padding: "10px 0" }}>
             <h5 className="card-title" style={{ textAlign: "center" }}>
+              Get recipe:
               <a
                 href={recipePath}
-                style={{ textDecoration: "underline", color: "black" }}
+                style={{ color: "black", textDecoration: "underline" }}
               >
                 {" "}
                 {recipe.title}

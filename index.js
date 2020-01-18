@@ -21,7 +21,6 @@ app.set("view engine", "jsx");
 
 app.get("/", (req, res) => {
   jsonfile.readFile(file, (err, obj) => {
-    
     res.render("home", obj);
   });
 });
@@ -61,9 +60,9 @@ app.get("/recipes/search/", (req, res) => {
     if (found) {
       const searchObject = {
         recipes: searchArray,
-        searchString: `You searched for "${search}"!`
+        searchString: `You searched for "${search}"! Searches matching "${search}":`
       };
-      console.log("search object is", searchObject)
+      console.log("search object is", searchObject);
       res.render("home", searchObject);
     } else {
       res.render("404", data);
@@ -117,6 +116,17 @@ app.delete("/recipes/:id", (req, res) => {
       res.redirect("/");
     });
   });
+});
+
+app.get("/recipes/sort/:type", (req, res) => {
+  const type = req.params.type;
+  jsonfile.readFile(file, (err, obj) => {
+    obj.recipes.sort((a, b) => {
+      return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+    });
+    res.render("home", obj);
+  });
+  // redirect to home with type sorted
 });
 
 app.listen(3000, () => {
