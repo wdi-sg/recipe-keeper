@@ -23,6 +23,10 @@ app.set('views', __dirname + '/views');
 // this line sets react to be the default view engine
 app.set('view engine', 'jsx');
 
+app.use(express.static(__dirname + '/public/'));
+
+app.use(express.static("."));
+
 /**
  * ===================================
  * Routes
@@ -67,12 +71,12 @@ const postRecipes = (request,response) => {
 
         let data = {recipes: obj.recipes}
 
-            obj.recipes.push(newData);
+        obj.recipes.push(newData);
 
-            jsonfile.writeFile('data.json', obj, (err) => {
-                console.log(err);
-                response.render("home", data);
-            });
+        jsonfile.writeFile('data.json', obj, (err) => {
+            console.log(err);
+            response.render("home", data);
+        });
     });
 }
 
@@ -88,7 +92,6 @@ const edit = (request,response) => {
 }
 
 const editRecipes = (request,response) => {
-
     jsonfile.readFile(file, (err, obj) => {
 
       let data = {
@@ -118,18 +121,18 @@ const del = (request,response) => {
 
     jsonfile.readFile(file, (err, obj) => {
 
-        let data = {
+      let data = {
         recipes: obj.recipes,
         id: request.params.id
-        }
+      }
 
-        obj.recipes.splice(index, 1);
+      obj.recipes.splice(index, 1);
 
       jsonfile.writeFile('data.json', obj, (err) => {
             console.error(err)
             response.render('home', data);
+        });
     });
-  });
 }
 
 app.get('/recipes', home);

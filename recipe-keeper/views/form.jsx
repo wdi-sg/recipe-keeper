@@ -26,7 +26,9 @@ class Form extends React.Component {
             <textarea className="form-control" name="instructions"></textarea>
             </div>
 
-            <button type="submit" className="btn btn-danger btn-customized">Send me</button>
+            <button type="submit" className="btn btn-danger btn-customized">Create</button>
+
+            <a href="/recipes" className="btn btn-primary ml-4">Back</a>
 
             </form>
           </div>
