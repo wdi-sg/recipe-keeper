@@ -1,5 +1,5 @@
-const jsonfile = require('jsonfile');
 const express = require('express');
+const jsonfile = require('jsonfile');
 
 const file = 'data.json';
 
@@ -29,13 +29,19 @@ app.set('views', __dirname + '/views');
 // this line sets react to be the default view engine
 app.set('view engine', 'jsx');
 
-
 /**
  * ===================================
  * Routes
  * ===================================
  */
 
+/**
+ * ===================================
+ *  ALL RECIPES // GET
+ * ===================================
+ */
+
+//INDEX/LIST OF HOMEPAGE WORKING
 //INDEX HOMEPAGE OR LIKE A MENU PAGE WITH ALL RECIPES IN IT
 //URL -> /recipes/ && HTTP Verb -> GET && Action -> index && Purpose -> See all recipes
 app.get('/recipes', (request, response) => {
@@ -58,13 +64,28 @@ app.get('/recipes', (request, response) => {
   });
 });
 
+/**
+ * ===================================
+ * NEW // GET
+ * ===================================
+ */
+
+
+//FORM IS BEING RENDERED OUT PROPERLY
 //NEW FORM FOR USER TO FILL IN
 //URL -> /recipes/new && HTTP Verb -> GET && Action -> new && Purpose -> Display the form for a single recipe
 app.get('/recipes/new', (request, response) => {
     response.render('create');
 });
 
-//CREATE NEW RECIPE IN DATA.JSON
+/**
+ * ===================================
+ * CREATE // POST
+ * ===================================
+ */
+
+//MANAGE TO ADD NEW RECIPE IN FOR NOW
+//CREATE A NEW RECIPE IN DATA.JSON
 //URL -> /recipes && HTTP Verb -> POST && Action -> create && Purpose -> Create a new recipe  && ensure that strings is in lowercase
 app.post('/recipes', (request, response) => {
     console.log("Received POST");
@@ -97,18 +118,23 @@ app.post('/recipes', (request, response) => {
   });
 });
 
+/**
+ * ===================================
+ * SHOW // GET
+ * ===================================
+ */
+
+//MANAGE TO SHOW A SINGLE RECIPE FOR NOW
 //SHOW PAGE WITH SINGLE RECIPE
 //URL -> /recipes/id && HTTP Verb -> GET && Action -> show && Purpose -> See a single recipe
 app.get('/recipes/:id', (request, response) => {
     console.log(request.params.id)
   // get json from specified file
   jsonfile.readFile(file, (err, obj) => {
-
     // check to make sure the file was properly read
     if( err ){
-
       console.log("error with json read file:",err);
-      response.status(503).send("error reading filee");
+      response.status(503).send("error reading file");
       return;
     }
     // obj is the object from the data.json file
@@ -117,13 +143,12 @@ app.get('/recipes/:id', (request, response) => {
     var recipe;
     let currentRecipe = obj.recipes[inputId];
     console.log(currentRecipe);
-    // find recipe by index of the obj.recipes's array from the data.json file
+    // find recipe by index of the obj.recipes's array in data.json file
       if( currentRecipe === obj.recipes[inputId] ){
         recipe = currentRecipe;
       }
 
     if (recipe === undefined) {
-
       // send 404 back
       response.status(404);
       response.send("Not a valid recipe, create a new one maybe?");
@@ -138,37 +163,73 @@ app.get('/recipes/:id', (request, response) => {
   });
 });
 
+/**
+ * ===================================
+ * EDIT // GET
+ * ===================================
+ */
+
+//MANAGE TO RENDER OUT THE EDIT FORM
 //EDIT FORM
 // URL -> /recipes/id/edit && HTTP Verb -> GET && Action -> edit && Purpose -> Display the form for editing a single recipe
-app.get('/recipes/:id/edit',(req,res)=>{
-    jsonfile.readFile(file,(err,obj)=>{
+app.get('/recipes/:id/edit', (request, response) => {
+    jsonfile.readFile(file,(err, obj) => {
         if (err) console.log(err);
 // using the :id, find the corresponding recipe
-        let index = parseInt(req.params.id) - 1; // need to minus the index so recipes are the same!! if not it becomes next recipe in array. Using the :id, find the corresponding recipe
+        let index = parseInt(request.params.id);
 // rename data to be sent
-        selectedRecipe = obj.recipes[index];
+        console.log(obj.recipes);
+        let chosenRecipe = obj.recipes[index];
+        console.log(obj.recipes[index]);
+        console.log(chosenRecipe);
+        const data = {
+            id: index,
+            recipe: chosenRecipe
+        }
 // add in index of recipe to data
-        selectedRecipe.index = index;
-        res.render('edit',selectedRecipe);
+        // selectedRecipe.index = index;
+        response.render('edit', data);
     });
 });
 
-//UPDATE DATA
+
+/**
+ * ===================================
+ * UPDATE // PUT
+ * ===================================
+ */
+
+//FINALLY ABLE TO UPDATE DATA ON 19-1-2020!!!!!!!! THANK GOD!!!!!!
 //URL -> /recipes/id && HTTP Verb -> PATCH/PUT && Action -> update && Purpose -> Update a recipe
-app.put('/recipes/:id',(req,res)=>{
+app.put('/recipes/:id',(request,response)=>{
 // using the :id, find the corresponding recipe
-    let index = parseInt(req.params.id);
+    let index = parseInt(request.params.id);
     jsonfile.readFile(file,(err,obj)=>{
         if (err) console.log(err);
-// overwrite the current data with new data
-        obj.recipes[index] = req.body;
+        console.log(request.body + " Hey this is request dot body!");
+        // overwrite the current data with new data
+        let contents = request.body;
+        console.log(contents + " Hey this is contents!");
+        console.log(obj.recipes + " Hey this is object dot recipes bracket index!");
+        obj.recipes[index].title = contents.title.toLowerCase();
+        obj.recipes[index].ingredients = contents.ingredients.toLowerCase();
+        obj.recipes[index].instructions = contents.instructions.toLowerCase();
         jsonfile.writeFile(file,obj,(err)=>{
             if (err) console.log(err);
+            const data = {
+            recipe: contents
+            }
+        response.render('updated', data);
         });
-        res.render('addedNew',obj.recipes[index]);
     });
 });
 
+
+/**
+ * ===================================
+ * DELETE
+ * ===================================
+ */
 //DELETE
 //URL -> /recipes/id && HTTP Verb -> PATCH/PUT && Action -> update && Purpose -> Update a recipe
 // app.delete("/recipes/:id", (request, response) => {
