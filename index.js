@@ -49,6 +49,33 @@ app.get('/recipes/new', (request, response) => {
 });
 
 
+
+///////////////////////////////////////// DISPLAY ONE RECIPE /////////////////////////////////////////
+app.get('/recipes/:id', (request, response) => {
+
+    jsonfile.readFile('src/recipe.json', (err, obj) => {
+
+        const allRecipes = obj['recipes'];
+        let inputId = parseInt(request.params.id);
+
+        for (let i = 0; i < allRecipes.length + 1; i++) {
+
+            if (i === inputId) {
+
+                const data = allRecipes[i - 1]
+                response.render('selected-recipe', data)
+
+            }
+
+            if (inputId > allRecipes.length + 1) {
+                response.send("Whoops! No such recipe!")
+            }
+        }
+    });
+});
+
+
+
 ////////////////////////////////////// RECORD NEW RECIPE TO LIST //////////////////////////////////////
 app.post('/recipes', (request, response) => {
 
@@ -82,44 +109,6 @@ app.get('/recipes', (request, response) => {
 
     });
 });
-
-
-///////////////////////////////////////// DISPLAY ONE RECIPE /////////////////////////////////////////
-app.get('/recipes/:id', (request, response) => {
-
-    jsonfile.readFile('src/recipe.json', (err, obj) => {
-
-        const allRecipes = obj.recipes;
-        // const data = { recipes: allRecipes }
-
-        if (request.params.id === allRecipes.length + 1) {
-            for (let i = 0; i < allRecipes.length; i++) {
-
-                response.render('selected-recipe', allRecipes[i])
-            }
-        }
-    });
-});
-
-
-// app.get('/ingredient', (request, response) => {
-
-//     jsonfile.readFile('ingredient.json', (err, obj) => {
-
-//         let ingredients = obj;
-
-//               good practice to send over data as an object so that in
-//                 the future, if add more data, it can be converted.
-//                 'pokemon' is now the new key of 'allPokemon'
-
-//         const data = { allIngredients: ingredients }
-//         // console.log(data) - access all objects
-
-//         response.render('home', data);
-//     })
-// });
-
-
 
 
 
