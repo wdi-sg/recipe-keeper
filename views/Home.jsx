@@ -6,9 +6,9 @@ class Home extends React.Component {
     let list = recipeArray.map(recipes => {
         return (
             <div>
-                <li>{recipes.title}</li>
-                <li>{recipes.ingredients}</li>
-                <li>{recipes.instructions}</li>
+                <h3>{recipes.title}</h3>
+                <p><strong>Ingredients:</strong> {recipes.ingredients}</p>
+                <p><strong>Instructions:</strong> {recipes.instructions}</p>
             </div>
             )
     })
@@ -18,7 +18,6 @@ class Home extends React.Component {
       <head>
           <title>🥗Plant Based Recipes🥗</title>
           <meta charset="utf-8" />
-
       </head>
 
     <body>

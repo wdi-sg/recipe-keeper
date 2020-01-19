@@ -60,7 +60,6 @@ app.post('/recipes', (request, response) => {
 
     jsonfile.readFile(FILE, (err, obj) => {
         if (err) {
-
             console.log("There is an error", err);
             response.status(503).send("Error");
             return;
@@ -68,10 +67,14 @@ app.post('/recipes', (request, response) => {
 
         obj.recipes.push(newRecipe);
 
+        const data = {
+        message: "'You are cooking up a storm!  👩🏾‍🍳 You have added a recipe for " + newRecipe.title
+        }
+
         jsonfile.writeFile(FILE, obj, (err) => {
             if (err) console.log(err);
             console.log('New ' + newRecipe);
-            response.send('You are cooking up a storm!  👩🏾‍🍳 You have added a recipe for ' + newRecipe.title);
+            response.render('Newrecipemessage', data);
             return;
         })
     })
@@ -196,3 +199,40 @@ app.delete('/recipes/:id', (request, response) => {
 
 /** Listen to requests on port 3000 **/
 app.listen(3000, () => console.log('~~~   👩🏾‍🍳 👩🏾‍🍳 👩🏾‍🍳  Hello Budding Chefs! Welcome to the 🥗 Plant Based 🥗 Recipe Keeper! You are now tuning in to the waves of port 3000 ~~~ '));
+
+
+
+
+
+
+
+
+// SHOWS MESSAGE THAT USER HAS ADDED NEW RECIPE
+// Link Works: http://localhost:3000/recipes
+/*app.post('/recipes', (request, response) => {
+    console.log('Received POST');
+    console.log(request.body);
+    const newRecipe = {
+        title: request.body.title,
+        ingredients: request.body.ingredients,
+        instructions: request.body.instructions
+    };
+
+    jsonfile.readFile(FILE, (err, obj) => {
+        if (err) {
+
+            console.log("There is an error", err);
+            response.status(503).send("Error");
+            return;
+        }
+
+        obj.recipes.push(newRecipe);
+
+        jsonfile.writeFile(FILE, obj, (err) => {
+            if (err) console.log(err);
+            console.log('New ' + newRecipe);
+            response.send('You are cooking up a storm!  👩🏾‍🍳 You have added a recipe for ' + newRecipe.title);
+            return;
+        })
+    })
+})*/
