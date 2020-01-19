@@ -11,9 +11,7 @@ const file = 'data.json';
 // Init express app
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(express.urlencoded({extended: true}));
 // Init Method-Override for PUT and DELETE
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'));
@@ -30,6 +28,49 @@ app.set('view engine', 'jsx');
  * Routes
  * ===================================
  */
+
+const form = (request, response) => {
+    response.render('form');
+}
+
+const postRecipes = (request,response) => {
+
+    let info = request.body
+
+
+    jsonfile.readFile('data.json', (err,obj) => {
+
+        let newData = {
+        title: info.title,
+        ingredients: info.ingredients,
+        instructions: info.instructions,
+        }
+
+        let data = {
+            recipes: obj.recipes
+        }
+
+            obj.recipes.push(newData);
+
+            jsonfile.writeFile('data.json', obj, (err) => {
+                response.render("home", data);
+            });
+    });
+}
+
+const home = (request,response) => {
+    jsonfile.readFile('data.json', (err,obj) => {
+        let data = {
+            recipes: obj.recipes
+        }
+    response.render('home',data)
+    })
+}
+
+app.get('/recipes', home);
+app.get('/recipes/new', form);
+app.post('/recipes', postRecipes);
+
 
 app.get('/', (request, response) => {
   response.render('home');
