@@ -40,7 +40,7 @@ return (
                 </div>
         <div className="form-row justify-content-center">
         <div className="form-group">
-        <input type="submit" defaultValue="DELETE!" className="btn btn-danger"/>
+        <input type="submit" defaultValue="DELETE!" className="btn btn-danger h1"/>
         </div>
         </div>
     </form>

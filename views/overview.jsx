@@ -9,7 +9,7 @@ render() {
         let hrefURL = "/recipes/"+index;
         let limitedDescription = item.description.substring(0, 20) + "..."
 
-        return (<div className="col-lg-4 col-md-6 col-sm-8 col-xs-12 d-flex justify-content-center">
+        return (<div className="col-lg-4 col-md-6 col-sm-8 col-xs-12 d-flex justify-content-center" key={index}>
         <div className="card border-success mb-3" style={{width: "14rem"}}>
             <div className="card-body text-success">
                 <h5 className="card-title">{item.title}</h5>

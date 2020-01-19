@@ -14,7 +14,7 @@ const numberedArray = ingredientArray.map((item)=>{
 number++
 string = number+"."
 return (
-<tr key={number}>
+<tr key={number} className="tableid">
     <th scope="row">{string}</th>
     <td className="mr-auto">{item}</td>
 </tr>
@@ -32,7 +32,7 @@ return (
 <body>
     <h1 className="ml-5">{this.props.success}</h1>
     <h1 className="text-center my-3" scope="col">{this.props.recipe.title}</h1>
-    <table className="table table-striped w-25 mx-auto">
+    <table className="table table-striped mx-auto">
         <tbody>
             {numberedArray}
         </tbody>

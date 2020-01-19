@@ -8,6 +8,8 @@ html, body {
 body {
     background-image: url('../img/background.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -48,6 +50,10 @@ h1 {
      background-color: brown;
      border-color: brown;
  }
+
+ .btn-danger {
+    font-size: 30px;
+ }
  
  p {
     max-width: 100%!important;
@@ -58,3 +64,8 @@ h1 {
     border-radius: 20%;
     padding: 20px 10px;
  }
+
+table {
+   min-width: 200px!important;
+   max-width: 25%;
+}

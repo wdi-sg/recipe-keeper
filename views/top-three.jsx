@@ -28,7 +28,7 @@ if (index < 3) { return item } }); const allRecipes=topThree.map((item, index)=>
     return (
     <div className="h-75">
         <div className="row w-100 h-25 justify-content-center mt-5">
-            <h1>Top Three Recipes</h1>
+            <h1>Best Recipes</h1>
         </div>
         <div className="row justify-content-center align-items-start w-100 h-50">
             <div className="card-deck w-75 justify-content-around">
