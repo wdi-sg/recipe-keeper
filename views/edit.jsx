@@ -21,7 +21,7 @@ return (
     <form action={actionURL} method="POST">
         <div className="form-row justify-content-center mt-5">
             <div className="form-group">
-                <input type="text"  defaultValue={this.props.recipe.title} name="title" className=""
+                <input type="text"  defaultValue={this.props.recipe.title} name="title" className="" maxLength="40"
                     required />
 
             </div>
@@ -35,7 +35,7 @@ return (
         <div className="form-row justify-content-center">
             <div className="form-group">
                 <textarea type="text" placeholder="description" defaultValue={this.props.recipe.description} rows="5" cols="50"
-                    name="description" />
+                    name="description" maxLength="1000" />
                 </div>
                 </div>
         <div className="form-row justify-content-center">

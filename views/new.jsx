@@ -17,8 +17,7 @@ return (
     <form action="/recipes" method="POST">
         <div className="form-row justify-content-center mt-5">
             <div className="form-group">
-                <input type="text" placeholder="title" name="title" className="" required/>
-                
+                <input type="text" placeholder="title" name="title" className="" maxLength="40" required/>
             </div>
         </div>
         <div className="form-row justify-content-center">
@@ -28,7 +27,7 @@ return (
         </div>
         <div className="form-row justify-content-center">
             <div className="form-group">
-                <textarea type="text" placeholder="description" rows="5" cols="50" name="description" />
+                <textarea type="text" placeholder="description" rows="5" cols="50" name="description" maxLength="1000"/>
                 </div>
                 </div>
         <div className="form-row justify-content-center">
