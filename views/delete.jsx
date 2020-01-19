@@ -2,6 +2,7 @@ var React = require('react');
 
 class Delete extends React.Component {
   render() {
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
     let postURL = '/recipes/'+this.props.id+'?_method=delete';
     return (
       <html>
