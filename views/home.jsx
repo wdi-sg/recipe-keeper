@@ -7,7 +7,6 @@ class Home extends React.Component {
     const recipes = this.props.recipes;
     const ingredients = this.props.ingredients;
     console.log(ingredients)
-    const searchString = this.props.searchString;
     const recipe = recipes.map(recipe => {
       const recipePath = "/recipes/" + recipe.id;
       const ingredientItem = ingredients.map(ingredient => {
@@ -54,7 +53,6 @@ class Home extends React.Component {
           >
             Recipe Keepr
           </h1>
-          <h5 style={{ textAlign: "center" }}>{searchString}</h5>
           <div className="row d-flex justify-content-center">{recipe}</div>
         </div>
       </Layout>
