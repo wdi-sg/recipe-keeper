@@ -6,7 +6,7 @@ class DisplayByID extends React.Component {
 render() {
 
 let ingredients = this.props.recipe.ingredients
-ingredients = ingredients.replace(/ +/g, "");
+ingredients = ingredients.replace(/ +/g, " ");
 const ingredientArray = ingredients.split(",")
 let number = 0
 let string
@@ -37,7 +37,7 @@ return (
             {numberedArray}
         </tbody>
     </table>
-    <div className="container mt-3 text-center mx-auto text-success bg-light w-50">
+    <div className="container mt-3 text-center mx-auto text-success bg-light w-50 description">
     <p>{this.props.recipe.description}</p>
     </div>
     

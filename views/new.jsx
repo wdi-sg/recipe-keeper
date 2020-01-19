@@ -8,7 +8,7 @@ return (
 
 <html>
 <Header>
-    <link rel="stylesheet" href="./../css/home.css" type="text/css" />
+    <link rel="stylesheet" href="/css/home.css" type="text/css" />
 </Header>
 
 <body>

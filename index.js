@@ -112,6 +112,7 @@ app.get('/recipes/:id/edit', (request, response) => {
     const requestedRecipe = obj.recipes[id]
     //create data object to pass to edit form
     const data = {
+      recipes: obj.recipes,
       id: id,
       recipe: requestedRecipe
     }
@@ -165,6 +166,7 @@ app.get('/recipes/:id/delete', (request, response) => {
     const requestedRecipe = obj.recipes[id]
     //create data object to pass to delete form
     const data = {
+      recipes: obj.recipes,
       id: id,
       recipe: requestedRecipe
     }

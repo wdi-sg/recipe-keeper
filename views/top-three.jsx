@@ -11,7 +11,7 @@ if (index < 3) { return item } }); const allRecipes=topThree.map((item, index)=>
     let limitedDescription = item.description.substring(0, 20) + "..."
 
     return (
-    <div className="col col-sm-4">
+    <div className="col col-sm-4" key={index}>
         <div className="card border-success mb-3" style={{width: "14rem"}}>
             <div className="card-body text-success">
                 <h5 className="card-title">{item.title}</h5>
