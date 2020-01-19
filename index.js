@@ -232,8 +232,32 @@ app.get('/', (request, response)=>{
 
     response.render('home', obj)
   })
-
-
 })
+
+//NEXT FEATURE
+// app.get('/recipes/sort', (request, response)=>{
+
+//   jsonfile.readFile(file, (err, obj)=>{
+
+//     obj.recipes.sort(
+//       function (a, b) {
+//         if (a.id > b.id) {
+//           return -1;
+//         } else if (a.id < b.id) {
+//           return 1;
+//         } else {
+//           return 0;
+//         }
+//       }
+//     )
+
+//     const data = {
+//       recipes: obj.recipes
+//     }
+
+//       response.render('home', data)
+//   })
+  
+// })
 
 app.listen(3000, () => console.log("Listening.....TO YOUR INPUT"))
