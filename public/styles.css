@@ -1,6 +1,5 @@
 img:hover {
   transform: scale(1.05);
-  filter: grayscale(40%);
   transition: 2s;
 }
 
