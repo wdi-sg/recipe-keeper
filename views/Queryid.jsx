@@ -9,9 +9,9 @@ class Queryid extends React.Component {
 
     <body>
          <div>
-            <h1>Recipe title: { this.props.recipe.title}</h1>
-            <h2>Ingredients: {this.props.recipe.ingredients}</h2>
-            <h2>Description: {this.props.recipe.description}</h2>
+            <h3>Recipe for: {this.props.recipe.title}</h3>
+            <p>Ingredients: {this.props.recipe.ingredients}</p>
+            <p>Instructions: {this.props.recipe.instructions}</p>
      </div>
     </body>
    </html>

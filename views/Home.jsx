@@ -15,9 +15,13 @@ class Home extends React.Component {
 
   return (
    <html>
+      <head>
+          <title>List of Recipes</title>
+      </head>
+
     <body>
      <div>
-      <h1>Food... Glorious Food... </h1>
+      <h1>List of Recipes </h1>
       <p>{list}</p>
      </div>
     </body>

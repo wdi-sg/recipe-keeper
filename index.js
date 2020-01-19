@@ -73,7 +73,7 @@ app.post('/recipes', (request, response) => {
         jsonfile.writeFile(FILE, obj, (err) => {
             if (err) console.log(err);
             console.log('New ' + newRecipe);
-            response.send('You are cooking up a storm! You have added a recipe for ' + newRecipe.title);
+            response.send('You are cooking up a storm!  👩🏾‍🍳 You have added a recipe for ' + newRecipe.title);
             return;
         })
     })
@@ -81,10 +81,8 @@ app.post('/recipes', (request, response) => {
 
 
 
-
-
-
-//  SEE A SINGLE RECIPE
+//  DISPLAYS A SINGLE RECIPE
+// Link Works: http://localhost:3000/recipes/1
 app.get('/recipes/:id', (request, response) => {
     const id = request.params.id
     jsonfile.readFile(FILE, (err, obj) => {
@@ -104,6 +102,52 @@ app.get('/recipes/:id', (request, response) => {
   })
 })
 
+
+
+
+
+/// ADD A FORM AT THE PATH: /pokemon/:id/edit
+// Link Works: http://localhost:3000/recipes/1/edit but did not after clicking submit
+app.get('/recipes/:id/edit',(request, response) => {
+    const id = request.params.id
+    jsonfile.readFile(FILE, (err, obj) => {
+        if (err) {
+            return console.log(err)
+    }
+    const requestedRecipe = obj.recipes[id]
+    const data = {
+      id: id,
+      recipe: requestedRecipe
+    }
+    response.render('Edit', data)
+  })
+})
+
+
+
+
+
+app.put('/recipes/:id', (request, response) => {
+    const id = request.params.id
+    const editedRecipe = request.body
+    jsonfile.readFile(FILE, (err, obj) => {
+        if (err) {
+            return console.log(err)
+        }
+        Object.assign(obj.recipes[id], editedRecipe)
+        const data = {
+            message: "You have adjusted your secret recipe",
+            recipe: editedRecipe
+        }
+
+        jsonfile.writeFile(FILE, obj, (err) => {
+            if (err) {
+                return console.log(err)
+            }
+            response.render('Revisedrecipe', data)
+        })
+    })
+})
 
 
 
@@ -129,8 +173,7 @@ app.get('/recipes/:id', (request, response) => {
       response.render('Queryid', data);
     })
   })
-})
-*/
+})*/
 
 
 
@@ -145,28 +188,16 @@ app.get('/recipes/:id', (request, response) => {
 
 
 
-/// ADD A FORM AT THE PATH: /pokemon/:id/edit
-// Link Works: http://localhost:3000/recipes/1/edit but did not after clicking submit
-app.get('/recipes/:id/edit',(request, response) => {
-    let index = parseInt(request.params.id) - 1; // minus one
-    jsonfile.readFile(FILE, (err, obj) => {
-        console.log(obj)
-        let recipe = obj.recipes[index];
-        const data = {
-            name: recipe,
-        };
-        response.render('Edit', data);
-    })
-})
-
-
-// error message: Cannot PUT /recipes/'+recipe.id+'
 
 
 
 
 
 
+
+
+/** Listen to requests on port 3000 **/
+app.listen(3000, () => console.log('~~~   👩🏾‍🍳 👩🏾‍🍳 👩🏾‍🍳  Hello Budding Chefs! You are tuning in to the waves of port 3000 ~~~ '));
 
 
 
@@ -201,19 +232,38 @@ app.get('/recipes/:id/edit',(request, response) => {
 
 
 
+/// ADD A FORM AT THE PATH: /pokemon/:id/edit
+// Link Works: http://localhost:3000/recipes/1/edit but did not after clicking submit
+/*app.get('/recipes/:id/edit',(request, response) => {
+    let index = parseInt(request.params.id) - 1; // minus one
+    jsonfile.readFile(FILE, (err, obj) => {
+        console.log(obj)
+        let recipe = obj.recipes[index];
+        const data = {
+            name: recipe,
+        };
+        response.render('Edit', data);
+    })
+})
+*/
 
 
 
+/*app.put('/recipes/:id', (request, response) => {
 
+  let newData = request.body
+  jsonfile.readFile(FILE, (err, obj) => {
+    if (err) {
+      return console.log(err)
+    }
+    let id = request.params.id;
+    obj.recipes[id] = newData;
 
-
-
-
-
-
-
-
-
-
-/** Listen to requests on port 3000 **/
-app.listen(3000, () => console.log('~~~ Hello Budding Chefs! You are tuning in to the waves of port 3000 ~~~'));
+    jsonfile.writeFile(FILE, obj, (err) => {
+      if (err) {
+        return console.log(err)
+      }
+      response.render('Queryid', data);
+    })
+  })
+})*/

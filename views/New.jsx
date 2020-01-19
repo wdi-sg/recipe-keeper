@@ -3,15 +3,20 @@ class New extends React.Component {
   render() {
     return (
       <html>
+      <head>
+          <title>Add Recipes</title>
+          <meta charset="utf-8" />
+      </head>
+
         <body>
           <div>
-            <h1>New Recipe</h1>
+            <h1>Add a New Recipe</h1>
 
              <form method="POST" action='/recipes'>
-                Title:<input type="text" name="title"/><br/>
-                Ingredients:<input type="text" name="ingredients"/><br/>
-                Instructions:<input type="text" name="instructions"/><br/>
-                <input type="submit" value="Start cooking..."/>
+                Recipe Title  <input type="text" name="title"/><br/>
+                Ingredients  <textarea type="text" name="ingredients"/><br/>
+                Instructions  <textarea type="text" name="instructions"/><br/>
+                <input type="submit" value="Start cooking...👩🏾‍🍳"/>
             </form>
 
           </div>
