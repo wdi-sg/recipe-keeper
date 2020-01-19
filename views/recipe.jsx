@@ -42,7 +42,16 @@ class Recipe extends React.Component {
             </ul>
 
             <h4>Instructions: </h4>
-            <p>{recipe.instructions}</p>
+            <p>
+              {recipe.instructions.split("\n").map((item, key) => {
+                return (
+                  <span key={key}>
+                    {item}
+                    <br />
+                  </span>
+                );
+              })}
+            </p>
           </div>
 
           <button className="btn btn-warning mr-1">

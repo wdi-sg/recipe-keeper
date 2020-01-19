@@ -105,13 +105,16 @@ app.get("/recipes/ingredients", (req, res) => {
 
 app.get("/recipes/:id", (req, res) => {
   const index = req.params.id;
-  let recipe;
   jsonfile.readFile(file, (err, obj) => {
-    const data = {
-      recipe: obj.recipes[index],
-      ingredients: obj.ingredients[index]
-    };
-    res.render("recipe", data);
+    if (obj.recipes[index] !== undefined) {
+      const data = {
+        recipe: obj.recipes[index],
+        ingredients: obj.ingredients[index]
+      };
+      res.render("recipe", data);
+    } else {
+      res.render("404");
+    }
   });
 });
 
