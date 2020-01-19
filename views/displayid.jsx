@@ -37,8 +37,8 @@ return (
             {numberedArray}
         </tbody>
     </table>
-    <div className="container mt-3 text-center mx-auto text-success bg-light w-25">
-    <h5>   {this.props.recipe.description}</h5>
+    <div className="container mt-3 text-center mx-auto text-success bg-light w-50">
+    <p>{this.props.recipe.description}</p>
     </div>
     
 </body>

@@ -49,3 +49,7 @@ h1 {
      border-color: brown;
  }
  
+ p {
+    max-width: 100%!important;
+    white-space: pre-line;
+ }
