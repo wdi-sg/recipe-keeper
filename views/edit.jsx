@@ -21,7 +21,7 @@ return (
     <form action={actionURL} method="POST">
         <div className="form-row justify-content-center mt-5">
             <div className="form-group">
-                <input type="text"  defaultValue={this.props.recipe.title} name="title" className="" maxLength="40"
+                <input type="text"  defaultValue={this.props.recipe.title} name="title" className="" maxLength="40" minLength="6"
                     required />
 
             </div>
@@ -29,13 +29,13 @@ return (
         <div className="form-row justify-content-center">
             <div className="form-group">
                 <input type="text" placeholder="ingredient1, ingredient2, ..." defaultValue={this.props.recipe.ingredients}
-                    name="ingredients" className="" required />
+                    name="ingredients" minLength="8" required />
             </div>
         </div>
         <div className="form-row justify-content-center">
             <div className="form-group">
                 <textarea type="text" placeholder="description" defaultValue={this.props.recipe.description} rows="5" cols="50"
-                    name="description" maxLength="1000" />
+                    name="description" maxLength="1000" minLength="50"/>
                 </div>
                 </div>
         <div className="form-row justify-content-center">
