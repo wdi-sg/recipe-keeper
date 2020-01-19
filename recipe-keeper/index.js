@@ -44,7 +44,7 @@ const view = (request,response) => {
             recipes: obj.recipes[request.params.id],
             id: request.params.id
         }
-    response.render('view',data)
+    response.render('view', data)
     })
 }
 
@@ -62,7 +62,7 @@ const postRecipes = (request,response) => {
         title: info.title,
         ingredients: info.ingredients,
         instructions: info.instructions,
-        date: new Date();
+        date: new Date()
         }
 
         let data = {recipes: obj.recipes}
@@ -113,12 +113,32 @@ const editRecipes = (request,response) => {
   });
 }
 
+const del = (request,response) => {
+    let index = request.params.id;
+
+    jsonfile.readFile(file, (err, obj) => {
+
+        let data = {
+        recipes: obj.recipes,
+        id: request.params.id
+        }
+
+        obj.recipes.splice(index, 1);
+
+      jsonfile.writeFile('data.json', obj, (err) => {
+            console.error(err)
+            response.render('home', data);
+    });
+  });
+}
+
 app.get('/recipes', home);
-app.get('/recipes/:id', view);
 app.get('/recipes/new', form);
-app.get('/recipes/:id/edit', edit);
-app.put('/recipes/:id', editRecipes)
 app.post('/recipes', postRecipes);
+app.get('/recipes/:id', view);
+app.get('/recipes/:id/edit', edit);
+app.put('/recipes/:id', editRecipes);
+app.delete('/recipes/:id', del);
 
 
 app.get('/', (request, response) => {
