@@ -11,7 +11,7 @@ return(
                     <header>
                         <ul class="nav justify-content-center">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
+                                <a class="nav-link" href="/">HOME</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
@@ -22,7 +22,12 @@ return(
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
                             </li>
+                            <form class="form-inline my-2 my-lg-0" method = "POST" action = "/recipe/search?method=get">
+                              <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search"/>
+                              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
                         </ul>
+
                     </header>
                     <div>
                         <h1 class ="display-1 text-center">RECIPE KEEPER</h1>
