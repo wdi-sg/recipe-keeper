@@ -30,7 +30,14 @@ app.use(express.static("."));
 
 app.get('/recipes/new', (request, response) => {
   //render new recipe form
-  response.render('new')
+  jsonfile.readFile(file, (err, obj)=>{
+
+    const data = {
+      recipes: obj.recipes
+    }
+
+    response.render('new', data)
+  })
 })
 
 app.post('/recipes', (request, response) => {
