@@ -5,21 +5,23 @@ var React = require('react');
 
 class Home extends React.Component {
   render() {
-    // let recipeArray = this.props.recipeList;
-    // const list = recipeArray.map(recipe => {
-    //     return (
-    //     <div>
-    //     <li> Title: {recipe.name} </li>
-    //     <h2> Ingredients: {recipe.ingredients} </h2>
-    //     <h2> Instructions: {recipe.instructions} </h2>
-    //     </div>
-    //     )
-    // })
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
+    let recipeArray = this.props.recipeList;
+    const list = recipeArray.map(recipe => {
+        return (
+        <div>
+        <li> Title: {recipe.title} </li>
+        <h2> Ingredients: {recipe.ingredients} </h2>
+        <h2> Instructions: {recipe.instructions} </h2>
+        </div>
+        )
+    })
     return (
       <html>
         <body>
           <div>
-            <h1>Hello, welcome to the home page of where your recipes are!</h1>
+            <h1>Hello, below are the list of recipes that you have just created!</h1>
+            {list}
           </div>
         </body>
       </html>

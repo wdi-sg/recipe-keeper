@@ -61,7 +61,7 @@ app.get('/recipes', (request, response) => {
     const data = {
         recipeList: listOfRecipe
     }
-    response.render('list', data);
+    response.render('home', data);
     //response.render must be within ur jsonfile.readFile otherwise it won't work
   });
 });
@@ -232,7 +232,7 @@ app.put('/recipes/:id',(request,response)=>{
  * ===================================
  */
 
-//FORM TO DELETE A SPECIFIC RECIPE IN DATA.JSON
+//FORM TO DELETE A SPECIFIC RECIPE IN DATA.JSON  //Question, must it be in a form only can delete?
 app.get('/recipes/:id/delete', (request, response) => {
     jsonfile.readFile(file,(err, obj) => {
         if (err) console.log(err);
@@ -281,9 +281,9 @@ app.delete('/recipes/:id',(request, response)=>{
  * ===================================
  */
 
-app.get('/home', (request, response) => {
-    response.render('home');
-});
+// app.get('/home', (request, response) => {
+//     response.render('home');
+// });
 
 
 

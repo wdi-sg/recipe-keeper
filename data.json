@@ -1,14 +1,1 @@
-{
-  "recipes": [
-    {
-      "title": "mac and cheese",
-      "ingredients": "macaroni, cheese",
-      "instructions": "cook macaroni. scoop up. put into another pot, add cheese and continue cooking."
-    },
-    {
-      "title": "burger",
-      "ingredients": "patty, sesame bun, lettuce",
-      "instructions": "assemble everything but cook your patty first"
-    }
-  ]
-}
+{"recipes":[{"title":"tom yum soup","ingredients":"seafood, tom yum paste","instructions":"put all in boiling pot of water"},{"title":"chicken chop","ingredients":"chicken breast, bread crumbs, oil","instructions":"coat chicken breast with breadcrumb, fry it till golden brown. serve"},{"title":"egg sandwich","ingredients":"egg, bread","instructions":"cook egg, smash it, spread on bread."}]}
