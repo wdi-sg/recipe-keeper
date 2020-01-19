@@ -31,6 +31,7 @@ app.get("/recipes/new", (req, res) => {
 
 app.post("/recipes/", (req, res) => {
   const recipe = req.body;
+  console.log(recipe);
   const date = new Date();
   const options = {
     day: "numeric",
@@ -40,10 +41,28 @@ app.post("/recipes/", (req, res) => {
     minute: "2-digit",
     second: "2-digit"
   };
+  const ingredients = {
+    ingredient: {
+      name: req.body.name,
+      amount: req.body.amount,
+      notes: req.body.notes
+    },
+    ingredientTwo: {
+      name: req.body.nameTwo,
+      amount: req.body.amountTwo,
+      notes: req.body.notesTwo
+    },
+    ingredientThree: {
+      name: req.body.nameThree,
+      amount: req.body.amountThree,
+      notes: req.body.notesThree
+    }
+  };
   jsonfile.readFile(file, (err, obj) => {
     recipe.id = obj.recipes.length;
     recipe.date = date.toLocaleDateString("en-US", options);
     obj.recipes.push(recipe);
+    obj.ingredients.push(ingredients);
     jsonfile.writeFile(file, obj, err => {});
   });
   res.redirect("/");
@@ -65,15 +84,13 @@ app.get("/recipes/search/", (req, res) => {
         index = i;
         searchArray.push(obj.recipes[i]);
       }
-      console.log("helllllllooo", searchArray);
     }
     if (found) {
       const searchObject = {
         recipes: searchArray,
         searchString: `You searched for "${search}"! Searches matching "${search}":`
       };
-      console.log("search object is", searchObject);
-      res.render("home", searchObject);
+      res.render("found", searchObject);
     } else {
       res.render("404", data);
     }
@@ -84,8 +101,11 @@ app.get("/recipes/:id", (req, res) => {
   const index = req.params.id;
   let recipe;
   jsonfile.readFile(file, (err, obj) => {
-    recipe = obj.recipes[index];
-    res.render("recipe", recipe);
+    const data = {
+      recipe: obj.recipes[index],
+      ingredients: obj.ingredients[index]
+    };
+    res.render("recipe", data);
   });
 });
 
@@ -135,7 +155,7 @@ app.get("/recipes/sort/:type", (req, res) => {
       obj.recipes.sort((a, b) => {
         return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
       });
-    } else if ('type === "date') {
+    } else if (type === "date") {
       obj.recipes.sort((a, b) => {
         return new Date(b.date) - new Date(a.date);
       });

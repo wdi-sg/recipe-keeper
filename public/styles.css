@@ -1,0 +1,9 @@
+img:hover {
+  transform: scale(1.05);
+  filter: grayscale(40%);
+  transition: 2s;
+}
+
+.recipe-link:hover {
+  color: rgb(255, 0, 0)!important;
+}

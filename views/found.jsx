@@ -1,18 +1,11 @@
 const React = require("react");
 const Layout = require("./layout");
 
-class Home extends React.Component {
-  
+class Found extends React.Component {
   render() {
-    const recipes = this.props.recipes;
-    const ingredients = this.props.ingredients;
-    console.log(ingredients)
     const searchString = this.props.searchString;
-    const recipe = recipes.map(recipe => {
+    const foundMatch = this.props.recipes.map(recipe => {
       const recipePath = "/recipes/" + recipe.id;
-      const ingredientItem = ingredients.map(ingredient => {
-        return <li>{ingredient.name}</li>;
-      });
       return (
         <div className=" col-lg-4">
           <a href={recipePath}>
@@ -45,6 +38,7 @@ class Home extends React.Component {
         </div>
       );
     });
+
     return (
       <Layout>
         <div className="container">
@@ -55,11 +49,11 @@ class Home extends React.Component {
             Recipe Keepr
           </h1>
           <h5 style={{ textAlign: "center" }}>{searchString}</h5>
-          <div className="row d-flex justify-content-center">{recipe}</div>
+          <div className="row d-flex justify-content-center">{foundMatch}</div>
         </div>
       </Layout>
     );
   }
 }
 
-module.exports = Home;
+module.exports = Found;

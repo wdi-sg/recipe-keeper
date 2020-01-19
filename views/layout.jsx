@@ -13,7 +13,7 @@ class Layout extends React.Component {
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossOrigin="anonymous"
           />
-
+          <link rel="stylesheet" href="/styles.css"></link>
           <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -53,13 +53,13 @@ class Layout extends React.Component {
             >
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <a className="nav-link text-center" href="/recipes/new">
+                  <a className="nav-link" href="/recipes/new">
                     New
                   </a>
                 </li>
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle text-center"
+                    className="nav-link dropdown-toggle"
                     href="#"
                     id="navbarDropdown"
                     role="button"
@@ -73,16 +73,10 @@ class Layout extends React.Component {
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
                   >
-                    <a
-                      className="dropdown-item text-center"
-                      href="/recipes/sort/name"
-                    >
+                    <a className="dropdown-item" href="/recipes/sort/name">
                       Sort by alphabetical order
                     </a>
-                    <a
-                      className="dropdown-item text-center"
-                      href="/recipes/sort/date"
-                    >
+                    <a className="dropdown-item " href="/recipes/sort/date">
                       Sort by newly added
                     </a>
                   </div>
@@ -93,7 +87,6 @@ class Layout extends React.Component {
                 className="form-inline my-2 my-lg-0"
                 method="GET"
                 action="/recipes/search"
-                style={{display:"flex", justifyContent:"center"}}
               >
                 <input
                   className="form-control mr-sm-2"
