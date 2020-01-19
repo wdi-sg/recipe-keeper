@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const methodOverride = require('method-override')
 const reactEngine = require('express-react-views').createEngine();
+const moment = require('moment')
 
 //JSON
 const file = 'recipes.json';
@@ -48,7 +49,7 @@ app.post('/recipes', (request, response) => {
     if (err) {
       return console.log(err)
     }
-
+    newRecipe.created = "Created on " + moment().format('MMMM Do YYYY, h:mm:ss a')
     //push recipe into json file
     obj.recipes.push(newRecipe)
     //retrieve pushed recipe's ID
@@ -59,7 +60,6 @@ app.post('/recipes', (request, response) => {
       recipe: obj.recipes[newRecipeID],
       success: "Item added successfully!"
     }
-
     jsonfile.writeFile(file, obj, (err) => {
       if (err) {
         return console.log(err)

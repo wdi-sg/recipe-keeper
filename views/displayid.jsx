@@ -38,6 +38,7 @@ return (
         </tbody>
     </table>
     <div className="container mt-3 text-center mx-auto text-success bg-light w-50 description">
+    <p className="text-center text-dark h5">{this.props.recipe.created}</p>
     <p>{this.props.recipe.description}</p>
     </div>
     
