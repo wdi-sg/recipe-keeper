@@ -187,7 +187,6 @@ app.get('/recipes/:id/edit', (request, response) => {
             recipe: chosenRecipe
         }
 // add in index of recipe to data
-        // selectedRecipe.index = index;
         response.render('edit', data);
     });
 });
@@ -227,14 +226,55 @@ app.put('/recipes/:id',(request,response)=>{
 
 /**
  * ===================================
- * DELETE
+ * FORM TO DELETE
  * ===================================
  */
-//DELETE
+
+//FORM TO DELETE A SPECIFIC RECIPE IN DATA.JSON
+app.get('/recipes/:id/delete', (request, response) => {
+    jsonfile.readFile(file,(err, obj) => {
+        if (err) console.log(err);
+// using the :id, find the corresponding recipe
+        let index = parseInt(request.params.id);
+// rename data to be sent
+        console.log(obj.recipes);
+        let chosenRecipe = obj.recipes[index];
+        console.log(obj.recipes[index]);
+        console.log(chosenRecipe);
+        const data = {
+            id: index,
+            recipe: chosenRecipe
+        }
+// add in index of recipe to data
+        response.render('delete', data);
+    });
+});
+
+
+/**
+ * ===========================================================
+ * ACTION THAT DELETES THE CHOSEN RECIPE AND UPDATES DATA.JSON
+ * ===========================================================
+ */
+//DELETE ACTION
 //URL -> /recipes/id && HTTP Verb -> PATCH/PUT && Action -> update && Purpose -> Update a recipe
-// app.delete("/recipes/:id", (request, response) => {
-//   //read the file in and write out to it
-// });
+app.delete('/recipes/:id',(request, response)=>{
+    let recipeIndex = request.params.id;
+    jsonfile.readFile(file, (err, obj) => {
+    let contents = request.body;
+    obj.recipes.splice(recipeIndex, 1);
+
+    jsonfile.writeFile('data.json', obj, (err) => {
+        console.error(err);
+        const data = {
+            recipe: contents
+        }
+      response.render('deletedItem', data);
+    });
+  });
+
+
+});
 
 
 
