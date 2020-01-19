@@ -29,6 +29,15 @@ app.set('view engine', 'jsx');
  * ===================================
  */
 
+const home = (request,response) => {
+    jsonfile.readFile('data.json', (err,obj) => {
+        let data = {
+            recipes: obj.recipes
+        }
+    response.render('home',data)
+    })
+}
+
 const form = (request, response) => {
     response.render('form');
 }
@@ -53,22 +62,53 @@ const postRecipes = (request,response) => {
             obj.recipes.push(newData);
 
             jsonfile.writeFile('data.json', obj, (err) => {
+                console.log(err);
                 response.render("home", data);
             });
     });
 }
 
-const home = (request,response) => {
-    jsonfile.readFile('data.json', (err,obj) => {
+const edit = (request,response) => {
+    jsonfile.readFile(file, (err,obj) => {
+        let id = request.params.id;
         let data = {
-            recipes: obj.recipes
+            recipes: obj.recipes[id],
+            id: id
         }
-    response.render('home',data)
+    response.render("edit", data)
     })
+}
+
+const editRecipes = (request,response) => {
+
+    jsonfile.readFile(file, (err, obj) => {
+
+      let data = {
+        recipes: obj.recipes,
+        id: request.params.id
+        }
+
+      let recipes = obj.recipes[request.params.id]
+
+      let recipesTitle = request.body.title;
+      let recipesIngredient = request.body.ingredients;
+      let recipesInstructions = request.body.instructions;
+
+      recipes.title = recipesTitle;
+      recipes.ingredients = recipesIngredient;
+      recipes.instructions = recipesInstructions;
+
+      jsonfile.writeFile(file, obj, (err) => {
+          console.error(err)
+          response.render("home", data);
+    });
+  });
 }
 
 app.get('/recipes', home);
 app.get('/recipes/new', form);
+app.get('/recipes/edit/:id', edit);
+app.put('/recipes/:id', editRecipes)
 app.post('/recipes', postRecipes);
 
 
