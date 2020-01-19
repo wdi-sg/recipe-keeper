@@ -35,14 +35,16 @@ app.set('view engine', 'jsx');
  * ===================================
  */
 
+//Add a way for users to navigate around the site without typing the explicit routes in the browser URL bar. create a button each that leads to either edit form/delete form/single page/ path?
+
 /**
  * ===================================
- *  ALL RECIPES // GET
+ *  LIST OF RECIPES // GET
  * ===================================
  */
 
-//INDEX/LIST OF HOMEPAGE WORKING
-//INDEX HOMEPAGE OR LIKE A MENU PAGE WITH ALL RECIPES IN IT
+//INDEX/LIST OF RECIPES WORKING
+//MENU PAGE WITH ALL RECIPES IN IT
 //URL -> /recipes/ && HTTP Verb -> GET && Action -> index && Purpose -> See all recipes
 app.get('/recipes', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
@@ -59,7 +61,7 @@ app.get('/recipes', (request, response) => {
     const data = {
         recipeList: listOfRecipe
     }
-    response.render('home', data);
+    response.render('list', data);
     //response.render must be within ur jsonfile.readFile otherwise it won't work
   });
 });
@@ -263,7 +265,6 @@ app.delete('/recipes/:id',(request, response)=>{
     jsonfile.readFile(file, (err, obj) => {
     let contents = request.body;
     obj.recipes.splice(recipeIndex, 1);
-
     jsonfile.writeFile('data.json', obj, (err) => {
         console.error(err);
         const data = {
@@ -272,9 +273,18 @@ app.delete('/recipes/:id',(request, response)=>{
       response.render('deletedItem', data);
     });
   });
-
-
 });
+
+/**
+ * ===================================
+ * HOME PAGE
+ * ===================================
+ */
+
+app.get('/home', (request, response) => {
+    response.render('home');
+});
+
 
 
 
