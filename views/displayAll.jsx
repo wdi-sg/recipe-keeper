@@ -15,6 +15,9 @@ class DisplayAll extends React.Component {
         </head>
         <body>
           <h1 class="p-3">Recipe</h1>
+          <form action = {`/recipes/new`} method="GET">
+          <button type="submit" className="btn btn-primary m-2">Add New Recipe</button>
+          </form>
           <div class="list-group w-50 p-3">
             {list}
           </div>

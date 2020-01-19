@@ -186,14 +186,76 @@ app.delete('/recipes/:id' , (request,response) => {
 })
 
 app.get('/recipes/:id', (request,response)=>{
-	jsonfile.readFile(file, (err, obj) => {
-		let currRecipe = obj.find(item => item.id == request.params.id)
-		const data = {
-			thisRecipe : currRecipe
-		};
-		response.render('recipe',data)
-	})
+	
+		if(request.params.id == "new"){
+
+			jsonfile.readFile(file, (err, obj) => {
+			
+			let newId = obj.length + 1;
+			console.log(newId)
+			obj.push(
+			{
+	    id: newId,
+	    name: "Type name here",
+		    ingredients: [
+		      {
+		        name: "",
+		        amount: "",
+		        notes: ""
+		      },
+		    ],
+	    steps: "Type steps here"
+	  	}
+			); //end push 
+			console.log(obj[obj.length - 1])
+
+			jsonfile.writeFile(file,obj,(err) => {
+				response.redirect(`/recipes/${newId}/edit`)
+			})
+		})
+
+	} else {
+
+			jsonfile.readFile(file, (err, obj) => {
+				let currRecipe = obj.find(item => item.id == request.params.id)
+				const data = {
+					thisRecipe : currRecipe
+				};
+				response.render('recipe',data)
+			})
+
+	} //end else
+
 })
+
+// New Recipe 
+
+// app.get('/recipes/new', (request,response)=>{
+// 	jsonfile.readFile(file, (err, obj) => {
+		
+// 		let newId = obj.length + 1;
+// 		console.log(newId)
+// 		obj.push(
+// 		{
+//     id: newId,
+//     name: "Type name here",
+// 	    ingredients: [
+// 	      {
+// 	        name: "",
+// 	        amount: "",
+// 	        notes: ""
+// 	      },
+// 	    ],
+//     steps: "Type steps here"
+//   	}
+// 		); //end push 
+// 		console.log(obj[obj.length - 1])
+
+// 		jsonfile.writeFile(file,obj,(err) => {
+// 			response.redirect(`/recipes/${newId}/edit`,data)
+// 		})
+// 	})
+// })
 
 app.get('/recipes/:id/edit', (request,response)=>{
 	jsonfile.readFile(file,(err,obj)=>{
@@ -232,9 +294,54 @@ app.delete('/recipes/:id/edit', (request,response)=>{
 		jsonfile.writeFile(file,obj,(err)=>{
 			response.redirect(`/recipes/${id}/edit`);
 		})
-
 	})
 })
+
+// Display Ingredients 
+
+app.get('/ingredients', (request,response)=>{
+	jsonfile.readFile(file, (err, obj) => {
+		const data = {
+			ingredients: ingred,
+			recipeList : obj
+		};
+		response.render('ingredients',data)
+	})
+})
+
+// Ingredients Filter 
+
+app.get('/ingredients/filter', (request,response)=>{
+	jsonfile.readFile(file, (err, obj) => {
+
+		let queryIngredient = request.query.selectedIngredient
+
+		function containsQueriedIngredient(recipe){
+			let result = recipe.ingredients.find(recipe => recipe.name == queryIngredient)
+				if(result != null){
+					return true
+				} else {
+					return false
+				}
+		}
+
+		let filterResult = obj.filter(recipe => containsQueriedIngredient(recipe))
+
+		const data = {
+			ingredients: ingred,
+			recipeList: filterResult
+		};
+		response.render('ingredients',data)
+	})
+})
+
+
+
+
+
+
+
+
 
 app.put('/recipes/:id', (request,response) => {
 	jsonfile.readFile(file,(err,obj)=>{
@@ -245,16 +352,29 @@ app.put('/recipes/:id', (request,response) => {
 			currRecipe.steps = request.body.steps
 			currRecipe.ingredients = [];
 
-			for(let i = 0; i < request.body.this1.length; i++){
+
+
+			if( typeof (request.body.ingreArray) == "string") {
+				
 				currRecipe.ingredients.push({
-					name: request.body.this1[i],
-					amount: request.body.amount[i],
-					notes: request.body.notes[i]
+					name: request.body.ingreArray,
+					amount: request.body.amountArray,
+					notes: request.body.notesArray
 				})
+
+			} else {
+				
+				for(let i = 0; i < request.body.ingreArray.length; i++){
+					currRecipe.ingredients.push({
+						name: request.body.ingreArray[i],
+						amount: request.body.amountArray[i],
+						notes: request.body.notesArray[i]
+					})
+				}
+
 			}
 
 			console.log(currRecipe)
-
 
 			const data = {
 				thisRecipe : currRecipe

@@ -14,19 +14,19 @@ class AnIngredient extends React.Component {
 		return(
 					<div className="form-row px-1 w-75">
 						<div className="px-1 form-group col-md-6">
-      				<label htmlFor="sel1">Ingredient</label>
-      					<select name="this1" className="form-control" id="sel1">
+      				<label>Ingredient</label>
+      					<select name="ingreArray" className="form-control">
         					{choices}
       					</select>
       			</div>
       			
       				<div class="form-group col-md-2">
-		      			<label htmlFor="sel1">Amount</label>
-		      			<input name="amount" type="text" className="form-control"  value={this.props.obj.amount}/>
+		      			<label>Amount</label>
+		      			<input name="amountArray" type="text" className="form-control"  value={this.props.obj.amount}/>
       				</div>
       				<div class="form-group col-md-4">
-		      			<label htmlFor="sel1">Notes</label>
-		      			<input name="notes" type="text" className="form-control"  value={this.props.obj.notes}/>
+		      			<label>Notes</label>
+		      			<input name="notesArray" type="text" className="form-control"  value={this.props.obj.notes}/>
       				</div>
       			
       		</div>
@@ -52,21 +52,27 @@ class Edit extends React.Component {
 					<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous" />
 				</head>
 				<body>
-					<h1 className="p-3">{this.props.thisRecipe.name} - Recipe No . {this.props.thisRecipe.id}</h1>
+					<h1 className="p-3">{this.props.thisRecipe.name} - Recipe {this.props.thisRecipe.id}</h1>
 					<form action = {formUrl} method="POST">
 						<div className="px-1 form-group w-75">
-              <label htmlFor="name-form">Name</label>
+              <label>ID</label>
+              <input name="id" type="text" className="form-control" id="id-form" readOnly value={this.props.thisRecipe.id}/>
+            </div>
+
+
+						<div className="px-1 form-group w-75">
+              <label>Name</label>
               <input name="name" type="text" className="form-control" id="name-form" value={this.props.thisRecipe.name}/>
             </div>
 
       			{showIngre}
 
             <div className="px-1 form-group">
-              <label htmlFor="step-form">Steps</label>
+              <label>Steps</label>
               <input name="steps" type="text" className="form-control" id="steps-form" value={this.props.thisRecipe.steps}/>
             </div>
 
-            <button type="submit" className="btn btn-primary m-2">Submit Edit</button>
+            <button type="submit" className="btn btn-primary m-2">Submit</button>
 
           </form>
 

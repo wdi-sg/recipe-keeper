@@ -57,14 +57,17 @@ class Recipe extends React.Component {
 							<h5 class="card-title mt-3 mb-1">{this.props.thisRecipe.name}</h5>
 							<p class="card-text"><Ingredients list={this.props.thisRecipe.ingredients}/></p>
 							<p class="card-text">{this.props.thisRecipe.steps}</p>
-							<form class="mt-2 mb-1" action="/recipes" method="GET">
-								<button type="submit" className="btn btn-primary">Back to Main Menu</button>
+							<form class="mt-1 mb-1" action= {`/recipes/${this.props.thisRecipe.id}/edit`} method="GET">
+								<button type="submit" className="btn btn-primary">Edit</button>
 							</form>
 							<form class="mt-1 mb-1" action={`/recipes/${this.props.thisRecipe.id}?_method=delete`} method="POST">
 								<button type="submit" className="btn btn-primary">Delete</button>
 							</form>
-							<form class="mt-1 mb-1" action= {`/recipes/${this.props.thisRecipe.id}/edit`} method="GET">
-								<button type="submit" className="btn btn-primary">Edit</button>
+							<form class="mt-2 mb-1" action="/recipes" method="GET">
+								<button type="submit" className="btn btn-primary">Back to Main Menu</button>
+							</form>
+							<form class="mt-2 mb-1" action="/ingredients" method="GET">
+								<button type="submit" className="btn btn-primary">Go to Ingredients Menu</button>
 							</form>
 						</div>
 					</div>
