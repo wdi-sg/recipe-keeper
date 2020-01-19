@@ -6,7 +6,7 @@ class Error extends React.Component {
     const search = this.props.search
     return (
       <Layout>
-        <h1 style={{textAlign: "center"}}>Could not find a match for "{search}"!</h1>
+        <h1 style={{textAlign: "center"}}>404: Not found!</h1>
       </Layout>
     );
   }

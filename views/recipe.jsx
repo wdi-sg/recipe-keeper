@@ -5,12 +5,12 @@ class Recipe extends React.Component {
   render() {
     const recipe = this.props.recipe;
     const ingredients = this.props.ingredients;
-    console.log(ingredients);
+    console.log(recipe);
     // const ingredientItem = ingredients.map(ingredient => {
     //   return <li>{ingredient.name}</li>;
     // });
-    const editPath = "/recipes/" + this.props.id + "/edit";
-    const deletePath = "/recipes/" + this.props.id + "/delete";
+    const editPath = "/recipes/" + recipe.id + "/edit";
+    const deletePath = "/recipes/" + recipe.id + "/delete";
     return (
       <Layout>
         <div className="container">

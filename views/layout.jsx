@@ -57,6 +57,11 @@ class Layout extends React.Component {
                     New
                   </a>
                 </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/recipes/ingredients">
+                    Ingredients
+                  </a>
+                </li>
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"

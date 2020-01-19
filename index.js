@@ -97,6 +97,12 @@ app.get("/recipes/search/", (req, res) => {
   });
 });
 
+app.get("/recipes/ingredients", (req, res) => {
+  jsonfile.readFile(file, (err, obj) => {
+    res.render("ingredients", obj);
+  });
+});
+
 app.get("/recipes/:id", (req, res) => {
   const index = req.params.id;
   let recipe;
@@ -139,6 +145,7 @@ app.delete("/recipes/:id", (req, res) => {
   const index = req.params.id;
   jsonfile.readFile(file, (err, obj) => {
     obj.recipes.splice(index, 1);
+    obj.ingredients.splice(index, 1);
     for (let i = 0; i < obj.recipes.length; i++) {
       obj.recipes[i].id = i;
     }
@@ -164,6 +171,10 @@ app.get("/recipes/sort/:type", (req, res) => {
     res.render("home", obj);
   });
   // redirect to home with type sorted
+});
+
+app.get("*", (req, res) => {
+  res.render("404");
 });
 
 app.listen(3000, () => {
