@@ -22,7 +22,7 @@ class Home extends React.Component {
       </head>
 
     <body>
-     <div>
+     <div class="card-body">
       <h1 style={{color: 'green', width: "30%", textAlign: "center", margin: "80px auto 5px auto"}}>List of Recipes </h1>
       <p>{list}</p>
      </div>

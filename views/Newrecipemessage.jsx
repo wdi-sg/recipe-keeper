@@ -14,7 +14,7 @@ class Newrecipemessage extends React.Component {
       </head>
 
             <body>
-                <div>
+                <div class="card-body">
                         <h1 style={{color: 'green', width: "30%", textAlign: "center", margin: "80px auto 5px auto"}}>{this.props.message}</h1>
                 </div>
             </body>

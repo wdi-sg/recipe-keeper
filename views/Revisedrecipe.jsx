@@ -13,11 +13,11 @@ class Revisedrecipe extends React.Component {
 
 
             <body>
-                <div>
+               <div class="card-body">
                         <h1 style={{color: 'green', width: "30%", textAlign: "center", margin: "80px auto 5px auto"}}>{this.props.message}</h1>
-                        <h3>Recipe for: {this.props.recipe.title}</h3>
-                        <p>Ingredients: {this.props.recipe.ingredients}</p>
-                        <p>Instructions: {this.props.recipe.instructions}</p>
+                        <h3 style= {{color: 'green', width: "30%", textAlign: "center", margin: "60px auto 5px auto"}}>Recipe for: {this.props.recipe.title}</h3>
+                        <p style= {{color: 'grey', width: "30%", textAlign: "center", margin: "30px auto 5px auto"}}>Ingredients: {this.props.recipe.ingredients}</p>
+                        <p style= {{color: 'grey', width: "30%", textAlign: "center", margin: "30px auto 5px auto"}}>Instructions: {this.props.recipe.instructions}</p>
                 </div>
             </body>
             </html>
