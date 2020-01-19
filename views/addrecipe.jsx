@@ -12,15 +12,15 @@ class AddRecipe extends React.Component {
                   <form action="/recipes" method="POST" className="w-100">
                     <div className="form-group">
                       <label htmlFor="recipeTitleIndex">Title</label>
-                      <input className="form-control" type="text" name="title" id="recipeTitleIndex"/>
+                      <input className="form-control" type="text" name="title" id="recipeTitleIndex" required/>
                     </div>
                     <div className="form-group">
                       <label htmlFor="recipeIngredientsIndex">Ingredients</label>
-                      <textarea className="form-control" name="ingredients" rows="3" id="recipeIngredientsIndex"/>
+                      <textarea className="form-control" name="ingredients" rows="3" id="recipeIngredientsIndex" required/>
                     </div>
                     <div className="form-group">
                       <label htmlFor="recipeMethodIndex">Method</label>
-                      <textarea className="form-control" name="method" rows="3" id="recipeMethodIndex"/>
+                      <textarea className="form-control" name="method" rows="3" id="recipeMethodIndex" required/>
                     </div>
                       <button type="submit" className="btn btn-primary">Submit</button>
                   </form>

@@ -17,15 +17,15 @@ class EditRecipe extends React.Component {
                       </div>
                     <div className="form-group">
                       <label htmlFor="recipeTitleIndex">Title</label>
-                        <input type="text" className="form-control" id="recipeTitleIndex" name="title" defaultValue={this.props.recipe.title}/>
+                        <input type="text" className="form-control" id="recipeTitleIndex" name="title" defaultValue={this.props.recipe.title} required/>
                       </div>
                     <div className="form-group">
                       <label htmlFor="recipeIngredientsIndex">Ingredients</label>
-                        <textarea rows="3" className="form-control" id="recipeIngredientsIndex" name="ingredients" defaultValue={this.props.recipe.ingredients} rows="3"/>
+                        <textarea rows="3" className="form-control" id="recipeIngredientsIndex" name="ingredients" defaultValue={this.props.recipe.ingredients} rows="3" required/>
                       </div>
                     <div className="form-group">
                       <label htmlFor="recipeMethodIndex">Method</label>
-                        <textarea rows="3" className="form-control" id="recipeMethodIndex" name="method" defaultValue={this.props.recipe.method} rows="3"/>
+                        <textarea rows="3" className="form-control" id="recipeMethodIndex" name="method" defaultValue={this.props.recipe.method} rows="3" required/>
                       </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
