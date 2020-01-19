@@ -1,3 +1,18 @@
 {
-    "recipes":[]
+	"recipes": [{
+		"id": 1,
+		"title": "ChickenBrocolli",
+		"ingredients": "Balonglong",
+		"instructions": "123123123"
+	}, {
+		"id": 2,
+		"title": "Banana Apple Pie",
+		"ingredients": "Banana, Apple, Bread",
+		"instructions": "Cook and eat\r\n"
+	}, {
+		"id": 3,
+		"title": "Baked Alaska",
+		"ingredients": "Fish, Neapolitan Ice Cream\r\n",
+		"instructions": "Bake, cook eat"
+	}]
 }
