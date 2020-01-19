@@ -23,14 +23,34 @@ app.set('view engine', 'jsx');
             Routes
 * ===================================*/
 
+
+// DISPLAY ALL RECIPES
+// Link Works:  http://localhost:3000/recipes/
+app.get('/recipes/', (request, response) => {
+    jsonfile.readFile(FILE, (err, obj) => {
+      console.log(obj.recipes);
+      console.log(obj);
+      let listOfRecipes = obj.recipes;
+      const data = {
+        recipeList: listOfRecipes
+      }
+      response.render("Home", data);
+  })
+});
+
+
+
 // DISPLAY FORM FOR USER TO ADD A NEW RECIPE
+// Link Works : http://localhost:3000/recipes/new
 app.get('/recipes/new', (request, response) => {
   response.render("New");
 });
 
 
-// SEE ALL THE RECIPES
-app.post('/recipes/', (request, response) => {
+
+// SHOWS MESSAGE THAT USER HAS ADDED NEW RECIPE
+// Link Works: http://localhost:3000/recipes
+app.post('/recipes', (request, response) => {
     console.log('Received POST');
     console.log(request.body);
     const newRecipe = {
@@ -61,18 +81,137 @@ app.post('/recipes/', (request, response) => {
 
 
 
-// DISPLAY ALL RECIPES
-app.get('/recipes', (request, response) => {
+
+
+
+//  SEE A SINGLE RECIPE
+app.get('/recipes/:id', (request, response) => {
+    const id = request.params.id
     jsonfile.readFile(FILE, (err, obj) => {
-      console.log(obj.recipes);
-      console.log(obj);
-      let listOfRecipes = obj.recipes;
-      const data = {
-        recipeList: listOfRecipes
-      }
-      response.render("Home", data);
+    if (err) {
+        console.log("Error with JSON read file:",err);
+        response.status(503).send("Error reading file");
+        return;
+    }
+
+    const requestedRecipe = obj.recipes[id]
+    const data = {
+      recipe: requestedRecipe
+    }
+
+    response.render('Queryid', data)
+
   })
-});
+})
+
+
+
+
+
+
+
+
+
+/*app.put('/recipes/:id', (request, response) => {
+
+  let newData = request.body
+  jsonfile.readFile(FILE, (err, obj) => {
+    if (err) {
+      return console.log(err)
+    }
+    let id = request.params.id;
+    obj.recipes[id] = newData;
+
+    jsonfile.writeFile(FILE, obj, (err) => {
+      if (err) {
+        return console.log(err)
+      }
+      response.render('Queryid', data);
+    })
+  })
+})
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// ADD A FORM AT THE PATH: /pokemon/:id/edit
+// Link Works: http://localhost:3000/recipes/1/edit but did not after clicking submit
+app.get('/recipes/:id/edit',(request, response) => {
+    let index = parseInt(request.params.id) - 1; // minus one
+    jsonfile.readFile(FILE, (err, obj) => {
+        console.log(obj)
+        let recipe = obj.recipes[index];
+        const data = {
+            name: recipe,
+        };
+        response.render('Edit', data);
+    })
+})
+
+
+// error message: Cannot PUT /recipes/'+recipe.id+'
+
+
+
+
+
+
+
+
+
+//  SEE A SINGLE RECIPE  => does not work
+/*app.get('/recipes/:id', (request, response) => {
+  jsonfile.readFile(FILE, (err, obj) => {
+    if (err) {
+        console.log("Error with JSON read file:",err);
+        response.status(503).send("Error reading file");
+        return;
+    }
+
+    let inputId = parseInt(request.params.id);
+    var recipe;
+
+    let currentRecipe = obj.recipes[inputId];
+
+    if ( currentRecipe === obj.recipes[inputId] ) {
+        recipe = currentRecipe;
+      }
+    if (recipe === undefined) {
+      response.status(404);
+      response.send("Recipe Not Found 😐");
+    } else {
+        const data = {
+        recipeList: recipe
+        }
+        response.render("Queryid", data);
+    }
+  });
+});*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
