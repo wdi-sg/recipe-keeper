@@ -16,13 +16,14 @@ class Home extends React.Component {
   return (
    <html>
       <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
           <title>🥗Plant Based Recipes🥗</title>
           <meta charset="utf-8" />
       </head>
 
     <body>
      <div>
-      <h1>List of Recipes </h1>
+      <h1 style={{color: 'green', width: "30%", textAlign: "center", margin: "80px auto 5px auto"}}>List of Recipes </h1>
       <p>{list}</p>
      </div>
     </body>
