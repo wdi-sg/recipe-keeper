@@ -7,8 +7,6 @@ Then use ${ } to pass in JS variables
 Example:
 {`/recipes/${this.props.thisRecipe.id}/edit`}
 
-
-
 */
 
 

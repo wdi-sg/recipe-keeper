@@ -192,11 +192,23 @@ app.get('/recipes/:id', (request,response)=>{
 			jsonfile.readFile(file, (err, obj) => {
 			
 			let newId = obj.length + 1;
-			console.log(newId)
+
+			// As the newId is generated based on the length,
+			// there is a possibility of duplicate id, if you create a recipe after deleting one.
+			// Therefore, we use a while loop and keep incrementing the new index
+			// Until we find an index which is not used.
+
+			let objWiththeSameId = obj.find(element => element.id == newId);
+
+			while (objWiththeSameId != null){
+				newId++
+				objWiththeSameId = obj.find(element => element.id == newId);
+			}
+
 			obj.push(
 			{
 	    id: newId,
-	    name: "Type name here",
+	    name: "",
 		    ingredients: [
 		      {
 		        name: "",
@@ -204,7 +216,7 @@ app.get('/recipes/:id', (request,response)=>{
 		        notes: ""
 		      },
 		    ],
-	    steps: "Type steps here"
+	    steps: ""
 	  	}
 			); //end push 
 			console.log(obj[obj.length - 1])
@@ -227,35 +239,6 @@ app.get('/recipes/:id', (request,response)=>{
 	} //end else
 
 })
-
-// New Recipe 
-
-// app.get('/recipes/new', (request,response)=>{
-// 	jsonfile.readFile(file, (err, obj) => {
-		
-// 		let newId = obj.length + 1;
-// 		console.log(newId)
-// 		obj.push(
-// 		{
-//     id: newId,
-//     name: "Type name here",
-// 	    ingredients: [
-// 	      {
-// 	        name: "",
-// 	        amount: "",
-// 	        notes: ""
-// 	      },
-// 	    ],
-//     steps: "Type steps here"
-//   	}
-// 		); //end push 
-// 		console.log(obj[obj.length - 1])
-
-// 		jsonfile.writeFile(file,obj,(err) => {
-// 			response.redirect(`/recipes/${newId}/edit`,data)
-// 		})
-// 	})
-// })
 
 app.get('/recipes/:id/edit', (request,response)=>{
 	jsonfile.readFile(file,(err,obj)=>{
@@ -335,14 +318,6 @@ app.get('/ingredients/filter', (request,response)=>{
 	})
 })
 
-
-
-
-
-
-
-
-
 app.put('/recipes/:id', (request,response) => {
 	jsonfile.readFile(file,(err,obj)=>{
 			let currRecipe = obj.find(item => item.id == request.params.id)
@@ -351,8 +326,6 @@ app.put('/recipes/:id', (request,response) => {
 			currRecipe.name = request.body.name
 			currRecipe.steps = request.body.steps
 			currRecipe.ingredients = [];
-
-
 
 			if( typeof (request.body.ingreArray) == "string") {
 				
@@ -384,4 +357,5 @@ app.put('/recipes/:id', (request,response) => {
 			})
 	})
 })
+
 app.listen(3000, ()=> console.log("listening at 3000"))

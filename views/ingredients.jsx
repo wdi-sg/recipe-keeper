@@ -10,7 +10,7 @@ class DisplayIngredients extends React.Component {
 
     var listOfRecipes = this.props.recipeList.map(element => {
       let htmlString = `/recipes/${element.id}`
-      return <a href={htmlString} className="list-group-item list-group-item-action">{element.name} - Recipe No, {element.id}</a>
+      return <a href={htmlString} className="list-group-item list-group-item-action">{element.name} - Recipe {element.id}</a>
     })
 
     return (  
@@ -30,6 +30,10 @@ class DisplayIngredients extends React.Component {
                     <button type="submit" className="btn btn-secondary">Filter</button>
                 </div>
               </div>
+            </form>
+
+            <form className="px-2" action = {`/recipes`} method="GET">
+              <button type="submit" className="btn btn-primary m-2">Back to Main Menu</button>
             </form>
 
           <div class="list-group w-50 p-3">
