@@ -50,6 +50,8 @@ app.post('/recipes', (request, response) => {
       return console.log(err)
     }
     newRecipe.created = "Created on " + moment().format('MMMM Do YYYY, h:mm:ss a')
+    newRecipe.id = obj.recipes.length + 1
+
     //push recipe into json file
     obj.recipes.push(newRecipe)
     //retrieve pushed recipe's ID
