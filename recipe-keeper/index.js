@@ -38,6 +38,16 @@ const home = (request,response) => {
     })
 }
 
+const view = (request,response) => {
+    jsonfile.readFile('data.json', (err,obj) => {
+        let data = {
+            recipes: obj.recipes[request.params.id],
+            id: request.params.id
+        }
+    response.render('view',data)
+    })
+}
+
 const form = (request, response) => {
     response.render('form');
 }
@@ -46,18 +56,16 @@ const postRecipes = (request,response) => {
 
     let info = request.body
 
-
     jsonfile.readFile('data.json', (err,obj) => {
 
         let newData = {
         title: info.title,
         ingredients: info.ingredients,
         instructions: info.instructions,
+        date: new Date();
         }
 
-        let data = {
-            recipes: obj.recipes
-        }
+        let data = {recipes: obj.recipes}
 
             obj.recipes.push(newData);
 
@@ -106,8 +114,9 @@ const editRecipes = (request,response) => {
 }
 
 app.get('/recipes', home);
+app.get('/recipes/:id', view);
 app.get('/recipes/new', form);
-app.get('/recipes/edit/:id', edit);
+app.get('/recipes/:id/edit', edit);
 app.put('/recipes/:id', editRecipes)
 app.post('/recipes', postRecipes);
 
