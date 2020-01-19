@@ -4,7 +4,12 @@ class Revisedrecipe extends React.Component {
     render() {
         return (
             <html>
-            <head> </head>
+
+      <head>
+          <title>🥗Recipe Edited!🥗</title>
+          <meta charset="utf-8" />
+      </head>
+
 
             <body>
                 <div>

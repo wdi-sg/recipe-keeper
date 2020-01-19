@@ -4,7 +4,7 @@ class New extends React.Component {
     return (
       <html>
       <head>
-          <title>Add Recipes</title>
+          <title>🥗Add a Plant Based Recipe🥗</title>
           <meta charset="utf-8" />
       </head>
 

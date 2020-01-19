@@ -16,7 +16,9 @@ class Home extends React.Component {
   return (
    <html>
       <head>
-          <title>List of Recipes</title>
+          <title>🥗Plant Based Recipes🥗</title>
+          <meta charset="utf-8" />
+
       </head>
 
     <body>

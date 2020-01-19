@@ -5,7 +5,10 @@ class Queryid extends React.Component {
   return (
 
    <html>
-   <head> </head>
+   <head>
+          <title>🥗Plant Based Recipes🥗</title>
+          <meta charset="utf-8" />
+   </head>
 
     <body>
          <div>

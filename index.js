@@ -19,10 +19,9 @@ app.set('view engine', 'jsx');
 
 
 
-/**==================================+
+/**=======================================***+
             Routes
-* ===================================*/
-
+** ========================================***/
 
 // DISPLAY ALL RECIPES
 // Link Works:  http://localhost:3000/recipes/
@@ -60,7 +59,6 @@ app.post('/recipes', (request, response) => {
     };
 
     jsonfile.readFile(FILE, (err, obj) => {
-        // This ensures file is properly read
         if (err) {
 
             console.log("There is an error", err);
@@ -84,7 +82,7 @@ app.post('/recipes', (request, response) => {
 //  DISPLAYS A SINGLE RECIPE
 // Link Works: http://localhost:3000/recipes/1
 app.get('/recipes/:id', (request, response) => {
-    const id = request.params.id
+     const id = parseInt(request.params.id);
     jsonfile.readFile(FILE, (err, obj) => {
     if (err) {
         console.log("Error with JSON read file:",err);
@@ -103,13 +101,11 @@ app.get('/recipes/:id', (request, response) => {
 })
 
 
-
-
-
 /// ADD A FORM AT THE PATH: /pokemon/:id/edit
-// Link Works: http://localhost:3000/recipes/1/edit but did not after clicking submit
+// Link Works: http://localhost:3000/recipes/1/edit
 app.get('/recipes/:id/edit',(request, response) => {
-    const id = request.params.id
+    const id = parseInt(request.params.id);
+
     jsonfile.readFile(FILE, (err, obj) => {
         if (err) {
             return console.log(err)
@@ -124,11 +120,9 @@ app.get('/recipes/:id/edit',(request, response) => {
 })
 
 
-
-
-
+// THIS WORKS
 app.put('/recipes/:id', (request, response) => {
-    const id = request.params.id
+    const id = parseInt(request.params.id);
     const editedRecipe = request.body
     jsonfile.readFile(FILE, (err, obj) => {
         if (err) {
@@ -136,7 +130,7 @@ app.put('/recipes/:id', (request, response) => {
         }
         Object.assign(obj.recipes[id], editedRecipe)
         const data = {
-            message: "You have adjusted your secret recipe",
+            message: "You have revised your recipe",
             recipe: editedRecipe
         }
 
@@ -152,118 +146,53 @@ app.put('/recipes/:id', (request, response) => {
 
 
 
+// DISPLAYS RECIPE THAT USER WANTS TO DELETE
+app.get('/recipes/:id/delete',(request, response) => {
+    const id = parseInt(request.params.id);
 
-
-
-
-/*app.put('/recipes/:id', (request, response) => {
-
-  let newData = request.body
-  jsonfile.readFile(FILE, (err, obj) => {
-    if (err) {
-      return console.log(err)
+    jsonfile.readFile(FILE, (err, obj) => {
+        if (err) {
+            return console.log(err)
     }
-    let id = request.params.id;
-    obj.recipes[id] = newData;
-
-    jsonfile.writeFile(FILE, obj, (err) => {
-      if (err) {
-        return console.log(err)
-      }
-      response.render('Queryid', data);
-    })
+    const queryRecipe = obj.recipes[id]
+    const data = {
+      id: id,
+      recipe: queryRecipe
+    }
+    response.render('Delete', data)
   })
-})*/
+})
 
 
 
+// DELETES A RECIPE
+// work in progress
+app.delete('/recipes/:id', (request, response) => {
+    const id = parseInt(request.params.id);
 
+    jsonfile.readFile(FILE, (err, obj) => {
+        if (err) {
+            return console.log(err)
+        }
 
+        const data = {
+            message: "You have deleted your recipe",
+            id: id,
+        }
 
-
-
-
-
-
-
-
-
-
-
-
+        obj.recipes.splice(id, 1)
+        jsonfile.writeFile(FILE, obj, (err) => {
+            if (err) {
+                return console.log(err)
+            }
+            response.render('Deletedrecipe', data);
+        })
+    })
+})
 
 
 
 
 
 /** Listen to requests on port 3000 **/
-app.listen(3000, () => console.log('~~~   👩🏾‍🍳 👩🏾‍🍳 👩🏾‍🍳  Hello Budding Chefs! You are tuning in to the waves of port 3000 ~~~ '));
-
-
-
-//  SEE A SINGLE RECIPE  => does not work
-/*app.get('/recipes/:id', (request, response) => {
-  jsonfile.readFile(FILE, (err, obj) => {
-    if (err) {
-        console.log("Error with JSON read file:",err);
-        response.status(503).send("Error reading file");
-        return;
-    }
-
-    let inputId = parseInt(request.params.id);
-    var recipe;
-
-    let currentRecipe = obj.recipes[inputId];
-
-    if ( currentRecipe === obj.recipes[inputId] ) {
-        recipe = currentRecipe;
-      }
-    if (recipe === undefined) {
-      response.status(404);
-      response.send("Recipe Not Found 😐");
-    } else {
-        const data = {
-        recipeList: recipe
-        }
-        response.render("Queryid", data);
-    }
-  });
-});*/
-
-
-
-/// ADD A FORM AT THE PATH: /pokemon/:id/edit
-// Link Works: http://localhost:3000/recipes/1/edit but did not after clicking submit
-/*app.get('/recipes/:id/edit',(request, response) => {
-    let index = parseInt(request.params.id) - 1; // minus one
-    jsonfile.readFile(FILE, (err, obj) => {
-        console.log(obj)
-        let recipe = obj.recipes[index];
-        const data = {
-            name: recipe,
-        };
-        response.render('Edit', data);
-    })
-})
-*/
-
-
-
-/*app.put('/recipes/:id', (request, response) => {
-
-  let newData = request.body
-  jsonfile.readFile(FILE, (err, obj) => {
-    if (err) {
-      return console.log(err)
-    }
-    let id = request.params.id;
-    obj.recipes[id] = newData;
-
-    jsonfile.writeFile(FILE, obj, (err) => {
-      if (err) {
-        return console.log(err)
-      }
-      response.render('Queryid', data);
-    })
-  })
-})*/
+app.listen(3000, () => console.log('~~~   👩🏾‍🍳 👩🏾‍🍳 👩🏾‍🍳  Hello Budding Chefs! Welcome to the 🥗 Plant Based 🥗 Recipe Keeper! You are now tuning in to the waves of port 3000 ~~~ '));
