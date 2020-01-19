@@ -4,13 +4,11 @@ class List extends React.Component {
   render() {
     const recipesArray = this.props.recipes;
     console.log(recipesArray);
-
     const recipesList = recipesArray.map( recipe => {
-        return <div>
-        <li>{recipe.title}</li>
-        </div>
+      let recipeUrl = '/recipes/'+recipe.id;
+        console.log(recipeUrl);
+        return <li><a href = {recipeUrl}>{recipe.title}</a></li>
     });
-
     return (
     <html>
         <head>

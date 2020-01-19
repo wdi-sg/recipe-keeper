@@ -1,4 +1,5 @@
 var React = require('react');
+var header = require('./Layout.jsx');
 
 class Delete extends React.Component {
   render() {

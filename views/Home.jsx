@@ -1,33 +1,17 @@
 var React = require('react');
+var header = require('./Layout.jsx');
 
+//Header/navbar layout
 class Home extends React.Component {
   render() {
-    const recipesArray = this.props.recipes;
-    console.log(recipesArray);
+  return (
+    <header>
 
-    const recipesList = recipesArray.map( recipe => {
-        return <div>
-        <li>{recipe.title}</li>
-        </div>
-    });
+    </header>
 
-    return (
-    <html>
-        <head>
-            <title>Recipes List</title>
-        </head>
-        <body>
-          <div>
-            <h1>Welcome to Recipe Keeper</h1>
-            <h2>Here are our Recipes:</h2>
-            <ul>
-            {recipesList}
-            </ul>
-          </div>
-        </body>
-    </html>
     );
   }
 }
+
 
 module.exports = Home;

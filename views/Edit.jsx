@@ -1,4 +1,6 @@
 var React = require('react');
+var header = require('./Layout.jsx');
+
 
 class Edit extends React.Component {
   render() {

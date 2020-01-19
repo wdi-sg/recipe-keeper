@@ -171,8 +171,11 @@ app.delete('/recipes/:id', (req, res) => {
   });
 });
 
-
 //landing / home page
+app.get('/',(req,res)=>{
+    console.log('rendering home page');
+    res.render('layout');
+});
 
 
 app.listen(3000,()=>{console.log('listening to local host')});
