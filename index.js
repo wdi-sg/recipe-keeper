@@ -191,6 +191,14 @@ app.delete('/recipes/:id', (request, response) => {
     //remove Object at id
     obj.recipes.splice(id, 1)
 
+    let newID = 1
+    for (let recipe of obj.recipes){
+      recipe.id = newID
+      newID++
+    }
+
+
+
     jsonfile.writeFile(file, obj, (err) => {
       if (err) {
         return console.log(err)
