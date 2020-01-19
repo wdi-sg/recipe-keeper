@@ -14,8 +14,8 @@ return (
 <Header>
     <link rel="stylesheet" href="./../css/home.css" type="text/css"/>
 </Header>
-<Navbar recipes={this.props.recipes}/>
 <body>
+<Navbar recipes={this.props.recipes}/>
     <TopThree recipes={this.props.recipes}/>
 </body>
 </html>
