@@ -14,11 +14,21 @@ class MultiLineStringToList extends React.Component {
         return (<li key={index}>{value}</li>);
       })
 
+      // If we specify we want an ordered list
+      if (this.props.isOrdered) {
+        return (
+          <ol>
+            {StringList}
+          </ol>
+        )
+
+        // Otherwise return an unordered list.
+      } else {
       return (
         <ul>
           {StringList}
         </ul>
-      );
+      )}
     }
 };
 

@@ -23,7 +23,7 @@ class Recipe extends React.Component {
                 <h3>Ingredients:</h3>
                 <MultiLineStringToList string={this.props.recipe.ingredients}/>
                 <h3>Method:</h3>
-                <MultiLineStringToList string={this.props.recipe.method}/>
+                <MultiLineStringToList isOrdered="true" string={this.props.recipe.method}/>
                 <div className="row">
                     <div className="col-sm-3">
                         <a href={editURL} type="button" className="btn btn-primary">
