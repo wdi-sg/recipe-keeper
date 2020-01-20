@@ -62,8 +62,9 @@ app.get('/recipes/:id', (request, response) => {
 
             if (i === inputId) {
 
-                const data = allRecipes[i - 1]
-                response.render('selected-recipe', data)
+                // const data = allRecipes[i - 1]
+                response.send(allRecipes[i - 1])
+                // response.render('selected-recipe', data)
 
             }
 
