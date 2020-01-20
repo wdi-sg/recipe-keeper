@@ -55,7 +55,7 @@ app.put('/recipes/:index', (request,response) => {
         const recipe = request.body;
         obj.recipes[index] = recipe;
         jsonfile.writeFile(file, obj, (err) => {
-            response.send("Recipe Edited")
+            response.render('home');
         })
     })
 })
@@ -65,7 +65,7 @@ app.delete('/recipes/:index', (request,response) => {
         let index = parseInt(request.params.index)-1;
         obj.recipes.splice(index, 1)
         jsonfile.writeFile(file, obj, (err) => {
-            response.send("Recipe Deleted")
+            response.render('home')
         })
     })
 })
