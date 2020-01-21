@@ -16,8 +16,7 @@ class Recipe extends React.Component {
             <div>
                 <h3>{this.props.message}</h3>
                 <h1>{this.props.recipe.title}</h1>
-                <small className="text-muted">Date Created:
-                    <DateParser date={dateCreated}/> - Last Updated: <DateParser date={dateUpdated}/></small>
+                <small className="text-muted">Date Created: <DateParser date={dateCreated}/> - Last Updated: <DateParser date={dateUpdated}/></small>
                 <h3>Ingredients:</h3>
                 <MultiLineStringToList string={this.props.recipe.ingredients}/>
                 <h3>Method:</h3>
