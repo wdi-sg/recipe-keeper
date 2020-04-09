@@ -32,6 +32,11 @@ const deleteLink = "/recipes/"+ this.props.id + "?_method=delete";
             <div>
             <a href={editLink}>Edit</a>
             </div>
+            <div>
+                      <form method="POST" action={deleteLink}>
+            <input type="submit" value="delete recipe"/>
+             </form>
+            </div>
         </body>
       </html>
     );

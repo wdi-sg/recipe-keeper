@@ -259,7 +259,18 @@ app.put('/recipes/:id', (request,response)=>{
     });
 })
 
-
+//Accepts a request to delete
+app.delete('/recipes/:id', (request,response)=>{
+    console.log("Entered delete function");
+    jsonfile.readFile(RECIPEFILE, (err,obj)=>{
+        console.log("here");
+        const index = parseInt(request.params.id);
+        obj.recipes.splice(index, 1);
+        jsonfile.writeFile(file, obj, (err)=>{
+            response.redirect('/recipes');
+        });
+    })
+})
 
 
 
