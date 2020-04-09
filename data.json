@@ -1,3 +1,9 @@
 {
-    "recipes":[]
-  }
+    "recipes": [
+        {
+            "title": "boiled duck",
+            "ingredients": "1 duck, water",
+            "instructions": "boil duck in water for 20 minutes. take it out. serve."
+        }
+    ]
+}
