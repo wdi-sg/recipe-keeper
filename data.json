@@ -1,0 +1,40 @@
+{
+  "recipes" : [
+  	{
+		  "title": "Nasi Briyani",
+		  "ingredients" : "star anise",
+		  "instructions": "bite the star",
+		  "img" : "https://www.tasteofhome.com/wp-content/uploads/2018/11/star-anise.jpg"
+		},
+		{
+		  "title": "Chicken Rice",
+		  "ingredients" : "1 chicken breast, water",
+		  "instructions": "boil chicken in water. Add some garlic. flatten one small piece of chicken breast. Serves 50.",
+		  "img" : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQdAMNUvYVhY99-SQNvR08HcZZsoGyPQjfcQ_Y576cD81pG44JY&usqp=CAU"
+		},
+		{
+		  "title": "bag of chips",
+		  "ingredients" : "bag of air, some chips",
+		  "instructions": "Put some chips in a bag of air. *Important* Never fill more than 1/4 of the bag.",
+		  "img" : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT1clXtVJCFJM7t6XPwy5Z4nOxn8-WPeZfmXwev7Z1o2ijEVgi-&usqp=CAU"
+		},
+		{
+		  "title": "Fish & Chips",
+		  "ingredients" : "Fish",
+		  "instructions": "Fry fish. Make sure not to put any seasoning. At best salt and pepper. British things...",
+		  "img" : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQoBXbja5ATh0D9BhKjvWDZtaKP2DP9aUtfeQ3nn8mdpIFSEidQ&usqp=CAU"
+		},
+		{
+		  "title": "Fried rice",
+		  "ingredients" : "Rice and anything left in the fridge",
+		  "instructions": "Throw everything in the wok.",
+		  "img" : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQzcw8ljxYfmwp9U6Dao4r2yVxuxV656K5922qQ0M0lEc0FTPID&usqp=CAU"
+		},
+		{
+		  "title": "Maggi Mee",
+		  "ingredients" : "Cancer, sore throat, ecstasy, death",
+		  "instructions": "Not possible to go wrong. Nobody can screw this up.",
+		  "img" : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS3Xv5h5Tsk-evOCdvCDr2HZXRaHYg4NuSLg8Tx7rrQt6KOuRnj&usqp=CAU"
+		}
+  ]
+}
