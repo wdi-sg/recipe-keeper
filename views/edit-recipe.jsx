@@ -1,11 +1,16 @@
 var React = require("react");
 
-class NewRecipe extends React.Component {
+class EditRecipe extends React.Component {
   render() {
-    let ingredArr = this.props.ingredients;
+    let recipeArr = this.props.recipeJson.recipes;
+    let ingredArr = this.props.ingredJson.ingredients;
+    let indexNum = this.props.currentId - 1;
+    let link = "/recipes/" + this.props.currentId + "/edit?_method=put";
+    // let link = "/recipes/" + this.props.currentId + "/edit";
     let ingredNameArrOption = ingredArr.map((element) => {
       return <option>{element.name}</option>;
     });
+    
     return (
       <html>
         <head>
@@ -20,51 +25,52 @@ class NewRecipe extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col mt-5">
-                <form method="POST" action="/recipes/new">
-                  <h2><u>ADD A NEW RECIPE</u></h2>
+                <form method="POST" action={link}>
+                  <h2><u>EDIT RECIPE</u></h2>
                   <br></br>
                   <h4>Title:</h4>
                   <br></br>
                   <div>
-                    <input type="text" name="title" placeholder="Title" className="form-control" />
+                    <input type="text" name="title" value={recipeArr[indexNum].title} className="form-control" />
                   </div>
                   <br></br>
                   <h4>Choose Up To 5 Ingredients:</h4>
                   <br></br>
                   <div>
-                    <select className="custom-select" name="ingred-1">
+                    <select className="custom-select" name="ingred-1" value={recipeArr[indexNum].ingredients[0]}>
                       {ingredNameArrOption}
                     </select>
                   </div>
                   <br></br>
                   <div>
-                    <select className="custom-select" name="ingred-2">
+                    <select className="custom-select" name="ingred-2" value={recipeArr[indexNum].ingredients[1]}>
                       {ingredNameArrOption}
                     </select>
                   </div>
                   <br></br>
                   <div>
-                    <select className="custom-select" name="ingred-3">
+                    <select className="custom-select" name="ingred-3" value={recipeArr[indexNum].ingredients[2]}>
                       {ingredNameArrOption}
                     </select>
                   </div>
                   <br></br>
                   <div>
-                    <select className="custom-select" name="ingred-4">
+                    <select className="custom-select" name="ingred-4" value={recipeArr[indexNum].ingredients[3]}>
                       {ingredNameArrOption}
                     </select>
                   </div>
                   <br></br>
                   <div>
-                    <select className="custom-select" name="ingred-5">
+                    <select className="custom-select" name="ingred-5" value={recipeArr[indexNum].ingredients[4]}>
                       {ingredNameArrOption}
                     </select>
                   </div>
                   <br></br>
                   <h4>Instructions:</h4>
                   <br></br>
-                  <textarea className="form-control" aria-label="With textarea" name="instructions" placeholder="Instructions"></textarea>
+                  <textarea className="form-control" aria-label="With textarea" name="instructions" value={recipeArr[indexNum].instructions}></textarea>
                   <br></br>
+                  <input name="id" type="hidden" value={this.props.currentId}/>
                   <input type="submit" value="Submit" className="form-control btn btn-primary" />
                 </form>
               </div>
@@ -76,4 +82,4 @@ class NewRecipe extends React.Component {
   }
 }
 
-module.exports = NewRecipe;
+module.exports = EditRecipe;
