@@ -104,6 +104,21 @@ app.get('/recipes',(request, response)=>{
 })
 
 
+//***** Display one recipes ******
+app.get('/recipes/:id',(request, response)=>{
+    jsonfile.readFile(RECIPEFILE, (err,obj)=>{
+    id=parseInt(request.params.id)-1;
+    data=obj.recipes[id];
+    data.id=id;
+        //response.send(data);
+        response.render("individual",data)
+    })
+})
+
+
+
+
+
 //*****Accept request for a adding new recipe ******
 app.post('/recipes', (request, response)=>{
     //console.log(Object.keys(request.body).length);
@@ -143,13 +158,13 @@ app.post('/recipes', (request, response)=>{
         const link ='/recipes/'+ obj.recipes.length;
         obj.recipes.push(data);
 
-        response.send(obj.recipes);
+        //response.send(obj.recipes);
         //response.send(data);
 
         jsonfile.writeFile(RECIPEFILE, obj, (err) => {
-        const link ='/recipes/'+ recipes.length;
+        const link ='/recipes/'+ (obj.recipes.length-1);
         //render recipe after adding
-        //response.redirect(link);
+        response.redirect(link);
                 })
 
     })
@@ -170,21 +185,79 @@ app.get('/recipes/new',(request, response)=>{
     })
 })
 
+app.get('/recipes/:id/edit',(request,response)=>{
+    const data={}
+    jsonfile.readFile(INGREDIENTFILE, (err,obj)=>{
+        let ingredientsArray=obj;
+        ingredientsArray=ingredientsArray.sort(compare)
+        data.ingredients =ingredientsArray
+            jsonfile.readFile(RECIPEFILE, (err,obj)=>{
+                data.current=obj.recipes[request.params.id];
+                data.id=request.params.id;
+                //response.send(data);
+                response.render("edit",data);
+                })
+
+        //response.render("add", data);
+    })
+    //response.send(data);
+})
+
+//Accepts a request for the new data for recipe
+app.put('/recipes/:id', (request,response)=>{
+
+    jsonfile.readFile(RECIPEFILE, (err,obj)=>{
+        const index = parseInt(request.params.id);
+        obj.recipes[index].title=request.body.title;
+
+        obj.recipes[index].instructions=request.body.instruction;
+
+        obj.recipes[index].ingredients[0].amount=request.body.quantity1;
+
+        obj.recipes[index].ingredients[0].name=request.body.ingredient1;
+
+        obj.recipes[index].ingredients[0].notes=request.body.specialNote1;
+
+        obj.recipes[index].ingredients[1].amount=request.body.quantity2;
+
+        obj.recipes[index].ingredients[1].name=request.body.ingredient2;
+
+        obj.recipes[index].ingredients[1].notes=request.body.specialNote2;
+
+        obj.recipes[index].ingredients[2].amount=request.body.quantity3;
+
+        obj.recipes[index].ingredients[2].name=request.body.ingredient3;
+
+        obj.recipes[index].ingredients[2].notes=request.body.specialNote3;
 
 
+        obj.recipes[index].ingredients[3].amount=request.body.quantity4;
+
+        obj.recipes[index].ingredients[3].name=request.body.ingredient4;
+
+        obj.recipes[index].ingredients[3].notes=request.body.specialNote4;
+
+        obj.recipes[index].ingredients[4].amount=request.body.quantity5;
+
+        obj.recipes[index].ingredients[4].name=request.body.ingredient5;
+
+        obj.recipes[index].ingredients[4].notes=request.body.specialNote5;
 
 
+        obj.recipes[index].ingredients[5].amount=request.body.quantity6;
 
+        obj.recipes[index].ingredients[5].name=request.body.ingredient6;
 
-
-
-
-
-
-
-
-
-
+        obj.recipes[index].ingredients[5].notes=request.body.specialNote6;
+        //response.send(request.body);
+        //obj.recipes[index]= request.body
+        jsonfile.writeFile(RECIPEFILE,obj, (err)=>{
+        const link = "/recipes/"+ (index+1);
+        response.redirect(link);
+        })
+        //response.send("Entered");
+    });
+})
 
 
 
