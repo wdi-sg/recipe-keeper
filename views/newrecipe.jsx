@@ -5,25 +5,29 @@ const Ingredients = (obj) => {
   return (
     <React.Fragment>
       {list.map(item => {
-        let igdname = `ing-${item.id}`;
-        let qtyname = `qty-${item.id}`;
+        let igdName = `ing-${item.id}`;
+        let qtyName = `qty-${item.id}`;
+        let ingPlace = item.id === 1 ? "like 'bell peppers, yellow, chopped'" : "";
+        let qtyPlace = item.id === 1 ? "like '3 large', or '2 kg', or '1 cup'" : "";
 
         return (
           <React.Fragment key={item.id}>
             <div className="form-group form-row">
               <div className="col">
-                <input className="ingredient form-control"
-                       name={igdname}
-                       placeholder="like 'chicken breast, diced'"
-                       defaultValue={item.ing}
-                       />
+                <input
+                  className="ingredient form-control"
+                  name={igdName}
+                  placeholder={ingPlace}
+                  defaultValue={item.ing}
+                  />
               </div>
               <div className="col">
-                <input className="quantity form-control"
-                       name={qtyname}
-                       placeholder="like '1 kg, 2 pieces, or 3 cups'"
-                       defaultValue={item.qty}
-                       />
+                <input
+                  className="quantity form-control"
+                  name={qtyName}
+                  placeholder={qtyPlace}
+                  defaultValue={item.qty}
+                  />
               </div>
             </div>
           </React.Fragment>
@@ -37,27 +41,32 @@ class NewRecipe extends React.Component {
   render() {
     let recipeName = this.props.recipe.name;
     let recipeInst = this.props.recipe.instructions;
+    let recipeHeader = (this.props.recipe.id === 0) ? "Add a Recipe!" : "Change this Recipe!";
+    let recipeSubmit = (this.props.recipe.id === 0) ? "Add Recipe" : "Update Recipe";
+    let recipeMethod = (this.props.recipe.id === 0) ? "" : `${this.props.recipe.id}?_method=put`;
+    let recipeAction = "/recipes/"+ recipeMethod;
 
     return (
       <html>
         <head>
           <link rel="stylesheet"
-                href="../static/bootstrap.min.css"
+                href="/static/bootstrap.min.css"
                 />
-          <script src="../static/form.js" />
+          <script src="/static/form.js" />
         </head>
-
         <body>
+
           <div className="container">
             <div className="row">
               <div className="col text-center">
-                <h1>Add a Recipe!</h1>
+                <h1>{recipeHeader}</h1>
               </div>
             </div>
 
             <div className="row">
               <div className="col">
-                <form method="POST" action="/recipes" id="newrecipe">
+
+                <form method="POST" action={recipeAction} id="newrecipe">
                   <div className="form-group row">
                     <div className="col">
                       <label className="h5" htmlFor="recipename">Recipe Name</label>
@@ -77,12 +86,15 @@ class NewRecipe extends React.Component {
                         <label className="h5">Quantity</label>
                       </div>
                     </div>
+
                     <div id="ingredientlist">
                       <Ingredients list={this.props.recipe.ingredients}/>
                     </div>
                     <div className="row">
                       <div className="col">
-                        <button className="btn btn-secondary btn-block" id="increase">Add More Ingredients</button>
+                        <button
+                          className="btn btn-secondary btn-block"
+                          id="increase">Add More Ingredients</button>
                       </div>
                     </div>
                   </div>
@@ -102,16 +114,20 @@ class NewRecipe extends React.Component {
 
                   <div className="form-group row">
                     <div className="col">
-                      <button type="submit" className="btn btn-primary btn-lg btn-block">Add Recipe</button>
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-lg btn-block">
+                        {recipeSubmit}
+                      </button>
                     </div>
                   </div>
                 </form>
+
               </div>
             </div>
 
           </div>
         </body>
-
       </html>
     );
   }
