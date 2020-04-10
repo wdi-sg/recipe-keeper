@@ -38,7 +38,7 @@ filePromise
   .catch(err => console.log(err));
 
 // file service routes
-app.use(express.static('./static/'));
+app.use(express.static('static'));
 let options = {
   root: ('static'),
   dotfiles: 'deny',
