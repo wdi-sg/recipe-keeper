@@ -54,6 +54,7 @@ app.get('/static/:filename', (req, res) => {
 app.get('/recipes/new', (req, res) => {
   let data = {
     recipe: {
+      id: 0,
       name: "",
       ingredients: [
         { id: 1, ingredient: "", qty: "" },
