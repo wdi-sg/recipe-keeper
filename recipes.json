@@ -1,0 +1,24 @@
+{
+  "recipes": [
+    {
+      "title": "boiled duck",
+      "ingredients": "1 duck, water",
+      "instructions": "boil duck in water for 20 minutes. take it out. serve."
+    },
+    {
+      "title": "boiled egg",
+      "ingredients": "1 egg, more egg",
+      "instructions": "boil egg in water for 20 minutes. take it out. serve."
+    },
+    {
+      "title": "boiled fries",
+      "ingredients": "1 fries, water",
+      "instructions": "boil fries in water for 20 minutes. take it out. serve."
+    },
+    {
+      "title": "Fried Chick",
+      "ingredients": "Chicken, Salt, etc.",
+      "instructions": "Fry that shit"
+    }
+  ]
+}
