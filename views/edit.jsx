@@ -87,66 +87,134 @@ const link = "/recipes/"+this.props.id+"?_method=put";
                     </div>
                 </div>
 
+                <div class={"row border"}>
+                    <div class={"col-3 text-center"}>
+                            <h5 class={"mt-3 mb-3"}>Ingredient 2: </h5>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Type in quantity type" name="quantity2" value={amount[1]} required/>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <select class={"mt-3 mb-3"} id="options" name="ingredient2" >
+                        {firstOption[1]}
+                        <option value="">None</option>
+                            {ingredient}
+                        </select>
+                    </div>
 
-                    <input type="text" placeholder="Type in quantity type" name="quantity2" value={amount[1]}/>
-                    <select id="options" name="ingredient2" >
-                    {firstOption[1]}
-                    <option value="">None</option>
-                        {ingredient}
-                    </select>
-                    <input type="text" placeholder="Any Notes?" name="specialNote2" value={notes[1]}/>
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Any Notes?" name="specialNote2" value={notes[1]}/>
+                    </div>
+                </div>
+
+                <div class={"row border"}>
+                    <div class={"col-3 text-center"}>
+                            <h5 class={"mt-3 mb-3"}>Ingredient 3: </h5>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Type in quantity type" name="quantity3" value={amount[2]} required/>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <select class={"mt-3 mb-3"} id="options" name="ingredient3" >
+                        {firstOption[2]}
+                        <option value="">None</option>
+                            {ingredient}
+                        </select>
+                    </div>
+
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Any Notes?" name="specialNote3" value={notes[2]}/>
+                    </div>
+                </div>
+
+                <div class={"row border"}>
+                    <div class={"col-3 text-center"}>
+                            <h5 class={"mt-3 mb-3"}>Ingredient 4: </h5>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Type in quantity type" name="quantity4" value={amount[3]} required/>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <select class={"mt-3 mb-3"} id="options" name="ingredient4" >
+                        {firstOption[3]}
+                        <option value="">None</option>
+                            {ingredient}
+                        </select>
+                    </div>
+
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Any Notes?" name="specialNote4" value={notes[3]}/>
+                    </div>
+                </div>
+
+                <div class={"row border"}>
+                    <div class={"col-3 text-center"}>
+                            <h5 class={"mt-3 mb-3"}>Ingredient 5: </h5>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Type in quantity type" name="quantity5" value={amount[4]} required/>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <select class={"mt-3 mb-3"} id="options" name="ingredient5" >
+                        {firstOption[4]}
+                        <option value="">None</option>
+                            {ingredient}
+                        </select>
+                    </div>
+
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Any Notes?" name="specialNote5" value={notes[4]}/>
+                    </div>
+                </div>
+
+                <div class={"row border"}>
+                    <div class={"col-3 text-center"}>
+                            <h5 class={"mt-3 mb-3"}>Ingredient 6: </h5>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Type in quantity type" name="quantity6" value={amount[5]} required/>
+                    </div>
+                    <div class={"col-3 text-center"}>
+                        <select class={"mt-3 mb-3"} id="options" name="ingredient6" >
+                        {firstOption[5]}
+                        <option value="">None</option>
+                            {ingredient}
+                        </select>
+                    </div>
+
+                    <div class={"col-3 text-center"}>
+                        <input class={"mt-3 mb-3"} type="text" placeholder="Any Notes?" name="specialNote6" value={notes[5]}/>
+                    </div>
+                </div>
 
 
-                    <input type="text" placeholder="Type in quantity type" name="quantity3" value={amount[2]}/>
-                    <select id="options" name="ingredient3" >
-                    {firstOption[2]}
-                    <option value="">None</option>
-                        {ingredient}
-                    </select>
-                    <input type="text" placeholder="Any Notes?" name="specialNote3" value={notes[2]}/>
+                <div class={"row"}>
+                    <div class="col-3 border text-right">
+                            <p class={"mt-3 mb-3"}>Edit Instructions:</p>
+                      </div>
+                      <div class="col-9 border">
+                            <input type="text" name="instruction" class={"mt-3 mb-3"} style={{width:"95%"}} value={this.props.current.instructions}   required/><br/>
+                    </div>
+                </div>
 
 
-
-                    <input type="text" placeholder="Type in quantity type" name="quantity4" value={amount[3]}/>
-                    <select id="options" name="ingredient4" >
-                    {firstOption[3]}
-                    <option value="">None</option>
-                        {ingredient}
-                    </select>
-                    <input type="text" placeholder="Any Notes?" name="specialNote4" value={notes[3]}/>
-
-                    <input type="text" placeholder="Type in quantity type" name="quantity5" value={amount[4]}/>
-                    <select id="options" name="ingredient5" >
-                    {firstOption[4]}
-                    <option value="">None</option>
-                        {ingredient}
-                    </select>
-                    <input type="text" placeholder="Any Notes?" name="specialNote5" value={notes[4]}/>
-
-
-                    <input type="text" placeholder="Type in quantity type" name="quantity6" value={amount[5]}/>
-                    <select id="options" name="ingredient6" >
-                    {firstOption[5]}
-                    <option value="">None</option>
-                        {ingredient}
-                    </select>
-                    <input type="text" placeholder="Any Notes?" name="specialNote6" value={notes[5]}/>
-
-
-                  <p>Instruction</p>
-                  <input type="text" name="instruction" value={this.props.current.instructions} required/>
-                  <button type="submit">Submit to Edit</button>
-
-
+                <div class={"row border"}>
+                    <div class={"col-12 text-center"}>
+                        <button class={"mt-3 mb-3"} type="submit">Edit</button>
+                  </div>
+                </div>
 
             </form>
 
+                <div class={"row border"}>
+                    <div class={"col-12 text-center"}>
+                        <p class={"p-3"}>Click here to go back <span><a href="/">Home</a></span></p>
 
+                    </div>
+                </div>
 
           </div>
-                       <div>
-            <a href="/">Home</a>
-            </div>
+
         </body>
       </html>
     );
