@@ -50,8 +50,8 @@ class NewRecipe extends React.Component {
         <body>
           <div className="container">
             <div className="row">
-              <div className="col">
-                <h1> Add a Recipe!</h1>
+              <div className="col text-center">
+                <h1>Add a Recipe!</h1>
               </div>
             </div>
 
@@ -60,7 +60,7 @@ class NewRecipe extends React.Component {
                 <form method="POST" action="/recipes" id="newrecipe">
                   <div className="form-group row">
                     <div className="col">
-                      <label className="h4" htmlFor="recipename">Recipe Name</label>
+                      <label className="h5" htmlFor="recipename">Recipe Name</label>
                       <input className="form-control"
                              name="recipename"
                              id="recipename"
@@ -68,16 +68,18 @@ class NewRecipe extends React.Component {
                     </div>
                   </div>
 
-                  <div id="ingredientlist" className="form-group">
+                  <div className="form-group">
                     <div className="form-row">
                       <div className="col">
-                        <label className="h4">Ingredient</label>
+                        <label className="h5">Ingredient</label>
                       </div>
                       <div className="col">
-                        <label className="h4">Quantity</label>
+                        <label className="h5">Quantity</label>
                       </div>
                     </div>
-                    <Ingredients list={this.props.recipe.ingredients}/>
+                    <div id="ingredientlist">
+                      <Ingredients list={this.props.recipe.ingredients}/>
+                    </div>
                     <div className="row">
                       <div className="col">
                         <button className="btn btn-secondary btn-block" id="increase">Add More Ingredients</button>
@@ -87,15 +89,22 @@ class NewRecipe extends React.Component {
 
                   <div className="form-group row">
                     <div className="col">
-                      <label className="h4" htmlFor="instructions">Instructions</label>
-                      <textarea className="form-control"
-                                name="instructions"
-                                id="instructions"
-                                defaultValue={recipeInst}/>
+                      <label className="h5" htmlFor="instructions">Instructions</label>
+                      <textarea
+                        className="form-control"
+                        name="instructions"
+                        id="instructions"
+                        rows="10"
+                        style={{height: "85%"}}
+                        defaultValue={recipeInst.join("\n")}/>
                     </div>
                   </div>
 
-                  <button type="submit" className="btn btn-primary btn-lg btn-block">Add Recipe</button>
+                  <div className="form-group row">
+                    <div className="col">
+                      <button type="submit" className="btn btn-primary btn-lg btn-block">Add Recipe</button>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
