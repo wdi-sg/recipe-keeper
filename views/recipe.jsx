@@ -27,12 +27,21 @@ class Recipe extends React.Component {
 
                             </div>
                         </div>
-                      
-                        <div className="text-center">
+
+                        <div className="container-fluid text-center">
+                            <div className="row d-flex justify-content-around">
+                                <div className="col-6-md">
+                                    <a href={`/recipes/${this.props.id}/edit`} className="btn btn-warning btn-block h-auto mr-2 ">Edit Recipe</a>
+                                </div>
+                                <div className="col-6-md">
+                                    <form method="POST" action={`/recipes/${this.props.id}?_method=delete`}>
+                                        <button type="submit" className="btn btn-danger btn-block ml-2 ">Delete Recipe</button>
+                                    </form>
+                                </div>
+                            </div>
+
                             <br />
-                            <a href={`/edit-recipes/${this.props.id}`} className="btn btn-primary w-50">Edit Recipe</a>
-                            <br /><br />
-                            <a href="/view-recipes" className="btn btn-primary w-50">Recipe List</a>
+                            <a href="/recipes" className="btn btn-primary w-50">Recipe List</a>
                             <br /><br />
                             <a href="/" className="btn btn-primary w-50">Home</a>
                         </div>

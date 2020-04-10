@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.post('/add-recipe', function (req, res) {
+app.post('/recipes', function (req, res) {
   //debug code (output request body)
   console.log("New Recipe Added");
   jsonfile.readFile(file, (err, obj) => {
@@ -54,7 +54,7 @@ app.post('/add-recipe', function (req, res) {
 
 });
 
-app.post('/edit-recipe', function (req, res) {
+app.put('/recipes/:id', function (req, res) {
   //debug code (output request body)
   var id = parseInt(req.body.id);
   jsonfile.readFile(file, (err, obj) => {
@@ -84,14 +84,38 @@ app.post('/edit-recipe', function (req, res) {
   res.render('recipe-edited', req.body)
 
 });
+app.delete('/recipes/:id', function (req, res) {
+  //debug code (output request body)
+  var id = parseInt(req.params.id);
+  jsonfile.readFile(file, (err, obj) => {
+    var recipeBook = obj.recipes;
+    function isId(recipe) {
+      return recipe.id === id;
+    }
+    var recipe = recipeBook.find(isId);
+    var index = recipeBook.indexOf(recipe);
+    recipeBook.splice(index,1);
+    var newOutput = {
+      "recipes": recipeBook,
+    }
+    jsonfile.writeFile(file, newOutput, (err) => {
 
-app.get('/add-recipe', function (req, res) {
+      console.log(err)
+
+    });
+
+  })
+  res.render('recipe-deleted')
+
+});
+
+app.get('/recipes/new', function (req, res) {
   //debug code (output request body)
 
   res.render('add-recipe');
 });
 
-app.get('/view-recipes/:id', function (req, res) {
+app.get('/recipes/:id', function (req, res) {
   var id = parseInt(req.params.id);
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj.recipes;
@@ -105,7 +129,7 @@ app.get('/view-recipes/:id', function (req, res) {
 
 });
 
-app.get('/edit-recipes/:id', function (req, res) {
+app.get('/recipes/:id/edit', function (req, res) {
   var id = parseInt(req.params.id);
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj.recipes;
@@ -119,7 +143,7 @@ app.get('/edit-recipes/:id', function (req, res) {
 
 });
 
-app.get('/view-recipes/', function (req, res) {
+app.get('/recipes/', function (req, res) {
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj;
 
@@ -131,7 +155,7 @@ app.get('/view-recipes/', function (req, res) {
 
 
 app.listen(3000, () => {
-  console.log("Starting cookbook...");
+  console.log("Starting Recipe Keeper...");
 
 });
 

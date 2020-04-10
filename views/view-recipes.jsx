@@ -4,15 +4,26 @@ var React = require('react');
 class ViewRecipe extends React.Component {
     render() {
         var recipeBook = this.props.recipes;
-
-        var recipeFormatted = recipeBook.map(recipe => {
-            recipe = <div className="card text-center text-black bg-light mb-3">
+        var recipeFormatted = [];
+        if (recipeBook.length == 0){
+            var recipe = <div className="card text-center text-black bg-light mb-3">
                 <div className="card-body">
-                    <h5 className="card-title text-left"><strong>Title: </strong> <a href={`view-recipes/${recipe.id}`}>{recipe.title}</a></h5>
+                    <h5 className="card-title text-center"><strong>No recipes to show</strong></h5>
                 </div>
             </div>;
-            return recipe;
-        })
+            recipeFormatted = [recipe];
+        }else{
+             recipeFormatted = recipeBook.map(recipe => {
+                recipe = <div className="card text-center text-black bg-light mb-3">
+                    <div className="card-body">
+                        <h5 className="card-title text-center"><a href={`recipes/${recipe.id}`}><strong>{recipe.title}</strong></a></h5>
+                    </div>
+                </div>;
+                return recipe;
+            })
+        }
+
+       
 
 
         return (
@@ -24,6 +35,7 @@ class ViewRecipe extends React.Component {
                     <div className="container mw-50 w-50">
                         <h1 className="text-center font-italic"><u><strong>View Recipe</strong></u></h1>
                         <div class="container w-75">
+                            <br/>
                                 {recipeFormatted}
                         </div>
                         

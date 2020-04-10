@@ -15,7 +15,7 @@ class Edit extends React.Component {
                     <div className="container mw-50 w-50">
                         <h1 className="text-center font-italic"><u><strong>Edit Recipe</strong></u></h1>
 
-                        <form className="w-100 text-center" method="POST" action="/edit-recipe">
+                        <form className="w-100 text-center" method="POST" action={`/recipes/${this.props.id}?_method=put`}>
                             <input name="id" value={this.props.id} type="hidden" ></input>    
                             <div className="form-group text-left">
                                 <label htmlFor="title" className="font-weight-bold">Title:</label>
@@ -35,7 +35,7 @@ class Edit extends React.Component {
                         </form>
                         <div className="text-center">
                             <br />
-                            <a href="/view-recipes" className="btn btn-primary w-50">Recipe List</a>
+                            <a href="/recipes" className="btn btn-primary w-50">Recipe List</a>
                             <br /><br />
                             <a href="/" className="btn btn-primary w-50">Home</a>
 

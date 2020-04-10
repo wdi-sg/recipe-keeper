@@ -1,7 +1,7 @@
 
 var React = require('react');
 
-class AddedRecipe extends React.Component {
+class DeletedRecipe extends React.Component {
     render() {
 
 
@@ -13,22 +13,10 @@ class AddedRecipe extends React.Component {
                 </head>
                 <body style={{ backgroundColor: "lightblue" }}>
                     <div className="container mw-50 w-50">
-                        <h1 className="text-center font-italic"><u><strong>Add New Recipe</strong></u></h1>
-
-                        
-                        <div className="card text-center text-black bg-light mb-3">
-                            <div className="card-body">
-                                <h5 className="card-title text-left"><strong>Title: </strong>{this.props.title}</h5>
-                                <h5 className="card-title text-left"><strong>Ingredients: </strong>{this.props.ingredients}</h5>
-                                <h5 className="card-title text-left"><strong>Instructions: </strong>{this.props.instructions}</h5>
-
-
-
-
-                            </div>
-                        </div>
+                        <br/>
+                        {/* <h1 className="text-center font-italic"><u><strong>Deleted Recipe</strong></u></h1> */}
                         <div className="alert alert-success" role="alert">
-                            Recipe added successfully. <a href="/recipes/new" className="alert-link">Add another?</a>
+                            Recipe deleted successfully.
                         </div>
                         <div className="text-center">
                             <br />
@@ -44,4 +32,4 @@ class AddedRecipe extends React.Component {
     }
 }
 
-module.exports = AddedRecipe;
+module.exports = DeletedRecipe;

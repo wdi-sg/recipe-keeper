@@ -15,7 +15,7 @@ class AddRecipe extends React.Component {
                     <div className="container mw-50 w-50">
                         <h1 className="text-center font-italic"><u><strong>Add New Recipe</strong></u></h1>
 
-                        <form className="w-100 text-center" method="POST" action="/add-recipe">
+                        <form className="w-100 text-center" method="POST" action="/recipes">
 
                             <div className="form-group text-left">
                                 <label htmlFor="title" className="font-weight-bold">Title:</label>
@@ -35,8 +35,9 @@ class AddRecipe extends React.Component {
                         </form>
                         <div className="text-center">
                             <br />
+                            <a href="/recipes" className="btn btn-primary w-50">Recipe List</a>
+                            <br /><br />
                             <a href="/" className="btn btn-primary w-50">Home</a>
-
                         </div>
                     </div>
                 </body>

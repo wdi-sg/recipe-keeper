@@ -32,7 +32,7 @@ class AddedRecipe extends React.Component {
                         </div>
                         <div className="text-center">
                             <br />
-                            <a href="/view-recipes" className="btn btn-primary w-50">Recipe List</a>
+                            <a href="/recipes" className="btn btn-primary w-50">Recipe List</a>
                             <br /><br />
                             <a href="/" className="btn btn-primary w-50">Home</a>
 

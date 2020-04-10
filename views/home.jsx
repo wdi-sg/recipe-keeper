@@ -23,7 +23,7 @@ class Home extends React.Component {
                                     <img className="card-img-top" src="images/recipes.jpg" alt="Card image cap"></img>
                                         <h5 className="card-title">View Recipes</h5>
                                 
-                                        <a href="/view-recipes" className="btn btn-primary btn-block">View</a>
+                                        <a href="/recipes" className="btn btn-primary btn-block">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@ class Home extends React.Component {
                                     <img className="card-img-top" src="images/new.jpg" alt="Card image cap"></img>
                                         <h5 className="card-title">Add Recipes</h5>
                                         
-                                        <a href="/add-recipe" className="btn btn-primary btn-block">Add</a>
+                                        <a href="/recipes/new" className="btn btn-primary btn-block">Add</a>
                                     </div>
                                 </div>
                             </div>
