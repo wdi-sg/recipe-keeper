@@ -26,6 +26,14 @@ class Home extends React.Component {
 
                     </div>
                 </div>
+
+                <div class={"row"}>
+                    <div class={"col-12 text-center"} style={{fontSize:"20px"}}>
+                        <p class={"m-3"}>Click here to view by ingredients <span><a href="/ingredients">By Ingredients</a></span></p>
+
+                    </div>
+                </div>
+
                 <div class={"row"}>
                     <div class={"col-12 text-center mb-5"} style={{display:"inline"}}>
                     <p>Click here to view recipes by catergories</p>

@@ -7,19 +7,19 @@ This will be an express CRUD app.
 
 Users will be able to:
 
-- Add a new recipe.
+- Add a new recipe.☑
 
-- See all the recipes that exist.
+- See all the recipes that exist.☑
 
-- Edit recipes that currently exist.
+- Edit recipes that currently exist.☑
 
-- Delete recipes.
+- Delete recipes.☑
 
 A single page should have at least 3 pieces of information:
 
-1. Title
-2. Ingredients
-3. Instructions
+1. Title☑
+2. Ingredients☑
+3. Instructions☑
 
 ```
 Recipe Title: Boiled Chicken
@@ -33,23 +33,23 @@ Instructions:
 ```
 
 #### Technical Requirements:
-- Use express to handle the incoming HTTP requests.
+- Use express to handle the incoming HTTP requests.☑
 
-- Use React.js to render HTML after a request.
+- Use React.js to render HTML after a request.☑
 
-- Use jsonfile to store your data on the hard disk.
+- Use jsonfile to store your data on the hard disk.☑
 
-- Use RESTful route structure for the recipes
+- Use RESTful route structure for the recipes☑
 
 | **URL** | **HTTP Verb** |  **Action** | **Purpose**  |
 |------------|-------------|------------|------------|
-| /recipes/         | GET       | index    | See all the recipes |
-| /recipes/new      | GET       | new      | Display the form for a single recipe |
-| /recipes          | POST      | create   | Create a new recipe |
-| /recipes/:id      | GET       | show     | See a single recipe |
-| /recipes/:id/edit | GET       | edit     | Display the form for editing a single recipe | 
-| /recipes/:id      | PATCH/PUT | update   | Update a recipe |
-| /recipes/:id      | DELETE    | destroy  | Remove a recipe |
+| /recipes/☑         | GET       | index    | See all the recipes |
+| /recipes/new☑      | GET       | new      | Display the form for a single recipe |
+| /recipes☑          | POST      | create   | Create a new recipe |
+| /recipes/:id☑      | GET       | show     | See a single recipe |
+| /recipes/:id/edit | GET       | edit     | Display the form for editing a single recipe☑ | 
+| /recipes/:id☑      | PATCH/PUT | update   | Update a recipe |
+| /recipes/:id☑      | DELETE    | destroy  | Remove a recipe |
 
 #### How to get started
 Begin building your app with the json file. The starter code inside of data.json should look something like this: 
@@ -59,35 +59,35 @@ Begin building your app with the json file. The starter code inside of data.json
 }
 ```
 
-Begin with building the ability to render the form to create a recipe.
+Begin with building the ability to render the form to create a recipe.☑
 
-Then build the route that accepts the POST request that form creates.
+Then build the route that accepts the POST request that form creates.☑
 
-Then build the page that will display a single recipe.
+Then build the page that will display a single recipe.☑
 
-Then build the form for editing a recipe.
+Then build the form for editing a recipe.☑
 
-Then build the route that accepts the PUT request to update a recipe.
+Then build the route that accepts the PUT request to update a recipe.☑
 
-Next is DELETE
+Next is DELETE☑
 
 That's it!
 
 ---
 
-Don't forget to `npm init`.
+Don't forget to `npm init`.☑
 
 Here is a minimal list of the things you will need to install in your app:
 ```
-express
-jsonfile
-method-override
-express-react-views
-react
-react-dom
+express☑
+jsonfile☑
+method-override☑
+express-react-views☑
+react☑
+react-dom☑
 ```
 
-Here's all of the basic bolierplate setup you'll need to do for your app at the top of `index.js`:
+Here's all of the basic bolierplate setup you'll need to do for your app at the top of `index.js`:☑
 
 ```javascript
 const jsonfile = require('jsonfile');
@@ -137,12 +137,12 @@ The recipe object should look something like this:
 **Note**: you don't have to work on the furthers in the order listed.
 
 #### Further
-Add a way for users to navigate around the site without typing the explicit routes in the browser URL bar.
+Add a way for users to navigate around the site without typing the explicit routes in the browser URL bar.☑
 
 #### Further
 CSS Part 1:
 
-Add some CSS. Use margin and padding, set basic spacing for all parts of your app. Add some basic colors or styles.
+Add some CSS. Use margin and padding, set basic spacing for all parts of your app.☑ Add some basic colors or styles.☑
 (don't try to add bootstrap or any react CSS as an NPM library- just include the link tag line in the HTML, and a static style css file in the public directory)
 
 ```html
@@ -152,7 +152,7 @@ Add some CSS. Use margin and padding, set basic spacing for all parts of your ap
 #### Further
 CSS Part 2:
 
-Add some layout styles. Add a kind of column layout to each page. You can use bootstrap.
+Add some layout styles. Add a kind of column layout to each page. You can use bootstrap.☑
 
 #### Further
 CSS Part 2.5:
@@ -164,22 +164,22 @@ CSS Part 3:
 
 Add more layout. Add a header/navbar and footer to every page.
 
-Add special layout and CSS to the landing page `/`
+Add special layout and CSS to the landing page `/`☑
 
 #### Further
-Add more data to your recipie: add the date when it was created.
+Add more data to your recipie: add the date when it was created.☑
 
 #### Further
-Validate the user's input. Create limits for how long or short any field should be. 
+Validate the user's input. Create limits for how long or short any field should be.☑ 
 
 #### Further
-Create a system where the app actually tracks a kind of ID. This ID is unique to each recipe. The easiest implementation of this is simply a system that increments from the highest number. If a recipe is removed then the app ignores that ID.
+Create a system where the app actually tracks a kind of ID. This ID is unique to each recipe. The easiest implementation of this is simply a system that increments from the highest number. If a recipe is removed then the app ignores that ID.☑
 
 #### Further
-Sort the recipes on the index page. You can choose what dimension to sort them by.
+Sort the recipes on the index page. You can choose what dimension to sort them by.☑
 
 #### Further
-Add a more complex system of ingredients. For each recipe the ingredients are a variable number of ingredient records. To keep this simple you can start with 1-6 ingredients.
+Add a more complex system of ingredients. For each recipe the ingredients are a variable number of ingredient records. To keep this simple you can start with 1-6 ingredients.☑
 
 An ingredient record would look like this:
 

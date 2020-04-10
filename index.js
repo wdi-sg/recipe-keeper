@@ -199,6 +199,54 @@ app.get('/recipes',(request, response)=>{
 
     })
 })
+
+app.get('/ingredients',(request,response)=>{
+    jsonfile.readFile(RECIPEFILE,(err,obj)=>{
+        let exteriorCount=0;
+        let innerCount=0;
+        let outerCount=0;
+        let usedUnsortedIngredientsarray=[];
+        for(outerCount=0;outerCount<obj.recipes.length;outerCount++)
+        {
+            for(innerCount=0;innerCount<obj.recipes[outerCount].ingredients.length;innerCount++)
+            {
+                if(obj.recipes[outerCount].ingredients[innerCount].name!=="")
+                {usedUnsortedIngredientsarray.push(obj.recipes[outerCount].ingredients[innerCount].name);}
+            }
+        }
+        const uniqueUsedArray=new Set(usedUnsortedIngredientsarray);
+        const usedIngredientSortedArray=[...uniqueUsedArray];
+        const IngredientToRecipe={}
+       for (exteriorCount=0; exteriorCount<usedIngredientSortedArray.length;exteriorCount++)
+       {
+            IngredientToRecipe[usedIngredientSortedArray[exteriorCount]]=[];
+       }
+
+       for(key in IngredientToRecipe){
+        for(outerCount=0;outerCount<obj.recipes.length;outerCount++)
+            {
+            for(innerCount=0;innerCount<obj.recipes[outerCount].ingredients.length;innerCount++)
+                {
+                    if(obj.recipes[outerCount].ingredients[innerCount].name===key)
+                    {
+                        IngredientToRecipe[key].push(obj.recipes[outerCount]);
+                    }
+                }
+            }
+       }
+
+       for(key in IngredientToRecipe){
+                const uniqueUsedKeyArray=new Set(IngredientToRecipe[key]);
+                const usedIngredientKeySortedArray=[...uniqueUsedKeyArray];
+                IngredientToRecipe[key]=usedIngredientKeySortedArray;
+       }
+        //response.send(IngredientToRecipe);
+        response.render("typing",IngredientToRecipe);
+    })
+})
+
+
+
 //***** Display a form for adding new recipe ******
 app.get('/recipes/new',(request, response)=>{
 console.log("------------------------Test");
@@ -258,7 +306,39 @@ app.post('/recipes', (request, response)=>{
                 ingredientsSortedArray.push(individualIngredient);
         }
     }
+    if(request.body.title.length<3)
+    {
+        const errorMessage={}
+        errorMessage.message= "Length of title must be more than 3 letters.";
+        //response.send("error");
+        response.render("error", errorMessage);
+        return;
+    }
+        if(request.body.title.length>20)
+    {
+        const errorMessage={}
+        errorMessage.message= "Length of title must be less than 20 letters.";
+        //response.send("error");
+        response.render("error", errorMessage);
+        return;
+    }
 
+       if(request.body.instruction.length<3)
+    {
+        const errorMessage={}
+        errorMessage.message= "Length of title must be more than 3 letters.";
+        //response.send("error");
+        response.render("error", errorMessage);
+        return;
+    }
+        if(request.body.title.length>200)
+    {
+        const errorMessage={}
+        errorMessage.message= "Length of title must be less than 200 letters.";
+        //response.send("error");
+        response.render("error", errorMessage);
+        return
+    }
     data.ingredients=ingredientsSortedArray;
     jsonfile.readFile(RECIPEFILE, (err,obj)=>{
         let id=obj.recipes.length+1;
@@ -268,11 +348,13 @@ app.post('/recipes', (request, response)=>{
         obj.recipes[obj.recipes.length-1].id=obj.recipes.length;
         //response.send(obj.recipes);
         //response.send(data);
+        obj.recipes[obj.recipes.length-1].timestamp=Date();
 
         jsonfile.writeFile(RECIPEFILE, obj, (err) => {
         const link ='/recipes/'+ (obj.recipes.length);
         //render recipe after adding
         response.redirect(link);
+        //response.send(request.body)
                 })
 
     })
