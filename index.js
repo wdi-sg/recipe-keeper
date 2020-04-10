@@ -46,6 +46,25 @@ app.get('/singlerecipe/:id', (request,response) => {
     })
 })
 
+app.post('/createarecipe', (request, response) => {
+
+    const singleRecipe = request.body;
+
+    jsonfile.readFile(file, (err, obj) => {
+        // Add new recipe to recipe list
+        obj.recipes.push(singleRecipe);
+
+        // Get id number of recipe
+        const id = obj.recipes.length - 1;
+
+        response.redirect(`/singlerecipe/${id}`);
+
+        jsonfile.writeFile(file, obj, (err) => {
+        })
+
+    })
+})
+
 
 // Home page response
 app.get('/', (request, response) => {

@@ -13,7 +13,9 @@ class Singlerecipe extends React.Component{
 
         const recipeImage = <img src={recipeObject.img}></img>
 
-        const recipeIngredients = <p>{recipeObject.ingredients}</p>
+        const recipeIngredients = recipeObject.ingredients.map(el => {
+            return <li>{el}</li>
+        })
 
         const recipeInstructions = <p>{recipeObject.instructions}</p>
 
@@ -28,7 +30,9 @@ class Singlerecipe extends React.Component{
                     </div>
                     <div>
                         <div>
-                            {recipeIngredients}
+                            <ol>
+                                {recipeIngredients}
+                            </ol>
                         </div>
                         <div>
                             {recipeInstructions}
