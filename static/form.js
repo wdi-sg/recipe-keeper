@@ -16,7 +16,7 @@ const addInput = function (e) {
 
   let newQuantity = document.createElement("input");
   newQuantity.className = "quantity form-control";
-  newQuantity.name = `ing-${ix}`;
+  newQuantity.name = `qty-${ix}`;
 
   ingCol.appendChild(newIngredient);
   qtyCol.appendChild(newQuantity);
