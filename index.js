@@ -25,6 +25,28 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+// file service routes
+app.use(express.static('./files/'));
+let options = {
+  root: ('files'),
+  dotfiles: 'deny',
+  headers: {
+    'x-timestamp': Date.now(),
+    'x-sent': true
+  }
+};
+
+app.get('/files/:filename', (req, res) => {
+  let filename = req.params.filename;
+  res.sendFile(filename, options, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("sent", filename);
+    }
+  });
+});
+
 
 app.get('/', (req, res) => {
   res.render('recipelist');
