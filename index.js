@@ -47,6 +47,27 @@ app.get('/files/:filename', (req, res) => {
   });
 });
 
+// RESTful routes
+app.get('/recipes/new', (req, res) => {
+  let data = {
+    recipe: {
+      name: "",
+      ingredients: [
+        { id: 1, ingredient: "", qty: "" },
+        { id: 2, ingredient: "", qty: "" },
+        { id: 3, ingredient: "", qty: "" },
+        { id: 4, ingredient: "", qty: "" },
+      ],
+      instructions: ""
+    }
+  };
+  res.render('newrecipe', data);
+});
+
+app.post('/recipes', (req, res) => {
+  res.send(req.body);
+});
+
 
 app.get('/', (req, res) => {
   res.render('recipelist');
