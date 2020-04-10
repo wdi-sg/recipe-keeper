@@ -24,8 +24,18 @@ app.use(
 //----------------------------
 //----------------------------
 
+app.get("/recipes/delete", (request, response) => {
+  response.render("recipe-delete");
+});
+
+app.get("/recipes/", (request, response) => {
+  jsonfile.readFile(recipeFILE, (err, obj) =>{
+    response.render("recipe-viewall", obj);
+  });
+});
+
 //Submitting a new recipe 
-app.post("/recipes/new", (request, response) => {
+app.post("/recipes/:id", (request, response) => {
   let reqRecipeObj = request.body;
   jsonfile.readFile(recipeFILE, (err, obj) => {
     obj.lastId = obj.recipes.length;
@@ -41,9 +51,11 @@ app.post("/recipes/new", (request, response) => {
       }
     }
     obj.recipes.push(JSON.parse(JSON.stringify(newRecipeObj)));
+    console.log(obj);
+    console.log(obj.recipes[obj.lastId]);
     jsonfile.writeFile(recipeFILE, obj, (err) => {
       if (err) return;
-      response.send(obj);
+      response.render("recipe-display", obj.recipes[obj.lastId]);
     });
   });
 });
@@ -52,30 +64,60 @@ app.post("/recipes/new", (request, response) => {
 app.get("/recipes/:id", (request, response) => {
   jsonfile.readFile(recipeFILE, (err, obj) => {
     let idNum = parseInt(request.params.id);
-    console.log(obj.recipes[idNum-1]);
-    response.render("recipe-display", obj.recipes[idNum-1]);
+    let recipeOfId = obj.recipes.find((element) => {
+      return element.id === idNum;
+    });
+    console.log(recipeOfId);
+    response.render("recipe-display", recipeOfId);
   });
 });
 
-//Read and write edited recipe data 
+
+//Deleting a recipe
+app.delete("/recipes/:id", (request, response) => {
+  console.log(request.body);
+  let idToDelete = parseInt(request.body.id);
+  jsonfile.readFile(recipeFILE, (err, obj) => {
+    let indexToDel = obj.recipes.findIndex((element) => {
+      return element.id === idToDelete;
+    });
+    obj.recipes[indexToDel].delete = true;
+    console.log(obj);
+    jsonfile.writeFile(recipeFILE, obj, (err) => {
+      if (err) return;
+      // response.send(obj);
+      console.log(response.render);
+      // response.render("recipe-delete");
+      response.redirect("http://127.0.0.1:3000/recipes/delete");
+    });
+  });
+});
+
+//Read and write edited recipe data, display edited recipe
 app.put("/recipes/:id/edit", (request, response) => {
   console.log(request.body);
   let editedObj = request.body;
   let id = parseInt(editedObj.id);
   jsonfile.readFile(recipeFILE, (err, obj) => {
-    // let oldTitle = obj.recipes[currIndex].title;
-    obj.recipes[id-1].title = editedObj.title;
-    obj.recipes[id-1].instructions = editedObj.instructions;
-    obj.recipes[id-1].ingredients = [];
+    let recipeOfId = obj.recipes.find((element) => {
+      return element.id === id;
+    });
+    recipeOfId.title = editedObj.title;
+    recipeOfId.instructions = editedObj.instructions;
+    recipeOfId.ingredients = [];
     for (const element in editedObj) {
       if (element.includes("ingred") && editedObj[element] !== "NIL") {
-        obj.recipes[id-1].ingredients.push(editedObj[element]);
+        recipeOfId.ingredients.push(editedObj[element]);
       }
     }
+    let indexEditedRecipe = obj.recipes.findIndex((element) => {
+      return element.id === id;
+    });
+    obj.recipes.splice(indexEditedRecipe, 1, recipeOfId);
     jsonfile.writeFile(recipeFILE, obj, (err) => {
       if (err) return;
-      response.render("recipe-display", obj.recipes[id-1]);
-      // response.redirect("http://127.0.0.1:3000/recipes/"+id);
+      // response.render("recipe-display", obj.recipes[indexEditedRecipe]);
+      response.redirect("http://127.0.0.1:3000/recipes/"+id);
     });
   });
 });
@@ -110,21 +152,3 @@ app.get("/recipes", (request, response) => {
 });
 
 app.listen(3000, () => console.log("Listening to port 3000"));
-
-    // for (let i=0; i<obj.usedIngred.length; i++) {
-    //   for (let z=0; z<newRecipeObj.ingredients.length; z++) {
-    //     if (obj.usedIngred[i].name === newRecipeObj.ingredients[z]) {
-    //       obj.usedIngred[i].inRecipe.push(newRecipeObj.title);
-    //       newRecipeObj.ingredients[z] = null;
-    //     }
-    //   }
-    // }
-    // for (let x=0; x<newRecipeObj.ingredients.length; x++) {
-    //   if (newRecipeObj.ingredients[x] !== null) {
-    //     let newUsedIngredObj = {
-    //       name: newRecipeObj.ingredients[x],
-    //       inRecipe: [newRecipeObj.title]
-    //     };
-    //     obj.usedIngred.push(newUsedIngredObj);
-    //   }
-    // }

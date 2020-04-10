@@ -2,6 +2,8 @@ var React = require("react");
 
 class NewRecipe extends React.Component {
   render() {
+    let id = parseInt(this.props.lastId) + 1;
+    let link = "/recipes/" + {id};
     let ingredArr = this.props.ingredients;
     let ingredNameArrOption = ingredArr.map((element) => {
       return <option>{element.name}</option>;
@@ -20,7 +22,7 @@ class NewRecipe extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col mt-5">
-                <form method="POST" action="/recipes/new">
+                <form method="POST" action={link}>
                   <h2><u>ADD A NEW RECIPE</u></h2>
                   <br></br>
                   <h4>Title:</h4>
@@ -65,7 +67,11 @@ class NewRecipe extends React.Component {
                   <br></br>
                   <textarea className="form-control" aria-label="With textarea" name="instructions" placeholder="Instructions"></textarea>
                   <br></br>
-                  <input type="submit" value="Submit" className="form-control btn btn-primary" />
+                  
+                  {/* <form method="GET" action="/recipes/"> */}
+                    <input type="submit" value="Submit" className="form-control btn btn-primary" />
+                  {/* </form> */}
+
                 </form>
               </div>
             </div>

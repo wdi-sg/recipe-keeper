@@ -1,1 +1,9 @@
-{"recipes":[{"id":1,"title":"Mew Juice","ingredients":["Lamb - Sausage Casings","Wine - Rosso Toscano Igt","Carbonated Water - Strawberry","Pepperoni Slices"],"instructions":"Mix up"}],"lastId":0}
+{
+  "recipes": [
+    { "id": 1, "title": "Shaking Beef", "ingredients": ["Beef - Short Ribs", "Orange Roughy 6/8 Oz"], "instructions": "Mix" },
+    { "id": 2, "title": "Spiny Lobster", "ingredients": ["Sauce - Bernaise, Mix", "Beef - Short Ribs", "Chicken - Base", "Iced Tea Concentrate"], "instructions": "Mix" },
+    { "id": 3, "title": "Ugly But Good", "ingredients": ["Iced Tea Concentrate", "Beer - Muskoka Cream Ale", "Beef - Short Ribs"], "instructions": "Mix", "delete": true },
+    { "id": 4, "title": "Choco Cake", "ingredients": ["Island Oasis - Mango Daiquiri", "Cranberry Foccacia"], "instructions": "Mix" }
+  ],
+  "lastId": 3
+}

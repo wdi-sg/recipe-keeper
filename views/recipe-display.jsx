@@ -3,6 +3,7 @@ var React = require("react");
 class RecipeDisplay extends React.Component {
   render() {
     const link = "/recipes/" + this.props.id + "/edit";
+    const link2 = "/recipes/" + this.props.id + "?_method=delete";
     let ingredArrHtml = this.props.ingredients.map((element) => {
       return <li>{element}</li>;
     });
@@ -33,7 +34,13 @@ class RecipeDisplay extends React.Component {
                 <p>{this.props.instructions}</p>
 
                 <form method="GET" action={link}>
-                  <button type="button" className="btn btn-primary">Edit This Recipe</button>
+                  <button type="submit" className="btn btn-primary">Edit This Recipe</button>
+                </form>
+                <br></br>
+
+                <form method="POST" action={link2}>
+                  <button type="submit" className="btn btn-warning">Delete This Recipe</button>
+                  <input name="id" type="hidden" value={this.props.id}/>
                 </form>
 
               </div>
