@@ -42,6 +42,12 @@ class RecipeDisplay extends React.Component {
                   <button type="submit" className="btn btn-warning">Delete This Recipe</button>
                   <input name="id" type="hidden" value={this.props.id}/>
                 </form>
+                <br></br>
+
+                <form method="GET" action="/">
+                  <button type="submit" className="btn btn-primary">Return To Home Page</button>
+                </form>
+                <br></br>
 
               </div>
             </div>

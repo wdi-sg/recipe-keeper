@@ -6,6 +6,7 @@ class AllRecipe extends React.Component {
     let existingRecipeArr = recipeArr.filter((element) => {
       return !element.delete;
     });
+
     existingRecipeArr.sort((a, b) => {
       let nameA = a.title.toUpperCase();
       let nameB = b.title.toUpperCase();
@@ -17,6 +18,7 @@ class AllRecipe extends React.Component {
       }
       return 0;
     });
+
     let existingRecipeArrHtml = existingRecipeArr.map((element) => {
       return (
         <li>
@@ -46,8 +48,8 @@ class AllRecipe extends React.Component {
 
                 <ul>{existingRecipeArrHtml}</ul>
 
-                <form method="GET" action="">
-                  <button type="button" className="btn btn-primary">
+                <form method="GET" action="/">
+                  <button type="submit" className="btn btn-primary">
                     Return To Home Page
                   </button>
                 </form>

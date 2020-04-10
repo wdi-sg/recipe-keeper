@@ -1,7 +1,13 @@
 var React = require("react");
+var SortRecipesMod = require("./recipe-sort-module");
 
-class DeleteRecipe extends React.Component {
+class SortRecipes extends React.Component {
   render() {
+
+   let items = this.props.items.map((element) => {
+    return <SortRecipesMod item={element} />;
+   });
+
     return (
       <html>
         <head>
@@ -16,13 +22,19 @@ class DeleteRecipe extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col mt-5">
-                
-                <h4>Your recipe has been successfully deleted!</h4>
+                <h2>
+                  <u>ALL INGREDIENTS</u>
+                </h2>
+                <br></br>
+
+                {items}
+
                 <br></br>
                 <form method="GET" action="/">
-                  <button type="submit" className="btn btn-primary">Return To Home Page</button>
+                  <button type="submit" className="btn btn-primary">
+                    Return To Home Page
+                  </button>
                 </form>
-
               </div>
             </div>
           </div>
@@ -32,4 +44,4 @@ class DeleteRecipe extends React.Component {
   }
 }
 
-module.exports = DeleteRecipe;
+module.exports = SortRecipes;
