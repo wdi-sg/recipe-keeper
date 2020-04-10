@@ -51,7 +51,7 @@ const link = "/recipes/"+this.props.id+"?_method=put";
                     <input type="text" placeholder="Type in quantity type" name="quantity1" value={amount[0]} required/>
                     <select id="options" name="ingredient1" >
                     {firstOption[0]}
-
+                    <option value="">None</option>
                         {ingredient}
                     </select>
                     <input type="text" placeholder="Any Notes?" name="specialNote1" value={notes[0]}/>
@@ -61,6 +61,7 @@ const link = "/recipes/"+this.props.id+"?_method=put";
                     <input type="text" placeholder="Type in quantity type" name="quantity2" value={amount[1]}/>
                     <select id="options" name="ingredient2" >
                     {firstOption[1]}
+                    <option value="">None</option>
                         {ingredient}
                     </select>
                     <input type="text" placeholder="Any Notes?" name="specialNote2" value={notes[1]}/>
@@ -69,6 +70,7 @@ const link = "/recipes/"+this.props.id+"?_method=put";
                     <input type="text" placeholder="Type in quantity type" name="quantity3" value={amount[2]}/>
                     <select id="options" name="ingredient3" >
                     {firstOption[2]}
+                    <option value="">None</option>
                         {ingredient}
                     </select>
                     <input type="text" placeholder="Any Notes?" name="specialNote3" value={notes[2]}/>
@@ -78,6 +80,7 @@ const link = "/recipes/"+this.props.id+"?_method=put";
                     <input type="text" placeholder="Type in quantity type" name="quantity4" value={amount[3]}/>
                     <select id="options" name="ingredient4" >
                     {firstOption[3]}
+                    <option value="">None</option>
                         {ingredient}
                     </select>
                     <input type="text" placeholder="Any Notes?" name="specialNote4" value={notes[3]}/>
@@ -85,6 +88,7 @@ const link = "/recipes/"+this.props.id+"?_method=put";
                     <input type="text" placeholder="Type in quantity type" name="quantity5" value={amount[4]}/>
                     <select id="options" name="ingredient5" >
                     {firstOption[4]}
+                    <option value="">None</option>
                         {ingredient}
                     </select>
                     <input type="text" placeholder="Any Notes?" name="specialNote5" value={notes[4]}/>
@@ -93,6 +97,7 @@ const link = "/recipes/"+this.props.id+"?_method=put";
                     <input type="text" placeholder="Type in quantity type" name="quantity6" value={amount[5]}/>
                     <select id="options" name="ingredient6" >
                     {firstOption[5]}
+                    <option value="">None</option>
                         {ingredient}
                     </select>
                     <input type="text" placeholder="Any Notes?" name="specialNote6" value={notes[5]}/>
