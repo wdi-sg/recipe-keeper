@@ -74,6 +74,46 @@ app.get('/recipes', (req, res) => {
   res.render('recipelist');
 });
 
+app.post('/recipes', (req, res) => {
+  let form = req.body;
+  let name = form.recipename;
+  let instructions = form.instructions.split("\r\n");
+
+  let ingredients = [];
+  for (let key in form) {
+    if (key.includes('ing')) {
+      let id = String(key).split('-')[1];
+      let ing = key;
+      let qty = `qty-${id}`;
+
+      let ingredient = {
+        "id": Number(id),
+        "ing": form[ing],
+        "qty": form[qty]
+      };
+      ingredients.push(ingredient);
+    }
+  }
+
+  let newRecipe = {
+    "id": nextId,
+    "name": name,
+    "ingredients": ingredients,
+    "instructions": instructions
+  };
+
+  fileData.recipes.push(newRecipe);
+  fileData.next_id += 1;
+
+  let writePromise = jsonfile.writeFile(FILE, {data: fileData});
+  writePromise
+    .then(() => {
+      console.log("write");
+      res.redirect(`./recipes/${newRecipe.id}`);
+    } )
+    .catch(err => console.log(err));
+
+});
 
 app.get('/', (req, res) => {
   res.status(301).redirect('./recipes');
