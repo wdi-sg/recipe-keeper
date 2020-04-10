@@ -40,7 +40,6 @@ app.post('/add-recipe', function(req, res) {
 
   app.get('/add-recipe', function(req, res) {
     //debug code (output request body)
-   console.log("New Recipe Added");
    
   res.render('add-recipe');
   });
