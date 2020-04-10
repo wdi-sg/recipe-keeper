@@ -27,8 +27,8 @@ class AddedRecipe extends React.Component {
 
                             </div>
                         </div>
-                        <div class="alert alert-success" role="alert">
-                            Recipe added successfully. <a href="/add-recipe" class="alert-link">Add another?</a>
+                        <div className="alert alert-success" role="alert">
+                            Recipe added successfully. <a href="/add-recipe" className="alert-link">Add another?</a>
                         </div>
                         <div className="text-center">
                             <br />

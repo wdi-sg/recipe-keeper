@@ -6,7 +6,7 @@ const express = require('express');
 
 const app = express();
 
-app.use(express.static(__dirname+'/public/'));
+app.use(express.static(__dirname + '/public/'));
 
 app.use(express.json());
 
@@ -31,32 +31,38 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.post('/add-recipe', function(req, res) {
-    //debug code (output request body)
-   console.log("New Recipe Added");
-   jsonfile.readFile(file,(err, obj)=>{
+app.post('/add-recipe', function (req, res) {
+  //debug code (output request body)
+  console.log("New Recipe Added");
+  jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj;
-    recipeBook.recipes.push(req.body);
-    console.log(req.body);
+    var recipe = {
+      "recipeId": recipeBook.recipes.length,
+      "title": req.body.title,
+      "ingredients": req.body.ingredients,
+      "instructions": req.body.instructions,
+    }
+    recipeBook.recipes.push(recipe);
+    console.log(recipe);
+    jsonfile.writeFile(file, recipeBook, (err) => {
     
-     jsonfile.writeFile(file, recipeBook, (err) => {
-       console.log(err)
-       
-     });
-     
-   })
+    console.log(err)
+
+    });
+
+  })
   res.render('recipe-added', req.body)
-  
-  });
 
-  app.get('/add-recipe', function(req, res) {
-    //debug code (output request body)
-   
+});
+
+app.get('/add-recipe', function (req, res) {
+  //debug code (output request body)
+
   res.render('add-recipe');
-  });
+});
 
-app.listen(3000, ()=>{
-    console.log("Starting cookbook...");
-    
+app.listen(3000, () => {
+  console.log("Starting cookbook...");
+
 });
 
