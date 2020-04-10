@@ -2,7 +2,7 @@
 var React = require('react');
 
 
-class AddRecipe extends React.Component {
+class Home extends React.Component {
     render() {
 
 
@@ -10,12 +10,13 @@ class AddRecipe extends React.Component {
         return (
             <html>
                 <head>
-                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous"></link>
+                   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous"></link>
+        
                 </head>
-                <body>
-                    <div className="container mw-75 w-75">
+                <body style={{ backgroundColor: "lightblue" }}>
+                    <div className="container w-50">
                         <h1 className="text-center font-italic"><u><strong>Recipe Keeper</strong></u></h1>
-                        <div className="row mt-5">
+                        <div className="row mt-5 w-auto text-center">
                             <div className="col-sm-6">
                                 <div className="card text-center text-white bg-dark mb-3">
                                     <div className="card-body">
@@ -29,7 +30,7 @@ class AddRecipe extends React.Component {
                             <div className="col-sm-6">
                                 <div className="card text-center text-white bg-dark mb-3">
                                     <div className="card-body">
-                                    <img className="card-img-top" src="images/add.jpg" alt="Card image cap"></img>
+                                    <img className="card-img-top" src="images/new.jpg" alt="Card image cap"></img>
                                         <h5 className="card-title">Add Recipes</h5>
                                         
                                         <a href="/add-recipe" className="btn btn-primary btn-block">Add</a>
@@ -44,4 +45,4 @@ class AddRecipe extends React.Component {
     }
 }
 
-module.exports = AddRecipe;
+module.exports = Home;

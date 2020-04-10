@@ -34,8 +34,19 @@ app.get('/', (req, res) => {
 app.post('/add-recipe', function(req, res) {
     //debug code (output request body)
    console.log("New Recipe Added");
-   
-  res.render('add-recipe');
+   jsonfile.readFile(file,(err, obj)=>{
+    var recipeBook = obj;
+    recipeBook.recipes.push(req.body);
+    console.log(req.body);
+    
+     jsonfile.writeFile(file, recipeBook, (err) => {
+       console.log(err)
+       
+     });
+     
+   })
+  res.render('recipe-added', req.body)
+  
   });
 
   app.get('/add-recipe', function(req, res) {
