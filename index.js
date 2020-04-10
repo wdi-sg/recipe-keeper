@@ -48,7 +48,9 @@ app.post('/recipes', function (req, res) {
       "ingredients": req.body.ingredients,
       "instructions": req.body.instructions,
     }
-    recipeBook.recipes.push(recipe);
+    if(recipe.title!=""){
+      recipeBook.recipes.push(recipe);
+    }
     jsonfile.writeFile(file, recipeBook, (err) => {
 
       console.log(err)
@@ -56,7 +58,11 @@ app.post('/recipes', function (req, res) {
     });
 
   })
-  res.render('recipe-added', req.body)
+  if(req.body.title == ""){
+    res.render('recipe-rejected', req.body)
+  }else{
+    res.render('recipe-added', req.body)
+  }
 
 });
 
@@ -77,7 +83,9 @@ app.put('/recipes/:id', function (req, res) {
       "ingredients": req.body.ingredients,
       "instructions": req.body.instructions,
     }
-    recipeBook[index] = updatedRecipe;
+    if(updatedRecipe.title != ""){
+      recipeBook[index] = updatedRecipe;
+    }
     var newOutput = {
       "recipes": recipeBook,
     }
@@ -88,7 +96,11 @@ app.put('/recipes/:id', function (req, res) {
     });
 
   })
-  res.render('recipe-edited', req.body)
+  if(req.body.title == ""){
+    res.render('edit-rejected', req.body)
+  }else{
+    res.render('recipe-edited', req.body)
+  }
 
 });
 
@@ -172,11 +184,7 @@ app.get('/recipes/', function (req, res) {
     }
     res.render('view-recipes', recipeBook)
   })
-
-
 });
-
-
 app.listen(3000, () => {
   console.log("Starting Recipe Keeper...");
 
