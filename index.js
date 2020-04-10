@@ -25,6 +25,18 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+//jsonfile
+const jsonfile = require('jsonfile');
+const FILE = 'recipes.json';
+let fileData, nextId;
+let filePromise = jsonfile.readFile(FILE);
+filePromise
+  .then(obj => {
+    fileData = obj.data;
+    nextId = obj.data.next_id;
+  })
+  .catch(err => console.log(err));
+
 // file service routes
 app.use(express.static('./static/'));
 let options = {
