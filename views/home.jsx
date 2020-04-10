@@ -6,13 +6,20 @@ class Home extends React.Component {
     return (
       <html>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-        <body>
-          <div class={"container mt-5 border"} style={{width:"50%"}}>
+        <body style={{backgroundColor:"#6B6172"}}>
+          <div class={"container mt-5 border"} style={{width:"50%", backgroundColor:"#BCA9C5"}}>
                 <div class={"row mt-3"}>
                     <div class={"col-12 text-center p-2"}>
                         <h1>Welcome User!</h1>
                     </div>
                 </div>
+                <div class={"row p-2"}>
+                    <div class={"col-12 text-center"}>
+                        <img src="https://i.imgur.com/OjtAbyE.jpg" class={"round"} style={{width:"80%"}}/>
+                    </div>
+                </div>
+
+
                 <div class={"row"}>
                     <div class={"col-12 text-center"} style={{fontSize:"20px"}}>
                         <p class={"m-3"}>Click here to add new recipes: <span><a href="/recipes/new">Add new recipes</a></span></p>
