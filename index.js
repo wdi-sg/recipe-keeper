@@ -26,16 +26,22 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
 
+// Load home page
 app.get('/', (req, res) => {
   // running this will let express to run home.handlebars file in your views folder
   res.render('home')
 })
 
+// Action for adding new recipe
 app.post('/recipes', function (req, res) {
   //debug code (output request body)
-  console.log("New Recipe Added");
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj;
+    if (recipeBook == undefined) {
+      recipeBook = {
+        "recipes": [],
+      }
+    }
     var recipe = {
       "id": recipeBook.recipes.length + 1,
       "title": req.body.title,
@@ -44,8 +50,8 @@ app.post('/recipes', function (req, res) {
     }
     recipeBook.recipes.push(recipe);
     jsonfile.writeFile(file, recipeBook, (err) => {
-    
-    console.log(err)
+
+      console.log(err)
 
     });
 
@@ -54,6 +60,7 @@ app.post('/recipes', function (req, res) {
 
 });
 
+// Action for editing existing recipe
 app.put('/recipes/:id', function (req, res) {
   //debug code (output request body)
   var id = parseInt(req.body.id);
@@ -84,6 +91,8 @@ app.put('/recipes/:id', function (req, res) {
   res.render('recipe-edited', req.body)
 
 });
+
+// Action to remove existing recipe
 app.delete('/recipes/:id', function (req, res) {
   //debug code (output request body)
   var id = parseInt(req.params.id);
@@ -94,7 +103,7 @@ app.delete('/recipes/:id', function (req, res) {
     }
     var recipe = recipeBook.find(isId);
     var index = recipeBook.indexOf(recipe);
-    recipeBook.splice(index,1);
+    recipeBook.splice(index, 1);
     var newOutput = {
       "recipes": recipeBook,
     }
@@ -109,26 +118,29 @@ app.delete('/recipes/:id', function (req, res) {
 
 });
 
+// Action to load add new recipe page
 app.get('/recipes/new', function (req, res) {
   //debug code (output request body)
 
   res.render('add-recipe');
 });
 
+// Action to load single recipe page
 app.get('/recipes/:id', function (req, res) {
   var id = parseInt(req.params.id);
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj.recipes;
-      function isId(recipe) {
-        return recipe.id === id;
-      }
-      var recipe = recipeBook.find(isId);
+    function isId(recipe) {
+      return recipe.id === id;
+    }
+    var recipe = recipeBook.find(isId);
     res.render('recipe', recipe)
   })
-  
+
 
 });
 
+// Action to load recipe editing page
 app.get('/recipes/:id/edit', function (req, res) {
   var id = parseInt(req.params.id);
   jsonfile.readFile(file, (err, obj) => {
@@ -143,10 +155,21 @@ app.get('/recipes/:id/edit', function (req, res) {
 
 });
 
+// Action to load list of all recipes
 app.get('/recipes/', function (req, res) {
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj;
+    if (recipeBook==undefined){
+      recipeBook = {
+        "recipes": [],
+      }
+    
+    jsonfile.writeFile(file, recipeBook, (err) => {
 
+      console.log(err)
+
+    });
+    }
     res.render('view-recipes', recipeBook)
   })
 
