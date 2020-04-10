@@ -23,7 +23,7 @@ class Home extends React.Component {
                                     <img className="card-img-top" src="images/recipes.jpg" alt="Card image cap"></img>
                                         <h5 className="card-title">View Recipes</h5>
                                 
-                                        <a href="#" className="btn btn-primary btn-block">View</a>
+                                        <a href="/view-recipes" className="btn btn-primary btn-block">View</a>
                                     </div>
                                 </div>
                             </div>

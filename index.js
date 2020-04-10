@@ -37,7 +37,7 @@ app.post('/add-recipe', function (req, res) {
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj;
     var recipe = {
-      "recipeId": recipeBook.recipes.length + 1,
+      "id": recipeBook.recipes.length + 1,
       "title": req.body.title,
       "ingredients": req.body.ingredients,
       "instructions": req.body.instructions,
@@ -54,18 +54,49 @@ app.post('/add-recipe', function (req, res) {
 
 });
 
+app.post('/edit-recipe', function (req, res) {
+  //debug code (output request body)
+  var id = parseInt(req.body.id);
+  jsonfile.readFile(file, (err, obj) => {
+    var recipeBook = obj.recipes;
+    function isId(recipe) {
+      return recipe.id === id;
+    }
+    var recipe = recipeBook.find(isId);
+    var index = recipeBook.indexOf(recipe);
+    var updatedRecipe = {
+      "id": parseInt(req.body.id),
+      "title": req.body.title,
+      "ingredients": req.body.ingredients,
+      "instructions": req.body.instructions,
+    }
+    recipeBook[index] = updatedRecipe;
+    var newOutput = {
+      "recipes": recipeBook,
+    }
+    jsonfile.writeFile(file, newOutput, (err) => {
+
+      console.log(err)
+
+    });
+
+  })
+  res.render('recipe-edited', req.body)
+
+});
+
 app.get('/add-recipe', function (req, res) {
   //debug code (output request body)
 
   res.render('add-recipe');
 });
 
-app.get('/view-recipe/:id', function (req, res) {
+app.get('/view-recipes/:id', function (req, res) {
   var id = parseInt(req.params.id);
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj.recipes;
       function isId(recipe) {
-        return recipe.recipeId == id;
+        return recipe.id === id;
       }
       var recipe = recipeBook.find(isId);
     res.render('recipe', recipe)
@@ -74,6 +105,29 @@ app.get('/view-recipe/:id', function (req, res) {
 
 });
 
+app.get('/edit-recipes/:id', function (req, res) {
+  var id = parseInt(req.params.id);
+  jsonfile.readFile(file, (err, obj) => {
+    var recipeBook = obj.recipes;
+    function isId(recipe) {
+      return recipe.id === id;
+    }
+    var recipe = recipeBook.find(isId);
+    res.render('edit', recipe)
+  })
+
+
+});
+
+app.get('/view-recipes/', function (req, res) {
+  jsonfile.readFile(file, (err, obj) => {
+    var recipeBook = obj;
+
+    res.render('view-recipes', recipeBook)
+  })
+
+
+});
 
 
 app.listen(3000, () => {
