@@ -67,7 +67,7 @@ app.get('/recipes/new', (req, res) => {
   let data = {
     recipe: fileData.recipe_template
   };
-  res.render('newrecipe', data);
+  res.render('recipeform', data);
 });
 
 app.get('/recipes', (req, res) => {
@@ -82,6 +82,21 @@ app.get('/recipes/:id', (req, res) => {
     }
   }
   res.render('recipeview', {'recipe': recipe});
+});
+
+app.put('/recipes/:id', (req, res) => {
+  res.send(`someday, update ${req.params.id}`);
+});
+
+app.get('/recipes/:id/edit', (req, res) => {
+  let recipe;
+  for (let obj of fileData.recipes) {
+    if (obj.id === Number(req.params.id)) {
+      recipe = obj;
+      break;
+    }
+  }
+  res.render('recipeform', {'recipe': recipe});
 });
 
 app.post('/recipes', (req, res) => {
@@ -119,7 +134,7 @@ app.post('/recipes', (req, res) => {
   writePromise
     .then(() => {
       console.log("write");
-      res.redirect(`./recipes/${newRecipe.id}`);
+      res.redirect(`/recipes/${newRecipe.id}`);
     } )
     .catch(err => console.log(err));
 
