@@ -74,6 +74,16 @@ app.get('/recipes', (req, res) => {
   res.render('recipelist');
 });
 
+app.get('/recipes/:id', (req, res) => {
+  let recipe;
+  for (let obj of fileData.recipes) {
+    if (obj.id === Number(req.params.id)) {
+      recipe = obj;
+    }
+  }
+  res.send(recipe);
+});
+
 app.post('/recipes', (req, res) => {
   let form = req.body;
   let name = form.recipename;
