@@ -26,9 +26,9 @@ app.use(express.urlencoded({
 }));
 
 // file service routes
-app.use(express.static('./files/'));
+app.use(express.static('./static/'));
 let options = {
-  root: ('files'),
+  root: ('static'),
   dotfiles: 'deny',
   headers: {
     'x-timestamp': Date.now(),
@@ -36,8 +36,11 @@ let options = {
   }
 };
 
-app.get('/files/:filename', (req, res) => {
+app.get('/static/:filename', (req, res) => {
   let filename = req.params.filename;
+  if (filename.includes('css')) {
+    res.type('.css');
+  }
   res.sendFile(filename, options, (err) => {
     if (err) {
       console.log(err);
