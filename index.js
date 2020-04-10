@@ -70,13 +70,13 @@ app.get('/recipes/new', (req, res) => {
   res.render('newrecipe', data);
 });
 
-app.post('/recipes', (req, res) => {
-  res.send(req.body);
+app.get('/recipes', (req, res) => {
+  res.render('recipelist');
 });
 
 
 app.get('/', (req, res) => {
-  res.render('recipelist');
+  res.status(301).redirect('./recipes');
 });
 
 app.listen(3000, () => console.log("Listening on :3000"));
