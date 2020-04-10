@@ -1,0 +1,63 @@
+{
+  "recipe_template": {
+    "instructions": [
+      ""
+    ],
+    "ingredients": [
+      {
+        "qty": "",
+        "ingredient": "",
+        "id": 1
+      },
+      {
+        "qty": "",
+        "ingredient": "",
+        "id": 2
+      },
+      {
+        "qty": "",
+        "ingredient": "",
+        "id": 3
+      },
+      {
+        "qty": "",
+        "ingredient": "",
+        "id": 4
+      }
+    ],
+    "name": "",
+    "id": 0
+  },
+  "recipes": [
+    {
+      "instructions": [
+        ""
+      ],
+      "ingredients": [
+        {
+          "qty": "",
+          "ingredient": "",
+          "id": 1
+        },
+        {
+          "qty": "",
+          "ingredient": "",
+          "id": 2
+        },
+        {
+          "qty": "",
+          "ingredient": "",
+          "id": 3
+        },
+        {
+          "qty": "",
+          "ingredient": "",
+          "id": 4
+        }
+      ],
+      "name": "",
+      "id": 1
+    }
+  ],
+  "next_id": 3
+}
