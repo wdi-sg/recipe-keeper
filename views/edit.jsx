@@ -10,7 +10,7 @@ class edit extends React.Component {
                     return <option value={ingredient.name}>{ingredient.name}></option>
                         });
  const amount=["","","","","",""];
- for(let count=0; count<amount.length;count++)
+ for(let count=0; count<this.props.current.ingredients.length;count++)
  {
     if(this.props.current.ingredients[count].amount!==undefined)
     {
@@ -19,7 +19,7 @@ class edit extends React.Component {
  }
 
  const notes=["","","","","",""];
- for(let count=0; count<amount.length;count++)
+ for(let count=0; count<this.props.current.ingredients.length;count++)
  {
     if(this.props.current.ingredients[count].notes!==undefined)
     {
@@ -29,7 +29,7 @@ class edit extends React.Component {
 
  const firstOption = [<option value="" selected>Select Ingredient...</option>, <option value="" selected>Select Ingredient...</option>, <option value="" selected>Select Ingredient...</option>, <option value="" selected>Select Ingredient...</option>, <option value="" selected>Select Ingredient...</option>, <option value="" selected>Select Ingredient...</option>]
 
-for(let count=0;count<firstOption.length;count++)
+for(let count=0;count<this.props.current.ingredients.length;count++)
 {
         if(this.props.current.ingredients[count].name!==undefined)
     {
@@ -106,6 +106,9 @@ const link = "/recipes/"+this.props.id+"?_method=put";
 
 
           </div>
+                       <div>
+            <a href="/">Home</a>
+            </div>
         </body>
       </html>
     );

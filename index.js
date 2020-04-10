@@ -102,12 +102,27 @@ app.get('/recipes',(request, response)=>{
         response.render("home", data);
     })
 })
+//***** Display a form for adding new recipe ******
+app.get('/recipes/new',(request, response)=>{
+console.log("------------------------Test");
+     jsonfile.readFile(INGREDIENTFILE, (err,obj)=>{
+        let ingredientsArray=obj;
+        ingredientsArray=ingredientsArray.sort(compare)
+        const data = {
+            "ingredients": ingredientsArray
+                    }
+        //response.send(data);
+        response.render("add", data);
+    })
+})
+
+
 
 
 //***** Display one recipes ******
 app.get('/recipes/:id',(request, response)=>{
     jsonfile.readFile(RECIPEFILE, (err,obj)=>{
-    id=parseInt(request.params.id)-1;
+    id=parseInt(request.params.id);
     data=obj.recipes[id];
     data.id=id;
         //response.send(data);
@@ -171,19 +186,7 @@ app.post('/recipes', (request, response)=>{
 
 });
 
-//***** Display a form for adding new recipe ******
-app.get('/recipes/new',(request, response)=>{
 
-     jsonfile.readFile(INGREDIENTFILE, (err,obj)=>{
-        let ingredientsArray=obj;
-        ingredientsArray=ingredientsArray.sort(compare)
-        const data = {
-            "ingredients": ingredientsArray
-                    }
-        //response.send(data);
-        response.render("add", data);
-    })
-})
 
 app.get('/recipes/:id/edit',(request,response)=>{
     const data={}
@@ -263,10 +266,11 @@ app.put('/recipes/:id', (request,response)=>{
 app.delete('/recipes/:id', (request,response)=>{
     console.log("Entered delete function");
     jsonfile.readFile(RECIPEFILE, (err,obj)=>{
-        console.log("here");
+
         const index = parseInt(request.params.id);
+        console.log(obj.recipes[index]);
         obj.recipes.splice(index, 1);
-        jsonfile.writeFile(file, obj, (err)=>{
+        jsonfile.writeFile(RECIPEFILE, obj, (err)=>{
             response.redirect('/recipes');
         });
     })

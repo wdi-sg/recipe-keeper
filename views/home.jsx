@@ -4,7 +4,7 @@ class Home extends React.Component {
   render() {
     const recipe = this.props.recipes.map((recipe,index)=>
     {
-        const link = '/recipes/'+ (index+1)
+        const link = '/recipes/'+ (index)
         return <li><a href={link}>{recipe.title}</a></li>
     })
     return (

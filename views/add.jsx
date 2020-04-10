@@ -77,6 +77,9 @@ class add extends React.Component {
 
 
           </div>
+                       <div>
+            <a href="/">Home</a>
+            </div>
         </body>
       </html>
     );
