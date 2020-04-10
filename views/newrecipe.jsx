@@ -14,12 +14,14 @@ const Ingredients = (obj) => {
               <div className="col">
                 <input className="ingredient form-control"
                        name={igdname}
-                       defaultValue={item.ingredient}
+                       placeholder="like 'chicken breast, diced'"
+                       defaultValue={item.ing}
                        />
               </div>
               <div className="col">
                 <input className="quantity form-control"
                        name={qtyname}
+                       placeholder="like '1 kg, 2 pieces, or 3 cups'"
                        defaultValue={item.qty}
                        />
               </div>
@@ -35,7 +37,6 @@ class NewRecipe extends React.Component {
   render() {
     let recipeName = this.props.recipe.name;
     let recipeInst = this.props.recipe.instructions;
-    console.log("main", recipeName, recipeInst);
 
     return (
       <html>
