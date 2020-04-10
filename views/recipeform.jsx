@@ -37,7 +37,7 @@ const Ingredients = (obj) => {
   );
 };
 
-class NewRecipe extends React.Component {
+class RecipeForm extends React.Component {
   render() {
     let recipeName = this.props.recipe.name;
     let recipeInst = this.props.recipe.instructions;
@@ -66,7 +66,7 @@ class NewRecipe extends React.Component {
             <div className="row">
               <div className="col">
 
-                <form method="POST" action={recipeAction} id="newrecipe">
+                <form method="POST" action={recipeAction} id="recipeform">
                   <div className="form-group row">
                     <div className="col">
                       <label className="h5" htmlFor="recipename">Recipe Name</label>
@@ -133,4 +133,4 @@ class NewRecipe extends React.Component {
   }
 }
 
-module.exports = NewRecipe;
+module.exports = RecipeForm;
