@@ -1,6 +1,6 @@
 var React = require('react');
 
-class filename extends React.Component {
+class RecipeList extends React.Component {
   render() {
     return (
       <html>
@@ -12,7 +12,7 @@ class filename extends React.Component {
 
         <body>
           <div className="container">
-            
+            YEAH THIS IS A HOMEPAGE I SWEAR
           </div>
         </body>
       </html>
@@ -20,4 +20,4 @@ class filename extends React.Component {
   }
 }
 
-module.exports = filename;
+module.exports = RecipeList;
