@@ -81,7 +81,7 @@ app.get('/recipes/:id', (req, res) => {
       recipe = obj;
     }
   }
-  res.send(recipe);
+  res.render('recipeview', {'recipe': recipe});
 });
 
 app.post('/recipes', (req, res) => {
