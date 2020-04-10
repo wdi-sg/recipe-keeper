@@ -4,8 +4,6 @@ const file = 'data.json';
 
 const express = require('express');
 
-const popup = require('popups');
-
 const app = express();
 
 app.use(express.static(__dirname+'/public/'));
@@ -30,14 +28,21 @@ app.set('view engine', 'jsx');
 
 app.get('/', (req, res) => {
   // running this will let express to run home.handlebars file in your views folder
-  res.render('add-recipe')
+  res.render('home')
 })
 
 app.post('/add-recipe', function(req, res) {
     //debug code (output request body)
    console.log("New Recipe Added");
    
-    res.render('add-recipe');
+  res.render('add-recipe');
+  });
+
+  app.get('/add-recipe', function(req, res) {
+    //debug code (output request body)
+   console.log("New Recipe Added");
+   
+  res.render('add-recipe');
   });
 
 app.listen(3000, ()=>{
