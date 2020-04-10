@@ -65,17 +65,7 @@ app.get('/static/:filename', (req, res) => {
 // RESTful routes
 app.get('/recipes/new', (req, res) => {
   let data = {
-    recipe: {
-      id: 0,
-      name: "",
-      ingredients: [
-        { id: 1, ingredient: "", qty: "" },
-        { id: 2, ingredient: "", qty: "" },
-        { id: 3, ingredient: "", qty: "" },
-        { id: 4, ingredient: "", qty: "" },
-      ],
-      instructions: ""
-    }
+    recipe: fileData.recipe_template
   };
   res.render('newrecipe', data);
 });
