@@ -200,10 +200,10 @@ An ingredient record would look like this:
 ```
 
 #### Further
-Add a route `/ingredients` that lists every ingredient used by every recipe. Each one should be a link to the recipe that uses it.
+Add a route `/ingredients` that lists every ingredient used by every recipe. Each one should be a link to the recipe that uses it.☑
 
 #### Further
-Format the list of ingredients to list the recipes that use that ingredient underneath it.
+Format the list of ingredients to list the recipes that use that ingredient underneath it.☑
 
 ```
 # Chicken

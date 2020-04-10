@@ -14,6 +14,21 @@ class index extends React.Component {
       <html>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
         <body>
+        <nav class={"navbar navbar-expand-lg border"} style={{backgroundColor:"#3585FF", color:"black"}}>
+
+            <button class={"navbar-toggler borer"} type={"button"} data-toggle={"collapse"} data-target={"#navbarNavAltMarkup"} aria-controls={"navbarNavAltMarkup"} aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active border" style={{color:"black"}} href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link border" style={{color:"black"}} href="/recipes/new">Add</a>
+                    <a class="nav-item nav-link border" style={{color:"black"}} href="/ingredients">View Ingredients</a>
+
+                </div>
+                </div>
+        </nav>
+
           <div class={"container mt-5"}>
             <div class={"row"}>
             <div class={"col-12 text-center"} style={{backgroundColor:"#1D40A5", color:"white"}}>

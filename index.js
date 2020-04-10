@@ -200,6 +200,9 @@ app.get('/recipes',(request, response)=>{
     })
 })
 
+
+
+
 app.get('/ingredients',(request,response)=>{
     jsonfile.readFile(RECIPEFILE,(err,obj)=>{
         let exteriorCount=0;
@@ -262,6 +265,22 @@ console.log("------------------------Test");
     })
 })
 
+app.get('/recipes/index',(request, response)=>{
+    jsonfile.readFile(RECIPEFILE, (err,obj)=>{
+
+        const data=obj
+
+        response.render("index",data);
+       /* jsonfile.writeFile(RECIPEFILE,obj, (err)=>{
+        //const link = "/recipes/"+ (index);
+        //response.send(data);
+        response.render("index", data);
+        })*/
+        //response.send(data);
+        //response.send(request)
+
+    })
+})
 //***** Display one recipes ******
 app.get('/recipes/:id',(request, response)=>{
     jsonfile.readFile(RECIPEFILE, (err,obj)=>{
