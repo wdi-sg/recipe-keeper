@@ -1,3 +1,19 @@
 {
-  "recipes":[]
+  "recipes": [
+    {
+      "title": "World Best Chicken",
+      "ingredients": "Chicken",
+      "instructions": "World"
+    },
+    {
+      "title": "Not the best Fish ",
+      "ingredients": "Fish",
+      "instructions": "lasgks"
+    },
+    {
+      "title": "World Best Chicken",
+      "ingredients": "Chicken",
+      "instructions": "safdfads"
+    }
+  ]
 }
