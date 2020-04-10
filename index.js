@@ -37,13 +37,12 @@ app.post('/add-recipe', function (req, res) {
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj;
     var recipe = {
-      "recipeId": recipeBook.recipes.length,
+      "recipeId": recipeBook.recipes.length + 1,
       "title": req.body.title,
       "ingredients": req.body.ingredients,
       "instructions": req.body.instructions,
     }
     recipeBook.recipes.push(recipe);
-    console.log(recipe);
     jsonfile.writeFile(file, recipeBook, (err) => {
     
     console.log(err)
@@ -60,6 +59,22 @@ app.get('/add-recipe', function (req, res) {
 
   res.render('add-recipe');
 });
+
+app.get('/view-recipe/:id', function (req, res) {
+  var id = parseInt(req.params.id);
+  jsonfile.readFile(file, (err, obj) => {
+    var recipeBook = obj.recipes;
+      function isId(recipe) {
+        return recipe.recipeId == id;
+      }
+      var recipe = recipeBook.find(isId);
+    res.render('recipe', recipe)
+  })
+  
+
+});
+
+
 
 app.listen(3000, () => {
   console.log("Starting cookbook...");
