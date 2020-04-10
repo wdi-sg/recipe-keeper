@@ -1,35 +1,36 @@
 const addInput = function (e) {
   e.preventDefault();
-  let inCount = document.querySelectorAll(".ingredient").length + 1;
+  let ix = document.querySelectorAll(".ingredient").length + 1;
+  let newFields = document.createElement("div");
+  newFields.className = "form-group form-row";
+
+  let ingCol = document.createElement("div");
+  ingCol.className = "col";
+
   let newIngredient = document.createElement("input");
   newIngredient.className = "ingredient form-control";
-  newIngredient.setAttribute("name", `ing-${inCount}`);
-  let newQty = document.createElement("input");
-  newQty.className = "qty form-control";
-  newQty.setAttribute("name", `qty-${inCount}`);
+  newIngredient.name = `ing-${ix}`;
 
-  let ingredient = document.createElement("div");
-  ingredient.className = "form-group row";
+  let qtyCol = document.createElement("div");
+  qtyCol.className = "col";
 
-  let col1 = document.createElement("div");
-  col1.className = "col";
-  let col2 = document.createElement("div");
-  col2.className = "col";
+  let newQuantity = document.createElement("input");
+  newQuantity.className = "quantity form-control";
+  newQuantity.name = `ing-${ix}`;
 
-  col1.appendChild(newIngredient);
-  col2.appendChild(newQty);
-  ingredient.appendChild(col1);
-  ingredient.appendChild(col2);
-
-  document.querySelector("#ingredientlist").appendChild(ingredient);
+  ingCol.appendChild(newIngredient);
+  qtyCol.appendChild(newQuantity);
+  newFields.appendChild(ingCol);
+  newFields.appendChild(qtyCol);
+  document.querySelector("#ingredientlist").appendChild(newFields);
 };
 
-const tryThis = function () {
+const addListener = function () {
   let button = document.querySelector("#increase");
   button.addEventListener("click", addInput);
 };
 
 document.addEventListener(
   "DOMContentLoaded",
-  tryThis
+  addListener
 );
