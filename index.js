@@ -4,7 +4,7 @@ const app = express();
 
 // let forms override methods with "?_met=put"
 const methodOverride = require('method-override');
-app.use(methodOverride('_met'));
+app.use(methodOverride('_method'));
 
 // create a react engine
 const reactEngine = require('express-react-views').createEngine();
