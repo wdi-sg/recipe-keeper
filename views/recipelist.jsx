@@ -6,7 +6,7 @@ class filename extends React.Component {
       <html>
         <head>
           <link rel="stylesheet"
-                href="../files/bootstrap.min.css"
+                href="../static/bootstrap.min.css"
                 />
         </head>
 
