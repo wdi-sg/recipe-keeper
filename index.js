@@ -24,6 +24,24 @@ app.get('/recipes/new', (request, response) => {
   response.render('new');
 });
 
+app.get('/recipes/:id', (request, response) => {
+  jsonfile.readFile(file, (err, obj) => {
+    let inputId = parseInt(request.params.id) - 1;
+    let recipe;
+    obj["recipes"].forEach((element, index) => {
+      if(index === inputId){
+        recipe = element;
+      }
+    });
+    if(recipe === undefined){
+      response.status(404);
+      response.send("not found");
+    }else {
+      response.render('id', recipe);
+    }
+  });
+});
+
 app.post('/recipes', (request, response) => {
   jsonfile.readFile(file, (err, obj) =>{
     let recipeSubmit = {
