@@ -3,17 +3,17 @@ const React = require('react');
 const Ingredients = (ingObj) => {
   let ing = ingObj.ingObj;
   return (
-    <React.Fragment>
-      {Object.keys(ing).map(id => {
+    <>
+      { Object.keys(ing).map(id => {
         let igdName = `ing-${id}`;
         let qtyName = `qty-${id}`;
-        let ingPlace = id === 1 ? "like 'bell peppers, yellow, chopped'" : "";
-        let qtyPlace = id === 1 ? "like '3 large', or '2 kg', or '1 cup'" : "";
+        let ingPlace = (id === "1") ? "like 'bell peppers, yellow, chopped'" : "";
+        let qtyPlace = (id === "1") ? "like '3 large', or '2 kg', or '1 cup'" : "";
 
         return (
           <React.Fragment key={id}>
-            <div className="form-group form-row">
-              <div className="col">
+            <div className="form-group form-row" id={igdName}>
+              <div className="col-5">
                 <input
                   className="ingredient form-control"
                   name={igdName}
@@ -21,7 +21,7 @@ const Ingredients = (ingObj) => {
                   defaultValue={ing[id].ing}
                   />
               </div>
-              <div className="col">
+              <div className="col-5">
                 <input
                   className="quantity form-control"
                   name={qtyName}
@@ -29,11 +29,19 @@ const Ingredients = (ingObj) => {
                   defaultValue={ing[id].qty}
                   />
               </div>
+              <div className="col-2">
+                <button
+                  type="button"
+                  className="btn btn-small btn-outline-success btn-block del-input"
+                  id={id}>
+                  Remove
+                </button>
+              </div>
             </div>
           </React.Fragment>
         );
       })}
-    </React.Fragment>
+    </>
   );
 };
 
@@ -56,20 +64,23 @@ class RecipeForm extends React.Component {
         </head>
         <body>
 
-          <div className="container">
+          <div className="container text-center">
             <div className="row">
-              <div className="col text-center">
-                <h1>{recipeHeader}</h1>
+              <div className="col my-3">
+                <h1 className="text-success">{recipeHeader}</h1>
               </div>
             </div>
 
             <div className="row">
               <div className="col">
 
-                <form method="POST" action={recipeAction} id="recipeform">
+                <form method="POST"
+                      action={recipeAction}
+                      id="recipeform"
+                      >
                   <div className="form-group row">
                     <div className="col">
-                      <label className="h5" htmlFor="recipename">Recipe Name</label>
+                      <label className="h5 text-success" htmlFor="recipename">Recipe Name</label>
                       <input className="form-control"
                              name="recipename"
                              id="recipename"
@@ -79,11 +90,11 @@ class RecipeForm extends React.Component {
 
                   <div className="form-group">
                     <div className="form-row">
-                      <div className="col">
-                        <label className="h5">Ingredient</label>
+                      <div className="col-5">
+                        <label className="h5 text-success">Ingredient</label>
                       </div>
-                      <div className="col">
-                        <label className="h5">Quantity</label>
+                      <div className="col-5">
+                        <label className="h5 text-success">Quantity</label>
                       </div>
                     </div>
 
@@ -93,7 +104,8 @@ class RecipeForm extends React.Component {
                     <div className="row">
                       <div className="col">
                         <button
-                          className="btn btn-secondary btn-block"
+                          type="button"
+                          className="btn btn-outline-success btn-block"
                           id="increase">Add More Ingredients</button>
                       </div>
                     </div>
@@ -101,14 +113,15 @@ class RecipeForm extends React.Component {
 
                   <div className="form-group row">
                     <div className="col">
-                      <label className="h5" htmlFor="instructions">Instructions</label>
+                      <label className="h5 text-success"
+                             htmlFor="instructions">Instructions</label>
                       <textarea
                         className="form-control"
                         name="instructions"
                         id="instructions"
                         rows="10"
                         style={{height: "85%"}}
-                        defaultValue={recipeInst}/>
+                        defaultValue={recipeInst.join("\n")}/>
                     </div>
                   </div>
 
@@ -116,7 +129,7 @@ class RecipeForm extends React.Component {
                     <div className="col">
                       <button
                         type="submit"
-                        className="btn btn-primary btn-lg btn-block">
+                        className="btn btn-success btn-lg btn-block">
                         {recipeSubmit}
                       </button>
                     </div>
