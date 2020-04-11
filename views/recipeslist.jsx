@@ -5,10 +5,10 @@ class Recipelist extends React.Component {
 
       const recipeList = this.props.allRecipes
 
-      const recipeNames = recipeList.map( recipe => {
+      const recipeNames = recipeList.map( (recipe, index) => {
             return (
-              <li style={{ listStyleType: "none" }} key={recipe.id}>
-                <a href={`recipes/${recipe.id}`}>{recipe.id}. {recipe.title}</a>
+              <li key={index}>
+                <a href={`recipes/${index}`}>{recipe.title}</a>
               </li>
             );
       } )
@@ -22,16 +22,36 @@ class Recipelist extends React.Component {
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossOrigin="anonymous"
           />
+          <link rel="stylesheet" href="/style.css"/>
+
         </head>
 
-        <body style={{ textAlign: "center" }}>
-          <div className="jumbotron">
-            <h1>Welcome to Chelsea's Recipes</h1>
-            <a href="/recipes/new">
-              <button className="btn btn-primary">Create A Recipe</button>
-            </a>
+        <body>
+
+          <div className="container-fluid">
+            <div className="row">
+              <div className="black col-md-6 left-col">
+                <div className="contents">
+
+                <h1>Welcome to Chelsea's Recipes</h1>
+              <a href="/recipes/new">
+                <button className="btn btn-secondary">Create A Recipe</button>
+              </a>
+              </div>
+                </div>
+
+              <div className="col-md-6 right-col">
+
+                <div className="contents">
+                <ul>{recipeNames}</ul>
+                </div>
+
+              </div>
+              
+            </div>
           </div>
-          <ul>{recipeNames}</ul>
+
+
         </body>
       </html>
     );

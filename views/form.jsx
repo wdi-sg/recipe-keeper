@@ -13,13 +13,15 @@ class Form extends React.Component {
                     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
                     crossOrigin="anonymous"
                   />
+                  <link rel="stylesheet" href="/style.css"/>
+
                 </head>
 
                 <body style={{ textAlign: "center" }}>
-                  <div className="jumbotron">
+                  <div className="black jumbotron">
                     <h1>Submit a Recipe</h1>
                     <a href="/">
-                      <button className="btn btn-success">Back to Home</button>
+                      <button className="btn btn-secondary">Back to Home</button>
                     </a>
                   </div>
                   <p style={{ color: "red" }}>{this.props.error}</p>
@@ -48,7 +50,7 @@ class Form extends React.Component {
                     <br />
                     <input
                       style={{ margin: "10px" }}
-                      className="btn btn-primary"
+                      className="btn btn-success"
                       type="submit"
                       value="Submit"
                     />

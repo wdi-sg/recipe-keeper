@@ -11,9 +11,9 @@ app.use(express.static(__dirname + "/public/"));
 app.use(express.json());
 
 app.use(
-  express.urlencoded({
-    extended: true,
-  })
+    express.urlencoded({
+        extended: true,
+    })
 );
 
 const methodOverride = require("method-override");
@@ -30,132 +30,120 @@ app.set("view engine", "jsx");
 
 app.listen(3000, () => console.log(`Server has started on port 3000.`))
 
-app.get('/recipes/new', (req,res) => {
-return res.render('form')
+const date = new Date();
+const today = date.getDate() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getFullYear()
+
+
+app.get('/recipes/new', (req, res) => {
+    return res.render('form')
 })
 
 
-app.get('/recipes/:id/edit', (req,res)=> {
-      const query = parseInt(req.params.id);
+app.get('/recipes/:id/edit', (req, res) => {
+    const query = parseInt(req.params.id);
 
 
-      jsonfile.readFile(file, (err, obj) => {
+    jsonfile.readFile(file, (err, obj) => {
         const recipesArr = obj.recipes;
-        const result = recipesArr.find((recipe) => {
-          return recipe.id === query;
-        });
+        const result = recipesArr[query]
         const data = result;
         res.render("editrecipe", data);
-      });
+    });
 
 })
 
-app.get('/recipes/:id', (req,res)=> {
+app.get('/recipes/:id', (req, res) => {
 
-      const query = parseInt(req.params.id)
+    const query = parseInt(req.params.id)
 
-      jsonfile.readFile(file, (err,obj)=> {
-            const recipesArr = obj.recipes;
+    jsonfile.readFile(file, (err, obj) => {
+        const recipesArr = obj.recipes;
+        const result = recipesArr[query]
 
+        const data = result
 
-            const result = recipesArr.find( recipe => {
-                  return recipe.id===query
-            } )
+        res.render('onerecipe', data)
 
-            const data = result 
-
-            res.render('onerecipe', data)
-
-      })
+    })
 
 })
 
-app.put('/recipes/:id', (req,res)=> {
+app.put('/recipes/:id', (req, res) => {
 
-      const targetId = parseInt(req.params.id)
-      const a = req.body.title;
-      const b = req.body.ingredients;
-      const c = req.body.instructions;
+    const query = parseInt(req.params.id)
+    const a = req.body.title;
+    const b = req.body.ingredients;
+    const c = req.body.instructions;
 
-      jsonfile.readFile(file, (err, obj) => {
+    jsonfile.readFile(file, (err, obj) => {
         const arr = obj.recipes;
 
-        const target = arr.find( recipe => recipe.id===targetId )
-
-        target.title = a;
-        target.ingredients = b;
-        target.instructions = c;
+        const target = arr[query]
+        target = req.body
 
         jsonfile.writeFile(file, obj, (err) => {
-          err && console.log(`error is`, err);
-          res.redirect(`/recipes/${targetId}`);
+            err && console.log(`error is`, err);
+            res.redirect(`/recipes/${targetId}`);
         });
-      });
+    });
 
 })
 
-app.delete('/recipes/:id', (req,res)=> {
+app.delete('/recipes/:id', (req, res) => {
 
-      const targetId = parseInt(req.params.id);
+    const query = parseInt(req.params.id);
 
-            jsonfile.readFile(file, (err, obj) => {
-              const arr = obj.recipes;
+    jsonfile.readFile(file, (err, obj) => {
+        const arr = obj.recipes;
+        arr.splice(query, 1)
 
-              arr.splice(targetId-1, 1)
-
-              jsonfile.writeFile(file, obj, (err) => {
-                err && console.log(`error is`, err);
-                res.redirect(`/recipes`);
-              });
-            });
+        jsonfile.writeFile(file, obj, (err) => {
+            err && console.log(`error is`, err);
+            res.redirect(`/recipes`);
+        });
+    });
 })
 
 
 app.get("/recipes", (req, res) => {
-  jsonfile.readFile(file, (err, obj) => {
-    const arr = obj.recipes;
+    jsonfile.readFile(file, (err, obj) => {
+        const arr = obj.recipes;
 
-    const data = {
-      allRecipes: arr,
-    };
-    res.render("recipeslist", data);
-  });
+        const data = {
+            allRecipes: arr,
+        };
+        res.render("recipeslist", data);
+    });
 });
 
 app.post("/recipes", (req, res) => {
-  const a = req.body.title;
-  const b = req.body.ingredients;
-  const c = req.body.instructions;
 
-  jsonfile.readFile(file, (err, obj) => {
-    const arr = obj.recipes;
+    jsonfile.readFile(file, (err, obj) => {
+        const arr = obj.recipes;
 
-    const newRecipe = {
-      id: arr.length + 1,
-      title: a,
-      ingredients: b,
-      instructions: c,
-    };
+        const newRecipe = req.body
 
-    arr.push(newRecipe);
-    jsonfile.writeFile(file, obj, (err) => {
-      err && console.log(`error is`, err);
-      res.redirect(`/recipes/${newRecipe.id}`);
+        newRecipe.created_on = today;
+
+        arr.push(newRecipe);
+        jsonfile.writeFile(file, obj, (err) => {
+            err && console.log(`error is`, err);
+            res.redirect(`/recipes/${arr.length-1}`);
+        });
     });
-  });
 });
 
 
 app.get("/", (req, res) => {
 
 
-      jsonfile.readFile(file, (err, obj) => {
+    jsonfile.readFile(file, (err, obj) => {
         const arr = obj.recipes;
 
         const data = {
-          allRecipes: arr,
+            allRecipes: arr,
         };
         res.render("recipeslist", data);
-      });
+    });
 
 });

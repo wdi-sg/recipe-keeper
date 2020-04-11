@@ -43,7 +43,7 @@ class Editrecipe extends React.Component {
               value={this.props.instructions}
             />
             <br />
-            <input style={ {margin: "30px"} } className="btn btn-primary" type="submit" value="Submit" />
+            <input className="btn btn-primary" type="submit" value="Submit" />
           </form>
         </body>
       </html>

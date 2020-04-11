@@ -12,15 +12,41 @@ class Onerecipe extends React.Component {
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossOrigin="anonymous"
           />
+          <link rel="stylesheet" href="/style.css"/>
         </head>
 
-        <body style={{ textAlign: "center" }}>
-          <div className="jumbotron">
-            <h1>{this.props.title}</h1>
+        <body>
+          <div className="container-fluid">
+            <div className="row">
+
+            <div className="black col-md-6 left-col">
+
+              <div className="contents">
+              <h1 className="recipe-title">{this.props.title}</h1>
+            <em>Created on {this.props.created_on}</em>
+
+            <br/><a href="/">
+              <button style={{ margin: "10px" }} className="btn btn-secondary">
+                Back to Home
+              </button>
+            </a>
+
+
+              </div>
+            
+          </div>
+
+          <div className="col-md-6 right-col text-center">
+          <div className="contents">
+          <h3>Ingredients</h3>
+            <p>{this.props.ingredients}</p>
+            
+
+            <h3>Instructions</h3>
+            <p>{this.props.instructions}</p>
             <form
-              style={{ margin: "10px" }}
               method="POST"
-              action={`/recipes/${this.props.id}?_method=delete`}
+              action={`?_method=delete`}
             >
               <input name="id" type="hidden" value={this.props.id} />
               <button type="submit" className="btn btn-danger">
@@ -28,16 +54,14 @@ class Onerecipe extends React.Component {
               </button>
             </form>
 
-            <a href="/">
-              <button style={{ margin: "10px" }} className="btn btn-success">
-                Back to Home
-              </button>
-            </a>
           </div>
-          <h3>Ingredients</h3>
-          <p>{this.props.ingredients}</p>
-          <h3>Instructions</h3>
-          <p>{this.props.instructions}</p>
+
+          </div>
+
+            </div>
+          </div>
+
+
         </body>
       </html>
     );
