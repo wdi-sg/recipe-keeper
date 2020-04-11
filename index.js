@@ -128,6 +128,15 @@ app.get('/recipes/:id', (req, res) => {
 });
 
 app.put('/recipes/:id', (req, res) => {
+  if (!Object.keys(fileData.recipes).includes(req.params.id)) {
+    res.status(404).sendFile("404.jpeg", options, (err) => {
+      if (err) {
+        console.log(err);
+      };
+    });
+    return;
+  }
+
   let form = req.body;
   let newRecipe = parseRecipeForm(form);
 
@@ -142,6 +151,15 @@ app.put('/recipes/:id', (req, res) => {
 });
 
 app.delete('/recipes/:id', (req, res) => {
+  if (!Object.keys(fileData.recipes).includes(req.params.id)) {
+    res.status(404).sendFile("404.jpeg", options, (err) => {
+      if (err) {
+        console.log(err);
+      };
+  });
+    return;
+  }
+
   let deleteId = req.params.id;
   delete fileData.recipes[deleteId];
 
@@ -155,6 +173,15 @@ app.delete('/recipes/:id', (req, res) => {
 });
 
 app.get('/recipes/:id/edit', (req, res) => {
+  if (!Object.keys(fileData.recipes).includes(req.params.id)) {
+    res.status(404).sendFile("404.jpeg", options, (err) => {
+      if (err) {
+        console.log(err);
+      };
+    });
+    return;
+  }
+
   let recipe = fileData.recipes[req.params.id];
   let data = {
     'recipe': recipe,
@@ -167,7 +194,7 @@ app.post('/recipes', (req, res) => {
   let form = req.body;
   let newRecipe = parseRecipeForm(form);
 
-  let newId = nextId; //nextId = fileData.data.next_id
+  let newId = nextId;
   fileData.next_id += 1;
   fileData.recipes[newId] = newRecipe;
 
