@@ -36,16 +36,24 @@ const file = 'data.json'
 app.get('/singlerecipe/:id', (request,response) => {
     const id = request.params.id;
 
+    console.log('redirect works')
+
     jsonfile.readFile(file, (err,obj) => {
         // Get recipe details of single item
         const singleRecipe = obj.recipes[id];
 
-        const data = {"singleRecipe" : singleRecipe }
+        console.log('readfile works')
+        console.log(singleRecipe)
 
-        response.render('singlerecipe', data);
+        const data = { "data" : [{"singleRecipe" : singleRecipe}, {"id" : id}]}
+        // response.render('singlerecipe', data);
+
+        response.send(singleRecipe);
     })
+
 })
 
+// Create Recipe response
 app.post('/createarecipe', (request, response) => {
 
     const singleRecipe = request.body;
@@ -55,8 +63,60 @@ app.post('/createarecipe', (request, response) => {
         obj.recipes.push(singleRecipe);
 
         // Get id number of recipe
-        const id = obj.recipes.length - 1;
+        id = obj.recipes.length - 1;
 
+        async function getCreatedRecipe(){
+            function testing(){
+                return new Promise ((resolve, reject) => {
+                    jsonfile.writeFile(file, obj, (err) => {
+                    })
+                    setTimeout(() => {
+                        resolve('resolved', 2000)
+                    })
+                })
+            }
+
+            await testing();
+
+            console.log("file finished writing")
+
+            response.redirect(`/singlerecipe/${id}`);
+        }
+
+        getCreatedRecipe();
+
+    })
+})
+
+// Show edit recipe page
+app.get('/editrecipe/:id', (request, response) => {
+    const id = request.params.id
+
+    jsonfile.readFile(file, (err, obj) => {
+        // Get data of recipe to edit
+        const singleRecipe = obj.recipes[`${id}`];
+        const data = { "data" : [{"singleRecipe" : singleRecipe}, {"id" : id}]}
+
+        response.render('editrecipe', data);
+    })
+
+})
+
+// Edit Recipe response
+app.put('/editarecipe/:id', (request, response) => {
+    const id = request.params.id;
+
+    const singleRecipe = request.body;
+
+    jsonfile.readFile(file, (err, obj) => {
+        if (singleRecipe.img = ""){
+            singleRecipe.img = obj.recipes[id].img;
+        }
+
+        // edit recipe by changing old recipe
+        obj.recipes[id](singleRecipe);
+
+        // Show user single recipe page of new recipe after creating the recipe
         response.redirect(`/singlerecipe/${id}`);
 
         jsonfile.writeFile(file, obj, (err) => {
@@ -66,9 +126,11 @@ app.post('/createarecipe', (request, response) => {
 })
 
 
+
 // Home page response
 app.get('/', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
+
         const recipeArray = obj.recipes;
 
         // Get all recipe titles
