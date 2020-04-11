@@ -105,28 +105,31 @@ app.get('/recipes', (req, res) => {
 });
 
 app.get('/recipes/:id', (req, res) => {
-  let recipe;
-  for (let obj of fileData.recipes) {
-    if (obj.id === Number(req.params.id)) {
-      recipe = obj;
-    }
-  }
-  res.render('recipeview', {'recipe': recipe});
+  let recipe = fileData.recipes[req.params.id];
+  res.render('recipeview', {'id': req.params.id, 'recipe': recipe});
 });
 
 app.put('/recipes/:id', (req, res) => {
-  res.send(`someday, update ${req.params.id}`);
+  let form = req.body;
+  let newRecipe = parseRecipeForm(form);
+
+  fileData.recipes[req.params.id] = newRecipe;
+  let writePromise = jsonfile.writeFile(FILE, {data: fileData});
+  writePromise
+    .then(() => {
+      console.log("write");
+      res.redirect(`/recipes/${req.params.id}`);
+    } )
+    .catch(err => console.log(err));
 });
 
 app.get('/recipes/:id/edit', (req, res) => {
-  let recipe;
-  for (let obj of fileData.recipes) {
-    if (obj.id === Number(req.params.id)) {
-      recipe = obj;
-      break;
-    }
-  }
-  res.render('recipeform', {'recipe': recipe});
+  let recipe = fileData.recipes[req.params.id];
+  let data = {
+    'recipe': recipe,
+    'id': req.params.id
+  };
+  res.render('recipeform', data);
 });
 
 app.post('/recipes', (req, res) => {
