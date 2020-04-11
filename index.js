@@ -22,35 +22,38 @@ app.use(
   })
 );
 
-//----------------------------
-//----------------------------
+//----------------------------------
+//----------------------------------
 
+//DISPLAY HOME PAGE
 app.get("/", (request, response) => {
   response.render("home");
 });
 
+//DISPLAY DELETE PAGE
 app.get("/recipes/delete", (request, response) => {
   response.render("recipe-delete");
 });
 
+//VIEW ALL RECIPES
 app.get("/view", (request, response) => {
   jsonfile.readFile(recipeFILE, (err, obj) => {
     response.render("recipe-viewall", obj);
   });
 });
 
+//ENSURES THAT INGREDIENTS ARE NOT REPEATED WHEN SORTING RECIPES BY INGREDIENT
 function checkDuplicate(object, ingred) {
   duplicate = false;
   for (const keyName in object) {
     if (keyName === ingred) {
-      // console.log('true');
       duplicate = true;
     }
   }
 }
 
+//SORT RECIPES BY INGREDIENTS USED
 app.get("/sort/ingredient", (request, response) => {
-  // response.render("recipe-sort");
   jsonfile.readFile(recipeFILE, (err, obj) => {
     obj.sort = {};
     for (let i = 0; i < obj.recipes.length; i++) {
@@ -72,16 +75,15 @@ app.get("/sort/ingredient", (request, response) => {
         }
       }
     }
-    console.log(obj.sort);
+    //Sort ingredients by alphabetical order
     let alphaSorted = {};
     Object.keys(obj.sort)
       .sort()
       .forEach((key) => {
         alphaSorted[key] = obj.sort[key];
       });
-    // console.log(alphaSorted);
     obj.sort = JSON.parse(JSON.stringify(alphaSorted));
-    console.log(obj.sort);
+   //Prepare object element to be rendered
     let ingredColl = {
       items: [],
     };
@@ -92,16 +94,17 @@ app.get("/sort/ingredient", (request, response) => {
       };
       ingredColl.items.push(tempObj);
     }
-    console.log(ingredColl);
+    //Sorted data is NOT written to file to maintain one 'source of truth'
     response.render("recipe-sort", ingredColl);
   });
 });
 
-//Submitting a new recipe
+//SUBMITS NEW RECIPE
 app.post("/recipes/:id", (request, response) => {
   let reqRecipeObj = request.body;
-  // console.log(reqRecipeObj);
+  //Reads from both recipe.json and ingredient.json
   getAllJsonData((obj) => {
+    //Creates new recipe object based on user input
     obj.recipeJson.lastId = obj.recipeJson.recipes.length;
     let newRecipeObj = {
       id: obj.recipeJson.lastId + 1,
@@ -114,7 +117,7 @@ app.post("/recipes/:id", (request, response) => {
         newRecipeObj.ingredients.push(reqRecipeObj[element]);
       }
     }
-
+    //Ensures that recipe title is not entirely numeric
     if (!!parseInt(newRecipeObj.title)) {
       newRecipeObj.comments = "Please enter a valid title and not a number";
       newRecipeObj.ingredientsJson = JSON.parse(
@@ -124,7 +127,6 @@ app.post("/recipes/:id", (request, response) => {
       response.render("new-recipe", newRecipeObj);
       return;
     }
-
     //Checks for duplicates in recipe title
     let titleDuplicate = false;
     for (let i = 0; i < obj.recipeJson.recipes.length; i++) {
@@ -143,7 +145,7 @@ app.post("/recipes/:id", (request, response) => {
       response.render("new-recipe", newRecipeObj);
       return;
     }
-
+    //Checks for duplicates in selected ingredients
     let ingredDucplicate = false;
     let mapObj = {};
     for (let i = 0; i < newRecipeObj.ingredients.length; i++) {
@@ -164,9 +166,8 @@ app.post("/recipes/:id", (request, response) => {
       response.render("new-recipe", newRecipeObj);
       return;
     }
-
+    //Pushes new recipe object to FILE for writing
     obj.recipeJson.recipes.push(JSON.parse(JSON.stringify(newRecipeObj)));
-    // console.log(obj.recipeJson.recipes[obj.recipeJson.lastId]);
     response.render(
       "recipe-display",
       obj.recipeJson.recipes[obj.recipeJson.lastId]
@@ -177,19 +178,18 @@ app.post("/recipes/:id", (request, response) => {
   });
 });
 
-//Display one recipe
+//DISPLAYS ONE RECIPE DEPENDING ON ID IN URL
 app.get("/recipes/:id", (request, response) => {
   jsonfile.readFile(recipeFILE, (err, obj) => {
     let idNum = parseInt(request.params.id);
     let recipeOfId = obj.recipes.find((element) => {
       return element.id === idNum;
     });
-    console.log(recipeOfId);
     response.render("recipe-display", recipeOfId);
   });
 });
 
-//Deleting a recipe
+//DELETES A RECIPE BY ADDING KEY VALUE PAIR "DELETE: TRUE"
 app.delete("/recipes/:id", (request, response) => {
   console.log(request.body);
   let idToDelete = parseInt(request.body.id);
@@ -201,20 +201,19 @@ app.delete("/recipes/:id", (request, response) => {
     console.log(obj);
     jsonfile.writeFile(recipeFILE, obj, (err) => {
       if (err) return;
-      // response.send(obj);
       console.log(response.render);
-      // response.render("recipe-delete");
       response.redirect("http://127.0.0.1:3000/recipes/delete");
     });
   });
 });
 
-//Read and write edited recipe data, display edited recipe
+//READS AND WRITE EDITED RECIPE DATA, DISPLAYS EDITED RECIPE
 app.put("/recipes/:id/edit", (request, response) => {
-  console.log(request.body);
   let editedObj = request.body;
   let id = parseInt(editedObj.id);
+  //Reads from both recipe.json and ingredient.json
   getAllJsonData((obj) => {
+    //Creates new recipe object based on user input
     let recipeOfId = obj.recipeJson.recipes.find((element) => {
       return element.id === id;
     });
@@ -226,7 +225,7 @@ app.put("/recipes/:id/edit", (request, response) => {
         recipeOfId.ingredients.push(editedObj[element]);
       }
     }
-
+    //Ensures that recipe title is not entirely numeric
     if (!!parseInt(recipeOfId.title)) {
       let tempObj = {};
       tempObj.id = recipeOfId.id;
@@ -242,13 +241,13 @@ app.put("/recipes/:id/edit", (request, response) => {
       response.render("edit-recipe", tempObj);
       return;
     }
-
     //Checks for duplicates in recipe title
     let indexNum = obj.recipeJson.recipes.findIndex((element) => {
       return element.id === id;
     });
     let titleDuplicate = false;
     for (let i = 0; i < obj.recipeJson.recipes.length; i++) {
+      //Checks that recipe titles used for comparison are of a different id
       if (i !== indexNum) {
         if (recipeOfId.title === obj.recipeJson.recipes[i].title) {
           titleDuplicate = true;
@@ -256,7 +255,6 @@ app.put("/recipes/:id/edit", (request, response) => {
         }
       }
     }
-    console.log(titleDuplicate);
     if (titleDuplicate) {
       let tempObj = {};
       tempObj.id = recipeOfId.id;
@@ -273,7 +271,7 @@ app.put("/recipes/:id/edit", (request, response) => {
       response.render("edit-recipe", tempObj);
       return;
     }
-
+    //Checks for duplicates in selected ingredients
     let ingredDucplicate = false;
     let mapObj = {};
     for (let i = 0; i < recipeOfId.ingredients.length; i++) {
@@ -300,7 +298,7 @@ app.put("/recipes/:id/edit", (request, response) => {
       response.render("edit-recipe", tempObj);
       return;
     }
-
+    //Replaces original recipe object with the edited object
     obj.recipeJson.recipes.splice(indexNum, 1, recipeOfId);
     jsonfile.writeFile(recipeFILE, obj.recipeJson, (err) => {
       if (err) return;
@@ -309,7 +307,7 @@ app.put("/recipes/:id/edit", (request, response) => {
   });
 });
 
-//Get JSON data from all files
+//GETS JSON DATA FROM ALL JSON FILES
 const getAllJsonData = (callbackFunc) => {
   let ingredJson;
   let recipeJson;
@@ -322,16 +320,15 @@ const getAllJsonData = (callbackFunc) => {
   });
 };
 
-//Form for editing a recipe
+//FORM FOR EDITING A RECIPE
 app.get("/recipes/:id/edit", (request, response) => {
   getAllJsonData((obj) => {
     obj.id = parseInt(request.params.id);
-    // console.log(obj);
     response.render("edit-recipe", obj);
   });
 });
 
-//Form for creating a new recipe
+//FORM FOR CREATING A NEW RECIPE
 app.get("/recipes", (request, response) => {
   jsonfile.readFile(ingredFILE, (err, obj) => {
     response.render("new-recipe", obj);
