@@ -1,8 +1,9 @@
 var React = require('react');
 class Show extends React.Component {
     render() {
+
         const editLink = '/recipes/' + this.props.id + "/edit";
-        const deleteLink = '/books/' + this.props.id + "?_method=delete";
+        const deleteLink = '/recipes/' + this.props.id + "?_method=delete";
 
         return (
             <html>
@@ -10,14 +11,13 @@ class Show extends React.Component {
                     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"/>
                 </head>
                 <body>
-                    <div className="container">
-                        <nav className="navbar fixed-top bg-light">
-                            <br/>
-                            <a href="/" className="navbar-brand">Home</a>
-                            <a href={editLink}  className="navbar-brand">Edit Recipe</a>
-                            <br/>
-                        </nav>
 
+                    <nav className="navbar bg-light">
+                        <a href="/" className="navbar-brand">&#60; Home</a>
+                        <a href={editLink} className="navbar-brand">&#9998; Edit Recipe</a>
+                    </nav>
+                    <div className="container">
+                        <br/>
                         <div>
                             <h4>Title</h4>
                             <p>{this.props.title}</p>
@@ -30,12 +30,9 @@ class Show extends React.Component {
 
                         <div>
                             <form method="POST" action={deleteLink}>
-                                <input type="submit" value="delete book"/>
+                                <input type="submit" defaultValue="Delete Recipe" className="btn btn-danger" />
                             </form>
                         </div>
-
-
-
 
                     </div>
                 </body>

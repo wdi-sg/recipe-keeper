@@ -2,18 +2,28 @@
   "recipes": [
     {
       "title": "World Best Chicken",
-      "ingredients": "Chicken",
-      "instructions": "World"
+      "ingredients": "Chicken and World Best",
+      "instructions": "Mix well"
     },
     {
-      "title": "Not the best Fish ",
-      "ingredients": "Fish",
-      "instructions": "lasgks"
+      "title": "Boiled duck",
+      "ingredients": "1 duck, water",
+      "instructions": "Boil duck in water for 20 minutes. Take it out. Serve."
     },
     {
-      "title": "World Best Chicken",
-      "ingredients": "Chicken",
-      "instructions": "safdfads"
+      "title": "World Best Chicken Rice",
+      "ingredients": "Money",
+      "instructions": "Take the money, open the door, go to the nearest coffee shop, find the Chicken Rice Stall, pay and bring it back home."
+    },
+    {
+      "title": "World Best Beef",
+      "ingredients": "Beef",
+      "instructions": "Make it world best. real"
+    },
+    {
+      "title": "dsfdfds",
+      "ingredients": "safdasdfasd",
+      "instructions": "sadgasdfdsafd"
     }
   ]
 }

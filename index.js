@@ -37,6 +37,28 @@ app.get('/recipes', (req, res) => {
     })
 })
 
+//------------------------------------------------------
+// Edit Page //
+// -  -
+//------------------------------------------------------
+
+app.get('/recipes/:id/edit', (req, res) => {
+    jsonfile.readFile(file, (err, obj) => {
+        const index = parseInt(req.params.id) - 1;
+        const data = {
+            id: index + 1,
+            title: obj.recipes[index].title,
+            ingredients: obj.recipes[index].ingredients,
+            instructions: obj.recipes[index].instructions
+        }
+        res.render('edit', data);
+    })
+})
+
+//------------------------------------------------------
+// Create Page //
+// -  -
+//------------------------------------------------------
 app.get('/recipes/new', (req, res) => {
     res.render('create')
 })
@@ -50,12 +72,32 @@ app.get('/recipes/:id', (req, res) => {
                 title: obj.recipes[index].title,
                 ingredients: obj.recipes[index].ingredients,
                 instructions: obj.recipes[index].instructions
-
             }
             res.render('show', data);
     })
 })
 
+//------------------------------------------------------
+// Show (delete) Page //
+// -  -
+//------------------------------------------------------
+
+app.delete('/recipes/:id', (req, res) => {
+    jsonfile.readFile(file, (err, obj) => {
+        const index = parseInt(req.params.id)-1;
+        obj.recipes.splice(index, 1);
+
+        jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
+            res.redirect('/');
+        });
+    });
+});
+
+
+//------------------------------------------------------
+// Save changes Page //
+// -  -
+//------------------------------------------------------
 
 app.post('/recipes', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
@@ -73,21 +115,23 @@ app.post('/recipes', (req, res) => {
     })
 })
 
+//------------------------------------------------------
+// Show (Read) Page //
+// -  -
+//------------------------------------------------------
+
 app.put('/recipes/:id', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
         const index = parseInt(req.params.id) - 1;
         obj.recipes[index] = req.body;
 
-        jsonfile.writeFile(file, obj, (err) => {
+        jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
             const link = "/recipes/" + (index+1);
             res.redirect(link);
         })
 
     })
 })
-
-
-
 
 
 
