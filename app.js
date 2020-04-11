@@ -17,18 +17,22 @@ app.use(methodOverride('_method'));
 
 app.engine('jsx', reactEngine);
 
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, '/views'));
 
 app.set('view engine', 'jsx');
 
-app.use(recipeRoutes);
+app.use(express.static(path.join(__dirname, '/public/')));
+
+app.use('/recipes', recipeRoutes);
+
 
 app.get('/', (req, res) => {
+
     res.send('Hello there. COVID 19 serious shit.')
 })
 
 app.use((req, res) => {
-    res.status(404).send('<h1>Page not found!</h1>')
+    res.status(404).render('404');
 });
 
 app.listen(3000, () => {
