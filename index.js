@@ -101,7 +101,10 @@ app.get('/recipes/new', (req, res) => {
 });
 
 app.get('/recipes', (req, res) => {
-  res.render('recipelist');
+  let data = {
+    recipes: fileData.recipes
+  }
+  res.render('recipelist', data);
 });
 
 app.get('/recipes/:id', (req, res) => {
