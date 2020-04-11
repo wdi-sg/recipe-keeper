@@ -17,7 +17,12 @@ app.set('view engine', 'jsx');
 
 //all recipe index
 app.get('/recipes', (request, response) => {
-  response.render('index');
+  jsonfile.readFile(file, (err, obj) => {
+    let recipes = [];
+    recipes = obj;
+    response.render('index', recipes);
+  });
+
 });
 
 app.get('/recipes/new', (request, response) => {
