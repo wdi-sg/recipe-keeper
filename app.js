@@ -6,7 +6,6 @@ const app = express();
 const reactEngine = require('express-react-views').createEngine();
 const methodOverride = require('method-override');
 
-const adminRoutes = require('./routes/admin');
 const recipeRoutes = require('./routes/recipes');
 
 app.use(express.urlencoded({
@@ -25,10 +24,8 @@ app.use(express.static(path.join(__dirname, '/public/')));
 
 app.use('/recipes', recipeRoutes);
 
-
 app.get('/', (req, res) => {
-
-    res.send('Hello there. COVID 19 serious shit.')
+    res.render('index.jsx');
 })
 
 app.use((req, res) => {

@@ -5,11 +5,14 @@ const formIngredientsSection = document.querySelector(".add-form__ingredients")
 const formInstructionsSection = document.querySelector(".add-form__instructions");
 
 const addIngredient = () => {
+
+    ingredientNum = document.querySelectorAll('.add-form__ingredient').length
+
     formIngredientsSection.insertAdjacentHTML('beforeend',
         `<div class="add-form__ingredient">
-            <input type="text" name="name" placeholder="ingredient"></input>
-            <input type="text" name="amount" placeholder="quantity/amount"></input>
-            <input type="notes" name="notes" placeholder="notes"></input>
+            <input type="text" name="ingredient[name][]" placeholder="ingredient" value=""></input>
+            <input type="text" name="ingredient[amount][]" placeholder="quantity/amount" value=""></input>
+            <input type="notes" name="ingredient[notes][]" placeholder="notes" value=""></input>
         </div>`)
 }
 
@@ -23,7 +26,7 @@ const addInstruction = () => {
         `
         <div class="add-form__instruction">
             <h3>#${instructionNum}</h3>
-            <input type="text" name="instructions"></input>
+            <input type="text" name="instructions[]" value=""></input>
         </div>
         `
     )

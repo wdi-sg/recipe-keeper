@@ -7,3 +7,8 @@
 li {
 		list-style: none;
 }
+
+.add-form__invalid-msg,
+.edit-form__invalid-msg {
+		white-space: pre;
+}

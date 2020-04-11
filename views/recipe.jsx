@@ -1,5 +1,6 @@
 const React = require('react');
 const head = require('./head');
+const header = require('./header');
 
 class Recipe extends React.Component {
 
@@ -34,6 +35,10 @@ class Recipe extends React.Component {
                     <div className = "recipe__instructions">
                         {instructions}
                     </div>
+                    <div className ="recipe__edit-delete-links">
+                    <a href="./edit" className="recipe__edit-link">Edit Recipe</a>
+                    <a href="./delete" className="recipe__delete-link">Delete Recipe</a>
+                    </div>
                 </div>
             )
         }
@@ -43,6 +48,7 @@ class Recipe extends React.Component {
             <html>
             {head()}
             <body>
+            {header()}
             {recipe()}
             </body>
             </html>
