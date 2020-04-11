@@ -32,6 +32,7 @@ app.set('view engine', 'jsx');
 
 //////End of Boilerplate//////
 
+///See all recipes///
 app.get('/recipes', (req, res) => {
     let titles = [];
     jsonfile.readFile(file, (err, obj) => {
@@ -44,6 +45,7 @@ app.get('/recipes', (req, res) => {
     })
 })
 
+///Create New recipes///
 app.post('/recipes', (req, res) => {
     console.log(req.body)
     jsonfile.readFile(file, (err, obj) => {
@@ -56,17 +58,59 @@ app.post('/recipes', (req, res) => {
 
         res.send("The recipe has been added!")
     })
-
 })
 
+///Display the form for a single recipe
 app.get('/recipes/new', (req, res) => {
     res.render('newrecipe')
 })
 
+///See a single Recipe////
 app.get('/recipes/:id', (req, res) =>{
     jsonfile.readFile(file, (err, obj) => {
         const data = obj.recipes[req.params.id]
         res.render('singlerecipe', data)
+    })
+})
+
+///Display the form for editing a single recipe
+app.get('/recipes/:id/edit', (req, res) => {
+    jsonfile.readFile(file, (err, obj) => {
+        let data = obj.recipes[req.params.id]
+        data.id = req.params.id
+        console.log(data)
+        res.render('editrecipe', data)
+    })
+})
+
+///Updating a recipe
+app.put('/recipes/:id', (req, res)=>{
+    // console.log(req.params.id);
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err)
+        console.log(req.body)
+        console.log(req.params.id)
+        obj.recipes.splice(req.params.id, 1, req.body)
+
+        jsonfile.writeFile(file, obj, err => {
+            if (err) console.error(err)
+        })
+
+        res.send("The recipe has been changed!!")
+    })
+})
+
+//Deleting a recipe
+app.delete('/recipes/:id', (req, res) => {
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) console.error(err)
+        obj.recipes.splice(req.params.id, 1)
+
+        jsonfile.writeFile(file, obj, err => {
+            if (err) console.error(err)
+        })
+
+        res.send("The recipe has been deleted!!!")
     })
 })
 
