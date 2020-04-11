@@ -40,9 +40,9 @@ filePromise
 // recipe management functions
 const parseRecipeForm = function (form) {
   let name = form.recipename;
-  let instructions = form.instructions;
+  let instructions = form.instructions.split("\r\n");
 
-  let ingredients = {};
+  let ingList = [];
   for (let key in form) {
     if (key.includes('ing')) {
       let id = String(key).split('-')[1];
@@ -53,9 +53,15 @@ const parseRecipeForm = function (form) {
         "ing": form[ing],
         "qty": form[qty]
       };
-      ingredients[id] = ingredient;
+      ingList.push(ingredient);
     }
   }
+
+  let ingredients = {};
+  for (let i = 1; i <= ingList.length; i++) {
+    ingredients[i] = ingList[i - 1];
+  }
+  console.log(ingredients);
 
   let newRecipe = {
     "name": name,
