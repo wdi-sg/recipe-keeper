@@ -37,6 +37,36 @@ filePromise
   })
   .catch(err => console.log(err));
 
+// recipe management functions
+const parseRecipeForm = function (form) {
+  let name = form.recipename;
+  let instructions = form.instructions;
+
+  let ingredients = {};
+  for (let key in form) {
+    if (key.includes('ing')) {
+      let id = String(key).split('-')[1];
+      let ing = key;
+      let qty = `qty-${id}`;
+
+      let ingredient = {
+        "ing": form[ing],
+        "qty": form[qty]
+      };
+      ingredients[id] = ingredient;
+    }
+  }
+
+  let newRecipe = {
+    "name": name,
+    "ingredients": ingredients,
+    "instructions": instructions
+  };
+
+  console.log(newRecipe);
+  return newRecipe;
+};
+
 // file service routes
 app.use(express.static('static'));
 let options = {
@@ -101,40 +131,17 @@ app.get('/recipes/:id/edit', (req, res) => {
 
 app.post('/recipes', (req, res) => {
   let form = req.body;
-  let name = form.recipename;
-  let instructions = form.instructions.split("\r\n");
+  let newRecipe = parseRecipeForm(form);
 
-  let ingredients = [];
-  for (let key in form) {
-    if (key.includes('ing')) {
-      let id = String(key).split('-')[1];
-      let ing = key;
-      let qty = `qty-${id}`;
-
-      let ingredient = {
-        "id": Number(id),
-        "ing": form[ing],
-        "qty": form[qty]
-      };
-      ingredients.push(ingredient);
-    }
-  }
-
-  let newRecipe = {
-    "id": nextId,
-    "name": name,
-    "ingredients": ingredients,
-    "instructions": instructions
-  };
-
-  fileData.recipes.push(newRecipe);
+  let newId = nextId; //nextId = fileData.data.next_id
   fileData.next_id += 1;
+  fileData.recipes[newId] = newRecipe;
 
   let writePromise = jsonfile.writeFile(FILE, {data: fileData});
   writePromise
     .then(() => {
       console.log("write");
-      res.redirect(`/recipes/${newRecipe.id}`);
+      res.redirect(`/recipes/${newId}`);
     } )
     .catch(err => console.log(err));
 

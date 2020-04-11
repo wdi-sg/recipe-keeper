@@ -1,24 +1,24 @@
 const React = require('react');
 
-const Ingredients = (obj) => {
-  let list = obj.list;
+const Ingredients = (ingObj) => {
+  let ing = ingObj.ingObj;
   return (
     <React.Fragment>
-      {list.map(item => {
-        let igdName = `ing-${item.id}`;
-        let qtyName = `qty-${item.id}`;
-        let ingPlace = item.id === 1 ? "like 'bell peppers, yellow, chopped'" : "";
-        let qtyPlace = item.id === 1 ? "like '3 large', or '2 kg', or '1 cup'" : "";
+      {Object.keys(ing).map(id => {
+        let igdName = `ing-${id}`;
+        let qtyName = `qty-${id}`;
+        let ingPlace = id === 1 ? "like 'bell peppers, yellow, chopped'" : "";
+        let qtyPlace = id === 1 ? "like '3 large', or '2 kg', or '1 cup'" : "";
 
         return (
-          <React.Fragment key={item.id}>
+          <React.Fragment key={id}>
             <div className="form-group form-row">
               <div className="col">
                 <input
                   className="ingredient form-control"
                   name={igdName}
                   placeholder={ingPlace}
-                  defaultValue={item.ing}
+                  defaultValue={ing[id].ing}
                   />
               </div>
               <div className="col">
@@ -26,7 +26,7 @@ const Ingredients = (obj) => {
                   className="quantity form-control"
                   name={qtyName}
                   placeholder={qtyPlace}
-                  defaultValue={item.qty}
+                  defaultValue={ing[id].qty}
                   />
               </div>
             </div>
@@ -43,7 +43,7 @@ class RecipeForm extends React.Component {
     let recipeInst = this.props.recipe.instructions;
     let recipeHeader = (this.props.recipe.id === 0) ? "Add a Recipe!" : "Change this Recipe!";
     let recipeSubmit = (this.props.recipe.id === 0) ? "Add Recipe" : "Update Recipe";
-    let recipeMethod = (this.props.recipe.id === 0) ? "" : `${this.props.recipe.id}?_method=put`;
+    let recipeMethod = (this.props.recipe.id === 0) ? "" : `${this.props.id}?_method=put`;
     let recipeAction = "/recipes/"+ recipeMethod;
 
     return (
@@ -88,7 +88,7 @@ class RecipeForm extends React.Component {
                     </div>
 
                     <div id="ingredientlist">
-                      <Ingredients list={this.props.recipe.ingredients}/>
+                      <Ingredients ingObj={this.props.recipe.ingredients}/>
                     </div>
                     <div className="row">
                       <div className="col">
@@ -108,7 +108,7 @@ class RecipeForm extends React.Component {
                         id="instructions"
                         rows="10"
                         style={{height: "85%"}}
-                        defaultValue={recipeInst.join("\n")}/>
+                        defaultValue={recipeInst}/>
                     </div>
                   </div>
 
