@@ -26,10 +26,10 @@ const Ingredients = (recipe) => {
       { Object.keys(ingredients).map((id) => {
         return (
           <div className="row justify-content-center" key={id}>
-            <div className="col-3">
+            <div className="col-3 border-bottom">
               <span className="h6 text-right">{ingredients[id].ing}</span>
             </div>
-            <div className="col-3">
+            <div className="col-3 border-bottom">
               <span className="h6 text-left">{ingredients[id].qty}</span>
             </div>
           </div>
@@ -81,7 +81,7 @@ class RecipeView extends React.Component {
             <div className="row">
               <div className="col">
                 {
-                  recipe.instructions.split("\r\n").map((line, key) => {
+                  recipe.instructions.map((line, key) => {
                     return (
                         <span key={key} className="h6">{line}<br /></span>
                     );
@@ -90,14 +90,20 @@ class RecipeView extends React.Component {
               </div>
             </div>
 
-            <div className="row justify-content-center my-5">
-              <div className="col-3">
+            <div className="row justify-content-center my-4">
+              <div className="col-2">
+                <a href="/recipes"
+                   className="btn btn-small btn-outline-success btn-block">
+                  Back to Browse
+                </a>
+              </div>
+              <div className="col-2">
                 <a href={editLink}
                    className="btn btn-small btn-outline-success btn-block">
                   Edit
                 </a>
               </div>
-              <div className="col-3">
+              <div className="col-2">
                 <form method="post" action={deleteLink}>
                   <button type="submit"
                           className="btn btn-small btn-outline-success btn-block">
