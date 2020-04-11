@@ -27,13 +27,16 @@ app.get('/recipes/new', (request, response) => {
 app.get('/recipes/:id', (request, response) => {
   jsonfile.readFile(file, (err, obj) => {
     let inputId = parseInt(request.params.id) - 1;
-    let recipe;
+    let recipe = {};
     obj["recipes"].forEach((element, index) => {
       if(index === inputId){
-        recipe = element;
+        recipe = {
+          "currentRecipe": element,
+          "currentId": inputId
+        }
       }
     });
-    if(recipe === undefined){
+    if(recipe.currentRecipe === undefined){
       response.status(404);
       response.send("not found");
     }else {
@@ -84,6 +87,15 @@ app.put("/recipes/:id", (request, response) => {
     obj["recipes"][parseInt(request.params.id-1)].ingredients = request.body.ingredients;
     jsonfile.writeFile(file, obj, (err) => {
       response.redirect("/recipes/" + (request.params.id));
+    });
+  });
+});
+
+app.delete("/recipes/:id", (request, response) => {
+  jsonfile.readFile(file, (err, obj) => {
+    obj['recipes'].splice(request.params.id, 1);
+    jsonfile.writeFile(file, obj, (err) => {
+      response.redirect('/recipes');
     });
   });
 });
