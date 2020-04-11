@@ -3,10 +3,15 @@ var React = require("react");
 class EditRecipe extends React.Component {
   render() {
     let recipeArr = this.props.recipeJson.recipes;
-    let ingredArr = this.props.ingredJson.ingredients;
-    let indexNum = this.props.currentId - 1;
-    let link = "/recipes/" + this.props.currentId + "/edit?_method=put";
-    // let link = "/recipes/" + this.props.currentId + "/edit";
+    let ingredArr = this.props.ingredJson.ingredientsJson;
+    let id = this.props.id;
+
+    let indexNum = recipeArr.findIndex((element) => {
+      return element.id === id;
+    })
+
+    let link = "/recipes/" + id + "/edit?_method=put";
+
     let ingredNameArrOption = ingredArr.map((element) => {
       return <option>{element.name}</option>;
     });
@@ -28,6 +33,11 @@ class EditRecipe extends React.Component {
                 <form method="POST" action={link}>
                   <h2><u>EDIT RECIPE</u></h2>
                   <br></br>
+                  <p>
+                    <em>
+                      <font color="red">{this.props.comments}</font>
+                    </em>
+                  </p>
                   <h4>Title:</h4>
                   <br></br>
                   <div>
@@ -70,7 +80,7 @@ class EditRecipe extends React.Component {
                   <br></br>
                   <textarea className="form-control" aria-label="With textarea" name="instructions" value={recipeArr[indexNum].instructions}></textarea>
                   <br></br>
-                  <input name="id" type="hidden" value={this.props.currentId}/>
+                  <input name="id" type="hidden" value={id}/>
                   <input type="submit" value="Submit" className="form-control btn btn-primary" />
                 </form>
               </div>

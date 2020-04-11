@@ -60,11 +60,15 @@ app.get("/sort/ingredient", (request, response) => {
           checkDuplicate(obj.sort, obj.recipes[i].ingredients[z]);
           if (duplicate === true) {
             let ingredName = obj.recipes[i].ingredients[z];
-            obj.sort[ingredName].push(obj.recipes[i].title + "-" + obj.recipes[i].id);
+            obj.sort[ingredName].push(
+              obj.recipes[i].title + "-" + obj.recipes[i].id
+            );
           } else {
             let ingredName = obj.recipes[i].ingredients[z];
             obj.sort[ingredName] = [];
-            obj.sort[ingredName].push(obj.recipes[i].title + "-" + obj.recipes[i].id);
+            obj.sort[ingredName].push(
+              obj.recipes[i].title + "-" + obj.recipes[i].id
+            );
           }
         }
       }
@@ -80,12 +84,12 @@ app.get("/sort/ingredient", (request, response) => {
     obj.sort = JSON.parse(JSON.stringify(alphaSorted));
     console.log(obj.sort);
     let ingredColl = {
-      items: []
+      items: [],
     };
     for (const key in obj.sort) {
       let tempObj = {
         ingred: key,
-        recipes: obj.sort[key]
+        recipes: obj.sort[key],
       };
       ingredColl.items.push(tempObj);
     }
@@ -97,25 +101,46 @@ app.get("/sort/ingredient", (request, response) => {
 //Submitting a new recipe
 app.post("/recipes/:id", (request, response) => {
   let reqRecipeObj = request.body;
-  jsonfile.readFile(recipeFILE, (err, obj) => {
-    obj.lastId = obj.recipes.length;
+  // console.log(reqRecipeObj);
+  getAllJsonData((obj) => {
+    obj.recipeJson.lastId = obj.recipeJson.recipes.length;
     let newRecipeObj = {
-      id: obj.lastId + 1,
-      title: reqRecipeObj.title,
+      id: obj.recipeJson.lastId + 1,
+      title: reqRecipeObj.title.toUpperCase(),
       ingredients: [],
       instructions: reqRecipeObj.instructions,
     };
     for (const element in reqRecipeObj) {
-      if (element.includes("ingred") && reqRecipeObj[element] !== "NIL") {
+      if (element.includes("ingred") && reqRecipeObj[element] !== "") {
         newRecipeObj.ingredients.push(reqRecipeObj[element]);
       }
     }
-    obj.recipes.push(JSON.parse(JSON.stringify(newRecipeObj)));
-    console.log(obj);
-    console.log(obj.recipes[obj.lastId]);
-    jsonfile.writeFile(recipeFILE, obj, (err) => {
+    //Checks for duplicates in recipe title
+    let titleDuplicate = false;
+    for (let i = 0; i < obj.recipeJson.recipes.length; i++) {
+      if (newRecipeObj.title === obj.recipeJson.recipes[i].title) {
+        titleDuplicate = true;
+        break;
+      }
+    }
+    if (titleDuplicate) {
+      newRecipeObj.comments =
+        "Duplicate title found. Please input an alternative title.";
+      newRecipeObj.ingredientsJson = JSON.parse(
+        JSON.stringify(obj.ingredJson.ingredientsJson)
+      );
+      console.log(newRecipeObj);
+      response.render("new-recipe", newRecipeObj);
+      return;
+    }
+    obj.recipeJson.recipes.push(JSON.parse(JSON.stringify(newRecipeObj)));
+    // console.log(obj.recipeJson.recipes[obj.recipeJson.lastId]);
+    response.render(
+      "recipe-display",
+      obj.recipeJson.recipes[obj.recipeJson.lastId]
+    );
+    jsonfile.writeFile(recipeFILE, obj.recipeJson, (err) => {
       if (err) return;
-      response.render("recipe-display", obj.recipes[obj.lastId]);
     });
   });
 });
@@ -157,25 +182,53 @@ app.put("/recipes/:id/edit", (request, response) => {
   console.log(request.body);
   let editedObj = request.body;
   let id = parseInt(editedObj.id);
-  jsonfile.readFile(recipeFILE, (err, obj) => {
-    let recipeOfId = obj.recipes.find((element) => {
+  getAllJsonData((obj) => {
+    let recipeOfId = obj.recipeJson.recipes.find((element) => {
       return element.id === id;
     });
-    recipeOfId.title = editedObj.title;
+    recipeOfId.title = editedObj.title.toUpperCase();
     recipeOfId.instructions = editedObj.instructions;
     recipeOfId.ingredients = [];
     for (const element in editedObj) {
-      if (element.includes("ingred") && editedObj[element] !== "NIL") {
+      if (element.includes("ingred") && editedObj[element] !== "") {
         recipeOfId.ingredients.push(editedObj[element]);
       }
     }
-    let indexEditedRecipe = obj.recipes.findIndex((element) => {
+    //Checks for duplicates in recipe title
+    // console.log(obj.recipeJson.recipes);
+    let indexNum = obj.recipeJson.recipes.findIndex((element) => {
       return element.id === id;
     });
-    obj.recipes.splice(indexEditedRecipe, 1, recipeOfId);
-    jsonfile.writeFile(recipeFILE, obj, (err) => {
+    // console.log(indexNum);
+    let titleDuplicate = false;
+    for (let i = 0; i < obj.recipeJson.recipes.length; i++) {
+      if (i !== indexNum) {
+        if (recipeOfId.title === obj.recipeJson.recipes[i].title) {
+          titleDuplicate = true;
+          break;
+        }
+      }
+    }
+    console.log(titleDuplicate);
+    if (titleDuplicate) {
+      let tempObj = {};
+      tempObj.id = recipeOfId.id;
+      tempObj.recipeJson = {};
+      tempObj.recipeJson.recipes = [];
+      tempObj.recipeJson.recipes.push(JSON.parse(JSON.stringify(recipeOfId)));
+      tempObj.comments =
+        "Duplicate title found. Please input an alternative title.";
+      tempObj.ingredJson = {};
+      tempObj.ingredJson.ingredientsJson = JSON.parse(
+        JSON.stringify(obj.ingredJson.ingredientsJson)
+      );
+      console.log(tempObj);
+      response.render("edit-recipe", tempObj);
+      return;
+    }
+    obj.recipeJson.recipes.splice(indexNum, 1, recipeOfId);
+    jsonfile.writeFile(recipeFILE, obj.recipeJson, (err) => {
       if (err) return;
-      // response.render("recipe-display", obj.recipes[indexEditedRecipe]);
       response.redirect("http://127.0.0.1:3000/recipes/" + id);
     });
   });
@@ -197,7 +250,7 @@ const getAllJsonData = (callbackFunc) => {
 //Form for editing a recipe
 app.get("/recipes/:id/edit", (request, response) => {
   getAllJsonData((obj) => {
-    obj.currentId = parseInt(request.params.id);
+    obj.id = parseInt(request.params.id);
     // console.log(obj);
     response.render("edit-recipe", obj);
   });

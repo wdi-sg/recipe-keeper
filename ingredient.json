@@ -1,6 +1,6 @@
 {
-  "ingredients": [
-    { "id": 0, "name": "NIL" },
+  "ingredientsJson": [
+    { "id": 0, "name": "" },
     { "id": 1, "name": "Wine - Rosso Toscano Igt" },
     { "id": 2, "name": "Spaghetti Squash" },
     { "id": 3, "name": "Pepperoni Slices" },
