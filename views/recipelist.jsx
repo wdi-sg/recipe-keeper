@@ -28,10 +28,40 @@ var React = require('react');
 // link to individual
 // link to new recipe
 
+const Recipes = (obj) => {
+  let recipes = obj.recipes;
+  console.log(recipes);
+
+  return (
+    <>
+      { Object.keys(recipes).map( id => {
+        let viewLink = `/recipes/${id}`;
+        let editLink = `/recipes/${id}/edit`;
+
+        return(
+          <React.Fragment key={id}>
+            <li className="list-group-item">
+              <div className="row text-center my-3">
+                <div className="col-6">
+                  <a href={viewLink} className="h5 text-success">{recipes[id].name}</a>
+                </div>
+                <div className="col-6">
+                  <a href={editLink} className="h5 text-success">Edit</a>
+                </div>
+              </div>
+            </li>
+          </React.Fragment>
+        )
+      })}
+    </>
+  );
+}
+
 class RecipeList extends React.Component {
-  render() {
+  render () {
     let recipes = this.props.recipes;
     console.log("list", recipes);
+
     return (
       <html>
         <head>
@@ -42,7 +72,30 @@ class RecipeList extends React.Component {
 
         <body>
           <div className="container">
-            YEAH THIS IS A HOMEPAGE I SWEAR
+
+            <div className="row">
+              <div className="col text-center my-3">
+                <h1 className="text-success">Recipes</h1>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col">
+                <ul className="list-group">
+                    <Recipes recipes={recipes} />
+                </ul>
+              </div>
+            </div>
+
+            <div className="row my-3">
+              <div className="col">
+                <a href="/recipes/new/"
+                   className="btn btn-success btn-block btn-lg">
+                  Add a New Recipe
+                </a>
+              </div>
+            </div>
+
           </div>
         </body>
       </html>
