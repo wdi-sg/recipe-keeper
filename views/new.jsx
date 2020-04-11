@@ -3,28 +3,39 @@ class New extends React.Component {
   render() {
     return (
       <html>
+        <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+        </head>
         <body>
-        <h1>Create a new recipe</h1>
+        <div class="container">
           <div>
-            <form method="POST" action="/recipes">
-                <div>
-                  Title:
-                  <input type="text" name="title"></input>
+            <div class="row justify-content-center">
+              <h1>Create a new recipe</h1>
+            </div>
+              <div class="row justify-content-center">
+                <form method="POST" action="/recipes">
+                    <div class="row justify-content-center">
+                      Title:
+                      <input type="text" name="title"></input>
+                    </div>
+                    <div class="row justify-content-center">
+                      Ingredients:
+                      <input type="text" name="ingredients"></input>
+                    </div>
+                    <div class="row justify-content-center">
+                      Instructions:
+                      <input type="text" name="instructions"></input>
+                    </div>
+                    <div class = "row justify-content-center">
+                      <input type="submit" value="submit"></input>
+                    </div>
+                  </form>
                 </div>
-                <div>
-                  Ingredients:
-                  <input type="text" name="ingredients"></input>
-                </div>
-                <div>
-                  Instructions:
-                  <input type="text" name="instructions"></input>
-                </div>
-                <div>
-                  <input type="submit" value="submit"></input>
-                </div>
-              </form>
+              <div class="row justify-content-center">
+                <a href="/recipes">Back to Index</a>
+              </div>
+            </div>
           </div>
-          <a href="/recipes">Back to Index</a>
         </body>
       </html>
     );

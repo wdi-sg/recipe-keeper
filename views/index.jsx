@@ -10,13 +10,22 @@ class Index extends React.Component {
     });
     return (
       <html>
+        <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+        </head>
         <body>
-          <h1>Welcome to Recipe Keeper!</h1>
-          <div>
-            <ul>
-              {recipeList}
-            </ul>
-            <a href="/recipes/new">Create a new recipe</a>
+          <div class="container">
+            <div class="row justify-content-center">
+              <h1>Welcome to Recipe Keeper!</h1>
+            </div>
+            <div class="row justify-content-center">
+              <ul>
+                {recipeList}
+              </ul>
+            </div>
+            <div class="row justify-content-center">
+              <a href="/recipes/new">Create a new recipe</a>
+            </div>
           </div>
         </body>
       </html>
