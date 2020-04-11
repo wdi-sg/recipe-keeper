@@ -11,10 +11,12 @@ class Index extends React.Component {
     return (
       <html>
         <body>
+          <h1>Welcome to Recipe Keeper!</h1>
           <div>
             <ul>
               {recipeList}
             </ul>
+            <a href="/recipes/new">Create a new recipe</a>
           </div>
         </body>
       </html>

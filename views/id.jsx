@@ -16,6 +16,7 @@ class Id extends React.Component {
             <input type="submit" value="Delete Recipe"/>
           </form>
         </body>
+        <a href="/recipes">Back to Index</a>
       </html>
     );
   }

@@ -4,6 +4,7 @@ class New extends React.Component {
     return (
       <html>
         <body>
+        <h1>Create a new recipe</h1>
           <div>
             <form method="POST" action="/recipes">
                 <div>
@@ -23,6 +24,7 @@ class New extends React.Component {
                 </div>
               </form>
           </div>
+          <a href="/recipes">Back to Index</a>
         </body>
       </html>
     );
