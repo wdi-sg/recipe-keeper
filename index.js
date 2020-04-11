@@ -42,6 +42,27 @@ app.get('/recipes/:id', (request, response) => {
   });
 });
 
+app.get('/recipes/:id/edit', (request, response) => {
+  jsonfile.readFile(file, (err, obj) => {
+    let inputId = parseInt(request.params.id) - 1;
+    let recipe = {};
+    obj["recipes"].forEach((element, index) => {
+      if(index === inputId){
+        recipe = {
+          "currentRecipe": element,
+          "currentId": parseInt(request.params.id)
+        }
+      }
+    });
+    if(recipe === undefined){
+      response.status(404);
+      response.send("not found");
+    }else {
+      response.render('edit', recipe);
+    }
+  });
+});
+
 app.post('/recipes', (request, response) => {
   jsonfile.readFile(file, (err, obj) =>{
     let recipeSubmit = {
@@ -55,4 +76,16 @@ app.post('/recipes', (request, response) => {
     });
   });
 });
+
+app.put("/recipes/:id", (request, response) => {
+  jsonfile.readFile(file, (err, obj) => {
+    obj["recipes"][parseInt(request.params.id-1)].title = request.body.title;
+    obj["recipes"][parseInt(request.params.id-1)].instructions = request.body.instructions;
+    obj["recipes"][parseInt(request.params.id-1)].ingredients = request.body.ingredients;
+    jsonfile.writeFile(file, obj, (err) => {
+      response.redirect("/recipes/" + (request.params.id));
+    });
+  });
+});
+
 app.listen(3000);
