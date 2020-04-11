@@ -74,7 +74,7 @@ const parseRecipeForm = function (form) {
 };
 
 // file service routes
-app.use(express.static('static'));
+app.use(express.static('/static/'));
 let options = {
   root: ('static'),
   dotfiles: 'deny',
@@ -109,11 +109,20 @@ app.get('/recipes/new', (req, res) => {
 app.get('/recipes', (req, res) => {
   let data = {
     recipes: fileData.recipes
-  }
+  };
   res.render('recipelist', data);
 });
 
 app.get('/recipes/:id', (req, res) => {
+  if (!Object.keys(fileData.recipes).includes(req.params.id)) {
+    res.status(404).sendFile("404.jpeg", options, (err) => {
+      if (err) {
+        console.log(err);
+      };
+  });
+    return;
+  }
+
   let recipe = fileData.recipes[req.params.id];
   res.render('recipeview', {'id': req.params.id, 'recipe': recipe});
 });
