@@ -17,10 +17,9 @@ class Create extends React.Component {
                         <br/>
                         <h3>Create your Recipe</h3>
                         <form  method="POST" action="/recipes">
-
                           <div className="form-group">
                             <label>Recipe Title</label>
-                            <input type="text" className="form-control" id="exampleFormControlInput1" name="title" />
+                            <input type="text" className="form-control" id="exampleFormControlInput1" name="title" required />
                           </div>
 
                           <div className="form-group">

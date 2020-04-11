@@ -30,10 +30,59 @@ app.get('/', (req, res) => {
 
 app.get('/recipes', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-        const allRecipes = {
-            recipes: obj.recipes
-        }
+        const allRecipes = obj
         res.render('home', allRecipes);
+    })
+})
+
+//------------------------------------------------------
+// Create Page //
+// -  -
+//------------------------------------------------------
+app.get('/recipes/new', (req, res) => {
+    res.render('create')
+})
+
+//------------------------------------------------------
+// Save changes Page //
+// -  -
+//------------------------------------------------------
+
+app.post('/recipes', (req, res) => {
+    jsonfile.readFile(file, (err, obj) => {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        const recipes = obj.recipes;
+
+        obj.recipes.push(req.body);
+        const index = obj.recipes.length;
+
+        jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
+            const newRecipeLink = '/recipes';
+            console.log(newRecipeLink)
+            res.redirect(newRecipeLink);
+        })
+    })
+})
+
+
+//------------------------------------------------------
+// Show (Read) Page //
+// -  -
+//------------------------------------------------------
+
+app.put('/recipes/:id', (req, res) => {
+    jsonfile.readFile(file, (err, obj) => {
+        const index = parseInt(req.params.id) - 1;
+        obj.recipes[index] = req.body;
+
+        jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
+            const link = "/recipes/" + (index+1);
+            res.redirect(link);
+        })
+
     })
 })
 
@@ -55,13 +104,7 @@ app.get('/recipes/:id/edit', (req, res) => {
     })
 })
 
-//------------------------------------------------------
-// Create Page //
-// -  -
-//------------------------------------------------------
-app.get('/recipes/new', (req, res) => {
-    res.render('create')
-})
+
 
 //display form for adding recipe
 app.get('/recipes/:id', (req, res) => {
@@ -77,6 +120,8 @@ app.get('/recipes/:id', (req, res) => {
     })
 })
 
+
+
 //------------------------------------------------------
 // Show (delete) Page //
 // -  -
@@ -86,55 +131,11 @@ app.delete('/recipes/:id', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
         const index = parseInt(req.params.id)-1;
         obj.recipes.splice(index, 1);
-
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
-            res.redirect('/');
+            res.redirect('/')
         });
     });
 });
-
-
-//------------------------------------------------------
-// Save changes Page //
-// -  -
-//------------------------------------------------------
-
-app.post('/recipes', (req, res) => {
-    jsonfile.readFile(file, (err, obj) => {
-        if (err) {
-            res.send(err);
-            return;
-        }
-        const recipes = obj.recipes;
-        recipes.push(req.body);
-
-        jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
-            const newRecipeLink = '/recipes/' + recipes.length;
-            res.redirect(newRecipeLink);
-        })
-    })
-})
-
-//------------------------------------------------------
-// Show (Read) Page //
-// -  -
-//------------------------------------------------------
-
-app.put('/recipes/:id', (req, res) => {
-    jsonfile.readFile(file, (err, obj) => {
-        const index = parseInt(req.params.id) - 1;
-        obj.recipes[index] = req.body;
-
-        jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
-            const link = "/recipes/" + (index+1);
-            res.redirect(link);
-        })
-
-    })
-})
-
-
-
 
 
 app.listen(3000, () => console.log("~~~~~~~~~port 3000 waving~~~~~~~~~"));

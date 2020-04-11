@@ -26,11 +26,14 @@ class Show extends React.Component {
                             <h4>Instructions</h4>
                             <p>{this.props.instructions}</p>
                             <br/>
+                            <br/>
                         </div>
 
                         <div>
+
                             <form method="POST" action={deleteLink}>
-                                <input type="submit" defaultValue="Delete Recipe" className="btn btn-danger" />
+                                <p>Discard recipe? </p>
+                                <input type="submit" defaultValue="Delete Recipe" className="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" />
                             </form>
                         </div>
 
