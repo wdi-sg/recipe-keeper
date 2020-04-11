@@ -4,8 +4,8 @@ class typing extends React.Component {
   render() {
     let IdArray=[];
     let titleArray=[];
-    var something=<div class={"col-4"}>;
-    </div>
+
+
 
     for (var key in this.props)
     {
@@ -13,7 +13,7 @@ class typing extends React.Component {
         let titleInnerArray=[];
         if(key!=="settings"&&key!=="_locals"&&key!=="cache"){
                 //console.log(key);
-                console.log(this.props[key]);
+                //console.log(this.props[key]);
                 for(let count=0;count<this.props[key].length;count++)
                 {
 
@@ -36,26 +36,80 @@ class typing extends React.Component {
         }
     }
     keyArray.pop();
-    console.log(keyArray);
-    console.log(IdArray);
-    console.log(titleArray);
+    //console.log(keyArray);
+   // console.log(IdArray);
+   // console.log(titleArray);
 
-    let ingredientArray=[];
-
-    for(let count = 0 ; count < keyArray.length;count ++){
-
-        ingredientArray.push(<p>{keyArray[count]}</p>);
+   // let ingredientArray=[];
+{/*
+const innerFunction=(count)=>{
 
         for(let innercount=0;innercount<IdArray[count].length;innercount++)
         {
-            let url="/recipes/"+IdArray[count][innercount];
+             let url="/recipes/"+IdArray[count][innercount];
             ingredientArray.push(<li><a href={url}>{titleArray[count][innercount]}</a></li>);
+            }
         }
 
+for(let count = 0 ; count < keyArray.length;count ++){
+
+            ingredientArray.push(
+                <p>{keyArray[count]}</p>);
+
+
+            innerFunction(count);
+
+
+            } */}
+
+const itemlength=keyArray.length;
+const innerFunction=(count)=>{
+
+    let johnny=[]
+        for(let innercount=0;innercount<itemlength;innercount++)
+        {
+             let url="/recipes/"+IdArray[count][innercount];
+           johnny.push( <li><a href={url}>{titleArray[count][innercount]}</a></li>);
             }
+            //console.log("########");
+            //console.log(johnny[2].props.children.props);
+/*            for(let johnnyCount=0;johnnyCount<johnny.length;johnnyCount++)
+            {
+                if(johnny[johnnyCount].props.children.props.children===undefined)
+                {
+                    johnny.splice(johnnyCount,1);
+                }
+            }*/
+            johnny.forEach((element,index)=>{
+                //console.log(element);
+                if(element.props.children.props.children===undefined)
+                {
+                    johnny.pop();
+                }
+            });
+            johnny.forEach((element,index)=>{
+                //console.log(element);
+                if(element.props.children.props.children===undefined)
+                {
+                    johnny.pop();
+                }
+            });
+            johnny.pop();
+            johnny.pop();
+           //console.log(johnny[2].props);
+            return johnny;
+        }
 
 
-    console.log(ingredientArray);
+const ingredientArray=keyArray.map((items,index)=>{
+
+    return <div class={"col-3 border"}>
+        <p>{items}</p>
+        {innerFunction(index)}
+    </div>
+})
+//console.log(ingredientArray)
+
     return (
       <html>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
@@ -75,9 +129,7 @@ class typing extends React.Component {
                 </div>
         </nav>
 
-            <div>
-                {ingredientArray}
-                </div>
+
             <div class={"container"}>
                 <div class={"row"}>
                 {ingredientArray}

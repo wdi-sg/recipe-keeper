@@ -157,12 +157,12 @@ Add some layout styles. Add a kind of column layout to each page. You can use bo
 #### Further
 CSS Part 2.5:
 
-Make your layout styles mobile-first and responsive.
+Make your layout styles mobile-first and responsive.☑
 
 #### Further
 CSS Part 3:
 
-Add more layout. Add a header/navbar and footer to every page.
+Add more layout. Add a header/navbar and footer to every page.☑
 
 Add special layout and CSS to the landing page `/`☑
 
