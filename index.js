@@ -3,7 +3,6 @@ const jsonfile = require("jsonfile");
 const app = express();
 const ingredFILE = "ingredient.json";
 const recipeFILE = "recipe.json";
-// const sortFILE = "sort.json";
 let duplicate;
 
 const methodOverride = require("method-override");
@@ -115,6 +114,17 @@ app.post("/recipes/:id", (request, response) => {
         newRecipeObj.ingredients.push(reqRecipeObj[element]);
       }
     }
+
+    if (!!parseInt(newRecipeObj.title)) {
+      newRecipeObj.comments = "Please enter a valid title and not a number";
+      newRecipeObj.ingredientsJson = JSON.parse(
+        JSON.stringify(obj.ingredJson.ingredientsJson)
+      );
+      console.log(newRecipeObj);
+      response.render("new-recipe", newRecipeObj);
+      return;
+    }
+
     //Checks for duplicates in recipe title
     let titleDuplicate = false;
     for (let i = 0; i < obj.recipeJson.recipes.length; i++) {
@@ -133,6 +143,28 @@ app.post("/recipes/:id", (request, response) => {
       response.render("new-recipe", newRecipeObj);
       return;
     }
+
+    let ingredDucplicate = false;
+    let mapObj = {};
+    for (let i = 0; i < newRecipeObj.ingredients.length; i++) {
+      let ingred = newRecipeObj.ingredients[i];
+      if (mapObj[ingred]) {
+        ingredDucplicate = true;
+        break;
+      } else {
+        mapObj[ingred] = true;
+      }
+    }
+    if (ingredDucplicate) {
+      newRecipeObj.comments = "Duplicate ingredient found. Please amend.";
+      newRecipeObj.ingredientsJson = JSON.parse(
+        JSON.stringify(obj.ingredJson.ingredientsJson)
+      );
+      console.log(newRecipeObj);
+      response.render("new-recipe", newRecipeObj);
+      return;
+    }
+
     obj.recipeJson.recipes.push(JSON.parse(JSON.stringify(newRecipeObj)));
     // console.log(obj.recipeJson.recipes[obj.recipeJson.lastId]);
     response.render(
@@ -194,12 +226,27 @@ app.put("/recipes/:id/edit", (request, response) => {
         recipeOfId.ingredients.push(editedObj[element]);
       }
     }
+
+    if (!!parseInt(recipeOfId.title)) {
+      let tempObj = {};
+      tempObj.id = recipeOfId.id;
+      tempObj.recipeJson = {};
+      tempObj.recipeJson.recipes = [];
+      tempObj.recipeJson.recipes.push(JSON.parse(JSON.stringify(recipeOfId)));
+      tempObj.comments = "Please enter a valid title and not a number";
+      tempObj.ingredJson = {};
+      tempObj.ingredJson.ingredientsJson = JSON.parse(
+        JSON.stringify(obj.ingredJson.ingredientsJson)
+      );
+      console.log(tempObj);
+      response.render("edit-recipe", tempObj);
+      return;
+    }
+
     //Checks for duplicates in recipe title
-    // console.log(obj.recipeJson.recipes);
     let indexNum = obj.recipeJson.recipes.findIndex((element) => {
       return element.id === id;
     });
-    // console.log(indexNum);
     let titleDuplicate = false;
     for (let i = 0; i < obj.recipeJson.recipes.length; i++) {
       if (i !== indexNum) {
@@ -226,6 +273,34 @@ app.put("/recipes/:id/edit", (request, response) => {
       response.render("edit-recipe", tempObj);
       return;
     }
+
+    let ingredDucplicate = false;
+    let mapObj = {};
+    for (let i = 0; i < recipeOfId.ingredients.length; i++) {
+      let ingred = recipeOfId.ingredients[i];
+      if (mapObj[ingred]) {
+        ingredDucplicate = true;
+        break;
+      } else {
+        mapObj[ingred] = true;
+      }
+    }
+    if (ingredDucplicate) {
+      let tempObj = {};
+      tempObj.id = recipeOfId.id;
+      tempObj.recipeJson = {};
+      tempObj.recipeJson.recipes = [];
+      tempObj.recipeJson.recipes.push(JSON.parse(JSON.stringify(recipeOfId)));
+      tempObj.comments = "Duplicate ingredient found. Please amend.";
+      tempObj.ingredJson = {};
+      tempObj.ingredJson.ingredientsJson = JSON.parse(
+        JSON.stringify(obj.ingredJson.ingredientsJson)
+      );
+      console.log(tempObj);
+      response.render("edit-recipe", tempObj);
+      return;
+    }
+
     obj.recipeJson.recipes.splice(indexNum, 1, recipeOfId);
     jsonfile.writeFile(recipeFILE, obj.recipeJson, (err) => {
       if (err) return;
