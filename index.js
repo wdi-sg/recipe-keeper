@@ -132,6 +132,19 @@ app.put('/recipes/:id', (req, res) => {
     .catch(err => console.log(err));
 });
 
+app.delete('/recipes/:id', (req, res) => {
+  let deleteId = req.params.id;
+  delete fileData.recipes[deleteId];
+
+  let writePromise = jsonfile.writeFile(FILE, {data: fileData});
+  writePromise
+    .then(() => {
+      console.log("write");
+      res.redirect('/recipes');
+    } )
+   .catch(err => console.log(err));
+});
+
 app.get('/recipes/:id/edit', (req, res) => {
   let recipe = fileData.recipes[req.params.id];
   let data = {
