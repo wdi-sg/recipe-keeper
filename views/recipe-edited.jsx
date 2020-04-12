@@ -3,6 +3,14 @@ var React = require('react');
 
 class AddedRecipe extends React.Component {
     render() {
+        function getDateTime() {
+            var date = new Date();
+            var formatDate = date.toLocaleDateString();
+            var formatTime = date.toLocaleTimeString();
+            return `${formatDate} ${formatTime}`;
+        }
+
+        var dateTime = getDateTime();
 
 
 
@@ -28,7 +36,7 @@ class AddedRecipe extends React.Component {
                             </div>
                         </div>
                         <div className="alert alert-success" role="alert">
-                            Recipe edited successfully.
+                            Recipe edited successfully @ {dateTime}.
                         </div>
                         <div className="text-center">
                             <br />

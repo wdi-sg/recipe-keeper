@@ -12,6 +12,7 @@ class Recipe extends React.Component {
                     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous"></link>
                 </head>
                 <body style={{ backgroundColor: "lightblue" }}>
+                    
                     <div className="container mw-50 w-50">
                         <h1 className="text-center font-italic"><u><strong>View Recipe</strong></u></h1>
 
@@ -22,8 +23,6 @@ class Recipe extends React.Component {
                                 <h5 className="card-title text-left"><strong>Ingredients: </strong>{this.props.ingredients}</h5>
                                 <h5 className="card-title text-left"><strong>Instructions: </strong>{this.props.instructions}</h5>
                                 <h5 className="card-title text-left"><strong>Updated at: </strong>{this.props[`date-updated`]}</h5>
-
-
 
                             </div>
                         </div>

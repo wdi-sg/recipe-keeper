@@ -3,7 +3,14 @@ var React = require('react');
 
 class AddedRecipe extends React.Component {
     render() {
+        function getDateTime() {
+            var date = new Date();
+            var formatDate = date.toLocaleDateString();
+            var formatTime = date.toLocaleTimeString();
+            return `${formatDate} ${formatTime}`;
+        }
 
+        var dateTime = getDateTime();
 
 
         return (
@@ -21,6 +28,7 @@ class AddedRecipe extends React.Component {
                                 <h5 className="card-title text-left"><strong>Title: </strong>{this.props.title}</h5>
                                 <h5 className="card-title text-left"><strong>Ingredients: </strong>{this.props.ingredients}</h5>
                                 <h5 className="card-title text-left"><strong>Instructions: </strong>{this.props.instructions}</h5>
+                                
 
 
 
@@ -28,7 +36,7 @@ class AddedRecipe extends React.Component {
                             </div>
                         </div>
                         <div className="alert alert-success" role="alert">
-                            Recipe added successfully. <a href="/recipes/new" className="alert-link">Add another?</a>
+                            Recipe added successfully @ {dateTime}. <a href="/recipes/new" className="alert-link">Add another?</a>
                         </div>
                         <div className="text-center">
                             <br />
