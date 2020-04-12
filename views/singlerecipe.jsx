@@ -55,7 +55,7 @@ class Singlerecipe extends React.Component{
                             <a class="nav-link active" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/">All Recipes</a>
+                            <a class="nav-link" href="/allrecipes">All Recipes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/about">about RecipeList</a>

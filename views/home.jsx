@@ -90,7 +90,7 @@ class Home extends React.Component {
                             <a className="nav-link active" href="/">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/">All Recipes</a>
+                            <a className="nav-link" href="/allrecipes">All Recipes</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/about">about RecipeList</a>

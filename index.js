@@ -132,6 +132,32 @@ app.get('/about', (request, response) => {
     response.render('about');
 })
 
+// All Recipes resposne
+app.get('/allrecipes', (request, response) => {
+    jsonfile.readFile(file, (err, obj) => {
+
+        const recipeArray = obj.recipes;
+
+        // Get all recipe titles
+        let recipeTitleArray = [];
+
+        for (var i = 0; i < recipeArray.length; i++) {
+            recipeTitleArray.push(recipeArray[i].title);
+        }
+
+        // Get all recipe images
+        let recipeImageArray = [];
+
+        for (var u = 0; u < recipeArray.length; u++) {
+            recipeImageArray.push(recipeArray[u].img);
+        }
+
+
+        const data = {"data" : [{"recipeTitleArray" : recipeTitleArray}, {"recipeImageArray" : recipeImageArray}]};
+
+        response.render("allrecipes", data);
+    })
+})
 
 // Home page response
 app.get('/', (request, response) => {
