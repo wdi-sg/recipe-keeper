@@ -26,34 +26,64 @@ class Model {
   }
 
   // check ids of objs in arr can be found in db
-  static async haveValidRefs (objArr) {
+  static async haveValidRefs (objArr, fk) {
     const allObjs = await this.findAll()
-    return objArr.all(obj => {
-      const idToCheck = obj._id
-      return allObjs.some(obj.id === idToCheck)
+    return objArr.every(obj => {
+      const idToCheck = obj[fk]
+      return allObjs.some(item => item.id === idToCheck)
     })
   }
 
-  //if not found return undefined
+  // if not found return undefined else return new obj
+  // deseialized to obj for easier update/delete ops
   static async findById (id) {
-    let objs
     try {
-      objs = await jsonFile.readFile(this._connection)
-      return objs.find(item => item._id === id)
+      const objs = await jsonFile.readFile(this._connection)
+      const raw = objs.find(item => item._id === id)
+      if (raw) {
+        return this.deSerializeJson(raw)
+      }
     } catch (e) {
       console.error('Error reading file:', e)
     }
   }
 
-  // takes in new ingredient obj
+  static async deSerializeJson (rawJson) {
+    return Object.create(this.prototype, Object.getOwnPropertyDescriptors(rawJson))
+  }
+
+  // fetch existing array and append new
   async save () {
     this._createDBIfNotExist()
-    const jsonArr = await this._fetchData()
+    const jsonArr = await this._fetchAll()
     if (jsonArr.some(item => item._id === this.id)) {
-      throw(`Error saving, duplicate id.`)
+      throw`Error saving, duplicate id.`
     }
     jsonArr.push(this)
-    await this._save(jsonArr)
+    this._save(jsonArr)
+  }
+
+  async _fetchAll () {
+    return jsonFile.readFile(this.constructor._connection)
+  }
+
+  // if appendArr, append new values into existing arr
+  async update ([key, value], appendArr = false) {
+    const allObjs = await this._fetchAll()
+    if (!value) {
+      console.warn(`empty value is provided to update ${key}`)
+    }
+    const indexToUpdate = allObjs.findIndex(item => item._id === this.id)
+    if (indexToUpdate < 0) {
+      console.warn(`could not find item of id ${this.id}`)
+      return false
+    }
+    if (appendArr && Array.isArray(allObjs[indexToUpdate][key])) {
+      allObjs[indexToUpdate][key].push(value)
+    } else {
+      allObjs[indexToUpdate][key] = value
+    }
+    this._save(allObjs).catch(e => console.log(e))
   }
 
   _createDBIfNotExist () {
@@ -73,22 +103,6 @@ class Model {
     } catch (e) {
       console.error(`error saving ${this.constructor.name}: ${JSON.stringify(objArr)}. \n ${e}`)
     }
-  }
-
-  // static _deSerialize (rawJson) {
-  //   return rawJson.map(json => {
-  //     return Object.create((this.prototype, Object.getOwnPropertyDescriptors(json)))
-  //   })
-  // }
-
-  // // return all ingredients obj json
-  // static async findAll () {
-  //   const rawJson = await jsonFile.readFile()
-  //   return this._deSerialize(rawJson)
-  // }
-
-  async _fetchData () {
-    return jsonFile.readFile(this.constructor._connection)
   }
 
 }

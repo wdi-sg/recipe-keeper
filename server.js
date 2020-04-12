@@ -18,10 +18,11 @@ const run = async () => {
   //   const user = { name: 'Bulma' }
   //   res.render('index', { user })
   // })
-  const ingredientRouter = require('./routes/ingredients')
+  const ingredientsRouter = require('./routes/ingredients')
+  const recipesRouter = require('./routes/recipes')
 
-
-  app.use('/ingredients', ingredientRouter)
+  app.use('/ingredients', ingredientsRouter)
+  app.use('/recipes', recipesRouter)
 
   app.listen(PORT, () => {
     console.log('> Ready on http://localhost:' + PORT)

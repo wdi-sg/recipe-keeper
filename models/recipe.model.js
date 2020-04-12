@@ -1,28 +1,46 @@
 const Model = require('./model')
+const Ingredient = require('./ingredient.model')
 const JSON_URI = './recipes.json'
 
 class Recipe extends Model {
 
   static _connection = JSON_URI
 
-  constructor (name, instructions, ingredients) {
-    super(JSON_URI)
+  /*
+  "ingredients": [
+		{
+			"fk_ingredientId": "MMmnE-EoR",
+			"quantity": 10,
+			"unit": "glass",
+			"notes": "cook until broke"
+		}
+	],
+   */
+  constructor (name, ingredients = [], instructions) {
+    super()
     this.name = name
-    this.ingredients = this._addIngredients(ingredients) // array of ingredients
+    this.ingredients = []
     this.instructions = instructions
   }
 
-  _addIngredients (ingredientsArr) {
-    // verify the all ingredients exist
-    Recipe.haveValidRefs(ingredientsArr)
-      .then((res) => {
-        if (res) {
-          this.ingredients = ingredientsArr
-          console.info('ingredients added to recipe.... not saved yet')
-        } else {
-          console.error('ingredient id reference not found.')
-        }
-      })
+  /*
+  [
+  {
+    fk_ingredientId: 'MMmnE-EoR',
+    quantity: 10,
+    unit: 'glass',
+    notes: 'cook until broke'
+  }
+]
+
+   */
+  async setIngredients (ingredientsArr) {
+    // verify the all ingredients exist and Ingredient.have
+    //todo: put fk_ingredientId inside ingredient as staticValidRefs
+    const isValid = Ingredient.haveValidRefs(ingredientsArr, 'fk_ingredientId')
+    if (!isValid) throw 'some ingredients contains ids that could not be found'
+    console.info('ingredients added to recipe.... not saved yet')
+    this.ingredients = ingredientsArr
   }
 
   _createIngredient (fk_ingredientId, quantity = 1, unit = '', notes = '') {
@@ -36,3 +54,5 @@ class Recipe extends Model {
   }
 
 }
+
+module.exports = Recipe

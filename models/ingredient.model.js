@@ -6,17 +6,12 @@ class Ingredient extends Model {
 
   static _connection = JSON_URI
 
-  constructor (name) {
+  constructor (name, fk_recipes = []) {
     super()
     this.name = name
     this.disabled = false
-    this.fk_recipes = []
+    this.fk_recipes = fk_recipes
   }
-
-  addRecipe (recipeId) {
-    this.fk_recipes.push(recipeId)
-  }
-
 }
 
 module.exports = Ingredient

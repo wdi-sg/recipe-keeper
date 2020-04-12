@@ -4,9 +4,7 @@
         "_date_created": "2020-04-12T08:25:51.801Z",
         "name": "Wine - Rosso Toscano Igt",
         "disabled": false,
-        "fk_recipes": [
-            "qTfTjC44W"
-        ]
+        "fk_recipes": []
     },
     {
         "_id": "jHbD9_y_Nj",
@@ -6749,6 +6747,7 @@
         "disabled": false,
         "fk_recipes": []
     },
+    ingredients.jsingredients.js,
     {
         "_id": "vhQ7v9Q82L_T",
         "_date_created": "2020-04-12T08:25:51.832Z",

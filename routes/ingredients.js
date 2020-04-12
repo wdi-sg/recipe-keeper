@@ -12,9 +12,8 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const { name } = req.body
   const newIngredient = new Ingredient(name)
-
   newIngredient.save()
-    .then(() => res.json('ingredient added'))
+    .then(() => res.json('ingredient added:' + JSON.stringify(newIngredient)))
     .catch(err => res.status(400).json('Error: ' + err))
 })
 
