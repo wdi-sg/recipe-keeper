@@ -1,6 +1,6 @@
 const jsonfile = require('jsonfile');
 
-const file = './recipe.json';
+const recipeFile = './recipe.json';
 
 const express = require('express');
 
@@ -26,35 +26,73 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
 
+
+
+
 app.get("/recipes/",(request,response)=>{
-    jsonfile.readFile(file,(err,obj) => {
+    // Reading recipe.jsonfile
+    jsonfile.readFile(recipeFile,(err,obj) => {
         if (err) {
             console.log("//// error ////");
             console.error(err)
             console.log("//// error ////");
         }
-        let recipeList = obj.cookbook[0];
+        // Shows list of recipes in an array
+        let recipeList = obj.cookbook.map(recipeItem => {
+            console.log("checking current item :" + recipeItem);
+            return recipeItem;
+        });
         console.log(recipeList);
         response.send("This is page shows all recipes " + recipeList);
     })
 
 })
 
+
+
+
 app.get("/recipes/new", (request,response)=>{
     response.send("This page forms new recipes");
 })
+
+
+
 
 app.get("/recipes",(request,response)=>{
     response.send("This page sends the new recipes");
 })
 
+
+
+// create a route for id+
+// collect id in the route as a variable+
+// find the recipe file+
+// find id within recipe file
+// display html page that shows content in id
 app.get("/recipes/:id", (request, response) => {
-    response.send("This page shows recipe from id");
+    let recipeID = request.params.id;
+    console.log("Now showing page id " + recipeID);
+        jsonfile.readFile(recipeFile,(err,obj)=>{
+            if (err) {
+            console.log("//// error ////");
+            console.error(err)
+            console.log("//// error ////");
+            }
+            let showRecipe = obj.cookbook[recipeID]
+            // response.send("This page shows recipe number : " + showRecipe);
+            response.render(views, showRecipe);
+        })
 })
+
+
+
 
 app.get("/recipes/:id/edit", (request, response) => {
     response.send("This page forms recipe from id");
 })
+
+
+
 
 console.log("~~Recipe is listening~~")
 app.listen(3000);
