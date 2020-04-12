@@ -25,6 +25,8 @@ class Singlerecipe extends React.Component{
 
         const deleteRecipeStyle = {"textAlign" : "center"};
 
+        const ingredientListStyle = {"list-style-position" : "inside"}
+
 
         // Javascript things
         const recipeObject = this.props.data[0].singleRecipe
@@ -33,8 +35,14 @@ class Singlerecipe extends React.Component{
 
         const recipeImage = <img src={recipeObject.img} style={foodImage}></img>
 
-        const recipeIngredients = recipeObject.ingredients.map(el => {
-            return <li>{el}</li>
+        const recipeIngredients = recipeObject.ingredients.map((el, i) => {
+            return (
+                    <tr>
+                      <th scope="row">{i+1}</th>
+                      <td>{el.name}</td>
+                      <td>{el[`amount${i}`]}</td>
+                    </tr>
+                    )
         })
 
         const recipeInstructions = <p>{recipeObject.instructions}</p>
@@ -73,9 +81,18 @@ class Singlerecipe extends React.Component{
                         <div className="row">
                             <div className="col-md-6" style={leftContainer}>
                                 <h2>Recipe Ingredients</h2>
-                                <ol>
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Ingredient</th>
+                                      <th scope="col">Amount</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
                                     {recipeIngredients}
-                                </ol>
+                                  </tbody>
+                                </table>
                             </div>
                             <div className="col-md-6" style={rightContainer}>
                                 <h2>Instructions</h2>

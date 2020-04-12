@@ -17,6 +17,8 @@ class Home extends React.Component {
         const createRecipeForm = {"marginTop" : "5px",
                                  };
 
+        const ingredientsAmt = {"width" : "50px"}
+
         const foodDiv = {
                         "height" : "130px",
                         "width" : "191px",
@@ -69,12 +71,18 @@ class Home extends React.Component {
 
         const createRecipe =<div>
                                  <form action="/createarecipe" method="post">
-                                    <input type="text" name="title" placeholder="Recipe Title" style={createRecipeForm}></input>
-                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input>
-                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input>
-                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input>
-                                    <input type="text" name="instructions" placeholder="Instructions" style={createRecipeForm}></input>
+                                    <input type="text" name="title" placeholder="Recipe Title" style={createRecipeForm}></input><br></br>
+
+                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount1" placeholder="Amt" style={ingredientsAmt}></input><br></br>
+
+                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount2" placeholder="Amt" style={ingredientsAmt}></input><br></br>
+
+                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount3" placeholder="Amt" style={ingredientsAmt}></input><br></br>
+
+                                    <input type="text" name="instructions" placeholder="Instructions" style={createRecipeForm}></input><br></br>
+
                                     <input type="text" name="img" placeholder="image link" style={createRecipeForm}></input><br></br>
+
                                     <input type="submit" value="Submit" style={createRecipeForm}></input>
                                  </form>
                             </div>
