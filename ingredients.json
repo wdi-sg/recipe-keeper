@@ -5,7 +5,6 @@
         "name": "Wine - Rosso Toscano Igt",
         "disabled": false,
         "fk_recipes": [
-            "qTfTjC44W"
         ]
     },
     {
@@ -13,7 +12,8 @@
         "_date_created": "2020-04-12T08:25:51.801Z",
         "name": "Spaghetti Squash",
         "disabled": false,
-        "fk_recipes": []
+        "fk_recipes": [
+        ]
     },
     {
         "_id": "4QXat-4yMO",
