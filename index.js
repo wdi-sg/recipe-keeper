@@ -30,18 +30,22 @@ app.get('/', (req, res) => {
 
 app.get('/recipes', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-        const allRecipes = obj
+        const allRecipes = obj;
         res.render('home', allRecipes);
-    })
-})
+    });
+});
 
 //------------------------------------------------------
 // Create Page //
 // -  -
 //------------------------------------------------------
 app.get('/recipes/new', (req, res) => {
-    res.render('create')
-})
+
+    jsonfile.readFile(file, (err, obj) => {
+        const allRecipes = obj;
+        res.render('create', allRecipes);
+    });
+});
 
 //------------------------------------------------------
 // Save changes Page //
@@ -55,17 +59,22 @@ app.post('/recipes', (req, res) => {
             return;
         }
         const recipes = obj.recipes;
+        const recipeId = recipes.length + 1;
+        const recipe = {
+            id : recipeId,
+            title : req.body.title,
+            ingredients : req.body.ingredients,
+            instructions : req.body.instructions
+        }
 
-        obj.recipes.push(req.body);
-        const index = obj.recipes.length;
+        obj.recipes.push(recipe);
 
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
             const newRecipeLink = '/recipes';
-            console.log(newRecipeLink)
             res.redirect(newRecipeLink);
-        })
-    })
-})
+        });
+    });
+});
 
 
 //------------------------------------------------------
@@ -81,10 +90,9 @@ app.put('/recipes/:id', (req, res) => {
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
             const link = "/recipes/" + (index+1);
             res.redirect(link);
-        })
-
-    })
-})
+        });
+    });
+});
 
 //------------------------------------------------------
 // Edit Page //
@@ -99,10 +107,10 @@ app.get('/recipes/:id/edit', (req, res) => {
             title: obj.recipes[index].title,
             ingredients: obj.recipes[index].ingredients,
             instructions: obj.recipes[index].instructions
-        }
+        };
         res.render('edit', data);
-    })
-})
+    });
+});
 
 
 
@@ -115,10 +123,10 @@ app.get('/recipes/:id', (req, res) => {
                 title: obj.recipes[index].title,
                 ingredients: obj.recipes[index].ingredients,
                 instructions: obj.recipes[index].instructions
-            }
+            };
             res.render('show', data);
-    })
-})
+    });
+});
 
 
 
@@ -132,7 +140,7 @@ app.delete('/recipes/:id', (req, res) => {
         const index = parseInt(req.params.id)-1;
         obj.recipes.splice(index, 1);
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
-            res.redirect('/')
+            res.redirect('/');
         });
     });
 });

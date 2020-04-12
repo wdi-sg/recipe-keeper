@@ -14,30 +14,37 @@ class Edit extends React.Component {
 
                         <nav className="navbar bg-light">
                             <a href="/" className="navbar-brand">&#60; Home</a>
+                            <h3>Edit Page</h3>
                             <a href={editLink} className="navbar-brand">&#8635; Reset</a>
                         </nav>
 
                         <div className="container">
-                        <br/>
-                        <h3>Edit Page</h3>
-                        <form  method="POST" action={link}>
+                            <br/>
+                            <div className="col">
+                                <form  method="POST" action={link}>
+                                    <br/>
+                                    <div className="form-group">
+                                        <h4>Recipe Id: {this.props.id}</h4>
+                                        <br/>
+                                    </div>
 
-                          <div className="form-group">
-                            <label>Recipe Title</label>
-                            <input type="text" className="form-control" id="exampleFormControlInput1" name="title" defaultValue={this.props.title} />
-                          </div>
+                                    <div className="form-group">
+                                        <label>Recipe Title</label>
+                                        <input type="text" className="form-control" id="exampleFormControlInput1" name="title" defaultValue={this.props.title} />
+                                    </div>
 
-                          <div className="form-group">
-                            <label>Ingredients</label>
-                            <input type="text" className="form-control" id="exampleFormControlInput1" name="ingredients" defaultValue={this.props.ingredients}/>
-                          </div>
+                                    <div className="form-group">
+                                        <label>Ingredients</label>
+                                        <input type="text" className="form-control" id="exampleFormControlInput1" name="ingredients" defaultValue={this.props.ingredients}/>
+                                    </div>
 
-                          <div className="form-group">
-                            <label>Instructions</label>
-                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions" defaultValue={this.props.instructions}></textarea>
-                          </div>
-                          <button type="submit" className="btn btn-primary mb-2">Submit</button>
-                        </form>
+                                    <div className="form-group">
+                                        <label>Instructions</label>
+                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions" defaultValue={this.props.instructions}></textarea>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary mb-2">Submit</button>
+                                </form>
+                            </div>
                     </div>
                 </body>
             </html>

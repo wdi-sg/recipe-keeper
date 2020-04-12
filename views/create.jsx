@@ -1,7 +1,7 @@
 var React = require('react');
 class Create extends React.Component {
     render() {
-
+            const recipeId = this.props.recipes.length + 1;
         return (
             <html>
                 <head>
@@ -15,24 +15,31 @@ class Create extends React.Component {
 
                     <div className="container">
                         <br/>
-                        <h3>Create your Recipe</h3>
-                        <form  method="POST" action="/recipes">
-                          <div className="form-group">
-                            <label>Recipe Title</label>
-                            <input type="text" className="form-control" id="exampleFormControlInput1" name="title" required />
-                          </div>
+                        <div className="col">
+                            <h3>Create your Recipe</h3>
+                            <form  method="POST" action="/recipes">
+                                <div className="form-group">
+                                    <br/>
+                                    <h4>Recipe Id: {recipeId}</h4>
+                                </div>
 
-                          <div className="form-group">
-                            <label>Ingredients</label>
-                            <input type="text" className="form-control" id="exampleFormControlInput1" name="ingredients" />
-                          </div>
+                                <div className="form-group">
+                                    <label>Recipe Title</label>
+                                    <input type="text" className="form-control" id="exampleFormControlInput1" name="title" required />
+                                </div>
 
-                          <div className="form-group">
-                            <label>Instructions</label>
-                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions"></textarea>
-                          </div>
-                          <button type="submit" className="btn btn-primary mb-2">Create</button>
-                        </form>
+                                <div className="form-group">
+                                    <label>Ingredients</label>
+                                    <input type="text" className="form-control" id="exampleFormControlInput1" name="ingredients" />
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Instructions</label>
+                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions"></textarea>
+                                </div>
+                                <button type="submit" className="btn btn-primary mb-2">Create</button>
+                            </form>
+                        </div>
                     </div>
                 </body>
             </html>

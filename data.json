@@ -1,39 +1,10 @@
 {
   "recipes": [
     {
-      "title": "World Best Chicken",
-      "ingredients": "Chicken",
-      "instructions": "Chicken plus world best"
-    },
-    {
-      "title": "World Best Steak",
-      "ingredients": "Beef",
-      "instructions": "World Best plus Beef"
-    },
-    {
-      "title": "World Best Fish",
-      "ingredients": "Fish",
-      "instructions": "World Best plus Fish"
-    },
-    {
-      "title": "World Best Chicken Rice",
-      "ingredients": "Money",
-      "instructions": "Go buy"
-    },
-    {
-      "title": "World Best Lamb",
-      "ingredients": "Lamb",
-      "instructions": "some nice garlic and soy sauce will do"
-    },
-    {
-      "title": "dfdsfd",
-      "ingredients": "fdsfds",
-      "instructions": "fdsdvd"
-    },
-    {
-      "title": "sdfsd",
-      "ingredients": "fdsdgd",
-      "instructions": "dsdgd"
+      "id": 1,
+      "title": "Boiled duck",
+      "ingredients": "1 duck, water",
+      "instructions": "boil duck in water for 20 minutes. take it out. serve."
     }
   ]
 }
