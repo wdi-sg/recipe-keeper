@@ -6,7 +6,10 @@ const app = express();
 const reactEngine = require('express-react-views').createEngine();
 const methodOverride = require('method-override');
 
-const recipeRoutes = require('./routes/recipes');
+const recipeRoutes = require('./routes/recipes-routes');
+const ingredientRoutes = require('./routes/ingredients-routes');
+
+const errorController = require('./controllers/404');
 
 app.use(express.urlencoded({
     extended: true
@@ -24,13 +27,13 @@ app.use(express.static(path.join(__dirname, '/public/')));
 
 app.use('/recipes', recipeRoutes);
 
+app.use('/ingredients', ingredientRoutes);
+
 app.get('/', (req, res) => {
     res.render('index.jsx');
 })
 
-app.use((req, res) => {
-    res.status(404).render('404');
-});
+app.use(errorController.get404Page);
 
 app.listen(3000, () => {
     console.log('Listening on Port 3000');

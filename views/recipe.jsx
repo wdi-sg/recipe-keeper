@@ -24,15 +24,20 @@ class Recipe extends React.Component {
             return (
                 <div className = "recipe__container">
                     <div className = "recipe__header">
-                        {this.props.title}
+                        <h2>{this.props.title}</h2>
+                    </div>
+                    <div className = "recipe__date-created">
+                        Dated Added: {this.props.dateCreated}
                     </div>
                     <div className = "recipe__img">
                         <img src={this.props.img} />
                     </div>
                     <div className = "recipe__ingredients">
+                        <h3>Ingredients</h3>
                         {ingredients}
                     </div>
                     <div className = "recipe__instructions">
+                        <h3>Instructions</h3>
                         {instructions}
                     </div>
                     <div className ="recipe__edit-delete-links">

@@ -1,5 +1,7 @@
 const recipesFile = './recipes.json';
 const jsonfile = require('jsonfile');
+const Recipe = require('../models/recipe');
+const dateUtility = require('../util/get-date');
 
 module.exports.getAddRecipe = (req, res) => {
     jsonfile.readFile(recipesFile, (err, obj) => {
@@ -44,21 +46,19 @@ module.exports.postAddRecipe = (req, res) => {
                 })
             })
 
-            const newRecipe = {
-                id: newRecipeId,
-                title: req.body.title,
-                ingredients: newRecipeIngredients,
-                instructions: req.body.instructions,
-                img: req.body.img
-            }
+            const newRecipe = new Recipe(
+                newRecipeId,
+                req.body.title,
+                newRecipeIngredients,
+                req.body.instructions,
+                req.body.img,
+                dateUtility.getCurrentDate()
+            )
 
-            obj.recipes.push(newRecipe);
+            newRecipe.save();
 
-            jsonfile.writeFile(recipesFile, obj)
-                .then(() => {
-                    res.redirect(`/recipes/${newRecipeId}`);
-                })
-                .catch(err => console.log(err));
+            res.redirect(`/recipes/${newRecipeId}`);
+
         }
     })
 }

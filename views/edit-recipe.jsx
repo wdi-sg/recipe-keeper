@@ -32,16 +32,16 @@ class EditRecipeForm extends React.Component {
                             <a href="/" className="nav__link index">Home</a>
                         </div>
                         <form method="PUT" action="/recipes" className="edit-form">
-                            <h2 className="edit-form__header">Add a New Recipe</h2>
+                            <h2 className="edit-form__header">Edit This Recipe</h2>
                             <input type="text" name="title" placeholder="title" maxLength="25" defaultValue={this.props.title}></input>
                             <input type="text" name="img" placeholder="image link" defaultValue={this.props.img}></input>
                             <div className="edit-form__ingredients">
-                            <h2>Ingredients</h2>
+                            <h3>Ingredients</h3>
                             {ingredients}
 
                             </div>
                             <div className="edit-form__instructions">
-                            <h2>Instructions</h2>
+                            <h3>Instructions</h3>
                             {instructions}
 
                             </div>

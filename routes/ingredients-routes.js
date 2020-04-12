@@ -7,6 +7,7 @@ const router = express.Router();
 const recipesFile = 'recipes.json';
 
 const recipesController = require('../controllers/recipes');
+const ingredientsController = require('../controllers/ingredients');
 
 router.use(express.urlencoded({
     extended: true
@@ -15,23 +16,6 @@ router.use(express.urlencoded({
 router.use('/', express.static(path.join(__dirname, '..', '/public/')));
 router.use('/:id', express.static(path.join(__dirname, '..', '/public/')));
 
-//
-
-router.get('/new', recipesController.getAddRecipe);
-
-router.post('/', recipesController.postAddRecipe);
-
-router.get('/:id/edit', recipesController.getEditRecipeById);
-
-router.get('/:id/delete', recipesController.getDeleteRecipeById);
-
-router.get('/reset', recipesController.getResetRecipes);
-
-router.get('/:id', recipesController.getRecipeById);
-
-router.put('/:id', recipesController.putRecipeById);
-
-router.get('/', recipesController.getShowAllRecipes);
-
+router.get('/', ingredientsController.getAllIngredients);
 
 module.exports = router;
