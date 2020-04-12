@@ -2,8 +2,9 @@ var React = require('react');
 class Show extends React.Component {
     render() {
 
-        const editLink = '/recipes/' + this.props.id + "/edit";
-        const deleteLink = '/recipes/' + this.props.id + "?_method=delete";
+        const editLink = '/recipes/' + this.props.index + "/edit";
+        const deleteLink = '/recipes/' + this.props.index + "?_method=delete";
+
 
         return (
             <html>
@@ -20,15 +21,15 @@ class Show extends React.Component {
                         <br/>
                         <div className="col">
                             <div>
-                                <h4>Recipe Id: {this.props.id}</h4>
+                                <h5>Recipe ID: {this.props.recipe.id}</h5>
+                                <p>Date created: {this.props.recipe.dateCreated}</p>
                                 <br/>
-                                <h4>Title</h4>
-                                <p>{this.props.title}</p>
-                                <h4>Ingredients</h4>
-                                <p>{this.props.ingredients}</p>
-                                <h4>Instructions</h4>
-                                <p>{this.props.instructions}</p>
-                                <br/>
+                                <h5>Title</h5>
+                                <p>{this.props.recipe.title}</p>
+                                <h5>Ingredients</h5>
+                                <p>{this.props.recipe.ingredients}</p>
+                                <h5>Instructions</h5>
+                                <p>{this.props.recipe.instructions}</p>
                                 <br/>
                             </div>
 

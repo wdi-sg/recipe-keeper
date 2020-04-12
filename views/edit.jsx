@@ -2,8 +2,8 @@ var React = require('react');
 class Edit extends React.Component {
     render() {
 
-        const link = "/recipes/"+this.props.id+"?_method=put";
-        const editLink = '/recipes/' + this.props.id + "/edit";
+        const link = "/recipes/"+this.props.index+"?_method=put";
+        const editLink = '/recipes/' + this.props.index + "/edit";
 
         return (
             <html>
@@ -22,25 +22,30 @@ class Edit extends React.Component {
                             <br/>
                             <div className="col">
                                 <form  method="POST" action={link}>
-                                    <br/>
                                     <div className="form-group">
-                                        <h4>Recipe Id: {this.props.id}</h4>
                                         <br/>
+                                        <label>Recipe ID: </label>
+                                        <input type="text" id="exampleFormControlInput1" className="form-control" name="id" defaultValue={this.props.recipe.id} readOnly />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Date created: </label>
+                                        <input type="text" id="exampleFormControlInput1" className="form-control" name="dateCreated" defaultValue={this.props.recipe.dateCreated} readOnly />
                                     </div>
 
+                                    <br/>
                                     <div className="form-group">
                                         <label>Recipe Title</label>
-                                        <input type="text" className="form-control" id="exampleFormControlInput1" name="title" defaultValue={this.props.title} />
+                                        <input type="text" className="form-control" id="exampleFormControlInput1" name="title" defaultValue={this.props.recipe.title} />
                                     </div>
 
                                     <div className="form-group">
                                         <label>Ingredients</label>
-                                        <input type="text" className="form-control" id="exampleFormControlInput1" name="ingredients" defaultValue={this.props.ingredients}/>
+                                        <input type="text" className="form-control" id="exampleFormControlInput1" name="ingredients" defaultValue={this.props.recipe.ingredients}/>
                                     </div>
 
                                     <div className="form-group">
                                         <label>Instructions</label>
-                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions" defaultValue={this.props.instructions}></textarea>
+                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions" defaultValue={this.props.recipe.instructions}></textarea>
                                     </div>
                                     <button type="submit" className="btn btn-primary mb-2">Submit</button>
                                 </form>

@@ -2,9 +2,8 @@ var React = require('react');
 class Home extends React.Component {
     render() {
 
-        const recipesList = this.props.recipes.map((recipe) => {
-            const recipeLink = '/recipes/'+recipe.id;
-            console.log(recipe.id);
+        const recipesList = this.props.recipes.map((recipe, index) => {
+            const recipeLink = '/recipes/'+ (index+1);
             return <li key={recipe.id}><a href={recipeLink}>{recipe.title}</a></li>
         })
 
@@ -23,7 +22,6 @@ class Home extends React.Component {
                             <br/>
                             <div className="col">
                                 <div>
-
                                     <p>Welcome to the recipes page. Please select recipes or create your own recipes.</p>
                                     <br/>
                                 </div>

@@ -1,7 +1,17 @@
 var React = require('react');
 class Create extends React.Component {
     render() {
-            const recipeId = this.props.recipes.length + 1;
+            let recipeId;
+            let recipesLength = this.props.recipes.length;
+            if(recipesLength === 0) {
+                recipeId = 1;
+            } else {
+                recipeId = parseInt(this.props.recipes[recipesLength-1].id) + 1;
+            };
+
+            let currentdate = new Date();
+            let datecreated = currentdate.toUTCString()
+
         return (
             <html>
                 <head>
@@ -20,7 +30,12 @@ class Create extends React.Component {
                             <form  method="POST" action="/recipes">
                                 <div className="form-group">
                                     <br/>
-                                    <h4>Recipe Id: {recipeId}</h4>
+                                    <label>Recipe ID: </label>
+                                    <input type="text" id="exampleFormControlInput1" className="form-control" name="id" defaultValue={recipeId} readOnly />
+                                </div>
+                                <div className="form-group">
+                                    <label>Date created: </label>
+                                    <input type="text" id="exampleFormControlInput1" className="form-control" name="dateCreated" defaultValue={datecreated} readOnly />
                                 </div>
 
                                 <div className="form-group">
@@ -37,6 +52,7 @@ class Create extends React.Component {
                                     <label>Instructions</label>
                                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions"></textarea>
                                 </div>
+
                                 <button type="submit" className="btn btn-primary mb-2">Create</button>
                             </form>
                         </div>
