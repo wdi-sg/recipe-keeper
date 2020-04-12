@@ -1,5 +1,5 @@
 const Model = require('./model')
-const JSON_URI = '../recipes.json';
+const JSON_URI = './recipes.json'
 
 class Recipe extends Model{
 
