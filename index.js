@@ -127,6 +127,11 @@ app.delete("/deleterecipe/:id", (request, response) => {
 });
 
 
+// About RecipeList response
+app.get('/about', (request, response) => {
+    response.render('about');
+})
+
 
 // Home page response
 app.get('/', (request, response) => {
@@ -141,7 +146,15 @@ app.get('/', (request, response) => {
             recipeTitleArray.push(recipeArray[i].title);
         }
 
-        const data = {"recipeTitleArray" : recipeTitleArray};
+        // Get all recipe images
+        let recipeImageArray = [];
+
+        for (var u = 0; u < recipeArray.length; u++) {
+            recipeImageArray.push(recipeArray[u].img);
+        }
+
+
+        const data = {"data" : [{"recipeTitleArray" : recipeTitleArray}, {"recipeImageArray" : recipeImageArray}]};
 
         response.render("home", data);
     })

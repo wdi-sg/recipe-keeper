@@ -3,7 +3,7 @@ const React = require('react');
 class Home extends React.Component {
 
     render() {
-        // styling purposes
+        /////////////////////////////////////// styling purposes
         const title = {"textAlign" : "center"};
 
         const recipeListTitle = {"textAlign" : "center"};
@@ -17,9 +17,35 @@ class Home extends React.Component {
         const createRecipeForm = {"marginTop" : "5px",
                                  };
 
-        // javascript purposes
-        const recipeTitles = this.props.recipeTitleArray.map((el, i) => {
-            return <p><a href={`./singlerecipe/${i}`}>{el}</a></p>
+        const foodDiv = {
+                        "height" : "130px",
+                        "width" : "191px",
+                        "margin" : "30px 20px"
+                        }
+
+        const foodImage = {
+                            "height" : "130px",
+                            "width" : "191px",
+                        };
+
+        const foodTitle = {
+                            "textAlign" : "center"
+                          };
+
+
+        //////////////////////////////////// javascript purposes
+
+        const recipeImages = this.props.data[1].recipeImageArray;
+
+        const recipeTitles = this.props.data[0].recipeTitleArray.map((el, i) => {
+            while (i < 9){
+                return (
+                    <div style={foodDiv}>
+                        <img src={`${recipeImages[i]}`} style={foodImage}></img><br></br>
+                        <a href={`./singlerecipe/${i}`} style={foodTitle}>{el}</a>
+                    </div>
+                )
+            }
         })
 
         /*
@@ -58,6 +84,19 @@ class Home extends React.Component {
                 <head>
                     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"></link>
                 </head>
+                <nav>
+                    <ul className="nav justify-content-center">
+                        <li className="nav-item">
+                            <a className="nav-link active" href="/">Home</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/">All Recipes</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/about">about RecipeList</a>
+                        </li>
+                    </ul>
+                </nav>
                 <body>
                     <div>
                         <h1 style={title}>Recipe Keeper</h1>
@@ -66,7 +105,7 @@ class Home extends React.Component {
                         <div className="row">
                             <div className="col-md-8">
                                 <h2 style={recipeListTitle}>List of Recipes</h2>
-                                <div style={recipeList}>
+                                <div style={recipeList} className="container">
                                     {recipeTitles}
                                 </div>
                             </div>

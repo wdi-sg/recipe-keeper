@@ -36,6 +36,22 @@ class Editrecipe extends React.Component {
 
         return(
             <html>
+                <head>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"></link>
+                </head>
+                <nav>
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">All Recipes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">about RecipeList</a>
+                        </li>
+                    </ul>
+                </nav>
                 <body>
                     <div>
                         <h1 style={title}>Edit Recipe</h1>
