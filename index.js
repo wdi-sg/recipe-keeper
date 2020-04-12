@@ -70,7 +70,7 @@ app.get('/recipes/:id', (req, res) => {
 
 app.get('/recipes/:id/edit', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-        const index = parseInt(req.params.id)-1;
+        const index = parseInt(req.params.id);
             const recipeData = {
                 index : index,
                 recipe : obj.recipes[index],
@@ -109,7 +109,7 @@ app.post('/recipes', (req, res) => {
 
 app.put('/recipes/:id', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-        const index = parseInt(req.params.id)-1;
+        const index = parseInt(req.params.id);
         obj.recipes[index] = req.body;
 
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {

@@ -35,7 +35,7 @@ class Edit extends React.Component {
                                     <br/>
                                     <div className="form-group">
                                         <label>Recipe Title</label>
-                                        <input type="text" className="form-control" id="exampleFormControlInput1" name="title" defaultValue={this.props.recipe.title} />
+                                        <input type="text" className="form-control" id="exampleFormControlInput1" name="title" defaultValue={this.props.recipe.title} maxLength="50" required/>
                                     </div>
 
                                     <div className="form-group">

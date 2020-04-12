@@ -1,25 +1,18 @@
 {
   "recipes": [
     {
+      "id": "7",
+      "dateCreated": "Sun, 12 Apr 2020 13:07:48 GMT",
+      "title": "Boiled duck",
+      "ingredients": "1 duck, water",
+      "instructions": "boil duck in water for 20 minutes. take it out. serve. "
+    },
+    {
       "id": "8",
-      "dateCreated": "Sun, 12 Apr 2020 13:01:07 GMT",
+      "dateCreated": "Sun, 12 Apr 2020 13:13:05 GMT",
       "title": "eight",
       "ingredients": "eight",
       "instructions": "eight"
-    },
-    {
-      "id": "9",
-      "dateCreated": "Sun, 12 Apr 2020 13:01:19 GMT",
-      "title": "nine",
-      "ingredients": "nine",
-      "instructions": "nine"
-    },
-    {
-      "id": "10",
-      "dateCreated": "Sun, 12 Apr 2020 13:01:56 GMT",
-      "title": "tenm",
-      "ingredients": "ten",
-      "instructions": "ten"
     }
   ]
 }

@@ -40,7 +40,7 @@ class Create extends React.Component {
 
                                 <div className="form-group">
                                     <label>Recipe Title</label>
-                                    <input type="text" className="form-control" id="exampleFormControlInput1" name="title" required />
+                                    <input type="text" className="form-control" id="exampleFormControlInput1" name="title" maxLength="50" required />
                                 </div>
 
                                 <div className="form-group">
