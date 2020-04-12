@@ -118,6 +118,27 @@ app.put('/editarecipe/:id', (request, response) => {
 
     console.log(singleRecipe);
 
+    // Get names of ingredients in array form
+    const ingredientsNameArray = singleRecipe.ingredients;
+
+    // Get amount of ingredients in array form
+    const ingredientsAmtArray = singleRecipe.amount;
+
+    // Change ingredients array into object
+    singleRecipe.ingredients = [];
+
+    // format ingredient to hold name and amount
+    for (var i = 0; i < ingredientsNameArray.length; i++) {
+        // create template to push into ingredients array
+        let ingredientTemplate = {"name" : ingredientsNameArray[i], "amount" : ingredientsAmtArray[i]};
+
+        // Push into ingredients array
+        singleRecipe.ingredients.push(ingredientTemplate);
+    }
+
+    // remove amount key
+    delete singleRecipe.amount;
+
     jsonfile.readFile(file, (err, obj) => {
         if (singleRecipe.img === ""){
             singleRecipe.img = obj.recipes[id].img;

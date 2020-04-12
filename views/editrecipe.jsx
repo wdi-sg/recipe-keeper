@@ -6,14 +6,16 @@ class Editrecipe extends React.Component {
         // CSS things
         const title = {"textAlign" : "center"};
 
-        const form = {"display" : "flex",
-                      "flexDirection" : "column",
-                      "alignItems" : "center"
+        const form = {
+                        "display" : "flex",
+                        "justifyContent" : "center"
                      };
 
         const createRecipeForm = {"marginTop" : "5px",
                                   "width" : "400px"
                                 };
+
+        const ingredientsAmt = {"width" : "50px"}
 
         // Javascript things
 
@@ -21,14 +23,20 @@ class Editrecipe extends React.Component {
 
         const id = this.props.data[1].id
 
-        const editRecipe =<div>
-                         <form action={`/editarecipe/${id}?_method=put`} method="post" style={form}>
-                            <input type="text" name="title" placeholder={`${singleRecipe.title}`} style={createRecipeForm}></input>
-                            <input type="text" name="ingredients" placeholder={`${singleRecipe.ingredients[0]}`} style={createRecipeForm}></input>
-                            <input type="text" name="ingredients" placeholder={`${singleRecipe.ingredients[1]}`} style={createRecipeForm}></input>
-                            <input type="text" name="ingredients" placeholder={`${singleRecipe.ingredients[2]}`} style={createRecipeForm}></input>
-                            <input type="text" name="instructions" placeholder={`${singleRecipe.instructions}`} style={createRecipeForm}></input>
+        const editRecipe =<div style={form}>
+                         <form action={`/editarecipe/${id}?_method=put`} method="post">
+                            <input type="text" name="title" placeholder={`${singleRecipe.title}`} style={createRecipeForm}></input><br></br>
+
+                            <input type="text" name="ingredients" placeholder={`${singleRecipe.ingredients[0].name}`} style={createRecipeForm}></input><input type="number" name="amount" placeholder={`${singleRecipe.ingredients[0].amount}`} style={ingredientsAmt}></input><br></br>
+
+                            <input type="text" name="ingredients" placeholder={`${singleRecipe.ingredients[1].name}`} style={createRecipeForm}></input><input type="number" name="amount" placeholder={`${singleRecipe.ingredients[1].amount}`} style={ingredientsAmt}></input><br></br>
+
+                            <input type="text" name="ingredients" placeholder={`${singleRecipe.ingredients[2].name}`} style={createRecipeForm}></input><input type="number" name="amount" placeholder={`${singleRecipe.ingredients[2].amount}`} style={ingredientsAmt}></input><br></br>
+
+                            <input type="text" name="instructions" placeholder={`${singleRecipe.instructions}`} style={createRecipeForm}></input><br></br>
+
                             <input type="text" name="img" placeholder="image link" style={createRecipeForm}></input><br></br>
+
                             <input type="submit" value="Submit" style={createRecipeForm}></input>
                          </form>
                     </div>
@@ -56,9 +64,7 @@ class Editrecipe extends React.Component {
                     <div>
                         <h1 style={title}>Edit Recipe</h1>
                     </div>
-                    <div>
-                        {editRecipe}
-                    </div>
+                    {editRecipe}
                 </body>
             </html>
 
