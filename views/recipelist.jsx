@@ -30,7 +30,6 @@ var React = require('react');
 
 const Recipes = (obj) => {
   let recipes = obj.recipes;
-  console.log(recipes);
 
   return (
     <>
@@ -60,7 +59,6 @@ const Recipes = (obj) => {
 class RecipeList extends React.Component {
   render () {
     let recipes = this.props.recipes;
-    console.log("list", recipes);
 
     return (
       <html>
