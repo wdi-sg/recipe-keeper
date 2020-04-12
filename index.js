@@ -78,7 +78,7 @@ app.get('/editrecipe/:id', (request, response) => {
 
     jsonfile.readFile(file, (err, obj) => {
         // Get data of recipe to edit
-        const singleRecipe = obj.recipes[`${id}`];
+        const singleRecipe = obj.recipes[id];
         const data = { "data" : [{"singleRecipe" : singleRecipe}, {"id" : id}]}
 
         response.render('editrecipe', data);
@@ -110,6 +110,21 @@ app.put('/editarecipe/:id', (request, response) => {
 
     })
 })
+
+
+// Delete response
+app.delete("/deleterecipe/:id", (request, response) => {
+    const id = request.params.id;
+
+    jsonfile.readFile(file, (err, obj) => {
+        obj.recipes.splice(id, 1);
+
+        jsonfile.writeFile(file, obj, (err) => {
+
+        })
+        response.redirect('/');
+    })
+});
 
 
 

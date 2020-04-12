@@ -35,6 +35,11 @@ class Singlerecipe extends React.Component{
 
         const recipeInstructions = <p>{recipeObject.instructions}</p>
 
+        const deleteRecipe = <form method="POST" action={`/deleterecipe/${id}?_method=delete`}>
+                                <input name="id" type="hidden" value={id}></input>
+                                <input type="submit" value="delete this"></input>
+                            </form>
+
         return(
             <html>
                 <head>
@@ -63,6 +68,9 @@ class Singlerecipe extends React.Component{
                     </div>
                     <div style={editRecipe}>
                         <a href={`/editrecipe/${id}`}>Edit This Recipe</a>
+                    </div>
+                    <div>
+                        {deleteRecipe}
                     </div>
                 </body>
             </html>
