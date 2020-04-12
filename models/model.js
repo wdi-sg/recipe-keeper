@@ -1,12 +1,11 @@
 const idMaker = require('shortid')
 const jsonFile = require('jsonfile')
 const fs = require('fs')
-const path = require('path')
 const JSON_INDENT_SPACES = 4
 
 class Model {
 
-  static connection = ''
+  static _connection = ''
 
   constructor () {
     this._id = idMaker.generate()
@@ -19,6 +18,31 @@ class Model {
 
   get date_created () {
     return this._date_created
+  }
+
+  // read and return all objects
+  static async findAll () {
+    return jsonFile.readFile(this._connection)
+  }
+
+  // check ids of objs in arr can be found in db
+  static async haveValidRefs (objArr) {
+    const allObjs = await this.findAll()
+    return objArr.all(obj => {
+      const idToCheck = obj._id
+      return allObjs.some(obj.id === idToCheck)
+    })
+  }
+
+  //if not found return undefined
+  static async findById (id) {
+    let objs
+    try {
+      objs = await jsonFile.readFile(this._connection)
+      return objs.find(item => item._id === id)
+    } catch (e) {
+      console.error('Error reading file:', e)
+    }
   }
 
   // takes in new ingredient obj
@@ -51,10 +75,6 @@ class Model {
     }
   }
 
-  async _fetchData () {
-    return jsonFile.readFile(this.constructor._connection)
-  }
-
   // static _deSerialize (rawJson) {
   //   return rawJson.map(json => {
   //     return Object.create((this.prototype, Object.getOwnPropertyDescriptors(json)))
@@ -66,17 +86,10 @@ class Model {
   //   const rawJson = await jsonFile.readFile()
   //   return this._deSerialize(rawJson)
   // }
-  //
-  // static async findById (id) {
-  //   let objs
-  //   try {
-  //     objs = await jsonFile.readFile(this._connection)
-  //   } catch (e) {
-  //     console.trace('Error reading file:', e)
-  //     return -1
-  //   }
-  //   return objs.find(item => item._id === id)
-  // }
+
+  async _fetchData () {
+    return jsonFile.readFile(this.constructor._connection)
+  }
 
 }
 
