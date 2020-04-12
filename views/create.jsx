@@ -6,7 +6,12 @@ class Create extends React.Component {
             if(recipesLength === 0) {
                 recipeId = 1;
             } else {
-                recipeId = parseInt(this.props.recipes[recipesLength-1].id) + 1;
+                const maxId = this.props.recipes.reduce((a,b) => {
+                    let c = parseInt(a.id);
+                    let d = parseInt(b.id);
+                    return (c > d) ? a : b;
+                })
+                recipeId = parseInt(maxId.id)+1
             };
 
             let currentdate = new Date();

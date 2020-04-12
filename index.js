@@ -1,6 +1,7 @@
 const jsonfile = require('jsonfile');
 const dateformat = require('dateformat');
 const file = 'data.json';
+const sortTitle = "sortTitle.json"
 const ingredient = 'ingredient.json';
 
 const express = require('express');
@@ -36,6 +37,56 @@ app.get('/recipes', (req, res) => {
         res.render('home', allRecipes);
     });
 });
+
+app.get('/recipes/sort/:type', (req, res) => {
+    if (req.params.type === "id") {
+        jsonfile.readFile(file, (err, obj) => {
+            const sortedList = obj.recipes.sort((a, b) => {
+                let c = parseInt(a.id);
+                let d = parseInt(b.id);
+                if (c < d) {
+                    return -1;
+                }
+                if (c > d) {
+                    return 1;
+                }
+                return 0;
+            })
+
+            const sortedRecipes = {
+                recipes : sortedList
+            };
+
+            jsonfile.writeFile(file, sortedRecipes, {spaces : 2}, (err) => {
+                res.redirect('/');
+            })
+        });
+    }
+    if (req.params.type === "title") {
+        jsonfile.readFile(file, (err, obj) => {
+            const sortedList = obj.recipes.sort((a, b) => {
+                let c = a.title.toLowerCase();
+                let d = b.title.toLowerCase();
+                if (c < d) {
+                    return -1;
+                }
+                if (c > d) {
+                    return 1;
+                }
+                return 0;
+            })
+
+            const sortedRecipes = {
+                recipes : sortedList
+            }
+
+            jsonfile.writeFile(file, sortedRecipes, {spaces : 2}, (err) => {
+                res.redirect('/');
+            })
+        });
+    };
+});
+
 
 //------------------------------------------------------
 // Create Page //

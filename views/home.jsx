@@ -4,7 +4,7 @@ class Home extends React.Component {
 
         const recipesList = this.props.recipes.map((recipe, index) => {
             const recipeLink = '/recipes/'+ (index+1);
-            return <li key={recipe.id}><a href={recipeLink}>{recipe.title}</a></li>
+            return <li key={index+1}><a href={recipeLink}>{recipe.title}</a></li>
         })
 
         return (
@@ -32,6 +32,11 @@ class Home extends React.Component {
                                     <ol>
                                         {recipesList}
                                     </ol>
+
+                                    <a href="/recipes/sort/id">Sort by ID</a>
+                                    <br/>
+                                    <a href="/recipes/sort/title">Sort by Title</a>
+
                                     <br/>
                                     <br/>
                                 </div>
