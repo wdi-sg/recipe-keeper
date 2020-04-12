@@ -171,7 +171,8 @@ app.get('/recipes/:id/edit', function (req, res) {
 app.get('/recipes/', function (req, res) {
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj;
-    if (recipeBook==undefined){
+    if (recipeBook==undefined || recipeBook==null){
+      console.log(recipeBook);
       recipeBook = {
         "recipes": [],
       }
