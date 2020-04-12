@@ -67,8 +67,8 @@ app.get("/recipes",(request,response)=>{
 // create a route for id+
 // collect id in the route as a variable+
 // find the recipe file+
-// find id within recipe file
-// display html page that shows content in id
+// find id within recipe file+
+// display html page that shows content in id+
 app.get("/recipes/:id", (request, response) => {
     let recipeID = request.params.id;
     console.log("Now showing page id " + recipeID);
