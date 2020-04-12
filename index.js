@@ -78,9 +78,9 @@ app.get("/recipes/:id", (request, response) => {
             console.error(err)
             console.log("//// error ////");
             }
-            let showRecipe = obj.cookbook[recipeID]
-            // response.send("This page shows recipe number : " + showRecipe);
-            response.render(views, showRecipe);
+            let data = obj.cookbook;
+            // response.send("This page shows recipe number : " + recipeID + ": " + showRecipe);
+            response.render("home", data);
         })
 })
 
