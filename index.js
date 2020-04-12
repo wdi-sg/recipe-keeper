@@ -47,6 +47,7 @@ app.post('/recipes', function (req, res) {
       "title": req.body.title,
       "ingredients": req.body.ingredients,
       "instructions": req.body.instructions,
+      "date-updated": getDateTime(),
     }
     if(recipe.title!=""){
       recipeBook.recipes.push(recipe);
@@ -82,6 +83,7 @@ app.put('/recipes/:id', function (req, res) {
       "title": req.body.title,
       "ingredients": req.body.ingredients,
       "instructions": req.body.instructions,
+      "date-updated": getDateTime(),
     }
     if(updatedRecipe.title != ""){
       recipeBook[index] = updatedRecipe;
@@ -191,3 +193,9 @@ app.listen(3000, () => {
 
 });
 
+function getDateTime() {
+  var date = new Date();
+  var formatDate = date.toLocaleDateString();
+  var formatTime = date.toLocaleTimeString();
+  return `${formatDate} ${formatTime}`;
+}

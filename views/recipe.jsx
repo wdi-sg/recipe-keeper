@@ -21,7 +21,7 @@ class Recipe extends React.Component {
                                 <h5 className="card-title text-left"><strong>Title: </strong>{this.props.title}</h5>
                                 <h5 className="card-title text-left"><strong>Ingredients: </strong>{this.props.ingredients}</h5>
                                 <h5 className="card-title text-left"><strong>Instructions: </strong>{this.props.instructions}</h5>
-
+                                <h5 className="card-title text-left"><strong>Updated at: </strong>{this.props[`date-updated`]}</h5>
 
 
 
