@@ -4,6 +4,7 @@ class Show extends React.Component {
   render() {
     const editLink = '/recipes/'+ this.props.id +"/edit";
     const deleteLink = "/recipes/"+ this.props.id + "?_method=delete";
+    const homeLink = '/recipes';
     return (
       <html>
         <body>
@@ -17,10 +18,11 @@ class Show extends React.Component {
             <p>Instructions</p>
             <p>{this.props.instructions}</p>
           </div>
-          <a href={editLink}>Edit Page</a>
-          <form method="POST" action={deleteLink}>
+            <a href={editLink}>Edit Page</a>
+            <form method="POST" action={deleteLink}>
             <input type="submit" value="delete recipe"/>
-        </form>
+          </form>
+          <a href={homeLink}>Go back Home</a>
         </body>
       </html>
     );
