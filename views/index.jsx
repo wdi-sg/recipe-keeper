@@ -1,5 +1,7 @@
 var React = require('react');
+
 //"https://www.worldofwallpaper.com/media/catalog/product/d/e/dec191-marblesque-marble-wallpaper-white-ea.jpg"
+import ResponsiveEmbed from 'react-bootstrap/ResponsiveEmbed'
 
 
 class Home extends React.Component {
