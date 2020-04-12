@@ -204,6 +204,36 @@ app.get('/allrecipes', (request, response) => {
     })
 })
 
+app.get('/searchrecipe', (request, response) => {
+    // Get search query
+    const recipeRequested = request.query.search.toLowerCase();
+
+    console.log(recipeRequested);
+
+    jsonfile.readFile(file, (err, obj) => {
+        // Loop through file to find recipes that match request
+        const allRecipes = obj.recipes;
+
+        let recipeTitleArray = [];
+
+        let recipeImgArray = [];
+
+        for (var i = 0; i < allRecipes.length; i++) {
+            if(allRecipes[i].title.toLowerCase().includes(recipeRequested)){
+                recipeTitleArray.push(allRecipes[i].title);
+                recipeImgArray.push(allRecipes[i].img);
+            }
+        }
+
+        const data = {"recipeRequested" : recipeRequested,
+                      "recipeTitleArray" : recipeTitleArray,
+                      "recipeImgArray" : recipeImgArray
+                     }
+
+        response.render('sortbyrecipe', data);
+    })
+})
+
 // Home page response
 app.get('/', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {

@@ -1,6 +1,6 @@
 const React = require('react');
 
-class Allrecipes extends React.Component {
+class Sortbyrecipe extends React.Component {
 
     render(){
         // CSS things
@@ -29,22 +29,19 @@ class Allrecipes extends React.Component {
 
         // Javascript things
 
-        const recipeImages = this.props.data[1].recipeImageArray;
+        const recipeRequested = this.props.recipeRequested;
 
-        const recipeTitles = this.props.data[0].recipeTitleArray.map((el, i) => {
+        const recipeImg = this.props.recipeImgArray;
+
+        const recipeTitles = this.props.recipeTitleArray.map((el, i) => {
             return (
                 <div style={foodDiv}>
-                    <img src={`${recipeImages[i]}`} style={foodImage}></img><br></br>
+                    <img src={`${recipeImg[i]}`} style={foodImage}></img><br></br>
                     <a href={`./singlerecipe/${i}`} style={foodTitle}>{el}</a>
                 </div>
             )
 
         })
-
-        const searchRecipe = <form action="/searchrecipe" method="get">
-                                <input type="text" name="search" placeholder="Search a Recipe"></input><br></br>
-                                <input type="submit" value="submit" placeholder="Submit"></input>
-                            </form>
 
 
 
@@ -67,10 +64,7 @@ class Allrecipes extends React.Component {
                     </ul>
                 </nav>
                 <body>
-                    <h1 style={title}>All Recipes</h1>
-                    <div>
-                        {searchRecipe}
-                    </div>
+                    <h1 style={title}>{recipeRequested}</h1>
                     <div style={recipeTitlesStyle}>
                         {recipeTitles}
                     </div>
@@ -81,4 +75,4 @@ class Allrecipes extends React.Component {
     }
 }
 
-module.exports = Allrecipes
+module.exports = Sortbyrecipe;
