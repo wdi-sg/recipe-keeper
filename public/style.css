@@ -1,0 +1,35 @@
+body{
+}
+
+main{
+	padding:0 10% 10%;
+}
+
+.name{
+	color: white;
+	margin-right: 5%;
+	margin-left: 5%;
+}
+
+nav{
+	margin-bottom: 5%;
+}
+
+h1{
+	text-align: center;
+}
+
+.editButton{
+	margin-bottom: 2%;
+}
+
+footer{
+	text-align: center;
+	background-color: #343A40;
+	color: white;
+	height: 70px;
+}
+
+footer p{
+	padding-top: 20px;
+}
