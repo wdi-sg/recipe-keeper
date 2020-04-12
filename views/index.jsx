@@ -21,7 +21,7 @@ class Index extends React.Component {
                         </div>
                         <div className="landing-page">
                             <form method="POST" action="/recipes/sort" className="sort-form">
-                                <label htmlFor="recipes-properties" className="sort-form__label">Sort Recipes By::</label>
+                                <label htmlFor="recipes-properties" className="sort-form__label">Sort Recipes By:</label>
                                 <select id="recipes-properties" name="property" className="sort-form__selector">
                                 <option value="title">title</option>
                                 <option value="ingredientNumber">number of ingredients</option>
