@@ -26,6 +26,18 @@ app.get('/recipes/create', (req,res) => {
     res.render('create')
 })
 
+app.get('/recipes/:id', (req,res) => {
+    jsonfile.readFile(file, (err,obj) => {
+        console.log("error of readfile is: =============");
+        console.log(err);
+        console.log("obj of readfile is: =============");
+        console.log(obj);
+        var recipeHolder= {};
+        recipeHolder = obj.recipes[parseInt(req.params.id)];
+    res.render('single', recipeHolder);
+    });
+});
+
 app.post('/recipes', (req,res)=>{
     jsonfile.readFile(file, (err,obj) => {
         console.log("error of readfile is: =============");
@@ -44,6 +56,7 @@ app.post('/recipes', (req,res)=>{
             console.log(obj.pokemon);
         });
     });
+    res.redirect('/home');
 });
 
 
