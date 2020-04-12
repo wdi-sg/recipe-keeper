@@ -5,7 +5,7 @@ const Ingredient = require('../models/ingredient.model')
 router.route('/').get((req, res) => {
   Recipe.findAll()
     .then(jsonArr => res.json(jsonArr))
-    .then(err => res.status(400).json('Error: ' + err))
+    .catch(err => res.status(400).json('Error: ' + err))
 })
 
 router.route('/add').post((req, res) => {

@@ -22,6 +22,9 @@ class Model {
 
   // read and return all objects
   static async findAll () {
+    if (!fs.existsSync(this._connection)) {
+      throw `DB for ${this.name} does not exist`
+    }
     return jsonFile.readFile(this._connection)
   }
 
@@ -54,13 +57,13 @@ class Model {
 
   // fetch existing array and append new
   async save () {
-    this._createDBIfNotExist()
+    await this._createDBIfNotExist()
     const jsonArr = await this._fetchAll()
     if (jsonArr.some(item => item._id === this.id)) {
       throw`Error saving, duplicate id.`
     }
     jsonArr.push(this)
-    this._save(jsonArr)
+    await this._save(jsonArr)
   }
 
   async _fetchAll () {
@@ -86,14 +89,18 @@ class Model {
     this._save(allObjs).catch(e => console.log(e))
   }
 
-  _createDBIfNotExist () {
-    if (!fs.existsSync(this.constructor._connection)) {
+  async _createDBIfNotExist () {
+    if (!this.isDbExist()) {
       jsonFile.writeFile(this.constructor._connection, [])
         .then(() => console.info(`database created at ${this.constructor._connection}`))
         .catch(e => console.error(`error creating ${this.constructor._connection}`))
     } else {
       console.info(`db found at location ` + this.constructor._connection)
     }
+  }
+
+  isDbExist () {
+    return fs.existsSync(this.constructor._connection)
   }
 
   async _save (objArr) {
