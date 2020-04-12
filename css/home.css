@@ -1,0 +1,71 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0!important;
+    padding: 0!important;
+}
+
+body {
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    color: brown;
+}
+
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+    background-color: rgba(235, 236, 237);
+    border: none
+ }
+
+ .table-striped > tbody > tr:nth-child(2n) > th {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+ }
+
+ .table-striped > tbody > tr:nth-child(2n) > td {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+ }
+
+ .table-striped > tbody > tr:nth-child(2n-1) > td, .table-striped > tbody > tr:nth-child(2n-1) > th {
+    background-color: rgba(255, 255, 255);
+    border: none
+ }
+
+ .table-striped > tbody > tr:nth-child(2n-1) > th {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+ }
+
+ .table-striped > tbody > tr:nth-child(2n-1) > td {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+ }
+
+ .btn-success {
+     background-color: brown;
+     border-color: brown;
+ }
+
+ .btn-danger {
+    font-size: 30px;
+ }
+ 
+ p {
+    max-width: 100%!important;
+    white-space: pre-line;
+ }
+
+ .description {
+    border-radius: 20%;
+    padding: 20px 10px;
+ }
+
+table {
+   min-width: 200px!important;
+   max-width: 25%;
+}
