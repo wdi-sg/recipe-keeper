@@ -36,19 +36,16 @@ const file = 'data.json'
 app.get('/singlerecipe/:id', (request,response) => {
     const id = request.params.id;
 
-    console.log('redirect works')
-
     jsonfile.readFile(file, (err,obj) => {
         // Get recipe details of single item
         const singleRecipe = obj.recipes[id];
 
-        console.log('readfile works')
-        console.log(singleRecipe)
+        console.log(singleRecipe);
 
         const data = { "data" : [{"singleRecipe" : singleRecipe}, {"id" : id}]}
-        // response.render('singlerecipe', data);
+        response.render('singlerecipe', data);
 
-        response.send(singleRecipe);
+        // response.send(singleRecipe);
     })
 
 })
@@ -65,28 +62,15 @@ app.post('/createarecipe', (request, response) => {
         // Get id number of recipe
         id = obj.recipes.length - 1;
 
-        async function getCreatedRecipe(){
-            function testing(){
-                return new Promise ((resolve, reject) => {
-                    jsonfile.writeFile(file, obj, (err) => {
-                    })
-                    setTimeout(() => {
-                        resolve('resolved', 2000)
-                    })
-                })
-            }
+        jsonfile.writeFile(file, obj, (err) => {
+            console.log('writing file')
+        })
 
-            await testing();
-
-            console.log("file finished writing")
-
-            response.redirect(`/singlerecipe/${id}`);
-        }
-
-        getCreatedRecipe();
+        response.redirect(`/singlerecipe/${id}`)
 
     })
 })
+
 
 // Show edit recipe page
 app.get('/editrecipe/:id', (request, response) => {
@@ -108,19 +92,21 @@ app.put('/editarecipe/:id', (request, response) => {
 
     const singleRecipe = request.body;
 
+    console.log(singleRecipe);
+
     jsonfile.readFile(file, (err, obj) => {
-        if (singleRecipe.img = ""){
+        if (singleRecipe.img === ""){
             singleRecipe.img = obj.recipes[id].img;
         }
 
         // edit recipe by changing old recipe
-        obj.recipes[id](singleRecipe);
-
-        // Show user single recipe page of new recipe after creating the recipe
-        response.redirect(`/singlerecipe/${id}`);
+        obj.recipes[id] = singleRecipe;
 
         jsonfile.writeFile(file, obj, (err) => {
         })
+
+        // Show user single recipe page of new recipe after creating the recipe
+        response.redirect(`/singlerecipe/${id}`);
 
     })
 })
