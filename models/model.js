@@ -2,6 +2,7 @@ const idMaker = require('shortid')
 const jsonFile = require('jsonfile')
 const fs = require('fs')
 const path = require('path')
+const JSON_INDENT_SPACES = 4
 
 class Model {
 
@@ -43,7 +44,7 @@ class Model {
 
   async _save (objArr) {
     try {
-      await jsonFile.writeFile(this.constructor._connection, objArr)
+      await jsonFile.writeFile(this.constructor._connection, objArr, { spaces: JSON_INDENT_SPACES })
       console.info(`${JSON.stringify(this)} has been saved.`)
     } catch (e) {
       console.error(`error saving ${this.constructor.name}: ${JSON.stringify(objArr)}. \n ${e}`)

@@ -9,8 +9,8 @@ class Ingredient extends Model{
     super()
     this.name = name
     this.disabled = false
+    this.fk_recipes = []
   }
-
 }
 
 module.exports = Ingredient
