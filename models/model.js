@@ -6,6 +6,7 @@ const JSON_INDENT_SPACES = 4
 class Model {
 
   static _connection = ''
+  static _keysToCheck = ['_id']
 
   constructor () {
     this._id = idMaker.generate()
@@ -58,12 +59,30 @@ class Model {
   // fetch existing array and append new
   async save () {
     await this._createDBIfNotExist()
-    const jsonArr = await this._fetchAll()
-    if (jsonArr.some(item => item._id === this.id)) {
-      throw`Error saving, duplicate id.`
+    const jsonArr = this._fetchAll()
+    if (await this.hasDuplicates(this.constructor._keysToCheck)) {
+      throw Error(`duplicates found while saving`)
     }
+    // if (jsonArr.some(item => item._id === this.id)) {
+    //   throw`Error saving, duplicate id.`
+    // }
     jsonArr.push(this)
-    await this._save(jsonArr)
+    return this._save(jsonArr)
+  }
+
+  // for all keys, if any duplicate from in all objs,return false
+  async hasDuplicates (keysToCheck) {
+    const allObjs = this._fetchAll()
+    keysToCheck.every(key => {
+      allObjs.some(item => {
+        if (item[key] === this[key]) {
+          console.warn(`Duplicate value found in ${key}, value is ${item[key]}`)
+          return true
+        }
+        return false
+      })
+
+    })
   }
 
   async _fetchAll () {
@@ -82,7 +101,10 @@ class Model {
       return false
     }
     if (appendArr && Array.isArray(allObjs[indexToUpdate][key])) {
-      allObjs[indexToUpdate][key].push(value)
+      // append if value does not exist
+      if (!allObjs[indexToUpdate].includes(value)) {
+        allObjs[indexToUpdate][key].push(value)
+      }
     } else {
       allObjs[indexToUpdate][key] = value
     }
@@ -104,12 +126,8 @@ class Model {
   }
 
   async _save (objArr) {
-    try {
-      await jsonFile.writeFile(this.constructor._connection, objArr, { spaces: JSON_INDENT_SPACES })
-      console.info(`${JSON.stringify(this)} has been saved.`)
-    } catch (e) {
-      console.error(`error saving ${this.constructor.name}: ${JSON.stringify(objArr)}. \n ${e}`)
-    }
+    await jsonFile.writeFile(this.constructor._connection, objArr, { spaces: JSON_INDENT_SPACES })
+    console.info(`${JSON.stringify(this)} has been saved.`)
   }
 
 }

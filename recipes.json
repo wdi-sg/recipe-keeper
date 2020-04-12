@@ -1,0 +1,21 @@
+[
+    {
+        "_id": "d4UGccLK-",
+        "_date_created": "2020-04-12T17:07:04.771Z",
+        "name": "fried egg",
+        "ingredients": [
+            {
+                "fk_ingredientId": "MMmnE-EoR",
+                "quantity": 10,
+                "unit": "glass",
+                "notes": "cook until broke"
+            },
+            {
+                "fk_ingredientId": "jHbD9_y_Nj",
+                "quantity": 2,
+                "unit": "gram",
+                "notes": "peeled"
+            }
+        ]
+    }
+]

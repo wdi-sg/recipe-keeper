@@ -8,6 +8,10 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 })
 
+router.route('/:id').get((req, res) => {
+  Recipe.findById(req.params.id).then((obj) => res.json(JSON.stringify(obj)))
+})
+
 router.route('/add').post((req, res) => {
   const { name, ingredients, instructions } = req.body
   const newRecipe = new Recipe(name, instructions)
