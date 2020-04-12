@@ -40,7 +40,7 @@ class Singlerecipe extends React.Component{
                     <tr>
                       <th scope="row">{i+1}</th>
                       <td>{el.name}</td>
-                      <td>{el[`amount${i}`]}</td>
+                      <td>{el.amount}</td>
                     </tr>
                     )
         })

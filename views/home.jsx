@@ -73,11 +73,11 @@ class Home extends React.Component {
                                  <form action="/createarecipe" method="post">
                                     <input type="text" name="title" placeholder="Recipe Title" style={createRecipeForm}></input><br></br>
 
-                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount1" placeholder="Amt" style={ingredientsAmt}></input><br></br>
+                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount" placeholder="Amt" style={ingredientsAmt}></input><br></br>
 
-                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount2" placeholder="Amt" style={ingredientsAmt}></input><br></br>
+                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount" placeholder="Amt" style={ingredientsAmt}></input><br></br>
 
-                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount3" placeholder="Amt" style={ingredientsAmt}></input><br></br>
+                                    <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input><input type="number" name="amount" placeholder="Amt" style={ingredientsAmt}></input><br></br>
 
                                     <input type="text" name="instructions" placeholder="Instructions" style={createRecipeForm}></input><br></br>
 
