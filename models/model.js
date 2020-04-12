@@ -59,13 +59,13 @@ class Model {
   // fetch existing array and append new
   async save () {
     await this._createDBIfNotExist()
-    const jsonArr = this._fetchAll()
-    if (await this.hasDuplicates(this.constructor._keysToCheck)) {
-      throw Error(`duplicates found while saving`)
-    }
-    // if (jsonArr.some(item => item._id === this.id)) {
-    //   throw`Error saving, duplicate id.`
+    const jsonArr = await this._fetchAll()
+    // if (await this.hasDuplicates(this.constructor._keysToCheck)) {
+    //   throw Error(`duplicates found while saving`)
     // }
+    if (jsonArr.some(item => item._id === this.id)) {
+      throw`Error saving, duplicate id.`
+    }
     jsonArr.push(this)
     return this._save(jsonArr)
   }
@@ -102,9 +102,9 @@ class Model {
     }
     if (appendArr && Array.isArray(allObjs[indexToUpdate][key])) {
       // append if value does not exist
-      if (!allObjs[indexToUpdate].includes(value)) {
+      // if (!allObjs[indexToUpdate].includes(value)) {
         allObjs[indexToUpdate][key].push(value)
-      }
+      // }
     } else {
       allObjs[indexToUpdate][key] = value
     }
