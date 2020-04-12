@@ -2,6 +2,7 @@ var React = require('react');
 
 class Show extends React.Component {
   render() {
+    const link = "/recipes/"+this.props.id+"?_method=put";
     const editLink = "/recipes/"+ this.props.id +"/edit";
     const deleteLink = "/recipes/"+ this.props.id + "?_method=delete";
     return (
