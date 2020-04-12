@@ -28,8 +28,10 @@ class EditRecipeForm extends React.Component {
                     <div className="container">
                         {header()}
                         <div className="nav">
-                            <a href="/recipes/reset" className="nav__link reset">Reset to original Recipes</a>
+                            <a href="/recipes/" className="nav__link show-all-recipes">Show All Recipes</a>
                             <a href="/" className="nav__link index">Home</a>
+                            <a href="/recipes/reset" className="nav__link reset">Reset Recipes</a>
+                            <a href="/ingredients" className="nav__link ingredients-link">Ingredients List</a>
                         </div>
                         <form method="PUT" action="/recipes" className="edit-form">
                             <h2 className="edit-form__header">Edit This Recipe</h2>

@@ -8,8 +8,6 @@ const recipesFile = 'recipes.json';
 
 const recipesController = require('../controllers/recipes');
 
-const dateUtility = require('../util/get-date');
-
 router.use(express.urlencoded({
     extended: true
 }));
@@ -28,6 +26,8 @@ router.get('/:id/edit', recipesController.getEditRecipeById);
 router.get('/:id/delete', recipesController.getDeleteRecipeById);
 
 router.get('/reset', recipesController.getResetRecipes);
+
+router.post('/sort', recipesController.getSortedRecipes);
 
 router.get('/:id', recipesController.getRecipeById);
 

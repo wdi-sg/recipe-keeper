@@ -34,6 +34,10 @@ class Recipe extends React.Component {
                     </div>
                     <div className = "recipe__ingredients">
                         <h3>Ingredients</h3>
+                        <div className="recipe__ingredients-headers">
+                            <p>Item</p>
+                            <p>Quantity</p>
+                        </div>
                         {ingredients}
                     </div>
                     <div className = "recipe__instructions">
@@ -41,8 +45,8 @@ class Recipe extends React.Component {
                         {instructions}
                     </div>
                     <div className ="recipe__edit-delete-links">
-                    <a href="./edit" className="recipe__edit-link">Edit Recipe</a>
-                    <a href="./delete" className="recipe__delete-link">Delete Recipe</a>
+                        <a href="./edit" className="recipe__edit-link">Edit Recipe</a>
+                        <a href="./delete" className="recipe__delete-link">Delete Recipe</a>
                     </div>
                 </div>
             )
@@ -54,6 +58,10 @@ class Recipe extends React.Component {
             {head()}
             <body>
             {header()}
+            <div className="nav">
+                <a href="/" className="nav__link index-link">Home</a>
+                <a href="/recipes/" className="nav__link show-all-recipes">Back to Recipes</a>
+            </div>
             {recipe()}
             </body>
             </html>

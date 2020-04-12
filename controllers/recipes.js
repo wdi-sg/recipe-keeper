@@ -67,7 +67,7 @@ module.exports.getResetRecipes = (req, res) => {
     jsonfile.readFile('recipes2.json', (err, obj) => {
         jsonfile.writeFile(recipesFile, obj, (err) => {
             if (err) console.log(err)
-            else res.send('reset');
+            else res.render('reset');
         })
     })
 }
@@ -118,5 +118,78 @@ module.exports.getDeleteRecipeById = (req, res) => {
                 res.render(`recipe-deleted`);
             })
             .catch(err => console.log(err));
+    })
+}
+
+module.exports.getSortedRecipes = (req, res) => {
+
+    jsonfile.readFile(recipesFile, (err, obj) => {
+
+        const selectedProp = req.body.property;
+
+        const compareSelectedProp = (a, b) => {
+
+            const valueA = a[selectedProp];
+            const valueB = b[selectedProp];
+            let comparisonVal = 0;
+
+            if (valueA > valueB) {
+                comparisonVal = 1;
+            } else if (valueA < valueB) {
+                comparisonVal = -1;
+            }
+
+            return comparisonVal;
+        }
+
+        if (req.body.property == 'title') {
+
+            obj.recipes.sort(compareSelectedProp);
+
+        } else if (req.body.property == 'dateCreated') {
+
+            const compareDates = (a, b) => {
+
+                const valueA = Date.parse(a["dateCreated"]);
+                const valueB = Date.parse(b["dateCreated"]);
+                let comparisonVal = 0;
+
+                if (valueA > valueB) {
+                    comparisonVal = 1;
+                } else if (valueA < valueB) {
+                    comparisonVal = -1;
+                }
+
+                return comparisonVal;
+            }
+
+            obj.recipes.sort(compareDates);
+
+        } else if (req.body.property == 'ingredientNumber') {
+            const compareIngredLength = (a, b) => {
+
+                const valueA = a["ingredients"].length;
+                const valueB = b["ingredients"].length;
+                let comparisonVal = 0;
+
+                if (valueA < valueB) {
+                    comparisonVal = 1;
+                } else if (valueA > valueB) {
+                    comparisonVal = -1;
+                }
+
+                return comparisonVal;
+            }
+
+            obj.recipes.sort(compareIngredLength);
+        }
+
+
+        jsonfile.writeFile(recipesFile, obj, (err) => {
+            if (err) console.log(err)
+            else {
+                res.redirect('/recipes');
+            }
+        })
     })
 }

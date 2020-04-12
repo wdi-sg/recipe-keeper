@@ -11,7 +11,7 @@ const addIngredient = () => {
     formIngredientsSection.insertAdjacentHTML('beforeend',
         `<div class="add-form__ingredient">
             <input type="text" name="ingredient[name][]" placeholder="ingredient" value=""></input>
-            <input type="text" name="ingredient[amount][]" placeholder="quantity/amount" value=""></input>
+            <input type="text" name="ingredient[amount][]" placeholder="quantity" value=""></input>
             <input type="notes" name="ingredient[notes][]" placeholder="notes" value=""></input>
         </div>`)
 }

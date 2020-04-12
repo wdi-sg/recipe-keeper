@@ -2,7 +2,7 @@ const React = require('react');
 const head = require('./head');
 const header = require('./header');
 
-class Index extends React.Component {
+class Reset extends React.Component {
 
     render() {
 
@@ -19,8 +19,8 @@ class Index extends React.Component {
                             <a href="/recipes/reset" className="nav__link reset-link">Reset Recipes</a>
                             <a href="/ingredients" className="nav__link ingredients-link">Ingredients List</a>
                         </div>
-                        <div className="homepage-body">
-                            <h1>Recipe Deleted!</h1>
+                        <div className="landing-page">
+                        <h2>Recipes Reset!</h2>
                         </div>
                     </div>
                 </body>
@@ -29,4 +29,4 @@ class Index extends React.Component {
     }
 }
 
-module.exports = Index;
+module.exports = Reset;
