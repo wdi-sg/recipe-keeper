@@ -5,7 +5,7 @@ class Home extends React.Component {
     const recipes = this.props.recipes.map(recipe=>
     {
         const link = '/recipes/'
-        return <a href={link}><li>{recipe.name}</a></li>
+        return <li>{recipe.name}</li>
     })
     return (
       <html>

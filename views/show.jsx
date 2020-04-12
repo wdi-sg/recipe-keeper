@@ -2,8 +2,8 @@ var React = require('react');
 
 class Show extends React.Component {
   render() {
-    const editLink = "/recipes"+ this.props.id +"/edit";
-    const deleteLink = "/recipes"+ this.props.id + "?_method=delete";
+    const editLink = "/recipes/"+ this.props.id +"/edit";
+    const deleteLink = "/recipes/"+ this.props.id + "?_method=delete";
     return (
       <html>
         <body>

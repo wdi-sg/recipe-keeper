@@ -77,12 +77,19 @@ app.get('/recipes/', (request,response)=>{
 app.get('recipes/:id/edit', (request,response)=>{
     jsonfile.readFile(file, (err,obj)=>{
         const index = parseInt(request.params.id)-1;
+        const recipeToEdit = obj.recipes[index];
+         const data = {
+             recipe: recipeToEdit,
+             recipeId: index
+         }
+        /*
+        const index = parseInt(request.params.id)-1;
         const dataEdit = {
             id : index + 1,
             name: obj.recipes[index].name,
             ingredients: obj.recipes[index].ingredients,
             instructions: obj.recipes[index].instructions
-        }
+        }*/
          response.render('edit', dataEdit);
     })
 
@@ -104,7 +111,8 @@ app.delete('/recipes/:id', (request,response)=>{
         const index = parseInt(request.params.id)-1;
         obj.recipes.splice(index, 1);
         jsonfile.writeFile(file, obj, (err)=>{
-            response.redirect('/recipes');
+            response.send("successfully deleted recipe " + index);
+            //response.redirect('/recipes/');
         });
     })
 })
