@@ -26,7 +26,7 @@ const addInput = function (e) {
   btnCol.className = "col-2";
 
   let dBtn = document.createElement("button");
-  dBtn.className = "btn btn-small btn-outline-secondary btn-block del-input";
+  dBtn.className = "btn btn-small btn-outline-success btn-block del-input";
   dBtn.id = ix;
   dBtn.innerText = "Remove";
   dBtn.addEventListener("click", delInput);
