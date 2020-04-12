@@ -14,6 +14,9 @@ class Show extends React.Component {
             return (<li>{instruction}</li>)
         })
 
+        let currentDate = new Date();
+        let date = currentDate.getDate() + '/' + currentDate.getMonth() + '/' + currentDate.getFullYear() + ', ' + currentDate.getHours() + ":"  + currentDate.getMinutes() + ' HRS';
+
         return (
             <html>
             <head>
@@ -39,6 +42,8 @@ class Show extends React.Component {
                                 <ul>{ingredientsList}</ul>
                                 <h4>Instructions</h4>
                                 <ol>{instructionsList}</ol>
+                                <br/><br/>
+                                <h6 className='text-secondary'>Created on {date}</h6>
                             </div>
                             <div className='col-4'>
                                 <br/>

@@ -5,6 +5,9 @@ class Edit extends React.Component {
         let recipe = this.props;
         const link = "/recipes/" + recipe.id + "?_method=put";
 
+        let currentDate = new Date();
+        let date = currentDate.getDate() + '/' + currentDate.getMonth() + '/' + currentDate.getFullYear() + ', ' + currentDate.getHours() + ":"  + currentDate.getMinutes() + ' HRS';
+
         return (
             <html>
                 <head>
@@ -30,6 +33,8 @@ class Edit extends React.Component {
                                     <br/><br/>
                                     <h4>Instructions</h4>
                                     <input type='text' name='instructions' value={recipe.instructions}/>
+                                    <br/><br/><br/><br/>
+                                    <h6 className='text-secondary'>Updated on {date}</h6>
                                 </div>
                                 <div className='col-4'>
                                     <br/>

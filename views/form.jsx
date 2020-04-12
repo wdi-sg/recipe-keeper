@@ -2,6 +2,9 @@ const React = require('react');
 class Form extends React.Component {
     render() {
 
+        let currentDate = new Date();
+        let date = currentDate.getDate() + '/' + currentDate.getMonth() + '/' + currentDate.getFullYear() + ', ' + currentDate.getHours() + ":"  + currentDate.getMinutes() + ' HRS';
+
         return (
             <html>
             <head>
@@ -33,6 +36,8 @@ class Form extends React.Component {
                                     <input type="submit" className='btn btn-primary' name="Submit"/>
                                     <br/><br/>
                                     <button className='btn btn-secondary'><a className='text-white' href='/recipes/'>Return to main page</a></button>
+                                    <br/><br/><br/><br/>
+                                    <h6 className='text-secondary'>Created on {date}</h6>
                                 </div>
 
                                 <div className='col-7'>
