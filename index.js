@@ -26,6 +26,44 @@ app.get('/recipes/create', (req,res) => {
     res.render('create')
 })
 
+
+app.get('/recipes/:id/edit', (req,res) => {
+    jsonfile.readFile(file, (err,obj) => {
+        console.log("error of readfile is: =============");
+        console.log(err);
+        console.log("obj of readfile is: =============");
+        console.log(obj);
+        var recipeHolder= {};
+        recipeHolder = obj.recipes[parseInt(req.params.id)-1];
+    res.render('edit', recipeHolder);
+    });
+});
+
+
+app.put('/recipes/:id', (req,res) => {
+    jsonfile.readFile(file, (err,obj) => {
+        console.log("error of readfile is: =============");
+        console.log(err);
+        console.log("obj of readfile is: =============");
+        var parsedNum = parseInt(req.params.id)-1
+        var recipeHolder = {};
+        recipeHolder=obj.recipes[parsedNum];
+        console.log("================ putreq before")
+        console.log(recipeHolder)
+        recipeHolder.title = req.body.title;
+        recipeHolder.ingredients = req.body.ingredients;
+        recipeHolder.instructions = req.body.instructions;
+        console.log("================ putreq after")
+        console.log(recipeHolder)
+        jsonfile.writeFile(file, obj, (err)=>{
+            console.log("error of writefile is: ==========")
+            console.log(err);
+            console.log(obj);
+        });
+    res.render('single', recipeHolder);
+    });
+});
+
 app.get('/recipes/:id', (req,res) => {
     jsonfile.readFile(file, (err,obj) => {
         console.log("error of readfile is: =============");
@@ -33,7 +71,7 @@ app.get('/recipes/:id', (req,res) => {
         console.log("obj of readfile is: =============");
         console.log(obj);
         var recipeHolder= {};
-        recipeHolder = obj.recipes[parseInt(req.params.id)];
+        recipeHolder = obj.recipes[parseInt(req.params.id)-1];
     res.render('single', recipeHolder);
     });
 });
@@ -45,6 +83,7 @@ app.post('/recipes', (req,res)=>{
         console.log("obj of readfile is: =============");
         console.log(obj);
         const addNewRecipe = {
+            id: (parseInt(obj.recipes.length) +1),
             title: req.body.title,
             ingredients: req.body.ingredients,
             instructions: req.body.instructions,
@@ -53,7 +92,7 @@ app.post('/recipes', (req,res)=>{
         jsonfile.writeFile(file, obj, (err)=>{
             console.log("error of writefile is: ==========")
             console.log(err);
-            console.log(obj.pokemon);
+            console.log(obj);
         });
     });
     res.redirect('/home');
