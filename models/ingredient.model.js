@@ -5,6 +5,7 @@ const jsonFile = require('jsonfile')
 class Ingredient extends Model {
 
   static _connection = JSON_URI
+  static _keysToCheck = ['_id', 'name']
 
   constructor (name, fk_recipes = []) {
     super()
