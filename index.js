@@ -73,10 +73,12 @@ app.get('/recipes/:id/edit', (request, response) => {
 
 app.post('/recipes', (request, response) => {
   jsonfile.readFile(file, (err, obj) =>{
+    var currentTime = new Date().toISOString().slice(0,10);
     let recipeSubmit = {
       "title": request.body.title,
       "ingredients": request.body.ingredients,
-      "instructions": request.body.instructions
+      "instructions": request.body.instructions,
+      "created": currentTime
     }
     obj["recipes"].push(recipeSubmit);
     jsonfile.writeFile(file, obj, (err) =>{

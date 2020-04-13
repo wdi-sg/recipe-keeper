@@ -11,29 +11,32 @@ class Id extends React.Component {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
         </head>
         <body>
-          <div class="container">
-            <div class = "row justify-content-center">
+          <div className="container">
+            <div className = "row justify-content-center">
               <h1>Title: {this.props.currentRecipe.title}</h1>
             </div>
-            <div class = "row justify-content-center">
+            <div className = "row justify-content-center">
               <p>Ingredients: {this.props.currentRecipe.ingredients}</p>
             </div>
-            <div class = "row justify-content-center">
+            <div className = "row justify-content-center">
               <p>Instructions: {this.props.currentRecipe.instructions}</p>
             </div>
-            <div class = "row justify-content-center">
+            <div className = "row justify-content-center">
+              <p>Date Created: {this.props.currentRecipe.created}</p>
+            </div>
+            <div className = "row justify-content-center">
               <form method="GET" action={editLink}>
                 <input type="submit" value="Edit Recipe"/>
               </form>
             </div>
-            <div class = "row justify-content-center">
+            <div className = "row justify-content-center">
               <form method="POST" action={deleteLink}>
                 <input name="id" type="hidden" value={currentId}/>
                 <input type="submit" value="Delete Recipe"/>
               </form>
             </div>
           </div>
-          <div class = "row justify-content-center">
+          <div className = "row justify-content-center">
             <a href="/recipes">Back to Index</a>
           </div>
         </body>
