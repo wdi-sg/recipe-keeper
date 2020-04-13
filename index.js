@@ -47,7 +47,6 @@ app.get('/recipes', (req, res) => {
 // -  -
 //------------------------------------------------------
 app.get('/recipes/new', (req, res) => {
-
     jsonfile.readFile(file, (err, obj) => {
         const allRecipes = obj;
         res.render('create', allRecipes);
@@ -61,8 +60,6 @@ app.get('/recipes/:id', (req, res) => {
         var index = obj.recipes.map((o) => o.id).indexOf(reqId);
 
         recipe = obj.recipes[index];
-        console.log(recipe.title);
-        console.log(recipe.id);
 
         res.render('show', recipe);
     });
@@ -72,7 +69,6 @@ app.get('/recipes/:id', (req, res) => {
 
 app.get('/recipes/sort/:type', (req, res) => {
     let sortType = req.params.type;
-    console.log("recipes/sort/type " + sortType)
     jsonfile.readFile(file, (err, obj) => {
         let allRecipes = obj.recipes;
         if(sortType === "title") {
@@ -80,17 +76,14 @@ app.get('/recipes/sort/:type', (req, res) => {
                 sortType : sortType,
                 allRecipes : allRecipes
             };
-            console.log(sortType)
             res.render('home', data);
         } else if (sortType === "id") {
             const data = {
                 sortType : sortType,
                 allRecipes : allRecipes
-            }
-            console.log(sortType)
+            };
             res.render('home', data);
-        }
-
+        };
     });
 });
 
@@ -104,20 +97,18 @@ app.post('/recipes', (req, res) => {
         if (err) {
             res.send(err);
             return;
-        }
+        };
         const recipe = req.body
         recipe.id = parseInt(req.body.id);
 
         obj.recipes.push(recipe);
 
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
-            const newRecipeLink = '/recipes/'+recipe.id;
+            const newRecipeLink = '/recipes';
             res.redirect(newRecipeLink);
         });
     });
 });
-
-
 
 //------------------------------------------------------
 // Show (Read) Page //
@@ -132,7 +123,7 @@ app.put('/recipes/:id', (req, res) => {
         obj.recipes[index].id = parseInt(req.body.id);
 
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
-            const link = "/recipes/"+reqId;
+            const link = "/recipes";
             res.redirect(link);
         });
     });
@@ -147,14 +138,9 @@ app.put('/recipes/:id', (req, res) => {
 app.get('/recipes/:id/edit', (req, res) => {
     const reqId = parseInt(req.params.id);
     jsonfile.readFile(file, (err, obj) => {
-        // console.log("reqID for edit" + reqId)
         var index = obj.recipes.map((o) => o.id).indexOf(reqId);
-        console.log("reqID for edit: " + index)
 
         recipe = obj.recipes[index];
-
-        console.log("id: " + recipe.id)
-        console.log("recipet edut: " + recipe.title)
 
         res.render('edit', recipe);
     });

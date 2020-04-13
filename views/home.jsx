@@ -2,7 +2,6 @@ var React = require('react');
 class Home extends React.Component {
     render() {
             let recipesList;
-            // console.log("sortType " + this.props.sortType)
             if(this.props.sortType === "none") {
                 recipesList = this.props.allRecipes.map((recipe) => {
                     let recipeId = recipe.id;

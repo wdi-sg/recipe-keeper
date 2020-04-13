@@ -3,7 +3,6 @@ class Show extends React.Component {
     render() {
 
         const editLink = '/recipes/' + this.props.id + "/edit";
-        console.log(editLink)
         const deleteLink = '/recipes/' + this.props.id + "?_method=delete";
 
 
