@@ -1,0 +1,14 @@
+{
+  "recipes": [
+    {
+      "title": "yo",
+      "ingredients": "yoyo",
+      "instructions": "yoyoyyo"
+    },
+    {
+      "title": "boiled egg",
+      "ingredients": "1 egg, more egg",
+      "instructions": "boil egg in water for 20 minutes. take it out. serve."
+    }
+  ]
+}
