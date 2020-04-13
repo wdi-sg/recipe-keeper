@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Head } from '@react-ssr/express'
 import '../public/styles/index.scss'
-import Nav from './components/_nav'
+import Nav from './partials/_nav'
 
 const Index = ({ props }) => {
   const [message, setMessage] = useState('')
