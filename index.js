@@ -81,14 +81,15 @@ app.get("/recipes/:id", (request, response) => {
             console.error(err)
             console.log("//// error ////");
             }
-            const recipeitemArray = obj.cookbook.map(recipeItem =>{
-                console.log("checking recipe item " + recipeItem);
-                return recipeItem;
-            })
+            // const recipeitemArray = obj.cookbook.map(recipeItem =>{
+            //     console.log("checking recipe item " + recipeItem);
+            //     return recipeItem;
+            // })
+            const recipeObject = obj.cookbook;
             let displayID =
             {
                 id: recipeID,
-                recipe: recipeFile
+                recipe: recipeObject
             };
 
             response.render("home", displayID);
