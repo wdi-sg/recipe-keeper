@@ -71,6 +71,50 @@ const saveRecipe = (request, response) =>{
 }
 ////////////---------******************************---------------///////////////////
 ////////////---------Sorting Objects------------------------///////////////////
+/////for ingredients
+    function compareIngredient2(a, b) {
+  // Use toUpperCase() to ignore character casing
+  const IngredientA = a;
+  const IngredientB = b;
+
+  let comparison = 0;
+  if (IngredientA > IngredientB) {
+    comparison = 1;
+  } else if (IngredientA < IngredientB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+///;for the recipe
+    function compareName(a, b) {
+  // Use toUpperCase() to ignore character casing
+  const RecipeA = a.title;
+  const RecipeB = b.title;
+
+  let comparison = 0;
+  if (RecipeA > RecipeB) {
+    comparison = 1;
+  } else if (RecipeA < RecipeB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+    function compareId(a, b) {
+  // Use toUpperCase() to ignore character casing
+  const RecipeA = a.id;
+  const RecipeB = b.id;
+
+  let comparison = 0;
+  if (RecipeA > RecipeB) {
+    comparison = 1;
+  } else if (RecipeA < RecipeB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
 
 /////for ingredients
     function compareIngredient(a, b) {
@@ -248,6 +292,22 @@ app.get('/ingredients',(request,response)=>{
     })
 })
 
+//***** Display a form for adding new recipe ******
+app.get('/recipes/existing',(request, response)=>{
+console.log("------------------------Test");
+     jsonfile.readFile(RECIPEFILE, (err,obj)=>{
+        console.log(obj)
+        let ingredientsArray=obj.ingredients;
+        ingredientsArray=ingredientsArray.sort()
+        console.log(ingredientsArray)
+        const data = {
+            "ingredients": ingredientsArray
+                    }
+        //response.send(data);
+
+        response.render("addexist", data);
+    })
+})
 
 
 //***** Display a form for adding new recipe ******
@@ -303,6 +363,7 @@ app.post('/recipes', (request, response)=>{
     const data={};
     data.title=request.body.title;
     data.instructions=request.body.instruction;
+    let ingredientList=[];
     ///////***********Looping through the array to extract out the ingredients and quantity only**////
     for (var prop in object) {
         if (object.hasOwnProperty(prop)) {
@@ -320,6 +381,7 @@ app.post('/recipes', (request, response)=>{
         {
                 let individualIngredient={}
                 individualIngredient.name=ingredientsRawArray[ingredientCount+1];
+                ingredientList.push(ingredientsRawArray[ingredientCount+1]);
                 individualIngredient.amount=ingredientsRawArray[ingredientCount];
                 individualIngredient.notes=ingredientsRawArray[ingredientCount+2];
                 ingredientsSortedArray.push(individualIngredient);
@@ -369,6 +431,13 @@ app.post('/recipes', (request, response)=>{
         //response.send(data);
         obj.recipes[obj.recipes.length-1].timestamp=Date();
 
+        for(let count=0; count<ingredientList.length;count++)
+        {
+            console.log(obj);
+            obj.ingredients.push(ingredientList[count]);
+        }
+        const uniqueSet= new Set(obj.ingredients);
+        obj.ingredients=[...uniqueSet]
         jsonfile.writeFile(RECIPEFILE, obj, (err) => {
         const link ='/recipes/'+ (obj.recipes.length);
         //render recipe after adding

@@ -80,7 +80,7 @@ const innerFunction=(count)=>{
                     johnny.splice(johnnyCount,1);
                 }
             }
-            {/*}
+            {/* This is the old method
             johnny.forEach((element,index)=>{
                 //console.log(element);
                 if(element.props.children.props.children===undefined)
