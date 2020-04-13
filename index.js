@@ -14,6 +14,7 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+// Install Middleware to link POST and EDIT from react
 const methodOverride = require('method-override')
 
 app.use(methodOverride('_method'));
@@ -84,12 +85,13 @@ app.get("/recipes/:id", (request, response) => {
                 console.log("checking recipe item " + recipeItem);
                 return recipeItem;
             })
-            let displayID = recipeitemArray[recipeID];
-            console.log("The array of recipe is : " + recipeitemArray);
+            let displayID =
+            {
+                id: recipeID,
+                recipe: recipeFile
+            };
 
-            let data = obj.cookbook;
-            // response.send("This page shows recipe number : " + recipeID + ": " + showRecipe);
-            response.render("home", obj);
+            response.render("home", displayID);
         })
 })
 

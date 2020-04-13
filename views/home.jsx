@@ -9,7 +9,7 @@ class Home extends React.Component {
       <html>
         <body>
           <div>
-            <h1>This page is displaying Id number : </h1>
+            <h1>This page is displaying Id number : {this.props.id}</h1>
           </div>
         </body>
       </html>
