@@ -26,6 +26,9 @@ app.get('/recipes/create', (req,res) => {
     res.render('create')
 })
 
+app.get('/recipes/:id/delete', (req,res) => {
+    res.render('delete')
+})
 
 app.get('/recipes/:id/edit', (req,res) => {
     jsonfile.readFile(file, (err,obj) => {
@@ -39,6 +42,22 @@ app.get('/recipes/:id/edit', (req,res) => {
     });
 });
 
+app.delete('/recipes/:id', (req,res) => {
+    jsonfile.readFile(file, (err,obj) => {
+        const parsedNum = parseInt(req.params.id)-1;
+        console.log("***************************parseint");
+        console.log(req.params);
+        obj.recipes.splice(parsedNum, 1);
+        console.log("==============delete look here")
+        console.log("************************")
+        jsonfile.writeFile(file, obj, (err)=>{
+            console.log("error of writefile is: ==========")
+            console.log(err);
+            console.log(obj);
+        });
+    res.redirect('/home');
+    });
+});
 
 app.put('/recipes/:id', (req,res) => {
     jsonfile.readFile(file, (err,obj) => {
