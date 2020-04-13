@@ -26,33 +26,21 @@ module.exports = class Recipe {
         })
     }
 
-    replace(recipeId) {
+    replace() {
 
-        jsonfile.readFile('./recipes.json', (err, obj) => {
+        jsonfile.readFile(recipesFile, (err, obj) => {
 
-            console.log(obj);
+            const targetRecipeIndex = obj.recipes.indexOf(obj.recipes.find(recipe =>
+                recipe.id == this.id))
 
-            const targetRecipe = obj.recipes.find(recipe => {
-                recipe.id = recipeId;
-            })
-
-
-            targetRecipe.title = this.title;
-            targetRecipe.ingredients = this.ingredients;
-            tagretRecipe.instructions = this.instructions;
-            targetRecipe.img = this.img;
-
-            obj.recipes = obj.recipes.map(recip => {
-                if (recip.id == recipeId) {
-                    recip = targetRecipe
-                } else {
-                    return recip;
-                }
-            })
+            obj.recipes[targetRecipeIndex].title = this.title;
+            obj.recipes[targetRecipeIndex].ingredients = this.ingredients;
+            obj.recipes[targetRecipeIndex].instructions = this.instructions;
+            obj.recipes[targetRecipeIndex].img = this.img;
 
             jsonfile.writeFile(recipesFile, obj)
                 .then(res => {
-                    console.log('Recipe added');
+                    console.log('Recipe updated');
                 })
                 .catch(err => console.log(err));
         })

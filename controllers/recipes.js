@@ -30,8 +30,6 @@ module.exports.postAddRecipe = (req, res) => {
 
         } else {
 
-            console.log(req.body);
-
             const newRecipeId = (obj.recipes[obj.recipes.length - 1].id) + 1;
 
             const newRecipeIngredients = [];
@@ -138,21 +136,11 @@ module.exports.putRecipeById = (req, res) => {
                 dateUtility.getCurrentDate()
             )
 
-            const targetRecipeIndex = obj.recipes.indexOf(obj.recipes.find(recipe =>
-                recipe.id == updatedRecipeId))
-
-            obj.recipes[targetRecipeIndex].title = updatedRecipe.title;
-            obj.recipes[targetRecipeIndex].ingredients = updatedRecipe.ingredients;
-            obj.recipes[targetRecipeIndex].instructions = updatedRecipe.instructions;
-            obj.recipes[targetRecipeIndex].img = updatedRecipe.img;
+            updatedRecipe.replace()
         }
 
+        res.redirect(`/recipes/${req.params.id}`)
 
-        jsonfile.writeFile(recipesFile, obj)
-            .then(() => {
-                res.redirect(`/recipes/${req.params.id}`);
-            })
-            .catch(err => console.log(err));
     })
 }
 
