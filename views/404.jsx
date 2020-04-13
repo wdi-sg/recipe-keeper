@@ -1,15 +1,15 @@
 const React = require('react');
-const head = require('./head');
-const header = require('./header');
+import Head from './head';
+import Header from './header';
 
 class StatusNotFound extends React.Component {
 
     render() {
         return (
             <html>
-            {head()}
+            <Head />
             <body>
-                {header()}
+                <Header />
                 <div class="container">
                 <div className="nav">
                     <a href="/" className="nav__link index-link">Home</a>

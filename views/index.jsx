@@ -1,6 +1,7 @@
 const React = require('react');
-const head = require('./head');
-const header = require('./header');
+
+import Head from './head';
+import Header from './header';
 
 class Index extends React.Component {
 
@@ -8,10 +9,10 @@ class Index extends React.Component {
 
         return (
             <html>
-                {head()}
+                <Head />
                 <body>
                     <div className="container">
-                        {header()}
+                        <Header />
                         <div className="nav">
                             <a href="/recipes/new" className="nav__link add-recipe">Add a Recipe</a>
                             <a href="/recipes/" className="nav__link show-all-recipes">Show All Recipes</a>

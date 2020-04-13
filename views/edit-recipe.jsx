@@ -1,6 +1,6 @@
 const React = require('react');
-const head = require('./head');
-const header = require('./header');
+import Head from './head';
+import Header from './header';
 
 class EditRecipeForm extends React.Component {
 
@@ -24,10 +24,10 @@ class EditRecipeForm extends React.Component {
 
         return (
             <html>
-                {head()}
+                <Head />
                 <body>
                     <div className="container">
-                        {header()}
+                        <Header />
                         <div className="nav">
                             <a href="/recipes/" className="nav__link show-all-recipes">Show All Recipes</a>
                             <a href="/" className="nav__link index">Home</a>

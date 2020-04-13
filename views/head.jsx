@@ -16,4 +16,4 @@ const head = () => {
     )
 }
 
-module.exports = head;
+export default head;

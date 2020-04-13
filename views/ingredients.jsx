@@ -1,6 +1,6 @@
 const React = require('react');
-const head = require('./head');
-const header = require('./header');
+import Head from './head';
+import Header from './header';
 
 class Ingredients extends React.Component {
 
@@ -12,8 +12,6 @@ class Ingredients extends React.Component {
             .map(recipe => recipe.ingredients)
             .flat()
             .map(ingred => ingred.name)));
-
-        console.log(ingredArr);
 
         const ingredients = ingredArr.map(ingredient => {
 
@@ -43,9 +41,9 @@ class Ingredients extends React.Component {
 
         return (
             <html>
-            {head()}
+            <Head />
             <body>
-            {header()}
+            <Header />
             <div className="container">
                 <div className="nav">
                     <a href="/" className="nav__link index-link">Home</a>
