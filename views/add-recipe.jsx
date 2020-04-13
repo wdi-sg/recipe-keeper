@@ -24,7 +24,7 @@ class AddRecipeForm extends React.Component {
                             <input type="text" name="img" placeholder="image link"></input>
                             <div className="add-form__ingredients">
                                 <h3>Ingredients</h3>
-                                <div class="form__btn-wrapper">
+                                <div className="form__btn-wrapper">
                                     <button className="add-form__add-ingredient-btn" type="button">Add</button>
                                     <button className="add-form__delete-ingredient-btn" type="button">Delete</button>
                                 </div>
@@ -32,20 +32,20 @@ class AddRecipeForm extends React.Component {
                             </div>
                             <div className="add-form__instructions">
                                 <h3>Instructions</h3>
-                                <div class="form__btn-wrapper">
+                                <div className="form__btn-wrapper">
                                     <button className="add-form__add-instruction-btn" type="button">Add</button>
                                     <button className="add-form__delete-instruction-btn" type="button">Delete</button>
                                 </div>
 
                             </div>
                             <p className="add-form__invalid-msg">{this.props.message}</p>
-                            <button class="add-form__create-btn" type="submit">Create!</button>
+                            <button className="add-form__create-btn" type="submit">Create!</button>
                         </form>
 
 
                     </div>
                 </body>
-                <script src="scripts/add-recipe.js" def></script>
+                <script src="scripts/add-recipe.js" defer></script>
             </html>
         );
     }

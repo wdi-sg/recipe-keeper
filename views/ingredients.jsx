@@ -8,22 +8,30 @@ class Ingredients extends React.Component {
 
         let recipeUrl;
 
-        const ingredientsArr = this.props.recipes.map(recipe => {
-            return recipe.ingredients
-        })
+        const ingredArr = Array.from(new Set(this.props.recipes
+            .map(recipe => recipe.ingredients)
+            .flat()
+            .map(ingred => ingred.name)));
 
-        const ingredients = ingredientsArr.flat().map(ingredient => {
+        console.log(ingredArr);
+
+        const ingredients = ingredArr.map(ingredient => {
 
             const recipesWithIngredient = this.props.recipes
+
                 .filter(recipe => {
-                    if (recipe.ingredients.includes(ingredient)) return recipe;
+                    if (recipe.ingredients.map(ingred => ingred.name)
+                        .includes(ingredient)) {
+                        return recipe
+                    };
                 })
+
                 .map(recip => {
                     return <a href={`/recipes/${recip.id}`}>{`${recip.title}`}</a>
                 })
 
             return <div className="ingredient__el">
-                        <a href={recipeUrl} className="ingredient__item">{ingredient.name}</a>
+                        <a href={recipeUrl} className="ingredient__item">{ingredient}</a>
                         <div className="ingredient__links">
                             <h4 className="ingredient__links-header">Used In: </h4>
                             {recipesWithIngredient}

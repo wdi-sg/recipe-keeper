@@ -1,4 +1,4 @@
-const recipesFile = './recipes.json';
+const recipesFile = './data/recipes.json';
 const jsonfile = require('jsonfile');
 
 module.exports = class Recipe {

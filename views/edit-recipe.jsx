@@ -40,7 +40,7 @@ class EditRecipeForm extends React.Component {
                             <input type="text" name="img" placeholder="image link" defaultValue={this.props.img}></input>
                             <div className="edit-form__ingredients">
                             <h3>Ingredients</h3>
-                            <div class="form__btn-wrapper">
+                            <div className="form__btn-wrapper">
                                 <button className="edit-form__add-ingredient-btn" type="button">Add</button>
                                 <button className="edit-form__delete-ingredient-btn" type="button">Delete</button>
                             </div>
@@ -49,18 +49,18 @@ class EditRecipeForm extends React.Component {
                             </div>
                             <div className="edit-form__instructions">
                             <h3>Instructions</h3>
-                                <div class="form__btn-wrapper">
+                                <div className="form__btn-wrapper">
                                     <button className="edit-form__add-instruction-btn" type="button">Add</button>
                                     <button className="edit-form__delete-instruction-btn" type="button">Delete</button>
                                 </div>
                                     {instructions}
                             </div>
                             <p className="edit-form__invalid-msg">{this.props.message}</p>
-                            <button class="edit-form__create-btn" type="submit">Edit!</button>
+                            <button className="edit-form__create-btn" type="submit">Edit!</button>
                         </form>
                     </div>
                 </body>
-                <script src="scripts/edit-recipe.js" def></script>
+                <script src="scripts/edit-recipe.js" defer></script>
             </html>
         );
     }
