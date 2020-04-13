@@ -29,11 +29,13 @@ class Singlerecipe extends React.Component{
 
 
         // Javascript things
-        const recipeObject = this.props.data[0].singleRecipe
+        const recipeObject = this.props.singleRecipe
 
-        const id = this.props.data[1].id;
+        const id = this.props.id;
 
         const recipeImage = <img src={recipeObject.img} style={foodImage}></img>
+
+        const createdDate = <p>Date Created: {recipeObject.createdDate}</p>
 
         const recipeIngredients = recipeObject.ingredients.map((el, i) => {
             return (
@@ -76,6 +78,7 @@ class Singlerecipe extends React.Component{
                     </div>
                     <div style={image}>
                         {recipeImage}
+                        {createdDate}
                     </div>
                     <div className="container" style={mainContainer}>
                         <div className="row">

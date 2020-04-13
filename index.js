@@ -42,7 +42,10 @@ app.get('/singlerecipe/:id', (request,response) => {
 
         console.log(singleRecipe);
 
-        const data = { "data" : [{"singleRecipe" : singleRecipe}, {"id" : id}]}
+        const data = {
+                        "singleRecipe" : singleRecipe,
+                        "id" : id
+                    }
         response.render('singlerecipe', data);
 
         // response.send(singleRecipe);
@@ -78,6 +81,10 @@ app.post('/createarecipe', (request, response) => {
     // remove amount key
     delete singleRecipe.amount;
 
+    // Add date created
+    date = new Date();
+    singleRecipe.createdDate = date.toLocaleDateString();
+
 
     jsonfile.readFile(file, (err, obj) => {
         // Add new recipe to recipe list
@@ -103,7 +110,10 @@ app.get('/editrecipe/:id', (request, response) => {
     jsonfile.readFile(file, (err, obj) => {
         // Get data of recipe to edit
         const singleRecipe = obj.recipes[id];
-        const data = { "data" : [{"singleRecipe" : singleRecipe}, {"id" : id}]}
+        const data = {
+                        "singleRecipe" : singleRecipe,
+                        "id" : id
+                    };
 
         response.render('editrecipe', data);
     })
@@ -198,7 +208,10 @@ app.get('/allrecipes', (request, response) => {
         }
 
 
-        const data = {"data" : [{"recipeTitleArray" : recipeTitleArray}, {"recipeImageArray" : recipeImageArray}]};
+        const data = {
+                        "recipeTitleArray" : recipeTitleArray,
+                        "recipeImageArray" : recipeImageArray
+                    };
 
         response.render("allrecipes", data);
     })
@@ -299,7 +312,10 @@ app.get('/', (request, response) => {
         }
 
 
-        const data = {"data" : [{"recipeTitleArray" : recipeTitleArray}, {"recipeImageArray" : recipeImageArray}]};
+        const data = {
+                        "recipeTitleArray" : recipeTitleArray,
+                        "recipeImageArray" : recipeImageArray
+                    };
 
         response.render("home", data);
     })

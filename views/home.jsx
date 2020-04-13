@@ -37,9 +37,9 @@ class Home extends React.Component {
 
         //////////////////////////////////// javascript purposes
 
-        const recipeImages = this.props.data[1].recipeImageArray;
+        const recipeImages = this.props.recipeImageArray;
 
-        const recipeTitles = this.props.data[0].recipeTitleArray.map((el, i) => {
+        const recipeTitles = this.props.recipeTitleArray.map((el, i) => {
             while (i < 9){
                 return (
                     <div style={foodDiv}>

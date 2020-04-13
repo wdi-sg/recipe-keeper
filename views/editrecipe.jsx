@@ -19,9 +19,9 @@ class Editrecipe extends React.Component {
 
         // Javascript things
 
-        const singleRecipe = this.props.data[0].singleRecipe;
+        const singleRecipe = this.props.singleRecipe;
 
-        const id = this.props.data[1].id
+        const id = this.props.id
 
         const editRecipe =<div style={form}>
                          <form action={`/editarecipe/${id}?_method=put`} method="post">

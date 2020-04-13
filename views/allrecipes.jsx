@@ -29,9 +29,9 @@ class Allrecipes extends React.Component {
 
         // Javascript things
 
-        const recipeImages = this.props.data[1].recipeImageArray;
+        const recipeImages = this.props.recipeImageArray;
 
-        const recipeTitles = this.props.data[0].recipeTitleArray.map((el, i) => {
+        const recipeTitles = this.props.recipeTitleArray.map((el, i) => {
             return (
                 <div style={foodDiv}>
                     <img src={`${recipeImages[i]}`} style={foodImage}></img><br></br>
