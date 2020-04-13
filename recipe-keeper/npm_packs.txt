@@ -1,0 +1,12 @@
+*************************
+**************************
+NPM Installs
+*************************
+*************************
+npm init --yes
+npm install express
+npm install jsonfile
+npm install express-react-views react react-dom
+npm install method-override
+
+
