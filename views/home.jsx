@@ -1,11 +1,48 @@
 var React = require('react');
 class Home extends React.Component {
     render() {
+            let recipesList;
+            // console.log("sortType " + this.props.sortType)
+            if(this.props.sortType === "none") {
+                recipesList = this.props.allRecipes.map((recipe) => {
+                    let recipeId = recipe.id;
+                    let recipeLink = '/recipes/'+ (recipeId);
+                    return <li key={recipeId}><a href={recipeLink}>{recipe.title}</a></li>
+                });
+            } else if (this.props.sortType ==="id") {
+                let sortedList = this.props.allRecipes.sort((a, b) => {
+                    if (a.id < b.id) {
+                        return -1;
+                    }
+                    if (a.id > b.id) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                recipesList = sortedList.map((recipe) => {
+                    let recipeId = recipe.id;
+                    let recipeLink = '/recipes/'+ (recipeId);
+                    return <li key={recipeId}><a href={recipeLink}>{recipe.title}</a></li>
+                });
+            } else if (this.props.sortType === "title") {
+                let sortedList = this.props.allRecipes.sort((a, b) => {
+                    let c = a.title.toLowerCase();
+                    let d = b.title.toLowerCase();
+                    if (c < d) {
+                        return -1;
+                    }
+                    if (c > d) {
+                        return 1;
+                    };
+                    return 0;
+                });
+                recipesList = sortedList.map((recipe) => {
+                    let recipeId = recipe.id;
+                    let recipeLink = '/recipes/'+ (recipeId);
+                    return <li key={recipeId}><a href={recipeLink}>{recipe.title}</a></li>
+                });
+            };
 
-        const recipesList = this.props.recipes.map((recipe, index) => {
-            const recipeLink = '/recipes/'+ (index+1);
-            return <li key={index+1}><a href={recipeLink}>{recipe.title}</a></li>
-        })
 
         return (
             <html>
@@ -33,6 +70,9 @@ class Home extends React.Component {
                                         {recipesList}
                                     </ol>
 
+
+                                    <a href="/recipes">Sort by none</a>
+                                    <br/>
                                     <a href="/recipes/sort/id">Sort by ID</a>
                                     <br/>
                                     <a href="/recipes/sort/title">Sort by Title</a>

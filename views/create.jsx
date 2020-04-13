@@ -7,11 +7,9 @@ class Create extends React.Component {
                 recipeId = 1;
             } else {
                 const maxId = this.props.recipes.reduce((a,b) => {
-                    let c = parseInt(a.id);
-                    let d = parseInt(b.id);
-                    return (c > d) ? a : b;
+                    return (a.id > b.id) ? a : b;
                 })
-                recipeId = parseInt(maxId.id)+1
+                recipeId = parseInt(maxId.id) + 1;
             };
 
             let currentdate = new Date();
@@ -36,7 +34,7 @@ class Create extends React.Component {
                                 <div className="form-group">
                                     <br/>
                                     <label>Recipe ID: </label>
-                                    <input type="text" id="exampleFormControlInput1" className="form-control" name="id" defaultValue={recipeId} readOnly />
+                                    <input type="number" id="exampleFormControlInput1" className="form-control" name="id" defaultValue={recipeId} readOnly />
                                 </div>
                                 <div className="form-group">
                                     <label>Date created: </label>

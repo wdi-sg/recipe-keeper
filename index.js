@@ -1,7 +1,5 @@
 const jsonfile = require('jsonfile');
-const dateformat = require('dateformat');
 const file = 'data.json';
-const sortTitle = "sortTitle.json"
 const ingredient = 'ingredient.json';
 
 const express = require('express');
@@ -32,61 +30,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/recipes', (req, res) => {
+    let sortType = "none";
+
     jsonfile.readFile(file, (err, obj) => {
-        const allRecipes = obj;
-        res.render('home', allRecipes);
+        let allRecipes = obj.recipes;
+        const data = {
+            sortType : sortType,
+            allRecipes : allRecipes
+        };
+        res.render('home', data);
     });
 });
-
-app.get('/recipes/sort/:type', (req, res) => {
-    if (req.params.type === "id") {
-        jsonfile.readFile(file, (err, obj) => {
-            const sortedList = obj.recipes.sort((a, b) => {
-                let c = parseInt(a.id);
-                let d = parseInt(b.id);
-                if (c < d) {
-                    return -1;
-                }
-                if (c > d) {
-                    return 1;
-                }
-                return 0;
-            })
-
-            const sortedRecipes = {
-                recipes : sortedList
-            };
-
-            jsonfile.writeFile(file, sortedRecipes, {spaces : 2}, (err) => {
-                res.redirect('/');
-            })
-        });
-    }
-    if (req.params.type === "title") {
-        jsonfile.readFile(file, (err, obj) => {
-            const sortedList = obj.recipes.sort((a, b) => {
-                let c = a.title.toLowerCase();
-                let d = b.title.toLowerCase();
-                if (c < d) {
-                    return -1;
-                }
-                if (c > d) {
-                    return 1;
-                }
-                return 0;
-            })
-
-            const sortedRecipes = {
-                recipes : sortedList
-            }
-
-            jsonfile.writeFile(file, sortedRecipes, {spaces : 2}, (err) => {
-                res.redirect('/');
-            })
-        });
-    };
-});
-
 
 //------------------------------------------------------
 // Create Page //
@@ -100,33 +54,43 @@ app.get('/recipes/new', (req, res) => {
     });
 });
 
-
-
 //display form for adding recipe
 app.get('/recipes/:id', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-            const index = parseInt(req.params.id)-1;
-            const recipeData = {
-                index : index,
-                recipe : obj.recipes[index],
-            }
-            res.render('show', recipeData);
+        const reqId = parseInt(req.params.id);
+        var index = obj.recipes.map((o) => o.id).indexOf(reqId);
+
+        recipe = obj.recipes[index];
+        console.log(recipe.title);
+        console.log(recipe.id);
+
+        res.render('show', recipe);
     });
 });
 
-//------------------------------------------------------
-// Edit Page //
-// -  -
-//------------------------------------------------------
 
-app.get('/recipes/:id/edit', (req, res) => {
+
+app.get('/recipes/sort/:type', (req, res) => {
+    let sortType = req.params.type;
+    console.log("recipes/sort/type " + sortType)
     jsonfile.readFile(file, (err, obj) => {
-        const index = parseInt(req.params.id);
-            const recipeData = {
-                index : index,
-                recipe : obj.recipes[index],
+        let allRecipes = obj.recipes;
+        if(sortType === "title") {
+            const data = {
+                sortType : sortType,
+                allRecipes : allRecipes
+            };
+            console.log(sortType)
+            res.render('home', data);
+        } else if (sortType === "id") {
+            const data = {
+                sortType : sortType,
+                allRecipes : allRecipes
             }
-        res.render('edit', recipeData);
+            console.log(sortType)
+            res.render('home', data);
+        }
+
     });
 });
 
@@ -141,16 +105,18 @@ app.post('/recipes', (req, res) => {
             res.send(err);
             return;
         }
-        const recipe = req.body;
+        const recipe = req.body
+        recipe.id = parseInt(req.body.id);
 
         obj.recipes.push(recipe);
 
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
-            const newRecipeLink = '/recipes';
+            const newRecipeLink = '/recipes/'+recipe.id;
             res.redirect(newRecipeLink);
         });
     });
 });
+
 
 
 //------------------------------------------------------
@@ -160,13 +126,37 @@ app.post('/recipes', (req, res) => {
 
 app.put('/recipes/:id', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-        const index = parseInt(req.params.id);
+        const reqId = parseInt(req.params.id);
+        var index = obj.recipes.map((o) => o.id).indexOf(reqId);
         obj.recipes[index] = req.body;
+        obj.recipes[index].id = parseInt(req.body.id);
 
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
-            const link = "/recipes";
+            const link = "/recipes/"+reqId;
             res.redirect(link);
         });
+    });
+});
+
+
+//------------------------------------------------------
+// Edit Page //
+// -  -
+//------------------------------------------------------
+
+app.get('/recipes/:id/edit', (req, res) => {
+    const reqId = parseInt(req.params.id);
+    jsonfile.readFile(file, (err, obj) => {
+        // console.log("reqID for edit" + reqId)
+        var index = obj.recipes.map((o) => o.id).indexOf(reqId);
+        console.log("reqID for edit: " + index)
+
+        recipe = obj.recipes[index];
+
+        console.log("id: " + recipe.id)
+        console.log("recipet edut: " + recipe.title)
+
+        res.render('edit', recipe);
     });
 });
 
@@ -177,7 +167,9 @@ app.put('/recipes/:id', (req, res) => {
 
 app.delete('/recipes/:id', (req, res) => {
     jsonfile.readFile(file, (err, obj) => {
-        const index = parseInt(req.params.id);
+        const reqId = parseInt(req.params.id);
+        var index = obj.recipes.map((o) => o.id).indexOf(reqId);
+
         obj.recipes.splice(index, 1);
         jsonfile.writeFile(file, obj, {spaces: 2}, (err) => {
             res.redirect('/');

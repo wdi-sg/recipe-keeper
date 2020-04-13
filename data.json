@@ -1,46 +1,32 @@
 {
   "recipes": [
     {
-      "id": "5",
-      "dateCreated": "Sun, 12 Apr 2020 16:16:32 GMT",
-      "title": "duck",
-      "ingredients": "dgkfbf",
-      "instructions": "vskdvdf"
+      "id": 2,
+      "dateCreated": "Mon, 13 Apr 2020 15:02:13 GMT",
+      "title": "two edited",
+      "ingredients": "two edited",
+      "instructions": "two edited"
     },
     {
-      "id": "4",
-      "dateCreated": "Sun, 12 Apr 2020 16:16:24 GMT",
-      "title": "four",
-      "ingredients": "chicken",
-      "instructions": "dkvd"
+      "id": 6,
+      "dateCreated": "Mon, 13 Apr 2020 15:02:54 GMT",
+      "title": "six edited",
+      "ingredients": "six edited",
+      "instructions": "six edited"
     },
     {
-      "id": "1",
-      "dateCreated": "Sun, 12 Apr 2020 16:15:54 GMT",
-      "title": "One",
-      "ingredients": "owgowrs",
-      "instructions": "dsgknfgf"
+      "id": 7,
+      "dateCreated": "Mon, 13 Apr 2020 15:03:02 GMT",
+      "title": "seven edited",
+      "ingredients": "seven edited",
+      "instructions": "seven edited"
     },
     {
-      "id": "6",
-      "dateCreated": "Sun, 12 Apr 2020 16:16:41 GMT",
-      "title": "six",
-      "ingredients": "beef",
-      "instructions": "vmkfmvf"
-    },
-    {
-      "id": "3",
-      "dateCreated": "Sun, 12 Apr 2020 16:16:13 GMT",
-      "title": "three",
-      "ingredients": "zxbcocb",
-      "instructions": "vdfvkf"
-    },
-    {
-      "id": "2",
-      "dateCreated": "Sun, 12 Apr 2020 16:16:04 GMT",
-      "title": "two",
-      "ingredients": "skdngjds",
-      "instructions": " bfbkf"
+      "id": 8,
+      "dateCreated": "Mon, 13 Apr 2020 15:03:09 GMT",
+      "title": "eight",
+      "ingredients": "eight",
+      "instructions": "eight"
     }
   ]
 }
