@@ -1,0 +1,16 @@
+{
+    "recipes": [
+        {
+            "id": 0,
+            "title": "hello",
+            "ingredients": "bye",
+            "instructions": "chibai"
+        },
+        {
+            "id": 1,
+            "title": "fuck",
+            "ingredients": "fuckity",
+            "instructions": "fuckfuckfuck"
+        }
+    ]
+}
