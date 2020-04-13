@@ -73,13 +73,14 @@ const innerFunction=(count)=>{
             }
             //console.log("########");
             //console.log(johnny[2].props.children.props);
-/*            for(let johnnyCount=0;johnnyCount<johnny.length;johnnyCount++)
+            for(let johnnyCount=johnny.length-1;johnnyCount>=0;johnnyCount--)
             {
                 if(johnny[johnnyCount].props.children.props.children===undefined)
                 {
                     johnny.splice(johnnyCount,1);
                 }
-            }*/
+            }
+            {/*}
             johnny.forEach((element,index)=>{
                 //console.log(element);
                 if(element.props.children.props.children===undefined)
@@ -95,7 +96,7 @@ const innerFunction=(count)=>{
                 }
             });
             johnny.pop();
-            johnny.pop();
+            johnny.pop();*/}
            //console.log(johnny[2].props);
             return johnny;
         }
