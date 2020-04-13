@@ -1,0 +1,113 @@
+body{
+	background-image: url("bg4.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	text-align: center;
+	margin: auto;
+}
+h1 {
+	font-weight: bold;
+	letter-spacing: 4px;
+	font-family: "Snell Roundhand" , cursive;
+	font-size: 65px;
+	letter-spacing: 5px;
+}
+
+/*p {
+	font-size: 24px;
+	font-family: sans-serif;
+	display: block;
+	margin-bottom: 10px;
+}*/
+
+input {
+	font-size: 20px;
+	border-radius: 5px;
+}
+
+h3 {
+	display: block;
+	margin-top: 15px;
+}
+
+.list {
+	display: inline-block;
+	border: 1px solid black;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 500px;
+	height: 350px;
+	background-color: rgba(234,229,214, 0.8);
+	border-radius: 10px;
+	font-family: sans-serif;
+	margin: 10px;
+	overflow: auto;
+}
+
+.list img {
+	width: 300px;
+	height:200px;
+	display: inline-block;
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+
+.list p {
+	font-size: 15px;
+	font-family: "Arial";
+	text-align: center;
+
+}
+
+.flex {
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: space-between;
+	padding: 0px 5px;
+}
+
+.enter {
+	display: inline-block;
+	margin-top: 20px;
+}
+
+.formlist {
+	background-color: rgba(234,229,214, 0.8);
+	border-radius: 10px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	width: 500px;
+	margin: 0 auto;
+	padding: 10px;
+	margin-top: 15px;
+}
+
+.formlist input {
+	cursor: pointer;
+	width: 300px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 15px;
+	text-align: left;
+	padding: 5px;
+}
+
+#space {
+	height: 150px;
+	width: 400px;
+}
+
+#sub {
+	width: 100px;
+	text-overflow: auto;
+	text-align: center;
+}
+
+.formlist p {
+	font-size: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
+	text-align: center;
+	margin-bottom: 10px;
+}
