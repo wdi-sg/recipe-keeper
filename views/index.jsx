@@ -29,7 +29,11 @@ const Index = ({ props }) => {
       <div className="container">
 
         <p className="subtitle">
-          Message from state: {message}
+          You do not have recipes yet.
+          {/*{message}*/}
+        </p>
+        <p className="subtitle">
+          Do you want to add some?
         </p>
         <button
           className="button is-primary"
