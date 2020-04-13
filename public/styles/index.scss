@@ -1,8 +1,19 @@
 @charset "utf-8";
 @import "~bulma/bulma";
-
 .container {
   padding-top: 48px;
   padding-left: 50px;
 }
 
+.site-title {
+  font-weight: bolder;
+  margin-left: 5px;
+}
+
+#nav-toggle-state {
+  display: none;
+}
+
+#nav-toggle-state:checked ~ .navbar-menu {
+  display: block;
+}

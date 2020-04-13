@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
-import { Head } from '@react-ssr/express';
+import React, { useState } from 'react'
+import { Head } from '@react-ssr/express'
+import '../public/styles/index.scss'
+import Nav from './components/_nav'
 
-import '../public/styles/index.scss';
-
-const Index = ({ user }) => {
-  const [message, setMessage] = useState('waiting...');
-
-  const onClick = () => setMessage('This is a react-ssr!');
-
+const Index = ({ props }) => {
+  const [message, setMessage] = useState('')
+  const onClick = () => setMessage('This is a react-ssr!')
   return (
     <React.Fragment>
       <Head>
         <title>KNN's Recipe Keeper App</title>
       </Head>
+      <header>
+        <Nav/>
+      </header>
+      <section className="hero hero is-small is-primary is-bold">
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title">
+              KNN's Recipe Keeper
+            </h1>
+          </div>
+        </div>
+        <div className="container">
+
+        </div>
+      </section>
       <div className="container">
-        <h1 className="title">
-          Hello {user.name}!
-        </h1>
+
         <p className="subtitle">
           Message from state: {message}
         </p>

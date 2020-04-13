@@ -14,10 +14,10 @@ app.use(methodOverride('_method'))
 const run = async () => {
   await register(app)
 
-  // app.get('/', (req, res) => {
-  //   const user = { name: 'Bulma' }
-  //   res.render('index', { user })
-  // })
+  app.get('/', (req, res) => {
+    const user = { name: 'Bulma' }
+    res.render('index', { user })
+  })
   const ingredientsRouter = require('./routes/ingredients')
   const recipesRouter = require('./routes/recipes')
 
