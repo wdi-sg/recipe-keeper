@@ -24,12 +24,18 @@ class AddRecipeForm extends React.Component {
                             <input type="text" name="img" placeholder="image link"></input>
                             <div className="add-form__ingredients">
                                 <h3>Ingredients</h3>
-                                <button className="add-form__add-ingredient-btn" type="button">Add Ingredient</button>
+                                <div class="form__btn-wrapper">
+                                    <button className="add-form__add-ingredient-btn" type="button">Add</button>
+                                    <button className="add-form__delete-ingredient-btn" type="button">Delete</button>
+                                </div>
 
                             </div>
                             <div className="add-form__instructions">
                                 <h3>Instructions</h3>
-                                <button className="add-form__add-instruction-btn" type="button">Add Instruction</button>
+                                <div class="form__btn-wrapper">
+                                    <button className="add-form__add-instruction-btn" type="button">Add</button>
+                                    <button className="add-form__delete-instruction-btn" type="button">Delete</button>
+                                </div>
 
                             </div>
                             <p className="add-form__invalid-msg">{this.props.message}</p>
