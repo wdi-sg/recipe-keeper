@@ -1,6 +1,7 @@
 const express = require('express');
 const jsonfile = require('jsonfile');
 const path = require('path');
+const methodOverride = require('method-override');
 
 const router = express.Router();
 
@@ -11,6 +12,8 @@ const recipesController = require('../controllers/recipes');
 router.use(express.urlencoded({
     extended: true
 }));
+
+router.use(methodOverride('_method'));
 
 router.use('/', express.static(path.join(__dirname, '..', '/public/')));
 router.use('/:id', express.static(path.join(__dirname, '..', '/public/')));

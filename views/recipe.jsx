@@ -27,7 +27,7 @@ class Recipe extends React.Component {
                         <h2>{this.props.title}</h2>
                     </div>
                     <div className = "recipe__date-created">
-                        Dated Added: {this.props.dateCreated}
+                        Date Added: {this.props.dateCreated}
                     </div>
                     <div className = "recipe__img">
                         <img src={this.props.img} />

@@ -8,16 +8,16 @@ class EditRecipeForm extends React.Component {
 
         const ingredients = this.props.ingredients.map(ingredient => {
             return <div className="ingredient__el">
-                        <input type="text" className="ingredient__item" defaultValue={ingredient.name}></input>
-                        <input type="text" className="ingredient__amount" defaultValue={ingredient.amount}></input>
-                        <input type="text" className="ingredient__notes" defaultValue={ingredient.notes}></input>
+                        <input type="text" className="ingredient__item" name="ingredient[name][]" defaultValue={ingredient.name}></input>
+                        <input type="text" className="ingredient__amount" name="ingredient[amount][]" defaultValue={ingredient.amount}></input>
+                        <input type="text" className="ingredient__notes" name="ingredient[notes][]" defaultValue={ingredient.notes}></input>
                     </div>
 
         })
 
         const instructions = this.props.instructions.map(instruction => {
             return <div className="instruction__el">
-                        <input type="text" className="instructions__para" defaultValue={instruction}></input>
+                        <input type="text" className="instructions__para" name="instructions[]" defaultValue={instruction}></input>
                     </div>
         })
 
@@ -33,7 +33,7 @@ class EditRecipeForm extends React.Component {
                             <a href="/recipes/reset" className="nav__link reset">Reset Recipes</a>
                             <a href="/ingredients" className="nav__link ingredients-link">Ingredients List</a>
                         </div>
-                        <form method="PUT" action="/recipes" className="edit-form">
+                        <form method="POST" action={`/recipes/${this.props.id}?_method=put`} className="edit-form">
                             <h2 className="edit-form__header">Edit This Recipe</h2>
                             <input type="text" name="title" placeholder="title" maxLength="25" defaultValue={this.props.title}></input>
                             <input type="text" name="img" placeholder="image link" defaultValue={this.props.img}></input>
@@ -48,7 +48,7 @@ class EditRecipeForm extends React.Component {
 
                             </div>
                             <p className="edit-form__invalid-msg">{this.props.message}</p>
-                            <button type="submit">Create!</button>
+                            <button type="submit">Edit!</button>
                         </form>
                     </div>
                 </body>

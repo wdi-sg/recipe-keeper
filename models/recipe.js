@@ -26,4 +26,36 @@ module.exports = class Recipe {
         })
     }
 
+    replace(recipeId) {
+
+        jsonfile.readFile('./recipes.json', (err, obj) => {
+
+            console.log(obj);
+
+            const targetRecipe = obj.recipes.find(recipe => {
+                recipe.id = recipeId;
+            })
+
+
+            targetRecipe.title = this.title;
+            targetRecipe.ingredients = this.ingredients;
+            tagretRecipe.instructions = this.instructions;
+            targetRecipe.img = this.img;
+
+            obj.recipes = obj.recipes.map(recip => {
+                if (recip.id == recipeId) {
+                    recip = targetRecipe
+                } else {
+                    return recip;
+                }
+            })
+
+            jsonfile.writeFile(recipesFile, obj)
+                .then(res => {
+                    console.log('Recipe added');
+                })
+                .catch(err => console.log(err));
+        })
+    }
+
 }

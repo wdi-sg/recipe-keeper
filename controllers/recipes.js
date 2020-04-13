@@ -98,7 +98,55 @@ module.exports.getEditRecipeById = (req, res) => {
 module.exports.putRecipeById = (req, res) => {
 
     jsonfile.readFile(recipesFile, (err, obj) => {
-        let recipeData = obj.recipes.find(recipe => recipe.id == req.params.id);
+
+        if (!req.body.title || !req.body.ingredient || !req.body.instructions) {
+
+            let formData = {
+                message: "Please enter:\n"
+            }
+
+            if (!req.body.title) formData.message = formData.message + `\nTitle of the Recipe `
+
+            if (!req.body.ingredient) formData.message = `${formData.message}\nAt least one ingredient`
+
+            if (!req.body.instructions) formData.message = `${formData.message}\nAt least one instruction`
+
+            res.render('edit-recipe')
+
+        } else {
+
+            const updatedRecipeId = req.params.id;
+
+            const updatedRecipeIngredients = [];
+
+            req.body.ingredient.name.forEach(item => {
+                const itemIndex = req.body.ingredient.name.indexOf(item)
+
+                updatedRecipeIngredients.push({
+                    name: item,
+                    amount: req.body.ingredient.amount[itemIndex],
+                    notes: req.body.ingredient.notes[itemIndex]
+                })
+            })
+
+            const updatedRecipe = new Recipe(
+                updatedRecipeId,
+                req.body.title,
+                updatedRecipeIngredients,
+                req.body.instructions,
+                req.body.img,
+                dateUtility.getCurrentDate()
+            )
+
+            const targetRecipeIndex = obj.recipes.indexOf(obj.recipes.find(recipe =>
+                recipe.id == updatedRecipeId))
+
+            obj.recipes[targetRecipeIndex].title = updatedRecipe.title;
+            obj.recipes[targetRecipeIndex].ingredients = updatedRecipe.ingredients;
+            obj.recipes[targetRecipeIndex].instructions = updatedRecipe.instructions;
+            obj.recipes[targetRecipeIndex].img = updatedRecipe.img;
+        }
+
 
         jsonfile.writeFile(recipesFile, obj)
             .then(() => {
