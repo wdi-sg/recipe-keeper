@@ -91,5 +91,101 @@
 				],
 				"img": "https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/53/2016/05/Gordon-Ramsays-roast-potatoes-with-chilli-and-turmeric-620x408.jpg",
 				"dateCreated": "11/04/2020"
+		},
+		{
+				"id": 3,
+				"title": "Breakfast Tacos",
+				"ingredients": [
+				{
+						"name": "Corn Tortillas",
+						"amount": "2",
+						"notes": ""
+				},
+				{
+						"name": "Eggs",
+						"amount": "4",
+						"notes": ""
+				},
+				{
+						"name": "Scallions",
+						"amount": "2",
+						"notes": ""
+				},
+				{
+						"name": "Serrano Chili",
+						"amount": "1",
+						"notes": ""
+				},
+				{
+						"name": "Chorizo",
+						"amount": "2 tablespoons",
+						"notes": ""
+				},
+				{
+						"name": "Bacon",
+						"amount": "2 tablespoons",
+						"notes": ""
+				},
+				{
+						"name": "Crimini mushroom",
+						"amount": "6",
+						"notes": "Chopped"
+				},
+				{
+						"name": "Shallot",
+						"amount": "1",
+						"notes": ""
+				},
+				{
+						"name": "Salsa Verde",
+						"amount": "",
+						"notes": ""
+				},
+				{
+						"name": "Pico de Gallo",
+						"amount": "",
+						"notes": ""
+				},
+				{
+						"name": "Creme Fraiche",
+						"amount": "",
+						"notes": ""
+				},
+				{
+						"name": "Cotija Cheese",
+						"amount": "",
+						"notes": ""
+				},
+				{
+						"name": "Cilantro",
+						"amount": "",
+						"notes": ""
+				},
+				{
+						"name": "Pickled red onion",
+						"amount": "",
+						"notes": ""
+				},
+				{
+						"name": "Butter",
+						"amount": "",
+						"notes": ""
+				}],
+				"instructions": [
+						"Warm corn tortillas in a pan",
+						"Chop shallots, chili and scallions/green onions",
+						"Heat pan and add chorizo and cook for 1 to 2 minutes then add shallots and chili’s. Season with salt and pepper",
+						"After about another 1-2 minutes where shallots look cooked through, add chopped mushroom to pan. Then add chopped bacon and season",
+						"Let all ingredients cook in pan. Meanwhile add 4 eggs to a bowl and scramble",
+						"Once pan ingredients have begun to cook  down, season to taste",
+						"Add knob of butter to egg mixture then add to pan",
+						"Mix eggs on and off the heat, always mixing",
+						"Once cooked through add crème fraiche and remove from heat",
+						"Place egg mixture to corn tortillas",
+						"Top tacos with pickled red onion, cojita cheese and scallions then remaining eggs",
+						"Top with favorite salsa, cotija and cilantro"
+				],
+				"img": "https://www.gordonramsay.com/assets/Uploads/_resampled/CroppedFocusedImage108081060-63-GRBreakfastTacso.png",
+				"dateCreated": "12/04/2020"
 		}]
 }

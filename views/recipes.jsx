@@ -7,6 +7,7 @@ class Recipes extends React.Component {
     render() {
 
         const recipesList = this.props.recipes.map(recip => {
+
             const recipeUrl = `./${recip.id}`
             return (
                 <div className="recipes-list__entry">

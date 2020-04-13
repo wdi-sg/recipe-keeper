@@ -29,8 +29,11 @@ module.exports.postAddRecipe = (req, res) => {
             res.render('add-recipe', formData)
 
         } else {
+            // const newRecipeId = (obj.recipes[obj.recipes.length - 1].id) + 1;
+            const newRecipeId = obj.recipes
+                .map(recip => recip.id)
+                .sort()[obj.recipes.length - 1] + 1;
 
-            const newRecipeId = (obj.recipes[obj.recipes.length - 1].id) + 1;
 
             const newRecipeIngredients = [];
 

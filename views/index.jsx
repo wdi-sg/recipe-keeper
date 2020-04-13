@@ -13,7 +13,6 @@ class Index extends React.Component {
                     <div className="container">
                         {header()}
                         <div className="nav">
-                            <a href="/" className="nav__link index-link">Home</a>
                             <a href="/recipes/new" className="nav__link add-recipe">Add a Recipe</a>
                             <a href="/recipes/" className="nav__link show-all-recipes">Show All Recipes</a>
                             <a href="/recipes/reset" className="nav__link reset-link">Reset Recipes</a>
