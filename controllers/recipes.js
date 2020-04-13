@@ -1,4 +1,4 @@
-const recipesFile = './recipes.json';
+const recipesFile = './data/recipes.json';
 const jsonfile = require('jsonfile');
 const Recipe = require('../models/recipe');
 const dateUtility = require('../util/get-date');
@@ -65,7 +65,7 @@ module.exports.postAddRecipe = (req, res) => {
 }
 
 module.exports.getResetRecipes = (req, res) => {
-    jsonfile.readFile('recipes2.json', (err, obj) => {
+    jsonfile.readFile('./data/recipes2.json', (err, obj) => {
         jsonfile.writeFile(recipesFile, obj, (err) => {
             if (err) console.log(err)
             else res.render('reset');

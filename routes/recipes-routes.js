@@ -5,7 +5,7 @@ const methodOverride = require('method-override');
 
 const router = express.Router();
 
-const recipesFile = 'recipes.json';
+const recipesFile = './data/recipes.json';
 
 const recipesController = require('../controllers/recipes');
 

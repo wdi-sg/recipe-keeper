@@ -19,7 +19,7 @@ class Index extends React.Component {
                             <a href="/recipes/reset" className="nav__link reset-link">Reset Recipes</a>
                             <a href="/ingredients" className="nav__link ingredients-link">Ingredients List</a>
                         </div>
-                        <div className="homepage-body">
+                        <div className="landing-page">
                             <h1>Recipe Deleted!</h1>
                         </div>
                     </div>
