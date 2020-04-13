@@ -31,13 +31,15 @@ class Sortbyrecipe extends React.Component {
 
         const recipeRequested = this.props.recipeRequested;
 
+        const recipeID = this.props.recipeIDArray;
+
         const recipeImg = this.props.recipeImgArray;
 
         const recipeTitles = this.props.recipeTitleArray.map((el, i) => {
             return (
                 <div style={foodDiv}>
                     <img src={`${recipeImg[i]}`} style={foodImage}></img><br></br>
-                    <a href={`./singlerecipe/${i}`} style={foodTitle}>{el}</a>
+                    <a href={`./singlerecipe/${recipeID[i]}`} style={foodTitle}>{el}</a>
                 </div>
             )
 

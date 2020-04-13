@@ -204,6 +204,7 @@ app.get('/allrecipes', (request, response) => {
     })
 })
 
+// Sort By Recipe response
 app.get('/searchrecipe', (request, response) => {
     // Get search query
     const recipeRequested = request.query.search.toLowerCase();
@@ -218,21 +219,64 @@ app.get('/searchrecipe', (request, response) => {
 
         let recipeImgArray = [];
 
+        let recipeIDArray = [];
+
         for (var i = 0; i < allRecipes.length; i++) {
             if(allRecipes[i].title.toLowerCase().includes(recipeRequested)){
                 recipeTitleArray.push(allRecipes[i].title);
                 recipeImgArray.push(allRecipes[i].img);
+                recipeIDArray.push(i);
             }
         }
 
         const data = {"recipeRequested" : recipeRequested,
                       "recipeTitleArray" : recipeTitleArray,
-                      "recipeImgArray" : recipeImgArray
+                      "recipeImgArray" : recipeImgArray,
+                      "recipeIDArray" : recipeIDArray
                      }
 
         response.render('sortbyrecipe', data);
     })
 })
+
+// Sort by ingredients response
+app.get('/searchingredient', (request, response) => {
+    // Get search query
+    const ingredientRequested = request.query.search.toLowerCase();
+
+    console.log(ingredientRequested);
+
+    jsonfile.readFile(file, (err, obj) => {
+        // Loop through file to find recipes that match ingredient request
+        const allRecipes = obj.recipes;
+
+        let recipeTitleArray = [];
+
+        let recipeImgArray = [];
+
+        let recipeIDArray = [];
+
+        for (var i = 0; i < allRecipes.length; i++) {
+            for (var u = 0; u < allRecipes[i].ingredients.length; u++) {
+                if(allRecipes[i].ingredients[u].name.toLowerCase().includes(ingredientRequested)){
+                    recipeTitleArray.push(allRecipes[i].title);
+                    recipeImgArray.push(allRecipes[i].img);
+                    recipeIDArray.push(i);
+                }
+            }
+        }
+
+        const data = {"ingredientRequested" : ingredientRequested,
+                      "recipeTitleArray" : recipeTitleArray,
+                      "recipeImgArray" : recipeImgArray,
+                      "recipeIDArray" : recipeIDArray
+                     }
+
+        response.render('sortbyingredient', data);
+    })
+})
+
+
 
 // Home page response
 app.get('/', (request, response) => {

@@ -50,23 +50,26 @@ class Home extends React.Component {
             }
         })
 
-        /*
-        Unable to get function to work on button to add fields for ingredients. Onclick function not working
 
-        const addIngredients = (e) => {
-            console.log('hello hello')
+        // Unable to get function to work on button to add fields for ingredients. Onclick function not working
 
-            return (
-            <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input>
-            );
+        // function addIngredients() {
+        //     console.log('hello hello');
 
-        }
+        //     return (
+        //             <div>
+        //                 <input type="text" name="ingredients" placeholder="Ingredients" style={createRecipeForm}></input>
+        //                 <input type="number" name="amount" placeholder="Amt" style={ingredientsAmt}></input>
+        //             </div>
+        //            )
 
-        const addIngredientsBtn =
-                 <button type="button" onClick={addIngredients}>
-                 Add Ingredients
-                 </button>
-        */
+        // }
+
+        // const addIngredientsBtn =
+        //          <button type="button" onClick={addIngredients}>
+        //          Add Ingredients
+        //          </button>
+
 
 
         const createRecipe =<div>
