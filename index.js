@@ -32,6 +32,7 @@ app.set('view engine', 'jsx');
 app.get("/recipes/",(request,response)=>{
     // Reading recipe.jsonfile
     jsonfile.readFile(recipeFile,(err,obj) => {
+        console.log("//// Readfile initiated... ////");
         if (err) {
             console.log("//// error ////");
             console.error(err)
@@ -41,9 +42,10 @@ app.get("/recipes/",(request,response)=>{
         let recipeList = obj.cookbook.map(recipeItem => {
             console.log("checking current item :" + recipeItem);
             return recipeItem;
-        });
+        })
         console.log(recipeList);
-        response.send("This is page shows all recipes " + recipeList);
+        // response.send("This is page shows all recipes " + recipeList);
+        response.render("list", obj);
     })
 
 })
@@ -70,7 +72,7 @@ app.get("/recipes",(request,response)=>{
 // find id within recipe file+
 // display html page that shows content in id+
 app.get("/recipes/:id", (request, response) => {
-    let recipeID = request.params.id;
+    let recipeID = parseInt(request.params.id);
     console.log("Now showing page id " + recipeID);
         jsonfile.readFile(recipeFile,(err,obj)=>{
             if (err) {
@@ -78,9 +80,16 @@ app.get("/recipes/:id", (request, response) => {
             console.error(err)
             console.log("//// error ////");
             }
+            const recipeitemArray = obj.cookbook.map(recipeItem =>{
+                console.log("checking recipe item " + recipeItem);
+                return recipeItem;
+            })
+            let displayID = recipeitemArray[recipeID];
+            console.log("The array of recipe is : " + recipeitemArray);
+
             let data = obj.cookbook;
             // response.send("This page shows recipe number : " + recipeID + ": " + showRecipe);
-            response.render("home", data);
+            response.render("home", obj);
         })
 })
 
