@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Head } from '@react-ssr/express'
 import Nav from './partials/_nav'
 import '../public/styles/base.scss'
 
 const Index = ({ props }) => {
-  const [message, setMessage] = useState('')
-  const onClick = () => setMessage('This is a react-ssr!')
   return (
     <React.Fragment>
       <Head>
@@ -35,12 +33,11 @@ const Index = ({ props }) => {
         <p className="subtitle">
           Do you want to add some?
         </p>
-        <button
-          className="button is-primary"
-          onClick={onClick}
+        <a href="/recipes/add"
+           className="button is-primary"
         >
           Click Me
-        </button>
+        </a>
       </div>
     </React.Fragment>
   );
