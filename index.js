@@ -47,21 +47,12 @@ app.get('/recipes/', (req, res) => {
 });
 
 app.get('/recipes/new', (req, res) => {
-    //
+
     jsonfile.readFile(file, (err, obj) => {
         console.log("Entering new recipe");
-        console.log("New recipe id: ", Number(obj.id.length));
 
-        let i;
-        for (i = 0; i <= obj.id.length; i++) {
-            if (i == obj.id.length) {
-                return i;
-            }
-        }
-        const newRecipe = obj.id.push(re);
-
-        // console.log("Posting from form");
-        // res.render('newrecipe', obj.id[i]);
+        console.log("Posting from form");
+        res.render('newrecipe');
     })
 
 });
@@ -71,14 +62,24 @@ app.post('/recipes', function (request, response) {
     //debug code (output request body)
     console.log("Listing Recipes");
 
+    jsonfile.readFile(file, (err, obj) => {
+        // console.log("Entering new recipe");
+        // console.log("Posting from form");
+        // res.render('newrecipe');
+        let newrecipe = request.body;
+        let recipeList = obj.recipes;
+        recipeList.push(newrecipe);
+        obj.recipes = recipeList;
 
-    // save the request body
-    jsonfile.writeFile(file, request.body, (err) => {
-        console.error(err)
+        // save the request body
+        jsonfile.writeFile(file, obj, (err) => {
+            console.error(err)
 
-        // now look inside your json file
-        response.render(request.body);
-    });
+            // now look inside your json file
+            response.render('recipes', obj);
+        });
+    })
+
 });
 
 
