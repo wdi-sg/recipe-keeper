@@ -61,7 +61,6 @@ const parseRecipeForm = function (form) {
   for (let i = 1; i <= ingList.length; i++) {
     ingredients[i] = ingList[i - 1];
   }
-  console.log(ingredients);
 
   let newRecipe = {
     "name": name,
@@ -69,7 +68,6 @@ const parseRecipeForm = function (form) {
     "instructions": instructions
   };
 
-  console.log(newRecipe);
   return newRecipe;
 };
 
