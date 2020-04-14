@@ -9,7 +9,7 @@ router.route('/').get((req, res) => {
     .then(err => res.status(400).json('Error: ' + err))
 })
 
-router.route('/add').post((req, res) => {
+router.route('/new').post((req, res) => {
   const { name } = req.body
   const newIngredient = new Ingredient(name)
   newIngredient.save()
