@@ -26,10 +26,10 @@ const Ingredients = (recipe) => {
       { Object.keys(ingredients).map((id) => {
         return (
           <div className="row justify-content-center" key={id}>
-            <div className="col-3 border-bottom">
+            <div className="col-4 border-bottom">
               <span className="h6 text-right">{ingredients[id].ing}</span>
             </div>
-            <div className="col-3 border-bottom">
+            <div className="col-4 border-bottom">
               <span className="h6 text-left">{ingredients[id].qty}</span>
             </div>
           </div>
@@ -91,7 +91,7 @@ class RecipeView extends React.Component {
             </div>
 
             <div className="row justify-content-center my-4">
-              <div className="col-2">
+              <div className="col-4">
                 <a href="/recipes"
                    className="btn btn-small btn-outline-success btn-block">
                   Back to Browse
