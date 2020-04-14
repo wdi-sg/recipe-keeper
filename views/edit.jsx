@@ -18,8 +18,7 @@ class Edit extends React.Component {
                           <li class="nav-item">
                             <a class="nav-link active" href="/recipe">Home</a>
                           </li>
-                          </ul>
-
+                    </ul>
                         <form method="POST" action={editRecipe}>
                         <div class="form-group">
                             <label for="exampleFormControlInput1 add-title">Title</label>
@@ -34,8 +33,6 @@ class Edit extends React.Component {
                     </div>
                 </body>
             </html>
-
-
             )
     }
 }

@@ -31,7 +31,6 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <h1>Existing Recipes</h1>
-
                     <ul class="list-group list-group-flush">
                         {recipeDetails}
                     </ul>

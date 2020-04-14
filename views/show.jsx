@@ -3,8 +3,8 @@ const React = require('react');
 class Show extends React.Component {
     render() {
 
-        const editLink = '/recipe/' + this.props.num + '/edit';
-        const deleteLink = '/recipe/' + this.props.num + '?_method=delete';
+        const editLink = '/recipe/' + this.props.id + '/edit';
+        const deleteLink = '/recipe/' + this.props.id + '?_method=delete';
 
 
 
@@ -42,7 +42,7 @@ class Show extends React.Component {
                    </div>
                     <div className="delete-button">
                     <form method="POST" action={deleteLink}>
-                    <button type="submit" class="btn btn-light">Delete Book</button>
+                    <button type="submit" class="btn btn-light">Delete Recipe</button>
                     </form>
                     </div>
                 </body>

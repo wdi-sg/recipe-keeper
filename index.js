@@ -65,7 +65,7 @@ app.get('/recipe/:id', (req, res) => {
         const index = parseInt(req.params.id);
         const recipe = obj.recipes;
         const data = {
-            num: index,
+            id: index,
             title: recipe[index - 1].title,
             ingredients: recipe[index - 1].ingredients,
             instructions: recipe[index - 1].instructions
@@ -82,8 +82,8 @@ app.get('/recipe/:id/edit', (req, res) => {
         const data = {
             id: index + 1,
             title: recipe[index].title,
-            ingredients: obj.recipes[index].ingredients,
-            instructions: obj.recipes[index].instructions
+            ingredients: recipe[index].ingredients,
+            instructions: recipe[index].instructions
         }
         res.render('edit', data);
     })
@@ -100,8 +100,6 @@ app.put('/recipe/:id', (req, res) => {
             const link = '/recipe/' + (index + 1);
             res.redirect(link);
         })
-
-
     })
 })
 
