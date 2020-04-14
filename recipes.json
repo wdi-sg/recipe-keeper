@@ -1,2 +1,21 @@
 [
+    {
+        "_id": "XzIwUHz5H",
+        "_date_created": "2020-04-13T16:02:51.744Z",
+        "name": "red red spagetti squash",
+        "ingredients": [
+            {
+                "fk_ingredientId": "MMmnE-EoR",
+                "quantity": 10,
+                "unit": "glass",
+                "notes": "5 years and above"
+            },
+            {
+                "fk_ingredientId": "jHbD9_y_Nj",
+                "quantity": 2,
+                "unit": "gram",
+                "notes": "use the freshest ones you can find from local supermarket"
+            }
+        ]
+    }
 ]

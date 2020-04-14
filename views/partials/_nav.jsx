@@ -32,7 +32,6 @@ const Nav = (props) => {
       </div>
 
     </nav>
-
   )
 }
 

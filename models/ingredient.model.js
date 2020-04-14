@@ -6,6 +6,7 @@ class Ingredient extends Model {
 
   static _connection = JSON_URI
   static _keysToCheck = ['_id', 'name']
+  static _fkName = 'fk_ingredientId'
 
   constructor (name, fk_recipes = []) {
     super()
@@ -13,6 +14,16 @@ class Ingredient extends Model {
     this.disabled = false
     this.fk_recipes = fk_recipes
   }
+
+  getPlainObj () {
+    return {
+      id: this.id,
+      name: this.name,
+      disabled: this.disabled,
+      fk_recipes: this.fk_recipes
+    }
+  }
+
 }
 
 module.exports = Ingredient

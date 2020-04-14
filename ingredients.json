@@ -5,7 +5,8 @@
         "name": "Wine - Rosso Toscano Igt",
         "disabled": false,
         "fk_recipes": [
-            "f7CpGKTNK"
+            "f7CpGKTNK",
+            "XzIwUHz5H"
         ]
     },
     {
@@ -14,7 +15,8 @@
         "name": "Spaghetti Squash",
         "disabled": false,
         "fk_recipes": [
-            "f7CpGKTNK"
+            "f7CpGKTNK",
+            "XzIwUHz5H"
         ]
     },
     {

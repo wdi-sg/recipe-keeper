@@ -73,7 +73,6 @@ class Model {
   // for all keys, if any duplicate from in all objs,return false
   // todo: add array check
   async hasDuplicates (keysToCheck) {
-    console.table(keysToCheck)
     const allObjs = await this._fetchAll()
     keysToCheck.every(key => {
       allObjs.some(item => {

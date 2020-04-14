@@ -8,6 +8,16 @@ class RecipesList extends Component {
   }
 
   componentDidMount () {
-    
+    this.setState({ recipes: this.props.recipes })
+    console.log(this.props.recipes)
   }
+
+  render () {
+    return (
+      <div>hello</div>
+    )
+  }
+
 }
+
+export default RecipesList

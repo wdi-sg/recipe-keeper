@@ -6,7 +6,9 @@ class Recipe extends Model {
 
   static _connection = JSON_URI
   static _keysToCheck = ['_id', 'name']
+  static _fkName = 'fk_recipes'
 
+  // idea: how does relationship modeling work?
   /*
   "ingredients": [
 		{
@@ -24,17 +26,28 @@ class Recipe extends Model {
     this.instructions = instructions
   }
 
-  /*
-  [
-  {
-    fk_ingredientId: 'MMmnE-EoR',
-    quantity: 10,
-    unit: 'glass',
-    notes: 'cook until broke'
+  get plainObj () {
+    return {
+      id: this.id,
+      name: this.name,
+      ingredients: this.ingredients,
+      instructions: this.instructions
+    }
   }
-]
 
-   */
+  static async mapRecipeIngredients (recipesArr) {
+    const recipesWithIngredients = Promise.all(recipesArr.map(async recipe => {
+      const recipeIngredients = recipe.ingredients
+      const newRecipe = await Promise.all(recipeIngredients.map(async recipeIngredient => {
+        const ingredientModel = await Ingredient.findById(recipeIngredient[Ingredient._fkName])
+        const ingredientObjProps = ingredientModel.getPlainObj()
+        return { ...recipeIngredient, ...ingredientObjProps }
+      }))
+      return newRecipe
+    }))
+    return recipesWithIngredients
+  }
+
   async setIngredients (ingredientsArr) {
     // verify the all ingredients exist and Ingredient.have
     //todo: put fk_ingredientId inside ingredient as staticValidRefs
@@ -43,17 +56,6 @@ class Recipe extends Model {
     console.info('ingredients added to recipe.... not saved yet')
     this.ingredients = ingredientsArr
   }
-
-  _createIngredient (fk_ingredientId, quantity = 1, unit = '', notes = '') {
-    const recipeIngredient = {
-      fk_ingredientId, // uuid
-      quantity, // number
-      unit, // string
-      notes // text
-    }
-    this.ingredients.push(recipeIngredient)
-  }
-
 }
 
 module.exports = Recipe
