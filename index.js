@@ -44,6 +44,7 @@ app.post('/recipes', (request, response) => {
         let recipe = obj.recipe;
         recipe.push(data);
 
+        //Reassign ID when a recipe is removed
         for (let i = 0; i < recipe.length; i++) {
             recipe[i].id = i+1;
         }
