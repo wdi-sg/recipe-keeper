@@ -1,11 +1,27 @@
 @charset "utf-8";
+$brand: #F3797E;
+$dark-accent: #8c8a8a;
+$light-shade: #f6f5ef; // bg
+$dark-shade: #733D4D; // text
+$light-accent: #d99895;
+
+$primary: $brand;
+$background: $light-shade;
+$text: $dark-shade;
+$link: $light-accent;
+
 @import "~bulma/bulma";
 
 img.site-logo {
   display: inline-block;
+  width: 40px;
+  margin-left: 10px;
+  margin-right: 5px;
+  padding: 0;
 }
 
 .site-title {
   font-weight: bolder;
   margin-left: 5px;
+  color: $dark-accent;
 }

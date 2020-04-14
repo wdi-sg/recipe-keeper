@@ -13,7 +13,7 @@ const Nav = (props) => {
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Recipe_logo.jpeg/240px-Recipe_logo.jpeg"
             alt="site-logo" className="site-logo"/>
-          <a href="/" className="navbar-item has-text-weight-bold">Recipe Keeper</a>
+          <a href="/" className="navbar-item has-text-weight-bold site-title">Recipe Keeper</a>
         </div>
 
         <a className={`navbar-burger burger ${isMMenuActive ? 'is-active' : ''}`} aria-label='menu'
