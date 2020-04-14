@@ -1,0 +1,28 @@
+{
+  "name": "recipe-keeper",
+  "version": "1.0.0",
+  "description": "Create an online recipe keeper.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "json": "^9.0.6",
+    "method-override": "^3.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marcelchia/recipe-keeper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Marcelchia/recipe-keeper/issues"
+  },
+  "homepage": "https://github.com/Marcelchia/recipe-keeper#readme"
+}
