@@ -39,7 +39,7 @@ app.get('/recipes/:id/edit', (req, res) => {
         const recipesArr = obj.recipes;
         const result = recipesArr[query]
         const data = result;
-        res.render("editrecipe", data);
+        res.render("edit", data);
     });
 
 })
