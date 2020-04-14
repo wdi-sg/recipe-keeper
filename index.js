@@ -73,8 +73,9 @@ const parseRecipeForm = function (form) {
   return newRecipe;
 };
 
-// file service routes
-app.use(express.static('/static/'));
+// file service - mount ./static firtual path /static
+// access via url/static/filename
+app.use('/pub', express.static('./static'));
 let options = {
   root: ('static'),
   dotfiles: 'deny',
@@ -84,19 +85,19 @@ let options = {
   }
 };
 
-app.get('/static/:filename', (req, res) => {
-  let filename = req.params.filename;
-  if (filename.includes('css')) {
-    res.type('.css');
-  }
-  res.sendFile(filename, options, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("sent", filename);
-    }
-  });
-});
+// app.get('/static/:filename', (req, res) => {
+//   let filename = req.params.filename;
+//   if (filename.includes('css')) {
+//     res.type('.css');
+//   }
+//   res.sendFile(filename, options, (err) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("sent", filename);
+//     }
+//   });
+// });
 
 // RESTful routes
 app.get('/recipes/new', (req, res) => {
