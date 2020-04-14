@@ -199,15 +199,7 @@ app.delete("/recipes/:id", (request, response) => {
     })
   })
 
-  // Confirm Delete
-app.get("/recipes/:id/confirm", (request, response) => {
-    response.render("confirmation", {"id": request.params.id});
-  })
-  
-  // Delete confirmation
-  app.get("/recipes/:id/deleted", (request, response) => {
-    response.render("deleted", {"id": request.params.id});
-  })
+ 
 
 // ===================================
 //   Listen to requests on port 3000
