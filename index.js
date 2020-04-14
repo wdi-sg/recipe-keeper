@@ -1,3 +1,50 @@
+
+//SETTING STUFF UP...
+
+const jsonfile = require("jsonfile");
+const file = "data.json";
+const express = require("express");
+const app = express();
+app.use(express.static(__dirname + "/public/"));
+app.use(express.json());
+app.use(
+    express.urlencoded({
+        extended: true,
+    })
+);
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
+const reactEngine = require("express-react-views").createEngine();
+app.engine("jsx", reactEngine);
+app.set("views", __dirname + "/views");
+app.set("view engine", "jsx");
+app.listen(3000, () => console.log(`Server has started on port 3000.`))
+
+const date = new Date();
+const today = date.getDate() + "/" + (parseInt(date.getMonth())+1) + "/" + date.getFullYear()
+
+
+
+//====new recipe====
+app.get('/recipes/new', (req, res) => {
+    return res.render('form')
+})
+
+//====editing one recipe====
+app.get('/recipes/:id/edit', (req, res) => {
+    const query = parseInt(req.params.id);
+
+
+    jsonfile.readFile(file, (err, obj) => {
+        const recipesArr = obj.recipes;
+        const result = recipesArr[query]
+        const data = result;
+        res.render("editrecipe", data);
+    });
+
+})
+
+
 app.post('/recipes',(request,response) =>{
     console.log("added");
     //response.send("Successfully added recipe");
@@ -18,24 +65,16 @@ app.post('/recipes',(request,response) =>{
 });
 //INITIAL ROUTE
 app.get('/', (request, response) => {
-     response.redirect('/recipes/');
+     response.redirect('/recipe/');
  })
 //  DISPLAY ALL RECIPES
- app.get('/recipes/', (request,response)=>{
-    jsonfile.readFile(file, (err,obj)=>{
-        const dataName = {
-            recipes: obj.recipes
-        }
-        response.render('home',dataName);
-    })
 
-});
  //DISPLAY FORM FOR A NEW RECIPE
-app.get('/recipes/new',(request,response) =>{
+app.get('/recipe/new',(request,response) =>{
     response.render('add');
 });
 //DISPLAY INDIVIDUAL RECIPE
-app.get('/recipes/:id', (request,response) =>{
+app.get('/recipe/:id', (request,response) =>{
     jsonfile.readFile(file, (err,obj)=>{
         const index = parseInt(request.params.id);
         const data = {
