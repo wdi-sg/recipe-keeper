@@ -28,7 +28,14 @@ app.set('view engine', 'jsx');
 
 
 app.get('/', (request, response) => {
-  response.send("Hello there!!!")
+
+  jsonfile.readFile(file, (err, obj)=> {
+    const data = {
+      recipes: obj.recipes
+    }
+    response.render("Index", data)
+  })
+
 })
 
 //form for adding a new recipe//
@@ -36,8 +43,41 @@ app.get('/recipes/new', (request, response) => {
   response.render('new')
 })
 
+//to create a new recipe//
+app.get('/recipes',(request, response)=>{
+        response.render('', data);
+    });
 
+app.post('/recipes/new', (request, response) =>{
 
+  jsonfile.readFile(file, (err, obj) => {
+    console.log(file)
+    const recipe = request.body;
+    obj.recipes.push(recipe)
+
+  jsonfile.writeFile(file, obj, (err) => {
+    response.send(obj.recipes)
+  } )
+})
+})
+
+app.get("/recipes/:id", (request, response)=> {
+  const id = request.params.id
+  const data = {
+    id: id
+  }
+  response.render("DeletePage", data)
+})
+
+app.delete("/recipes/:id", (request, response)=> {
+  response.send("NEED TO DELETE RECIPE" + request.params.id)
+  jsonfile.readFile(file, (err, obj)=> {
+    const newRecipesArray = obj.recipes.filter((recipe)=> {
+      return recipe.id !== request.params.id
+    })
+    console.log(newRecipesArray)
+  })
+})
 
 
 

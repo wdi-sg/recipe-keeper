@@ -8,7 +8,7 @@ class New extends React.Component {
           <div>
             <form method="POST" action="/recipes/new">
               id:
-              <input type="text" name="title"></input>
+              <input type="text" name="id"></input>
               Ingredients:
               <input type="text" name="ingredients"></input>
               Instructions:
