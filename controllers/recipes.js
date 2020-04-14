@@ -14,6 +14,8 @@ module.exports.postAddRecipe = (req, res) => {
 
     jsonfile.readFile(recipesFile, (err, obj) => {
 
+        //Validate that User has entered certain fields. More robust validation needed via Regex
+
         if (!req.body.title || !req.body.ingredient || !req.body.instructions) {
 
             let formData = {
@@ -26,10 +28,14 @@ module.exports.postAddRecipe = (req, res) => {
 
             if (!req.body.instructions) formData.message = `${formData.message}\nAt least one instruction`
 
+            //For now, page re-renders if input is invalid. Consider not rendering and keeping user input intact, but with UI prompt
+
             res.render('add-recipe', formData)
 
         } else {
-            // const newRecipeId = (obj.recipes[obj.recipes.length - 1].id) + 1;
+
+            //Recipes are sorted by id before adding new recipe, as new ID to be assigned depends on last ID. Consider adding logic to assign ID where there are gaps in consecutive ID numbers (eg. where recipe has been deleted)
+
             const newRecipeId = obj.recipes
                 .map(recip => recip.id)
                 .sort()[obj.recipes.length - 1] + 1;
@@ -47,6 +53,7 @@ module.exports.postAddRecipe = (req, res) => {
                 })
             })
 
+            //See models folder
             const newRecipe = new Recipe(
                 newRecipeId,
                 req.body.title,
@@ -100,6 +107,8 @@ module.exports.putRecipeById = (req, res) => {
 
     jsonfile.readFile(recipesFile, (err, obj) => {
 
+        //Validate that User has entered certain fields. More robust validation needed via Regex
+
         if (!req.body.title || !req.body.ingredient || !req.body.instructions) {
 
             let formData = {
@@ -116,6 +125,8 @@ module.exports.putRecipeById = (req, res) => {
 
         } else {
 
+
+
             const updatedRecipeId = req.params.id;
 
             const updatedRecipeIngredients = [];
@@ -129,6 +140,9 @@ module.exports.putRecipeById = (req, res) => {
                     notes: req.body.ingredient.notes[itemIndex]
                 })
             })
+
+
+            //updatedRecipe only updates certain fields in the corresponding json recipe. See replace method in models folder.
 
             const updatedRecipe = new Recipe(
                 updatedRecipeId,
@@ -166,6 +180,8 @@ module.exports.getSortedRecipes = (req, res) => {
 
         const selectedProp = req.body.property;
 
+        //*--Callback for sort function, used  to compare consecutive values of object. Not used extensively for now (presently only used to sort by title). Consider removing / refactoring.
+
         const compareSelectedProp = (a, b) => {
 
             const valueA = a[selectedProp];
@@ -180,6 +196,8 @@ module.exports.getSortedRecipes = (req, res) => {
 
             return comparisonVal;
         }
+
+        //*--
 
         if (req.body.property == 'title') {
 

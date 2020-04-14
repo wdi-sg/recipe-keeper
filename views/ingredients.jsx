@@ -1,4 +1,5 @@
 const React = require('react');
+
 import Head from './head';
 import Header from './header';
 
@@ -8,6 +9,7 @@ class Ingredients extends React.Component {
 
         let recipeUrl;
 
+        //New Set is initialised to remove duplicate ingredients. Flat is necessary because each recipe has array of ingredients.
         const ingredArr = Array.from(new Set(this.props.recipes
             .map(recipe => recipe.ingredients)
             .flat()
