@@ -20,7 +20,7 @@ class CreateRecipe extends Component {
 
         <section className='section is-medium'>
           <div className="container">
-            <h1 className="title">New Recipe</h1>
+            <h1 className="title has-text-primary">New Recipe</h1>
             <div className="columns">
               <form action="/recipes/add" className="column is-two-thirds">
 
