@@ -51,7 +51,7 @@ class RecipeView extends React.Component {
       <html>
         <head>
           <link rel="stylesheet"
-                href="../static/bootstrap.min.css"
+                href="/pub/css/bootstrap.min.css"
                 />
         </head>
 

@@ -58,9 +58,9 @@ class RecipeForm extends React.Component {
       <html>
         <head>
           <link rel="stylesheet"
-                href="/static/bootstrap.min.css"
+                href="/pub/css/bootstrap.min.css"
                 />
-          <script src="/static/form.js" />
+          <script src="/pub/script/form.js" />
         </head>
         <body>
 
