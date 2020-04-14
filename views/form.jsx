@@ -28,21 +28,18 @@ class Form extends React.Component {
                   <form method="POST" action="/recipes">
                     <br />
                     <input
-                      style={{ margin: "10px" }}
                       type="text"
                       name="title"
                       placeholder="Title"
                     />
                     <br />
                     <input
-                      style={{ margin: "10px" }}
                       type="text"
                       name="ingredients"
                       placeholder="Ingredients"
                     />
                     <br />
                     <input
-                      style={{ margin: "10px" }}
                       type="text"
                       name="instructions"
                       placeholder="Instructions"

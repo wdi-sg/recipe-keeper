@@ -56,13 +56,12 @@ li {
 
     li {
         list-style-type: none;
-        font-size: 1.4rem;
     }
   }
 
 a {
     color:grey;
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
