@@ -40,7 +40,7 @@ app.use(methodOverride('_method'));
 
 //Homepage
 //===========
-app.get('/', (request, response) => {
+app.get('/recipes', (request, response) => {
 
     jsonfile.readFile(file, (err, obj) => {
 
@@ -52,7 +52,7 @@ app.get('/', (request, response) => {
 
 //Create new recipe
 //=================
-app.get('/recipes/create', (request, response) => {
+app.get('/recipes/new', (request, response) => {
     response.render('addRecipe')
 });
 
@@ -73,7 +73,7 @@ app.post('/recipes/newrecipes', (request,response) => {
 
         jsonfile.writeFile(file, obj, (err) => {
 
-            response.redirect('/')
+            response.redirect('/recipes')
             console.log(err)
         });
 
@@ -129,11 +129,9 @@ app.put('/recipes/:title', (request,response) => {
 
         jsonfile.writeFile(file, obj, (err) => {
 
-            response.redirect('/')
+            response.redirect('/recipes')
             console.log(err)
         });
-
-
     });
 })
 
@@ -182,11 +180,9 @@ app.delete('/recipes/:title', (request,response) => {
 
         jsonfile.writeFile(file, obj, (err) => {
 
-            response.redirect('/')
+            response.redirect('/recipes')
             console.log(err)
         });
-
-
     });
 })
 

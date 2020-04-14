@@ -8,6 +8,7 @@ class Home extends React.Component {
     return (
         <html>
             <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
             <link rel="stylesheet" type="text/css" href="./style.css"/>
@@ -37,7 +38,7 @@ class Home extends React.Component {
                             {this.props.inst}
                         </div>
                         <div className="row">
-                            <form method="get" action="/">
+                            <form method="get" action="/recipes">
                                 <button type="submit" className="btn btn-secondary m-2">Back to List</button>
                             </form>
                             <form method="get" action={"/recipes/"+this.props.title+"/edit"}>
