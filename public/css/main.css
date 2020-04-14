@@ -398,3 +398,41 @@ body {
 		text-align: center;
 		color: #3a4660;
 }
+
+/**/
+
+@media (min-width: 800px) {
+
+		.nav {
+				flex-direction: row;
+				width: 100%;
+		}
+
+		.nav__link {
+				flex: 1;
+		}
+
+		.landing-page {
+				height: 70vh;
+		}
+}
+
+@media (min-width: 1000px) {
+		.recipes-list {
+				flex-direction: row;
+				flex-wrap: wrap;
+		}
+
+		.recipes-list__entry {
+				flex: 1 0 40%;
+				height: 500px;
+		}
+
+		.recipes-list__entry-img-wrapper {
+				height: 80%;
+		}
+
+		.recipes-list__entry-link-wrapper {
+				height: 20%;
+		}
+}
