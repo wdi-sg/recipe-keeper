@@ -14,6 +14,10 @@ router.route('/:id').get((req, res) => {
   Recipe.findById(req.params.id).then((obj) => res.json(JSON.stringify(obj)))
 })
 
+router.route('/add').get((req, res) => {
+  return res.render('recipe/create-recipe')
+})
+
 router.route('/add').post((req, res) => {
   const { name, ingredients, instructions } = req.body
   const newRecipe = new Recipe(name, ingredients, instructions)

@@ -13,7 +13,7 @@ const Nav = (props) => {
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Recipe_logo.jpeg/240px-Recipe_logo.jpeg"
             alt="site-logo"/>
-          <a href="" className="navbar-item has-text-weight-bold">Recipe Keeper</a>
+          <a href="/" className="navbar-item has-text-weight-bold">Recipe Keeper</a>
         </div>
 
         <a className={`navbar-burger burger ${isMMenuActive ? 'is-active' : ''}`} aria-label='menu'
@@ -28,6 +28,7 @@ const Nav = (props) => {
         <div className="navbar-start">
           <a className="navbar-item" href="/">Home</a>
           <a href="/recipes" className="navbar-item">All Recipes</a>
+          <a href="/recipes/add" className="navbar-item">Add New Recipe </a>
         </div>
       </div>
 
