@@ -3,7 +3,7 @@ import { Head } from '@react-ssr/express'
 import Nav from '../partials/_nav'
 import '../../public/styles/base.scss'
 
-export default class CreateRecipe extends Component {
+class CreateRecipe extends Component {
   constructor (props) {
     super(props)
   }
@@ -22,3 +22,5 @@ export default class CreateRecipe extends Component {
   }
 
 }
+
+export default CreateRecipe

@@ -28,7 +28,7 @@ const Nav = (props) => {
         <div className="navbar-start">
           <a className="navbar-item" href="/">Home</a>
           <a href="/recipes" className="navbar-item">All Recipes</a>
-          <a href="/recipes/add" className="navbar-item">Add New Recipe </a>
+          <a href="/recipes/add" className="navbar-item">New Recipe </a>
         </div>
       </div>
 

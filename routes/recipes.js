@@ -10,12 +10,12 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 })
 
-router.route('/:id').get((req, res) => {
+router.route('/:id(\\d+)/').get((req, res) => {
   Recipe.findById(req.params.id).then((obj) => res.json(JSON.stringify(obj)))
 })
 
 router.route('/add').get((req, res) => {
-  return res.render('recipe/create-recipe')
+  return res.render('recipe/create-recipe', {})
 })
 
 router.route('/add').post((req, res) => {
