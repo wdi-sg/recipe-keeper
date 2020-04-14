@@ -134,10 +134,10 @@ app.get('/recipes/:id', (request,response) => {
           response.send("not found");
         } else {
 
-          //response.send(pokemon);
         }
     });
 })
+
 // Edit recipes
 
 app.get('/recipes/:id/edit', (request, response) => {
@@ -156,7 +156,8 @@ app.get('/recipes/:id/edit', (request, response) => {
     })
 }); 
 
-// post EDIT recipes data
+// post edited ecipes data
+
 app.put('/recipes/:id', (request,response) => {
     let searchedId = parseInt(request.params.id);
     let searchedIndex = searchedId - 1;
@@ -186,9 +187,8 @@ app.put('/recipes/:id', (request,response) => {
     });
 })
 
-
-    
-    
+// delete recipes
+  
 app.delete("/recipes/:id", (request, response) => {
     jsonfile.readFile(file, (error, obj) => {
       const all = parseInt(request.params.id) -1;
