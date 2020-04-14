@@ -2,7 +2,6 @@ const router = require('express').Router()
 const Recipe = require('../models/recipe.model')
 const Ingredient = require('../models/ingredient.model')
 
-
 router.route('/').get((req, res) => {
   Recipe.findAll()
     .then(jsonArr => Recipe.mapRecipeIngredients(jsonArr))
@@ -15,7 +14,7 @@ router.route('/:id(\\d+)/').get((req, res) => {
 })
 
 router.route('/new').get((req, res) => {
-  return res.render('recipe/create-recipe', {})
+  return res.render('recipe/create-recipe', { ingredients: Ingredient.findAll() })
 })
 
 router.route('/new').post((req, res) => {

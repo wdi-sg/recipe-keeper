@@ -12,7 +12,7 @@ const Nav = (props) => {
         <div className="navbar-item">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Recipe_logo.jpeg/240px-Recipe_logo.jpeg"
-            alt="site-logo"/>
+            alt="site-logo" className="site-logo"/>
           <a href="/" className="navbar-item has-text-weight-bold">Recipe Keeper</a>
         </div>
 
