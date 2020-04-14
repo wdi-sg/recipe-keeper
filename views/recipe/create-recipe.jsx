@@ -38,22 +38,22 @@ class CreateRecipe extends Component {
                 </div>
               </div>
 
-              <div className="field is-grouped is-grouped-multiline">
+              <div className="field is-grouped">
                 <div className="control">
-                  <label htmlFor="ingredient-name" className="label"></label>
                   <div className="select is-primary">
                     <select name="" id="ingredient">
-                      <option value=""></option>
+                      <option value="">Orange</option>
                     </select>
                   </div>
                 </div>
                 <div className="control">
-                  <label htmlFor="" className="label">Quantity</label>
-                  <input type="input" id="ingredient-quantity" className='input'/>
+                  <input type="input" id="ingredient-quantity" className='input' placeholder="Enter quantity"/>
                 </div>
                 <div className="control">
-                  <label htmlFor="" className='label'>Unit</label>
-                  <input type="text" className="input"/>
+                  <input type="text" className="input" placeholder="Enter Unit eg. grams"/>
+                </div>
+                <div className="control">
+                  <button className="button is-primary">+</button>
                 </div>
               </div>
 

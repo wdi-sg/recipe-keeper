@@ -32,7 +32,7 @@ const Index = ({ props }) => {
           <p className="subtitle">
             Do you want to add some?
           </p>
-          <a href="/recipes/add"
+          <a href="/recipes/new"
              className="button is-primary"
           >
             Click Me
