@@ -1,0 +1,14 @@
+{
+  "recipes": [
+    {
+      "title": "Boiled Fish",
+      "ingredients": "Fish, water",
+      "instructions": "Put fish in water and boil for few minutes."
+    },
+    {
+      "title": "Fried Egg",
+      "ingredients": "1 egg, oil",
+      "instructions": "Put a little bit of oil in a frying pan. Add egg and stir until solidifies. Serve."
+    }
+  ]
+}
