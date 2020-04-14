@@ -16,7 +16,7 @@ router.route('/:id').get((req, res) => {
 
 router.route('/add').post((req, res) => {
   const { name, ingredients, instructions } = req.body
-  const newRecipe = new Recipe(name, instructions)
+  const newRecipe = new Recipe(name, ingredients, instructions)
   newRecipe.setIngredients(ingredients).then(async () => {
     for (const ingredient of ingredients) {
       const ingredientModel = await Ingredient.findById(ingredient[Ingredient._fkName])

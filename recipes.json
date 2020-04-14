@@ -1,7 +1,7 @@
 [
     {
-        "_id": "XzIwUHz5H",
-        "_date_created": "2020-04-13T16:02:51.744Z",
+        "_id": "jQgAVA8Cn",
+        "_date_created": "2020-04-14T05:29:40.355Z",
         "name": "red red spagetti squash",
         "ingredients": [
             {
@@ -16,6 +16,7 @@
                 "unit": "gram",
                 "notes": "use the freshest ones you can find from local supermarket"
             }
-        ]
+        ],
+        "instructions": "First you pour the wine inside and then you do this and that, until 40 minutes later then you do this and that and blablablbalbalblbablablablabla"
     }
 ]

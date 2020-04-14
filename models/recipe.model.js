@@ -38,12 +38,15 @@ class Recipe extends Model {
   static async mapRecipeIngredients (recipesArr) {
     const recipesWithIngredients = Promise.all(recipesArr.map(async recipe => {
       const recipeIngredients = recipe.ingredients
-      const newRecipe = await Promise.all(recipeIngredients.map(async recipeIngredient => {
+
+      const newRecipeIngredients = await Promise.all(recipeIngredients.map(async recipeIngredient => {
         const ingredientModel = await Ingredient.findById(recipeIngredient[Ingredient._fkName])
         const ingredientObjProps = ingredientModel.getPlainObj()
         return { ...recipeIngredient, ...ingredientObjProps }
       }))
-      return newRecipe
+
+      recipe.ingredients = newRecipeIngredients
+      return recipe
     }))
     return recipesWithIngredients
   }
