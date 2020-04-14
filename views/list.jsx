@@ -4,24 +4,22 @@ class List extends React.Component {
     console.log("////");
     console.log("Render is working !!");
     console.log("////");
-    console.log(this.props.cookbook);
+    // console logs all objects
+    //console.log(this.props.cookbook);
 
-    let recipeName = this.props.cookbook[0];
-    console.log(recipeName);
-
-    const showrecipeAll = this.props.cookbook.map(recipeItem =>{
+    const getRecipe = this.props.cookbook.map(recipeItem =>{
         console.log("This item is being mapped " + recipeItem.id);
         console.log(recipeItem);
         console.log(recipeItem.ingredients);
 
-        const getIngredients = recipeItem.ingredients.map(ingredient =>{
-            console.log("this ingredient is being mapped " + ingredient);
-
-        })
+        const getIngredients = recipeItem.ingredients.map(ingredient => <li>{ingredient}</li> )
+        console.log("Ingredient being cooked - " + getIngredients);
+        let teachRecipe = recipeItem.instructions
+        console.log(teachRecipe);
         return (
-                    <li>{recipeItem.title}
-                    <li>ID : {recipeItem.id}</li>
-                    <li>{getIngredients}</li>
+                    <li><h2>{recipeItem.title}</h2>
+                    <p>Ingredients:</p><ul>{getIngredients}</ul>
+                    <p>Instructions <br></br>{teachRecipe}</p>
                     </li>
                );
   })
@@ -31,7 +29,7 @@ class List extends React.Component {
         <body>
           <div>
             <h1>This page is displaying Id number : </h1>
-            <ul>{showrecipeAll}</ul>
+            <ul>{getRecipe}</ul>
           </div>
         </body>
       </html>
