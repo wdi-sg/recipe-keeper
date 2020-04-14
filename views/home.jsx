@@ -4,18 +4,24 @@ class Home extends React.Component {
     console.log("////");
     console.log("Render is working !!");
     console.log("////");
-    console.log(this.props);
-    let id = this.props.id;
-    let recipeArray = this.props.recipe;
-    let resultRecipe = recipeArray[id];
-    console.log(recipeArray[id]);
+    console.log(this.props.id);
+    console.log("This is the object in home" + this.props.recipe);
+
+    let recipeArray = this.props.recipe
+    console.log(recipeArray[this.props.id]);
+    const checkID = id => {
+        console.log("checking ID")
+        return id === this.props.recipe.id
+    }
+
+    const correctRecipe = recipeArray.filter(checkID);
 
     return (
       <html>
         <body>
           <div>
-            <h1>This page is displaying Id number : {id}</h1>
-            <p>The recipe is : {resultRecipe}</p>
+            <h1>This page is displaying Id number : {correctRecipe}</h1>
+            <p>The recipe is : </p>
           </div>
         </body>
       </html>
