@@ -25,3 +25,21 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
+
+
+app.get('/', (request, response) => {
+  response.send("Hello there!!!")
+})
+
+//form for adding a new recipe//
+app.get('/recipes/new', (request, response) => {
+  response.render('new')
+})
+
+
+
+
+
+
+
+app.listen(3000);
