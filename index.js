@@ -28,21 +28,22 @@ app.set('view engine', 'jsx');
 
 // Load home page
 app.get('/', (req, res) => {
-  // running this will let express to run home.handlebars file in your views folder
+  // Render home page
   res.render('home')
 })
 
 // Action for adding new recipe
 app.post('/recipes', function (req, res) {
-  //debug code (output request body)
-  
+  // Read data.json file  
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj;
+    //if data.json is empty, initialize with recipe object
     if (recipeBook == undefined) {
       recipeBook = {
         "recipes": [],
       }
     }
+    // Get recipe from post request body and add it to recipe object
     var recipe = {
       "id": recipeBook.recipes.length + 1,
       "title": req.body.title,
@@ -50,6 +51,7 @@ app.post('/recipes', function (req, res) {
       "instructions": req.body.instructions,
       "date-updated": getDateTime(),
     }
+    // If recipe has title it will be stored in recipes array, else it would be ignored
     if(recipe.title!=""){
       recipeBook.recipes.push(recipe);
     }
@@ -60,6 +62,7 @@ app.post('/recipes', function (req, res) {
     });
 
   })
+  // Renders successful and unsuccessful add recipe pages based on empty title submitted in form
   if(req.body.title == ""){
     res.render('recipe-rejected', req.body)
   }else{
@@ -70,15 +73,21 @@ app.post('/recipes', function (req, res) {
 
 // Action for editing existing recipe
 app.put('/recipes/:id', function (req, res) {
-  //debug code (output request body)
+  // Gets id of recipe, hidden from view in edit form
   var id = parseInt(req.body.id);
+  // Gets recipe object based on id
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj.recipes;
+    
+    // Function used to match id to recipe's id
     function isId(recipe) {
       return recipe.id === id;
     }
+    // Find recipe based on id
     var recipe = recipeBook.find(isId);
+    // Returns arrayId of recipe
     var index = recipeBook.indexOf(recipe);
+    // Updates recipe values based on form put request
     var updatedRecipe = {
       "id": parseInt(req.body.id),
       "title": req.body.title,
@@ -86,12 +95,14 @@ app.put('/recipes/:id', function (req, res) {
       "instructions": req.body.instructions,
       "date-updated": getDateTime(),
     }
+    // If title blank, recipe not edited
     if(updatedRecipe.title != ""){
       recipeBook[index] = updatedRecipe;
     }
     var newOutput = {
       "recipes": recipeBook,
     }
+    // Writes updated file to data.json
     jsonfile.writeFile(file, newOutput, (err) => {
 
       console.log(err)
@@ -99,6 +110,7 @@ app.put('/recipes/:id', function (req, res) {
     });
 
   })
+  // Renders successful or unsuccessful edit based on empty title
   if(req.body.title == ""){
     res.render('edit-rejected', req.body)
   }else{
@@ -109,7 +121,6 @@ app.put('/recipes/:id', function (req, res) {
 
 // Action to remove existing recipe
 app.delete('/recipes/:id', function (req, res) {
-  //debug code (output request body)
   var id = parseInt(req.params.id);
   jsonfile.readFile(file, (err, obj) => {
     var recipeBook = obj.recipes;
