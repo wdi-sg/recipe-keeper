@@ -5,19 +5,33 @@ class List extends React.Component {
     console.log("Render is working !!");
     console.log("////");
     console.log(this.props.cookbook);
-    let showrecipeAll = this.props.cookbook.map(recipeitem =>{
-        return recipeitem + " ";
-    })
+
+    let recipeName = this.props.cookbook[0];
+    console.log(recipeName);
+
+    const showrecipeAll = this.props.cookbook.map(recipeItem =>{
+        console.log("This item is being mapped " + recipeItem.id);
+        console.log(recipeItem);
+        console.log(recipeItem.ingredients);
+
+        const getIngredients = recipeItem.ingredients.map(ingredient =>{
+            console.log("this ingredient is being mapped " + ingredient);
+
+        })
+        return (
+                    <li>{recipeItem.title}
+                    <li>ID : {recipeItem.id}</li>
+                    <li>{getIngredients}</li>
+                    </li>
+               );
+  })
+
     return (
       <html>
         <body>
           <div>
             <h1>This page is displaying Id number : </h1>
-            <ul>
-                <li>{showrecipeAll}</li>
-                <li>{showrecipeAll}</li>
-                <li>{showrecipeAll}</li>
-            </ul>
+            <ul>{showrecipeAll}</ul>
           </div>
         </body>
       </html>

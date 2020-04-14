@@ -74,23 +74,20 @@ app.get("/recipes",(request,response)=>{
 // display html page that shows content in id+
 app.get("/recipes/:id", (request, response) => {
     let recipeID = parseInt(request.params.id);
-    console.log("Now showing page id " + recipeID);
+        console.log("Now showing page id " + recipeID);
         jsonfile.readFile(recipeFile,(err,obj)=>{
             if (err) {
-            console.log("//// error ////");
-            console.error(err)
-            console.log("//// error ////");
+                console.log("//// error ////");
+                console.error(err)
+                console.log("//// error ////");
             }
-            // const recipeitemArray = obj.cookbook.map(recipeItem =>{
-            //     console.log("checking recipe item " + recipeItem);
-            //     return recipeItem;
-            // })
             const recipeObject = obj.cookbook;
+
             let displayID =
-            {
-                id: recipeID,
-                recipe: recipeObject
-            };
+                {
+                    id: recipeID,
+                    recipe: recipeObject
+                };
 
             response.render("home", displayID);
         })
@@ -106,5 +103,6 @@ app.get("/recipes/:id/edit", (request, response) => {
 
 
 
-console.log("~~Recipe is listening~~")
-app.listen(3000);
+let listener = console.log("~~Recipe is listening~~");
+
+app.listen(3000, listener);

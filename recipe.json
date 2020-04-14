@@ -1,8 +1,26 @@
 {
 	"cookbook":
-		[
-			"Spaghetti",
-			"Tomato Soup",
-			"Onion Rings"
-		]
+	[
+		{
+			"id": 1,
+			"title": "Spaghetti",
+			"ingredients": ["pasta","tomato"],
+			"instructions": "Do this then do that"
+		},
+
+		{
+
+			"id": 2,
+			"title": "Tomato Soup",
+			"ingredients": ["tomato","soup"],
+			"instructions": "Do this then do that"
+		},
+
+		{
+			"id": 3,
+			"title": "Chicken Rice",
+			"ingredients": ["chicken","rice"],
+			"instructions": "Do this then do that"
+		}
+	]
 }
