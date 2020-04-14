@@ -86,20 +86,58 @@ app.post('/createarecipe', (request, response) => {
     singleRecipe.createdDate = date.toLocaleDateString();
 
 
-    jsonfile.readFile(file, (err, obj) => {
-        // Add new recipe to recipe list
+    // jsonfile.readFile(file, (err, obj) => {
+    //     // Add new recipe to recipe list
+    //     obj.recipes.push(singleRecipe);
+
+    //     // Get id number of recipe
+    //     id = obj.recipes.length - 1;
+
+    //     jsonfile.writeFile(file, obj, (err) => {
+    //         console.log('writing file')
+    //     })
+
+    //     response.redirect(`/singlerecipe/${id}`)
+
+    // })
+
+
+    jsonfile.readFile(file, (err,obj) => {
+
         obj.recipes.push(singleRecipe);
 
-        // Get id number of recipe
-        id = obj.recipes.length - 1;
+        // let promise = new Promise((resolve, reject) => {
+        //     jsonfile.writeFile(file, obj, (err) => {
+        //     })
+        //     console.log('writing file')
 
-        jsonfile.writeFile(file, obj, (err) => {
-            console.log('writing file')
-        })
+        //     setTimeout(() => {resolve('done')}, 2000)
+        // }).then(function(){
+        //     console.log('done')
+        //     response.redirect('allrecipes')
+        // })
 
-        response.redirect(`/singlerecipe/${id}`)
+        async function editFile(){
 
+            let promise = new Promise((resolve, reject) => {
+                jsonfile.writeFile(file, obj, (err) => {
+                })
+                console.log('writing file wahahah')
+
+                setTimeout(() => {resolve('done')}, 2000)
+            })
+
+            await promise;
+
+            console.log('finished writing')
+            response.redirect('allrecipes')
+        }
+
+        editFile()
     })
+
+
+
 })
 
 
