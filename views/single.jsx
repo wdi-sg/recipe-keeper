@@ -27,7 +27,9 @@ class SingleRecipe extends React.Component {
 
                   <br/><br/>
 
-                  <a href={deleteUrl}>Delete</a>
+                  <form method="POST" action={deleteUrl}>
+                  <input type="submit" value="delete book"/>
+                  </form>
 
                   <br/><br/>
 

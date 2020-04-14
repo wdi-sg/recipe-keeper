@@ -186,46 +186,28 @@ app.put('/recipes/:id', (request,response) => {
     });
 })
 
-// delete recipes
 
-app.get('/recipes/:id/delete',(request, response)=>{
-    jsonfile.readFile(file, (err, obj) => {
-   
-
-        let searchedId = parseInt(request.params.id);
-        let searchedIndex = searchedId - 1;
-        console.log(searchedId)
-        let currentRecipe = obj.recipes[searchedId];
-    
-        let data = {
-            "id": currentRecipe.id,
-            "name": currentRecipe.name,
-        }
-
-        jsonfile.writeFile(file, obj, (err) => {
-            console.error(err)
-    
-            response.render('delete', data);
-            }); 
-        });
-    }); 
     
     
-    app.delete("/recipes/:id", (request, response) => {
-        jason.readfile(file, (err,obj)=>{
+app.delete("/recipes/:id", (request, response) => {
+    jsonfile.readFile(file, (error, obj) => {
+      const all = parseInt(request.params.id) -1;
+      obj.recipes.splice(all, 1)
+      jsonfile.writeFile(file, obj, (error) => {
+        response.redirect('/recipes/');
+      })
+    })
+  })
 
-            const id = parseInt(request.params.id)-1; 
-            let recipe = obj.recipe;
-            recipe.splice(id, 1);
-            jsonfile.writeFile(file, obj, (err) => {
-            response.redirect('/recipes');
-        }
-        
-        )
-
-            
-        });
-    });
+  // Confirm Delete
+app.get("/recipes/:id/confirm", (request, response) => {
+    response.render("confirmation", {"id": request.params.id});
+  })
+  
+  // Delete confirmation
+  app.get("/recipes/:id/deleted", (request, response) => {
+    response.render("deleted", {"id": request.params.id});
+  })
 
 // ===================================
 //   Listen to requests on port 3000
