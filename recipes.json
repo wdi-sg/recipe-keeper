@@ -1,0 +1,22 @@
+[
+    {
+        "_id": "jQgAVA8Cn",
+        "_date_created": "2020-04-14T05:29:40.355Z",
+        "name": "red red spagetti squash",
+        "ingredients": [
+            {
+                "fk_ingredientId": "MMmnE-EoR",
+                "quantity": 10,
+                "unit": "glass",
+                "notes": "5 years and above"
+            },
+            {
+                "fk_ingredientId": "jHbD9_y_Nj",
+                "quantity": 2,
+                "unit": "gram",
+                "notes": "use the freshest ones you can find from local supermarket"
+            }
+        ],
+        "instructions": "First you pour the wine inside and then you do this and that, until 40 minutes later then you do this and that and blablablbalbalblbablablablabla"
+    }
+]

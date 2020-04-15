@@ -1,0 +1,36 @@
+{
+  "name": "recipe-keeper",
+  "version": "1.0.0",
+  "description": "a simple crud app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-seahouse/recipe-keeper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dev-seahouse/recipe-keeper/issues"
+  },
+  "homepage": "https://github.com/dev-seahouse/recipe-keeper#readme",
+  "dependencies": {
+    "@react-ssr/core": "latest",
+    "@react-ssr/express": "latest",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonfile": "^6.0.1",
+    "method-override": "^3.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-multi-select-component": "^2.0.1",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "bulma": "^0.8.2"
+  }
+}
