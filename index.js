@@ -26,39 +26,38 @@ app.set('views', __dirname + '/views');
 
 app.set('view engine', 'jsx');
 
-
+//Welcome page//
 app.get('/', (request, response) => {
-
-  jsonfile.readFile(file, (err, obj)=> {
-    const data = {
-      recipes: obj.recipes
-    }
-    response.render("Index", data)
+    response.render("home")
   })
 
-})
+app.post('/', (request, response) => {
+    response.redirect('/recipes/new')
+  })
+
 
 //form for adding a new recipe//
 app.get('/recipes/new', (request, response) => {
   response.render('new')
 })
 
-//to create a new recipe//
-app.get('/recipes',(request, response)=>{
-        response.render('', data);
-    });
-
 app.post('/recipes/new', (request, response) =>{
 
-  jsonfile.readFile(file, (err, obj) => {
-    console.log(file)
-    const recipe = request.body;
-    obj.recipes.push(recipe)
+    jsonfile.readFile(file, (err, obj) => {
+      console.log(file)
+      const recipe = request.body;
+      obj.recipes.push(recipe)
 
-  jsonfile.writeFile(file, obj, (err) => {
+    jsonfile.writeFile(file, obj, (err) => {
+      const data = {
+        "id": recipe.id,
+        "ingredients": recipe.ingredients,
+        "instructions": recipe.instructions
+      }
+      console.log(data);
     response.send(obj.recipes)
-  } )
-})
+    } )
+  })
 })
 
 app.get("/recipes/:id", (request, response)=> {
