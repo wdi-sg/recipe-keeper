@@ -14,4 +14,4 @@ class Home extends React.Component {
   }
 }
 
-module.exports = home;
+module.exports = Home;
