@@ -79,7 +79,7 @@ app.post("/recipes", (req,res)=>{
     })
     })
 
-// get page displaying all the recipes
+// get page displaying single recipe
 app.get("/recipes/:id", (req,res) => {
     const idQuery = parseInt(req.params.id);
     jsonfile.readFile("data.json", (err,data) =>{
@@ -113,7 +113,52 @@ app.get("/recipes/", (req,res) => {
     })
 })
 
+// EDITING RECIPES
+app.get("/recipes/:id/edit", (req,res) => {
+    jsonfile.readFile("data.json", (err,data) => {
+        let idSearch = parseInt(req.params.id);
+        let indexSearch = idSearch -1;
+        let recipeToEdit = data.recipes[indexSearch];
 
+        const obj = {
+            title: recipeToEdit.title,
+            ingredients:recipeToEdit.ingredients,
+            instructions:recipeToEdit.instructions,
+            id: recipeToEdit.id,
+        }
+        console.log(obj)
+        res.render('edit',obj)
+
+    })
+})
+
+//EDIT RECIPES WITH PUT METHOD
+
+app.put("/recipes/:id", (req,res)=> {
+        let idSearch = parseInt(req.params.id);
+        let indexSearch = idSearch -1;
+        let recipeEdit = req.body;
+        let editTitle = recipeEdit.title;
+        let editInstructions = recipeEdit.instructions;
+        let editIngredients= recipeEdit.ingredients;
+        const obj ={
+            id: idSearch,
+            title: editTitle,
+            ingredients: editIngredients,
+            instructions:editInstructions
+        }
+
+    jsonfile.readFile("data.json", (err,data) => {
+        data.recipes[indexSearch] = obj;
+
+        jsonfile.writeFile("data.json", data, (err) => {
+            console.log(err)
+            res.render('recipe', obj)
+        })
+
+
+    })
+})
 
 
 
