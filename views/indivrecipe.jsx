@@ -16,19 +16,33 @@ class IndivRecipe extends React.Component {
         })
 
         let recipeEdit = "/recipes/"+index+"/edit"
+
+        const divStyle = {
+            margin: "20px",
+            padding: "10px",
+            fontFamily: "Arial"
+        }
+        const backButton = {
+            margin: "10px 12px 10px 0",
+            padding: "5px",
+            fontSize: "15px"
+        }
+
         return (
             <html>
                 <body>
-                  <div>
+                  <div style={divStyle}>
                   <h1>{title}</h1>
+                  <h4>Ingredients</h4>
                   <ul>
                   {ingredientsHTML}
                   </ul>
+                  <h4>Steps</h4>
                   <ol>
                   {instructionsHTML}
                   </ol>
-                  <p><a href={recipeEdit}>Edit/delete this recipe</a></p>
-                  <p><a href="/recipes/">Back to homepage</a></p>
+                  <button style={backButton}><a href={recipeEdit}>Edit/delete this recipe</a></button>
+                  <button style={backButton}><a href="/recipes/">Back to homepage</a></button>
 
 
                   </div>

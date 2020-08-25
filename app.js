@@ -18,24 +18,39 @@ app.engine('jsx', reactEngine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 
+//home page
 app.get("/recipes/", (request, response)=>{
     jsonfile.readFile('recipes.json', (err, obj)=>{
         response.render('home', obj)
     })
 })
 
+//form for new recipes
 app.get("/recipes/new", (request, response)=>{
     response.render('newrecipe')
 })
 
+//takes input for new recipes and stores it to disk
 app.post("/recipes", (request, response)=>{
     jsonfile.readFile('recipes.json', (err, obj)=>{
         obj.recipes.push(request.body)
+        obj.recipes.sort(function(a,b){
+            let nameA = a.title
+            let nameB = b.title
+            if(nameA > nameB){
+                return 1
+            } else if(nameA<nameB){
+                return -1
+            }
+            return 0
+        })
+        console.log(obj.recipes)
         jsonfile.writeFile('recipes.json', obj, err=>{console.log(err)})
         response.send("Recipe submitted. <a href='/recipes/'>Back to homepage</a>")
     })
 })
 
+//rendering individual recipe page
 app.get("/recipes/:index", (request, response)=>{
     let recipeInd = parseInt(request.params.index)
     let chosenObj;
@@ -50,6 +65,7 @@ app.get("/recipes/:index", (request, response)=>{
     })
 })
 
+//rendering form for editing individual recipe
 app.get("/recipes/:index/edit", (request, response)=>{
     jsonfile.readFile('recipes.json', (err, obj)=>{
         let chosenRecipe = obj.recipes[request.params.index]
@@ -58,6 +74,7 @@ app.get("/recipes/:index/edit", (request, response)=>{
     })
 })
 
+//updating recipe at selected index
 app.put("/recipes/:index", (request,response)=>{
     jsonfile.readFile('recipes.json', (err, obj)=>{
         obj.recipes[request.params.index] = request.body
@@ -66,11 +83,18 @@ app.put("/recipes/:index", (request,response)=>{
     })
 })
 
+//deleting recipe  at selected index
 app.delete("/recipes/:index", (request, response)=>{
     jsonfile.readFile('recipes.json', (err, obj)=>{
         obj.recipes.splice(request.params.index, 1)
         jsonfile.writeFile('recipes.json', obj, err=>{console.log(err)})
         response.send("Recipe deleted. <a href='/recipes/'>Back to homepage</a>")
+    })
+})
+
+app.get("/ingredients", (request, response)=>{
+    jsonfile.readFile('recipes.json', (err, obj)=>{
+        response.render('ingredients', obj)
     })
 })
 

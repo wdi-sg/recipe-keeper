@@ -5,19 +5,31 @@ class Home extends React.Component {
         let recipeList = this.props.recipes
         let recipeHTML = recipeList.map((item, index)=>{
             let recipeURL = "/recipes/" + index
-            return <li><a href={recipeURL}>{item.title}</a></li>
+            return <li><a href={recipeURL} style={{color: "black"}}>{item.title.trim()}</a></li>
         })
-        let newRecipeLink = "/recipes/new"
+
+        const divStyle = {
+            margin: "20px",
+            padding: "10px",
+            fontFamily: "Arial",
+            color: "black"
+        }
+
+        const buttonStyle = {
+            margin: "0 5px",
+            padding: "5px 8px"
+        }
 
         return (
             <html>
                 <body>
-                  <div>
+                  <div style={divStyle}>
                     <h1>All Recipes</h1>
                     <ul>
                     {recipeHTML}
                     </ul>
-                    <p><a href={newRecipeLink}>Add a new recipe.</a></p>
+                    <a href="/recipes/new"><button style={buttonStyle}>Add a new recipe</button></a>
+                    <a href="/ingredients"><button style={buttonStyle}>Browse recipes by ingredients</button></a>
 
                   </div>
                 </body>
