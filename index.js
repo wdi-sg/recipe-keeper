@@ -14,6 +14,8 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+
+
 const methodOverride = require('method-override')
 
 app.use(methodOverride('_method'));
@@ -158,6 +160,53 @@ app.put("/recipes/:id", (req,res)=> {
 
 
     })
+})
+
+// DELETE RECIPES WITH DELETE METHOD?
+// need to GET before DELETE
+
+app.get("/recipes/:id/delete", (req,res) =>{
+        let idSearch = parseInt(req.params.id);
+        let indexSearch = idSearch -1;
+
+        jsonfile.readFile("data.json",(err,data)=> {
+        let recipeToDelete= data.recipes[indexSearch];
+        let obj = {
+            id: idSearch,
+            title: recipeToDelete.title,
+            ingredients: recipeToDelete.ingredients,
+            instructions: recipeToDelete.instructions,
+            date: recipeToDelete.date
+        }
+        res.render('delete',obj)
+        })
+})
+
+//DELETE RECIPE WITH DELETE METHOD
+
+app.delete("/recipes/:id",(req,res) => {
+     let idSearch = parseInt(req.params.id);
+     let indexToDelete = idSearch -1;
+     let titleArr =[];
+     let idArr =[];
+
+
+     jsonfile.readFile("data.json", (err, data)=> {
+         data.recipes.splice(indexToDelete,1);
+         for(i=0; i<data.recipes.length; i++){
+            titleArr.push(data.recipes[i].title);
+            idArr.push(data.recipes[i].id);
+        }
+         const obj= {
+        title: titleArr,
+        ids: idArr
+    }
+        jsonfile.writeFile("data.json", data, (err) => {
+            console.log(err)
+            res.render('recipes', obj)
+        })
+
+     })
 })
 
 
