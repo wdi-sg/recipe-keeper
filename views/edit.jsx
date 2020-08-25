@@ -9,16 +9,16 @@ export default class Edit extends React.Component {
 
         return (
             <form method ="POST" action={`/recipes/${id}?_method=put`} >
-                Recipe ID<input type="text" name="id" placeholder ={id}/>
+                Recipe ID<input type="text" name="id" value ={id}/>
                <br/>
                <br/>
-                Title<input type="text" name="title"placeholder ={title}/>
+                Title<input type="text" name="title" value ={title}/>
                <br/>
                <br/>
-               Ingredients <input type="text" name="ingredient" placeholder ={ingredients}/>
+               Ingredients <input type="text" name="ingredient" value ={ingredients}/>
                <br/>
                <br/>
-               Instructions<input type="text" name="instructions"placeholder ={instructions}/>
+               Instructions<input type="text" name="instructions" value ={instructions}/>
                <br/>
                <br/>
 
