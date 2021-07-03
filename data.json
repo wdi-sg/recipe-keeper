@@ -1,0 +1,24 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "chicken",
+      "ingredients": [
+        "water",
+        "instant noodles"
+      ],
+      "instructions": "Boil water. Pour into instant noodles. Wait 3-5 minutes."
+    },
+    {
+      "id": 2,
+      "title": "beef",
+      "ingredients": [
+        "water",
+        "instant noodles",
+        "chicken"
+      ],
+      "instructions": "Cook chicken. Chop chicken. You now have chicken cubes. Boil water. Pour into instant noodles. Wait 3-5 minutes. Carefully lower chicken cubes into instant noodles."
+    }
+  ],
+  "_locals": {}
+}
