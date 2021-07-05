@@ -1,0 +1,89 @@
+
+
+.main-container{
+    display:flex;
+}
+
+.side-bar{
+    border:1px solid black;
+    width:200px;
+    min-height:600px;
+    list-style: none;
+    padding:10px;
+    background-color: #29a745;
+    color:white;
+
+}
+
+.side-bar a{
+    color:white;
+}
+
+.main-content{
+    padding:25px;
+    width:100%;
+    background-image: url("https://vignette.wikia.nocookie.net/hmwikia/images/8/8d/Fomt.jpg/revision/latest?cb=20080730023519");
+    background-position:center;
+    background-size:cover;
+}
+
+footer{
+    background-color: #26258d;
+    padding-top:30px;
+}
+
+#footer-image{
+    display:block;
+    margin:0 auto;
+}
+
+footer p{
+    text-align:center;
+    color:white;
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size:30px;
+    margin-bottom:0;
+}
+
+.nav-bg{
+    background-color: #26258d;
+
+}
+
+.nav-bg a{
+    color:white;
+    font-weight:bold;
+}
+
+table li{
+    list-style: none;
+}
+
+.individual-data{
+    margin:0 auto;
+    width:500px;
+}
+
+.choices-container{
+    display:flex;
+    justify-content: center;
+
+}
+.choices{
+    margin:10px;
+}
+
+.table-edit{
+    width:500px;
+}
+
+.table-edit tbody{
+    background-color: white;
+}
+
+.table-edit input{
+    border:none;
+}
+
+
