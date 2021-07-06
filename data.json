@@ -1,0 +1,50 @@
+{
+  "recipes": [
+    {
+      "id": "1",
+      "title": "Pistachio Gelato Cake",
+      "img": "http://www.ketomau.com/wp-content/uploads/2018/12/pistachio-cake.jpg",
+      "ingredients": "whipping cream, pistachios, eggs, stevia",
+      "_locals": {}
+    },
+    {
+      "id": "2",
+      "title": "Oyster Mushroom Salad",
+      "img": "http://www.ketomau.com/wp-content/uploads/2018/12/oyster-mushroom-salad.jpg",
+      "ingredients": "oyster mushrooms, romaine lettuce, diced gouda, creamy vinaigrette dressing, spring onions, parmesan cheese",
+      "preparation": "Place the mixed salad base on a serving plate, place the grilled mushrooms on the top, sprinkle a bit of the remaining salad dressing over the mushrooms and add some grated parmesan cheese on the top of everything. Enjoy!"
+    },
+    {
+      "id": "3",
+      "title": "Homemade Gyro Pita",
+      "img": "http://www.ketomau.com/wp-content/uploads/2018/12/gyro-pita.jpg",
+      "ingredients": "roasted pork shoulder slices, pita bread, tzatziki, tyrosalata, sliced onion, sliced tomatoes, mustard ",
+      "preparation": "To wrap everything like an authentic Gyro Pita, first spread the pita bread with 2 tbsp Tyrosalata, or 1 tbsp Tyrosalata and 1 tbsp Tzatziki if you decide to use from both dips. Add some sliced onions, sliced tomatoes or green capsicum, or a little bit of shredded lettuce by your choice. Then place above the sliced meat and top up with a sprinkle of mild yellow mustard or 1 tbsp from the Tyrosalata.",
+      "_locals": {}
+    },
+    {
+      "id": "4",
+      "title": "Low Carb Pita Bread",
+      "img": "http://www.ketomau.com/wp-content/uploads/2018/12/pita-bread-1.jpg",
+      "ingredients": "almond flour, coconut flour, psyllium husk powred, egg whites, baking powder, salt ",
+      "preparation": "Mix the almond flour, the coconut flour, the salt and the baking powder in one large bowl. In a food processor add the psyllium husk powder, pour in the hot water and blend it together until it forms gel-like texture.",
+      "_locals": {}
+    },
+    {
+      "id": "5",
+      "title": "Low Carb Burger",
+      "img": "http://www.ketomau.com/wp-content/uploads/2018/12/meatball-burger.jpg",
+      "ingredients": "Low carb bread, burger patty, tomato, onion, cheddar cheese, burger sauce",
+      "preparation": "Gril the bread and set aside. Grill the burger patty, once you flip add the cheddar cheese to melt. Assemble the burger by spreading the bread with burger sauce. Add the salads and the burger patty."
+    },
+    {
+      "id": "6",
+      "title": "Cheese stuffed pork roll",
+      "img": "http://www.ketomau.com/wp-content/uploads/2018/12/pork-uvijac.jpg",
+      "ingredients": "Bacon, pork loin, gouda cheese",
+      "preparation": "Tenderize the pork loin in a rectangle shape. Add gouda cheese stripes. Roll by wrapping it with bacon slices. Grill on medium heat. Serve with Greek salad.",
+      "_locals": {}
+    }
+
+  ]
+}
