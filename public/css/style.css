@@ -1,0 +1,154 @@
+body {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.banner {
+	color: white;
+	height: 30px;
+	background-color: #4B4B4B;
+}
+
+.banner > div {
+	font-size: 14px;
+	margin-left: 15px;
+	padding-top: 4px;
+}
+
+.navigation {
+	padding: 0px;
+	height: 2000px;
+	background-color: #F4F1F4;
+}
+
+input[type=text] {
+	width: 90%;
+	border-radius: 0px;
+	border: 1px solid #807C80;
+	margin: 20px 10px 10px 10px;
+}
+
+.home, .new {
+	text-decoration: none;
+}
+
+.home:hover, .new:hover {
+	border-left: 5px solid #A2A7B0;
+}
+
+a > img {
+	width: 20px;
+	margin: 0px 15px 3px 0px;
+}
+
+li > a, li > a:hover {
+	color: #807C80;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.header {
+	padding: 25px;
+}
+
+.header > img {
+	width: 70px;
+	margin-top: -25px;
+}
+
+.header > div {
+	font-size: 38px;
+	color: #807C80;
+	margin-left: 15px;
+	display: inline-block;
+}
+
+.add, .edit, .delete, .recipe {
+	width: 80%;
+	margin-left: 25px;
+	text-transform: capitalize;
+}
+
+/*Home*/
+.homeHeader {
+	color: #807C80;
+	margin-left: 25px;
+	margin: 25px 0px 15px 25px;
+}
+
+.homeAlbum {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: 25px;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.albumItem {
+	color: white;
+	position: relative;
+  text-align: center;
+ 	margin-bottom: 20px;
+}
+
+.albumItem > a > img {
+	width: 250px;
+	height: 160px;
+	border-radius: 5px;
+	border: 1px solid #F4F1F4;
+}
+
+.centered {
+  top: 85%;
+  left: 50%;
+ 	font-size: 20px;
+ 	font-weight: bold;
+	position: absolute;
+	text-transform: capitalize;
+  transform: translate(-50%, -50%);
+}
+
+/*Add*/
+.add > div {
+	margin-bottom: 8px;
+}
+
+.moreIngredientButton {
+	height: 38px;
+	margin-left: 385px;
+	display: inline-block;
+}
+
+.ingredients > .row {
+	margin-top: 15px;
+}
+
+.error {
+	color: red;
+	margin-left: 25px;
+}
+
+
+/*Edit*/
+.edit > a {
+	width: 150px;
+	margin-left: 20px;
+}
+
+
+/*View*/
+.recipeImg {
+	width: 350px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	border: 1px solid #F4F1F4;
+}
+
+.recipe > a {
+	width: 150px;
+	margin-right: 20px;
+}
+
+.recipe > div > div {
+	font-weight: bold;
+}
