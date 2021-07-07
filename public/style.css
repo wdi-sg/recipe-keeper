@@ -1,0 +1,150 @@
+body {
+      font-family: helvetica, sans-serif;
+      text-align: center;
+      color: black;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+h1 {
+    font-family: 'Londrina Shadow', cursive;
+    font-size: 5rem;
+    color: rgb(153, 51, 102);
+    margin: 10px 0 0 0;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 14px;
+    color: rgb(102, 153, 102);
+    margin: 10px auto;
+}
+
+h3 {
+    font-size: 18px;
+    color: black;
+    margin: 10px auto;
+    font-weight: bold;
+}
+
+
+h5 {
+    margin: 30px auto 0;
+}
+
+p {
+    color: black;
+    margin: 5px 0 0;
+}
+
+img {
+    width: 180px;
+    height: 150px;
+    border-radius: 5px;
+}
+
+form {
+    display: inline-block;
+    margin: 20px auto;
+    text-align: left;
+}
+
+input {
+    text-align: center;
+    margin: 5px;
+}
+
+div a, div a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer {
+    display: block;
+    background-color: rgb(51, 51, 51);
+    padding: 5px;
+    margin: 20px 0 10px;
+}
+
+footer > div> div > a, footer > div > div > p {
+    font-size: 12px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+
+footer > div > div > a:hover, footer > div > div > p:hover {
+    color: white;
+    text-decoration: none;
+}
+
+nav > div > ul > li > a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+}
+
+.eachRecipeContainer {
+    margin: 30px;
+    display: inline-block;
+    color: black;
+}
+
+.columnleft {
+    text-align: right;
+    padding: 50px;
+}
+
+.columnright {
+    text-align: left;
+    padding: 50px;
+}
+
+.selectedImage {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.dates {
+    font-size: 10px;
+    display: inline;
+    padding: 5px;
+}
+
+.action {
+    clear: left;
+}
+
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.text-muted {
+    font-size: 12px;
+}
+
+nav > div > ul > li > a {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size:3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link {
+        font-size:0.8rem;
+    }
+}
