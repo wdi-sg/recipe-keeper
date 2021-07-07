@@ -1,0 +1,12 @@
+{
+    "recipes": [
+        {
+            "id": "1",
+            "title": "Strawberry Puff Pastry",
+            "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Strudel.jpg/200px-Strudel.jpg",
+            "type": "Dessert",
+            "ingredients": "2 sheets of puff pastry, 1 cup crème fraîche, 2 tablespoons confectioners' sugar, 4 ounces strawberries.  ",
+            "instructions": "Cut 2 sheets of puff pastry in half. Bake 3 of them at 400°F Just 4 ingredients! for 18 minutes. In a medium bowl, whip 1 cup crème fraîche and 2 Tbsp. confectioners' sugar until fluffy. Layer pastry, cream and 4 oz. strawberries; repeat. Dust with confectioners' sugar. Serve.  "
+        }
+    ]
+}
