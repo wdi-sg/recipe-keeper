@@ -1,0 +1,65 @@
+body {
+	background-color: lightgrey;
+	font-family: 'EB Garamond', serif;
+}
+
+.container {
+	text-align: center;
+}
+.home {
+/*	display: flex;
+	flex-flow: wrap;*/
+}
+
+.header-text {
+	transform: translate(2%, 0%);
+}
+
+.home-recipe {
+	width: 700px;
+	height: 300px;
+	background: url(https://images.squarespace-cdn.com/content/v1/54711396e4b0c4a4a3741c6d/1534279065703-NXXO6WUPFPJWFAQCF848/ke17ZwdGBToddI8pDm48kCFTy3UGnhJ-fWvK5PBTMNx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UQAK6Hrx5oK4v7EgPqT2OFRSRLMHaWtK29l-R4I7CH9pArRUwoSl4wuUs73k4k9WwA/flat+lay+styling+tutorial);
+	border-radius: 20px;
+	margin: 25px auto;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.home-ingredients {
+	width: 700px;
+	height: 300px;
+	background: url(https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2018/10/Saltwater-Halal-Restaurants-Singapore.png);
+	border-radius: 20px;
+	background-size: 800px;
+	margin: 25px auto;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.home-p {
+	color: white;
+	font-size: 40px;
+	z-index: 2;
+	transform: translate(10%, 0%);
+	background-color: black;
+	border-radius: 10px;
+	padding: 10px;
+	opacity: 0.8;
+	text-transform: uppercase;
+}
+
+.home-p: hover {
+   color:#00A0C6;
+   text-decoration:none;
+   cursor:pointer;
+}
+
+.ing-listhead {
+	list-style: none;
+}
+
+.ing-list {
+	transform: translate(-2%, 0%);
+}
