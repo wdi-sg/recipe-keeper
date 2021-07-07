@@ -1,0 +1,41 @@
+var React = require('react');
+const RecipeInfo = require('./components/recipeInfo.jsx');
+class Home extends React.Component {
+  render() {
+    console.log(this.props);
+    let listOfRecipes = this.props.recipe.map(recipe => {
+      return <RecipeInfo display={recipe} id = {this.props.recipe.indexOf(recipe)}/>
+      console.log(id);
+      });
+    return (
+      <html lang="en">
+        <head>
+            <link href="https://fonts.googleapis.com/css?family=Dosis|Work+Sans&display=swap" rel="stylesheet"/>
+            <link rel="stylesheet" type="text/css" href="/style.css"/>
+         
+        </head>
+        <body>
+
+          <header>
+            <h1> RECIPES-KEEPER</h1>
+              <nav>
+                <ul>
+                  <li><a href="#/">All recipes</a></li>
+                  <li><a href="#">Ingredients</a></li>
+                  <li><a href="#">Search recipes</a></li>
+                </ul>
+              </nav>
+          </header>
+
+          <div className = "main">
+            
+            {listOfRecipes}
+          </div>
+          <footer> © 2019 Recipes-Keeper GA All rights reserved.</footer>
+        </body>
+      </html>
+    );
+  };
+
+}
+module.exports = Home;
