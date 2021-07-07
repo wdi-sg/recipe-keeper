@@ -1,0 +1,24 @@
+.img_wrapper{
+    background-color: grey;
+    /*border:1px red solid;*/
+    width:300px;
+    height:300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    /*padding: 10px;*/
+    /*box-sizing: border-box;*/
+}
+
+.photo{
+    width:290px;
+    height:234px;
+    background-size: cover;
+    /*background-image:`url(${this.props.food.img})`*/
+    /*background-color: pink;*/
+    margin-bottom: 10px;
+    /*border: 1px red solid*/
+
+}
