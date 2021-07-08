@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,700,900&display=swap');
+
+body {
+	font-family: 'Muli', sans-serif;
+}
+
+.main-wrapper {
+	display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+	margin: 0 auto;
+	padding: 0;
+	max-width: 720px;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+}
+
+h1 {
+	font-weight: 300;
+}
+
+h3 {
+	font-weight: 300;
+}
+
+p {
+	display: block;
+	padding: 0;
+	margin: 5px;
+	border: 1px solid #ff00ff;
+	font-weight: 300;
+}
+
+
+.recipe {
+	display: flex;
+	flex-direction: column;
+/*	justify-content: center;*/
+	width: 26%;
+	margin: 5px;
+	padding: 10px;
+	background-color: #FF6F61;
+	border: 1px solid #00ff00;
+	border-radius: 10px;
+}
+
+
+.id {
+	color: #000;
+	font-size: 1em;
+	font-weight: 300;
+}
+
+
+.title {
+	color: #fff;
+	font-size: 1.2em;
+	font-weight: 400;
+}
+
+/*.image {
+	max-width: 100%;
+}*/
+
+input {
+	font-family: 'Muli', sans-serif;
+}
+
+.one-input-recipe {
+	display: flex;
+	flex-direction: column;
+/*	justify-content: center;*/
+	width: 100%;
+	margin: 5px;
+	padding: 10px;
+	border: 1px solid #ffff00;
+	border-radius: 10px;
+}
+
+
+.recipe-input-id {
+	font-size: 1em;
+	padding: 10px;
+	margin: 10px 20px;
+	font-size: 2em;
+	font-weight: 300;
+}
+
+.recipe-input-name {
+	max-width: 100%;
+	width: 100%;
+	font-size: 2.5em;
+	font-weight: 300;
+	padding: 10px;
+	margin: 10px 20px;
+	border: 1px solid #ff00ff;
+}
+
+
+.submit-input-btn {
+	display: block;
+	width: 200px;
+	height: 100px;
+	font-size: 2.5em;
+	font-weight: 300;
+	padding: 10px;
+	margin: 10px 20px;
+}
+
+
+.one-recipe {
+	display: flex;
+	flex-direction: column;
+/*	justify-content: center;*/
+	width: 100%;
+	margin: 5px;
+	padding: 10px;
+	border: 1px solid #00ff00;
+	border-radius: 10px;
+}
+
+.one-recipe-id {
+	font-size: 1em;
+	padding: 10px;
+	margin: 10px 20px;
+}
+
+.one-recipe-title {
+	font-size: 2.5em;
+	font-weight: 300;
+	padding: 10px;
+	margin: 10px 20px;
+}
