@@ -1,0 +1,24 @@
+{
+  "recipes": [
+    {
+      "title": "Rando Chicken1",
+      "ingredients": "lots of chicken, lots of rando23",
+      "instructions": "add chicken, stir, mix mix stir, add rando23"
+    },
+    {
+      "title": "Food",
+      "ingredients": "Edible Food",
+      "instructions": "Cook em then Eat them"
+    },
+    {
+      "title": "Moar Food",
+      "ingredients": "More Edibles",
+      "instructions": "Toss em' in a pot and wait"
+    },
+    {
+      "title": "Beef",
+      "ingredients": "A good helping of conflict beef",
+      "instructions": "start trouble and you'll get a beef"
+    }
+  ]
+}
