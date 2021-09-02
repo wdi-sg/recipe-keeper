@@ -1,0 +1,24 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "img": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/sweet-potato-kale-frittata-recipe-clx0914-s2-1541539662.jpg?crop=0.809xw:0.810xh;0.191xw,0.167xh&resize=*:2061",
+      "title": "Sweet Potato Kale Frittata",
+      "diet": "vegetarian",
+      "description": "It's easy to get your veggies in with this sweet potato and kale frittata. Enjoy it for breakfast, lunch, or dinner — the choice is yours.",
+      "serving": 4,
+      "ingredients": "6 large eggs\r\n1 c. half-and-half\r\n1 tsp. kosher salt\r\n1/2 tsp. Freshly ground pepper\r\n2 c. sweet potatoes\r\n2 tbsp. olive oil\r\n2 c. firmly packed chopped kale\r\n1/2 small Red Onion\r\n2 clove garlic\r\n3 oz. goat cheese",
+      "instructions": "Preheat oven to 350 degrees F. Whisk together eggs and next 3 ingredients.\r\n\r\nSauté sweet potatoes in 1 tablespoon hot oil in a 10-inch ovenproof nonstick skillet over medium heat 8 to 10 minutes or until potatoes are tender and golden; remove and keep warm. Sauté kale and next 2 ingredients in remaining 1 tablespoon oil 3 to 4 minutes or until kale is wilted and tender; stir in potatoes. Pour egg mixture evenly over vegetables, and cook 3 more minutes. Sprinkle egg mixture with goat cheese.\r\n\r\nBake at 350 degrees F 10 to 14 minutes or until set."
+    },
+    {
+      "id": 2,
+      "img": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/grilled-squash-garlic-bread-1541538402.jpg?crop=1xw:1xh;center,top&resize=980:*",
+      "title": "Grilled Squash Garlic Bread",
+      "diet": "vegetarian",
+      "description": "The best part of this veggie-covered garlic bread is that it's not super filling — so seconds are a must.",
+      "serving": 6,
+      "ingredients": "3 small zucchini\r\n2 summer squash\r\n3 tbsp. plus 1 tsp olive oil \r\n1/2 tsp. salt\r\n1/2 tsp. pepper\r\n1 bunch scallions\r\n1 large ciabatta bread (10 in. by 7 in.)\r\n1 large clove garlic\r\n1/2 c. ricottta\r\n1/2 lemon",
+      "instructions": "Cut zucchini and summer squash lengthwise ¼ inches thick. Brush with 1 tablespoon olive oil, season with salt and pepper, and grill over medium-high until charred and just tender, 3 minutes per side. Toss scallions with 1 teaspoon olive oil and grill, turning occasionally, until just tender; transfer to a board and cut into pieces. \r\n\r\nSplit ciabatta bread and grill until toasted, 1 minute per side, then rub each cut side with 1 large clove garlic and brush with 1 tablespoon olive oil. \r\n\r\nSpread ricotta on each half, then top with zucchini, squash, and scallions. Zest  lemon on top and drizzle with 1 tablespoon olive oil."
+    }
+  ]
+}
